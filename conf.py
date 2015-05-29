@@ -230,8 +230,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'syncthing', u'Syncthing Documentation',
-     [u'The Syncthing Authors'], 1)
+    ('users/config', 'syncthing-config', 'Syncthing Configuration',
+     ['The Syncthing Authors'], 5),
 ]
 
 # If true, show URL addresses after external links.
