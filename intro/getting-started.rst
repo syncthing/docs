@@ -27,7 +27,7 @@ Installing
 
 We suggest you have a look to many of the :ref:`contributions` which let
 you pick a flavor of Syncthing that best fits your scenario. For example, if you
-are interested in a cross-platform GUI application you can check out
+are interested in a cross-platform GUI application you can check out 
 `Syncthing-GTK`_. The community has also developed Windows, Android and many
 more specific flavors that help you run Syncthing on your devices. Currently
 all community flavors run the same Syncthing core underneath, so don't worry
@@ -40,7 +40,7 @@ Syncthing
 ~~~~~~~~~
 
 Grab the `latest release`_ of Syncthing for your operating system at and unpack
-it. There will be a binary called ``syncthing`` (or ``syncthing.exe`` on
+it. There will be a binary called  ``syncthing`` (or ``syncthing.exe`` on
 Windows). Start this in whatever way you are most comfortable with;
 double-clicking should work in any graphical environment, but I'll use the
 terminal to better illustrate what happens. At first start, Syncthing will
