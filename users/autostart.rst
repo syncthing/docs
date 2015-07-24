@@ -230,6 +230,11 @@ log messages (``-e`` lets the pager jump to the very end)::
     journalctl -e -u syncthing@myuser.service
     journalctl -e --user-unit=syncthing.service
 
+Permissions
+^^^^^^^^^^^^^^^^^
+To make sure that syncthing creates folders and files with the correct permission you can edit the "syncthing@.service" file.
+Place "UMask=0002" at the end of the [Service] section. Restart the Service to make this change work.
+
 Debugging
 ^^^^^^^^^
 
