@@ -1,14 +1,20 @@
-.. note:: This describes an incomplete feature under development.
+.. note:: This describes a feature that was removed in April 2014.  Syncthing is no longer able to follow symbolic links.
 
-.. warning::
 
-  This is an advanced feature. Be sure to read and fully understand this
-  guide, and have a backup of your data. Incorrect configuration may result in
-  the deletion of your files. Currently it's probably best to only use
-  ``FollowSymlinks`` on a folder master.
+  
+Approximating Symbolic Links
+============================
+
+In Linux, this feature may be approximated by using hard links for individual files, and ``mount --bind`` for directories.  For persistent linked directories, you may add ``bind`` entries to your /etc/fstab.
+  
+
 
 Symbolic Link Following
 =======================
+
+.. warning::
+
+  The ``FollowSymlinks`` setting is no longer functional.
 
 It is possible to synchronize directory trees not present directly under a
 sync folder by using symbolic links ("symlinks") and enabling "following" of
