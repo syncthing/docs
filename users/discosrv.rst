@@ -2,6 +2,7 @@ Running a Discovery Server
 ==========================
 
 .. note:: This describes the procedure for a v0.12 discovery server.
+.. note:: If you are running an instance of syncthing on the discovery server, that instance must be added to other nodes using a static address or URL. 
 
 Description
 -----------
