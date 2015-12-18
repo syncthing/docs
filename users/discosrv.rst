@@ -2,7 +2,6 @@ Running a Discovery Server
 ==========================
 
 .. note:: This describes the procedure for a v0.12 discovery server.
-.. note:: If you are running an instance of syncthing on the discovery server, that instance must be added to other nodes using a static address or URL. 
 
 Description
 -----------
@@ -26,6 +25,12 @@ to select a different location.
 
 Configuring
 -----------
+
+.. note::
+   If you are running an instance of syncthing on the discovery server,
+   you must either add that instance to other nodes using a static 
+   address run the discovery server and syncthing instance on different
+   IP addresses.
 
 Running discosrv with non-default settings requires passing the
 respective parameters to discosrv on every start. ``discosrv -help``
