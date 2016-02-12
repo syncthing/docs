@@ -138,8 +138,8 @@ by a sysadmin who knows enough to understand the security implications.
 
    -  ``nssm set syncthing AppExit Default Exit``
    -  ``nssm set syncthing AppExit 0 Exit``
-   -  ``nssm set syncthing AppExit 4 Restart``
    -  ``nssm set syncthing AppExit 3 Restart``
+   -  ``nssm set syncthing AppExit 4 Restart``
 #. Start the service via ``sc start syncthing`` in the Command Prompt.
 #. Connect to the Syncthing UI, enable HTTPS, and set a secure username and password.
 
