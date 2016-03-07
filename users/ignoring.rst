@@ -69,6 +69,8 @@ The ``.stignore`` file contains a list of file or path patterns. The
 
 -  A line beginning with ``//`` is a comment and has no effect.
 
+-  Windows does not support escaping ``\[foo - bar\]``.
+
 Example
 -------
 
