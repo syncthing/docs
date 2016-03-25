@@ -6,9 +6,9 @@ Synopsis
 
 ::
 
-    syncthing [-audit] [-browser-only] [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
+    syncthing [-audit] [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
               [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>] [-no-browser]
-              [-no-console] [-no-restart] [-paths] [-paused] [-reset] [-upgrade] [-upgrade-check]
+              [-no-console] [-no-restart] [-paths] [-reset] [-upgrade] [-upgrade-check]
               [-upgrade-to=<url>] [-verbose] [-version]
 
 Description
@@ -130,6 +130,8 @@ Development Settings
 The following environment variables modify Syncthing's behavior in ways that
 are mostly useful for developers. Use with care.
 
+STNODEFAULTFOLDER 
+    Don't create a default folder when starting for the first time. This variable will be ignored anytime after the first run.
 STGUIASSETS
     Directory to load GUI assets from. Overrides compiled in assets.
 STTRACE
