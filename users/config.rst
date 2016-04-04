@@ -96,7 +96,6 @@ The following shows the default configuration file:
             <restartOnWakeup>true</restartOnWakeup>
             <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
             <keepTemporariesH>24</keepTemporariesH>
-            <cacheIgnoredFiles>true</cacheIgnoredFiles>
             <progressUpdateIntervalS>5</progressUpdateIntervalS>
             <symlinksEnabled>true</symlinksEnabled>
             <limitBandwidthInLan>false</limitBandwidthInLan>
@@ -390,7 +389,6 @@ Options Element
         <restartOnWakeup>true</restartOnWakeup>
         <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
         <keepTemporariesH>24</keepTemporariesH>
-        <cacheIgnoredFiles>true</cacheIgnoredFiles>
         <progressUpdateIntervalS>5</progressUpdateIntervalS>
         <symlinksEnabled>true</symlinksEnabled>
         <limitBandwidthInLan>false</limitBandwidthInLan>
@@ -505,10 +503,6 @@ autoUpgradeIntervalH
 keepTemporariesH
     Keep temporary failed transfers for this many hours. While the temporaries
     are kept, the data they contain need not be transferred again.
-
-cacheIgnoredFiles
-    Whether to cache the results of ignore pattern evaluation. Performance at
-    the price of memory.
 
 progressUpdateIntervalS
     How often in seconds the progress of ongoing downloads is made available to
