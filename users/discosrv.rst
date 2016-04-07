@@ -100,3 +100,67 @@ IP address, you will need a dynamic DNS service.
 
 If you wish to use *only* your own discovery server, remove the ``default``
 entry from the list.
+
+Running the Discovery Server behind an Nginx Reverse Proxy
+----------------------------------------------------------
+
+With syncthing/discosrv@4149fc1, the -http flag was added to the discovery
+server allowing use behind an http proxy. Using this feature, the discovery
+server can be run behind an SSL-secured Nginx reverse proxy. This also allows
+use of a subdomain name without requiring a port number added to the URL.
+
+Requirements:
+
+- Discosrv version *at or after* the above commit.
+
+- Nginx configuration with the following extra directives to handoff the SSL
+  connection::
+
+      proxy_set_header X-SSL-Cert $ssl_client_cert;
+      ssl_verify_client optional_no_ca;
+
+- SSL certificate/key already setup
+
+- Port 21027/udp still needs to be opened on the discovery server host as it
+  is not proxied.
+
+- Run the discovery server: `discosrv -http`
+
+Here is an example nginx configuration file. With this setup, the clients can
+use https://discovery.mydomain.com as the discovery server URL in the Syncthing
+settings::
+
+    upstream discovery.mydomain.com {
+        # Local IP address:port for discovery server
+        server 172.17.0.6:8443;
+    }
+    server {
+            server_name discovery.mydomain.com;
+            listen 80 ;
+            access_log /var/log/nginx/access.log vhost;
+            return 301 https://$host$request_uri;
+    }
+    server {
+            server_name discovery.mydomain.com;
+            listen 443 ssl http2 ;
+            access_log /var/log/nginx/access.log vhost;
+            ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+            ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384: DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:E CDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA25 6:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA3 84:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS -DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA;
+            ssl_prefer_server_ciphers on;
+            ssl_session_timeout 5m;
+            ssl_session_cache shared:SSL:50m;
+            ssl_certificate /etc/nginx/certs/discovery.mydomain.com.crt;
+            ssl_certificate_key /etc/nginx/certs/discovery.mydomain.com.key;
+            ssl_dhparam /etc/nginx/certs/discovery.mydomain.com.dhparam.pem;
+            add_header Strict-Transport-Security "max-age=31536000";
+            ssl_verify_client optional_no_ca;
+            location / {
+                    proxy_pass http://discovery.mydomain.com;
+            }
+    }
+
+An example of automating the SSL certificates and reverse-proxying the Discovery
+Server and Syncthing using `Let's Encrypt`_ and Docker can be found here_.
+
+.. _Let's Encrypt: https://letsencrypt.org/
+.. _here: https://forum.syncthing.net/t/docker-syncthing-and-syncthing-discovery-behind-nginx-reverse-proxy-with-lets-encrypt/6880
