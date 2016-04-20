@@ -141,3 +141,13 @@ The end result is more files in the global repository than in the local,
 but still 100% in sync (:issue:`624`). From Alice's point of view, Bob
 will remain 100% in sync until the next reconnect, because Bob has
 already announced that he has the files that are now suddenly ignored.
+
+What happens if you change the ignore list
+------------------------------------------
+Whenever you change the ignore list there can be files left at one side of the sync 
+relation that can be deleted at the other side. This normally is not a problem 
+but as soon as you delete a folder it may be possible you get out of sync message 
+becasue the folder can not be deleted at the other side of the sync relation because 
+there are ignored files left over in the to be deleted folder. Go to the other computer
+and manuall delete the ignored files left in the folder and the folder will be
+deleted automatically
