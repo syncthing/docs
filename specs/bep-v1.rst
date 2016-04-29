@@ -487,9 +487,6 @@ XDR
 ::
 
     struct ClusterConfigMessage {
-        string DeviceName<64>;
-        string ClientName<64>;
-        string ClientVersion<64>;
         Folder Folders<1000000>;
         Option Options<64>;
     };
