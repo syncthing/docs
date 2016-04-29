@@ -393,7 +393,7 @@ folder Flags field contains the following single bit flags:
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                           Reserved                      |D|P|R|
+    |                           Reserved                    |T|D|P|R|
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 :Bit 31 ("R", Read Only):
@@ -406,6 +406,11 @@ folder Flags field contains the following single bit flags:
 
 :Bit 29 ("D", Ignore Deletes):
     is set for folders that the device will ignore deletes for.
+
+:Bit 28 ("T", Disable Temporary Indexes):
+    is set for folders that will not dispatch and do not wish to receive
+    progress updates about partially downloaded files via DownloadProgress
+	messages.
 
 The **Options** field contains a list of options that apply to the folder.
 
@@ -463,7 +468,7 @@ Flags field contains the following single bit flags:
 
 :Bits 16 through 28: are reserved and MUST be set to zero.
 
-:Bits 14-15 ("Pri): indicate the device's upload priority for this
+:Bits 14-15 ("Pri", Priority): indicate the device's upload priority for this
    folder. Possible values are:
 
    :00: The default. Normal priority.
@@ -817,8 +822,21 @@ that the transmitted block matches the requested hash. The other device
 MAY reuse a block from a different file and offset having the same size
 and hash, if one exists.
 
-The Flags field is reserved for future use and MUST currently be set to
-zero. The Options list is implementation defined and as described in the
+The **Flags** field is made up of the following single bit flags:
+::
+
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                           Reserved                          |T|
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+:Bit 31 ("T", Temporary): is set to indicate that the read should be performed
+    from the temporary file (converting Name to it's temporary form) and falling
+    back to the non temporary file if any error occurs. Knowledge of content
+	inside temporary files comes from DownloadProgress messages.
+
+The Options list is implementation defined and as described in the
 ClusterConfig message section.
 
 XDR
@@ -890,6 +908,144 @@ XDR
         opaque Data<>;
         int Code;
     }
+
+DownloadProgress (Type = 8)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The DownloadProgress message is used to notify remote devices about partial
+availability of files. Unlike other messages in the protocol, these are
+incremental, which means they are only sent when progress has been made or the
+state of the file being downloaded has changed. By default, these messages are
+sent every 5 seconds, and only in the cases where progress or state chagnes
+have been detected. Each DownloadProgress message is addresses to a specific
+folder and MAY contain zero or more FileDownloadProgressUpdate structures.
+
+Graphical Representation
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+    DownloadProgressMessage Structure:
+
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                                                               /
+    \                 Folder (length + padded data)                 \
+    /                                                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                       Number of Updates                       |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                                                               /
+    \      Zero or more FileDownloadProgressUpdate Structures       \
+    /                                                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                             Flags                             |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                       Number of Options                       |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                                                               /
+    \                Zero or more Option Structures                 \
+    /                                                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+    FileDownloadProgressUpdate Structure:
+
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                          Update Type                          |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                                                               /
+    \                  Name (length + padded data)                  \
+    /                                                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                                                               /
+    \                      Version Structure                        \
+    /                                                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                    Number of Block Indexes                    |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                                                               /
+    |                    Block Indexes (n items)                    |
+    /                                                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+Each
+
+Fields (DownloadProgress Message)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+**Folder** represents the ID of the folder for which the update is being
+provided.
+
+The **Flags** field is reserved for future use and MUST currently be set to
+zero. The **Options** field contains a list of options that apply to the update.
+
+Fields (FileDownloadProgressUpdate Structure)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The **Update Type** field is made up of the following single bit flags:
+::
+
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                           Reserved                          |F|
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+:Bit 31 ("F", Forget): is set to notify that the file that was previously
+    advertised is no longer available (atleast as a temporary file).
+
+The **Name** field defines the file name from the global index for which this
+update is being sent.
+
+The **Version** structure defines the version of the file for which this update
+is being sent.
+
+**Block Indexes** is a list of positive integers, where each integer represents
+the index of the block in the FileInfo structure Blocks array that has become
+available for downloads.
+For example an integer with with value 3 represents that the data defined in the
+third BlockInfo structure of the FileInfo structure of that file is now available.
+Please note that matching should be done on **Name** AND **Version**.
+Furthermore, each update received is incremental, for example the initial update
+structure might contain indexes 0, 1, 2, an update 5 seconds later might contain
+indexes 3, 4, 5 which should be appended to the original list, which implies
+that blocks 0-6 are currently available.
+
+Blocks are downloaded in random order, therefore block indexes MAY NOT grow in
+an incrementing order.
+
+Value of **Version** changing between update messages implies that the file has
+changed, and that any indexes previously advertised are no longer available.
+The list of available block indexes MUST BE replaced (rather than appended)
+with the indexes specified in this message.
+
+**Forget** bit being set implies that the file that was previously advertised
+is no longer available, therefore the list of block indexes should be truncated.
+
+Messages with **Forget** bit set MUST NOT have any block indexes.
+
+XDR
+^^^
+
+::
+
+    struct DownloadProgressMessage {
+        string Folder<64>;
+        FileDownloadProgressUpdate Updates<1000000>;
+        unsigned int Flags;
+        Option Options<64>;
+    }
+
+    struct FileDownloadProgressUpdate {
+        unsigned int UpdateType;
+        string Name<8192>;
+        Vector Version;
+        int BlockIndexes<1000000>;
+    }
+
 
 Ping (Type = 4)
 ~~~~~~~~~~~~~~~
@@ -1018,6 +1174,13 @@ Message Type        Field               Limit
 |                   Number of Options   64
 |                   Key                 64 bytes
 |                   Value               1024 bytes
+
+**Download Progress Messages**
+-----------------------------------------------------
+|                   Folder              64 bytes
+|                   Number of Updates   1.000.000
+|                   Name                8192 bytes
+|                   Number of Indexes   1.000.000
 =================== =================== =============
 
 The currently defined values allow maximum file size of 1220 GiB
