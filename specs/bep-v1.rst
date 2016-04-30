@@ -75,8 +75,8 @@ communicate due to failing authentication.
 Hello messages MUST be prefixed with a magic number **0x9F79BC40**
 represented in network byte order (BE), followed by 4 bytes representing the
 size of the message in network byte order (BE), followed by the content of
-the Hello message itself. The content of Hello message MUST be less or equal
-to 1024 bytes.
+the Hello message itself. The size of the contents of Hello message MUST be 
+less or equal to 1024 bytes.
 
 ::
 
