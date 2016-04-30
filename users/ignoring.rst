@@ -80,7 +80,7 @@ The ``.stignore`` file contains a list of file or path patterns. The
 
 -  Windows does not support escaping ``\[foo - bar\]``.
 
-.. node::
+.. note::
 
    Prefixes can be specified in any order.
 
