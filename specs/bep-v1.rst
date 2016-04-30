@@ -137,6 +137,8 @@ XDR
         string ClientVersion<64>;
     };
 
+Immediately after exchanging Hello messages, the connection should be 
+dropped if device does not pass authentication.
 
 Post-authentication Messages
 ----------------------------
