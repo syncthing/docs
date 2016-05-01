@@ -913,12 +913,10 @@ DownloadProgress (Type = 8)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The DownloadProgress message is used to notify remote devices about partial
-availability of files. Unlike other messages in the protocol, these are
-incremental, which means they are only sent when progress has been made or the
-state of the file being downloaded has changed. By default, these messages are
-sent every 5 seconds, and only in the cases where progress or state chagnes
-have been detected. Each DownloadProgress message is addresses to a specific
-folder and MAY contain zero or more FileDownloadProgressUpdate structures.
+availability of files. By default, these messages are sent every 5 seconds,
+and only in the cases where progress or state changes have been detected.
+Each DownloadProgress message is addressed to a specific folder and MUST
+contain zero or more FileDownloadProgressUpdate structures.
 
 Graphical Representation
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -995,7 +993,7 @@ The **Update Type** field is made up of the following single bit flags:
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 :Bit 31 ("F", Forget): is set to notify that the file that was previously
-    advertised is no longer available (atleast as a temporary file).
+    advertised is no longer available (at least as a temporary file).
 
 The **Name** field defines the file name from the global index for which this
 update is being sent.
@@ -1005,27 +1003,33 @@ is being sent.
 
 **Block Indexes** is a list of positive integers, where each integer represents
 the index of the block in the FileInfo structure Blocks array that has become
-available for downloads.
+available for download.
 For example an integer with with value 3 represents that the data defined in the
-third BlockInfo structure of the FileInfo structure of that file is now available.
+fourth BlockInfo structure of the FileInfo structure of that file is now available.
 Please note that matching should be done on **Name** AND **Version**.
 Furthermore, each update received is incremental, for example the initial update
 structure might contain indexes 0, 1, 2, an update 5 seconds later might contain
 indexes 3, 4, 5 which should be appended to the original list, which implies
-that blocks 0-6 are currently available.
+that blocks 0-5 are currently available.
 
-Blocks are downloaded in random order, therefore block indexes MAY NOT grow in
-an incrementing order.
-
-Value of **Version** changing between update messages implies that the file has
-changed, and that any indexes previously advertised are no longer available.
-The list of available block indexes MUST BE replaced (rather than appended)
-with the indexes specified in this message.
+Block indexes MAY be added in any order.
+An implementation MUST NOT assume that block indexes are added in any specific
+order.
 
 **Forget** bit being set implies that the file that was previously advertised
 is no longer available, therefore the list of block indexes should be truncated.
 
 Messages with **Forget** bit set MUST NOT have any block indexes.
+
+Any update message which is being sent for a different **Version** of the same
+file name must be preceeded with an update message for the old version of that
+file with the **Forget** bit set.
+
+As a safeguard on the receiving side, value of **Version** changing between
+update messages implies that the file has changed, and that any indexes
+previously advertised are no longer available. The list of available block
+indexes MUST be replaced (rather than appended) with the indexes specified in
+this message.
 
 XDR
 ~~~
