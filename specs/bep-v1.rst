@@ -75,7 +75,7 @@ communicate due to failing authentication.
 Hello messages MUST be prefixed with a magic number **0x9F79BC40**
 represented in network byte order (BE), followed by 4 bytes representing the
 size of the message in network byte order (BE), followed by the content of
-the Hello message itself. The size of the contents of Hello message MUST be 
+the Hello message itself. The size of the contents of Hello message MUST be
 less or equal to 1024 bytes.
 
 ::
@@ -137,7 +137,7 @@ XDR
         string ClientVersion<64>;
     };
 
-Immediately after exchanging Hello messages, the connection should be 
+Immediately after exchanging Hello messages, the connection should be
 dropped if device does not pass authentication.
 
 Post-authentication Messages
@@ -222,7 +222,7 @@ other opaque data. All strings MUST use the Unicode UTF-8 encoding,
 normalization form C.
 
 Cluster Config (Type = 0)
-~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. Documentation note: the structure of a message section is always:
    1. A short description of the message
@@ -236,7 +236,7 @@ message MUST be the first message sent on a BEP connection. Additional
 Cluster Config messages MUST NOT be sent after the initial exchange.
 
 Graphical Representation
-^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -353,7 +353,7 @@ Graphical Representation
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 Fields (ClusterConfigMessage)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. Documentation note: the first time a field is mentioned it is put in **bold
    text**. We use the Space Separated names in running text and ASCII art
@@ -377,7 +377,7 @@ options.
 
 
 Fields (Folder Structure)
-^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The **ID** field contains the folder ID, as a human readable string.
 
@@ -415,7 +415,7 @@ folder Flags field contains the following single bit flags:
 The **Options** field contains a list of options that apply to the folder.
 
 Fields (Device Structure)
-^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The device **ID** field is a 32 byte number that uniquely identifies the
 device. For instance, the reference implementation uses the SHA-256 of the
@@ -489,7 +489,7 @@ Exactly one of the T and R bits MUST be set.
 The **Options** field contains a list of options that apply to the device.
 
 XDR
-^^^
+~~~
 
 ::
 
@@ -523,7 +523,7 @@ XDR
     };
 
 Index (Type = 1) and Index Update (Type = 6)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Index and Index Update messages define the contents of the senders
 folder. An Index message represents the full contents of the folder and
@@ -534,7 +534,7 @@ Index, unless a non-zero Max Local Version has been announced for the
 given folder by the peer device.
 
 Graphical Representation
-^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -638,7 +638,7 @@ Graphical Representation
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 Fields (Index Message)
-^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~
 
 The **Folder** field identifies the folder that the index message pertains to.
 
@@ -651,7 +651,7 @@ The **Options** list is implementation defined and as described in the
 ClusterConfig message section.
 
 Fields (FileInfo Structure)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The **Name** is the file name path relative to the folder root. Like all
 strings in BEP, the Name is always in UTF-8 NFC regardless of operating
@@ -726,7 +726,7 @@ The hash algorithm is implied by the **Hash** length. Currently, the hash
 MUST be 32 bytes long and computed by SHA256.
 
 XDR
-^^^
+~~~
 
 ::
 
@@ -761,13 +761,13 @@ XDR
     };
 
 Request (Type = 2)
-~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^
 
 The Request message expresses the desire to receive a data block
 corresponding to a part of a certain file in the peer's folder.
 
 Graphical Representation
-^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -810,7 +810,7 @@ Graphical Representation
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 Fields
-^^^^^^
+~~~~~~
 
 The Folder and Name fields are as documented for the Index message. The
 Offset and Size fields specify the region of the file to be transferred.
@@ -840,7 +840,7 @@ The Options list is implementation defined and as described in the
 ClusterConfig message section.
 
 XDR
-^^^
+~~~
 
 ::
 
@@ -855,12 +855,12 @@ XDR
     };
 
 Response (Type = 3)
-~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^
 
 The Response message is sent in response to a Request message.
 
 Graphical Representation
-^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 ResponseMessage Structure:
 
@@ -879,7 +879,7 @@ ResponseMessage Structure:
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 Fields
-^^^^^^
+~~~~~~
 
 The **Data** field contains either a full 128 KiB block, a shorter block in
 the case of the last block in a file, or is empty (zero length) if the
@@ -900,7 +900,7 @@ returned. The following values are defined:
    unavailable)
 
 XDR
-^^^
+~~~
 
 ::
 
@@ -910,7 +910,7 @@ XDR
     }
 
 DownloadProgress (Type = 8)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The DownloadProgress message is used to notify remote devices about partial
 availability of files. Unlike other messages in the protocol, these are
@@ -921,7 +921,7 @@ have been detected. Each DownloadProgress message is addresses to a specific
 folder and MAY contain zero or more FileDownloadProgressUpdate structures.
 
 Graphical Representation
-^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -975,7 +975,7 @@ Graphical Representation
 Each
 
 Fields (DownloadProgress Message)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Folder** represents the ID of the folder for which the update is being
 provided.
 
@@ -983,7 +983,7 @@ The **Flags** field is reserved for future use and MUST currently be set to
 zero. The **Options** field contains a list of options that apply to the update.
 
 Fields (FileDownloadProgressUpdate Structure)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The **Update Type** field is made up of the following single bit flags:
 ::
@@ -1028,7 +1028,7 @@ is no longer available, therefore the list of block indexes should be truncated.
 Messages with **Forget** bit set MUST NOT have any block indexes.
 
 XDR
-^^^
+~~~
 
 ::
 
@@ -1048,7 +1048,7 @@ XDR
 
 
 Ping (Type = 4)
-~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^
 
 The Ping message is used to determine that a connection is alive, and to keep
 connections alive through state tracking network elements such as firewalls
@@ -1057,14 +1057,14 @@ every 90 seconds, if no other message has been sent in the preceding 90
 seconds.
 
 Close (Type = 7)
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 The Close message MAY be sent to indicate that the connection will be
 torn down due to an error condition. A Close message MUST NOT be
 followed by further messages.
 
 Graphical Representation
-^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
@@ -1083,7 +1083,7 @@ Graphical Representation
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 Fields
-^^^^^^
+~~~~~~
 
 The **Reason** field contains a human description of the error condition,
 suitable for consumption by a human. The **Code** field is for a machine
@@ -1101,7 +1101,7 @@ Sharing Modes
 -------------
 
 Trusted
-~~~~~~~
+^^^^^^^
 
 Trusted mode is the default sharing mode. Updates are exchanged in both
 directions.
@@ -1115,7 +1115,7 @@ directions.
     +------------+     Updates      \---------/
 
 Read Only
-~~~~~~~~~
+^^^^^^^^^
 
 In read only mode, a device does not apply any updates from the cluster,
 but publishes changes of its local folder to the cluster as usual.
