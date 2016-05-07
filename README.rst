@@ -16,6 +16,16 @@ documentation team and perform edits without requiring approval.
 In the long run, learning to use Git_ and running Sphinx_ on your computer is
 beneficial.
 
+``
+   git clone https://github.com/syncthing/docs.git
+   
+   pip install -U Sphinx
+   
+   cd docs 
+   
+   make html
+`` 
+
 Structure
 ---------
 
