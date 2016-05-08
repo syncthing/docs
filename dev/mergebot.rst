@@ -11,14 +11,20 @@ Merging a PR
 ------------
 
 To merge a pull request, simply tell the bot to do so, making sure that the
-first word of the command is ``merge``.
+first word of the command is ``merge``::
+
+    @st-review merge
 
 .. image:: merge-1.png
 
 It's also possible to override the resulting commit subject and message when
 doing this. Just add a blank line, the commit subject, another blank line,
 and then the commit body (which can be empty). Don't worry about the text
-formatting - the commit body will be reflowed appropriately by the bot.
+formatting - the commit body will be reflowed appropriately by the bot::
+
+    @st-review merge
+
+    lib/dialer: Add env var to disable proxy fallback (fixes #3006)
 
 .. image:: merge-2.png
 
@@ -43,7 +49,13 @@ checks:
 
 .. image:: merge-4-0.png
 
-Use the following syntax:
+Use the following syntax::
+
+    @st-review merge this please
+
+    all: Correct spelling in comments
+
+    Skip-check: authors pr-build-mac
 
 .. image:: merge-4-1.png
 
