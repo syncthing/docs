@@ -145,7 +145,7 @@ id
     The folder ID, must be unique. (mandatory)
 
 label
-    The label of a folder is human readable and descriptive local name. Can be different on each device. (optional)
+    The label of a folder is a human readable and a descriptive local name. Can be different on each device. (optional)
 
 path
     The path to the directory where the folder is stored on this
