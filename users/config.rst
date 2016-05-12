@@ -50,7 +50,7 @@ The following shows the default configuration file:
 .. code-block:: xml
 
     <configuration version="13">
-        <folder id="zj2AA-q55a7" label="Default Folder (zj2AA-q55a7)" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" ignorePerms="false" autoNormalize="true" ro="false">
+        <folder id="zj2AA-q55a7" label="Default Folder (zj2AA-q55a7)" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" ignorePerms="false" autoNormalize="true">
             <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
             <minDiskFreePct>1</minDiskFreePct>
             <versioning></versioning>
@@ -105,7 +105,7 @@ The following shows the default configuration file:
             <limitBandwidthInLan>false</limitBandwidthInLan>
             <minHomeDiskFreePct>1</minHomeDiskFreePct>
             <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
-            <overwriteNames>false</overwriteNames>
+            <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
         </options>
     </configuration>
@@ -424,7 +424,7 @@ Options Element
         <limitBandwidthInLan>false</limitBandwidthInLan>
         <minHomeDiskFreePct>1</minHomeDiskFreePct>
         <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
-        <overwriteNames>false</overwriteNames>
+        <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
     </options>
 
@@ -570,7 +570,7 @@ minHomeDiskFreePct
 releasesURL
     The URL from which release information is loaded, for automatic upgrades.
 
-overwriteNames
+overwriteRemoteDeviceNamesOnConnect
     If set, device names will always be overwritten with the name given by
     remote on each connection. By default, the name that the remote device
     announces will only be adopted when a name has not already been set.
