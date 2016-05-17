@@ -49,7 +49,7 @@ The following shows the default configuration file:
 
 .. code-block:: xml
 
-    <configuration version="13">
+    <configuration version="14">
         <folder id="zj2AA-q55a7" label="Default Folder (zj2AA-q55a7)" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" ignorePerms="false" autoNormalize="true">
             <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
             <minDiskFreePct>1</minDiskFreePct>
@@ -366,14 +366,10 @@ address
 
     IPv4 address and port (``127.0.0.1:8384``)
         The address and port is used as given.
-    IPv4 wildcard and port (``tcp4://0.0.0.0``, ``tcp4://:8384``)
-        These are equivalent and will result in Syncthing listening on all interfaces via IPv4 only.
 
     IPv6 address and port (``[::1]:8384``)
         The address and port is used as given. The address must be enclosed in
         square brackets.
-    IPv6 wildcard and port (``tcp6://[::]:8384``, ``tcp6://:8384``)
-        These are equivalent and will result in Syncthing listening on all interfaces via IPv6 only.
 
     Wildcard and port (``0.0.0.0:12345``, ``[::]:12345``, ``:12345``)
         These are equivalent and will result in Syncthing listening on all
@@ -431,15 +427,8 @@ Options Element
 The ``options`` element contains all other global configuration options.
 
 listenAddress
-    The listen address for incoming sync connections. See the ``address``
-    element under the `GUI Element`_ for allowed syntax, with the addition
-    that the address must have a protocol scheme prefix. Currently
-    ``tcp://`` is the only supported protocol scheme. The default value of
-    ``default`` implies listening on the default port and using the default
-    relay pool server, effectively ``tcp://0.0.0.0:22000,
-    dynamic+https://relays.syncthing.net/endpoint``. The prefixes
-    ``tcp4://`` and ``tcp6://`` can be used to specify IPv4 and IPv6 only
-    listen addresses, respectively.
+    The listen address for incoming sync connections. See
+    `Listen Addresses`_ for allowed syntax.
 
 globalAnnounceServer
     A URI to a global announce (discovery) server, or the word ``default`` to
@@ -579,6 +568,45 @@ tempIndexMinBlocks
     When exchanging index information for incomplete transfers, only take
     into account files that have at least this many blocks.
 
+Listen Addresses
+^^^^^^^^^^^^^^^^
+
+The following address types are accepted in sync protocol listen addresses:
+
+TCP wildcard and port (``tcp://0.0.0.0:22000``, ``tcp://:22000``)
+    These are equivalent and will result in Syncthing listening on all
+    interfaces, IPv4 and IPv6, on the specified port.
+
+TCP IPv4 wildcard and port (``tcp4://0.0.0.0:22000``, ``tcp4://:22000``)
+    These are equivalent and will result in Syncthing listening on all
+    interfaces via IPv4 only.
+
+TCP IPv4 address and port (``tcp4://192.0.2.1:22000``)
+    These are equivalent and will result in Syncthing listening on the
+    specified address and port only.
+
+TCP IPv6 wildcard and port (``tcp6://[::]:22000``, ``tcp6://:22000``)
+    These are equivalent and will result in Syncthing listening on all
+    interfaces via IPv6 only.
+
+TCP IPv6 address and port (``tcp6://[2001:db8::42]:22000``)
+    These are equivalent and will result in Syncthing listening on the
+    specified address and port only.
+
+Static relay address (``relay://192.0.2.42:22067?id=abcd123...``)
+    Syncthing will connect to and listen for incoming connections via the
+    specified relay address.
+
+    .. todo:: Document available URL parameters.
+
+Dynamic relay pool (``dynamic+https://192.0.2.42/relays``)
+    Syncthing will fetch the specified HTTPS URL, parse it for a JSON payload
+    describing relays, select a relay from the available ones and listen via
+    that as if specified as a static relay above.
+
+    .. todo:: Document available URL parameters.
+
+
 Syncing Configuration files
 ---------------------------
 
@@ -596,3 +624,4 @@ If you'd like to sync your home folder in non-master mode, you may add the
 folder that stores the configuration files to the :ref:`ignore list <ignoring-files>`.
 If you'd also like to backup your configuration files, add another folder in
 master mode for just the configuration folder.
+
