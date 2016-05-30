@@ -2,6 +2,7 @@ GET /rest/db/status
 ===================
 
 Returns information about the current status of a folder.
+The possible state values are ``idle``, ``scanning``, ``syncing``, ``error`` and ``unknown``.
 
 Parameters: ``folder``, the ID of a folder.
 
