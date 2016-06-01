@@ -89,6 +89,7 @@ Example
 
 Given a directory layout::
 
+    .DS_Store
     foo
     foofoo
     bar/
@@ -113,6 +114,7 @@ and an ``.stignore`` file with the contents::
 all files and directories called "foo", ending in a "2" or starting with
 "qu" will be ignored. The end result becomes::
 
+    (?d).DS_Store # ignored, matches ".DS_Store" (?d) allows deletion in empty directory
     foo           # ignored, matches "foo"
     foofoo        # synced, does not match "foo" but would match "foo*" or "*foo"
     bar/          # synced
