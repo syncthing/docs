@@ -1,13 +1,14 @@
 GET /rest/stats/folder
 ======================
 
-Returns general statistics about folders. Currently, only contains the
-last synced file.
+Returns general statistics about folders. Currently contains the
+last scan time and the last synced file.
 
 .. code-block:: bash
 
     $ curl -s http://localhost:8384/rest/stats/folder | json
     {
+      "lastScan": "2016-06-02T13:28:01.288181412-04:00",
       "folderid" : {
         "lastFile" : {
           "filename" : "file/name",
