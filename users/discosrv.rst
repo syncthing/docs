@@ -6,6 +6,8 @@ Description
 
 This guide assumes that you have already set up Syncthing. If you
 haven't yet, head over to :ref:`getting-started` first.
+An overview of what a discovery server does and the default
+use of them is at :ref:`security`.
 
 Installing
 ----------
