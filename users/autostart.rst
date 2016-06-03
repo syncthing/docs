@@ -236,7 +236,7 @@ How to set up a system service
 #. Create the user who should run the service, or choose an existing one.
 #. Copy the ``Syncthing/etc/system/syncthing@.service`` file into the
    `load path of the system instance
-   <http://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20Load%20Path>`__.
+   <http://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20Load%20Path>`__. In some linux distributions (e.g. Ubuntu 16.04) it is redundant as this config file should be placed there by Syncthing installation automatically.
 #. Enable and start the service. Replace "myuser" with the actual Syncthing
    user after the ``@``::
 
