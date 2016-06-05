@@ -1,6 +1,10 @@
 Syncthing
 =========
 
+.. todo::
+    The way API keys are set and used is currently in review (see https://forum.syncthing.net/t/proposal-for-hashing-api-keys/7493). Documentation will be updated soon.
+    Depreciated -gui-apikey= option
+
 Synopsis
 --------
 
@@ -35,10 +39,6 @@ Options
 .. cmdoption:: -gui-address=<address>
 
     Override GUI address.
-
-.. cmdoption:: -gui-apikey=<key>
-
-    Override GUI API key.
 
 .. cmdoption:: -home=<dir>
 
@@ -103,6 +103,13 @@ Options
 .. cmdoption:: -version
 
     Show version.
+
+Depreciated Options
+-------------------
+
+.. cmdoption:: -gui-apikey=<key>
+
+    Override GUI API key.
 
 Exit Codes
 ----------
