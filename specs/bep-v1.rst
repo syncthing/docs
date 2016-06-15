@@ -35,7 +35,7 @@ level protocols providing encryption and authentication.
     |-----------------------------|
     | Encryption & Auth (TLS 1.2) |
     |-----------------------------|
-    |             TCP             |
+    |      Reliable Transport     |
     |-----------------------------|
     v             ...             v
 
@@ -68,19 +68,24 @@ Pre-authentication messages
 AFTER establishing a connection, but BEFORE performing any authentication,
 *devices* MUST exchange Hello messages.
 
-Hello messages are used to carry additional information about the peer, which
-might be of interest to the user even if the peer is not permitted to
-communicate due to failing authentication.
+Hello messages are used to carry additional information about the peer,
+which might be of interest to the user even if the peer is not permitted to
+communicate due to failing authentication. Note that the certificate based
+authentication may be considered part of the TLS handshake that precedes the
+Hello message exchange, but even in the case that a connection is rejected a
+Hello message must be sent before the connection is terminated.
 
-Hello messages MUST be prefixed with a magic number **0x9F79BC40**
+Hello messages MUST be prefixed with a magic number **0x2EA7D90B**
 represented in network byte order (BE), followed by 4 bytes representing the
 size of the message in network byte order (BE), followed by the content of
 the Hello message itself. The size of the contents of Hello message MUST be
 less or equal to 1024 bytes.
 
-::
+In this document, in diagrams and text, "bit 0" refers to the *most
+significant* bit of a word; "bit 31" is thus the least significant bit of a
+32 bit word.
 
-    Prefix Structure:
+::
 
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -90,64 +95,40 @@ less or equal to 1024 bytes.
     |                            Length                             |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     /                                                               /
-    \                    Content of HelloMessage                    \
+    \                         Hello Message                         \
     /                                                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-    HelloMessage Structure:
+The Hello message itself is in protocol buffer format with the following schema::
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \              Device Name (length + padded data)               \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \              Client Name (length + padded data)               \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \             Client Version (length + padded data)             \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    message HelloMessage {
+        string device_name    = 1;
+        string client_name    = 2;
+        string client_version = 3;
+    }
 
+Fields (Hello Message)
+^^^^^^^^^^^^^^^^^^^^^^
 
-Fields (HelloMessage)
-^^^^^^^^^^^^^^^^^^^^^
-
-The **Device Name** is a human readable (configured or auto detected) device
+The **device_name** is a human readable (configured or auto detected) device
 name or host name, for the remote device.
 
-The **Client Name** and **Client Version** identifies the implementation. The
+The **client_name** and **client_version** identifies the implementation. The
 values SHOULD  be simple strings identifying the implementation name, as a
 user would expect to see it, and the version string in the same manner. An
-example Client Name is "syncthing" and an example Client Version is "v0.7.2".
-The Client Version field SHOULD follow the patterns laid out in the `Semantic
+example client name is "syncthing" and an example client version is "v0.7.2".
+The client version field SHOULD follow the patterns laid out in the `Semantic
 Versioning <http://semver.org/>`__ standard.
 
-XDR
-^^^
-
-::
-
-    struct HelloMessage {
-        string DeviceName<64>;
-        string ClientName<64>;
-        string ClientVersion<64>;
-    };
-
-Immediately after exchanging Hello messages, the connection should be
-dropped if device does not pass authentication.
+Immediately after exchanging Hello messages, the connection MUST be dropped
+if the remote device does not pass authentication.
 
 Post-authentication Messages
 ----------------------------
 
 Every message starts with one 32 bit word indicating the message version, type
 and ID, followed by the length of the message. The header is in network byte
-order, i.e. big endian. In this document, in diagrams and text, "bit 0" refers
-to the *most significant* bit of a word; "bit 31" is thus the least
-significant bit of a 32 bit word.
+order, i.e. big endian.
 
 ::
 
@@ -196,248 +177,146 @@ For C=1:
 -  The message data is compressed using the LZ4 format and algorithm
    described in http://www.lz4.org/.
 
-All data within the message (post decompression, if compression is in
-use) MUST be in XDR (RFC 1014) encoding. All fields shorter than 32 bits
-and all variable length data MUST be padded to a multiple of 32 bits.
-The actual data types in use by BEP, in XDR naming convention, are the
-following:
+That is to say, for an uncompressed message the following is the complete
+message layout::
 
-(unsigned) int:
-    (unsigned) 32 bit integer
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |  Ver  |       Message ID      |      Type     |   Reserved  |0|
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                  Length of Uncompressed Data                  |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                                                               /
+    \                       Uncompressed Data                       \
+    /                                                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-(unsigned) hyper:
-    (unsigned) 64 bit integer
+While a compressed message follows the following layout::
 
-opaque<>
-    variable length opaque data
 
-string<>
-    variable length string
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |  Ver  |       Message ID      |      Type     |   Reserved  |1|
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                 Length of Compressed Data + 4                 |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |                  Length of Uncompressed Data                  |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                                                               /
+    \                        Compressed Data                        \
+    /                                                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-The transmitted length of string and opaque data is the length of actual
-data, excluding any added padding. The encoding of opaque<> and string<>
-are identical, the distinction being solely one of interpretation.
-Opaque data should not be interpreted but can be compared bytewise to
-other opaque data. All strings MUST use the Unicode UTF-8 encoding,
-normalization form C.
+
+All data within the message (post decompression, if compression is in use)
+MUST be in protocol buffer (version 3) encoding. All strings MUST use the
+Unicode UTF-8 encoding, normalization form C.
 
 Cluster Config (Type = 0)
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. Documentation note: the structure of a message section is always:
    1. A short description of the message
-   2. ASCII art overview of the message formats
+   2. Protocol buffer schema of the message
    3. Description of the fields in the message.
-   4. XDR syntax field descriptions.
 
 This informational message provides information about the cluster
 configuration as it pertains to the current connection. A Cluster Config
 message MUST be the first message sent on a BEP connection. Additional
 Cluster Config messages MUST NOT be sent after the initial exchange.
 
-Graphical Representation
-~~~~~~~~~~~~~~~~~~~~~~~~
+Protocol Buffer Schema
+~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-    ClusterConfigMessage Structure:
+    message ClusterConfigMessage {
+        repeated Folder folders = 1;
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Number of Folders                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                Zero or more Folder Structures                 \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Number of Options                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                Zero or more Option Structures                 \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+        message Folder {
+            string id                   = 1;
+            string label                = 2;
+            bool   read_only            = 3;
+            bool   ignore_permissions   = 4;
+            bool   ignore_delete        = 5;
+            bool   disable_temp_indexes = 6;
 
-    Folder Structure:
+            repeated Device devices = 16;
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                         Length of ID                          |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                     ID (variable length)                      \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                 Label (length + padded data)                  \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Number of Devices                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                Zero or more Device Structures                 \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Flags                             |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Number of Options                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                Zero or more Option Structures                 \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+            message Device {
+                bytes           id                = 1;
+                string          name              = 2;
+                repeated string addresses         = 3;
+                uint32          compression       = 4;
+                string          cert_name         = 5;
+                int64           max_local_version = 6;
+                bool            introducer        = 7;
+            }
+        }
+    }
 
-    Device Structure:
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                         Length of ID                          |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                     ID (variable length)                      \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                        Length of Name                         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                    Name (variable length)                     \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                      Number of Addresses                      |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Length of Address                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                   Address (variable length)                   \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                          Compression                          |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                      Length of Cert Name                      |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                  Cert Name (variable length)                  \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                                                               |
-    +                  Max Local Version (64 bits)                  +
-    |                                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Flags                             |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Number of Options                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                Zero or more Option Structures                 \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+Fields (Cluster Config Message)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Option Structure:
+.. Documentation note: the first time a field is mentioned it is put in
+   **bold text**. We use the space separated names in running text and
+   snake_case in the protocol buffer schema.
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                         Length of Key                         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                     Key (variable length)                     \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                        Length of Value                        |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                    Value (variable length)                    \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-Fields (ClusterConfigMessage)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. Documentation note: the first time a field is mentioned it is put in **bold
-   text**. We use the Space Separated names in running text and ASCII art
-   diagrams, and CamelCase in the XDR syntax block at the end.
-
-The **Folders** field contains the list of folders that will be synchronized
+The **folders** field contains the list of folders that will be synchronized
 over the current connection.
 
-The **Options** field is a list of options that apply to the current
-connection. The options are used in an implementation specific manner. The
-options list is conceptually a map of keys to values, although it is
-transmitted in the form of a list of key and value pairs, both of string type.
-Key ID:s are implementation specific. An implementation MUST ignore unknown
-keys. An implementation MAY impose limits on the length keys and values. The
-options list may be used to inform devices of relevant local configuration
-options such as rate limiting or make recommendations about request
-parallelism, device priorities, etc. An empty options list is valid for
-devices not having any such information to share. Devices MAY NOT make any
-assumptions about peers acting in a specific manner as a result of sent
-options.
+Fields (Folder Message)
+~~~~~~~~~~~~~~~~~~~~~~~
 
+The **id** field contains the folder ID, which is the unique identified of
+the folder.
 
-Fields (Folder Structure)
+The **label** field contains the folder label, as human readable name for
+the folder.
+
+The **read only** field is set for folders that the device will accept no
+updates from the network for.
+
+The **ignore permissions** field is set for folders that the device will not
+accept or announce file permissions for.
+
+The **ignore delete** field is set for folders that the device will ignore
+deletes for.
+
+The **disable temp indexes** field is set for folders that will not dispatch
+and do not wish to receive progress updates about partially downloaded files
+via Download Progress messages.
+
+The **devices** field is list of devices participating in sharing this
+folder.
+
+Fields (Device Message)
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The **ID** field contains the folder ID, as a human readable string.
-
-The **Label** field contains the folder label, as human readable name for the folder.
-
-The **Devices** field is list of devices participating in sharing this folder.
-
-The **Flags** field contains flags that affect the behavior of the folder. The
-folder Flags field contains the following single bit flags:
-
-::
-
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                           Reserved                    |T|D|P|R|
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-:Bit 31 ("R", Read Only):
-    is set for folders that the device will accept no updates from the network
-    for.
-
-:Bit 30 ("P", Ignore Permissions):
-    is set for folders that the device will not accept or announce file
-    permissions for.
-
-:Bit 29 ("D", Ignore Deletes):
-    is set for folders that the device will ignore deletes for.
-
-:Bit 28 ("T", Disable Temporary Indexes):
-    is set for folders that will not dispatch and do not wish to receive
-    progress updates about partially downloaded files via DownloadProgress
-	messages.
-
-The **Options** field contains a list of options that apply to the folder.
-
-Fields (Device Structure)
-~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The device **ID** field is a 32 byte number that uniquely identifies the
+The device **id** field is a 32 byte number that uniquely identifies the
 device. For instance, the reference implementation uses the SHA-256 of the
 device X.509 certificate.
 
-The **Name** field is a human readable name assigned to the described device
+The **name** field is a human readable name assigned to the described device
 by the sending device. It MAY be empty and it need not be unique.
 
-The list of **Addressess** is that used by the sending device to connect to
+The list of **addressess** is that used by the sending device to connect to
 the described device.
 
-The **Compression** field indicates the compression mode in use for this
+The **compression** field indicates the compression mode in use for this
 device and folder. The following values are valid:
 
 :0: Compress metadata. This enables compression of metadata messages such as Index.
 :1: Compression disabled. No compression is used on any message.
 :2: Compress always. Metadata messages as well as Response messages are compressed.
 
-The **Cert Name** field indicates the expected certificate name for this
+The **cert name** field indicates the expected certificate name for this
 device. It is commonly blank, indicating to use the implementation default.
 
-The **Max Local Version** field contains the highest local file
+The **max local version** field contains the highest local file
 version number of the files already known to be in the index sent by
 this device. If nothing is known about the index of a given device, this
 field MUST be set to zero. When receiving a Cluster Config message with
@@ -445,82 +324,8 @@ a non-zero Max Local Version for the local device ID, a device MAY elect
 to send an Index Update message containing only files with higher local
 version numbers in place of the initial Index message.
 
-The **Flags** field indicates the sharing mode of the folder and other device
-& folder specific settings. See the discussion on Sharing Modes. The Device
-Flags field contains the following single bit flags:
-
-::
-
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |          Reserved         |Pri|          Reserved       |I|R|T|
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-:Bit 31 ("T", Trusted): is set for devices that participate in trusted
-   mode.
-
-:Bit 30 ("R", Read Only): is set for devices that participate in read
-   only mode.
-
-:Bit 29 ("I", Introducer): is set for devices that are trusted as
-   cluster introducers.
-
-:Bits 16 through 28: are reserved and MUST be set to zero.
-
-:Bits 14-15 ("Pri", Priority): indicate the device's upload priority for this
-   folder. Possible values are:
-
-   :00: The default. Normal priority.
-
-   :01: High priority. Other devices SHOULD favour requesting files
-      from this device over devices with normal or low priority.
-
-   :10: Low priority. Other devices SHOULD avoid requesting files from
-      this device when they are available from other devices.
-
-   :11: Sharing disabled. Other devices SHOULD NOT request files from
-      this device.
-
-:Bits 0 through 14: are reserved and MUST be set to zero.
-
-Exactly one of the T and R bits MUST be set.
-
-The **Options** field contains a list of options that apply to the device.
-
-XDR
-~~~
-
-::
-
-    struct ClusterConfigMessage {
-        Folder Folders<1000000>;
-        Option Options<64>;
-    };
-
-    struct Folder {
-        string ID<256>;
-        string Label<256>;
-        Device Devices<1000000>;
-        unsigned int Flags;
-        Option Options<64>;
-    };
-
-    struct Device {
-        opaque ID<32>;
-        string Name<64>;
-        string Addresses<64>;
-        unsigned int Compression;
-        string CertName<64>;
-        hyper MaxLocalVersion;
-        unsigned int Flags;
-        Option Options<64>;
-    };
-
-    struct Option {
-        string Key<64>;
-        string Value<1024>;
-    };
+The **introducer** field is set for devices that are trusted as cluster
+introducers.
 
 Index (Type = 1) and Index Update (Type = 6)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
