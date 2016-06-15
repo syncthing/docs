@@ -348,232 +348,112 @@ the message. An Index Update MAY NOT be sent unless preceded by an
 Index, unless a non-zero Max Local Version has been announced for the
 given folder by the peer device.
 
-Graphical Representation
-~~~~~~~~~~~~~~~~~~~~~~~~
+Protocol Buffer Schema
+~~~~~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: proto
 
-    IndexMessage Structure:
+    message IndexMessage {
+        string            folder = 1;
+        repeated FileInfo files  = 2;
+    }
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Length of Folder                        |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                   Folder (variable length)                    \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                        Number of Files                        |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \               Zero or more FileInfo Structures                \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Flags                             |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Number of Options                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                Zero or more Option Structures                 \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    message FileInfo {
+        option (gogoproto.goproto_stringer) = false;
+        string       name           = 1;
+        FileInfoType type           = 2;
+        int64        size           = 3;
+        uint32       permissions    = 4;
+        int64        modified       = 5;
+        bool         deleted        = 6;
+        bool         invalid        = 7;
+        bool         no_permissions = 8;
+        Vector       version        = 9;
+        int64        local_version  = 10;
 
-    FileInfo Structure:
+        repeated BlockInfo Blocks = 16;
+    }
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                        Length of Name                         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                    Name (variable length)                     \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Flags                             |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                                                               |
-    +                      Modified (64 bits)                       +
-    |                                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                   Version (variable length)                   \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                                                               |
-    +                    Local Version (64 bits)                    +
-    |                                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Number of Blocks                        |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \               Zero or more BlockInfo Structures               \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    enum FileInfoType {
+        FILE              = 0;
+        DIRECTORY         = 1;
+        SYMLINK_FILE      = 2;
+        SYMLINK_DIRECTORY = 3;
+        SYMLINK_UNKNOWN   = 4;
+    }
 
-    Vector Structure:
+    message BlockInfo {
+        int64 offset = 1;
+        int32 size   = 2;
+        bytes hash   = 3;
+    }
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                      Number of Counters                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                Zero or more Counter Structures                \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    message Vector {
+        repeated Counter counters = 1;
+    }
 
-    Counter Structure:
-
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                                                               |
-    +                          ID (64 bits)                         +
-    |                                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                                                               |
-    +                        Value (64 bits)                        +
-    |                                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-    BlockInfo Structure:
-
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Size                              |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                        Length of Hash                         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                    Hash (variable length)                     \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    message Counter {
+        uint64 id    = 1;
+        uint64 value = 2;
+    }
 
 Fields (Index Message)
 ~~~~~~~~~~~~~~~~~~~~~~
 
-The **Folder** field identifies the folder that the index message pertains to.
+The **folder** field identifies the folder that the index message pertains to.
 
-**Files**
+The **files** field is a list of files making up the index information.
 
-The **Flags** field is reserved for future use and MUST currently be set to
-zero.
+Fields (FileInfo Message)
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The **Options** list is implementation defined and as described in the
-ClusterConfig message section.
-
-Fields (FileInfo Structure)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The **Name** is the file name path relative to the folder root. Like all
+The **name** is the file name path relative to the folder root. Like all
 strings in BEP, the Name is always in UTF-8 NFC regardless of operating
-system or file system specific conventions. The Name field uses the
+system or file system specific conventions. The name field uses the
 slash character ("/") as path separator, regardless of the
-implementation's operating system conventions. The combination of Folder
-and Name uniquely identifies each file in a cluster.
+implementation's operating system conventions. The combination of folder
+and name uniquely identifies each file in a cluster.
 
-The **Flags** field is made up of the following single bit flags:
+**type** TODO
 
-::
+**size** TODO
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |            Reserved       |U|S|P|D|I|R|   Unix Perm. & Mode   |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+The **permissions** field holds the common Unix permission bits. An
+implementation MAY ignore or interpret these as is suitable on the host
+operating system.
 
-:The lower 12 bits: hold the common Unix permission and mode bits. An
-   implementation MAY ignore or interpret these as is suitable on the
-   host operating system.
-
-:Bit 19 ("R"): is set when the file has been deleted. The block list
-   SHALL be of length zero and the modification time indicates the time
-   of deletion or, if the time of deletion is not reliably determinable,
-   the last known modification time.
-
-:Bit 18 ("I"): is set when the file is invalid and unavailable for
-   synchronization. A peer MAY set this bit to indicate that it can
-   temporarily not serve data for the file.
-
-:Bit 17 ("D"): is set when the item represents a directory. The block
-   list SHALL be of length zero.
-
-:Bit 16 ("P"): is set when there is no permission information for the
-   file. This is the case when it originates on a file system which
-   does not support permissions. Changes to only permission bits SHOULD
-   be disregarded on files with this bit set. The permissions bits MUST
-   be set to the octal value 0666.
-
-:Bit 15 ("S"): is set when the file is a symbolic link. The block list
-   SHALL be of one or more blocks since the target of the symlink is
-   stored within the blocks of the file.
-
-:Bit 14 ("U"): is set when the symbolic links target does not exist. On
-   systems where symbolic links have types, this bit being means that
-   the default file symlink SHALL be used. If this bit is unset bit 19
-   will decide the type of symlink to be created.
-
-:Bit 0 through 13: are reserved for future use and SHALL be set to
-   zero.
-
-The **Modified** time is expressed as the number of seconds since the Unix
+The **modified** time is expressed as the number of seconds since the Unix
 Epoch (1970-01-01 00:00:00 UTC).
 
-The **Version** field is a version vector describing the updates performed
+The **deleted** field is set when the file has been deleted. The block list
+SHALL be of length zero and the modification time indicates the time of
+deletion or, if the time of deletion is not reliably determinable, the last
+known modification time.
+
+The **invalid** field is set when the file is invalid and unavailable for
+synchronization. A peer MAY set this bit to indicate that it can temporarily
+not serve data for the file.
+
+The **no permissions** field is set when there is no permission information
+for the file. This is the case when it originates on a file system which
+does not support permissions. Changes to only permission bits SHOULD be
+disregarded on files with this bit set. The permissions bits MUST be set to
+the octal value 0666.
+
+The **version** field is a version vector describing the updates performed
 to a file by all members in the cluster. Each counter in the version
 vector is an ID-Value tuple. The ID is used the first 64 bits of the
 device ID. The Value is a simple incrementing counter, starting at zero.
 The combination of Folder, Name and Version uniquely identifies the
 contents of a file at a given point in time.
 
-The **Local Version** field is the value of a device local monotonic clock
+The **local version** field is the value of a device local monotonic clock
 at the time of last local database update to a file. The clock ticks on
 every local database update.
 
-The **Blocks** list contains the size and hash for each block in the file.
+The **blocks** list contains the size and hash for each block in the file.
 Each block represents a 128 KiB slice of the file, except for the last
 block which may represent a smaller amount of data.
-
-The hash algorithm is implied by the **Hash** length. Currently, the hash
-MUST be 32 bytes long and computed by SHA256.
-
-XDR
-~~~
-
-::
-
-    struct IndexMessage {
-        string Folder<256>;
-        FileInfo Files<1000000>;
-        unsigned int Flags;
-        Option Options<64>;
-    };
-
-    struct FileInfo {
-        string Name<8192>;
-        unsigned int Flags;
-        hyper Modified;
-        Vector Version;
-        hyper LocalVersion;
-        BlockInfo Blocks<10000000>;
-    };
-
-    struct Vector {
-        Counter Counters<>;
-    };
-
-    struct Counter {
-        unsigned hyper ID;
-        unsigned hyper Value;
-    };
-
-    struct BlockInfo {
-        unsigned int Size;
-        opaque Hash<64>;
-    };
 
 Request (Type = 2)
 ^^^^^^^^^^^^^^^^^^
