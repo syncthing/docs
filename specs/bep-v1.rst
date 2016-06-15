@@ -85,7 +85,7 @@ In this document, in diagrams and text, "bit 0" refers to the *most
 significant* bit of a word; "bit 31" is thus the least significant bit of a
 32 bit word.
 
-::
+.. code-block:: none
 
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -99,7 +99,9 @@ significant* bit of a word; "bit 31" is thus the least significant bit of a
     /                                                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-The Hello message itself is in protocol buffer format with the following schema::
+The Hello message itself is in protocol buffer format with the following schema:
+
+.. code-block:: proto
 
     message HelloMessage {
         string device_name    = 1;
@@ -130,7 +132,7 @@ Every message starts with one 32 bit word indicating the message version, type
 and ID, followed by the length of the message. The header is in network byte
 order, i.e. big endian.
 
-::
+.. code-block:: none
 
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -178,7 +180,9 @@ For C=1:
    described in http://www.lz4.org/.
 
 That is to say, for an uncompressed message the following is the complete
-message layout::
+message layout:
+
+.. code-block:: none
 
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -192,8 +196,9 @@ message layout::
     /                                                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-While a compressed message follows the following layout::
+While a compressed message follows the following layout:
 
+.. code-block:: none
 
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -230,7 +235,7 @@ Cluster Config messages MUST NOT be sent after the initial exchange.
 Protocol Buffer Schema
 ~~~~~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: proto
 
     message ClusterConfigMessage {
         repeated Folder folders = 1;
@@ -249,12 +254,18 @@ Protocol Buffer Schema
                 bytes           id                = 1;
                 string          name              = 2;
                 repeated string addresses         = 3;
-                uint32          compression       = 4;
+                Compression     compression       = 4;
                 string          cert_name         = 5;
                 int64           max_local_version = 6;
                 bool            introducer        = 7;
             }
         }
+    }
+
+    enum Compression {
+        METADATA = 0;
+        NEVER    = 1;
+        ALWAYS   = 2;
     }
 
 
