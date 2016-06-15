@@ -251,6 +251,12 @@ Protocol Buffer Schema
             repeated Device devices = 16;
 
             message Device {
+                enum Compression {
+                    METADATA = 0;
+                    NEVER    = 1;
+                    ALWAYS   = 2;
+                }
+
                 bytes           id                = 1;
                 string          name              = 2;
                 repeated string addresses         = 3;
@@ -261,13 +267,6 @@ Protocol Buffer Schema
             }
         }
     }
-
-    enum Compression {
-        METADATA = 0;
-        NEVER    = 1;
-        ALWAYS   = 2;
-    }
-
 
 Fields (Cluster Config Message)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

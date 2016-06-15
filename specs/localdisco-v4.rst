@@ -35,7 +35,9 @@ The device ID is the SHA-256 (32 bytes) of the device X.509 certificate. See
 Announcement packet
 -------------------
 
-The Announcement packet has the following structure::
+The Announcement packet has the following structure:
+
+.. code-block:: none
 
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
@@ -55,7 +57,9 @@ order. It identifies the packet as being a Syncthing discovery protocol
 packet.
 
 The Announce Message contents are in protocol buffer format using the
-following schema::
+following schema:
+
+.. code-block:: proto
 
     message Announce {
         bytes           id        = 1;
