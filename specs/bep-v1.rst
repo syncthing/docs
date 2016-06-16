@@ -239,33 +239,33 @@ Protocol Buffer Schema
 
     message ClusterConfigMessage {
         repeated Folder folders = 1;
+    }
 
-        message Folder {
-            string id                   = 1;
-            string label                = 2;
-            bool   read_only            = 3;
-            bool   ignore_permissions   = 4;
-            bool   ignore_delete        = 5;
-            bool   disable_temp_indexes = 6;
+    message Folder {
+        string id                   = 1;
+        string label                = 2;
+        bool   read_only            = 3;
+        bool   ignore_permissions   = 4;
+        bool   ignore_delete        = 5;
+        bool   disable_temp_indexes = 6;
 
-            repeated Device devices = 16;
+        repeated Device devices = 16;
+    }
 
-            message Device {
-                enum Compression {
-                    METADATA = 0;
-                    NEVER    = 1;
-                    ALWAYS   = 2;
-                }
+    message Device {
+        bytes           id                = 1;
+        string          name              = 2;
+        repeated string addresses         = 3;
+        Compression     compression       = 4;
+        string          cert_name         = 5;
+        int64           max_local_version = 6;
+        bool            introducer        = 7;
+    }
 
-                bytes           id                = 1;
-                string          name              = 2;
-                repeated string addresses         = 3;
-                Compression     compression       = 4;
-                string          cert_name         = 5;
-                int64           max_local_version = 6;
-                bool            introducer        = 7;
-            }
-        }
+    enum Compression {
+        METADATA = 0;
+        NEVER    = 1;
+        ALWAYS   = 2;
     }
 
 Fields (Cluster Config Message)
@@ -281,10 +281,10 @@ over the current connection.
 Fields (Folder Message)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-The **id** field contains the folder ID, which is the unique identified of
+The **id** field contains the folder ID, which is the unique identifier of
 the folder.
 
-The **label** field contains the folder label, as human readable name for
+The **label** field contains the folder label, the human readable name of
 the folder.
 
 The **read only** field is set for folders that the device will accept no
@@ -300,7 +300,7 @@ The **disable temp indexes** field is set for folders that will not dispatch
 and do not wish to receive progress updates about partially downloaded files
 via Download Progress messages.
 
-The **devices** field is list of devices participating in sharing this
+The **devices** field is a list of devices participating in sharing this
 folder.
 
 Fields (Device Message)
@@ -313,7 +313,7 @@ device X.509 certificate.
 The **name** field is a human readable name assigned to the described device
 by the sending device. It MAY be empty and it need not be unique.
 
-The list of **addressess** is that used by the sending device to connect to
+The list of **addresses** is that used by the sending device to connect to
 the described device.
 
 The **compression** field indicates the compression mode in use for this
