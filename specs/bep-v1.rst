@@ -414,9 +414,15 @@ slash character ("/") as path separator, regardless of the
 implementation's operating system conventions. The combination of folder
 and name uniquely identifies each file in a cluster.
 
-**type** TODO
+The **type** field contains the type of the described item. The type is one
+of **file (0)**, **directory (1)**, **symlink to file (2)**, **symlink to
+directory (3)**, or **symlink to unknown target (4)**. The distinction
+between the various types of symlinks is not required on all operating
+systems - the implementation SHOULD nonetheless indicate the target type
+when possible.
 
-**size** TODO
+The **size** field contains the size the file, in bytes. For directories the
+size is zero. For symlinks the size is the length of the target name.
 
 The **permissions** field holds the common Unix permission bits. An
 implementation MAY ignore or interpret these as is suitable on the host
@@ -461,130 +467,72 @@ Request (Type = 2)
 The Request message expresses the desire to receive a data block
 corresponding to a part of a certain file in the peer's folder.
 
-Graphical Representation
-~~~~~~~~~~~~~~~~~~~~~~~~
+Protocol Buffer Schema
+~~~~~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: proto
 
-    RequestMessage Structure:
+    message RequestMessage {
+        string folder         = 1;
+        string name           = 2;
+        int64  offset         = 3;
+        int32  size           = 4;
+        bytes  hash           = 5;
+        bool   from_temporary = 6;
+    }
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Length of Folder                        |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                   Folder (variable length)                    \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                        Length of Name                         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                    Name (variable length)                     \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                                                               |
-    +                       Offset (64 bits)                        +
-    |                                                               |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Size                              |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                        Length of Hash                         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                    Hash (variable length)                     \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Flags                             |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Number of Options                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                Zero or more Option Structures                 \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 Fields
 ~~~~~~
 
-The Folder and Name fields are as documented for the Index message. The
-Offset and Size fields specify the region of the file to be transferred.
-This SHOULD equate to exactly one block as seen in an Index message.
+The **folder** and **name** fields are as documented for the Index message.
+The **offset** and **size** fields specify the region of the file to be
+transferred. This SHOULD equate to exactly one block as seen in an Index
+message.
 
-The Hash field MAY be set to the expected hash value of the block, or
-may be left empty (zero length). If set, the other device SHOULD ensure
-that the transmitted block matches the requested hash. The other device
-MAY reuse a block from a different file and offset having the same size
-and hash, if one exists.
+The *hash* field MAY be set to the expected hash value of the block. If set,
+the other device SHOULD ensure that the transmitted block matches the
+requested hash. The other device MAY reuse a block from a different file and
+offset having the same size and hash, if one exists.
 
-The **Flags** field is made up of the following single bit flags:
-::
-
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                           Reserved                          |T|
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-:Bit 31 ("T", Temporary): is set to indicate that the read should be performed
-    from the temporary file (converting Name to it's temporary form) and falling
-    back to the non temporary file if any error occurs. Knowledge of content
-	inside temporary files comes from DownloadProgress messages.
-
-The Options list is implementation defined and as described in the
-ClusterConfig message section.
-
-XDR
-~~~
-
-::
-
-    struct RequestMessage {
-        string Folder<64>;
-        string Name<8192>;
-        hyper Offset;
-        int Size;
-        opaque Hash<64>;
-        unsigned int Flags;
-        Option Options<64>;
-    };
+The **from temporary** field is set to indicate that the read should be
+performed from the temporary file (converting name to it's temporary form)
+and falling back to the non temporary file if any error occurs. Knowledge of
+contents of temporary files comes from DownloadProgress messages.
 
 Response (Type = 3)
 ^^^^^^^^^^^^^^^^^^^
 
 The Response message is sent in response to a Request message.
 
-Graphical Representation
-~~~~~~~~~~~~~~~~~~~~~~~~
+Protocol Buffer Schema
+~~~~~~~~~~~~~~~~~~~~~~
 
-ResponseMessage Structure:
+.. code-block:: proto
 
-::
+    message ResponseMessage {
+        bytes     data = 1;
+        ErrorCode code = 2;
+    }
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                        Length of Data                         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                    Data (variable length)                     \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Code                              |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    enum ErrorCode {
+        NO_ERROR     = 0;
+        GENERIC      = 1;
+        NO_SUCH_FILE = 2;
+        INVALID_FILE = 3;
+    }
 
 Fields
 ~~~~~~
 
-The **Data** field contains either a full 128 KiB block, a shorter block in
-the case of the last block in a file, or is empty (zero length) if the
-requested block is not available.
+The **data** field contains either the requested data block or is empty if
+the requested block is not available.
 
-The **Code** field contains an error code describing the reason a Request
-could not be fulfilled, in the case where a zero length Data was
+The **code** field contains an error code describing the reason a Request
+could not be fulfilled, in the case where zero length data was
 returned. The following values are defined:
 
-:0: No Error (Data should be present)
+:0: No Error (data should be present)
 
 :1: Generic Error
 
@@ -593,16 +541,6 @@ returned. The following values are defined:
 
 :3: Invalid (file exists but has invalid bit set or is otherwise
    unavailable)
-
-XDR
-~~~
-
-::
-
-    struct ResponseMessage {
-        opaque Data<>;
-        int Code;
-    }
 
 DownloadProgress (Type = 8)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
