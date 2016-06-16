@@ -551,147 +551,95 @@ and only in the cases where progress or state changes have been detected.
 Each DownloadProgress message is addressed to a specific folder and MUST
 contain zero or more FileDownloadProgressUpdate structures.
 
-Graphical Representation
-~~~~~~~~~~~~~~~~~~~~~~~~
+Protocol Buffer Schema
+~~~~~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: proto
 
-    DownloadProgressMessage Structure:
+    message DownloadProgressMessage {
+        string                              folder  = 1;
+        repeated FileDownloadProgressUpdate updates = 2;
+    }
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                 Folder (length + padded data)                 \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Number of Updates                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \      Zero or more FileDownloadProgressUpdate Structures       \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Flags                             |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Number of Options                       |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                Zero or more Option Structures                 \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    message FileDownloadProgressUpdate {
+        FileDownloadProgressUpdateType update_type   = 1;
+        string                         name          = 2;
+        Vector                         version       = 3;
+        repeated int32                 block_indexes = 4;
+    }
 
-    FileDownloadProgressUpdate Structure:
-
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                          Update Type                          |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                  Name (length + padded data)                  \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                      Version Structure                        \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                    Number of Block Indexes                    |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    |                    Block Indexes (n items)                    |
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-Each
+    enum FileDownloadProgressUpdateType {
+        APPEND = 0;
+        FORGET = 1;
+    }
 
 Fields (DownloadProgress Message)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**Folder** represents the ID of the folder for which the update is being
-provided.
 
-The **Flags** field is reserved for future use and MUST currently be set to
-zero. The **Options** field contains a list of options that apply to the update.
+The **folder** field represents the ID of the folder for which the update is
+being provided.
+
+The **updates** field is a list of progress update messages.
 
 Fields (FileDownloadProgressUpdate Structure)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The **Update Type** field is made up of the following single bit flags:
-::
+The **update type** indicates whether the update is of type **append (0)**
+(new blocks are available) or **forget (1)** (the file transfer has
+completed or failed).
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                           Reserved                          |F|
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-:Bit 31 ("F", Forget): is set to notify that the file that was previously
-    advertised is no longer available (at least as a temporary file).
-
-The **Name** field defines the file name from the global index for which this
+The **name** field defines the file name from the global index for which this
 update is being sent.
 
-The **Version** structure defines the version of the file for which this update
+The **version** structure defines the version of the file for which this update
 is being sent.
 
-**Block Indexes** is a list of positive integers, where each integer represents
-the index of the block in the FileInfo structure Blocks array that has become
-available for download.
-For example an integer with with value 3 represents that the data defined in the
-fourth BlockInfo structure of the FileInfo structure of that file is now available.
-Please note that matching should be done on **Name** AND **Version**.
-Furthermore, each update received is incremental, for example the initial update
-structure might contain indexes 0, 1, 2, an update 5 seconds later might contain
-indexes 3, 4, 5 which should be appended to the original list, which implies
-that blocks 0-5 are currently available.
+The **block indexes** field is a list of positive integers, where each
+integer represents the index of the block in the FileInfo structure Blocks
+array that has become available for download.
 
-Block indexes MAY be added in any order.
-An implementation MUST NOT assume that block indexes are added in any specific
-order.
+For example an integer with with value 3 represents that the data defined in
+the fourth BlockInfo structure of the FileInfo structure of that file is now
+available. Please note that matching should be done on **name** AND
+**version**. Furthermore, each update received is incremental, for example
+the initial update structure might contain indexes 0, 1, 2, an update 5
+seconds later might contain indexes 3, 4, 5 which should be appended to the
+original list, which implies that blocks 0-5 are currently available.
 
-**Forget** bit being set implies that the file that was previously advertised
-is no longer available, therefore the list of block indexes should be truncated.
+Block indexes MAY be added in any order. An implementation MUST NOT assume
+that block indexes are added in any specific order.
 
-Messages with **Forget** bit set MUST NOT have any block indexes.
+The **forget** field being set implies that previously advertised file is no
+longer available, therefore the list of block indexes should be truncated.
 
-Any update message which is being sent for a different **Version** of the same
-file name must be preceded with an update message for the old version of that
-file with the **Forget** bit set.
+Messages with the **forget** field set MUST NOT have any block indexes.
 
-As a safeguard on the receiving side, value of **Version** changing between
-update messages implies that the file has changed, and that any indexes
-previously advertised are no longer available. The list of available block
-indexes MUST be replaced (rather than appended) with the indexes specified in
-this message.
+Any update message which is being sent for a different **version** of the
+same file name must be preceded with an update message for the old version
+of that file with the **forget** field set.
 
-XDR
-~~~
-
-::
-
-    struct DownloadProgressMessage {
-        string Folder<64>;
-        FileDownloadProgressUpdate Updates<1000000>;
-        unsigned int Flags;
-        Option Options<64>;
-    }
-
-    struct FileDownloadProgressUpdate {
-        unsigned int UpdateType;
-        string Name<8192>;
-        Vector Version;
-        int BlockIndexes<1000000>;
-    }
-
+As a safeguard on the receiving side, the value of **version** changing
+between update messages implies that the file has changed and that any
+indexes previously advertised are no longer available. The list of available
+block indexes MUST be replaced (rather than appended) with the indexes
+specified in this message.
 
 Ping (Type = 4)
 ^^^^^^^^^^^^^^^
 
-The Ping message is used to determine that a connection is alive, and to keep
-connections alive through state tracking network elements such as firewalls
-and NAT gateways. The Ping message has no contents. A Ping message is sent
-every 90 seconds, if no other message has been sent in the preceding 90
-seconds.
+The Ping message is used to determine that a connection is alive, and to
+keep connections alive through state tracking network elements such as
+firewalls and NAT gateways. A Ping message is sent every 90 seconds, if no
+other message has been sent in the preceding 90 seconds.
+
+Protocol Buffer Schema
+~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: proto
+
+    message PingMessage {
+    }
+
 
 Close (Type = 7)
 ^^^^^^^^^^^^^^^^
@@ -700,39 +648,20 @@ The Close message MAY be sent to indicate that the connection will be
 torn down due to an error condition. A Close message MUST NOT be
 followed by further messages.
 
-Graphical Representation
-~~~~~~~~~~~~~~~~~~~~~~~~
+Protocol Buffer Schema
+~~~~~~~~~~~~~~~~~~~~~~
 
-::
+.. code-block:: proto
 
-    CloseMessage Structure:
-
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                       Length of Reason                        |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                   Reason (variable length)                    \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Code                              |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    message CloseMessage {
+        string reason = 1;
+    }
 
 Fields
 ~~~~~~
 
-The **Reason** field contains a human description of the error condition,
-suitable for consumption by a human. The **Code** field is for a machine
-readable error code. Codes are reserved for future use and MUST
-currently be set to zero.
-
-::
-
-    struct CloseMessage {
-        string Reason<1024>;
-        int Code;
-    }
+The **reason** field contains a human readable description of the error
+condition.
 
 Sharing Modes
 -------------
