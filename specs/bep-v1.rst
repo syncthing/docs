@@ -159,6 +159,23 @@ The **Type** field indicates the type of data following the message header
 and is one of the integers defined below. A message of an unknown type
 is a protocol error and MUST result in the connection being terminated.
 
+.. code-block:: none
+
+    enum MessageType {
+        CLUSTER_CONFIG    = 0;
+        INDEX             = 1;
+        INDEX_UPDATE      = 2;
+        REQUEST           = 3;
+        RESPONSE          = 4;
+        DOWNLOAD_PROGRESS = 5;
+        PING              = 6;
+        CLOSE             = 7;
+    }
+
+Note that the MessageType enum is in protocol buffer format for clarity and
+familiarity, even though the header itself is not serialized in protocol
+buffer format.
+
 The **Compression** bit "C" indicates the compression used for the message.
 
 For C=0:
@@ -337,7 +354,7 @@ version numbers in place of the initial Index message.
 The **introducer** field is set for devices that are trusted as cluster
 introducers.
 
-Index (Type = 1) and Index Update (Type = 6)
+Index (Type = 1) and Index Update (Type = 2)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Index and Index Update messages define the contents of the senders
@@ -461,7 +478,7 @@ The **blocks** list contains the size and hash for each block in the file.
 Each block represents a 128 KiB slice of the file, except for the last
 block which may represent a smaller amount of data.
 
-Request (Type = 2)
+Request (Type = 3)
 ^^^^^^^^^^^^^^^^^^
 
 The Request message expresses the desire to receive a data block
@@ -500,7 +517,7 @@ performed from the temporary file (converting name to it's temporary form)
 and falling back to the non temporary file if any error occurs. Knowledge of
 contents of temporary files comes from DownloadProgress messages.
 
-Response (Type = 3)
+Response (Type = 4)
 ^^^^^^^^^^^^^^^^^^^
 
 The Response message is sent in response to a Request message.
@@ -542,7 +559,7 @@ returned. The following values are defined:
 :3: Invalid (file exists but has invalid bit set or is otherwise
    unavailable)
 
-DownloadProgress (Type = 8)
+DownloadProgress (Type = 5)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The DownloadProgress message is used to notify remote devices about partial
@@ -624,7 +641,7 @@ indexes previously advertised are no longer available. The list of available
 block indexes MUST be replaced (rather than appended) with the indexes
 specified in this message.
 
-Ping (Type = 4)
+Ping (Type = 6)
 ^^^^^^^^^^^^^^^
 
 The Ping message is used to determine that a connection is alive, and to
