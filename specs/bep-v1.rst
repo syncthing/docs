@@ -95,7 +95,7 @@ significant* bit of a word; "bit 31" is thus the least significant bit of a
     |                            Length                             |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     /                                                               /
-    \                         Hello Message                         \
+    \                             Hello                             \
     /                                                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
@@ -103,13 +103,13 @@ The Hello message itself is in protocol buffer format with the following schema:
 
 .. code-block:: proto
 
-    message HelloMessage {
+    message Hello {
         string device_name    = 1;
         string client_name    = 2;
         string client_version = 3;
     }
 
-Fields (Hello Message)
+Fields (Hello message)
 ^^^^^^^^^^^^^^^^^^^^^^
 
 The **device_name** is a human readable (configured or auto detected) device
@@ -170,14 +170,14 @@ exactly one of the concrete BEP messages described below.
     }
 
     message Message {
-        ClusterConfigMessage    cluster_config    = 1;
-        IndexMessage            index             = 2;
-        IndexMessage            index_update      = 3;
-        RequestMessage          request           = 4;
-        ResponseMessage         response          = 5;
-        DownloadProgressMessage download_progress = 6;
-        PingMessage             ping              = 7;
-        CloseMessage            close             = 8;
+        ClusterConfig    cluster_config    = 1;
+        Index            index             = 2;
+        Index            index_update      = 3;
+        Request          request           = 4;
+        Response         response          = 5;
+        DownloadProgress download_progress = 6;
+        Ping             ping              = 7;
+        Close            close             = 8;
     }
 
 When the **compression** field is **NONE**, the Header is followed directly
@@ -228,7 +228,7 @@ Protocol Buffer Schema
 
 .. code-block:: proto
 
-    message ClusterConfigMessage {
+    message ClusterConfig {
         repeated Folder folders = 1;
     }
 
@@ -295,7 +295,7 @@ The **devices** field is a list of devices participating in sharing this
 folder.
 
 Fields (Device Message)
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
 
 The device **id** field is a 32 byte number that uniquely identifies the
 device. For instance, the reference implementation uses the SHA-256 of the
@@ -344,13 +344,12 @@ Protocol Buffer Schema
 
 .. code-block:: proto
 
-    message IndexMessage {
+    message Index {
         string            folder = 1;
         repeated FileInfo files  = 2;
     }
 
     message FileInfo {
-        option (gogoproto.goproto_stringer) = false;
         string       name           = 1;
         FileInfoType type           = 2;
         int64        size           = 3;
@@ -463,7 +462,7 @@ Protocol Buffer Schema
 
 .. code-block:: proto
 
-    message RequestMessage {
+    message Request {
         int32  id             = 1;
         string folder         = 2;
         string name           = 3;
@@ -505,8 +504,8 @@ Protocol Buffer Schema
 
 .. code-block:: proto
 
-    message ResponseMessage {
-        int32     id   = 1 [(gogoproto.customname) = "ID"];
+    message Response {
+        int32     id   = 1;
         bytes     data = 2;
         ErrorCode code = 3;
     }
@@ -548,14 +547,14 @@ The DownloadProgress message is used to notify remote devices about partial
 availability of files. By default, these messages are sent every 5 seconds,
 and only in the cases where progress or state changes have been detected.
 Each DownloadProgress message is addressed to a specific folder and MUST
-contain zero or more FileDownloadProgressUpdate structures.
+contain zero or more FileDownloadProgressUpdate messages.
 
 Protocol Buffer Schema
 ~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: proto
 
-    message DownloadProgressMessage {
+    message DownloadProgress {
         string                              folder  = 1;
         repeated FileDownloadProgressUpdate updates = 2;
     }
@@ -580,8 +579,8 @@ being provided.
 
 The **updates** field is a list of progress update messages.
 
-Fields (FileDownloadProgressUpdate Structure)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Fields (FileDownloadProgressUpdate Message)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The **update type** indicates whether the update is of type **append (0)**
 (new blocks are available) or **forget (1)** (the file transfer has
@@ -590,18 +589,18 @@ completed or failed).
 The **name** field defines the file name from the global index for which this
 update is being sent.
 
-The **version** structure defines the version of the file for which this update
+The **version** message defines the version of the file for which this update
 is being sent.
 
 The **block indexes** field is a list of positive integers, where each
-integer represents the index of the block in the FileInfo structure Blocks
+integer represents the index of the block in the FileInfo message Blocks
 array that has become available for download.
 
 For example an integer with with value 3 represents that the data defined in
-the fourth BlockInfo structure of the FileInfo structure of that file is now
+the fourth BlockInfo message of the FileInfo message of that file is now
 available. Please note that matching should be done on **name** AND
 **version**. Furthermore, each update received is incremental, for example
-the initial update structure might contain indexes 0, 1, 2, an update 5
+the initial update message might contain indexes 0, 1, 2, an update 5
 seconds later might contain indexes 3, 4, 5 which should be appended to the
 original list, which implies that blocks 0-5 are currently available.
 
@@ -636,7 +635,7 @@ Protocol Buffer Schema
 
 .. code-block:: proto
 
-    message PingMessage {
+    message Ping {
     }
 
 
@@ -652,7 +651,7 @@ Protocol Buffer Schema
 
 .. code-block:: proto
 
-    message CloseMessage {
+    message Close {
         string reason = 1;
     }
 
