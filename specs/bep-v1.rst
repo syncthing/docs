@@ -128,10 +128,9 @@ if the remote device does not pass authentication.
 Post-authentication Messages
 ----------------------------
 
-Every message post authentication is made up of three parts:
+Every post authentication message is made up of two parts:
 
 - A header length word
-- A **Header** message
 - A **Message** message
 
 .. code-block:: none
@@ -139,11 +138,7 @@ Every message post authentication is made up of three parts:
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                         Header Length                         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                            Header                             \
-    /                                                               /
+    |                            Length                             |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     /                                                               /
     \                            Message                            \
@@ -151,23 +146,10 @@ Every message post authentication is made up of three parts:
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 The length word is 4 bytes in network byte order (BE). It indicates the
-length of the following **Header** message. The Header message is in
-protocol buffer format. The Header message describes the length and
-compression status of the following **Message**. The Message itself contains
-exactly one of the concrete BEP messages described below.
+length of the following message. The Message is in protocol buffer format
+with the following schema:
 
 .. code-block:: proto
-
-    message Header {
-        int32              message_length      = 1;
-        MessageCompression compression         = 2;
-        int32              uncompressed_length = 3;
-    }
-
-    enum MessageCompression {
-        NONE = 0;
-        LZ4  = 1;
-    }
 
     message Message {
         ClusterConfig    cluster_config    = 1;
@@ -178,34 +160,23 @@ exactly one of the concrete BEP messages described below.
         DownloadProgress download_progress = 6;
         Ping             ping              = 7;
         Close            close             = 8;
+
+        CompressedMessage compressed = 16;
     }
 
-When the **compression** field is **NONE**, the Header is followed directly
-by a Message in protocol buffer format. The Message is **message_length**
-bytes long.
+    message CompressedMessage {
+        bytes data                = 1;
+        int32 uncompressed_length = 2;
+    }
 
-When the compression field is **LZ4**, the Header is followed directly by
-an LZ4 compressed Message in protocol buffer format. The compressed Message
-is **message_length**  bytes long. The message must be decompressed before
-protocol buffer unmarshalling. The uncompressed message will be
-**uncompressed_length** bytes long.
+Exactly one of the **Message** fields MUST be set.
 
-To summarize, the read process is a loop around the following:
+Messages may be compressed, in which case the **compressed** field is used.
+When set, the **compressed.data** field contains an LZ4 compressed Message
+in protocol buffer format, and the **compressed.uncompressed_length** field
+indicates the expected length of the data after decompression.
 
-#. Read **4 bytes** and interpret the header length, call the result **header_length**.
-
-#. Read **header_length** bytes and unmarshal into a Header message, call it **header**.
-
-#. Read **header.message_length** bytes.
-
-#. Inspect the **header.compression** field.
-
-#. If it is **NONE**, unmarshal the data into a **Message**.
-
-#. If it is **LZ4**, decompress the data into a new buffer, resulting in
-   **uncompressed_length** bytes. Unmarshal the result into a **Message**.
-
-#. Handle the **Message**.
+A compressed message MAY NOT contain another compressed message.
 
 Message Subtypes
 ----------------
@@ -699,57 +670,7 @@ Message Limits
 
 An implementation MAY impose reasonable limits on the length of messages
 and message fields to aid robustness in the face of corruption or broken
-implementations. These limits, if imposed, SHOULD NOT be more
-restrictive than the following. An implementation should strive to keep
-messages short and to the point, favouring more and smaller messages
-over fewer and larger. For example, favour a smaller Index message
-followed by one or more Index Update messages rather than sending a very
-large Index message.
-
-=================== =================== =============
-Message Type        Field               Limit
-=================== =================== =============
-**All Messages**
------------------------------------------------------
-|                   Total length        512 MiB
-
-**Index and Index Update Messages**
------------------------------------------------------
-|                   Folder              64 bytes
-|                   Number of Files     1.000.000
-|                   Name                8192 bytes
-|                   Number of Blocks    10.000.000
-|                   Hash                64 bytes
-|                   Number of Counters  1.000.000
-
-**Request Messages**
------------------------------------------------------
-|                   Folder              64 bytes
-|                   Name                8192 bytes
-
-**Response Messages**
------------------------------------------------------
-|                   Data                256 KiB
-
-**Cluster Config Message**
------------------------------------------------------
-|                   Number of Folders   1.000.000
-|                   Number of Devices   1.000.000
-|                   Number of Options   64
-|                   Key                 64 bytes
-|                   Value               1024 bytes
-
-**Download Progress Messages**
------------------------------------------------------
-|                   Folder              64 bytes
-|                   Number of Updates   1.000.000
-|                   Name                8192 bytes
-|                   Number of Indexes   1.000.000
-=================== =================== =============
-
-The currently defined values allow maximum file size of 1220 GiB
-(10.000.000 x 128 KiB). The maximum message size covers an Index message
-for the maximum file.
+implementations.
 
 Example Exchange
 ----------------
