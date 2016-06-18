@@ -128,116 +128,90 @@ if the remote device does not pass authentication.
 Post-authentication Messages
 ----------------------------
 
-Every message starts with one 32 bit word indicating the message version, type
-and ID, followed by the length of the message. The header is in network byte
-order, i.e. big endian.
+Every message post authentication is made up of three parts:
+
+- A header length word
+- A **Header** message
+- A **Message** message
 
 .. code-block:: none
 
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |  Ver  |       Message ID      |      Type     |   Reserved  |C|
+    |                         Header Length                         |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                            Length                             |
+    /                                                               /
+    \                            Header                             \
+    /                                                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                                                               /
+    \                            Message                            \
+    /                                                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-For BEP v1 the **Version** field is set to zero. Future versions with
-incompatible message formats will increment the Version field. A message
-with an unknown version is a protocol error and MUST result in the
-connection being terminated. A client supporting multiple versions MAY
-retry with a different protocol version upon disconnection.
+The length word is 4 bytes in network byte order (BE). It indicates the
+length of the following **Header** message. The Header message is in
+protocol buffer format. The Header message describes the length and
+compression status of the following **Message**. The Message itself contains
+exactly one of the concrete BEP messages described below.
 
-The **Message ID** is set to a unique value for each transmitted Request
-message. In Response messages it is set to the Message ID of the corresponding
-Request message. The uniqueness requirement implies that no more than 4096
-request messages may be outstanding at any given moment. For message types
-that do not have a corresponding response (Cluster Configuration, Index, etc.)
-the Message ID field is irrelevant and SHOULD be set to zero.
+.. code-block:: proto
 
-The **Type** field indicates the type of data following the message header
-and is one of the integers defined below. A message of an unknown type
-is a protocol error and MUST result in the connection being terminated.
-
-.. code-block:: none
-
-    enum MessageType {
-        CLUSTER_CONFIG    = 0;
-        INDEX             = 1;
-        INDEX_UPDATE      = 2;
-        REQUEST           = 3;
-        RESPONSE          = 4;
-        DOWNLOAD_PROGRESS = 5;
-        PING              = 6;
-        CLOSE             = 7;
+    message Header {
+        int32              message_length      = 1;
+        MessageCompression compression         = 2;
+        int32              uncompressed_length = 3;
     }
 
-Note that the MessageType enum is in protocol buffer format for clarity and
-familiarity, even though the header itself is not serialized in protocol
-buffer format.
+    enum MessageCompression {
+        NONE = 0;
+        LZ4  = 1;
+    }
 
-The **Compression** bit "C" indicates the compression used for the message.
+    message Message {
+        ClusterConfigMessage    cluster_config    = 1;
+        IndexMessage            index             = 2;
+        IndexMessage            index_update      = 3;
+        RequestMessage          request           = 4;
+        ResponseMessage         response          = 5;
+        DownloadProgressMessage download_progress = 6;
+        PingMessage             ping              = 7;
+        CloseMessage            close             = 8;
+    }
 
-For C=0:
+When the **compression** field is **NONE**, the Header is followed directly
+by a Message in protocol buffer format. The Message is **message_length**
+bytes long.
 
--  The Length field contains the length, in bytes, of the uncompressed
-   message data.
+When the compression field is **LZ4**, the Header is followed directly by
+an LZ4 compressed Message in protocol buffer format. The compressed Message
+is **message_length**  bytes long. The message must be decompressed before
+protocol buffer unmarshalling. The uncompressed message will be
+**uncompressed_length** bytes long.
 
--  The message is not compressed.
+To summarize, the read process is a loop around the following:
 
-For C=1:
+#. Read **4 bytes** and interpret the header length, call the result **header_length**.
 
--  The Length field contains the length, in bytes, of the compressed
-   message data plus a four byte uncompressed length field.
+#. Read **header_length** bytes and unmarshal into a Header message, call it **header**.
 
--  The compressed message data is preceded by a 32 bit field denoting
-   the length of the uncompressed message.
+#. Read **header.message_length** bytes.
 
--  The message data is compressed using the LZ4 format and algorithm
-   described in http://www.lz4.org/.
+#. Inspect the **header.compression** field.
 
-That is to say, for an uncompressed message the following is the complete
-message layout:
+#. If it is **NONE**, unmarshal the data into a **Message**.
 
-.. code-block:: none
+#. If it is **LZ4**, decompress the data into a new buffer, resulting in
+   **uncompressed_length** bytes. Unmarshal the result into a **Message**.
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |  Ver  |       Message ID      |      Type     |   Reserved  |0|
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                  Length of Uncompressed Data                  |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                       Uncompressed Data                       \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+#. Handle the **Message**.
 
-While a compressed message follows the following layout:
+Message Subtypes
+----------------
 
-.. code-block:: none
-
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |  Ver  |       Message ID      |      Type     |   Reserved  |1|
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                 Length of Compressed Data + 4                 |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                  Length of Uncompressed Data                  |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                        Compressed Data                        \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-
-All data within the message (post decompression, if compression is in use)
-MUST be in protocol buffer (version 3) encoding. All strings MUST use the
-Unicode UTF-8 encoding, normalization form C.
-
-Cluster Config (Type = 0)
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Cluster Config
+^^^^^^^^^^^^^^
 
 .. Documentation note: the structure of a message section is always:
    1. A short description of the message
@@ -354,8 +328,8 @@ version numbers in place of the initial Index message.
 The **introducer** field is set for devices that are trusted as cluster
 introducers.
 
-Index (Type = 1) and Index Update (Type = 2)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Index and Index Update
+^^^^^^^^^^^^^^^^^^^^^^
 
 The Index and Index Update messages define the contents of the senders
 folder. An Index message represents the full contents of the folder and
@@ -478,8 +452,8 @@ The **blocks** list contains the size and hash for each block in the file.
 Each block represents a 128 KiB slice of the file, except for the last
 block which may represent a smaller amount of data.
 
-Request (Type = 3)
-^^^^^^^^^^^^^^^^^^
+Request
+^^^^^^^
 
 The Request message expresses the desire to receive a data block
 corresponding to a part of a certain file in the peer's folder.
@@ -490,17 +464,21 @@ Protocol Buffer Schema
 .. code-block:: proto
 
     message RequestMessage {
-        string folder         = 1;
-        string name           = 2;
-        int64  offset         = 3;
-        int32  size           = 4;
-        bytes  hash           = 5;
-        bool   from_temporary = 6;
+        int32  id             = 1;
+        string folder         = 2;
+        string name           = 3;
+        int64  offset         = 4;
+        int32  size           = 5;
+        bytes  hash           = 6;
+        bool   from_temporary = 7;
     }
-
 
 Fields
 ~~~~~~
+
+The **id** is the request identifier. It will be matched in the
+corresponding **Request** message. Each outstanding request must have a
+unique ID.
 
 The **folder** and **name** fields are as documented for the Index message.
 The **offset** and **size** fields specify the region of the file to be
@@ -517,8 +495,8 @@ performed from the temporary file (converting name to it's temporary form)
 and falling back to the non temporary file if any error occurs. Knowledge of
 contents of temporary files comes from DownloadProgress messages.
 
-Response (Type = 4)
-^^^^^^^^^^^^^^^^^^^
+Response
+^^^^^^^^
 
 The Response message is sent in response to a Request message.
 
@@ -528,8 +506,9 @@ Protocol Buffer Schema
 .. code-block:: proto
 
     message ResponseMessage {
-        bytes     data = 1;
-        ErrorCode code = 2;
+        int32     id   = 1 [(gogoproto.customname) = "ID"];
+        bytes     data = 2;
+        ErrorCode code = 3;
     }
 
     enum ErrorCode {
@@ -541,6 +520,9 @@ Protocol Buffer Schema
 
 Fields
 ~~~~~~
+
+The **id** field is the request identifier. It must match the ID of the
+**Request** that is being responded to.
 
 The **data** field contains either the requested data block or is empty if
 the requested block is not available.
@@ -559,8 +541,8 @@ returned. The following values are defined:
 :3: Invalid (file exists but has invalid bit set or is otherwise
    unavailable)
 
-DownloadProgress (Type = 5)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+DownloadProgress
+^^^^^^^^^^^^^^^^
 
 The DownloadProgress message is used to notify remote devices about partial
 availability of files. By default, these messages are sent every 5 seconds,
@@ -641,8 +623,8 @@ indexes previously advertised are no longer available. The list of available
 block indexes MUST be replaced (rather than appended) with the indexes
 specified in this message.
 
-Ping (Type = 6)
-^^^^^^^^^^^^^^^
+Ping
+^^^^
 
 The Ping message is used to determine that a connection is alive, and to
 keep connections alive through state tracking network elements such as
@@ -658,8 +640,8 @@ Protocol Buffer Schema
     }
 
 
-Close (Type = 7)
-^^^^^^^^^^^^^^^^
+Close
+^^^^^
 
 The Close message MAY be sent to indicate that the connection will be
 torn down due to an error condition. A Close message MUST NOT be
