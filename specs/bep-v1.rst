@@ -128,10 +128,8 @@ if the remote device does not pass authentication.
 Post-authentication Messages
 ----------------------------
 
-Every post authentication message is made up of two parts:
-
-- A header length word
-- A **Message** message
+Every post authentication message is prefixed with a message length word. It
+indicates the number of bytes to read for the message that follows.
 
 .. code-block:: none
 
@@ -145,9 +143,8 @@ Every post authentication message is made up of two parts:
     /                                                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-The length word is 4 bytes in network byte order (BE). It indicates the
-length of the following message. The Message is in protocol buffer format
-with the following schema:
+The length word is 4 bytes in network byte order (BE). The Message is in
+protocol buffer format with the following schema:
 
 .. code-block:: proto
 
