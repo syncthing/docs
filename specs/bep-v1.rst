@@ -76,10 +76,10 @@ Hello message exchange, but even in the case that a connection is rejected a
 Hello message must be sent before the connection is terminated.
 
 Hello messages MUST be prefixed with a magic number **0x2EA7D90B**
-represented in network byte order (BE), followed by 4 bytes representing the
-size of the message in network byte order (BE), followed by the content of
-the Hello message itself. The size of the contents of Hello message MUST be
-less or equal to 1024 bytes.
+represented in network byte order (BE), followed by four bytes representing
+the size of the message in network byte order (BE), followed by the content
+of the Hello message itself. The size of the contents of Hello message MUST
+be less or equal to 1024 bytes.
 
 In this document, in diagrams and text, "bit 0" refers to the *most
 significant* bit of a word; "bit 31" is thus the least significant bit of a
@@ -128,52 +128,68 @@ if the remote device does not pass authentication.
 Post-authentication Messages
 ----------------------------
 
-Every post authentication message is prefixed with a message length word. It
-indicates the number of bytes to read for the message that follows.
+Every message post authentication is made up of three parts:
+
+- A header length word
+- A **Header** message
+- A **Message** message
 
 .. code-block:: none
 
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                            Length                             |
+    |                         Header Length                         |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                                                               /
+    \                            Header                             \
+    /                                                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     /                                                               /
     \                            Message                            \
     /                                                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-The length word is 4 bytes in network byte order (BE). The Message is in
-protocol buffer format with the following schema:
+The header length word is four bytes in network byte order (BE). It
+indicates the length of the following **Header** message. The Header is in
+protocol buffer format. The Header describes the type, length and
+compression status of the following message. The message itself is one of
+the concrete BEP messages described below, identified by the **type** field
+of the Header.
 
 .. code-block:: proto
 
-    message Message {
-        ClusterConfig    cluster_config    = 1;
-        Index            index             = 2;
-        Index            index_update      = 3;
-        Request          request           = 4;
-        Response         response          = 5;
-        DownloadProgress download_progress = 6;
-        Ping             ping              = 7;
-        Close            close             = 8;
-
-        CompressedMessage compressed = 16;
+    message Header {
+        MessageType        type        = 1;
+        int32              length      = 2;
+        MessageCompression compression = 3;
     }
 
-    message CompressedMessage {
-        bytes data                = 1;
-        int32 uncompressed_length = 2;
+    enum MessageType {
+        CLUSTER_CONFIG    = 0;
+        INDEX             = 1;
+        INDEX_UPDATE      = 2;
+        REQUEST           = 3;
+        RESPONSE          = 4;
+        DOWNLOAD_PROGRESS = 5;
+        PING              = 6;
+        CLOSE             = 7;
     }
 
-Exactly one of the **Message** fields MUST be set.
+    enum MessageCompression {
+        NONE = 0;
+        LZ4  = 1;
+    }
 
-Messages may be compressed, in which case the **compressed** field is used.
-When set, the **compressed.data** field contains an LZ4 compressed Message
-in protocol buffer format, and the **compressed.uncompressed_length** field
-indicates the expected length of the data after decompression.
+When the **compression** field is **NONE**, the Header is followed directly
+by a message in protocol buffer format. The message is **length** bytes
+long.
 
-A compressed message MAY NOT contain another compressed message.
+When the compression field is **LZ4**, the Header is followed directly by an
+LZ4 compressed block. The first four bytes of the block is a four byte
+integer (network byte order, as always) indicating the length of the
+uncompressed block. This may be used to ensure sufficient buffer space prior
+to decompression.
 
 Message Subtypes
 ----------------
@@ -307,12 +323,20 @@ the message. An Index Update MAY NOT be sent unless preceded by an
 Index, unless a non-zero Max Local Version has been announced for the
 given folder by the peer device.
 
+The Index and Index Update messages are currently identical in format,
+although this is not guaranteed to be the case in the future.
+
 Protocol Buffer Schema
 ~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: proto
 
     message Index {
+        string            folder = 1;
+        repeated FileInfo files  = 2;
+    }
+
+    message IndexUpdate {
         string            folder = 1;
         repeated FileInfo files  = 2;
     }
@@ -667,7 +691,57 @@ Message Limits
 
 An implementation MAY impose reasonable limits on the length of messages
 and message fields to aid robustness in the face of corruption or broken
-implementations.
+implementations. These limits, if imposed, SHOULD NOT be more
+restrictive than the following. An implementation should strive to keep
+messages short and to the point, favouring more and smaller messages
+over fewer and larger. For example, favour a smaller Index message
+followed by one or more Index Update messages rather than sending a very
+large Index message.
+
+=================== =================== =============
+Message Type        Field               Limit
+=================== =================== =============
+**All Messages**
+-----------------------------------------------------
+|                   Total length        512 MiB
+
+**Index and Index Update Messages**
+-----------------------------------------------------
+|                   Folder              64 bytes
+|                   Number of Files     1.000.000
+|                   Name                8192 bytes
+|                   Number of Blocks    10.000.000
+|                   Hash                64 bytes
+|                   Number of Counters  1.000.000
+
+**Request Messages**
+-----------------------------------------------------
+|                   Folder              64 bytes
+|                   Name                8192 bytes
+
+**Response Messages**
+-----------------------------------------------------
+|                   Data                256 KiB
+
+**Cluster Config Message**
+-----------------------------------------------------
+|                   Number of Folders   1.000.000
+|                   Number of Devices   1.000.000
+|                   Number of Options   64
+|                   Key                 64 bytes
+|                   Value               1024 bytes
+
+**Download Progress Messages**
+-----------------------------------------------------
+|                   Folder              64 bytes
+|                   Number of Updates   1.000.000
+|                   Name                8192 bytes
+|                   Number of Indexes   1.000.000
+=================== =================== =============
+
+The currently defined values allow maximum file size of 1220 GiB
+(10.000.000 x 128 KiB). The maximum message size covers an Index message
+for the maximum file.
 
 Example Exchange
 ----------------
