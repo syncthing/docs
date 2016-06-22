@@ -62,6 +62,24 @@ another.
 
 The underlying transport protocol MUST guarantee reliable packet delivery.
 
+In this document, in diagrams and text, "bit 0" refers to the *most
+significant* bit of a word; "bit 15" is thus the least significant bit of a
+16 bit word (int16) and "bit 31" is the least significant bit of a 32 bit
+word (int32). Non protocol buffer integers are always represented in network
+byte order (i.e., big endian) and are signed unless stated otherwise, but
+when describing message lengths negative values do not make sense and the
+most significant bit MUST be zero.
+
+The protocol buffer schemas in this document are in ``proto3`` syntax. This
+means, among other things, that all fields are optional and will assume
+their default value when missing. This does not nececessarily mean that a
+message is *valid* with all fields empty - for example, an index entry for a
+file that does not have a name is not useful and MAY be rejected by the
+implementation. However the folder label is for human consumption only so an
+empty label should be accepted - the implementation will have to choose some
+way to represent the folder, perhaps by using the ID in it's place or
+automatically generating a label.
+
 Pre-authentication messages
 ---------------------------
 
@@ -75,17 +93,9 @@ authentication may be considered part of the TLS handshake that precedes the
 Hello message exchange, but even in the case that a connection is rejected a
 Hello message must be sent before the connection is terminated.
 
-Hello messages MUST be prefixed with a magic number **0x2EA7D90B**
-represented in network byte order (BE), followed by two bytes representing
-the size of the message in network byte order (BE), followed by the contents
-of the Hello message itself.
-
-In this document, in diagrams and text, "bit 0" refers to the *most
-significant* bit of a word; "bit 15" is thus the least significant bit of a
-16 bit word (int16) and "bit 31" is the least significant bit of a 32 bit
-word (int32). Integers are signed unless stated otherwise, but when
-describing message lengths negative values do not make sense and the most
-significant bit MUST be zero.
+Hello messages MUST be prefixed with an int32 containing the magic number
+**0x2EA7D90B**, followed by an int16 representing the size of the message,
+followed by the contents of the Hello message itself.
 
 .. code-block:: none
 
@@ -142,10 +152,10 @@ Every message post authentication is made up of three parts:
      0                   1
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |             Length            |
+    |            Length             |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     /                               /
-    \             Hello             \
+    \            Header             \
     /                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     /                               /
@@ -153,12 +163,11 @@ Every message post authentication is made up of three parts:
     /                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-The header length word is two bytes (i.e., an int16) in network byte order
-(BE). It indicates the length of the following **Header** message. The
-Header is in protocol buffer format. The Header describes the type, length
-and compression status of the following message. The message itself is one
-of the concrete BEP messages described below, identified by the **type**
-field of the Header.
+The header length word is two bytes (i.e., an int16). It indicates the
+length of the following **Header** message. The Header is in protocol buffer
+format. The Header describes the type, length and compression status of the
+following message. The message itself is one of the concrete BEP messages
+described below, identified by the **type** field of the Header.
 
 .. code-block:: proto
 
@@ -190,9 +199,8 @@ long.
 
 When the compression field is **LZ4**, the Header is followed directly by an
 LZ4 compressed block. The first four bytes of the block is a four byte
-integer (an int32, in network byte order as always) indicating the length of
-the uncompressed block. This may be used to ensure sufficient buffer space
-prior to decompression.
+integer (an int32) indicating the length of the uncompressed block. This may
+be used to ensure sufficient buffer space prior to decompression.
 
 Message Subtypes
 ----------------
@@ -207,8 +215,9 @@ Cluster Config
 
 This informational message provides information about the cluster
 configuration as it pertains to the current connection. A Cluster Config
-message MUST be the first message sent on a BEP connection. Additional
-Cluster Config messages MUST NOT be sent after the initial exchange.
+message MUST be the first post authentication message sent on a BEP
+connection. Additional Cluster Config messages MUST NOT be sent after the
+initial exchange.
 
 Protocol Buffer Schema
 ~~~~~~~~~~~~~~~~~~~~~~
