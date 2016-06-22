@@ -76,28 +76,31 @@ Hello message exchange, but even in the case that a connection is rejected a
 Hello message must be sent before the connection is terminated.
 
 Hello messages MUST be prefixed with a magic number **0x2EA7D90B**
-represented in network byte order (BE), followed by four bytes representing
-the size of the message in network byte order (BE), followed by the content
-of the Hello message itself. The size of the contents of Hello message MUST
-be less or equal to 1024 bytes.
+represented in network byte order (BE), followed by two bytes representing
+the size of the message in network byte order (BE), followed by the contents
+of the Hello message itself.
 
 In this document, in diagrams and text, "bit 0" refers to the *most
-significant* bit of a word; "bit 31" is thus the least significant bit of a
-32 bit word.
+significant* bit of a word; "bit 15" is thus the least significant bit of a
+16 bit word (int16) and "bit 31" is the least significant bit of a 32 bit
+word (int32). Integers are signed unless stated otherwise, but when
+describing message lengths negative values do not make sense and the most
+significant bit MUST be zero.
 
 .. code-block:: none
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                             Magic                             |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                            Length                             |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                             Hello                             \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     0                   1
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |             Magic             |
+    |           (32 bits)           |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |             Length            |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                               /
+    \             Hello             \
+    /                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
 The Hello message itself is in protocol buffer format with the following schema:
 
@@ -131,31 +134,31 @@ Post-authentication Messages
 Every message post authentication is made up of three parts:
 
 - A header length word
-- A **Header** message
-- A **Message** message
+- A **Header**
+- A **Message**
 
 .. code-block:: none
 
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |                         Header Length                         |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                            Header                             \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    /                                                               /
-    \                            Message                            \
-    /                                                               /
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+     0                   1
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |             Length            |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                               /
+    \             Hello             \
+    /                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    /                               /
+    \            Message            \
+    /                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-The header length word is four bytes in network byte order (BE). It
-indicates the length of the following **Header** message. The Header is in
-protocol buffer format. The Header describes the type, length and
-compression status of the following message. The message itself is one of
-the concrete BEP messages described below, identified by the **type** field
-of the Header.
+The header length word is two bytes (i.e., an int16) in network byte order
+(BE). It indicates the length of the following **Header** message. The
+Header is in protocol buffer format. The Header describes the type, length
+and compression status of the following message. The message itself is one
+of the concrete BEP messages described below, identified by the **type**
+field of the Header.
 
 .. code-block:: proto
 
@@ -187,9 +190,9 @@ long.
 
 When the compression field is **LZ4**, the Header is followed directly by an
 LZ4 compressed block. The first four bytes of the block is a four byte
-integer (network byte order, as always) indicating the length of the
-uncompressed block. This may be used to ensure sufficient buffer space prior
-to decompression.
+integer (an int32, in network byte order as always) indicating the length of
+the uncompressed block. This may be used to ensure sufficient buffer space
+prior to decompression.
 
 Message Subtypes
 ----------------
