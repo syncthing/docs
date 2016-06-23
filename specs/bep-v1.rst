@@ -152,11 +152,14 @@ Every message post authentication is made up of three parts:
      0                   1
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |            Length             |
+    |         Header Length         |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     /                               /
     \            Header             \
     /                               /
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |         Message Length        |
+    |           (32 bits)           |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
     /                               /
     \            Message            \
@@ -165,16 +168,16 @@ Every message post authentication is made up of three parts:
 
 The header length word is two bytes (i.e., an int16). It indicates the
 length of the following **Header** message. The Header is in protocol buffer
-format. The Header describes the type, length and compression status of the
-following message. The message itself is one of the concrete BEP messages
-described below, identified by the **type** field of the Header.
+format. The Header describes the type and compression status of the
+following message. The message itself is preceded by a four byte (int32)
+message length and is one of the concrete BEP messages described below,
+identified by the **type** field of the Header.
 
 .. code-block:: proto
 
     message Header {
         MessageType        type        = 1;
-        int32              length      = 2;
-        MessageCompression compression = 3;
+        MessageCompression compression = 2;
     }
 
     enum MessageType {
@@ -193,14 +196,13 @@ described below, identified by the **type** field of the Header.
         LZ4  = 1;
     }
 
-When the **compression** field is **NONE**, the Header is followed directly
-by a message in protocol buffer format. The message is **length** bytes
-long.
+When the **compression** field is **NONE**, the message is directly in
+protocol buffer format.
 
-When the compression field is **LZ4**, the Header is followed directly by an
-LZ4 compressed block. The first four bytes of the block is a four byte
-integer (an int32) indicating the length of the uncompressed block. This may
-be used to ensure sufficient buffer space prior to decompression.
+When the compression field is **LZ4**, the message consists of a four byte
+integer describing the uncompressed message length followed by a single LZ4
+block. After decompressing the LZ4 block it should be interpreted as a
+protocol buffer message just a in the uncompressed case.
 
 Message Subtypes
 ----------------
