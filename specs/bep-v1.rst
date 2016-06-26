@@ -202,7 +202,7 @@ protocol buffer format.
 When the compression field is **LZ4**, the message consists of a four byte
 integer describing the uncompressed message length followed by a single LZ4
 block. After decompressing the LZ4 block it should be interpreted as a
-protocol buffer message just a in the uncompressed case.
+protocol buffer message just as in the uncompressed case.
 
 Message Subtypes
 ----------------
@@ -405,10 +405,10 @@ Fields (FileInfo Message)
 
 The **name** is the file name path relative to the folder root. Like all
 strings in BEP, the Name is always in UTF-8 NFC regardless of operating
-system or file system specific conventions. The name field uses the
-slash character ("/") as path separator, regardless of the
-implementation's operating system conventions. The combination of folder
-and name uniquely identifies each file in a cluster.
+system or file system specific conventions. The name field uses the slash
+character ("/") as path separator, regardless of the implementation's
+operating system conventions. The combination of folder and name uniquely
+identifies each file in a cluster.
 
 The **type** field contains the type of the described item. The type is one
 of **file (0)**, **directory (1)**, **symlink to file (2)**, **symlink to
@@ -417,8 +417,8 @@ between the various types of symlinks is not required on all operating
 systems - the implementation SHOULD nonetheless indicate the target type
 when possible.
 
-The **size** field contains the size the file, in bytes. For directories the
-size is zero. For symlinks the size is the length of the target name.
+The **size** field contains the size of the file, in bytes. For directories
+the size is zero. For symlinks the size is the length of the target name.
 
 The **permissions** field holds the common Unix permission bits. An
 implementation MAY ignore or interpret these as is suitable on the host
@@ -443,19 +443,19 @@ disregarded on files with this bit set. The permissions bits MUST be set to
 the octal value 0666.
 
 The **version** field is a version vector describing the updates performed
-to a file by all members in the cluster. Each counter in the version
-vector is an ID-Value tuple. The ID is used the first 64 bits of the
-device ID. The Value is a simple incrementing counter, starting at zero.
-The combination of Folder, Name and Version uniquely identifies the
-contents of a file at a given point in time.
+to a file by all members in the cluster. Each counter in the version vector
+is an ID-Value tuple. The ID is the first 64 bits of the device ID. The
+Value is a simple incrementing counter, starting at zero. The combination of
+Folder, Name and Version uniquely identifies the contents of a file at a
+given point in time.
 
 The **local version** field is the value of a device local monotonic clock
 at the time of last local database update to a file. The clock ticks on
 every local database update.
 
 The **blocks** list contains the size and hash for each block in the file.
-Each block represents a 128 KiB slice of the file, except for the last
-block which may represent a smaller amount of data.
+Each block represents a 128 KiB slice of the file, except for the last block
+which may represent a smaller amount of data.
 
 Request
 ^^^^^^^
@@ -533,8 +533,8 @@ The **data** field contains either the requested data block or is empty if
 the requested block is not available.
 
 The **code** field contains an error code describing the reason a Request
-could not be fulfilled, in the case where zero length data was
-returned. The following values are defined:
+could not be fulfilled, in the case where zero length data was returned. The
+following values are defined:
 
 :0: No Error (data should be present)
 
@@ -592,18 +592,18 @@ The **update type** indicates whether the update is of type **append (0)**
 (new blocks are available) or **forget (1)** (the file transfer has
 completed or failed).
 
-The **name** field defines the file name from the global index for which this
-update is being sent.
+The **name** field defines the file name from the global index for which
+this update is being sent.
 
-The **version** message defines the version of the file for which this update
-is being sent.
+The **version** message defines the version of the file for which this
+update is being sent.
 
 The **block indexes** field is a list of positive integers, where each
 integer represents the index of the block in the FileInfo message Blocks
 array that has become available for download.
 
-For example an integer with with value 3 represents that the data defined in
-the fourth BlockInfo message of the FileInfo message of that file is now
+For example an integer with value 3 represents that the data defined in the
+fourth BlockInfo message of the FileInfo message of that file is now
 available. Please note that matching should be done on **name** AND
 **version**. Furthermore, each update received is incremental, for example
 the initial update message might contain indexes 0, 1, 2, an update 5
@@ -648,9 +648,9 @@ Protocol Buffer Schema
 Close
 ^^^^^
 
-The Close message MAY be sent to indicate that the connection will be
-torn down due to an error condition. A Close message MUST NOT be
-followed by further messages.
+The Close message MAY be sent to indicate that the connection will be torn
+down due to an error condition. A Close message MUST NOT be followed by
+further messages.
 
 Protocol Buffer Schema
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -687,10 +687,10 @@ directions.
 Read Only
 ^^^^^^^^^
 
-In read only mode, a device does not apply any updates from the cluster,
-but publishes changes of its local folder to the cluster as usual.
-The local folder can be seen as a "master copy" that is never affected
-by the actions of other cluster devices.
+In read only mode, a device does not apply any updates from the cluster, but
+publishes changes of its local folder to the cluster as usual. The local
+folder can be seen as a "master copy" that is never affected by the actions
+of other cluster devices.
 
 ::
 
@@ -703,59 +703,12 @@ by the actions of other cluster devices.
 Message Limits
 --------------
 
-An implementation MAY impose reasonable limits on the length of messages
-and message fields to aid robustness in the face of corruption or broken
-implementations. These limits, if imposed, SHOULD NOT be more
-restrictive than the following. An implementation should strive to keep
-messages short and to the point, favouring more and smaller messages
-over fewer and larger. For example, favour a smaller Index message
-followed by one or more Index Update messages rather than sending a very
-large Index message.
-
-=================== =================== =============
-Message Type        Field               Limit
-=================== =================== =============
-**All Messages**
------------------------------------------------------
-|                   Total length        512 MiB
-
-**Index and Index Update Messages**
------------------------------------------------------
-|                   Folder              64 bytes
-|                   Number of Files     1.000.000
-|                   Name                8192 bytes
-|                   Number of Blocks    10.000.000
-|                   Hash                64 bytes
-|                   Number of Counters  1.000.000
-
-**Request Messages**
------------------------------------------------------
-|                   Folder              64 bytes
-|                   Name                8192 bytes
-
-**Response Messages**
------------------------------------------------------
-|                   Data                256 KiB
-
-**Cluster Config Message**
------------------------------------------------------
-|                   Number of Folders   1.000.000
-|                   Number of Devices   1.000.000
-|                   Number of Options   64
-|                   Key                 64 bytes
-|                   Value               1024 bytes
-
-**Download Progress Messages**
------------------------------------------------------
-|                   Folder              64 bytes
-|                   Number of Updates   1.000.000
-|                   Name                8192 bytes
-|                   Number of Indexes   1.000.000
-=================== =================== =============
-
-The currently defined values allow maximum file size of 1220 GiB
-(10.000.000 x 128 KiB). The maximum message size covers an Index message
-for the maximum file.
+An implementation MAY impose reasonable limits on the length of messages and
+message fields to aid robustness in the face of corruption or broken
+implementations. An implementation should strive to keep messages short
+and to the point, favouring more and smaller messages over fewer and larger.
+For example, favour a smaller Index message followed by one or more Index
+Update messages rather than sending a very large Index message.
 
 Example Exchange
 ----------------
@@ -782,15 +735,15 @@ Example Exchange
 ===  =======================  ======================
 
 The connection is established and at 1. both peers send ClusterConfiguration
-messages and then Index records. The Index records are received and both peers
-recompute their knowledge of the data in the cluster. In this example, peer A
-has four missing or outdated blocks. At 5 through 8 peer A sends requests for
-these blocks. The requests are received by peer B, who retrieves the data from
-the folder and transmits Response records (9 through 12). Device A updates
-their folder contents and transmits an Index Update message (13). Both peers
-enter idle state after 13. At some later time 14, the ping timer on device B
-expires and a Ping message is sent. The same process occurs for device A at
-15.
+messages and then Index records. The Index records are received and both
+peers recompute their knowledge of the data in the cluster. In this example,
+peer A has four missing or outdated blocks. At 5 through 8 peer A sends
+requests for these blocks. The requests are received by peer B, who
+retrieves the data from the folder and transmits Response records (9 through
+12). Device A updates their folder contents and transmits an Index Update
+message (13). Both peers enter idle state after 13. At some later time 14,
+the ping timer on device B expires and a Ping message is sent. The same
+process occurs for device A at 15.
 
 Examples of Strong Cipher Suites
 --------------------------------
