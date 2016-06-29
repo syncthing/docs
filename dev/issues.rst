@@ -53,17 +53,17 @@ In addition to version specific milestones there are two generic ones:
 
 Planned
     This issue is being worked on, or will soon be worked on, by someone in
-    the core team. Expect action on it within the next days, weeks or
+    the core team. Expect action on it within the next few days, weeks or
     months.
 
 Unplanned (Contributions Welcome)
     This issue is not being worked on by the core team, and we don't plan on
     doing so in the foreseeable future. We still consider it a valid issue
-    (bug, enhancement, ...) and welcome contributions towards resolving it.
+    and welcome contributions towards resolving it.
 
 Issues lacking a milestone are currently undecided. In practice this is
 similar to Unplanned in that probably no-one is working on it, but we are
-still considering it and it may end up Planned or closed.
+still considering it and it may end up Planned or closed instead.
 
 Assignee
 --------
