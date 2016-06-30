@@ -84,7 +84,7 @@ Pre-authentication messages
 ---------------------------
 
 AFTER establishing a connection, but BEFORE performing any authentication,
-*devices* MUST exchange Hello messages.
+devices MUST exchange Hello messages.
 
 Hello messages are used to carry additional information about the peer,
 which might be of interest to the user even if the peer is not permitted to
@@ -141,10 +141,11 @@ if the remote device does not pass authentication.
 Post-authentication Messages
 ----------------------------
 
-Every message post authentication is made up of three parts:
+Every message post authentication is made up of several parts:
 
 - A header length word
 - A **Header**
+- A message length word
 - A **Message**
 
 .. code-block:: none
@@ -166,12 +167,13 @@ Every message post authentication is made up of three parts:
     /                               /
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
-The header length word is two bytes (i.e., an int16). It indicates the
-length of the following **Header** message. The Header is in protocol buffer
-format. The Header describes the type and compression status of the
-following message. The message itself is preceded by a four byte (int32)
-message length and is one of the concrete BEP messages described below,
-identified by the **type** field of the Header.
+The header length word is 16 bits. It indicates the length of the following
+**Header** message. The Header is in protocol buffer format. The Header
+describes the type and compression status of the following message.
+
+The message is preceded by the 32 bit message length word and is one of the
+concrete BEP messages described below, identified by the **type** field of
+the Header.
 
 .. code-block:: proto
 
@@ -199,7 +201,7 @@ identified by the **type** field of the Header.
 When the **compression** field is **NONE**, the message is directly in
 protocol buffer format.
 
-When the compression field is **LZ4**, the message consists of a four byte
+When the compression field is **LZ4**, the message consists of a 32 bit
 integer describing the uncompressed message length followed by a single LZ4
 block. After decompressing the LZ4 block it should be interpreted as a
 protocol buffer message just as in the uncompressed case.
