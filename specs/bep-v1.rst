@@ -175,6 +175,8 @@ The message is preceded by the 32 bit message length word and is one of the
 concrete BEP messages described below, identified by the **type** field of
 the Header.
 
+As always, the length words are in network byte order (big endian).
+
 .. code-block:: proto
 
     message Header {
