@@ -1,4 +1,4 @@
-.. _custom-relaysrv:
+.. _custom-strelaysrv:
 
 Custom Relay Server
 ===================
@@ -26,15 +26,15 @@ VPS's with these specs are available for about $5-$10/month.
 Installing and Running
 ~~~~~~~~~~~~~~~~~~~~~~
 
-Download the latest release of the `relay server <https://github.com/syncthing/relaysrv/releases>`__
+Download the latest release of the `relay server <https://github.com/syncthing/strelaysrv/releases>`__
 for your operating system and architecture. Unpack the archive and save the
 binary to a convenient place such as `/usr/local/bin`.
 
 The relay server takes a number of options, some of which are important for
 smooth operation::
 
-    $ relaysrv --help
-    Usage of relaysrv:
+    $ strelaysrv --help
+    Usage of strelaysrv:
       -debug
             Enable debug output
       -ext-address string
@@ -74,12 +74,12 @@ as root or a privileged user, see `Running on port 443 as an unprivileged user`_
 below. In principle something similar to this should work on a Linux/Unix
 system::
 
-    $ sudo useradd relaysrv
-    $ sudo mkdir /etc/relaysrv
-    $ sudo chown relaysrv /etc/relaysrv
-    $ sudo -u relaysrv /usr/local/bin/relaysrv -keys /etc/relaysrv
+    $ sudo useradd strelaysrv
+    $ sudo mkdir /etc/strelaysrv
+    $ sudo chown strelaysrv /etc/strelaysrv
+    $ sudo -u strelaysrv /usr/local/bin/strelaysrv -keys /etc/strelaysrv
 
-This creates a user ``relaysrv`` and a directory ``/etc/relaysrv`` to store
+This creates a user ``strelaysrv`` and a directory ``/etc/strelaysrv`` to store
 the keys. The keys are generated on first startup. The relay will join the
 global relay pool, unless a ``-pools=""`` argument is given.
 
@@ -110,8 +110,8 @@ Or, if you're using ``ufw``, add the following to ``/etc/ufw/before.rules``::
 
     COMMIT
 
-You will need to start ``relaysrv`` with ``-ext-address ":443"``. This tells
-``relaysrv`` that it can be contacted on port 443, even though it is listening
+You will need to start ``strelaysrv`` with ``-ext-address ":443"``. This tells
+``strelaysrv`` that it can be contacted on port 443, even though it is listening
 on port 22067. You will also need to let both port 443 and 22067 through your
 firewall.
 
