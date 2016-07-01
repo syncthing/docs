@@ -712,6 +712,13 @@ and to the point, favouring more and smaller messages over fewer and larger.
 For example, favour a smaller Index message followed by one or more Index
 Update messages rather than sending a very large Index message.
 
+The Syncthing implementation imposes a hard limit of 512 * 2^20 bytes on all
+messages. Attempting to send or receive a larger message will result in a
+connection close. This size was chosen to accomodate Index messages
+containing a large block list. It's intended that the limit may be further
+reduced in a future protocol update supporting variable block sizes (and
+thus shorter block lists for large files).
+
 Example Exchange
 ----------------
 
