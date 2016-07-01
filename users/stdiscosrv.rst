@@ -10,14 +10,14 @@ haven't yet, head over to :ref:`getting-started` first.
 Installing
 ----------
 
-Go to `releases <https://github.com/syncthing/discosrv/releases>`__ and
+Go to `releases <https://github.com/syncthing/stdiscosrv/releases>`__ and
 download the file appropriate for your operating system. Unpacking it will
-yield a binary called ``discosrv`` (or ``discosrv.exe`` on Windows). Start
+yield a binary called ``stdiscosrv`` (or ``stdiscosrv.exe`` on Windows). Start
 this in whatever way you are most comfortable with; double clicking should
-work in any graphical environment. At first start, discosrv will generate the
-directory ``/var/discosrv`` (``X:\var\discosrv`` on Windows, where X is the
-partition ``discosrv.exe`` is executed from) with configuration. If the user
-running ``discosrv`` doesn't have permission to do so, create the directory
+work in any graphical environment. At first start, stdiscosrv will generate the
+directory ``/var/stdiscosrv`` (``X:\var\stdiscosrv`` on Windows, where X is the
+partition ``stdiscosrv.exe`` is executed from) with configuration. If the user
+running ``stdiscosrv`` doesn't have permission to do so, create the directory
 and set the owner appropriately or use the command line switches (see below)
 to select a different location.
 
@@ -30,19 +30,19 @@ Configuring
    address or bind the discovery server and syncthing instances to
    different IP addresses.
 
-Running discosrv with non-default settings requires passing the
-respective parameters to discosrv on every start. ``discosrv -help``
+Running stdiscosrv with non-default settings requires passing the
+respective parameters to stdiscosrv on every start. ``stdiscosrv -help``
 gives you all the tweakables with their defaults:
 
 ::
 
-  Usage of discosrv:
+  Usage of stdiscosrv:
     -cert string
         Certificate file (default "cert.pem")
     -db-backend string
         Database backend to use (default "ql")
     -db-dsn string
-        Database DSN (default "memory://discosrv")
+        Database DSN (default "memory://stdiscosrv")
     -debug
         Debug
     -http
@@ -81,7 +81,7 @@ from clients there are three options:
 For the first two options, the discovery server must be given the paths to
 the certificate and key at startup. This isn't necessary with the ``http`` flag::
 
-  $ discosrv -cert /path/to/cert.pem -key /path/to/key.pem
+  $ stdiscosrv -cert /path/to/cert.pem -key /path/to/key.pem
   Server device ID is 7DDRT7J-UICR4PM-PBIZYL3-MZOJ7X7-EX56JP6-IK6HHMW-S7EK32W-G3EUPQA
 
 The discovery server prints it's device ID at startup. In the case where you
@@ -99,10 +99,10 @@ Pointing Syncthing at Your Discovery Server
 
 By default, Syncthing uses a number of global discovery servers, signified by
 the entry ``default`` in the list of discovery servers. To make Syncthing use
-your own instance of discosrv, open up Syncthing's web GUI. Go to settings,
-Global Discovery Server and add discosrv's host address to the comma-separated
-list, e.g. ``https://disco.example.com:8443/v2/``. Note that discosrv uses port
-8443 by default. For discosrv to be available over the internet with a dynamic
+your own instance of stdiscosrv, open up Syncthing's web GUI. Go to settings,
+Global Discovery Server and add stdiscosrv's host address to the comma-separated
+list, e.g. ``https://disco.example.com:8443/v2/``. Note that stdiscosrv uses port
+8443 by default. For stdiscosrv to be available over the internet with a dynamic
 IP address, you will need a dynamic DNS service.
 
 If you wish to use *only* your own discovery server, remove the ``default``
@@ -120,7 +120,7 @@ allows:
 Requirements
 ^^^^^^^^^^^^
 
-- Run the discovery server using the -http flag  :code:`discosrv -http`.
+- Run the discovery server using the -http flag  :code:`stdiscosrv -http`.
 - SSL certificate/key configured for the reverse proxy
 - The "X-Forwarded-For" http header must be passed through with the client's
   real IP address
