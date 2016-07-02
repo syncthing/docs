@@ -1,4 +1,4 @@
-.. _custom-relaysrv:
+.. _strelaysrv:
 
 Syncthing Relay Server
 ======================
