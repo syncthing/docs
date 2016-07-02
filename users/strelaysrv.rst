@@ -135,24 +135,6 @@ firewall.
 Another option is `described here <https://wiki.apache.org/httpd/NonRootPortBinding>`__,
 although your milage may vary.
 
-Recommended Specifications
---------------------------
-
-To run a relay of your own, you will first need a server. Running a relay from
-a home computer is  not recommended: the relay ideally needs to be running 24/7,
-and home internet connections often have poor upload bandwidth.
-
-The recommended specifications for a relay are:
-
-========= ==============
-CPU       At least 1GHz
-RAM       At least 256MB
-Bandwidth At least 1MBit/s in and out, the higher the better
-Traffic   At least 1TiB/month, the more the better
-========= ==============
-
-VPS's with these specs are available for about $5-$10/month.
-
 See Also
 --------
 
