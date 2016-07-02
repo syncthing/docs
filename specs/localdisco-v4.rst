@@ -52,9 +52,9 @@ The Announcement packet has the following structure:
 There is no explicit length field as the length is given by the length of
 the discovery announcement packet itself.
 
-The Magic field is a 32 bit word representing 0x2EA7D90B in big endian byte
-order. It identifies the packet as being a Syncthing discovery protocol
-packet.
+The Magic field is a 32 bit word representing 0x2EA7D90B in network (big
+endian) byte order. It identifies the packet as being a Syncthing discovery
+protocol packet.
 
 The Announce Message contents are in protocol buffer format using the
 following schema:
