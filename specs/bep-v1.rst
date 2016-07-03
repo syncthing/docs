@@ -185,15 +185,14 @@ As always, the length words are in network byte order (big endian).
     }
 
     enum MessageType {
-        UNKNOWN           = 0;
-        CLUSTER_CONFIG    = 1;
-        INDEX             = 2;
-        INDEX_UPDATE      = 3;
-        REQUEST           = 4;
-        RESPONSE          = 5;
-        DOWNLOAD_PROGRESS = 6;
-        PING              = 7;
-        CLOSE             = 8;
+        CLUSTER_CONFIG    = 0;
+        INDEX             = 1;
+        INDEX_UPDATE      = 2;
+        REQUEST           = 3;
+        RESPONSE          = 4;
+        DOWNLOAD_PROGRESS = 5;
+        PING              = 6;
+        CLOSE             = 7;
     }
 
     enum MessageCompression {
