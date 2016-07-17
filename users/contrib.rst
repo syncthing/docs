@@ -85,6 +85,8 @@ Docker
    data past docker image restarts.
 -  https://github.com/djtm/syncthing-docker-scratch (builds docker containers 
    from scratch base and/or runs the containers in docker or rkt)
+-  https://hub.docker.com/r/funkyfuture/rpi-syncthing/ (Configurable image for
+   the Raspberry Pi)
 
 
 Gentoo
