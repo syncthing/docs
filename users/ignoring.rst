@@ -20,9 +20,9 @@ If some files should not be synchronized to other nodes, a file called
 ``#include`` files that *are* synchronized between nodes. All patterns are
 relative to the repository root.
 
-.. note:: 
+.. note::
 
-    Note that ignored files can block removal of an otherwise empty directory. 
+    Note that ignored files can block removal of an otherwise empty directory.
     See below for the (?d) prefix to allow deletion of ignored files.
 
 Patterns
@@ -104,6 +104,7 @@ Given a directory layout::
 
 and an ``.stignore`` file with the contents::
 
+    (?d).DS_Store
     !frobble
     !quuz
     foo
@@ -114,7 +115,7 @@ and an ``.stignore`` file with the contents::
 all files and directories called "foo", ending in a "2" or starting with
 "qu" will be ignored. The end result becomes::
 
-    (?d).DS_Store # ignored, will be deleted if gets in the way of parent directory removal
+    .DS_Store     # ignored, will be deleted if gets in the way of parent directory removal
     foo           # ignored, matches "foo"
     foofoo        # synced, does not match "foo" but would match "foo*" or "*foo"
     bar/          # synced
