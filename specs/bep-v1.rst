@@ -716,7 +716,7 @@ Update messages rather than sending a very large Index message.
 
 The Syncthing implementation imposes a hard limit of 500,000,000 bytes on
 all messages. Attempting to send or receive a larger message will result in
-a connection close. This size was chosen to accomodate Index messages
+a connection close. This size was chosen to accommodate Index messages
 containing a large block list. It's intended that the limit may be further
 reduced in a future protocol update supporting variable block sizes (and
 thus shorter block lists for large files).
