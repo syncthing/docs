@@ -253,6 +253,7 @@ Protocol Buffer Schema
         string          cert_name         = 5;
         int64           max_local_version = 6;
         bool            introducer        = 7;
+        uint64          index_id          = 8;
     }
 
     enum Compression {
@@ -320,15 +321,13 @@ The **cert name** field indicates the expected certificate name for this
 device. It is commonly blank, indicating to use the implementation default.
 
 The **max local version** field contains the highest local file
-version number of the files already known to be in the index sent by
-this device. If nothing is known about the index of a given device, this
-field MUST be set to zero. When receiving a Cluster Config message with
-a non-zero Max Local Version for the local device ID, a device MAY elect
-to send an Index Update message containing only files with higher local
-version numbers in place of the initial Index message.
+version number of the files in the index.
 
 The **introducer** field is set for devices that are trusted as cluster
-introducers.
+introducers. See :ref:`deltaidx` for the usage of this field.
+
+The **index id** field contains the unique identifier for the current set of
+index data. See :ref:`deltaidx` for the usage of this field.
 
 Index and Index Update
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -703,6 +702,58 @@ of other cluster devices.
     |   Device   |                 |  Cluster  |
     |            |                 \           /
     +------------+                  \---------/
+
+.. _deltaidx:
+
+Delta Index Exchange
+--------------------
+
+Index data must be exchanged whenever two devices connect so that one knows
+the files available on the other. In the most basic case this happens by way
+of sending an ``Index`` message followed by one or more ``Index Update``
+messages. Any previous index data known for a remote device is removed and
+replaced with the new index data received in an ``Index`` message, while the
+contents of an ``Index Update`` message is simply added to the existing
+index data.
+
+For situations with large indexes or frequent reconnects this can be quite
+inefficient. A mechanism can then be used to retain index data between
+connections and only transmit any changes since that data on connection
+start. This is called "delta indexes". To enable this mechanism the **local
+version** and **index ID** fields are used.
+
+Local Version:
+    Each index item (i.e., file, directory or symlink) has a local version
+    field. It contains the value of a counter at the time the index item was
+    updated. The counter increments by one for each change. That is, as files
+    are scanned and added to the index they get assigned local version numbers
+    1, 2, 3 and so on. The next file to be changed or detected gets local
+    version number 4, and future updates continue in the same fashion.
+
+Index ID:
+    Each folder has an Index ID. This is a 64 bit random identifier set at
+    index creation time.
+
+Given the above, we know that the tuple {index ID, maximum local version}
+uniquely identifies a point in time of a given index. Any further changes
+will increase the local version of some item, and thus the maximum local
+version for the index itself. Should the index be reset or removed (i.e.,
+the local version number reset to zero), a new index ID must be generated.
+
+By letting a device know the {index ID, maximum local version} we have for
+their index data, that device can arrange to only transmit ``Index Update``
+messages for items with a higher local version number. This is the delta
+index mechanism.
+
+The index ID and maximum local version known for each device is transmitted
+in the ``Cluster Config`` message at connection start.
+
+For this mechanism to be reliable it is essential that outgoing index
+information is ordered by increasing local version number. Devices
+announcing a non-zero index ID in the ``Cluster Config`` message MUST send
+all index data ordered by increasing local version number. Devices not
+intending to participate in delta index exchange MUST send a zero index ID
+or, equivalently, not send the ``index_id`` attribute at all.
 
 Message Limits
 --------------
