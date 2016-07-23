@@ -320,11 +320,12 @@ device and folder. The following values are valid:
 The **cert name** field indicates the expected certificate name for this
 device. It is commonly blank, indicating to use the implementation default.
 
-The **max local version** field contains the highest local file
-version number of the files in the index.
+The **max local version** field contains the highest local file version
+number of the files in the index. See :ref:`deltaidx` for the usage of this
+field.
 
 The **introducer** field is set for devices that are trusted as cluster
-introducers. See :ref:`deltaidx` for the usage of this field.
+introducers.
 
 The **index id** field contains the unique identifier for the current set of
 index data. See :ref:`deltaidx` for the usage of this field.
