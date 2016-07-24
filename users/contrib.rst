@@ -110,8 +110,8 @@ OpenSUSE
 -  http://software.opensuse.org/package/syncthing
 -  https://susestudio.com/a/qkdvwb/syncthing
 
-Synology NAS
-~~~~~~~~~~~~
+Synology NAS (DSM)
+~~~~~~~~~~~~~~~~~~
 
 -  http://packages.synocommunity.com/ Add the URL to Package Center in DSM.
    (NOTE: This page is not readable in your web browser. You can browse
@@ -120,12 +120,22 @@ Synology NAS
    can execute a Syncthing version upgrade via Web-GUI after
    installation on Synology device.
 
-QNAP NAS
-~~~~~~~~
+QNAP NAS (QTS)
+~~~~~~~~~~~~~~
 
 -  http://forum.qnap.com/viewtopic.php?f=320&t=97035&start=45#p429896
    QPKG (Qnap Package) Available for ALL models x86, x86\_64, Arm (all
    including new models)
+
+RockStor
+~~~~~~~~
+
+-  Docker Container: http://rockstor.com/docs/docker-based-rock-ons/syncthing.html and registry entry: https://github.com/rockstor/rockon-registry/blob/master/syncthing.json
+
+ASUSTOR NAS (ADM)
+~~~~~~~~~~~~~~~~~
+
+-  ASUSTOR App Central page: http://www.asustor.com/apps/app_detail?id=552
 
 Windows
 ~~~~~~~
