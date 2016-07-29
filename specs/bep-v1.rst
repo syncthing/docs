@@ -246,14 +246,14 @@ Protocol Buffer Schema
     }
 
     message Device {
-        bytes           id                = 1;
-        string          name              = 2;
-        repeated string addresses         = 3;
-        Compression     compression       = 4;
-        string          cert_name         = 5;
-        int64           max_local_version = 6;
-        bool            introducer        = 7;
-        uint64          index_id          = 8;
+        bytes           id           = 1;
+        string          name         = 2;
+        repeated string addresses    = 3;
+        Compression     compressio   = 4;
+        string          cert_name    = 5;
+        int64           max_sequence = 6;
+        bool            introducer   = 7;
+        uint64          index_id     = 8;
     }
 
     enum Compression {
@@ -320,9 +320,8 @@ device and folder. The following values are valid:
 The **cert name** field indicates the expected certificate name for this
 device. It is commonly blank, indicating to use the implementation default.
 
-The **max local version** field contains the highest local file version
-number of the files in the index. See :ref:`deltaidx` for the usage of this
-field.
+The **max sequence** field contains the highest sequence number of the files
+in the index. See :ref:`deltaidx` for the usage of this field.
 
 The **introducer** field is set for devices that are trusted as cluster
 introducers.
@@ -338,7 +337,7 @@ folder. An Index message represents the full contents of the folder and
 thus supersedes any previous index. An Index Update amends an existing
 index with new information, not affecting any entries not included in
 the message. An Index Update MAY NOT be sent unless preceded by an
-Index, unless a non-zero Max Local Version has been announced for the
+Index, unless a non-zero Max Sequence has been announced for the
 given folder by the peer device.
 
 The Index and Index Update messages are currently identical in format,
@@ -369,7 +368,7 @@ Protocol Buffer Schema
         bool         invalid        = 7;
         bool         no_permissions = 8;
         Vector       version        = 9;
-        int64        local_version  = 10;
+        int64        sequence      = 10;
 
         repeated BlockInfo Blocks = 16;
     }
@@ -453,9 +452,9 @@ Value is a simple incrementing counter, starting at zero. The combination of
 Folder, Name and Version uniquely identifies the contents of a file at a
 given point in time.
 
-The **local version** field is the value of a device local monotonic clock
-at the time of last local database update to a file. The clock ticks on
-every local database update.
+The **sequence** field is the value of a device local monotonic clock at the
+time of last local database update to a file. The clock ticks on every local
+database update, thus forming a sequence number over database updates.
 
 The **blocks** list contains the size and hash for each block in the file.
 Each block represents a 128 KiB slice of the file, except for the last block
@@ -720,41 +719,41 @@ index data.
 For situations with large indexes or frequent reconnects this can be quite
 inefficient. A mechanism can then be used to retain index data between
 connections and only transmit any changes since that data on connection
-start. This is called "delta indexes". To enable this mechanism the **local
-version** and **index ID** fields are used.
+start. This is called "delta indexes". To enable this mechanism the
+**sequence** and **index ID** fields are used.
 
-Local Version:
-    Each index item (i.e., file, directory or symlink) has a local version
+Sequence:
+    Each index item (i.e., file, directory or symlink) has a sequence number
     field. It contains the value of a counter at the time the index item was
     updated. The counter increments by one for each change. That is, as files
-    are scanned and added to the index they get assigned local version numbers
-    1, 2, 3 and so on. The next file to be changed or detected gets local
-    version number 4, and future updates continue in the same fashion.
+    are scanned and added to the index they get assigned sequence numbers
+    1, 2, 3 and so on. The next file to be changed or detected gets sequence
+    number 4, and future updates continue in the same fashion.
 
 Index ID:
     Each folder has an Index ID. This is a 64 bit random identifier set at
     index creation time.
 
-Given the above, we know that the tuple {index ID, maximum local version}
+Given the above, we know that the tuple {index ID, maximum sequence number}
 uniquely identifies a point in time of a given index. Any further changes
-will increase the local version of some item, and thus the maximum local
-version for the index itself. Should the index be reset or removed (i.e.,
-the local version number reset to zero), a new index ID must be generated.
+will increase the sequence number of some item, and thus the maximum
+sequence number for the index itself. Should the index be reset or removed
+(i.e., the sequence number reset to zero), a new index ID must be generated.
 
-By letting a device know the {index ID, maximum local version} we have for
+By letting a device know the {index ID, maximum sequence number} we have for
 their index data, that device can arrange to only transmit ``Index Update``
-messages for items with a higher local version number. This is the delta
-index mechanism.
+messages for items with a higher sequence number. This is the delta index
+mechanism.
 
-The index ID and maximum local version known for each device is transmitted
-in the ``Cluster Config`` message at connection start.
+The index ID and maximum sequence number known for each device is
+transmitted in the ``Cluster Config`` message at connection start.
 
 For this mechanism to be reliable it is essential that outgoing index
-information is ordered by increasing local version number. Devices
-announcing a non-zero index ID in the ``Cluster Config`` message MUST send
-all index data ordered by increasing local version number. Devices not
-intending to participate in delta index exchange MUST send a zero index ID
-or, equivalently, not send the ``index_id`` attribute at all.
+information is ordered by increasing sequence number. Devices announcing a
+non-zero index ID in the ``Cluster Config`` message MUST send all index data
+ordered by increasing sequence number. Devices not intending to participate
+in delta index exchange MUST send a zero index ID or, equivalently, not send
+the ``index_id`` attribute at all.
 
 Message Limits
 --------------

@@ -12,7 +12,7 @@ availability. Takes ``folder`` and ``file`` parameters.
       ],
       "global": {
         "flags": "0644",
-        "localVersion": 3,
+        "sequence": 3,
         "modified": "2015-04-20T22:20:45+09:00",
         "name": "util.go",
         "numBlocks": 1,
@@ -23,7 +23,7 @@ availability. Takes ``folder`` and ``file`` parameters.
       },
       "local": {
         "flags": "0644",
-        "localVersion": 4,
+        "sequence": 4,
         "modified": "2015-04-20T22:20:45+09:00",
         "name": "util.go",
         "numBlocks": 1,

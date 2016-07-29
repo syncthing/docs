@@ -30,7 +30,7 @@ available items.
       "progress": [
         {
           "flags": "0755",
-          "localVersion": 6,
+          "sequence": 6,
           "modified": "2015-04-20T23:06:12+09:00",
           "name": "ls",
           "size": 34640,
