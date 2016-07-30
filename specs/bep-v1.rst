@@ -249,7 +249,7 @@ Protocol Buffer Schema
         bytes           id           = 1;
         string          name         = 2;
         repeated string addresses    = 3;
-        Compression     compressio   = 4;
+        Compression     compression  = 4;
         string          cert_name    = 5;
         int64           max_sequence = 6;
         bool            introducer   = 7;
