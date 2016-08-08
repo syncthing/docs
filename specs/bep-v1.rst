@@ -363,7 +363,8 @@ Protocol Buffer Schema
         FileInfoType type           = 2;
         int64        size           = 3;
         uint32       permissions    = 4;
-        int64        modified       = 5;
+        int64        modified_s     = 5;
+        int32        modified_ns    = 11;
         bool         deleted        = 6;
         bool         invalid        = 7;
         bool         no_permissions = 8;
@@ -427,8 +428,9 @@ The **permissions** field holds the common Unix permission bits. An
 implementation MAY ignore or interpret these as is suitable on the host
 operating system.
 
-The **modified** time is expressed as the number of seconds since the Unix
-Epoch (1970-01-01 00:00:00 UTC).
+The **modified_s** time is expressed as the number of seconds since the Unix
+Epoch (1970-01-01 00:00:00 UTC). The **modified_ns** field holds the
+nanosecond part of the modification time.
 
 The **deleted** field is set when the file has been deleted. The block list
 SHALL be of length zero and the modification time indicates the time of
