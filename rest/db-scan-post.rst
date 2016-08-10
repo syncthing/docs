@@ -13,6 +13,10 @@ Requesting scan of a path that no longer exists, but previously did, is
 valid and will result in Syncthing noticing the deletion of the path in
 question.
 
+This request blocks until the requested scan is done. This can potentially
+take a long time if a scan or sync is currently in progress for the requested
+folder.
+
 Returns status 200 and no content upon success, or status 500 and a
 plain text error if an error occurred during scanning.
 
