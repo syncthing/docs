@@ -68,7 +68,7 @@ The following is *not* synchronized;
 -  Extended Attributes, Resource Forks (not preserved)
 -  Windows, POSIX or NFS ACLs (not preserved)
 -  Devices, FIFOs, and Other Specials (ignored)
--  Sparse file sparseness (will become unsparse)
+-  Sparse file sparseness (will always become sparse, when supported by the OS & filesystem)
 
 Is synchronization fast?
 ~~~~~~~~~~~~~~~~~~~~~~~~
