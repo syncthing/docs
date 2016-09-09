@@ -23,7 +23,7 @@ may be unstable and unsuitable for general consumption.
 Prerequisites
 -------------
 
--  Go **1.5** or higher. We recommend the latest version.
+-  Go **1.5** or higher (1.7 or higher on Windows). We recommend the latest version.
 -  Git
 
 If you're not already a Go developer, the easiest way to get going
@@ -74,7 +74,7 @@ Building (Windows)
 -  Install the prerequisites.
 -  Open a ``cmd`` Window::
 
-    # This should output "go version go1.5" or higher.
+    # This should output "go version go1.7" or higher.
     > go version
 
     # Go is particular about file locations; use this path unless you know very
