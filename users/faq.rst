@@ -189,7 +189,7 @@ causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 How do I rename/move a synced folder?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-SYncthing doesn't have a direct way to do this, as it's potentially dangerous
+Syncthing doesn't have a direct way to do this, as it's potentially dangerous
 to do so if your not careful (it may cause you to lose all your files).  The 
 correct way to rename or move a synced folder on the local system is to remove
 the folder in the Syncthing UI, then re-add it using the new path.  If you
