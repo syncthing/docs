@@ -186,6 +186,23 @@ from the user point of view. Moreover, if there's something that automatically
 causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 -...-sync-conflict`` files.
 
+How do I rename/move a synced folder?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syncthing doesn't have a direct way to do this, as it's potentially dangerous
+to do so if your not careful (it may cause you to lose all your files).  The 
+correct way to rename or move a synced folder on the local system is to remove
+the folder in the Syncthing UI, then re-add it using the new path.  If you
+aren't configured as a folder master and at least one of the devices you have
+shared the folder to is running, this is extremely easy, as you will get a
+notification about that device trying to share a folder within a couple of
+minutes of removing it on the local system.  If you want to avoid having to
+resync the folder, you can move the old sync folder to the new location
+before re-adding it in Syncthing's UI.  Be aware that this may overwrite any
+changes that happened on any other devices while the folder wasn't being
+synced on the local device though, so make sure you can afford to potentially
+lose any changes which have been made.
+
 How to configure multiple users on a single machine?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
