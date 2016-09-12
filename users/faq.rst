@@ -189,19 +189,22 @@ causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 How do I rename/move a synced folder?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Syncthing doesn't have a direct way to do this, as it's potentially dangerous
-to do so if your not careful (it may cause you to lose all your files).  The 
-correct way to rename or move a synced folder on the local system is to remove
-the folder in the Syncthing UI, then re-add it using the new path.  If you
-aren't configured as a folder master and at least one of the devices you have
-shared the folder to is running, this is extremely easy, as you will get a
-notification about that device trying to share a folder within a couple of
-minutes of removing it on the local system.  If you want to avoid having to
-resync the folder, you can move the old sync folder to the new location
-before re-adding it in Syncthing's UI.  Be aware that this may overwrite any
-changes that happened on any other devices while the folder wasn't being
-synced on the local device though, so make sure you can afford to potentially
-lose any changes which have been made.
+Syncthing doesn't have a direct way to do this, as it's potentially
+dangerous to do so if you're not careful - it may result in data loss if
+something goes wrong during the move and is synchronized to your other
+devices.
+
+The easy way to rename or move a synced folder on the local system is to
+remove the folder in the Syncthing UI, move it on disk, then re-add it using
+the new path.
+
+It's best to do this when the folder is already in sync between your
+devices, as it is otherwise unpredictable which changes will "win" after the
+move. Changes made on other devices may be overwritten, or changed made
+locally may be overwritten by those on other devices.
+
+An alternative way is to shut down Syncthing, move the folder on disk, edit
+the path directly in the configuration file and then start Syncthing again.
 
 How to configure multiple users on a single machine?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
