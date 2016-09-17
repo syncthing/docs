@@ -3,9 +3,6 @@
 File Versioning
 ===============
 
-.. todo::
-    External versioning needs example for Windows.
-
 Description
 -----------
 
