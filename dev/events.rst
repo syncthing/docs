@@ -49,7 +49,7 @@ id
     A monotonically increasing integer. The first event generated has id ``1``,
     the next has id ``2`` etc.
 globalID
-    Also a monotonically increasing integer. And might not be the same as id but will always be either equal or greater.
+    Also a monotonically increasing integer. And might not be the same as id but will always be either equal or greater in value.
 time
     The time the event was generated.
 type
