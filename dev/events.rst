@@ -33,6 +33,7 @@ Each event is represented by an object similar to the following::
 
     {
         "id": 2,
+        "globalID": 3,
         "type": "DeviceConnected",
         "time": "2014-07-13T21:04:33.687836696+02:00",
         "data": {
@@ -41,7 +42,7 @@ Each event is represented by an object similar to the following::
         }
     }
 
-The top level keys ``id``, ``time``, ``type`` and ``data`` are always present,
+The top level keys ``id``, ``globalID``, ``time``, ``type`` and ``data`` are always present,
 though ``data`` may be ``null``.
 
 id
