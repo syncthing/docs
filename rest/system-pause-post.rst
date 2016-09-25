@@ -1,5 +1,5 @@
 POST /rest/system/pause
-======================
+=======================
 
 Pause the given device.
 

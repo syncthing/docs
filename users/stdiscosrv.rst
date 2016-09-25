@@ -1,5 +1,5 @@
 Syncthing Discovery Server
-=========================
+==========================
 
 Synopsis
 --------
