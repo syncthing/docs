@@ -63,6 +63,8 @@ that will be kept for each.
 30 Days
     For the first 30 days, the most recent version is kept every day.
 Until Maximum Age
+    Until maximum age, the most recent version is kept every week.
+Maximum Age
     The maximum time to keep a version in days. For example, to keep replaced or
     deleted files in the ".stversions" folder for an entire year, use 365. If
     only or 10 days, use 10. **Note: Set to 0 to keep versions forever.**
