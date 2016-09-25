@@ -1,5 +1,5 @@
 POST /rest/system/resume
-======================
+========================
 
 Resume the given device.
 

@@ -48,7 +48,7 @@ necessary to interpret it.
 Repeat the process twice and keep both files.
 
 Capture a heap profile
----------------------
+----------------------
 
 To get a heap profile you need to visit a URL ending in
 ``/rest/debug/heapprof``. The procedure is otherwise identical to the process

@@ -68,7 +68,7 @@ The following is *not* synchronized;
 -  Extended Attributes, Resource Forks (not preserved)
 -  Windows, POSIX or NFS ACLs (not preserved)
 -  Devices, FIFOs, and Other Specials (ignored)
--  Sparse file sparseness (will become unsparse)
+-  Sparse file sparseness (will become sparse, when supported by the OS & filesystem)
 
 Is synchronization fast?
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -186,6 +186,26 @@ from the user point of view. Moreover, if there's something that automatically
 causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 -...-sync-conflict`` files.
 
+How do I rename/move a synced folder?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syncthing doesn't have a direct way to do this, as it's potentially
+dangerous to do so if you're not careful - it may result in data loss if
+something goes wrong during the move and is synchronized to your other
+devices.
+
+The easy way to rename or move a synced folder on the local system is to
+remove the folder in the Syncthing UI, move it on disk, then re-add it using
+the new path.
+
+It's best to do this when the folder is already in sync between your
+devices, as it is otherwise unpredictable which changes will "win" after the
+move. Changes made on other devices may be overwritten, or changed made
+locally may be overwritten by those on other devices.
+
+An alternative way is to shut down Syncthing, move the folder on disk, edit
+the path directly in the configuration file and then start Syncthing again.
+
 How to configure multiple users on a single machine?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -272,6 +292,28 @@ example,
 
 will log you into othercomputer.example.com, and present the *remote*
 Syncthing GUI on http://localhost:9090 on your *local* computer.
+
+Why do I get "Host check error" in the GUI/API?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syncthing since version 0.14.6 does an extra security check when the GUI/API
+is bound to localhost - namely that the browser is talking to localhost.
+This protects against most forms of `DNS rebinding attack
+<https://en.wikipedia.org/wiki/DNS_rebinding>`__ against the GUI.
+
+To pass this test, ensure that you are accessing the GUI using an URL that
+begins with `http://localhost`, `http://127.0.0.1` or `http://[::1]`. HTTPS
+is fine too, of course.
+
+If you are using a proxy in front of Syncthing you may need to disable this
+check, after ensuring that the proxy provides sufficient authentication to
+protect against unauthorized access. Either:
+
+- Make sure the proxy sets a `Host` header containing `localhost`, or
+- Set `insecureSkipHostcheck` in the advanced settings, or
+- Bind the GUI/API to a non-localhost listen port.
+
+In all cases, username/password authentication and HTTPS should be used.
 
 Why do I see Syncthing twice in task manager?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

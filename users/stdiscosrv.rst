@@ -1,5 +1,5 @@
-Synthing Discovery Server
-=========================
+Syncthing Discovery Server
+==========================
 
 Synopsis
 --------
@@ -89,7 +89,7 @@ haven't yet, head over to :ref:`getting-started` first.
 Installing
 ~~~~~~~~~~
 
-Go to `releases <https://github.com/syncthing/stdiscosrv/releases>`__ and
+Go to `releases <https://build.syncthing.net/job/stdiscosrv>`__ and
 download the file appropriate for your operating system. Unpacking it will
 yield a binary called ``stdiscosrv`` (or ``stdiscosrv.exe`` on Windows). Start
 this in whatever way you are most comfortable with; double clicking should
