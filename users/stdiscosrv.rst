@@ -1,4 +1,4 @@
-Synthing Discovery Server
+Syncthing Discovery Server
 =========================
 
 Synopsis
