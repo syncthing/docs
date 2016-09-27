@@ -46,3 +46,4 @@ Events include things like 'StateChanged', 'DeviceDiscovered',
       "to": "syncing"
     }
   },
+...more events
