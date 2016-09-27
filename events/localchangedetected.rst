@@ -1,0 +1,22 @@
+LocalChangeDetected
+-------------------
+
+Generated upon scan whenever the local disk has discovered an updated file from the
+previous scan.  This does NOT include events that are discovered and copied from
+other nodes, only files that were changed on the local filesystem.
+
+.. code-block:: json
+
+  {
+    "id": 7,
+    "globalID": 59,
+    "time": "2016-09-26T22:07:10.7189141-04:00",
+    "type": "LocalChangeDetected",
+    "data": {
+      "action": "deleted",
+      "folderID": "vwtpy-zxxqt",
+      "label": "TestSync",
+      "path": "C:\\Users\\Nate\\Sync\\dfghdfj\\sdgsdgh.rtf",
+      "type": "file"
+    }
+  }
