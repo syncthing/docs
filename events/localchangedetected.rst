@@ -14,9 +14,9 @@ other nodes, only files that were changed on the local filesystem.
     "type": "LocalChangeDetected",
     "data": {
       "action": "deleted",
-      "folderID": "vwtpy-zxxqt",
+      "folderID": "vitwy-zjxqt",
       "label": "TestSync",
-      "path": "C:\\Users\\Nate\\Sync\\dfghdfj\\sdgsdgh.rtf",
+      "path": "C:\\Users\\Nate\\Sync\\testfolder\\test file.rtf",
       "type": "file"
     }
   }
