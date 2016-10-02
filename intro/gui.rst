@@ -31,7 +31,7 @@ Up to Date
 Syncing
 	when this device is downloading changes from the network.
 
-Among the folder details, you can see the current "Global State" and "Local State" summaries, as well as the amount of "Out of Sync" data if the the folder state is not up to date.
+Among the folder details, you can see the current "Global State" and "Local State" summaries, as well as the amount of "Out of Sync" data if the folder state is not up to date.
 
 Global State
 	indicates how much data the fully up to date folder contains - this is basically the sum of the newest versions of all files from all connected devices. This is the size of the folder on your computer when it is fully in sync with the cluster.
