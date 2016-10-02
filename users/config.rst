@@ -45,7 +45,7 @@ directory the following files are located:
 Config File Format
 ------------------
 
-The following shows the default configuration file:
+The following shows an example of the default configuration file (IDs will differ):
 
 .. code-block:: xml
 
@@ -165,7 +165,7 @@ type
 
     readonly
         The folder is in "master" mode -- it will not be modified by
-        syncthing on this device.
+        Syncthing on this device.
 
 rescanIntervalS
     The rescan interval, in seconds. Can be set to zero to disable when external
@@ -297,7 +297,7 @@ introducer
 
 In addition, one or more ``address`` child elements must be present. Each
 contains an address or host name to use when attempting to connect to this device and will
-be tried in order. Entries other than ``dynamic`` must be prefixed with ``tcp://`` (dual-stack), ``tcp4://`` (IPv4 only) or ``tcp6://` (IPv6 only). Note that IP addresses need not use tcp4/tcp6; these are optional. Accepted formats are:
+be tried in order. Entries other than ``dynamic`` must be prefixed with ``tcp://`` (dual-stack), ``tcp4://`` (IPv4 only) or ``tcp6://`` (IPv6 only). Note that IP addresses need not use tcp4/tcp6; these are optional. Accepted formats are:
 
 IPv4 address (``tcp://192.0.2.42``)
     The default port (22000) is used.
@@ -480,7 +480,7 @@ startBrowser
     Whether to attempt to start a browser to show the GUI when Syncthing starts.
 
 natEnabled
-    Whether to attempt to perform an UPnP and NAT-PMP port mapping for
+    Whether to attempt to perform a UPnP and NAT-PMP port mapping for
     incoming sync connections.
 
 natLeaseMinutes
@@ -625,4 +625,3 @@ If you'd like to sync your home folder in non-master mode, you may add the
 folder that stores the configuration files to the :ref:`ignore list <ignoring-files>`.
 If you'd also like to backup your configuration files, add another folder in
 master mode for just the configuration folder.
-
