@@ -60,7 +60,7 @@ The following may be synchronized or not, depending:
    requires administrator privileges. Links are synced as is and are not
    followed.)
 
-The following is *not* synchronized;
+The following are *not* synchronized;
 
 -  File or Directory Owners and Groups (not preserved)
 -  Directory Modification Times (not preserved)
