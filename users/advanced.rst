@@ -15,6 +15,10 @@ actively dangerous when used improperly.
    Use care when changing advanced configuration settings and make sure that
    you understand the resulting effects and consequences.
 
+The advanced settings dialog is accessed from the main menu:
+
+.. image:: advanced-settings.png
+
 Per Folder Settings
 -------------------
 
