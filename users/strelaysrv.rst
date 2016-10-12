@@ -135,6 +135,23 @@ firewall.
 Another option is `described here <https://wiki.apache.org/httpd/NonRootPortBinding>`__,
 although your milage may vary.
 
+Firewall Considerations
+-----------------------
+
+The relay server listens on two ports by default.  One for data connections and the other
+for providing public statistics at https://relays.syncthing.net.  The firewall, such as
+``iptables``, must permit incoming TCP connetions to the following ports:
+
+* Data port:  ``22067/tcp`` overriden with ``-listen`` and advertised with ``-ext-address``
+* Status port: ``22070/tcp`` overriden with ``-status-srv`` 
+
+Runtime ``iptables`` rules to allow access to the default ports::
+
+    iptables -I INPUT -p tcp --dport 22067 -j ACCEPT
+    iptables -I INPUT -p tcp --dport 22070 -j ACCEPT
+    
+Please consult Linux distribution documentation to persist firewall rules.
+
 See Also
 --------
 
