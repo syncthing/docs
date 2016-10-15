@@ -4,9 +4,13 @@ GET /rest/events/disk
 Returns local disk events only that have occured.  These are events that occur
 when the scanner detects local file system change.
 
+Optional GET parameters:
+ - since (events starting after the given ID)
+ - limit (return last x number of events)
+
 .. code-block:: bash
 
-    $ curl -s http://localhost:8384/rest/events/disk | json
+    $ curl -s http://localhost:8384/rest/events/disk?limit=4 | json
    {
     "id": 4,
     "globalID": 45,
