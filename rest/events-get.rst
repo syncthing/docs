@@ -5,9 +5,13 @@ Returns general events that have occured since startup of the client.
 Events include things like 'StateChanged', 'DeviceDiscovered',
 'LocalIndexUpdated', 'Ping', etc...
 
+Optional GET parameters:
+ - since (events starting after the given ID)
+ - limit (return last x number of events)
+
 .. code-block:: bash
 
-    $ curl -s http://localhost:8384/rest/events | json
+    $ curl -s http://localhost:8384/rest/events?since=8 | json
   {
     "id": 9,
     "globalID": 9,
