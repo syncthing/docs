@@ -293,6 +293,26 @@ example,
 will log you into othercomputer.example.com, and present the *remote*
 Syncthing GUI on http://localhost:9090 on your *local* computer.
 
+If you only want to access the remote gui and don't want the terminal
+session, use this example,
+
+.. code-block:: bash
+
+    $ ssh -N -L 9090:127.0.0.1:8384 user@othercomputer.example.com
+
+If only your remote computer is Unixy, you can still access it with ssh 
+from Windows.
+
+Under Windows 10 (64 bit) you can use the same ssh command if you install
+the Windows Subsystem for Linux.
+https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide
+
+Another Windows way to run ssh is to install gow. 
+(Gnu On Windows) https://github.com/bmatzelle/gow
+
+The easiest way to install gow is with chocolatey.
+https://chocolatey.org/
+
 Why do I get "Host check error" in the GUI/API?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
