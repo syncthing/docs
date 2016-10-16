@@ -300,7 +300,7 @@ session, use this example,
 
     $ ssh -N -L 9090:127.0.0.1:8384 user@othercomputer.example.com
 
-If only your remote computer is Unixy, you can still access it with ssh 
+If only your remote computer is Unixy,  you can still access it with ssh 
 from Windows.
 
 Under Windows 10 (64 bit) you can use the same ssh command if you install
