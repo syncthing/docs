@@ -171,9 +171,9 @@ What if there is a conflict?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Syncthing does recognize conflicts. When a file has been modified on two devices
-simultaneously, one of the files will be renamed to ``<filename>.sync-
-conflict-<date>-<time>.<ext>``. The device which has the larger value of the
-first 63 bits for his device ID will have his file marked as the conflicting
+simultaneously, one of the files will be renamed to
+``<filename>.sync-conflict-<date>-<time>.<ext>``. The device which has the larger
+value of the first 63 bits for his device ID will have his file marked as the conflicting
 file. Note that we only create ``sync-conflict`` files when the actual content
 differs.
 
