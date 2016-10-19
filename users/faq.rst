@@ -324,7 +324,7 @@ than the default.
 If you want a custom theme or a completly different GUI, you can add your
 own.
 By default, Syncthing will look for a directory ``gui`` inside the Syncthing
-home folder. To change the directory to look for themes, you neeed to set the
+home folder. To change the directory to look for themes, you need to set the
 STGUIASSETS environment variable. To get the concrete directory, run
 syncthing with the ``-paths`` parameter. It will print all the relevent paths,
 including the "GUI override directory".
