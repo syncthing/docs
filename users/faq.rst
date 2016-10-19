@@ -315,6 +315,29 @@ protect against unauthorized access. Either:
 
 In all cases, username/password authentication and HTTPS should be used.
 
+I don't like the GUI / Theme. Can it be changed?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can change the theme in the settings. Syncthing ships with a default and
+a dark theme. As of 0.14.10, there is also a black theme, which is the old
+dark theme with black background.
+
+If you want a custom theme or a completly different GUI, you can add your
+own.
+By default, Syncthing will look for a directory ``gui`` inside the Syncthing
+home folder. To change the directory to look for themes, you neeed to set the
+STGUIASSETS environment variable. To get the concrete diroctory, run
+syncthing with the ``-paths`` paremeter. It will print all the relevent paths,
+including the "GUI override directory".
+
+To add e.g. a red theme, you can just create the directory
+``red/assets/css/`` and the file ``theme.css`` inside the new css folder to override the
+default CSS styles.
+
+To create a whole new GUI, you should checkout the files at
+https://github.com/syncthing/syncthing/tree/master/gui/default
+to get an idead how to do that.
+
 Why do I see Syncthing twice in task manager?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
