@@ -326,7 +326,7 @@ own.
 By default, Syncthing will look for a directory ``gui`` inside the Syncthing
 home folder. To change the directory to look for themes, you neeed to set the
 STGUIASSETS environment variable. To get the concrete directory, run
-syncthing with the ``-paths`` paremeter. It will print all the relevent paths,
+syncthing with the ``-paths`` parameter. It will print all the relevent paths,
 including the "GUI override directory".
 
 To add e.g. a red theme, you can create the file ``red/assets/css/theme.css``
