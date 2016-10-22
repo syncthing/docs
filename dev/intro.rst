@@ -45,9 +45,6 @@ directories. There is some Go code at the top level, but it's basically scripts
 for the build system. The actual code lives in the ``cmd/syncthing`` and
 ``lib`` directories. The web GUI lives in ``gui``. The rest is as follows.
 
-Godeps/
-   Locally vendored copies of external dependencies.
-
 assets/
    Various graphical assets -- the logo.
 
@@ -164,6 +161,9 @@ script/
 
 test/
    The integration test suite.
+
+vendor/
+   Locally vendored copies of external dependencies.
 
 
 Why are you being so hard on my pull request?
