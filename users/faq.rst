@@ -316,7 +316,7 @@ https://chocolatey.org/
 Why do I get "Host check error" in the GUI/API?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Syncthing since version 0.14.6 does an extra security check when the GUI/API
+Since version 0.14.6 Syncthing does an extra security check when the GUI/API
 is bound to localhost - namely that the browser is talking to localhost.
 This protects against most forms of `DNS rebinding attack
 <https://en.wikipedia.org/wiki/DNS_rebinding>`__ against the GUI.
@@ -334,6 +334,11 @@ protect against unauthorized access. Either:
 - Bind the GUI/API to a non-localhost listen port.
 
 In all cases, username/password authentication and HTTPS should be used.
+
+My Syncthing database is corrupt
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is almost always a result of bad RAM, storage device or other hardware. When the index database is found to be corrupt Syncthing cannot operate and will note this in the logs and exit. To overcome this delete the `database folder <https://docs.syncthing.net/users/config.html#description>`__ inside Syncthing's home directory and re-start Syncthing. It will then need to perform a full re-hashing of all shared folders. You should check your system in case the underlying cause is indeed faulty hardware which may put the system at risk of further data loss.
 
 I don't like the GUI / Theme. Can it be changed?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
