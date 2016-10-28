@@ -131,7 +131,7 @@ clicking "Edit" and entering a new value for "Rescan Interval".
 --------------
 
 Good luck and have fun! There is more `documentation
-<http://docs.syncthing.net/>`__ and if you run into trouble feel free to post
+<https://docs.syncthing.net/>`__ and if you run into trouble feel free to post
 a question in the `support forum <https://forum.syncthing.net/c/support>`__.
 If you have problems getting devices to connect, first take a look at
 :ref:`firewall-setup`, then look at any error messages in the GUI or on the

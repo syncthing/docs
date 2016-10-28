@@ -1,7 +1,7 @@
 Syncthing Docs
 ==============
 
-This repo is the source behind http://docs.syncthing.net/.
+This repo is the source behind https://docs.syncthing.net/.
 
 Editing
 -------

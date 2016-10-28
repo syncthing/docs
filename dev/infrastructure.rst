@@ -15,7 +15,7 @@ Main & Documentation Websites
 Static HTML, served by Nginx.
 
 - `syncthing.net <https://syncthing.net/>`__ (SmartOS container, 1024 MB)
-- `docs.syncthing.net <http://docs.syncthing.net/>`__ (Sphinx for site generation)
+- `docs.syncthing.net <https://docs.syncthing.net/>`__ (Sphinx for site generation)
 
 Forum Website
 -------------

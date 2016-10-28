@@ -117,7 +117,7 @@ In Short
 Parties doing surveillance on your network (whether that be corporate IT, the
 NSA or someone else) will be able to see that you use Syncthing, and your device
 IDs `are OK to share anyway
-<http://docs.syncthing.net/users/faq.html#should-i-keep-my-device-ids-secret>`__,
+<https://docs.syncthing.net/users/faq.html#should-i-keep-my-device-ids-secret>`__,
 but the actual transmitted data is protected as well as we can. Knowing your
 device ID can expose your IP address, using global discovery.
 
