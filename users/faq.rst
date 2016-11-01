@@ -171,11 +171,15 @@ What if there is a conflict?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Syncthing does recognize conflicts. When a file has been modified on two devices
-simultaneously, one of the files will be renamed to
-``<filename>.sync-conflict-<date>-<time>.<ext>``. The device which has the larger
-value of the first 63 bits for his device ID will have his file marked as the conflicting
-file. Note that we only create ``sync-conflict`` files when the actual content
-differs.
+simultaneously and the content actually differs, one of the files will be
+renamed to ``<filename>.sync-conflict-<date>-<time>.<ext>``. The file with the
+older modification time will be marked as the conflicting file and thus be
+renamed. If the modification times are equal, the file originating from the
+device which has the larger value of the first 63 bits for his device ID will be
+marked as the conflicting file.
+If the conflict is between a modification and a deletion of the file, the
+modified file always wins and is resurrected without renaming on the
+device where it was deleted.
 
 Beware that the ``<filename>.sync-conflict-<date>-<time>.<ext>`` files are
 treated as normal files after they are created, so they are propagated between
