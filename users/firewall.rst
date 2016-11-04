@@ -36,6 +36,20 @@ incoming and outgoing traffic:
    the *Sync Protocol Listen Address* setting.)
 -  Port **21027/UDP** (for discovery broadcasts on IPv4 and multicasts on IPv6)
 
+Uncomplicated Firewall (ufw)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+If you're using ``ufw`` on Linux and have installed the `Syncthing package
+<https://apt.syncthing.net/>`__, you can allow the necessary ports by running::
+
+    sudo ufw allow syncthing
+
+You can then verify that the ports mentioned above are allowed::
+
+    sudo ufw status verbose
+
+In case you installed Syncthing manually you can follow the `instructions to manually add the syncthing preset
+<https://github.com/syncthing/syncthing/tree/master/etc/firewall-ufw>`__ to ufw.
+
 Remote Web GUI
 --------------
 
