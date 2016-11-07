@@ -246,14 +246,15 @@ Protocol Buffer Schema
     }
 
     message Device {
-        bytes           id           = 1;
-        string          name         = 2;
-        repeated string addresses    = 3;
-        Compression     compression  = 4;
-        string          cert_name    = 5;
-        int64           max_sequence = 6;
-        bool            introducer   = 7;
-        uint64          index_id     = 8;
+        bytes           id                         = 1;
+        string          name                       = 2;
+        repeated string addresses                  = 3;
+        Compression     compression                = 4;
+        string          cert_name                  = 5;
+        int64           max_sequence               = 6;
+        bool            introducer                 = 7;
+        uint64          index_id                   = 8;
+        bool            skip_introduction_removals = 9;
     }
 
     enum Compression {
@@ -328,6 +329,10 @@ introducers.
 
 The **index id** field contains the unique identifier for the current set of
 index data. See :ref:`deltaidx` for the usage of this field.
+
+The **skip introduction removals** field signifies if the remote device has
+opted to ignore introduction removals for the given device. This setting is
+copied across as we are being introduced to a new device.
 
 Index and Index Update
 ^^^^^^^^^^^^^^^^^^^^^^
