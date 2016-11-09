@@ -45,3 +45,14 @@ prevent the fallback behavior. For example::
   ...
   [monitor] 11:33:13 INFO: Proxy settings detected
   [monitor] 11:33:13 INFO: Proxy fallback disabled
+
+Caveats
+-------
+
+Note that one needs to unset any existing ``http_proxy`` /
+``https_proxy`` variables when using ``all_proxy`` as the SOCKS proxy
+is used first, then syncthing will try to access peers through the
+specified HTTP proxy. This will fail in most cases, as the specified
+proxy is often an internal name and unknown to the other side of your
+proxy or it will not accept connections from the other side of your
+firewall.
