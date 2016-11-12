@@ -101,7 +101,8 @@ Returns the current configuration.
             "releasesURL": "https://upgrades.syncthing.net/meta.json",
             "alwaysLocalNets": [],
             "overwriteRemoteDeviceNamesOnConnect": false,
-            "tempIndexMinBlocks": 10
+            "tempIndexMinBlocks": 10,
+            "fsync": false
           },
           "ignoredDevices": []
         }

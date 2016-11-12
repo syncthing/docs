@@ -107,6 +107,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
+            <fsync>false</fsync>
         </options>
     </configuration>
 
@@ -422,6 +423,7 @@ Options Element
         <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
         <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
+        <fsync>false</fsync>
     </options>
 
 The ``options`` element contains all other global configuration options.
@@ -567,6 +569,13 @@ overwriteRemoteDeviceNamesOnConnect
 tempIndexMinBlocks
     When exchanging index information for incomplete transfers, only take
     into account files that have at least this many blocks.
+
+fsync
+    Transfer updated (from other devices) files to permanent storage before
+    committing the changes to the internal database.
+    When the system crashes after the internal database but before changed
+    files got written to disk, Syncthing will distribute old or broken versions
+    of these files on the next start.
 
 Listen Addresses
 ^^^^^^^^^^^^^^^^
