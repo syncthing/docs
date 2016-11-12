@@ -362,17 +362,16 @@ theme
 The following child elements may be present:
 
 address
-    Set the listen addresses. One or more address elements must be present. Entries must have the protocol prefix ``tcp://``.
-    Allowed address formats are:
+    Set the listen address. One address element must be present. Allowed address formats are:
 
-    IPv4 address and port (``tcp://127.0.0.1:8384``)
+    IPv4 address and port (``127.0.0.1:8384``)
         The address and port is used as given.
 
-    IPv6 address and port (``tcp://[::1]:8384``)
+    IPv6 address and port (``[::1]:8384``)
         The address and port is used as given. The address must be enclosed in
         square brackets.
 
-    Wildcard and port (``tcp://0.0.0.0:12345``, ``tcp://[::]:12345``, ``tcp://:12345``)
+    Wildcard and port (``0.0.0.0:12345``, ``[::]:12345``, ``:12345``)
         These are equivalent and will result in Syncthing listening on all
         interfaces via both IPv4 and IPv6.
 
