@@ -65,6 +65,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <maxConflicts>-1</maxConflicts>
             <disableSparseFiles>false</disableSparseFiles>
             <disableTempIndexes>false</disableTempIndexes>
+            <fsync>false</fsync>
         </folder>
         <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false">
             <address>dynamic</address>
@@ -107,7 +108,6 @@ The following shows an example of the default configuration file (IDs will diffe
             <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
-            <fsync>false</fsync>
         </options>
     </configuration>
 
@@ -140,6 +140,7 @@ Folder Element
         <maxConflicts>-1</maxConflicts>
         <disableSparseFiles>false</disableSparseFiles>
         <disableTempIndexes>false</disableTempIndexes>
+        <fsync>false</fsync>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -249,6 +250,13 @@ disableTempIndexes
     By default, devices exchange information about blocks available in
     transfers that are still in progress. When set to true, such information
     is not exchanged for this folder.
+
+    fsync
+        Transfer updated (from other devices) files to permanent storage before
+        committing the changes to the internal database.
+        When the system crashes after the internal database but before changed
+        files got written to disk, Syncthing will distribute old or broken versions
+        of these files on the next start.
 
 
 Device Element
@@ -423,7 +431,6 @@ Options Element
         <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
         <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
-        <fsync>false</fsync>
     </options>
 
 The ``options`` element contains all other global configuration options.
@@ -569,13 +576,6 @@ overwriteRemoteDeviceNamesOnConnect
 tempIndexMinBlocks
     When exchanging index information for incomplete transfers, only take
     into account files that have at least this many blocks.
-
-fsync
-    Transfer updated (from other devices) files to permanent storage before
-    committing the changes to the internal database.
-    When the system crashes after the internal database but before changed
-    files got written to disk, Syncthing will distribute old or broken versions
-    of these files on the next start.
 
 Listen Addresses
 ^^^^^^^^^^^^^^^^

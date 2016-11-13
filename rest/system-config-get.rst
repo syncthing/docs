@@ -38,6 +38,7 @@ Returns the current configuration.
               "maxConflicts": 10,
               "disableSparseFiles": false,
               "disableTempIndexes": false,
+              "fsync": false,
               "invalid": ""
             }
           ],
@@ -101,8 +102,7 @@ Returns the current configuration.
             "releasesURL": "https://upgrades.syncthing.net/meta.json",
             "alwaysLocalNets": [],
             "overwriteRemoteDeviceNamesOnConnect": false,
-            "tempIndexMinBlocks": 10,
-            "fsync": false
+            "tempIndexMinBlocks": 10
           },
           "ignoredDevices": []
         }
