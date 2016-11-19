@@ -125,7 +125,7 @@ Folder Element
 .. code-block:: xml
 
     <folder id="zj2AA-q55a7" label="Default Folder (zj2AA-q55a7)" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" ignorePerms="false" autoNormalize="true" ro="false">
-        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
+        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR"></device>
         <minDiskFreePct>1</minDiskFreePct>
         <versioning></versioning>
         <copiers>0</copiers>
@@ -180,12 +180,15 @@ autoNormalize
 The following child elements may exist:
 
 device
-    These must have the ``id`` attribute and nothing else. Mentioned devices
-    are those that will be sharing the folder in question. Each mentioned
-    device must have a separate ``device`` element later in the file. It is
-    customary that the local device ID is included in all repositories.
+    These must have the ``id`` attribute and can have an ``introducedBy`` attribute,
+    identifying the device that introduced us to share this folder with the given device.
+    If the original introducer unshares this folder with this device, our device will follow 
+    and unshare the folder (subject to skipIntroductionRemovals being false on the introducer device).
+    All mentioned devices are those that will be sharing the folder in question. 
+    Each mentioned device must have a separate ``device`` element later in the file.
+    It is customary that the local device ID is included in all repositories.
     Syncthing will currently add this automatically if it is not present in
-    the configuration file.
+    the configuration file. 
 
 minDiskFreePct
     The percentage of space that should be available on the disk this folder
@@ -255,7 +258,7 @@ Device Element
 
 .. code-block:: xml
 
-    <device id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="syno" compression="metadata" introducer="false">
+    <device id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="syno" compression="metadata" introducer="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
         <address>dynamic</address>
     </device>
     <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false">
@@ -294,6 +297,14 @@ compression
 introducer
     Set to true if this device should be trusted as an introducer, i.e. we
     should copy their list of devices per folder when connecting.
+    
+skipIntroductionRemovals
+    Set to true if you wish to follow only introductions and not de-introductions.
+    For example, if this is set, we would not remove a device that we were introduced 
+    to even if the original introducer is no longer listing the remote device as known.
+    
+introducedBy
+    Defines which device has introduced us to this device. Used only for following de-introductions.
 
 In addition, one or more ``address`` child elements must be present. Each
 contains an address or host name to use when attempting to connect to this device and will
