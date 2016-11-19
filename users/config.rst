@@ -183,7 +183,7 @@ device
     These must have the ``id`` attribute and can have an ``introducedBy`` attribute,
     identifying the device that introduced us to share this folder with the given device.
     If the original introducer unshares this folder with this device, our device will follow 
-    (subject to skipIntroductionRemovals being false on the introducer device) and unshare the folder.
+    and unshare the folder (subject to skipIntroductionRemovals being false on the introducer device).
     All mentioned devices are those that will be sharing the folder in question. 
     Each mentioned device must have a separate ``device`` element later in the file.
     It is customary that the local device ID is included in all repositories.
