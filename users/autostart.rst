@@ -4,6 +4,13 @@ Starting Syncthing Automatically
 .. warning::
   This page may be outdated and requires review.
 
+Jump to configuration for your system:
+
+- `Windows <#windows>`__
+- `Mac OS X <#mac-os-x>`__
+- `Linux <#linux>`__
+
+
 Windows
 -------
 
