@@ -180,7 +180,7 @@ autoNormalize
 The following child elements may exist:
 
 device
-    These must have the ``id`` attribute and can have a ``introducedBy`` attribute,
+    These must have the ``id`` attribute and can have an ``introducedBy`` attribute,
     identifying the device that introduced us to share this folder with the given device.
     If the original introducer unshares this folder with this device, our device will follow 
     (subject to skipIntroductionRemovals being false on the introducer device) and unshare the folder.
