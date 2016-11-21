@@ -70,6 +70,38 @@ The following are *not* synchronized;
 -  Devices, FIFOs, and Other Specials (ignored)
 -  Sparse file sparseness (will become sparse, when supported by the OS & filesystem)
 
+How do I sync the ~/Sync/ folder between my devices?
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syncthing will create a folder called ``~/Sync/`` on each device when
+installed.  It will show up in the GUI under "Folders".
+
+If you want this single folder synced between multiple devices, you must
+remove that default folder on all but one device.  On the remaining device,
+copy the generated xxxxx-xxxxx "Folder ID". Then go to the other devices
+(should have no folders) and Add a new folder to each device.  Use the same
+copied "Folder ID" and set the "Folder Path" as ``~/Sync/`` on each.
+
+Example: Given 2 devices: A and B...
+
+#. Ensure both are setup as remote devices. One of them (ie A) needs to share
+   the default ``~/Sync/`` folder with B, but not the reverse.
+
+#. Open the GUI of device B and edit the folder settings.
+
+   -  Then click *Remove* to remove the default folder (does not delete on the
+      file system, only the virtual folder is deleted).
+   -  You should see a prompt saying "A wants to share folder xxxxx-xxxxx.
+      Add new folder?"
+   -  You can click "Add" then add the "Folder Path" as ``~/Sync/``
+   -  If for some reason you don't see the prompt, you can just click
+      "+ Add Folder" and then manually type in the "Folder ID" from device A
+      and then ``~/Sync/`` for the "Folder Path".
+
+#. Click "Save".
+
+Files added to either ``~/Sync/`` folder will be synced between all devices.
+
 Is synchronization fast?
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -304,14 +336,14 @@ session, use this example,
 
     $ ssh -N -L 9090:127.0.0.1:8384 user@othercomputer.example.com
 
-If only your remote computer is Unixy, 
+If only your remote computer is Unixy,
 you can still access it with ssh from Windows.
 
 Under Windows 10 (64 bit) you can use the same ssh command if you install
 the Windows Subsystem for Linux.
 https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide
 
-Another Windows way to run ssh is to install gow. 
+Another Windows way to run ssh is to install gow.
 (Gnu On Windows) https://github.com/bmatzelle/gow
 
 The easiest way to install gow is with chocolatey.
