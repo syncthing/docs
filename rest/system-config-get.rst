@@ -38,6 +38,7 @@ Returns the current configuration.
               "maxConflicts": 10,
               "disableSparseFiles": false,
               "disableTempIndexes": false,
+              "fsync": false,
               "invalid": ""
             }
           ],
