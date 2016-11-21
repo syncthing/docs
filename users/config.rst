@@ -257,9 +257,6 @@ disableTempIndexes
     fsync
         Transfer updated (from other devices) files to permanent storage before
         committing the changes to the internal database.
-        When the system crashes after the internal database but before changed
-        files got written to disk, Syncthing will distribute old or broken versions
-        of these files on the next start.
 
 
 Device Element
