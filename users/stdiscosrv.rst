@@ -105,7 +105,7 @@ Configuring
 
 .. note::
    If you are running an instance of syncthing on the discovery server,
-   you must either add that instance to other nodes using a static
+   you must either add that instance to other devices using a static
    address or bind the discovery server and syncthing instances to
    different IP addresses.
 
