@@ -6,9 +6,9 @@ possible for an attacker to join a cluster uninvited, and it should not be
 possible to extract private information from intercepted traffic. Currently this
 is implemented as follows.
 
-All device to device traffic is protected by TLS. To prevent uninvited nodes
-from joining a cluster, the certificate fingerprint of each node is compared
-to a preset list of acceptable nodes at connection establishment. The
+All device to device traffic is protected by TLS. To prevent uninvited devices
+from joining a cluster, the certificate fingerprint of each device is compared
+to a preset list of acceptable devices at connection establishment. The
 fingerprint is computed as the SHA-256 hash of the certificate and displayed
 in BASE32 encoding to form a reasonably compact and convenient string.
 

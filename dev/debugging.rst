@@ -45,7 +45,7 @@ facilities are something like this:
    discovery system. Debugging here will show which interfaces and
    addresses are selected for broadcasts, etc.
 -  ``discover`` sends and receives local discovery packets. Debugging
-   here will output the parsed packets, nodes that get registered etc.
+   here will output the parsed packets, devices that get registered etc.
 -  ``files`` keeps track of lists of files with metadata and figures out
    which is the newest version of each.
 -  ``net`` shows connection attempts, incoming connections, and the low

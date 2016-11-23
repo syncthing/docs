@@ -154,11 +154,11 @@ Should I keep my device IDs secret?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 No. The IDs are not sensitive. Given a device ID it's possible to find the IP
-address for that node, if global discovery is enabled on it. Knowing the device
-ID doesn't help you actually establish a connection to that node or get a list
+address for that device, if global discovery is enabled on it. Knowing the device
+ID doesn't help you actually establish a connection to that device or get a list
 of files, etc.
 
-For a connection to be established, both nodes need to know about the other's
+For a connection to be established, both devices need to know about the other's
 device ID. It's not possible (in practice) to forge a device ID. (To forge a
 device ID you need to create a TLS certificate with that specific SHA-256 hash.
 If you can do that, you can spoof any TLS certificate. The world is your
@@ -257,8 +257,8 @@ Why is the setup more complicated than BTSync?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Security over convenience. In Syncthing you have to setup both sides to
-connect two nodes. An attacker can't do much with a stolen node ID, because
-you have to add the node on the other side too. You have better control
+connect two devices. An attacker can't do much with a stolen device ID, because
+you have to add the device on the other side too. You have better control
 where your files are transferred.
 
 This is an area that we are working to improve in the long term.

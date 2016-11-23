@@ -13,11 +13,11 @@ Synopsis
 Description
 -----------
 
-If some files should not be synchronized to other nodes, a file called
+If some files should not be synchronized to other devices, a file called
 ``.stignore`` can be created containing file patterns to ignore. The
 ``.stignore`` file must be placed in the root of the repository. The
-``.stignore`` file itself will never be synced to other nodes, although it can
-``#include`` files that *are* synchronized between nodes. All patterns are
+``.stignore`` file itself will never be synced to other devices, although it can
+``#include`` files that *are* synchronized between devices. All patterns are
 relative to the repository root.
 
 .. note::
@@ -141,7 +141,7 @@ Currently the effects on who is in sync with what can be a bit confusing
 when using ignore patterns. This should be cleared up in a future
 version...
 
-Assume two nodes, Alice and Bob, where Alice has 100 files to share, but
+Assume two devices, Alice and Bob, where Alice has 100 files to share, but
 Bob ignores 25 of these. From Alice's point of view Bob will become
 about 75% in sync (the actual number depends on the sizes of the
 individual files) and remain in "Syncing" state even though it is in
