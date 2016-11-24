@@ -155,5 +155,5 @@ If you are building something that will be installed as a package
 well to prevent the built in upgrade system from being activated.
 
 ``go run build.go -version v0.10.26 -no-upgrade tar``
-  Builds a tar.gz distribution of syncthing for the current OS/arch, tagged as
+  Builds a tar.gz distribution of Syncthing for the current OS/arch, tagged as
   ``v0.10.26``, with upgrades disabled.
