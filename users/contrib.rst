@@ -39,6 +39,7 @@ OS X
 
 -  https://github.com/xor-gate/syncthing-macosx
 -  https://github.com/m0ppers/syncthing-bar (OSX 10.10 only)
+-  https://github.com/nhojb/SyncthingBar
 
 Kindle Touch
 ~~~~~~~~~~~~
