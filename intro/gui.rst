@@ -1,6 +1,8 @@
 An intro to the GUI
 ===================
 
+.. image:: gui1.png
+
 Folder View
 -----------
 
@@ -9,12 +11,10 @@ folders. Clicking the folder name makes that section expand to show more
 detailed folder information, and buttons for editing the configuration or
 forcing a rescan.
 
-.. image:: gui1.png
-
 A folder can be in any one of these states:
 
 Unknown
-	while the GUI is loading.
+	while the GUI is loading,
 
 Unshared
 	when you have not shared this folder,
@@ -46,9 +46,9 @@ Device View
 -----------
 
 The right side of the screen shows the overall state of all configured
-devices. The local device (your computer) is always at the top, with remote
+devices. The local device is always at the top, with remote
 devices in alphabetical order below. For each device you see its current state
 and, when expanded, more detailed information. All transfer rates ("Download
-Rate" and "Upload Rate") are from the perspective of your computer, even those
-shown for remote devices. The rates for your local device is the sum of those
+Rate" and "Upload Rate") are from the perspective of the local device, even those
+shown for remote devices. The rates for the local device are the sum of those
 for the remote devices.
