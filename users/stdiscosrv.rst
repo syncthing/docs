@@ -14,7 +14,7 @@ Description
 -----------
 
 Syncthing relies on a discovery server to find peers on the internet. Anyone
-can run a discovery server and point its syncthing installations to it.
+can run a discovery server and point Syncthing installations to it.
 
 Options
 -------
@@ -104,9 +104,9 @@ Configuring
 ~~~~~~~~~~~
 
 .. note::
-   If you are running an instance of syncthing on the discovery server,
+   If you are running an instance of Syncthing on the discovery server,
    you must either add that instance to other devices using a static
-   address or bind the discovery server and syncthing instances to
+   address or bind the discovery server and Syncthing instances to
    different IP addresses.
 
 Certificates
