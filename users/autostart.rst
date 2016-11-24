@@ -198,7 +198,7 @@ On Ubuntu-like systems
 Using Supervisord
 ~~~~~~~~~~~~~~~~~
 
-Add the following to your ``/etc/supervisord.conf`` file::
+Add the following to your supervisor config file::
 
     [program:syncthing]
     command = /path/to/syncthing/binary -no-browser -home="/home/some_user/.config/syncthing"
@@ -206,6 +206,8 @@ Add the following to your ``/etc/supervisord.conf`` file::
     autorestart = True
     user = some_user
     environment = STNORESTART="1", HOME="/home/some_user"
+
+The file is located at ``/etc/supervisor/supervisord.conf`` (Debian/Ubuntu) or ``/etc/supervisord.conf`` .
 
 Using systemd
 ~~~~~~~~~~~~~
