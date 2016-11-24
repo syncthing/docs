@@ -15,10 +15,10 @@ Description
 
 If some files should not be synchronized to other devices, a file called
 ``.stignore`` can be created containing file patterns to ignore. The
-``.stignore`` file must be placed in the root of the repository. The
+``.stignore`` file must be placed in the root of the folder. The
 ``.stignore`` file itself will never be synced to other devices, although it can
 ``#include`` files that *are* synchronized between devices. All patterns are
-relative to the repository root.
+relative to the folder root.
 
 .. note::
 
@@ -56,7 +56,7 @@ The ``.stignore`` file contains a list of file or path patterns. The
    from the named file. It is an error for a file to not exist or be
    included more than once. Note that while this can be used to include
    patterns from a file in a subdirectory, the patterns themselves are
-   still relative to the repository *root*. Example:
+   still relative to the folder *root*. Example:
    ``#include more-patterns.txt``.
 
 -  A pattern beginning with a ``!`` prefix negates the pattern: matching files
@@ -151,7 +151,7 @@ view.
 
 If Bob adds files that have already been synced to the ignore list, they
 will remain in the "global" view but disappear from the "local" view.
-The end result is more files in the global repository than in the local,
+The end result is more files in the global folder than in the local,
 but still 100% in sync (:issue:`624`). From Alice's point of view, Bob
 will remain 100% in sync until the next reconnect, because Bob has
 already announced that he has the files that are now suddenly ignored.
