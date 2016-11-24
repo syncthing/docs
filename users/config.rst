@@ -188,7 +188,7 @@ device
     and unshare the folder (subject to skipIntroductionRemovals being false on the introducer device).
     All mentioned devices are those that will be sharing the folder in question. 
     Each mentioned device must have a separate ``device`` element later in the file.
-    It is customary that the local device ID is included in all repositories.
+    It is customary that the local device ID is included in all folders.
     Syncthing will currently add this automatically if it is not present in
     the configuration file. 
 
