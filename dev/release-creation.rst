@@ -32,7 +32,7 @@ push it:
 
 (The tag is signed with your personal key. The binary releases will be
 signed by the Syncthing Release key later. I use `git autotag
-<https://github.com/calmh/git-autotag>`__ to do this correcly with minimal
+<https://github.com/calmh/git-autotag>`__ to do this correctly with minimal
 pain.)
 
 Trigger the ``syncthing-release`` job for the newly created tag and wait for
