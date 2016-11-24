@@ -34,7 +34,7 @@ Minor Releases
 --------------
 
 Minor releases are made when new functionality is ready for release.
-This happen approximately once every few weeks, with the pace slowing as
+This happens approximately once every few weeks, with the pace slowing as
 the 1.0 release nears.
 
 Major Releases
