@@ -21,7 +21,7 @@ Is it "syncthing", "Syncthing" or "SyncThing"?
 
 It's **Syncthing**, although the command and source repository is spelled
 ``syncthing`` so it may be referred to in that way as well. It's definitely not
-:strike:`SyncThing`, even though the abbreviation ``st`` is used in some
+SyncThing, even though the abbreviation ``st`` is used in some
 circumstances and file names.
 
 How does Syncthing differ from BitTorrent Sync?
@@ -75,7 +75,7 @@ Is synchronization fast?
 
 Syncthing segments files into pieces, called blocks, to transfer data from one
 device to another. Therefore, multiple devices can share the synchronization
-load, in a similar way as the torrent protocol. The more devices you have online
+load, in a similar way to the torrent protocol. The more devices you have online
 (and synchronized), the faster an additional device will receive the data
 because small blocks will be fetched from all devices in parallel.
 
@@ -204,14 +204,14 @@ the new path.
 
 It's best to do this when the folder is already in sync between your
 devices, as it is otherwise unpredictable which changes will "win" after the
-move. Changes made on other devices may be overwritten, or changed made
+move. Changes made on other devices may be overwritten, or changes made
 locally may be overwritten by those on other devices.
 
 An alternative way is to shut down Syncthing, move the folder on disk, edit
 the path directly in the configuration file and then start Syncthing again.
 
-How to configure multiple users on a single machine?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How do I configure multiple users on a single machine?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Each user should run their own Syncthing instance. Be aware that you might need
 to configure listening ports such that they do not overlap (see :ref:`config`).
@@ -227,7 +227,7 @@ Is Syncthing my ideal backup application?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 No. Syncthing is not a great backup application because all changes to your
-files (modifications, deletions, etc) will be propagated to all your
+files (modifications, deletions, etc.) will be propagated to all your
 devices. You can enable versioning, but we encourage the use of other tools
 to keep your data safe from your (or our) mistakes.
 
@@ -253,8 +253,8 @@ On Windows, escaping special characters is not supported as the ``\``
 character is used as a path separator. On the other hand, special characters
 such as ``[`` and ``?`` are not allowed in file names on Windows.
 
-Why is the setup more complicated than BTSync?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Why is the setup more complicated than BitTorrent Sync?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Security over convenience. In Syncthing you have to setup both sides to
 connect two devices. An attacker can't do much with a stolen device ID, because
@@ -286,7 +286,7 @@ to
 Then the GUI is accessible from everywhere. You should set a password and
 enable HTTPS with this configuration. You can do this from inside the GUI.
 
-If both your computers are Unixy (Linux, Mac, etc) You can also leave the
+If both your computers are Unix-like (Linux, Mac, etc.) you can also leave the
 GUI settings at default and use an ssh port forward to access it. For
 example,
 
@@ -304,7 +304,7 @@ session, use this example,
 
     $ ssh -N -L 9090:127.0.0.1:8384 user@othercomputer.example.com
 
-If only your remote computer is Unixy, 
+If only your remote computer is Unix-like, 
 you can still access it with ssh from Windows.
 
 Under Windows 10 (64 bit) you can use the same ssh command if you install
@@ -344,8 +344,8 @@ My Syncthing database is corrupt
 
 This is almost always a result of bad RAM, storage device or other hardware. When the index database is found to be corrupt Syncthing cannot operate and will note this in the logs and exit. To overcome this delete the `database folder <https://docs.syncthing.net/users/config.html#description>`__ inside Syncthing's home directory and re-start Syncthing. It will then need to perform a full re-hashing of all shared folders. You should check your system in case the underlying cause is indeed faulty hardware which may put the system at risk of further data loss.
 
-I don't like the GUI / Theme. Can it be changed?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+I don't like the GUI or theme. Can it be changed?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can change the theme in the settings. Syncthing ships with other themes
 than the default.
