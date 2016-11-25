@@ -7,7 +7,7 @@ Profiling
     quick and painless.
 
 Profiling is the process of figuring out what a program is doing -- where
-it's spending it's time on the CPU and why it's allocated memory. The
+it's spending its time on the CPU and why it's allocated memory. The
 profiles are of two types - the "CPU profile" which shows which functions
 are using most CPU time and the "heap profile" that shows which functions
 have caused most memory to be allocated.
