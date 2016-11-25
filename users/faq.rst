@@ -24,13 +24,13 @@ It's **Syncthing**, although the command and source repository is spelled
 SyncThing, even though the abbreviation ``st`` is used in some
 circumstances and file names.
 
-How does Syncthing differ from BitTorrent Sync?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How does Syncthing differ from BitTorrent/Resilio Sync?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The two are different and not related. Syncthing and BitTorrent Sync accomplish
+The two are different and not related. Syncthing and BitTorrent/Resilio Sync accomplish
 some of the same things, namely syncing files between two or more computers.
 
-BitTorrent Sync by BitTorrent, Inc is a proprietary peer-to-peer file
+BitTorrent Sync, now called Resilio Sync, is a proprietary peer-to-peer file
 synchronization tool available for Windows, Mac, Linux, Android, iOS, Windows
 Phone, Amazon Kindle Fire and BSD. [#btsync]_ Syncthing is an open source file
 synchronization tool.
@@ -75,8 +75,8 @@ Is synchronization fast?
 
 Syncthing segments files into pieces, called blocks, to transfer data from one
 device to another. Therefore, multiple devices can share the synchronization
-load, in a similar way to the torrent protocol. The more devices you have online
-(and synchronized), the faster an additional device will receive the data
+load, in a similar way to the torrent protocol. The more devices you have online,
+the faster an additional device will receive the data
 because small blocks will be fetched from all devices in parallel.
 
 Syncthing handles renaming files and updating their metadata in an efficient
@@ -253,8 +253,8 @@ On Windows, escaping special characters is not supported as the ``\``
 character is used as a path separator. On the other hand, special characters
 such as ``[`` and ``?`` are not allowed in file names on Windows.
 
-Why is the setup more complicated than BitTorrent Sync?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Why is the setup more complicated than BitTorrent/Resilio Sync?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Security over convenience. In Syncthing you have to setup both sides to
 connect two devices. An attacker can't do much with a stolen device ID, because
@@ -344,8 +344,8 @@ My Syncthing database is corrupt
 
 This is almost always a result of bad RAM, storage device or other hardware. When the index database is found to be corrupt Syncthing cannot operate and will note this in the logs and exit. To overcome this delete the `database folder <https://docs.syncthing.net/users/config.html#description>`__ inside Syncthing's home directory and re-start Syncthing. It will then need to perform a full re-hashing of all shared folders. You should check your system in case the underlying cause is indeed faulty hardware which may put the system at risk of further data loss.
 
-I don't like the GUI or theme. Can it be changed?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+I don't like the GUI or the theme. Can it be changed?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can change the theme in the settings. Syncthing ships with other themes
 than the default.
