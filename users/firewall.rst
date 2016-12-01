@@ -43,6 +43,12 @@ If you're using ``ufw`` on Linux and have installed the `Syncthing package
 
     sudo ufw allow syncthing
 
+If you also want to allow external access to the Syncthing web GUI, run::
+
+    sudo ufw allow syncthing-gui
+
+Allowing external access is **not**  necessary for a typical installation.
+
 You can then verify that the ports mentioned above are allowed::
 
     sudo ufw status verbose
