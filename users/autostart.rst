@@ -113,7 +113,7 @@ as a service makes sense is for (mostly) headless servers, administered
 by a sysadmin who knows enough to understand the security implications.
 
 #. Download and extract `nssm <http://nssm.cc/download>`__ to a folder where it can stay. The NSSM executable performs administration as well as executing as the Windows service so it will need to be kept in a suitable location.
-#. From an administrator Command Prompt, CD to the NSSM folder and run ``nssm.exe install syncthing``
+#. From an administrator Command Prompt, CD to the NSSM folder and run ``nssm.exe install <syncthing service name>``
 #. Application Tab
 
    -  Set *Path* to your ``syncthing.exe`` and enter ``-no-restart -no-browser -home="<path to your Syncthing folder>"`` as Arguments. Note: Logging is set later on. ``-logfile`` here will not be applied.
@@ -123,7 +123,7 @@ by a sysadmin who knows enough to understand the security implications.
    -  Optional: Set *Startup type* to *Automatic (Delayed Start)* to delay the start of Syncthing when the system first boots, to improve boot speed.
 #. Log On Tab
 
-   -  Enter the user account to run Syncthing as. This user needs to have access to all the synced folders. You can leave this as *Local System* but doing so poses security risks. Setting this to your Windows user account will reduce this; ideally create a dedicated user account with minimal permissions.
+   -  Enter the user account to run Syncthing as. This user needs to have full access to the Syncthing executable and its parent folder, configuration files / database folder and synced folders. You can leave this as *Local System* but doing so poses security risks. Setting this to your Windows user account will reduce this; ideally create a dedicated user account with minimal permissions.
 #. Process Tab
 
    -  Optional: Change priority to *Low* if you want a more responsive system at the cost of somewhat longer sync time when the system is busy.
