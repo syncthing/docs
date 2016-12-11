@@ -376,7 +376,8 @@ Protocol Buffer Schema
         Vector       version        = 9;
         int64        sequence      = 10;
 
-        repeated BlockInfo Blocks = 16;
+        repeated BlockInfo Blocks         = 16;
+        string             symlink_target = 17;
     }
 
     enum FileInfoType {
@@ -427,7 +428,7 @@ systems - the implementation SHOULD nonetheless indicate the target type
 when possible.
 
 The **size** field contains the size of the file, in bytes. For directories
-the size is zero. For symlinks the size is the length of the target name.
+and symlinks the size is zero.
 
 The **permissions** field holds the common Unix permission bits. An
 implementation MAY ignore or interpret these as is suitable on the host
@@ -465,7 +466,11 @@ database update, thus forming a sequence number over database updates.
 
 The **blocks** list contains the size and hash for each block in the file.
 Each block represents a 128 KiB slice of the file, except for the last block
-which may represent a smaller amount of data.
+which may represent a smaller amount of data. The block list is empty for
+files and symlinks.
+
+The **symlink_target** field contains the symlink target, for entries of
+symlink type. It is empty for all other entry types.
 
 Request
 ^^^^^^^
