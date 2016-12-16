@@ -694,10 +694,10 @@ directions.
     |            |  <-----------   \           /
     +------------+     Updates      \---------/
 
-Read Only
+Send Only
 ^^^^^^^^^
 
-In read only mode, a device does not apply any updates from the cluster, but
+In send-only mode, a device does not apply any updates from the cluster, but
 publishes changes of its local folder to the cluster as usual. The local
 folder can be seen as a "master copy" that is never affected by the actions
 of other cluster devices.
