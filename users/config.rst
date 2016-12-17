@@ -633,7 +633,7 @@ accidentally if you sync your home folder between devices. A common symptom
 of syncing configuration files is two devices ending up with the same Device ID.
 
 If you want to use Syncthing to backup your configuration files, it is recommended
-that the files you are backing up are in a :ref:`folder-master` to prevent other
+that the files you are backing up are in a :ref:`folder-sendonly` to prevent other
 devices from overwriting the per device configuration. The folder on the remote
 device(s) should not be used as configuration for the remote devices.
 
