@@ -254,9 +254,9 @@ disableTempIndexes
     transfers that are still in progress. When set to true, such information
     is not exchanged for this folder.
 
-    fsync
-        Transfer updated (from other devices) files to permanent storage before
-        committing the changes to the internal database.
+fsync
+    Transfer updated (from other devices) files to permanent storage before
+    committing the changes to the internal database.
 
 
 Device Element
