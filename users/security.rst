@@ -66,7 +66,7 @@ Upgrade Checks
 
 When automatic upgrades are enabled, Syncthing checks for a new version at
 startup and then once every twelve hours. This is by an HTTPS request to the
-download site for releases, currently **hosted by :users:`calmh`**.
+download site for releases, currently **hosted by :user:`calmh`**.
 Automatic upgrades default to **on** (unless Syncthing was compiled with
 upgrades disabled).
 
