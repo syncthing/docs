@@ -71,11 +71,11 @@ If you have SSH access to the machine running Syncthing but would rather not
 open the web GUI port to the outside world, you can access it through a SSH
 tunnel instead. You can start a tunnel with a command like the following::
 
-    ssh -L 9999:localhost:8384 machine
+    ssh -f -N -L 9999:localhost:8384 machine
 
 This will bind to your local port 9999 and forward all connections from there to
-port 8384 on the target machine. This still works even if Syncthing is bound to
-listen on localhost only.
+port 8384 on the target machine without opening SSH shell to the remote machine.
+This still works even if Syncthing is bound to listen on localhost only.
 
 Via a Proxy
 -----------
