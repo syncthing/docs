@@ -245,7 +245,7 @@ How to set up a system service
 #. Create the user who should run the service, or choose an existing one.
 #. Copy the ``Syncthing/etc/system/syncthing@.service`` file into the
    `load path of the system instance
-   <http://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20Load%20Path>`__.
+   <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
 #. Enable and start the service. Replace "myuser" with the actual Syncthing
    user after the ``@``::
 
@@ -259,7 +259,7 @@ How to set up a user service
    one. *Probably this will be your own user account.*
 #. Copy the ``Syncthing/etc/user/syncthing.service`` file into the `load path
    of the user instance
-   <http://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20Load%20Path>`__.
+   <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
    To do this without root privileges you can just use this folder under your
    home directory: ``~/.config/systemd/user/``.
 #. Enable and start the service::

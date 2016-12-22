@@ -28,7 +28,7 @@ Prerequisites
 
 If you're not already a Go developer, the easiest way to get going
 is to download the latest version of Go as instructed in
-http://golang.org/doc/install and ``export GOPATH=~``.
+https://golang.org/doc/install and ``export GOPATH=~``.
 
 .. note::
         You need to set ``GOPATH`` correctly and the source **must** be checked

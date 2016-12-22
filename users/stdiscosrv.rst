@@ -177,7 +177,7 @@ listed above:
     ssl_verify_client optional_no_ca;
 
 The following is a complete example Nginx configuration file. With this setup,
-clients can use https://discovery.mydomain.com as the discovery server URL in
+clients can use https://discovery.example.com as the discovery server URL in
 the Syncthing settings.
 
 .. code-block:: nginx
@@ -192,18 +192,18 @@ the Syncthing settings.
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $proxy_x_forwarded_proto;
     proxy_set_header X-SSL-Cert $ssl_client_cert;
-    upstream discovery.mydomain.com {
+    upstream discovery.example.com {
         # Local IP address:port for discovery server
-        server 172.17.0.6:8443;
+        server 192.0.2.1:8443;
     }
     server {
-            server_name discovery.mydomain.com;
+            server_name discovery.example.com;
             listen 80;
             access_log /var/log/nginx/access.log vhost;
             return 301 https://$host$request_uri;
     }
     server {
-            server_name discovery.mydomain.com;
+            server_name discovery.example.com;
             listen 443 ssl http2;
             access_log /var/log/nginx/access.log vhost;
             ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
@@ -211,13 +211,13 @@ the Syncthing settings.
             ssl_prefer_server_ciphers on;
             ssl_session_timeout 5m;
             ssl_session_cache shared:SSL:50m;
-            ssl_certificate /etc/nginx/certs/discovery.mydomain.com.crt;
-            ssl_certificate_key /etc/nginx/certs/discovery.mydomain.com.key;
-            ssl_dhparam /etc/nginx/certs/discovery.mydomain.com.dhparam.pem;
+            ssl_certificate /etc/nginx/certs/discovery.example.com.crt;
+            ssl_certificate_key /etc/nginx/certs/discovery.example.com.key;
+            ssl_dhparam /etc/nginx/certs/discovery.example.com.dhparam.pem;
             add_header Strict-Transport-Security "max-age=31536000";
             ssl_verify_client optional_no_ca;
             location / {
-                    proxy_pass http://discovery.mydomain.com;
+                    proxy_pass http://discovery.example.com;
             }
     }
 

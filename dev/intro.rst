@@ -24,10 +24,10 @@ Contributing to the Syncthing Core
 ----------------------------------
 
 First of all, follow :ref:`building` to get your workspace set up correctly.
-Syncthing is written mainly in `Go <http://golang.org>`__ which has some
+Syncthing is written mainly in `Go <https://golang.org>`__ which has some
 fairly specific opinions on the required directory layout. If you're new to
 Go, don't fear -- it's a small language and easy to learn. There's a `wealth
-of resources <http://dave.cheney.net/resources-for-new-go-programmers>`__ on
+of resources <https://dave.cheney.net/resources-for-new-go-programmers>`__ on
 the web to help you get up to speed, and many people joining the project have
 done so with it being their first contact with Go.
 
