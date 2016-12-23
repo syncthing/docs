@@ -52,7 +52,7 @@ Packages and Bundlings
 Debian / Ubuntu
 ~~~~~~~~~~~~~~~
 
--  **Official packages:** http://apt.syncthing.net/
+-  **Official packages:** https://apt.syncthing.net/
 -  Syncthing GTK PPA:
    https://launchpad.net/~nilarimogard/+archive/ubuntu/webupd8/
    
@@ -125,7 +125,7 @@ Synology NAS (DSM)
 QNAP NAS (QTS)
 ~~~~~~~~~~~~~~
 
--  http://forum.qnap.com/viewtopic.php?f=320&t=97035&start=45#p429896
+-  https://forum.qnap.com/viewtopic.php?f=320&t=97035
    QPKG (Qnap Package) Available for ALL models x86, x86\_64, Arm (all
    including new models)
 
@@ -137,7 +137,7 @@ RockStor
 ASUSTOR NAS (ADM)
 ~~~~~~~~~~~~~~~~~
 
--  ASUSTOR App Central page: http://www.asustor.com/apps/app_detail?id=552
+-  ASUSTOR App Central page: https://www.asustor.com/apps/app_detail?id=552
 
 Windows
 ~~~~~~~
@@ -181,7 +181,5 @@ Older, Possibly Unmaintained
 -  https://github.com/iss0/SyncthingTray
 -  https://github.com/bloones/SyncThingWin
 -  https://github.com/thunderbirdtr/syncthing_rpm
--  https://copr.fedoraproject.org/coprs/tune2fs/syncthing/
 -  https://github.com/dapperstout/pulse-java
 -  https://github.com/cebe/pulse-php-discover
--  https://bitbucket.org/StartledPhoenix/saltstack-syncthing

@@ -18,7 +18,7 @@ Description
 Syncthing relies on a network of community-contributed relay servers. Anyone
 can run a relay server, and it will automatically join the relay pool and be
 available to Syncthing users. The current list of relays can be found at
-https://relays.syncthing.net.
+http://relays.syncthing.net/.
 
 Options
 -------
@@ -68,7 +68,7 @@ Options
 .. cmdoption:: -pools=<pool addresses>
 
     Comma separated list of relay pool addresses to join (default
-    "https://relays.syncthing.net/endpoint"). Blank to disable announcement to
+    "http://relays.syncthing.net/endpoint"). Blank to disable announcement to
     a pool, thereby remaining a private relay.
 
 .. cmdoption:: -provided-by=<string>
@@ -139,7 +139,7 @@ Firewall Considerations
 -----------------------
 
 The relay server listens on two ports by default.  One for data connections and the other
-for providing public statistics at https://relays.syncthing.net.  The firewall, such as
+for providing public statistics at http://relays.syncthing.net/.  The firewall, such as
 ``iptables``, must permit incoming TCP connetions to the following ports:
 
 * Data port:  ``22067/tcp`` overriden with ``-listen`` and advertised with ``-ext-address``

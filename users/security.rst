@@ -17,7 +17,7 @@ file name must exist in the local index and the global model.
 
 For information about ensuring you are running the code you think you are and
 for reporting security vulnerabilities, please see the official `security page
-<http://syncthing.net/security.html>`__.
+<https://syncthing.net/security.html>`__.
 
 Information Leakage
 -------------------
