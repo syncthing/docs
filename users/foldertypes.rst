@@ -1,7 +1,18 @@
+.. _folder-types:
+
+Folder Types
+============
+
+Send & Receive Folder
+---------------------
+
+This is the standard folder type. Under this setting, a folder will both send 
+changes to and receive changes from remote devices.
+
 .. _folder-sendonly:
 
-Send Only Folder Configuration
-==============================
+Send Only Folder
+----------------
 
 A folder can be set in "send-only mode" among the folder settings.
 

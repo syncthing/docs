@@ -61,7 +61,7 @@ can use the headings in the left sidebar to navigate the site.
 
    Configuration <users/config>
    users/advanced
-   users/foldersendonly
+   users/foldertypes
 
    users/syncing
 
