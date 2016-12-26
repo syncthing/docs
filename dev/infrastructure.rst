@@ -53,18 +53,21 @@ Usage Reporting Server
 
 Runs the ``ursrv`` instance, PostgreSQL and Nginx.
 
-- `data.syncthing.net <http://data.syncthing.net/>`__ (Ubuntu Linux, 512 MB)
+- `data.syncthing.net <https://data.syncthing.net/>`__ (Ubuntu Linux, 512 MB)
 
-Build Servers, Core and Android
--------------------------------
+Build Servers, Core
+-------------------
 
-Runs Jenkins and does the core and Android builds, Ubuntu Linux.
+Runs Jenkins and does the core builds, Ubuntu Linux.
 
-- `build.syncthing.net <http://build.syncthing.net/>`__ (Jenkins frontend, SmartOS container, 2048 MB)
-- `android.syncthing.net <http://android.syncthing.net/>`__ (Ubuntu Linux, 3072 MB)
+- `build.syncthing.net <https://build.syncthing.net/>`__ (Jenkins frontend, SmartOS container, 2048 MB)
 
-Build Servers, Other
---------------------
+Build Servers, Android and Other
+--------------------------------
+
+Runs a Gradle daemon building releases for Android.
+
+- `Travis CI https://travis-ci.org/syncthing/syncthing-android`__ 
 
 Runs a Jenkins slave and builds release builds for their respective OS.
 
@@ -78,18 +81,11 @@ APT Server
 
 Serves the APT repository for Debian/Ubuntu users. Runs Nginx.
 
-- `apt.syncthing.net <http://apt.syncthing.net>`__ (SmartOS container, 256 MB)
+- `apt.syncthing.net <https://apt.syncthing.net>`__ (SmartOS container, 256 MB)
 
 Signing Server
 --------------
 
-Signs and uploads the release bundles to Github.
+Signs and uploads the release bundles to GitHub.
 
 - secure.syncthing.net (SmartOS container, 2048 MB)
-
-Code Review Server
-------------------
-
-Runs Crucible & Fisheye.
-
-- `reviews.syncthing.net <https://reviews.syncthing.net>`__ (Ubuntu 14.04, 1024 MB, hosted at DigitalOcean)
