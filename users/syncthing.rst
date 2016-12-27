@@ -8,7 +8,7 @@ Synopsis
 
     syncthing [-audit] [-browser-only] [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
               [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>] [-no-browser]
-              [-no-console] [-no-restart] [-paths] [-paused] [-reset] [-upgrade] [-upgrade-check]
+              [-no-console] [-no-restart] [-paths] [-paused] [-reset-database] [-reset-deltas] [-upgrade] [-upgrade-check]
               [-upgrade-to=<url>] [-verbose] [-version]
 
 Description
@@ -76,9 +76,13 @@ Options
 
     Print the paths used for configuration, keys, database, GUI overrides, default sync folder and the log file.
 
-.. cmdoption:: -reset
+.. cmdoption:: -reset-database
 
-    Reset the database.
+    Reset the database, forcing a full rescan and resync.
+
+.. cmdoption:: -reset-deltas
+
+    Reset delta index IDs, forcing a full index exchange.
 
 .. cmdoption:: -upgrade
 
@@ -132,7 +136,7 @@ Development Settings
 
 The following environment variables modify Syncthing's behavior in ways that
 are mostly useful for developers. Use with care.
-If you start syncthing from within service managers like systemd or supervisor
+If you start Syncthing from within service managers like systemd or supervisor,
 path expansion may not be supported.
 
 STNODEFAULTFOLDER
@@ -144,32 +148,53 @@ STTRACE
     A comma separated string of facilities to trace. The valid facility strings
     are:
 
-    beacon
-        the beacon package
-    discover
-        the discover package
-    events
-        the events package
-    files
-        the files package
-    http
-        the main package; HTTP requests
-    locks
-        the sync package; trace long held locks
-    net
-        the main package; connections & network messages
+    main
+        Main package
     model
-        the model package
+        The root hub
+    config
+        Configuration loading and saving
+    db
+        The database layer
     scanner
-        the scanner package
-    stats
-        the stats package
+        File change detection and hashing
+    versioner
+        File versioning
+
+    beacon
+        Multicast and broadcast discovery
+    connections
+        Connection handling
+    dialer
+        Dialing connections
+    discover
+        Remote device discovery
+    relay
+        Relay interaction
+    protocol
+        The BEP protocol
+    nat
+        NAT discovery and port mapping
+    pmp
+        NAT-PMP discovery and port mapping
     upnp
-        the upnp package
-    xdr
-        the xdr package
-    all
-        all of the above
+        UPnP discovery and port mapping
+
+    events
+        Event generation and logging
+    http
+       REST API
+    sha256
+        SHA256 hashing package (debug currently unused)
+    stats
+        Persistent device and folder statistics
+    sync
+        Mutexes
+    upgrade
+        Binary upgrades
+
+all
+        All of the above
 
 STPROFILER
     Set to a listen address such as "127.0.0.1:9090" to start the profiler with
@@ -184,15 +209,24 @@ STBLOCKPROFILE
 STPERFSTATS
     Write running performance statistics to ``perf-$pid.csv``. Not supported on
     Windows.
+STDEADLOCK
+    
+STDEADLOCKTIMEOUT
+    
+STDEADLOCKTHRESHOLD
+    
 STNOUPGRADE
     Disable automatic upgrades.
+STHASHING
+    Specifiy which hashing package to use. Defaults to automatic based on
+    peformance. Specify "minio" (compatibility) or "standard" for the default Go implementation.
 GOMAXPROCS
     Set the maximum number of CPU cores to use. Defaults to all available CPU
     cores.
 GOGC
     Percentage of heap growth at which to trigger GC. Default is 100. Lower
     numbers keep peak memory usage down, at the price of CPU usage
-    (ie. performance).
+    (i.e. performance).
 
 See Also
 --------
