@@ -145,60 +145,58 @@ STNODEFAULTFOLDER
 STGUIASSETS
     Directory to load GUI assets from. Overrides compiled in assets.
 STTRACE
-    A comma separated string of facilities to trace. The valid facility strings
     are:
 
     Main and operational facilities:
         main
-            Main package
+            Main package.
         model
-            The root hub
+            The root hub; the largest chunk of the system. File pulling, index transmission and requests for chunks.
         config
-            Configuration loading and saving
+            Configuration loading and saving.
         db
-            The database layer
+            The database layer.
         scanner
-            File change detection and hashing
+            File change detection and hashing.
         versioner
-            File versioning
+            File versioning.
 
     Networking facilities:
         beacon
-            Multicast and broadcast discovery
+            Multicast and broadcast discovery packets.
         connections
-            Connection handling
+            Connection handling.
         dialer
-            Dialing connections
+            Dialing connections.
         discover
-            Remote device discovery
+            Remote device discovery requests, replies and registration of devices.
         relay
-            Relay interaction
+            Relay interaction.
         protocol
-            The BEP protocol
+            The BEP protocol.
         nat
-            NAT discovery and port mapping
+            NAT discovery and port mapping.
         pmp
-            NAT-PMP discovery and port mapping
+            NAT-PMP discovery and port mapping.
         upnp
-            UPnP discovery and port mapping
+            UPnP discovery and port mapping.
 
     Other facilities:
         events
-            Event generation and logging
+            Event generation and logging.
         http
-           REST API
+           REST API.
         sha256
-            SHA256 hashing package (debug currently unused)
+            SHA256 hashing package (this facility currently unused).
         stats
-            Persistent device and folder statistics
+            Persistent device and folder statistics.
         sync
-            Mutexes
+            Mutexes. Used for debugging race conditions and deadlocks.
         upgrade
-            Binary upgrades
+            Binary upgrades.
 
         all
-            All of the above
-
+            All of the above.
 STPROFILER
     Set to a listen address such as "127.0.0.1:9090" to start the profiler with
     HTTP access.
