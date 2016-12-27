@@ -145,6 +145,7 @@ STNODEFAULTFOLDER
 STGUIASSETS
     Directory to load GUI assets from. Overrides compiled in assets.
 STTRACE
+    Used to increase the debugging verbosity in specific or all facilities, generally mapping to a Go package. Enabling any of these also enables microsecond timestamps, file names plus line numbers. Enter a comma-separated string of facilities to trace. ``syncthing -help`` always outputs an up-to-date list. The valid facility strings
     are:
 
     Main and operational facilities:
