@@ -223,6 +223,11 @@ No. Syncthing is not designed to sync locally and the overhead involved in
 doing so using Syncthing's method would be wasteful. There are better
 programs to achieve this such as rsync or Unison.
 
+When I do have two distinct Syncthing-managed folders on two hosts, how does Syncthing handle moving files between them?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+(recognizing file movement between different folders according to shared hash sums OR re-syncronization of data because of one folder not sharing meta-data with other folders)
+
 Is Syncthing my ideal backup application?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
