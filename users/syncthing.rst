@@ -7,9 +7,9 @@ Synopsis
 ::
 
     syncthing [-audit] [-browser-only] [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
-              [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>] [-no-browser]
-              [-no-console] [-no-restart] [-paths] [-paused] [-reset-database] [-reset-deltas] [-upgrade] [-upgrade-check]
-              [-upgrade-to=<url>] [-verbose] [-version]
+              [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>] [-no-browser] [-no-console]
+              [-no-restart] [-paths] [-paused] [-reset-database] [-reset-deltas] [-upgrade]
+              [-upgrade-check] [-upgrade-to=<url>] [-verbose] [-version]
 
 Description
 -----------
@@ -148,53 +148,56 @@ STTRACE
     A comma separated string of facilities to trace. The valid facility strings
     are:
 
-    main
-        Main package
-    model
-        The root hub
-    config
-        Configuration loading and saving
-    db
-        The database layer
-    scanner
-        File change detection and hashing
-    versioner
-        File versioning
+    Main and operational facilities:
+        main
+            Main package
+        model
+            The root hub
+        config
+            Configuration loading and saving
+        db
+            The database layer
+        scanner
+            File change detection and hashing
+        versioner
+            File versioning
 
-    beacon
-        Multicast and broadcast discovery
-    connections
-        Connection handling
-    dialer
-        Dialing connections
-    discover
-        Remote device discovery
-    relay
-        Relay interaction
-    protocol
-        The BEP protocol
-    nat
-        NAT discovery and port mapping
-    pmp
-        NAT-PMP discovery and port mapping
-    upnp
-        UPnP discovery and port mapping
+    Networking facilities:
+        beacon
+            Multicast and broadcast discovery
+        connections
+            Connection handling
+        dialer
+            Dialing connections
+        discover
+            Remote device discovery
+        relay
+            Relay interaction
+        protocol
+            The BEP protocol
+        nat
+            NAT discovery and port mapping
+        pmp
+            NAT-PMP discovery and port mapping
+        upnp
+            UPnP discovery and port mapping
 
-    events
-        Event generation and logging
-    http
-       REST API
-    sha256
-        SHA256 hashing package (debug currently unused)
-    stats
-        Persistent device and folder statistics
-    sync
-        Mutexes
-    upgrade
-        Binary upgrades
+    Other facilities:
+        events
+            Event generation and logging
+        http
+           REST API
+        sha256
+            SHA256 hashing package (debug currently unused)
+        stats
+            Persistent device and folder statistics
+        sync
+            Mutexes
+        upgrade
+            Binary upgrades
 
-all
-        All of the above
+        all
+            All of the above
 
 STPROFILER
     Set to a listen address such as "127.0.0.1:9090" to start the profiler with
@@ -210,11 +213,11 @@ STPERFSTATS
     Write running performance statistics to ``perf-$pid.csv``. Not supported on
     Windows.
 STDEADLOCK
-    
+    Placeholder
 STDEADLOCKTIMEOUT
-    
+    Placeholder
 STDEADLOCKTHRESHOLD
-    
+    Placeholder
 STNOUPGRADE
     Disable automatic upgrades.
 STHASHING
