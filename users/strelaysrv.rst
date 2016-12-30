@@ -9,8 +9,10 @@ Synopsis
 ::
 
     strelaysrv [-debug] [-ext-address=<address>] [-global-rate=<bytes/s>] [-keys=<dir>] [-listen=<listen addr>]
-               [-message-timeout=<duration>] [-network-timeout=<duration>] [-per-session-rate=<bytes/s>]
-               [-ping-interval=<duration>] [-pools=<pool addresses>] [-provided-by=<string>] [-status-srv=<listen addr>]
+               [-message-timeout=<duration>] [-nat] [-nat-lease=<duration> [-nat-renewal=<duration>]
+               [-nat-timeout=<duration>] [-network-timeout=<duration>] [-per-session-rate=<bytes/s>]
+               [-ping-interval=<duration>] [-pools=<pool addresses>] [-protocol=<string>] [-provided-by=<string>]
+               [-status-srv=<listen addr>]
 
 Description
 -----------
@@ -49,6 +51,22 @@ Options
 
     Maximum amount of time we wait for relevant messages to arrive (default 1m0s).
 
+.. cmdoption:: -nat
+
+    Use UPnP/NAT-PMP to acquire external port mapping
+
+..cmdoption:: -nat-lease=<duration>
+
+    NAT lease length in minutes (default 60)
+
+..cmdoption:: -nat-renewal=<duration>
+
+    NAT renewal frequency in minutes (default 30)
+
+..cmdoption:: -nat-timeout=<duration>
+
+    NAT discovery timeout in seconds (default 10)
+
 .. cmdoption:: -network-timeout=<duration>
 
     Timeout for network operations between the client and the relay. If no data
@@ -70,6 +88,10 @@ Options
     Comma separated list of relay pool addresses to join (default
     "http://relays.syncthing.net/endpoint"). Blank to disable announcement to
     a pool, thereby remaining a private relay.
+
+.. cmdoption:: -protocol=<string>
+
+    Protocol used for listening. 'tcp' for IPv4 and IPv6, 'tcp4' for IPv4, 'tcp6' for IPv6 (default "tcp").
 
 .. cmdoption:: -provided-by=<string>
 
@@ -102,6 +124,18 @@ global relay pool, unless a ``-pools=""`` argument is given.
 
 To make the relay server start automatically at boot, use the recommended
 procedure for your operating system.
+
+Client configuration
+~~~~~~~~~~~~~~~~~~~~
+
+Syncthing can be configured to use specific relay servers (exclusively of the public pool) by adding the required servers to the Sync Protocol Listen Address field, under Actions and Settings. The format is as follows:
+
+  relay://<host name|IP>[:port]/?id=<relay device ID>
+
+For example:
+
+  relay://private-relay-1.example.com:443/?id=ITZRNXE-YNROGBZ-HXTH5P7-VK5NYE5-QHRQGE2-7JQ6VNJ-KZUEDIU-5PPR5AM
+The relay's device ID is output on start-up.
 
 Running on port 443 as an unprivileged user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
