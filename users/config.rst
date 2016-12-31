@@ -166,7 +166,7 @@ type
         The folder is in default mode. Sending local and accepting remote changes.
 
     readonly
-        The folder is in "master" mode -- it will not be modified by
+        The folder is in "send-only" mode -- it will not be modified by
         Syncthing on this device.
 
 rescanIntervalS
@@ -636,11 +636,11 @@ accidentally if you sync your home folder between devices. A common symptom
 of syncing configuration files is two devices ending up with the same Device ID.
 
 If you want to use Syncthing to backup your configuration files, it is recommended
-that the files you are backing up are in a :ref:`folder-master` to prevent other
+that the files you are backing up are in a :ref:`folder-sendonly` to prevent other
 devices from overwriting the per device configuration. The folder on the remote
 device(s) should not be used as configuration for the remote devices.
 
-If you'd like to sync your home folder in non-master mode, you may add the
+If you'd like to sync your home folder in non-send-only mode, you may add the
 folder that stores the configuration files to the :ref:`ignore list <ignoring-files>`.
 If you'd also like to backup your configuration files, add another folder in
-master mode for just the configuration folder.
+send-only mode for just the configuration folder.

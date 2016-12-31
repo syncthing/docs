@@ -85,7 +85,7 @@ bits) so the resulting ID looks something like::
 
 The padding (``====``) is stripped away, the device ID split into four
 groups, and `check
-digits <https://forum.syncthing.net/t/v0-9-0-new-device-id-format/478>`__
+digits <https://forum.syncthing.net/t/v0-9-0-new-node-id-format/478>`__
 are added for each group. For presentation purposes the device ID is
 grouped with dashes, resulting in the final value::
 

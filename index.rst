@@ -61,8 +61,8 @@ can use the headings in the left sidebar to navigate the site.
 
    Configuration <users/config>
    users/advanced
+   users/foldertypes
    users/introducer
-   users/foldermaster
 
    users/syncing
 
@@ -77,7 +77,11 @@ can use the headings in the left sidebar to navigate the site.
    users/strelaysrv
    users/custom-upgrades
 
-   users/*
+   users/autostart
+   users/contrib
+   users/profiling
+   users/reverseproxy
+   users/security
 
 .. toctree::
    :caption: For Developers
