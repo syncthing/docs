@@ -35,3 +35,22 @@ Clicking this button will enforce this host's current state on the
 rest of the cluster. Any changes made to files will be overwritten by
 the version on this host, any files that don't exist on this host will
 be deleted, and so on.
+
+Receive Only Folder
+-------------------
+
+A folder can be set in "receive-only mode" among the folder settings.
+
+.. image:: folderreceiveonly.png
+
+In this mode, a device will never send any local updates to the cluster.
+It will only "mirror" the folder from the cluster.
+
+If an existing file gets locally modified, it will be replaced with the 
+version from the cluster on the next scan.
+
+The "Delete local changes" will remove any files or directories that 
+have been added locally. !Use with care!
+
+Enable :ref:`versioning` or set maxConflicts, to avoid losing any local 
+changes.
