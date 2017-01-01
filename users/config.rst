@@ -303,7 +303,10 @@ compression
 introducer
     Set to true if this device should be trusted as an introducer, i.e. we
     should copy their list of devices per folder when connecting.
-    
+
+.. seealso::
+    :ref:`introducer`
+
 skipIntroductionRemovals
     Set to true if you wish to follow only introductions and not de-introductions.
     For example, if this is set, we would not remove a device that we were introduced 
