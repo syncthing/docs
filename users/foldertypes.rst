@@ -44,13 +44,13 @@ A folder can be set in "receive-only mode" among the folder settings.
 .. image:: folderreceiveonly.png
 
 In this mode, a device will never send any local updates to the cluster.
-It will only "mirror" the folder from the cluster.
+It will only ever receive changes.
 
-If an existing file gets locally modified, it will be replaced with the 
-version from the cluster on the next scan.
+If an existing file gets modified locally, it will automatically be replaced 
+with the cluster version on the next scan.
 
 The "Delete local changes" will remove any files or directories that 
-have been added locally. !Use with care!
+have been added locally. **Use with care!**
 
 Enable :ref:`versioning` or set maxConflicts, to avoid losing any local 
 changes.
