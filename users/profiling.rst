@@ -34,7 +34,7 @@ Capture a CPU profile
 To get a CPU profile you need to visit a URL ending in
 ``/rest/debug/cpuprof``. Assuming you are on the same computer as Syncthing
 and using the default settings, you should be able to do that by just
-clicking `<http://localhost:8385/rest/debug/cpuprof>`__ -- otherwise please
+clicking `<http://localhost:8384/rest/debug/cpuprof>`__ -- otherwise please
 adjust the host name and port as necessary.
 
 The profiling starts when the page is requested and takes 30 seconds. During
@@ -57,7 +57,7 @@ instantaneously.
 
 Assuming you are on the same computer as Syncthing
 and using the default settings, you should be able to do that by just
-clicking `<http://localhost:8385/rest/debug/heapprof>`__ -- otherwise please
+clicking `<http://localhost:8384/rest/debug/heapprof>`__ -- otherwise please
 adjust the host name and port as necessary.
 
 The profiling will result in a download called something like
