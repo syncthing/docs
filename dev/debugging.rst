@@ -24,21 +24,30 @@ a few extra that map to parts of the ``main`` package. Currently, the
 following facilities are supported (an up to date list is always printed
 by ``syncthing --help``):
 
--  ``beacon`` (the beacon package)
--  ``discover`` (the discover package)
--  ``events`` (the events package)
--  ``files`` (the files package)
--  ``http`` (the main package; HTTP requests)
--  ``net`` (the main package; connections & network messages)
--  ``model`` (the model package)
--  ``scanner`` (the scanner package)
--  ``stats`` (the stats package)
--  ``upnp`` (the upnp package)
--  ``xdr`` (the xdr package)
+-  ``beacon`` (Multicast and broadcast discovery)
+-  ``config`` (Configuration loading and saving)
+-  ``connections`` (Connection handling)
+-  ``db`` (The database layer)
+-  ``dialer`` (Dialing connections)
+-  ``discover`` (Remote device discovery)
+-  ``events`` (Event generation and logging)
+-  ``http`` (REST API)
+-  ``main`` (Main package)
+-  ``model`` (The root hub)
+-  ``nat`` (NAT discovery and port mapping)
+-  ``pmp`` (NAT-PMP discovery and port mapping)
+-  ``protocol`` (The BEP protocol)
+-  ``scanner`` (File change detection and hashing)
+-  ``sha256`` (SHA256 hashing package)
+-  ``stats`` (Persistent device and folder statistics)
+-  ``sync`` (Mutexes)
+-  ``upgrade`` (Binary upgrades)
+-  ``upnp`` (UPnP discovery and port mapping)
+-  ``versioner`` (File versioning)
 -  ``all`` (all of the above)
 
 The debug output is often of the kind that it doesn't make much sense
-without looking at the code. The purpose of the different packages /
+without looking at the code. The purpose of some of the different packages /
 facilities are something like this:
 
 -  ``beacon`` sends and receives UDP broadcasts used by the local
@@ -46,19 +55,11 @@ facilities are something like this:
    addresses are selected for broadcasts, etc.
 -  ``discover`` sends and receives local discovery packets. Debugging
    here will output the parsed packets, devices that get registered etc.
--  ``files`` keeps track of lists of files with metadata and figures out
-   which is the newest version of each.
--  ``net`` shows connection attempts, incoming connections, and the low
-   level error when connection attempts fail.
 -  ``model`` is the largest chunk of the system; this is where pulling
    of out of date files happens, indexes are sent and received, and incoming
    requests for file chunks are logged.
 -  ``scanner`` is the local filesystem scanner. Debugging here will
    output information about changed and unchanged files.
--  ``upnp`` is the upnp talker.
--  ``xdr`` is the low level protocol encoder. Debugging here will output
-   all bytes sent/received over the sync connection. Very verbose.
--  ``all`` simply enables debugging of all facilities.
 
 Enabling any of the facilities will also change the log format to
 include microsecond timestamps and file names plus line numbers. This
