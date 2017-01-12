@@ -602,16 +602,16 @@ TCP IPv4 wildcard and port (``tcp4://0.0.0.0:22000``, ``tcp4://:22000``)
     interfaces via IPv4 only.
 
 TCP IPv4 address and port (``tcp4://192.0.2.1:22000``)
-    These are equivalent and will result in Syncthing listening on the
-    specified address and port only.
+    This results in Syncthing listening on the specified address and port, IPv4
+    only.
 
 TCP IPv6 wildcard and port (``tcp6://[::]:22000``, ``tcp6://:22000``)
     These are equivalent and will result in Syncthing listening on all
     interfaces via IPv6 only.
 
 TCP IPv6 address and port (``tcp6://[2001:db8::42]:22000``)
-    These are equivalent and will result in Syncthing listening on the
-    specified address and port only.
+    This results in Syncthing listening on the specified address and port, IPv6
+    only.
 
 Static relay address (``relay://192.0.2.42:22067?id=abcd123...``)
     Syncthing will connect to and listen for incoming connections via the
