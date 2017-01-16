@@ -49,10 +49,8 @@ prevent the fallback behavior. For example::
 Caveats
 -------
 
-Note that one needs to unset any existing ``http_proxy`` /
-``https_proxy`` variables when using ``all_proxy`` as the SOCKS proxy
-is used first, then syncthing will try to access peers through the
-specified HTTP proxy. This will fail in most cases, as the specified
-proxy is often an internal name and unknown to the other side of your
-proxy or it will not accept connections from the other side of your
-firewall.
+Synchting will use the ``http_proxy`` / ``https_proxy`` settings in combination with
+``all_proxy``. Proxys specified with http_ variants will be used behind the socks proxy.
+
+If this is not desired, make sure to undefine the ``http_proxy`` / ``https_proxy``
+variables for syncthing.
