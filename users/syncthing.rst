@@ -70,7 +70,7 @@ Options
 
 .. cmdoption:: -no-restart
 
-    Do not restart; just exit.
+    Disable the Syncthing monitor process which handles restarts for some configuration changes, upgrades, crashes and also log file writing (stdout is still written).
 
 .. cmdoption:: -paths
 
@@ -212,11 +212,16 @@ STPERFSTATS
     Write running performance statistics to ``perf-$pid.csv``. Not supported on
     Windows.
 STDEADLOCK
-    Placeholder
+    Used for debugging internal deadlocks. Use only under direction of a
+    developer.
 STDEADLOCKTIMEOUT
-    Placeholder
+    Used for debugging internal deadlocks; sets debug sensitivity. Use only
+    under direction of a developer.
 STDEADLOCKTHRESHOLD
-    Placeholder
+    Used for debugging internal deadlocks; sets debug sensitivity. Use only
+    under direction of a developer.
+STNORESTART
+    Equivalent to the -no-restart argument. Disable the Syncthing monitor process which handles restarts for some configuration changes, upgrades, crashes and also log file writing (stdout is still written).
 STNOUPGRADE
     Disable automatic upgrades.
 STHASHING
