@@ -6,10 +6,11 @@ Synopsis
 
 ::
 
-    syncthing [-audit] [-browser-only] [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
-              [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>] [-no-browser] [-no-console]
-              [-no-restart] [-paths] [-paused] [-reset-database] [-reset-deltas] [-upgrade]
-              [-upgrade-check] [-upgrade-to=<url>] [-verbose] [-version]
+    syncthing [-audit] [-auditfile=<file|-|-->] [-browser-only] [-generate=<dir>]
+              [-gui-address=<address>] [-gui-apikey=<key>] [-home=<dir>] [-logfile=<filename>]
+              [-logflags=<flags>] [-no-browser] [-no-console] [-no-restart] [-paths] [-paused]
+              [-reset-database] [-reset-deltas] [-upgrade] [-upgrade-check] [-upgrade-to=<url>]
+              [-verbose] [-version]
 
 Description
 -----------
@@ -26,7 +27,11 @@ Options
 
 .. cmdoption:: -audit
 
-    Write events to audit file.
+    Write events to timestamped file ``audit-YYYYMMDD-HHMMSS.log``.
+
+.. cmdoption:: -auditfile=<file|-|-->
+
+    Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for audit events, rather than the timestamped default file name.
 
 .. cmdoption:: -generate=<dir>
 
@@ -34,12 +39,12 @@ Options
 
 .. cmdoption:: -gui-address=<address>
 
-    Override GUI address.
+    Override GUI listen address.
 
 .. cmdoption:: -home=<dir>
 
-    Set configuration directory. The default configuration directory is:
-    ``$HOME/.config/syncthing``.
+    Set configuration directory. The default configuration directory is
+    ``$HOME/.config/syncthing`` (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac) and ``%LOCALAPPDATA%\Syncthing`` (Windows).
 
 .. cmdoption:: -logfile=<filename>
 
