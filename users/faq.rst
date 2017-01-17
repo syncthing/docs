@@ -190,10 +190,11 @@ from the user point of view. Moreover, if there's something that automatically
 causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 -...-sync-conflict`` files.
 
-How are nested Synthing folders handled?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Am I able to use nested Synthing folders?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-(no major issues expected OR not supported, be careful because...)
+Do not nest shared folders. This behaviour is in no way supported, 
+recommended or coded for in any way, and comes with many pitfalls.
 
 How do I rename/move a synced folder?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
