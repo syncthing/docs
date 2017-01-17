@@ -190,6 +190,12 @@ from the user point of view. Moreover, if there's something that automatically
 causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 -...-sync-conflict`` files.
 
+Am I able to use nested Synthing folders?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Do not nest shared folders. This behaviour is in no way supported, 
+recommended or coded for in any way, and comes with many pitfalls.
+
 How do I rename/move a synced folder?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -222,6 +228,25 @@ Does Syncthing support syncing between folders on the same system?
 No. Syncthing is not designed to sync locally and the overhead involved in
 doing so using Syncthing's method would be wasteful. There are better
 programs to achieve this such as rsync or Unison.
+
+When I do have two distinct Syncthing-managed folders on two hosts, how does Syncthing handle moving files between them?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syncthing does not specially handle this case, and most files most likely get 
+re-downloaded.
+
+In detail, the behavior depends on the scan order. If you have folder A and B, 
+and move files from A to B, if A gets scanned first, it will announce removal of 
+the files to others who will remove the files. As you rescan B, B will 
+announce addition of new files, and other peers will have nowhere to get
+them from apart from re-downloading them.
+
+If B gets rescanned first, B will announce additions first, remote 
+peers will reconstruct the files (not rename, more like copy block by 
+block) from A, and then as A gets rescanned remove the files from A.
+
+A workaround would be to copy first from A to B, rescan B, wait for B to 
+rebuild on remote ends, and then delete from A.
 
 Is Syncthing my ideal backup application?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
