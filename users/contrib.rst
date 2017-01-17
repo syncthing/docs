@@ -28,11 +28,13 @@ Android
 ~~~~~~~
 
 - `syncthing-android <https://github.com/syncthing/syncthing-android>`_
-   A wrapper app for the Syncthing binary.
+
+  A wrapper app for the Syncthing binary.
 
 - `a-sync-browser <https://github.com/davide-imbriaco/a-sync-browser>`_
-   Down- or uploads data from accessible devices, does not continuously keep a
-   share in sync.
+
+  Down- or uploads data from accessible devices, does not continuously keep a
+  share in sync.
 
 .. _contrib-windows:
 
@@ -40,11 +42,13 @@ Windows
 ~~~~~~~
 
 - `SyncTrayzor <https://github.com/canton7/SyncTrayzor>`_
-   Windows host for Syncthing.  Installer, auto-start, built-in browser, tray
-   icon, folder watcher, and more.
 
-- `SyncthingTray <https://github.com/iss0/SyncthingTray>`__
+  Windows host for Syncthing.  Installer, auto-start, built-in browser, tray
+  icon, folder watcher, and more.
 
+- `SyncthingTray <https://github.com/iss0/SyncthingTray>`_
+
+  Wrapper including a small interface to configure start on boot and puts Syncthing into the systray instead of a console window.
 
 OS X
 ~~~~
@@ -63,7 +67,7 @@ Debian / Ubuntu
 
 - Official packages: https://apt.syncthing.net/
 
-- Debian packages: `syncthing <https://packages.debian.org/search?keywords=>`__, `syncthing-discosrv <https://packages.debian.org/search?keywords=>`__ and `syncthing-relaysrv <https://packages.debian.org/search?keywords=>`_
+- Debian packages: `syncthing <https://packages.debian.org/search?keywords=syncthing>`__, `syncthing-discosrv <https://packages.debian.org/search?keywords=syncthing-discosrv>`__ and `syncthing-relaysrv <https://packages.debian.org/search?keywords=syncthing-relaysrv>`_
 
 - `Ubuntu PPA containing Syncthing-GTK <https://launchpad.net/~nilarimogard/+archive/ubuntu/webupd8/>`_
    
@@ -96,19 +100,20 @@ Syncthing is included in `arkOS <https://arkos.io/>`_.
 Docker
 ~~~~~~
 
-- `Dockerfiles <https://github.com/firecat53/dockerfiles>`_: `Syncthing <https://github.com/firecat53/dockerfiles/tree/master/syncthing>`__ and `Syncthing Discover Server <https://github.com/firecat53/dockerfiles/tree/master/syncthing\_discovery>`_
-   Runs and/or builds the binaries from source.
+- `Dockerfiles <https://github.com/firecat53/dockerfiles>`_: `Syncthing <https://github.com/firecat53/dockerfiles/tree/master/syncthing>`__ and `Syncthing Discovery Server <https://github.com/firecat53/dockerfiles/tree/master/syncthing\_discovery>`_
 
+  Runs and/or builds the binaries from source.
 - `docker-syncthing <https://github.com/joeybaker/docker-syncthing>`_
-   A fully baked docker container that allows custom config and will keep your
-   settings and data past docker image restarts.
 
+  A fully baked docker container that allows custom config and will keep your
+  settings and data past docker image restarts.
 - `syncthing-docker-scratch <https://github.com/djtm/syncthing-docker-scratch>`_
-   Builds docker containers from scratch base and/or runs the containers in
-   docker or rkt.
 
+  Builds docker containers from scratch base and/or runs the containers in
+  docker or rkt.
 - `rpi-syncthing <https://github.com/funkyfuture/docker-rpi-syncthing>`_
-   Configurable image for the Raspberry Pi.
+
+  Configurable image for the Raspberry Pi.
 
 Gentoo
 ~~~~~~
@@ -133,11 +138,9 @@ Official packages: `syncthing <http://software.opensuse.org/package/syncthing>`_
 Synology NAS (DSM)
 ~~~~~~~~~~~~~~~~~~
 
-Add http://packages.synocommunity.com/ to Package Center in DSM. You find infos
-about the Syncthing package at https://synocommunity.com/packages.  Numerous CPU
+Add ``http://packages.synocommunity.com/`` to the Package Center in DSM or view the `browsable repository <https://synocommunity.com/packages>`__. Numerous CPU
 architectures are supported. SPK's may be older versions, however you can
-execute a Syncthing version upgrade via Web-GUI after installation on Synology
-device.
+execute a Syncthing version upgrade via the web GUI after installation.
 
 QNAP NAS (QTS)
 ~~~~~~~~~~~~~~
@@ -162,11 +165,15 @@ REST API Bindings
 Ports
 ~~~~~
 
--  Swift: `pulse-swift <https://source.ind.ie/project/pulse-swift/tree/master>`_
--  Java: `a-sync <https://github.com/davide-imbriaco/a-sync>`_
-    This implements the BEP, discovery and relay protocols providing a command
-    line utility to access a Syncthing network, a service to proxy the relay
-    protocol over http and a client library for the BEP protocol.
+- Swift: `pulse-swift <https://source.ind.ie/project/pulse-swift/tree/master>`_
+
+  Currently still in development and is "not yet usable by any standard". Only the Block Exchange Protocol layer and the Connection layer are completed.
+
+- Java: `a-sync <https://github.com/davide-imbriaco/a-sync>`_
+
+  This implements the BEP, discovery and relay protocols providing a command
+  line utility to access a Syncthing network, a service to proxy the relay
+  protocol over http and a client library for the BEP protocol.
 
 Configuration management
 ~~~~~~~~~~~~~~~~~~~~~~~~
