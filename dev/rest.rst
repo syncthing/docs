@@ -40,7 +40,7 @@ Database Endpoints
    ../rest/db-*
 
 Event Endpoints
---------------
+---------------
 
 .. toctree::
    :maxdepth: 1
