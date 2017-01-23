@@ -39,6 +39,16 @@ Database Endpoints
 
    ../rest/db-*
 
+Event Endpoints
+---------------
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   GET /rest/events <events>
+   ../rest/events-*
+
 Statistics Endpoints
 --------------------
 

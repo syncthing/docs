@@ -62,8 +62,8 @@ data
     An object containing optional extra information; the exact structure is
     determined by the event type.
 
-Events
-------
+Event Types
+-----------
 
 .. toctree::
     :maxdepth: 2
