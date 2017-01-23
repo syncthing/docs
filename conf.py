@@ -47,7 +47,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Syncthing'
-copyright = u'2015, The Syncthing Authors'
+copyright = u'2017, The Syncthing Authors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -70,7 +70,7 @@ release = 'v0.14'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build']
+exclude_patterns = ['_build', 'draft', 'README.rst']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
