@@ -1,3 +1,5 @@
+.. _local-change-detected:
+
 LocalChangeDetected
 -------------------
 
