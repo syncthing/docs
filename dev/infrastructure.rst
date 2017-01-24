@@ -67,7 +67,7 @@ Build Servers, Android and Other
 
 Runs a Gradle daemon building releases for Android.
 
-- `Travis CI https://travis-ci.org/syncthing/syncthing-android`__ 
+- `Travis CI <https://travis-ci.org/syncthing/syncthing-android>`__ 
 
 Runs a Jenkins slave and builds release builds for their respective OS.
 
