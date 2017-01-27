@@ -6,7 +6,7 @@ Block Exchange Protocol v1
 Introduction and Definitions
 ----------------------------
 
-BEP is used between two or more *devices* thus forming a *cluster*. Each
+Block Exchange Protocol (BE0)P is used between two or more *devices* thus forming a *cluster*. Each
 device has one or more *folders* of files described by the *local
 model*, containing metadata and block hashes. The local model is sent to
 the other devices in the cluster. The union of all files in the local
