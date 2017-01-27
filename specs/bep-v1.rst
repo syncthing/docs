@@ -6,14 +6,14 @@ Block Exchange Protocol v1
 Introduction and Definitions
 ----------------------------
 
-BEP is used between two or more *devices* thus forming a *cluster*. Each
-device has one or more *folders* of files described by the *local
-model*, containing metadata and block hashes. The local model is sent to
-the other devices in the cluster. The union of all files in the local
-models, with files selected for highest change version, forms the
-*global model*. Each device strives to get its folders in sync with the
-global model by requesting missing or outdated blocks from the other
-devices in the cluster.
+The Block Exchange Protocol (BEP) is used between two or more *devices* thus
+forming a *cluster*. Each device has one or more *folders* of files
+described by the *local model*, containing metadata and block hashes. The
+local model is sent to the other devices in the cluster. The union of all
+files in the local models, with files selected for highest change version,
+forms the *global model*. Each device strives to get its folders in sync
+with the global model by requesting missing or outdated blocks from the
+other devices in the cluster.
 
 File data is described and transferred in units of *blocks*, each being
 128 KiB (131072 bytes) in size.
