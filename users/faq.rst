@@ -437,3 +437,21 @@ GitHub does not provide a single URL to automatically download the latest
 version. We suggest to use the GitHub API at
 https://api.github.com/repos/syncthing/syncthing/releases/latest and parsing
 the JSON response.
+
+
+How do I run Syncthing as a daemon process on Linux?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you're using systemd, runit, or upstart, we already ship examples, check
+https://github.com/syncthing/syncthing/tree/master/etc for example
+configurations.
+
+If however you're not using one of these tools, you have a couple of options.
+If your system has a tool called ``start-stop-daemon`` installed (that's the name
+of the command, not the package), look into the local documentation for that, it
+will almost certainly cover 100% of what you want to do.  If you don't have
+``start-stop-daemon``, there are a bunch of other software packages you could use
+to do this.  The most well known is called daemontools, and can be found in the
+standard package repositories for  almost every modern Linux distribution.
+Other popular tools with similar functionality include S6 and the aforementioned
+runit.
