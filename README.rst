@@ -1,7 +1,7 @@
 Syncthing Docs
 ==============
 
-This repo is the source behind http://docs.syncthing.net/.
+This repo is the source behind https://docs.syncthing.net/.
 
 Editing
 -------
@@ -48,4 +48,4 @@ License
 
 All documentation and protocol specifications are licensed under the `Creative
 Commons Attribution 4.0 International License
-<http://creativecommons.org/licenses/by/4.0/>`__.
+<https://creativecommons.org/licenses/by/4.0/>`__.
