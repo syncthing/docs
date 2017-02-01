@@ -50,7 +50,7 @@ Packages and Bundlings
 Debian / Ubuntu
 ~~~~~~~~~~~~~~~
 
--  **Official packages:** http://apt.syncthing.net/
+-  **Official packages:** https://apt.syncthing.net/
 -  Syncthing GTK PPA:
    https://launchpad.net/~nilarimogard/+archive/ubuntu/webupd8/
    
@@ -97,7 +97,7 @@ Gentoo
 FreeBSD
 ~~~~~~~
 
--  http://www.freshports.org/net/syncthing/
+-  https://www.freshports.org/net/syncthing/
 
 OpenBSD
 ~~~~~~~
@@ -107,7 +107,7 @@ OpenBSD
 OpenSUSE
 ~~~~~~~~
 
--  http://software.opensuse.org/package/syncthing
+-  https://software.opensuse.org/package/syncthing
 -  https://susestudio.com/a/qkdvwb/syncthing
 
 Synology NAS (DSM)
@@ -135,7 +135,7 @@ RockStor
 ASUSTOR NAS (ADM)
 ~~~~~~~~~~~~~~~~~
 
--  ASUSTOR App Central page: http://www.asustor.com/apps/app_detail?id=552
+-  ASUSTOR App Central page: https://www.asustor.com/apps/app_detail?id=552
 
 Windows
 ~~~~~~~
