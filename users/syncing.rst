@@ -34,7 +34,7 @@ Scanning
 Syncthing detects changes to files by scanning. By default this happens
 every 60 seconds, but this can be changed per folder. Increasing the scan
 interval uses less resources and is useful for example on large folders that
-changes infrequently. ``syncthing-inotify`` can also be used, which tells
+change infrequently. ``syncthing-inotify`` can also be used, which tells
 Syncthing to scan changed files when changes are detected, thus reducing the
 need for periodic scans.
 

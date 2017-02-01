@@ -24,10 +24,10 @@ Contributing to the Syncthing Core
 ----------------------------------
 
 First of all, follow :ref:`building` to get your workspace set up correctly.
-Syncthing is written mainly in `Go <http://golang.org>`__ which has some
+Syncthing is written mainly in `Go <https://golang.org>`__ which has some
 fairly specific opinions on the required directory layout. If you're new to
 Go, don't fear -- it's a small language and easy to learn. There's a `wealth
-of resources <http://dave.cheney.net/resources-for-new-go-programmers>`__ on
+of resources <https://dave.cheney.net/resources-for-new-go-programmers>`__ on
 the web to help you get up to speed, and many people joining the project have
 done so with it being their first contact with Go.
 
@@ -44,9 +44,6 @@ In the source repository you'll find a tree of various packages and
 directories. There is some Go code at the top level, but it's basically scripts
 for the build system. The actual code lives in the ``cmd/syncthing`` and
 ``lib`` directories. The web GUI lives in ``gui``. The rest is as follows.
-
-Godeps/
-   Locally vendored copies of external dependencies.
 
 assets/
    Various graphical assets -- the logo.
@@ -164,6 +161,9 @@ script/
 
 test/
    The integration test suite.
+
+vendor/
+   Locally vendored copies of external dependencies.
 
 
 Why are you being so hard on my pull request?

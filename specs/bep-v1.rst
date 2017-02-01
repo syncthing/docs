@@ -6,14 +6,14 @@ Block Exchange Protocol v1
 Introduction and Definitions
 ----------------------------
 
-BEP is used between two or more *devices* thus forming a *cluster*. Each
-device has one or more *folders* of files described by the *local
-model*, containing metadata and block hashes. The local model is sent to
-the other devices in the cluster. The union of all files in the local
-models, with files selected for highest change version, forms the
-*global model*. Each device strives to get its folders in sync with the
-global model by requesting missing or outdated blocks from the other
-devices in the cluster.
+The Block Exchange Protocol (BEP) is used between two or more *devices* thus
+forming a *cluster*. Each device has one or more *folders* of files
+described by the *local model*, containing metadata and block hashes. The
+local model is sent to the other devices in the cluster. The union of all
+files in the local models, with files selected for highest change version,
+forms the *global model*. Each device strives to get its folders in sync
+with the global model by requesting missing or outdated blocks from the
+other devices in the cluster.
 
 File data is described and transferred in units of *blocks*, each being
 128 KiB (131072 bytes) in size.
@@ -246,14 +246,15 @@ Protocol Buffer Schema
     }
 
     message Device {
-        bytes           id           = 1;
-        string          name         = 2;
-        repeated string addresses    = 3;
-        Compression     compression  = 4;
-        string          cert_name    = 5;
-        int64           max_sequence = 6;
-        bool            introducer   = 7;
-        uint64          index_id     = 8;
+        bytes           id                         = 1;
+        string          name                       = 2;
+        repeated string addresses                  = 3;
+        Compression     compression                = 4;
+        string          cert_name                  = 5;
+        int64           max_sequence               = 6;
+        bool            introducer                 = 7;
+        uint64          index_id                   = 8;
+        bool            skip_introduction_removals = 9;
     }
 
     enum Compression {
@@ -329,6 +330,10 @@ introducers.
 The **index id** field contains the unique identifier for the current set of
 index data. See :ref:`deltaidx` for the usage of this field.
 
+The **skip introduction removals** field signifies if the remote device has
+opted to ignore introduction removals for the given device. This setting is
+copied across as we are being introduced to a new device.
+
 Index and Index Update
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -365,13 +370,15 @@ Protocol Buffer Schema
         uint32       permissions    = 4;
         int64        modified_s     = 5;
         int32        modified_ns    = 11;
+        uint64       modified_by    = 12;
         bool         deleted        = 6;
         bool         invalid        = 7;
         bool         no_permissions = 8;
         Vector       version        = 9;
         int64        sequence      = 10;
 
-        repeated BlockInfo Blocks = 16;
+        repeated BlockInfo Blocks         = 16;
+        string             symlink_target = 17;
     }
 
     enum FileInfoType {
@@ -422,15 +429,20 @@ systems - the implementation SHOULD nonetheless indicate the target type
 when possible.
 
 The **size** field contains the size of the file, in bytes. For directories
-the size is zero. For symlinks the size is the length of the target name.
+and symlinks the size is zero.
 
 The **permissions** field holds the common Unix permission bits. An
 implementation MAY ignore or interpret these as is suitable on the host
 operating system.
 
-The **modified_s** time is expressed as the number of seconds since the Unix
+The **modified_ns** time is expressed as the number of seconds since the Unix
 Epoch (1970-01-01 00:00:00 UTC). The **modified_ns** field holds the
 nanosecond part of the modification time.
+
+The **modified_by** field holds the short id of the client that last made
+any modification to the file whether add, change or delete.  This will be
+overwritten every time a change is made to the file by the last client to do
+so and so does not hold history.
 
 The **deleted** field is set when the file has been deleted. The block list
 SHALL be of length zero and the modification time indicates the time of
@@ -460,7 +472,11 @@ database update, thus forming a sequence number over database updates.
 
 The **blocks** list contains the size and hash for each block in the file.
 Each block represents a 128 KiB slice of the file, except for the last block
-which may represent a smaller amount of data.
+which may represent a smaller amount of data. The block list is empty for
+files and symlinks.
+
+The **symlink_target** field contains the symlink target, for entries of
+symlink type. It is empty for all other entry types.
 
 Request
 ^^^^^^^
@@ -689,10 +705,10 @@ directions.
     |            |  <-----------   \           /
     +------------+     Updates      \---------/
 
-Read Only
+Send Only
 ^^^^^^^^^
 
-In read only mode, a device does not apply any updates from the cluster, but
+In send-only mode, a device does not apply any updates from the cluster, but
 publishes changes of its local folder to the cluster as usual. The local
 folder can be seen as a "master copy" that is never affected by the actions
 of other cluster devices.

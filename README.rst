@@ -16,8 +16,7 @@ documentation team and perform edits without requiring approval.
 In the long run, learning to use Git_ and running Sphinx_ on your computer is
 beneficial.
 
-First steps to run is locally
- ::
+First steps to run it locally::
  
   git clone https://github.com/syncthing/docs.git
   pip install -U Sphinx
@@ -38,7 +37,7 @@ subsections. The sections are:
 The documentation uses the `rst format`_. For a starting point check out the
 `reStructuredText Primer`_
 
-.. _Git: http://www.git-scm.com/
+.. _Git: https://www.git-scm.com/
 .. _Sphinx: http://sphinx-doc.org/
 .. _`rst format`: http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html
 .. _`reStructuredText Primer`: http://sphinx-doc.org/rest.html

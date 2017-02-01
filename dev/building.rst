@@ -23,22 +23,18 @@ may be unstable and unsuitable for general consumption.
 Prerequisites
 -------------
 
--  Go **1.5** or higher (1.7 or higher on Windows). We recommend the latest version.
+-  The latest stable version of Go. Earlier releases may work, but we recommend
+   always using the latest stable version.
 -  Git
 
 If you're not already a Go developer, the easiest way to get going
 is to download the latest version of Go as instructed in
-http://golang.org/doc/install and ``export GOPATH=~``.
+https://golang.org/doc/install and ``export GOPATH=~``.
 
 .. note::
         You need to set ``GOPATH`` correctly and the source **must** be checked
         out into ``$GOPATH/src/github.com/syncthing/syncthing``. The
         instructions below accomplish this correctly.
-
-.. note::
-        We use Go 1.5+ vendoring for our dependencies. If you are using the
-        build script on Go 1.5 or higher this will just work. If you are
-        building manually on Go 1.5 you need to set ``GO15VENDOREXPERIMENT=1``.
 
 Building (Unix)
 ---------------
@@ -48,7 +44,7 @@ Building (Unix)
 
 .. code-block:: bash
 
-    # This should output "go version go1.5" or higher.
+    # This should output "go version go1.7" or higher.
     $ go version
 
     # Go is particular about file locations; use this path unless you know very
@@ -140,8 +136,6 @@ influence ``install``, ``build``, ``tar`` and ``zip``. Examples:
   Builds a zip distribution of Syncthing for Windows (current architecture) with
   upgrading disabled.
 
-.. note:: Building for a different operating system or architecture than your native one requires Go having been set up for cross compilation. The easiest way to get this right is to use the official Docker image, described below.
-
 Building without Git
 --------------------
 
@@ -157,5 +151,5 @@ If you are building something that will be installed as a package
 well to prevent the built in upgrade system from being activated.
 
 ``go run build.go -version v0.10.26 -no-upgrade tar``
-  Builds a tar.gz distribution of syncthing for the current OS/arch, tagged as
+  Builds a tar.gz distribution of Syncthing for the current OS/arch, tagged as
   ``v0.10.26``, with upgrades disabled.

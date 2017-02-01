@@ -46,10 +46,13 @@ The top level keys ``id``, ``globalID``, ``time``, ``type`` and ``data`` are alw
 though ``data`` may be ``null``.
 
 id
-    A monotonically increasing integer. The first event generated has id ``1``,
-    the next has id ``2`` etc.
+    A unique ID for this event on the events API. It always increases by 1: the first
+    event generated has id ``1``, the next has id ``2`` etc. If this increases by
+    more than 1, then one or more events have been skipped by the events API.
 globalID
-    Also a monotonically increasing integer. And might not be the same as id but will always be either equal or greater in value.
+    A global ID for this event, across the events API, the audit log, and any other
+    sources. It may increase by more than 1, but it will always be greater
+    than or equal to the id.
 time
     The time the event was generated.
 type
@@ -59,8 +62,8 @@ data
     An object containing optional extra information; the exact structure is
     determined by the event type.
 
-Events
-------
+Event Types
+-----------
 
 .. toctree::
     :maxdepth: 2

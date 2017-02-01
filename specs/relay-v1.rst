@@ -372,7 +372,7 @@ SessionInvitation message (Type = 6)
 	the invitation which is sent to the other device, so that there is always
 	one client socket, and one server socket.
 
-How syncthing uses relays, and general security
+How Syncthing uses relays, and general security
 -----------------------------------------------
 
 In the case of Syncthing and BEP, when two devices connect via relay, they
@@ -388,12 +388,12 @@ did capture all the traffic, and even if the attacker did get their hands on the
 device keys, they would still not be able to recover/decrypt any traffic which
 was transported via the relay.
 
-After establishing a relay session, syncthing looks at the SessionInvitation
+After establishing a relay session, Syncthing looks at the SessionInvitation
 message, and depending which side it has received, wraps the raw socket in
 either a TLS client socket or a TLS server socket depending on the ServerSocket
 boolean value in the SessionInvitation, and starts the TLS handshake.
 
-From that point onwards it functions exactly the same way as if syncthing was
+From that point onwards it functions exactly the same way as if Syncthing was
 establishing a direct connection with the other device over the internet,
 performing device ID validation, and full TLS encryption, and provides the same
 security properties as it would provide when connecting over the internet.

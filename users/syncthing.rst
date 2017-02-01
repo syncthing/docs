@@ -6,10 +6,11 @@ Synopsis
 
 ::
 
-    syncthing [-audit] [-browser-only] [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
-              [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>] [-no-browser]
-              [-no-console] [-no-restart] [-paths] [-paused] [-reset] [-upgrade] [-upgrade-check]
-              [-upgrade-to=<url>] [-verbose] [-version]
+    syncthing [-audit] [-auditfile=<file|-|-->] [-browser-only] [-generate=<dir>]
+              [-gui-address=<address>] [-gui-apikey=<key>] [-home=<dir>] [-logfile=<filename>]
+              [-logflags=<flags>] [-no-browser] [-no-console] [-no-restart] [-paths] [-paused]
+              [-reset-database] [-reset-deltas] [-upgrade] [-upgrade-check] [-upgrade-to=<url>]
+              [-verbose] [-version]
 
 Description
 -----------
@@ -26,7 +27,11 @@ Options
 
 .. cmdoption:: -audit
 
-    Write events to audit file.
+    Write events to timestamped file ``audit-YYYYMMDD-HHMMSS.log``.
+
+.. cmdoption:: -auditfile=<file|-|-->
+
+    Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for audit events, rather than the timestamped default file name.
 
 .. cmdoption:: -generate=<dir>
 
@@ -34,12 +39,12 @@ Options
 
 .. cmdoption:: -gui-address=<address>
 
-    Override GUI address.
+    Override GUI listen address.
 
 .. cmdoption:: -home=<dir>
 
-    Set configuration directory. The default configuration directory is:
-    ``$HOME/.config/syncthing``.
+    Set configuration directory. The default configuration directory is
+    ``$HOME/.config/syncthing`` (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac) and ``%LOCALAPPDATA%\Syncthing`` (Windows).
 
 .. cmdoption:: -logfile=<filename>
 
@@ -70,15 +75,19 @@ Options
 
 .. cmdoption:: -no-restart
 
-    Do not restart; just exit.
+    Disable the Syncthing monitor process which handles restarts for some configuration changes, upgrades, crashes and also log file writing (stdout is still written).
 
 .. cmdoption:: -paths
 
     Print the paths used for configuration, keys, database, GUI overrides, default sync folder and the log file.
 
-.. cmdoption:: -reset
+.. cmdoption:: -reset-database
 
-    Reset the database.
+    Reset the database, forcing a full rescan and resync.
+
+.. cmdoption:: -reset-deltas
+
+    Reset delta index IDs, forcing a full index exchange.
 
 .. cmdoption:: -upgrade
 
@@ -132,7 +141,7 @@ Development Settings
 
 The following environment variables modify Syncthing's behavior in ways that
 are mostly useful for developers. Use with care.
-If you start syncthing from within service managers like systemd or supervisor
+If you start Syncthing from within service managers like systemd or supervisor,
 path expansion may not be supported.
 
 STNODEFAULTFOLDER
@@ -141,36 +150,59 @@ STNODEFAULTFOLDER
 STGUIASSETS
     Directory to load GUI assets from. Overrides compiled in assets.
 STTRACE
-    A comma separated string of facilities to trace. The valid facility strings
+    Used to increase the debugging verbosity in specific or all facilities, generally mapping to a Go package. Enabling any of these also enables microsecond timestamps, file names plus line numbers. Enter a comma-separated string of facilities to trace. ``syncthing -help`` always outputs an up-to-date list. The valid facility strings
     are:
 
-    beacon
-        the beacon package
-    discover
-        the discover package
-    events
-        the events package
-    files
-        the files package
-    http
-        the main package; HTTP requests
-    locks
-        the sync package; trace long held locks
-    net
-        the main package; connections & network messages
-    model
-        the model package
-    scanner
-        the scanner package
-    stats
-        the stats package
-    upnp
-        the upnp package
-    xdr
-        the xdr package
-    all
-        all of the above
+    Main and operational facilities:
+        main
+            Main package.
+        model
+            The root hub; the largest chunk of the system. File pulling, index transmission and requests for chunks.
+        config
+            Configuration loading and saving.
+        db
+            The database layer.
+        scanner
+            File change detection and hashing.
+        versioner
+            File versioning.
 
+    Networking facilities:
+        beacon
+            Multicast and broadcast discovery packets.
+        connections
+            Connection handling.
+        dialer
+            Dialing connections.
+        discover
+            Remote device discovery requests, replies and registration of devices.
+        relay
+            Relay interaction.
+        protocol
+            The BEP protocol.
+        nat
+            NAT discovery and port mapping.
+        pmp
+            NAT-PMP discovery and port mapping.
+        upnp
+            UPnP discovery and port mapping.
+
+    Other facilities:
+        events
+            Event generation and logging.
+        http
+           REST API.
+        sha256
+            SHA256 hashing package (this facility currently unused).
+        stats
+            Persistent device and folder statistics.
+        sync
+            Mutexes. Used for debugging race conditions and deadlocks.
+        upgrade
+            Binary upgrades.
+
+        all
+            All of the above.
 STPROFILER
     Set to a listen address such as "127.0.0.1:9090" to start the profiler with
     HTTP access.
@@ -184,15 +216,29 @@ STBLOCKPROFILE
 STPERFSTATS
     Write running performance statistics to ``perf-$pid.csv``. Not supported on
     Windows.
+STDEADLOCK
+    Used for debugging internal deadlocks. Use only under direction of a
+    developer.
+STDEADLOCKTIMEOUT
+    Used for debugging internal deadlocks; sets debug sensitivity. Use only
+    under direction of a developer.
+STDEADLOCKTHRESHOLD
+    Used for debugging internal deadlocks; sets debug sensitivity. Use only
+    under direction of a developer.
+STNORESTART
+    Equivalent to the -no-restart argument. Disable the Syncthing monitor process which handles restarts for some configuration changes, upgrades, crashes and also log file writing (stdout is still written).
 STNOUPGRADE
     Disable automatic upgrades.
+STHASHING
+    Specifiy which hashing package to use. Defaults to automatic based on
+    peformance. Specify "minio" (compatibility) or "standard" for the default Go implementation.
 GOMAXPROCS
     Set the maximum number of CPU cores to use. Defaults to all available CPU
     cores.
 GOGC
     Percentage of heap growth at which to trigger GC. Default is 100. Lower
     numbers keep peak memory usage down, at the price of CPU usage
-    (ie. performance).
+    (i.e. performance).
 
 See Also
 --------

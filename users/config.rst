@@ -45,7 +45,7 @@ directory the following files are located:
 Config File Format
 ------------------
 
-The following shows the default configuration file:
+The following shows an example of the default configuration file (IDs will differ):
 
 .. code-block:: xml
 
@@ -65,6 +65,7 @@ The following shows the default configuration file:
             <maxConflicts>-1</maxConflicts>
             <disableSparseFiles>false</disableSparseFiles>
             <disableTempIndexes>false</disableTempIndexes>
+            <fsync>false</fsync>
         </folder>
         <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false">
             <address>dynamic</address>
@@ -125,7 +126,7 @@ Folder Element
 .. code-block:: xml
 
     <folder id="zj2AA-q55a7" label="Default Folder (zj2AA-q55a7)" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" ignorePerms="false" autoNormalize="true" ro="false">
-        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
+        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR"></device>
         <minDiskFreePct>1</minDiskFreePct>
         <versioning></versioning>
         <copiers>0</copiers>
@@ -139,6 +140,7 @@ Folder Element
         <maxConflicts>-1</maxConflicts>
         <disableSparseFiles>false</disableSparseFiles>
         <disableTempIndexes>false</disableTempIndexes>
+        <fsync>false</fsync>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -164,8 +166,8 @@ type
         The folder is in default mode. Sending local and accepting remote changes.
 
     readonly
-        The folder is in "master" mode -- it will not be modified by
-        syncthing on this device.
+        The folder is in "send-only" mode -- it will not be modified by
+        Syncthing on this device.
 
 rescanIntervalS
     The rescan interval, in seconds. Can be set to zero to disable when external
@@ -180,12 +182,15 @@ autoNormalize
 The following child elements may exist:
 
 device
-    These must have the ``id`` attribute and nothing else. Mentioned devices
-    are those that will be sharing the folder in question. Each mentioned
-    device must have a separate ``device`` element later in the file. It is
-    customary that the local device ID is included in all repositories.
+    These must have the ``id`` attribute and can have an ``introducedBy`` attribute,
+    identifying the device that introduced us to share this folder with the given device.
+    If the original introducer unshares this folder with this device, our device will follow 
+    and unshare the folder (subject to skipIntroductionRemovals being false on the introducer device).
+    All mentioned devices are those that will be sharing the folder in question. 
+    Each mentioned device must have a separate ``device`` element later in the file.
+    It is customary that the local device ID is included in all folders.
     Syncthing will currently add this automatically if it is not present in
-    the configuration file.
+    the configuration file. 
 
 minDiskFreePct
     The percentage of space that should be available on the disk this folder
@@ -249,13 +254,17 @@ disableTempIndexes
     transfers that are still in progress. When set to true, such information
     is not exchanged for this folder.
 
+fsync
+    Transfer updated (from other devices) files to permanent storage before
+    committing the changes to the internal database.
+
 
 Device Element
 --------------
 
 .. code-block:: xml
 
-    <device id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="syno" compression="metadata" introducer="false">
+    <device id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="syno" compression="metadata" introducer="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
         <address>dynamic</address>
     </device>
     <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false">
@@ -295,9 +304,20 @@ introducer
     Set to true if this device should be trusted as an introducer, i.e. we
     should copy their list of devices per folder when connecting.
 
+.. seealso::
+    :ref:`introducer`
+
+skipIntroductionRemovals
+    Set to true if you wish to follow only introductions and not de-introductions.
+    For example, if this is set, we would not remove a device that we were introduced 
+    to even if the original introducer is no longer listing the remote device as known.
+    
+introducedBy
+    Defines which device has introduced us to this device. Used only for following de-introductions.
+
 In addition, one or more ``address`` child elements must be present. Each
 contains an address or host name to use when attempting to connect to this device and will
-be tried in order. Entries other than ``dynamic`` must be prefixed with ``tcp://`` (dual-stack), ``tcp4://`` (IPv4 only) or ``tcp6://` (IPv6 only). Note that IP addresses need not use tcp4/tcp6; these are optional. Accepted formats are:
+be tried in order. Entries other than ``dynamic`` must be prefixed with ``tcp://`` (dual-stack), ``tcp4://`` (IPv4 only) or ``tcp6://`` (IPv6 only). Note that IP addresses need not use tcp4/tcp6; these are optional. Accepted formats are:
 
 IPv4 address (``tcp://192.0.2.42``)
     The default port (22000) is used.
@@ -362,17 +382,16 @@ theme
 The following child elements may be present:
 
 address
-    Set the listen addresses. One or more address elements must be present. Entries must have the protocol prefix ``tcp://``.
-    Allowed address formats are:
+    Set the listen address. One address element must be present. Allowed address formats are:
 
-    IPv4 address and port (``tcp://127.0.0.1:8384``)
+    IPv4 address and port (``127.0.0.1:8384``)
         The address and port is used as given.
 
-    IPv6 address and port (``tcp://[::1]:8384``)
+    IPv6 address and port (``[::1]:8384``)
         The address and port is used as given. The address must be enclosed in
         square brackets.
 
-    Wildcard and port (``tcp://0.0.0.0:12345``, ``tcp://[::]:12345``, ``tcp://:12345``)
+    Wildcard and port (``0.0.0.0:12345``, ``[::]:12345``, ``:12345``)
         These are equivalent and will result in Syncthing listening on all
         interfaces via both IPv4 and IPv6.
 
@@ -480,7 +499,7 @@ startBrowser
     Whether to attempt to start a browser to show the GUI when Syncthing starts.
 
 natEnabled
-    Whether to attempt to perform an UPnP and NAT-PMP port mapping for
+    Whether to attempt to perform a UPnP and NAT-PMP port mapping for
     incoming sync connections.
 
 natLeaseMinutes
@@ -583,16 +602,16 @@ TCP IPv4 wildcard and port (``tcp4://0.0.0.0:22000``, ``tcp4://:22000``)
     interfaces via IPv4 only.
 
 TCP IPv4 address and port (``tcp4://192.0.2.1:22000``)
-    These are equivalent and will result in Syncthing listening on the
-    specified address and port only.
+    This results in Syncthing listening on the specified address and port, IPv4
+    only.
 
 TCP IPv6 wildcard and port (``tcp6://[::]:22000``, ``tcp6://:22000``)
     These are equivalent and will result in Syncthing listening on all
     interfaces via IPv6 only.
 
 TCP IPv6 address and port (``tcp6://[2001:db8::42]:22000``)
-    These are equivalent and will result in Syncthing listening on the
-    specified address and port only.
+    This results in Syncthing listening on the specified address and port, IPv6
+    only.
 
 Static relay address (``relay://192.0.2.42:22067?id=abcd123...``)
     Syncthing will connect to and listen for incoming connections via the
@@ -617,12 +636,11 @@ accidentally if you sync your home folder between devices. A common symptom
 of syncing configuration files is two devices ending up with the same Device ID.
 
 If you want to use Syncthing to backup your configuration files, it is recommended
-that the files you are backing up are in a :ref:`folder-master` to prevent other
+that the files you are backing up are in a :ref:`folder-sendonly` to prevent other
 devices from overwriting the per device configuration. The folder on the remote
 device(s) should not be used as configuration for the remote devices.
 
-If you'd like to sync your home folder in non-master mode, you may add the
+If you'd like to sync your home folder in non-send-only mode, you may add the
 folder that stores the configuration files to the :ref:`ignore list <ignoring-files>`.
 If you'd also like to backup your configuration files, add another folder in
-master mode for just the configuration folder.
-
+send-only mode for just the configuration folder.

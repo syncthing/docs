@@ -6,7 +6,7 @@ Getting Started
 For this guide let's assume you have two machines between which you want
 to synchronise files. In keeping with Syncthing terminology they are
 going to be called "devices" in the rest of the documentation. The
-"local device" is the one you are configuring, viewing status for, etc,
+"local device" is the one you are configuring, viewing status for, etc.,
 while the "remote device" is the other machine.
 
 The best way to follow this guide is to do the install on both machines
@@ -20,7 +20,7 @@ shows how to install Syncthing on Ubuntu/Debian/Mint using PPA, also available
 in `German <https://www.youtube.com/watch?v=Gh5nUlDzqJc>`__. `This video
 <https://www.youtube.com/watch?v=2QcO8ikxzxA>`__ shows how to install Syncthing
 on Windows, also available in `German
-<https://www.youtube.com/watch?v=7LziT3KDiMU>`__
+<https://www.youtube.com/watch?v=7LziT3KDiMU>`__.
 
 Installing
 ----------
@@ -124,14 +124,15 @@ effect, such as sharing folders with new devices. When you click
 At this point the two devices share an empty directory. Adding files to
 the shared directory on either device will synchronize those files to the
 other side. Each device scans for changes every 60 seconds, so changes
-can take a little over a minute to propagate to the other side, although some contributed wrappers may include file system "watcher" features. The
+can take a little over a minute to propagate to the other side, although some
+contributed wrappers include file system "watcher" features to speed this up. The
 rescan interval can be changed for each folder by clicking on a folder,
 clicking "Edit" and entering a new value for "Rescan Interval".
 
 --------------
 
 Good luck and have fun! There is more `documentation
-<http://docs.syncthing.net/>`__ and if you run into trouble feel free to post
+<https://docs.syncthing.net/>`__ and if you run into trouble feel free to post
 a question in the `support forum <https://forum.syncthing.net/c/support>`__.
 If you have problems getting devices to connect, first take a look at
 :ref:`firewall-setup`, then look at any error messages in the GUI or on the

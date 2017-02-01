@@ -6,9 +6,9 @@ possible for an attacker to join a cluster uninvited, and it should not be
 possible to extract private information from intercepted traffic. Currently this
 is implemented as follows.
 
-All device to device traffic is protected by TLS. To prevent uninvited nodes
-from joining a cluster, the certificate fingerprint of each node is compared
-to a preset list of acceptable nodes at connection establishment. The
+All device to device traffic is protected by TLS. To prevent uninvited devices
+from joining a cluster, the certificate fingerprint of each device is compared
+to a preset list of acceptable devices at connection establishment. The
 fingerprint is computed as the SHA-256 hash of the certificate and displayed
 in BASE32 encoding to form a reasonably compact and convenient string.
 
@@ -17,7 +17,7 @@ file name must exist in the local index and the global model.
 
 For information about ensuring you are running the code you think you are and
 for reporting security vulnerabilities, please see the official `security page
-<http://syncthing.net/security.html>`__.
+<https://syncthing.net/security.html>`__.
 
 Information Leakage
 -------------------
@@ -25,23 +25,28 @@ Information Leakage
 Global Discovery
 ~~~~~~~~~~~~~~~~
 
-When global discovery is enabled, Syncthing sends an announcement packet every
-30 minutes to the global discovery server so that it can keep a mapping
-between your device ID and external IP. The packets contain the device ID and
-listening port. Also, when connecting to other devices that have not been seen
-on the local network, a query is sent to the global discovery server
-containing the device ID of the requested device. The discovery server is
-currently hosted by :user:`calmh`. Global discovery defaults to **on**.
+When global discovery is enabled, Syncthing sends an announcement every 30
+minutes to the global discovery servers so that they can keep a mapping
+between your device ID and external IP. The announcement contain the device
+ID and listening port(s). Also, when connecting to other devices that have
+not been seen on the local network, a query is sent to the global discovery
+servers containing the device ID of the requested device. The connection to
+the discovery server is encrypted using TLS and the discovery server
+certificate is verified, so the contents of the query should be considered
+private between the device and the discovery server. The discovery servers
+are currently hosted by :user:`calmh`. Global discovery defaults to **on**.
 
 When turned off, devices with dynamic addresses not on the local network cannot
 be found and connected to.
 
 An eavesdropper on the Internet can deduce which machines are running
-Syncthing with global discovery enabled, what their device IDs are, and what
-device IDs they are attempting to connect to via global discovery.
+Syncthing with global discovery enabled, and what their device IDs are.
+
+The operator of the discovery server can map arbitrary device addresses to
+IP addresses, and deduce which devices are connected to each other.
 
 If a different global discovery server is configured, no data is sent to the
-default global discovery server.
+default global discovery servers.
 
 Local Discovery
 ~~~~~~~~~~~~~~~
@@ -61,20 +66,20 @@ Upgrade Checks
 
 When automatic upgrades are enabled, Syncthing checks for a new version at
 startup and then once every twelve hours. This is by an HTTPS request to the
-download site for releases, currently **hosted at GitHub**. Automatic upgrades
-default to **on** (unless Syncthing was compiled with upgrades disabled).
+download site for releases, currently **hosted by :user:`calmh`**.
+Automatic upgrades default to **on** (unless Syncthing was compiled with
+upgrades disabled).
 
 Even when automatic upgrades are disabled in the configuration, an upgrade check
 as above is done when the GUI is loaded, in order to show the "Upgrade to ..."
-button when necessary. This can be disabled only by compiling syncthing with
+button when necessary. This can be disabled only by compiling Syncthing with
 upgrades disabled.
 
-In effect this exposes the majority of the Syncthing population to tracking by
-the operator of the download site (currently GitHub). That data is not available
-to outside parties (including :user:`calmh` etc), except that download counts
-per release binary are available in the GitHub API. The upgrade check (or
-download) requests *do not* contain any identifiable information about the user,
-device, Syncthing version, etc.
+The actual download, should an upgrade be available, is done from
+**GitHub**, thus exposing the user to them.
+
+The upgrade check (or download) requests *do not* contain any identifiable
+information about the user or device.
 
 Usage Reporting
 ~~~~~~~~~~~~~~~
@@ -105,6 +110,22 @@ port scanner may discover it, attempt a TLS negotiation and thus obtain the
 device certificate. This provides the same information as in the eavesdropper
 case.
 
+Relay Connections
+~~~~~~~~~~~~~~~~~
+
+When relaying is enabled, Syncthing will look up the pool of public relays
+and establish a connection to one of them (the best, based on an internal
+heuristic). The selected relay server will learn the connecting device's
+device ID. Relay servers can be run by **anyone in the general public**.
+Relaying defaults to **on**. Syncthing can be configured to disable
+relaying, or only use specific relays.
+
+If a relay connections is required between two devices, the relay will learn
+the other device's device ID as well.
+
+Any data exchanged between the two devices is encrypted as usual and not
+subject to inspection by the relay.
+
 Web GUI
 ~~~~~~~
 
@@ -117,7 +138,7 @@ In Short
 Parties doing surveillance on your network (whether that be corporate IT, the
 NSA or someone else) will be able to see that you use Syncthing, and your device
 IDs `are OK to share anyway
-<http://docs.syncthing.net/users/faq.html#should-i-keep-my-device-ids-secret>`__,
+<https://docs.syncthing.net/users/faq.html#should-i-keep-my-device-ids-secret>`__,
 but the actual transmitted data is protected as well as we can. Knowing your
 device ID can expose your IP address, using global discovery.
 

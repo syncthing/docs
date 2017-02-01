@@ -1,6 +1,8 @@
 An intro to the GUI
 ===================
 
+.. image:: gui1.png
+
 Folder View
 -----------
 
@@ -9,12 +11,10 @@ folders. Clicking the folder name makes that section expand to show more
 detailed folder information, and buttons for editing the configuration or
 forcing a rescan.
 
-.. image:: gui1.png
-
 A folder can be in any one of these states:
 
 Unknown
-	while the GUI is loading.
+	while the GUI is loading,
 
 Unshared
 	when you have not shared this folder,
@@ -31,7 +31,7 @@ Up to Date
 Syncing
 	when this device is downloading changes from the network.
 
-Among the folder details, you can see the current "Global State" and "Local State" summaries, as well as the amount of "Out of Sync" data if the the folder state is not up to date.
+Among the folder details, you can see the current "Global State" and "Local State" summaries, as well as the amount of "Out of Sync" data if the folder state is not up to date.
 
 Global State
 	indicates how much data the fully up to date folder contains - this is basically the sum of the newest versions of all files from all connected devices. This is the size of the folder on your computer when it is fully in sync with the cluster.
@@ -46,9 +46,9 @@ Device View
 -----------
 
 The right side of the screen shows the overall state of all configured
-devices. The local device (your computer) is always at the top, with remote
+devices. The local device is always at the top, with remote
 devices in alphabetical order below. For each device you see its current state
 and, when expanded, more detailed information. All transfer rates ("Download
-Rate" and "Upload Rate") are from the perspective of your computer, even those
-shown for remote devices. The rates for your local device is the sum of those
+Rate" and "Upload Rate") are from the perspective of the local device, even those
+shown for remote devices. The rates for the local device are the sum of those
 for the remote devices.

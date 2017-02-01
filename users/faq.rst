@@ -21,25 +21,25 @@ Is it "syncthing", "Syncthing" or "SyncThing"?
 
 It's **Syncthing**, although the command and source repository is spelled
 ``syncthing`` so it may be referred to in that way as well. It's definitely not
-:strike:`SyncThing`, even though the abbreviation ``st`` is used in some
+SyncThing, even though the abbreviation ``st`` is used in some
 circumstances and file names.
 
-How does Syncthing differ from BitTorrent Sync?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How does Syncthing differ from BitTorrent/Resilio Sync?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The two are different and not related. Syncthing and BitTorrent Sync accomplish
+The two are different and not related. Syncthing and BitTorrent/Resilio Sync accomplish
 some of the same things, namely syncing files between two or more computers.
 
-BitTorrent Sync by BitTorrent, Inc is a proprietary peer-to-peer file
+BitTorrent Sync, now called Resilio Sync, is a proprietary peer-to-peer file
 synchronization tool available for Windows, Mac, Linux, Android, iOS, Windows
-Phone, Amazon Kindle Fire and BSD. [#btsync]_ Syncthing is an open source file
+Phone, Amazon Kindle Fire and BSD. [#resiliosync]_ Syncthing is an open source file
 synchronization tool.
 
 Syncthing uses an open and documented protocol, and likewise the security
-mechanisms in use are well defined and visible in the source code. BitTorrent
+mechanisms in use are well defined and visible in the source code. Resilio
 Sync uses an undocumented, closed protocol with unknown security properties.
 
-.. [#btsync] http://en.wikipedia.org/wiki/BitTorrent_Sync
+.. [#resiliosync] https://en.wikipedia.org/wiki/Resilio_Sync
 
 Usage
 -----
@@ -60,7 +60,7 @@ The following may be synchronized or not, depending:
    requires administrator privileges. Links are synced as is and are not
    followed.)
 
-The following is *not* synchronized;
+The following are *not* synchronized;
 
 -  File or Directory Owners and Groups (not preserved)
 -  Directory Modification Times (not preserved)
@@ -75,8 +75,8 @@ Is synchronization fast?
 
 Syncthing segments files into pieces, called blocks, to transfer data from one
 device to another. Therefore, multiple devices can share the synchronization
-load, in a similar way as the torrent protocol. The more devices you have online
-(and synchronized), the faster an additional device will receive the data
+load, in a similar way to the torrent protocol. The more devices you have online,
+the faster an additional device will receive the data
 because small blocks will be fetched from all devices in parallel.
 
 Syncthing handles renaming files and updating their metadata in an efficient
@@ -154,11 +154,11 @@ Should I keep my device IDs secret?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 No. The IDs are not sensitive. Given a device ID it's possible to find the IP
-address for that node, if global discovery is enabled on it. Knowing the device
-ID doesn't help you actually establish a connection to that node or get a list
+address for that device, if global discovery is enabled on it. Knowing the device
+ID doesn't help you actually establish a connection to that device or get a list
 of files, etc.
 
-For a connection to be established, both nodes need to know about the other's
+For a connection to be established, both devices need to know about the other's
 device ID. It's not possible (in practice) to forge a device ID. (To forge a
 device ID you need to create a TLS certificate with that specific SHA-256 hash.
 If you can do that, you can spoof any TLS certificate. The world is your
@@ -171,11 +171,15 @@ What if there is a conflict?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Syncthing does recognize conflicts. When a file has been modified on two devices
-simultaneously, one of the files will be renamed to ``<filename>.sync-
-conflict-<date>-<time>.<ext>``. The device which has the larger value of the
-first 63 bits for his device ID will have his file marked as the conflicting
-file. Note that we only create ``sync-conflict`` files when the actual content
-differs.
+simultaneously and the content actually differs, one of the files will be
+renamed to ``<filename>.sync-conflict-<date>-<time>.<ext>``. The file with the
+older modification time will be marked as the conflicting file and thus be
+renamed. If the modification times are equal, the file originating from the
+device which has the larger value of the first 63 bits for his device ID will be
+marked as the conflicting file.
+If the conflict is between a modification and a deletion of the file, the
+modified file always wins and is resurrected without renaming on the
+device where it was deleted.
 
 Beware that the ``<filename>.sync-conflict-<date>-<time>.<ext>`` files are
 treated as normal files after they are created, so they are propagated between
@@ -185,6 +189,12 @@ everywhere else and we don't know which of the conflicting files is the "best"
 from the user point of view. Moreover, if there's something that automatically
 causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 -...-sync-conflict`` files.
+
+Am I able to use nested Synthing folders?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Do not nest shared folders. This behaviour is in no way supported, 
+recommended or coded for in any way, and comes with many pitfalls.
 
 How do I rename/move a synced folder?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -200,14 +210,14 @@ the new path.
 
 It's best to do this when the folder is already in sync between your
 devices, as it is otherwise unpredictable which changes will "win" after the
-move. Changes made on other devices may be overwritten, or changed made
+move. Changes made on other devices may be overwritten, or changes made
 locally may be overwritten by those on other devices.
 
 An alternative way is to shut down Syncthing, move the folder on disk, edit
 the path directly in the configuration file and then start Syncthing again.
 
-How to configure multiple users on a single machine?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+How do I configure multiple users on a single machine?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Each user should run their own Syncthing instance. Be aware that you might need
 to configure listening ports such that they do not overlap (see :ref:`config`).
@@ -219,11 +229,30 @@ No. Syncthing is not designed to sync locally and the overhead involved in
 doing so using Syncthing's method would be wasteful. There are better
 programs to achieve this such as rsync or Unison.
 
+When I do have two distinct Syncthing-managed folders on two hosts, how does Syncthing handle moving files between them?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syncthing does not specially handle this case, and most files most likely get 
+re-downloaded.
+
+In detail, the behavior depends on the scan order. If you have folder A and B, 
+and move files from A to B, if A gets scanned first, it will announce removal of 
+the files to others who will remove the files. As you rescan B, B will 
+announce addition of new files, and other peers will have nowhere to get
+them from apart from re-downloading them.
+
+If B gets rescanned first, B will announce additions first, remote 
+peers will reconstruct the files (not rename, more like copy block by 
+block) from A, and then as A gets rescanned remove the files from A.
+
+A workaround would be to copy first from A to B, rescan B, wait for B to 
+rebuild on remote ends, and then delete from A.
+
 Is Syncthing my ideal backup application?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 No. Syncthing is not a great backup application because all changes to your
-files (modifications, deletions, etc) will be propagated to all your
+files (modifications, deletions, etc.) will be propagated to all your
 devices. You can enable versioning, but we encourage the use of other tools
 to keep your data safe from your (or our) mistakes.
 
@@ -249,12 +278,12 @@ On Windows, escaping special characters is not supported as the ``\``
 character is used as a path separator. On the other hand, special characters
 such as ``[`` and ``?`` are not allowed in file names on Windows.
 
-Why is the setup more complicated than BTSync?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Why is the setup more complicated than BitTorrent/Resilio Sync?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Security over convenience. In Syncthing you have to setup both sides to
-connect two nodes. An attacker can't do much with a stolen node ID, because
-you have to add the node on the other side too. You have better control
+connect two devices. An attacker can't do much with a stolen device ID, because
+you have to add the device on the other side too. You have better control
 where your files are transferred.
 
 This is an area that we are working to improve in the long term.
@@ -282,7 +311,7 @@ to
 Then the GUI is accessible from everywhere. You should set a password and
 enable HTTPS with this configuration. You can do this from inside the GUI.
 
-If both your computers are Unixy (Linux, Mac, etc) You can also leave the
+If both your computers are Unix-like (Linux, Mac, etc.) you can also leave the
 GUI settings at default and use an ssh port forward to access it. For
 example,
 
@@ -293,10 +322,30 @@ example,
 will log you into othercomputer.example.com, and present the *remote*
 Syncthing GUI on http://localhost:9090 on your *local* computer.
 
+If you only want to access the remote gui and don't want the terminal
+session, use this example,
+
+.. code-block:: bash
+
+    $ ssh -N -L 9090:127.0.0.1:8384 user@othercomputer.example.com
+
+If only your remote computer is Unix-like, 
+you can still access it with ssh from Windows.
+
+Under Windows 10 (64 bit) you can use the same ssh command if you install
+the Windows Subsystem for Linux.
+https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide
+
+Another Windows way to run ssh is to install gow. 
+(Gnu On Windows) https://github.com/bmatzelle/gow
+
+The easiest way to install gow is with chocolatey.
+https://chocolatey.org/
+
 Why do I get "Host check error" in the GUI/API?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Syncthing since version 0.14.6 does an extra security check when the GUI/API
+Since version 0.14.6 Syncthing does an extra security check when the GUI/API
 is bound to localhost - namely that the browser is talking to localhost.
 This protects against most forms of `DNS rebinding attack
 <https://en.wikipedia.org/wiki/DNS_rebinding>`__ against the GUI.
@@ -314,6 +363,33 @@ protect against unauthorized access. Either:
 - Bind the GUI/API to a non-localhost listen port.
 
 In all cases, username/password authentication and HTTPS should be used.
+
+My Syncthing database is corrupt
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+This is almost always a result of bad RAM, storage device or other hardware. When the index database is found to be corrupt Syncthing cannot operate and will note this in the logs and exit. To overcome this delete the `database folder <https://docs.syncthing.net/users/config.html#description>`__ inside Syncthing's home directory and re-start Syncthing. It will then need to perform a full re-hashing of all shared folders. You should check your system in case the underlying cause is indeed faulty hardware which may put the system at risk of further data loss.
+
+I don't like the GUI or the theme. Can it be changed?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can change the theme in the settings. Syncthing ships with other themes
+than the default.
+
+If you want a custom theme or a completly different GUI, you can add your
+own.
+By default, Syncthing will look for a directory ``gui`` inside the Syncthing
+home folder. To change the directory to look for themes, you need to set the
+STGUIASSETS environment variable. To get the concrete directory, run
+syncthing with the ``-paths`` parameter. It will print all the relevent paths,
+including the "GUI override directory".
+
+To add e.g. a red theme, you can create the file ``red/assets/css/theme.css``
+inside the GUI override directory to override the default CSS styles.
+
+To create a whole new GUI, you should checkout the files at
+https://github.com/syncthing/syncthing/tree/master/gui/default
+to get an idea how to do that.
+
 
 Why do I see Syncthing twice in task manager?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -361,3 +437,21 @@ GitHub does not provide a single URL to automatically download the latest
 version. We suggest to use the GitHub API at
 https://api.github.com/repos/syncthing/syncthing/releases/latest and parsing
 the JSON response.
+
+
+How do I run Syncthing as a daemon process on Linux?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you're using systemd, runit, or upstart, we already ship examples, check
+https://github.com/syncthing/syncthing/tree/master/etc for example
+configurations.
+
+If however you're not using one of these tools, you have a couple of options.
+If your system has a tool called ``start-stop-daemon`` installed (that's the name
+of the command, not the package), look into the local documentation for that, it
+will almost certainly cover 100% of what you want to do.  If you don't have
+``start-stop-daemon``, there are a bunch of other software packages you could use
+to do this.  The most well known is called daemontools, and can be found in the
+standard package repositories for  almost every modern Linux distribution.
+Other popular tools with similar functionality include S6 and the aforementioned
+runit.

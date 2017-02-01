@@ -9,8 +9,10 @@ Synopsis
 ::
 
     strelaysrv [-debug] [-ext-address=<address>] [-global-rate=<bytes/s>] [-keys=<dir>] [-listen=<listen addr>]
-               [-message-timeout=<duration>] [-network-timeout=<duration>] [-per-session-rate=<bytes/s>]
-               [-ping-interval=<duration>] [-pools=<pool addresses>] [-provided-by=<string>] [-status-srv=<listen addr>]
+               [-message-timeout=<duration>] [-nat] [-nat-lease=<duration> [-nat-renewal=<duration>]
+               [-nat-timeout=<duration>] [-network-timeout=<duration>] [-per-session-rate=<bytes/s>]
+               [-ping-interval=<duration>] [-pools=<pool addresses>] [-protocol=<string>] [-provided-by=<string>]
+               [-status-srv=<listen addr>]
 
 Description
 -----------
@@ -18,7 +20,7 @@ Description
 Syncthing relies on a network of community-contributed relay servers. Anyone
 can run a relay server, and it will automatically join the relay pool and be
 available to Syncthing users. The current list of relays can be found at
-https://relays.syncthing.net.
+http://relays.syncthing.net/.
 
 Options
 -------
@@ -49,6 +51,22 @@ Options
 
     Maximum amount of time we wait for relevant messages to arrive (default 1m0s).
 
+.. cmdoption:: -nat
+
+    Use UPnP/NAT-PMP to acquire external port mapping
+
+..cmdoption:: -nat-lease=<duration>
+
+    NAT lease length in minutes (default 60)
+
+..cmdoption:: -nat-renewal=<duration>
+
+    NAT renewal frequency in minutes (default 30)
+
+..cmdoption:: -nat-timeout=<duration>
+
+    NAT discovery timeout in seconds (default 10)
+
 .. cmdoption:: -network-timeout=<duration>
 
     Timeout for network operations between the client and the relay. If no data
@@ -68,8 +86,12 @@ Options
 .. cmdoption:: -pools=<pool addresses>
 
     Comma separated list of relay pool addresses to join (default
-    "https://relays.syncthing.net/endpoint"). Blank to disable announcement to
+    "http://relays.syncthing.net/endpoint"). Blank to disable announcement to
     a pool, thereby remaining a private relay.
+
+.. cmdoption:: -protocol=<string>
+
+    Protocol used for listening. 'tcp' for IPv4 and IPv6, 'tcp4' for IPv4, 'tcp6' for IPv6 (default "tcp").
 
 .. cmdoption:: -provided-by=<string>
 
@@ -103,6 +125,18 @@ global relay pool, unless a ``-pools=""`` argument is given.
 To make the relay server start automatically at boot, use the recommended
 procedure for your operating system.
 
+Client configuration
+~~~~~~~~~~~~~~~~~~~~
+
+Syncthing can be configured to use specific relay servers (exclusively of the public pool) by adding the required servers to the Sync Protocol Listen Address field, under Actions and Settings. The format is as follows:
+
+  relay://<host name|IP>[:port]/?id=<relay device ID>
+
+For example:
+
+  relay://private-relay-1.example.com:443/?id=ITZRNXE-YNROGBZ-HXTH5P7-VK5NYE5-QHRQGE2-7JQ6VNJ-KZUEDIU-5PPR5AM
+The relay's device ID is output on start-up.
+
 Running on port 443 as an unprivileged user
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -134,6 +168,23 @@ firewall.
 
 Another option is `described here <https://wiki.apache.org/httpd/NonRootPortBinding>`__,
 although your milage may vary.
+
+Firewall Considerations
+-----------------------
+
+The relay server listens on two ports by default.  One for data connections and the other
+for providing public statistics at http://relays.syncthing.net/.  The firewall, such as
+``iptables``, must permit incoming TCP connetions to the following ports:
+
+* Data port:  ``22067/tcp`` overriden with ``-listen`` and advertised with ``-ext-address``
+* Status port: ``22070/tcp`` overriden with ``-status-srv`` 
+
+Runtime ``iptables`` rules to allow access to the default ports::
+
+    iptables -I INPUT -p tcp --dport 22067 -j ACCEPT
+    iptables -I INPUT -p tcp --dport 22070 -j ACCEPT
+    
+Please consult Linux distribution documentation to persist firewall rules.
 
 See Also
 --------
