@@ -147,7 +147,7 @@ amount of inputs and a finite amount of outputs - so by definition there
 are infinitely many messages that result in the same hash.
 
 I'm going to quote `stack
-overflow <http://stackoverflow.com/questions/4014090/is-it-safe-to-ignore-the-possibility-of-sha-collisions-in-practice>`__
+overflow <https://stackoverflow.com/questions/4014090/is-it-safe-to-ignore-the-possibility-of-sha-collisions-in-practice>`__
 here:
 
     The usual answer goes thus: what is the probability that a rogue
