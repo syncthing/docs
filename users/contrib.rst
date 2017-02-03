@@ -74,7 +74,7 @@ Debian / Ubuntu
 Snap
 ~~~~
 
-On any of the `Linux distributions that support snaps <http://snapcraft.io/docs/core/install>`_: ::
+On any of the `Linux distributions that support snaps <https://snapcraft.io/docs/core/install>`_: ::
 
    $ snap install syncthing --candidate
    
@@ -123,7 +123,7 @@ Official net-p2p package: `syncthing <https://packages.gentoo.org/packages/net-p
 FreeBSD
 ~~~~~~~
 
-FreshPorts: `syncthing <http://www.freshports.org/net/syncthing>`__
+FreshPorts: `syncthing <https://www.freshports.org/net/syncthing>`__
 
 OpenBSD
 ~~~~~~~
@@ -133,7 +133,7 @@ Official ports: `syncthing <http://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/net/s
 OpenSUSE
 ~~~~~~~~
 
-Official packages: `syncthing <http://software.opensuse.org/package/syncthing>`__ and `syncthingtray <http://software.opensuse.org/package/syncthingtray>`__
+Official packages: `syncthing <https://software.opensuse.org/package/syncthing>`__ and `syncthingtray <https://software.opensuse.org/package/syncthingtray>`__
 
 Synology NAS (DSM)
 ~~~~~~~~~~~~~~~~~~
