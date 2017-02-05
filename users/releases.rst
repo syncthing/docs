@@ -37,7 +37,7 @@ Those running the candidate channel will update to this release candidate.
 During the next twelve days it receives testing "in the wild". Any new,
 serious issues that are discovered are fixed, and new release candidates
 "0.14.35-rc.2" etc are created as needed. These release candidates do not
-include any new features or non-essential bugfixes added to `master` in the
+include any new features or non-essential bugfixes added to ``master`` in the
 meantime.
 
 Once the release candidate is deemed stable, typically after twelve days, it
@@ -47,7 +47,7 @@ any serious issues were discovered, this release is exactly identical to the
 "-rc.1" release candidated twelve days prior.
 
 The cycle then restarts two days later with a new release candidate based on
-the current `master` branch.
+the current ``master`` branch.
 
 How to Choose
 -------------
