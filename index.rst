@@ -58,6 +58,7 @@ can use the headings in the left sidebar to navigate the site.
 
    Command Line Operation <users/syncthing>
    users/faq
+   users/releases
 
    Configuration <users/config>
    users/advanced
