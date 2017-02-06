@@ -554,7 +554,9 @@ progressUpdateIntervalS
     the GUI.
 
 symlinksEnabled
-    Whether to sync symlinks, if supported by the system.
+    Whether to sync symlinks, if supported by the system. Symlinks are supported
+    on all platforms except for Windows, where they are ignored. Syncthing does
+    not differentiate between different types of symlinks.
 
 limitBandwidthInLan
     Whether to apply bandwidth limits to devices in the same broadcast domain
