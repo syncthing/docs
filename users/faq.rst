@@ -56,9 +56,7 @@ The following may be synchronized or not, depending:
 
 -  File Permissions (When supported by file system. On Windows, only the
    read only bit is synchronized.)
--  Symbolic Links (When supported by the OS. On Windows Vista and up,
-   requires administrator privileges. Links are synced as is and are not
-   followed.)
+-  Symbolic Links (Except on Windows.)
 
 The following are *not* synchronized;
 
@@ -193,7 +191,7 @@ causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 Am I able to use nested Synthing folders?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Do not nest shared folders. This behaviour is in no way supported, 
+Do not nest shared folders. This behaviour is in no way supported,
 recommended or coded for in any way, and comes with many pitfalls.
 
 How do I rename/move a synced folder?
@@ -232,20 +230,20 @@ programs to achieve this such as rsync or Unison.
 When I do have two distinct Syncthing-managed folders on two hosts, how does Syncthing handle moving files between them?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Syncthing does not specially handle this case, and most files most likely get 
+Syncthing does not specially handle this case, and most files most likely get
 re-downloaded.
 
-In detail, the behavior depends on the scan order. If you have folder A and B, 
-and move files from A to B, if A gets scanned first, it will announce removal of 
-the files to others who will remove the files. As you rescan B, B will 
+In detail, the behavior depends on the scan order. If you have folder A and B,
+and move files from A to B, if A gets scanned first, it will announce removal of
+the files to others who will remove the files. As you rescan B, B will
 announce addition of new files, and other peers will have nowhere to get
 them from apart from re-downloading them.
 
-If B gets rescanned first, B will announce additions first, remote 
-peers will reconstruct the files (not rename, more like copy block by 
+If B gets rescanned first, B will announce additions first, remote
+peers will reconstruct the files (not rename, more like copy block by
 block) from A, and then as A gets rescanned remove the files from A.
 
-A workaround would be to copy first from A to B, rescan B, wait for B to 
+A workaround would be to copy first from A to B, rescan B, wait for B to
 rebuild on remote ends, and then delete from A.
 
 Is Syncthing my ideal backup application?
@@ -329,14 +327,14 @@ session, use this example,
 
     $ ssh -N -L 9090:127.0.0.1:8384 user@othercomputer.example.com
 
-If only your remote computer is Unix-like, 
+If only your remote computer is Unix-like,
 you can still access it with ssh from Windows.
 
 Under Windows 10 (64 bit) you can use the same ssh command if you install
 the Windows Subsystem for Linux.
 https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide
 
-Another Windows way to run ssh is to install gow. 
+Another Windows way to run ssh is to install gow.
 (Gnu On Windows) https://github.com/bmatzelle/gow
 
 The easiest way to install gow is with chocolatey.
