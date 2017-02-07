@@ -102,7 +102,6 @@ The following shows an example of the default configuration file (IDs will diffe
             <keepTemporariesH>24</keepTemporariesH>
             <cacheIgnoredFiles>false</cacheIgnoredFiles>
             <progressUpdateIntervalS>5</progressUpdateIntervalS>
-            <symlinksEnabled>true</symlinksEnabled>
             <limitBandwidthInLan>false</limitBandwidthInLan>
             <minHomeDiskFreePct>1</minHomeDiskFreePct>
             <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
@@ -184,13 +183,13 @@ The following child elements may exist:
 device
     These must have the ``id`` attribute and can have an ``introducedBy`` attribute,
     identifying the device that introduced us to share this folder with the given device.
-    If the original introducer unshares this folder with this device, our device will follow 
+    If the original introducer unshares this folder with this device, our device will follow
     and unshare the folder (subject to skipIntroductionRemovals being false on the introducer device).
-    All mentioned devices are those that will be sharing the folder in question. 
+    All mentioned devices are those that will be sharing the folder in question.
     Each mentioned device must have a separate ``device`` element later in the file.
     It is customary that the local device ID is included in all folders.
     Syncthing will currently add this automatically if it is not present in
-    the configuration file. 
+    the configuration file.
 
 minDiskFreePct
     The percentage of space that should be available on the disk this folder
@@ -309,9 +308,9 @@ introducer
 
 skipIntroductionRemovals
     Set to true if you wish to follow only introductions and not de-introductions.
-    For example, if this is set, we would not remove a device that we were introduced 
+    For example, if this is set, we would not remove a device that we were introduced
     to even if the original introducer is no longer listing the remote device as known.
-    
+
 introducedBy
     Defines which device has introduced us to this device. Used only for following de-introductions.
 
@@ -436,7 +435,6 @@ Options Element
         <keepTemporariesH>24</keepTemporariesH>
         <cacheIgnoredFiles>false</cacheIgnoredFiles>
         <progressUpdateIntervalS>5</progressUpdateIntervalS>
-        <symlinksEnabled>true</symlinksEnabled>
         <limitBandwidthInLan>false</limitBandwidthInLan>
         <minHomeDiskFreePct>1</minHomeDiskFreePct>
         <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
@@ -552,11 +550,6 @@ cacheIgnoredFiles
 progressUpdateIntervalS
     How often in seconds the progress of ongoing downloads is made available to
     the GUI.
-
-symlinksEnabled
-    Whether to sync symlinks, if supported by the system. Symlinks are supported
-    on all platforms except for Windows, where they are ignored. Syncthing does
-    not differentiate between different types of symlinks.
 
 limitBandwidthInLan
     Whether to apply bandwidth limits to devices in the same broadcast domain

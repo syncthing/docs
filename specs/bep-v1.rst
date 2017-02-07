@@ -384,9 +384,9 @@ Protocol Buffer Schema
     enum FileInfoType {
         FILE              = 0;
         DIRECTORY         = 1;
-        SYMLINK_FILE      = 2;
-        SYMLINK_DIRECTORY = 3;
-        SYMLINK_UNKNOWN   = 4;
+        SYMLINK_FILE      = 2 [deprecated = true];
+        SYMLINK_DIRECTORY = 3 [deprecated = true];
+        SYMLINK           = 4;
     }
 
     message BlockInfo {
@@ -422,11 +422,7 @@ operating system conventions. The combination of folder and name uniquely
 identifies each file in a cluster.
 
 The **type** field contains the type of the described item. The type is one
-of **file (0)**, **directory (1)**, **symlink to file (2)**, **symlink to
-directory (3)**, or **symlink to unknown target (4)**. The distinction
-between the various types of symlinks is not required on all operating
-systems - the implementation SHOULD nonetheless indicate the target type
-when possible.
+of **file (0)**, **directory (1)**, or **symlink (4)**.
 
 The **size** field contains the size of the file, in bytes. For directories
 and symlinks the size is zero.
