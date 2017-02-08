@@ -49,8 +49,8 @@ prevent the fallback behavior. For example::
 Caveats
 -------
 
-Synchting will use the ``http_proxy`` / ``https_proxy`` settings in combination with
-``all_proxy``. Proxys specified with http_ variants will be used behind the socks proxy.
+Syncthing will use the ``http_proxy`` / ``https_proxy`` settings in combination with
+``all_proxy``. Proxys specified with ``http_`` variants will be used behind the socks proxy.
 
 If this is not desired, make sure to undefine the ``http_proxy`` / ``https_proxy``
 variables for syncthing.
