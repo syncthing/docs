@@ -135,6 +135,7 @@ Syncthing can be configured to use specific relay servers (exclusively of the pu
 For example:
 
   relay://private-relay-1.example.com:443/?id=ITZRNXE-YNROGBZ-HXTH5P7-VK5NYE5-QHRQGE2-7JQ6VNJ-KZUEDIU-5PPR5AM
+
 The relay's device ID is output on start-up.
 
 Running on port 443 as an unprivileged user
