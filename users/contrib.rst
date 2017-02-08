@@ -181,6 +181,11 @@ Configuration management
 -  `puppet-syncthing <https://github.com/whefter/puppet-syncthing>`_
 -  `ansible-syncthing <https://github.com/le9i0nx/ansible-syncthing>`_
 
+Monitoring
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+- `munin-plugins-syncthing <https://github.com/daftaupe/munin-plugins-syncthing>`_
+
 Older, Possibly Unmaintained
 ----------------------------
 
