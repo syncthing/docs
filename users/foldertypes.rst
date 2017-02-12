@@ -46,8 +46,6 @@ A folder can be set in "receive-only mode" among the folder settings.
 In this mode, a device will never send any local updates to the cluster.
 It will only ever receive changes.
 
-Without the , it will simply ignore any local changes.
-
 If an existing file gets modified locally and the "Revert local changes" 
 flag is set, then it will automatically replace the file with the cluster 
 version on the next scan.
