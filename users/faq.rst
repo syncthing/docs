@@ -56,9 +56,7 @@ The following may be synchronized or not, depending:
 
 -  File Permissions (When supported by file system. On Windows, only the
    read only bit is synchronized.)
--  Symbolic Links (When supported by the OS. On Windows Vista and up,
-   requires administrator privileges. Links are synced as is and are not
-   followed.)
+-  Symbolic Links (Except on Windows.)
 
 The following are *not* synchronized;
 
@@ -190,6 +188,12 @@ from the user point of view. Moreover, if there's something that automatically
 causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 -...-sync-conflict`` files.
 
+Am I able to use nested Synthing folders?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Do not nest shared folders. This behaviour is in no way supported,
+recommended or coded for in any way, and comes with many pitfalls.
+
 How do I rename/move a synced folder?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -222,6 +226,25 @@ Does Syncthing support syncing between folders on the same system?
 No. Syncthing is not designed to sync locally and the overhead involved in
 doing so using Syncthing's method would be wasteful. There are better
 programs to achieve this such as rsync or Unison.
+
+When I do have two distinct Syncthing-managed folders on two hosts, how does Syncthing handle moving files between them?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syncthing does not specially handle this case, and most files most likely get
+re-downloaded.
+
+In detail, the behavior depends on the scan order. If you have folder A and B,
+and move files from A to B, if A gets scanned first, it will announce removal of
+the files to others who will remove the files. As you rescan B, B will
+announce addition of new files, and other peers will have nowhere to get
+them from apart from re-downloading them.
+
+If B gets rescanned first, B will announce additions first, remote
+peers will reconstruct the files (not rename, more like copy block by
+block) from A, and then as A gets rescanned remove the files from A.
+
+A workaround would be to copy first from A to B, rescan B, wait for B to
+rebuild on remote ends, and then delete from A.
 
 Is Syncthing my ideal backup application?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -304,14 +327,14 @@ session, use this example,
 
     $ ssh -N -L 9090:127.0.0.1:8384 user@othercomputer.example.com
 
-If only your remote computer is Unix-like, 
+If only your remote computer is Unix-like,
 you can still access it with ssh from Windows.
 
 Under Windows 10 (64 bit) you can use the same ssh command if you install
 the Windows Subsystem for Linux.
 https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide
 
-Another Windows way to run ssh is to install gow. 
+Another Windows way to run ssh is to install gow.
 (Gnu On Windows) https://github.com/bmatzelle/gow
 
 The easiest way to install gow is with chocolatey.
@@ -412,3 +435,21 @@ GitHub does not provide a single URL to automatically download the latest
 version. We suggest to use the GitHub API at
 https://api.github.com/repos/syncthing/syncthing/releases/latest and parsing
 the JSON response.
+
+
+How do I run Syncthing as a daemon process on Linux?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you're using systemd, runit, or upstart, we already ship examples, check
+https://github.com/syncthing/syncthing/tree/master/etc for example
+configurations.
+
+If however you're not using one of these tools, you have a couple of options.
+If your system has a tool called ``start-stop-daemon`` installed (that's the name
+of the command, not the package), look into the local documentation for that, it
+will almost certainly cover 100% of what you want to do.  If you don't have
+``start-stop-daemon``, there are a bunch of other software packages you could use
+to do this.  The most well known is called daemontools, and can be found in the
+standard package repositories for  almost every modern Linux distribution.
+Other popular tools with similar functionality include S6 and the aforementioned
+runit.

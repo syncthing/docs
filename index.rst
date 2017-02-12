@@ -58,10 +58,12 @@ can use the headings in the left sidebar to navigate the site.
 
    Command Line Operation <users/syncthing>
    users/faq
+   users/releases
 
    Configuration <users/config>
    users/advanced
    users/foldertypes
+   users/introducer
 
    users/syncing
 
@@ -95,7 +97,7 @@ can use the headings in the left sidebar to navigate the site.
    :maxdepth: 1
    :glob:
 
-   specs/index.rst
+   Introduction <specs/index>
    specs/*
 
 .. _`contribution guidelines`: https://github.com/syncthing/syncthing/blob/master/CONTRIBUTING.md

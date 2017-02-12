@@ -16,9 +16,6 @@ Examples include "Duplicate of #123", "Discovered to be configuration
 error", "Rendered moot by #123" and so on. We don't use the "invalid" or
 "wontfix" labels.
 
-android
-    Marks an issue as occurring on the Android platform only.
-
 bug
     The issue is a verified bug.
 
@@ -36,6 +33,10 @@ easy
 enhancement
     This is a new feature or an improvement of some kind, as
     opposed to a problem (bug).
+    
+not-our-bug
+    Rare and temporary label used only when we want to keep an issue
+    open for visibility, but the real problem is somewhere else.
 
 protocol
     This requires a change to the protocol.

@@ -1,13 +1,12 @@
 POST /rest/db/scan
 ==================
 
-Request immediate rescan of a folder, or a specific path within a folder.
-Takes the mandatory parameter `folder` (folder ID), an optional parameter
-``sub`` (path relative to the folder root) and an optional parameter ``next``. If
-``sub`` is omitted or empty, the entire folder is scanned for changes, otherwise
-only the given path (and children, in case it's a directory) is scanned. The
-``next`` argument delays Syncthing's automated rescan interval for a given
-amount of seconds.
+Request immediate scan. Takes the optional parameters ``folder`` (folder ID),
+``sub`` (path relative to the folder root) and ``next`` (time in seconds). If
+``folder`` is omitted or empty all folders are scanned. If ``sub`` is given,
+only this path (and children, in case it's a directory) is scanned. The ``next``
+argument delays Syncthing's automated rescan interval for a given amount of
+seconds.
 
 Requesting scan of a path that no longer exists, but previously did, is
 valid and will result in Syncthing noticing the deletion of the path in

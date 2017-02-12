@@ -45,3 +45,12 @@ prevent the fallback behavior. For example::
   ...
   [monitor] 11:33:13 INFO: Proxy settings detected
   [monitor] 11:33:13 INFO: Proxy fallback disabled
+
+Caveats
+-------
+
+Syncthing will use the ``http_proxy`` / ``https_proxy`` settings in combination with
+``all_proxy``. Proxys specified with ``http_`` variants will be used behind the socks proxy.
+
+If this is not desired, make sure to undefine the ``http_proxy`` / ``https_proxy``
+variables for syncthing.

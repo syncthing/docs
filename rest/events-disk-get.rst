@@ -1,8 +1,10 @@
 GET /rest/events/disk
 =====================
 
-Returns local disk events only that have occured.  These are events that occur
-when the scanner detects local file system change.
+Returns local disk events that occur when the scanner detects local file system
+changes (:ref:`local-change-detected`) or when files are pulled from a remote
+device. In addition it returns :ref:`ping` events, such that this request
+returns after a minute, at the latest.
 
 Optional GET parameters:
  - since (events starting after the given ID)

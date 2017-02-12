@@ -6,10 +6,11 @@ Synopsis
 
 ::
 
-    syncthing [-audit] [-browser-only] [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
-              [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>] [-no-browser] [-no-console]
-              [-no-restart] [-paths] [-paused] [-reset-database] [-reset-deltas] [-upgrade]
-              [-upgrade-check] [-upgrade-to=<url>] [-verbose] [-version]
+    syncthing [-audit] [-auditfile=<file|-|-->] [-browser-only] [-generate=<dir>]
+              [-gui-address=<address>] [-gui-apikey=<key>] [-home=<dir>] [-logfile=<filename>]
+              [-logflags=<flags>] [-no-browser] [-no-console] [-no-restart] [-paths] [-paused]
+              [-reset-database] [-reset-deltas] [-upgrade] [-upgrade-check] [-upgrade-to=<url>]
+              [-verbose] [-version]
 
 Description
 -----------
@@ -26,7 +27,11 @@ Options
 
 .. cmdoption:: -audit
 
-    Write events to audit file.
+    Write events to timestamped file ``audit-YYYYMMDD-HHMMSS.log``.
+
+.. cmdoption:: -auditfile=<file|-|-->
+
+    Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for audit events, rather than the timestamped default file name.
 
 .. cmdoption:: -generate=<dir>
 
@@ -34,12 +39,12 @@ Options
 
 .. cmdoption:: -gui-address=<address>
 
-    Override GUI address.
+    Override GUI listen address.
 
 .. cmdoption:: -home=<dir>
 
-    Set configuration directory. The default configuration directory is:
-    ``$HOME/.config/syncthing``.
+    Set configuration directory. The default configuration directory is
+    ``$HOME/.config/syncthing`` (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac) and ``%LOCALAPPDATA%\Syncthing`` (Windows).
 
 .. cmdoption:: -logfile=<filename>
 
@@ -70,7 +75,7 @@ Options
 
 .. cmdoption:: -no-restart
 
-    Do not restart; just exit.
+    Disable the Syncthing monitor process which handles restarts for some configuration changes, upgrades, crashes and also log file writing (stdout is still written).
 
 .. cmdoption:: -paths
 
@@ -212,11 +217,16 @@ STPERFSTATS
     Write running performance statistics to ``perf-$pid.csv``. Not supported on
     Windows.
 STDEADLOCK
-    Placeholder
+    Used for debugging internal deadlocks. Use only under direction of a
+    developer.
 STDEADLOCKTIMEOUT
-    Placeholder
+    Used for debugging internal deadlocks; sets debug sensitivity. Use only
+    under direction of a developer.
 STDEADLOCKTHRESHOLD
-    Placeholder
+    Used for debugging internal deadlocks; sets debug sensitivity. Use only
+    under direction of a developer.
+STNORESTART
+    Equivalent to the -no-restart argument. Disable the Syncthing monitor process which handles restarts for some configuration changes, upgrades, crashes and also log file writing (stdout is still written).
 STNOUPGRADE
     Disable automatic upgrades.
 STHASHING
