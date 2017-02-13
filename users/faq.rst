@@ -414,6 +414,23 @@ With the ``-audit`` option you can enable a persistent, detailed log of changes
 and most activities the daemon does, which contains a ``JSON`` formatted 
 sequence of events in the ``~/.config/syncthing/audit-_date_-_time_.log`` file.
 
+Does the audit log contain every change?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The audit log (and the ``Global Changes`` window) see the changes what your
+Syncthing see. When Syncthing is continuously connected it usually see every change
+happening, and see which nodes initiated the change. 
+When topology gets complex or when your node gets offline and reconnects 
+Syncthing synchronises with its neighbours: it gets the latest syncronised state 
+from the neighbour, which is the *result* of all the changes between the last 
+known state (before disconnect or network delay) and the current state at the 
+neighbour, and if there were updates, deletes, creates, conflicts, which were 
+overlapping we only see the *latest change* for a given file or directory (and 
+the node which did that latest change). When we connect to multiple neighbours 
+Syncthing decides which neighbor has the latest state, or if the states conflict 
+it initiates the conflict resolution process, in the end resulting an agreed-upon 
+latest state with all the neighbours.
+
 How do I upgrade Syncthing?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
