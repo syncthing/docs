@@ -431,7 +431,7 @@ The **permissions** field holds the common Unix permission bits. An
 implementation MAY ignore or interpret these as is suitable on the host
 operating system.
 
-The **modified_ns** time is expressed as the number of seconds since the Unix
+The **modified_s** time is expressed as the number of seconds since the Unix
 Epoch (1970-01-01 00:00:00 UTC). The **modified_ns** field holds the
 nanosecond part of the modification time.
 
