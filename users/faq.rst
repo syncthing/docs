@@ -405,6 +405,15 @@ creates ``syncthing.log`` in Syncthing's home directory (run ``syncthing
 -paths`` to see where that is). Command line option ``-logfile`` can be used
 to specify a user-defined logfile.
 
+How can I view the history of changes?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The default web GUI contains a ``Global Changes`` button at the bottom which
+displays the ongoing changes since the last (re)start of the daemon. 
+With the ``-audit`` option you can enable a persistent, detailed log of changes
+and most activities the daemon does, which contains a ``JSON`` formatted 
+sequence of events in the ``~/.config/syncthing/audit-_date_-_time_.log`` file.
+
 How do I upgrade Syncthing?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
