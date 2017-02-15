@@ -153,6 +153,12 @@ RockStor
 
 `Docker container <http://rockstor.com/docs/docker-based-rock-ons/syncthing.html>`_ and `registry entry <https://github.com/rockstor/rockon-registry/blob/master/syncthing.json>`_
 
+ClearOS / WikiSuite
+~~~~~~~~~~~~~~~~~~~~
+
+Syncthing is part of `WikiSuite <http://wikisuite.org/>`_, and thus packaged for `ClearOS <http://wikisuite.org/How-to-install-Syncthing-on-ClearOS>`_.
+
+
 
 Integrations
 ------------
