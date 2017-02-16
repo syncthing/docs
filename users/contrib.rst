@@ -192,6 +192,16 @@ Monitoring
 
 - `munin-plugins-syncthing <https://github.com/daftaupe/munin-plugins-syncthing>`_
 
+Resolving conflicts
+~~~~~~~~~~~~~~~~~~~
+
+- `syncthing-resolve-conflicts <https://github.com/dschrempf/syncthing-resolve-conflicts>`_
+
+  A small bash script that handles synchronization conflicts in text
+  files that may pop up when using Syncthing.  It is inspired by the
+  `pacdiff` utility from Arch Linux.  A diff utility can be used to
+  merge the files and keep them up to date.
+  
 Older, Possibly Unmaintained
 ----------------------------
 
