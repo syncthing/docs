@@ -15,7 +15,7 @@ by ``lgtm`` consensus.
 
 In general do restrict messages addressed to @st-review to the described
 commands and do not mix it with general purpose conversation - this might
-effect in unexpected side effects.
+cause unexpected side effects.
 
 By "lgtm"
 ~~~~~~~~~
