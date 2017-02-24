@@ -50,13 +50,14 @@ Windows
 
   Wrapper including a small interface to configure start on boot and puts Syncthing into the systray instead of a console window.
 
-OS X
-~~~~
+Mac OS
+~~~~~~ 
 
 - `syncthing-macosx <https://github.com/xor-gate/syncthing-macosx>`_
 
 - `SyncthingBar <https://github.com/nhojb/SyncthingBar>`_
 
+- `BitBar plugin <https://github.com/sebw/bitbar-plugins>`_
 
 Packages and Bundlings
 ----------------------
