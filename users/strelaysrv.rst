@@ -175,10 +175,10 @@ Firewall Considerations
 
 The relay server listens on two ports by default.  One for data connections and the other
 for providing public statistics at http://relays.syncthing.net/.  The firewall, such as
-``iptables``, must permit incoming TCP connetions to the following ports:
+``iptables``, must permit incoming TCP connections to the following ports:
 
-* Data port:  ``22067/tcp`` overriden with ``-listen`` and advertised with ``-ext-address``
-* Status port: ``22070/tcp`` overriden with ``-status-srv`` 
+* Data port:  ``22067/tcp`` overridden with ``-listen`` and advertised with ``-ext-address``
+* Status port: ``22070/tcp`` overridden with ``-status-srv`` 
 
 Runtime ``iptables`` rules to allow access to the default ports::
 

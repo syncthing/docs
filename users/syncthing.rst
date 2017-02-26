@@ -230,8 +230,8 @@ STNORESTART
 STNOUPGRADE
     Disable automatic upgrades.
 STHASHING
-    Specifiy which hashing package to use. Defaults to automatic based on
-    peformance. Specify "minio" (compatibility) or "standard" for the default Go implementation.
+    Specify which hashing package to use. Defaults to automatic based on
+    performance. Specify "minio" (compatibility) or "standard" for the default Go implementation.
 GOMAXPROCS
     Set the maximum number of CPU cores to use. Defaults to all available CPU
     cores.
