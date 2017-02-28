@@ -188,7 +188,7 @@ from the user point of view. Moreover, if there's something that automatically
 causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 -...-sync-conflict`` files.
 
-Am I able to use nested Synthing folders?
+Am I able to use nested Syncthing folders?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Do not nest shared folders. This behaviour is in no way supported,
@@ -373,12 +373,12 @@ I don't like the GUI or the theme. Can it be changed?
 You can change the theme in the settings. Syncthing ships with other themes
 than the default.
 
-If you want a custom theme or a completly different GUI, you can add your
+If you want a custom theme or a completely different GUI, you can add your
 own.
 By default, Syncthing will look for a directory ``gui`` inside the Syncthing
 home folder. To change the directory to look for themes, you need to set the
 STGUIASSETS environment variable. To get the concrete directory, run
-syncthing with the ``-paths`` parameter. It will print all the relevent paths,
+syncthing with the ``-paths`` parameter. It will print all the relevant paths,
 including the "GUI override directory".
 
 To add e.g. a red theme, you can create the file ``red/assets/css/theme.css``

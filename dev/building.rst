@@ -6,7 +6,7 @@ Building Syncthing
 .. note::
     You probably only need to go through the build process if you are going
     to do development on Syncthing or if you need to do a special packaging
-    of it. For all other purposes we recommend using the the official binary
+    of it. For all other purposes we recommend using the official binary
     releases instead.
 
 Branches and Tags

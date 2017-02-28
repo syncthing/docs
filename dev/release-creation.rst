@@ -73,7 +73,7 @@ Find the new tag on the GitHub release page. It'll show you the tag message befo
 Sign and upload the archives
 ----------------------------
 
-The release keys etc are hosted on secure.syncthing.net under he user account `release`. SSH there and become the ``release`` user.
+The release keys etc are hosted on secure.syncthing.net under the user account `release`. SSH there and become the ``release`` user.
 
 .. code-block:: bash
 

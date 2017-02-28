@@ -104,7 +104,7 @@ requires a rebuild and the release signatures / hashes are different. If you
 are on the candidate channel, your Syncthing will "upgrade" from
 0.14.36-rc.1 to 0.14.36 when we make the release. This is normal.
 
-What's with the the "twelve days" thing?
+What's with the "twelve days" thing?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We typically release every two weeks. Giving a release candidate twelve days
