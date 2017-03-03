@@ -46,6 +46,21 @@ Nginx
       proxy_pass              http://localhost:8384/;
     }
 
+Caddy
+~~~~~
+
+.. code-block:: nginx
+
+    proxy /syncthing localhost:8384 {
+        transparent
+    }
+    
+    timeouts {
+        read none
+        write none
+        header none
+    }
+
 Folder Configuration
 --------------------
 
