@@ -469,7 +469,7 @@ database update, thus forming a sequence number over database updates.
 The **blocks** list contains the size and hash for each block in the file.
 Each block represents a 128 KiB slice of the file, except for the last block
 which may represent a smaller amount of data. The block list is empty for
-files and symlinks.
+directories and symlinks.
 
 The **symlink_target** field contains the symlink target, for entries of
 symlink type. It is empty for all other entry types.
