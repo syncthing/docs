@@ -44,6 +44,9 @@ Nginx
       proxy_set_header        X-Forwarded-Proto $scheme;
 
       proxy_pass              http://localhost:8384/;
+
+      proxy_read_timeout      600s;
+      proxy_send_timeout      600s;
     }
 
 Folder Configuration
