@@ -187,6 +187,7 @@ Configuration management
 
 -  `puppet-syncthing <https://github.com/whefter/puppet-syncthing>`_
 -  `ansible-syncthing <https://github.com/le9i0nx/ansible-syncthing>`_
+-  Command line interface: `syncthingmanager <https://github.com/classicsc/syncthingmanager>`_
 
 Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~
