@@ -9,13 +9,17 @@ Description
 Syncthing provides a simple long polling interface for exposing events from the
 core utility towards a GUI.
 
-To receive events, perform a HTTP GET of ``/rest/events?since=<lastSeenID>``,
-where ``<lastSeenID>`` is the ID of the last event you've already seen or zero.
-Syncthing returns a JSON encoded array of event objects, starting at the event
-just after the one with the last seen ID. There is a limit to the number of
-events buffered, so if the rate of events is high or the time between polling
-calls is long some events might be missed. This can be detected by noting a
-discontinuity in the event IDs.
+To receive events, perform a HTTP GET of ``/rest/events`` or
+``/rest/events/disk``. The latter returns only :ref:`local-change-detected` and
+:ref:`local-change-detected` events, the former all other events.
+
+The optional parameter ``since=<lastSeenID>`` sets the ID of the last event
+you've already seen. Syncthing returns a JSON encoded array of event objects,
+starting at the event just after the one with this last seen ID. The default
+value is 0, which returns all events. There is a limit to the number of events
+buffered, so if the rate of events is high or the time between polling calls is
+long some events might be missed. This can be detected by noting a discontinuity
+in the event IDs.
 
 If no new events are produced since ``<lastSeenID>``, the HTTP call blocks and
 waits for new events to happen before returning. By default it times out after
