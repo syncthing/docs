@@ -1,4 +1,4 @@
-.. remote-change-detected:
+.. _remote-change-detected:
 
 RemoteChangeDetected
 -------------------

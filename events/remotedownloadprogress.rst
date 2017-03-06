@@ -3,10 +3,10 @@
 Remote Download Progress
 ------------------------
 
-This event is emitted when a :ref:`DownloadProgress` message is
+This event is emitted when a :ref:`download-progress` message is
 received. It returns the map ``data`` of filenames to count of
 downloaded blocks. The files in questions are currently being
-downloaded on the remote ``device`` and belong to ``folder``. 
+downloaded on the remote ``device`` and belong to ``folder``.
 
 .. code-block:: json
 
