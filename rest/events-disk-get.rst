@@ -3,11 +3,11 @@ GET /rest/events/disk
 
 Returns local disk events that occur when the scanner detects local file system
 changes (:ref:`local-change-detected`) or when files are pulled from a remote
-device. In addition it returns :ref:`ping` events, such that this request
-returns after a minute, at the latest.
+device (:ref:`remote-change-detected`).
 
 Optional GET parameters:
  - since (events starting after the given ID)
+ - timeout (fail after given seconds if no event is available, 2s by default)
  - limit (return last x number of events)
 
 .. code-block:: bash

@@ -1,5 +1,3 @@
-.. remote-download-progress:
-
 Remote Download Progress
 ------------------------
 

@@ -1,5 +1,3 @@
-.. login-attempt:
-
 Login Attempt
 -------------
 

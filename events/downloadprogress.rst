@@ -1,4 +1,4 @@
-.. download-progress:
+.. _download-progress:
 
 DownloadProgress
 ----------------
