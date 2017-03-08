@@ -188,6 +188,10 @@ Linux
 On Ubuntu-like systems
 ~~~~~~~~~~~~~~~~~~~~~~
 
+For the official Debian/Ubuntu Packages go to:
+https://apt.syncthing.net
+
+
 #. Launch the program 'Startup Applications'.
 #. Click 'Add'.
 #. Fill out the form:
