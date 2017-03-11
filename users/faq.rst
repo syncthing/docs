@@ -408,16 +408,16 @@ to specify a user-defined logfile.
 How can I view the history of changes?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The default web GUI contains a ``Global Changes`` button at the bottom which
-displays the ongoing changes since the last (re)start of Syncthing. 
-With the ``-audit`` option you can enable a persistent, detailed log of changes
-and most activities, which contains a ``JSON`` formatted 
-sequence of events in the ``~/.config/syncthing/audit-_date_-_time_.log`` file.
+The web GUI contains a ``Global Changes`` button under the device list which
+displays changes since the last (re)start of Syncthing. With the ``-audit``
+option you can enable a persistent, detailed log of changes and most
+activities, which contains a ``JSON`` formatted  sequence of events in the
+``~/.config/syncthing/audit-_date_-_time_.log`` file.
 
 Does the audit log contain every change?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The audit log (and the ``Global Changes`` window) see the changes that your
+The audit log (and the ``Global Changes`` window) sees the changes that your
 Syncthing sees. When Syncthing is continuously connected it usually sees every change
 happening immediately and thus knows which node initiated the change. 
 When topology gets complex or when your node reconnects after some time offline, 
