@@ -1,7 +1,7 @@
 Login Attempt
 -------------
 
-When authentication is enable for the GUI, this event is emitted on every
+When authentication is enabled for the GUI, this event is emitted on every
 login attempt. If either the username or password are incorrect, ``success``
 is false and in any case the given username is returned.
 
