@@ -55,15 +55,15 @@ Options
 
     Use UPnP/NAT-PMP to acquire external port mapping
 
-..cmdoption:: -nat-lease=<duration>
+.. cmdoption:: -nat-lease=<duration>
 
     NAT lease length in minutes (default 60)
 
-..cmdoption:: -nat-renewal=<duration>
+.. cmdoption:: -nat-renewal=<duration>
 
     NAT renewal frequency in minutes (default 30)
 
-..cmdoption:: -nat-timeout=<duration>
+.. cmdoption:: -nat-timeout=<duration>
 
     NAT discovery timeout in seconds (default 10)
 
