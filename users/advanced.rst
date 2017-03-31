@@ -26,5 +26,13 @@ Per Folder Settings
    :maxdepth: 1
    :glob:
 
-   ../advanced/device-*
    ../advanced/folder-*
+
+Per Device Settings
+-------------------
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   ../advanced/device-*
