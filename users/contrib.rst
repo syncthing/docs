@@ -101,9 +101,8 @@ Syncthing is included in `arkOS <https://arkos.io/>`_.
 Docker
 ~~~~~~
 
-- `Dockerfiles <https://github.com/firecat53/dockerfiles>`_: `Syncthing <https://github.com/firecat53/dockerfiles/tree/master/syncthing>`__ and `Syncthing Discovery Server <https://github.com/firecat53/dockerfiles/tree/master/syncthing\_discovery>`_
+- Dockerfiles for `Syncthing <https://github.com/firecat53/dockerfiles/tree/master/syncthing>`_ and `Syncthing Discovery Server <https://github.com/firecat53/dockerfiles/tree/master/syncthing_discovery>`_. Latest binary releases used for both.
 
-  Runs and/or builds the binaries from source.
 - `docker-syncthing <https://github.com/joeybaker/docker-syncthing>`_
 
   A fully baked docker container that allows custom config and will keep your
