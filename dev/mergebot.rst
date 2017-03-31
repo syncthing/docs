@@ -10,7 +10,12 @@ is currently called ``st-review``.
 Merging a PR
 ------------
 
-There are two ways to merge a pull request - by direct ``merge`` command and by ``lgtm`` consensus.
+There are two ways to merge a pull request - by direct ``merge`` command and
+by ``lgtm`` consensus.
+
+You should restrict messages addressed to @st-review to the described
+commands and avoid mixing them with general purpose conversation - this might
+cause unexpected side effects.
 
 By "lgtm"
 ~~~~~~~~~
