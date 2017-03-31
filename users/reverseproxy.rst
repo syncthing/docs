@@ -49,12 +49,12 @@ Nginx
 Caddy
 ~~~~~
 
-.. code-block:: nginx
+.. code-block:: none
 
     proxy /syncthing localhost:8384 {
         transparent
     }
-    
+
     timeouts {
         read none
         write none
