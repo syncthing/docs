@@ -49,6 +49,21 @@ Nginx
       proxy_send_timeout      600s;
     }
 
+Caddy
+~~~~~
+
+.. code-block:: none
+
+    proxy /syncthing localhost:8384 {
+        transparent
+    }
+
+    timeouts {
+        read none
+        write none
+        header none
+    }
+
 Folder Configuration
 --------------------
 
