@@ -26,4 +26,5 @@ Per Folder Settings
    :maxdepth: 1
    :glob:
 
+   ../advanced/device-*
    ../advanced/folder-*
