@@ -1,3 +1,5 @@
+.. _download-progress:
+
 DownloadProgress
 ----------------
 

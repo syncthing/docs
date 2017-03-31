@@ -446,7 +446,7 @@ The ``options`` element contains all other global configuration options.
 
 listenAddress
     The listen address for incoming sync connections. See
-    `Listen Addresses`_ for allowed syntax.
+    :ref:`listen-addresses` for allowed syntax.
 
 globalAnnounceServer
     A URI to a global announce (discovery) server, or the word ``default`` to
@@ -582,6 +582,8 @@ overwriteRemoteDeviceNamesOnConnect
 tempIndexMinBlocks
     When exchanging index information for incomplete transfers, only take
     into account files that have at least this many blocks.
+
+.. _listen-addresses:
 
 Listen Addresses
 ^^^^^^^^^^^^^^^^

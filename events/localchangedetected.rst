@@ -4,8 +4,9 @@ LocalChangeDetected
 -------------------
 
 Generated upon scan whenever the local disk has discovered an updated file from the
-previous scan.  This does NOT include events that are discovered and copied from
-other devices, only files that were changed on the local filesystem.
+previous scan.  This does *not* include events that are discovered and copied from
+other devices (:ref:`remote-change-detected`), only files that were changed on the
+local filesystem.
 
 .. code-block:: json
 
