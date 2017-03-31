@@ -1,7 +1,7 @@
 .. _remote-change-detected:
 
 RemoteChangeDetected
--------------------
+--------------------
 
 Generated upon scan whenever a file is locally updated due to a remote change.
 Files that are updated locally produce a :ref:`local-change-detected` event.
