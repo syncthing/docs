@@ -77,9 +77,11 @@ Snap
 
 On any of the `Linux distributions that support snaps <https://snapcraft.io/docs/core/install>`_: ::
 
+   $ snap install syncthing
+
+If you want to help testing the upcoming release, and get the newer features earlier, you can install the snap from the candidate channel:
+
    $ snap install syncthing --candidate
-   
-(Note that this is an experimental and unstable release, at the moment)
 
 CentOS
 ~~~~~~~~~~~~~~~
