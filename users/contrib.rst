@@ -77,9 +77,7 @@ Snap
 
 On any of the `Linux distributions that support snaps <https://snapcraft.io/docs/core/install>`_: ::
 
-   $ snap install syncthing --candidate
-   
-(Note that this is an experimental and unstable release, at the moment)
+   $ snap install syncthing
 
 CentOS
 ~~~~~~~~~~~~~~~
