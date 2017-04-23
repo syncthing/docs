@@ -28,9 +28,9 @@ used is always displayed on the console when starting up.
 You can change the port number to something else if you prefer, keeping in
 mind the following restrictions:
 
- - You can use port numbers in the unprivileged range, 1024 to 65535.
+- You can use port numbers in the unprivileged range, 1024 to 65535.
 
- - The port should not already be used by something else.
+- The port should not already be used by something else.
 
 Note that changing the port number is a somewhat dangerous operation. If the
 port number you select is unusuable for whatever reason, Syncthing will not
@@ -41,12 +41,12 @@ means of access as well.
 
 To use a port number lower than 1024, you will need to:
 
- - Ensure that Syncthing has the required privilege to open the port. How to
-   accomplish this depends on your operating system - please refer to the
-   relevant operation system documentation. Keep in mind that Syncthing should
-   not, in general, run as a privileged user (``root``, ``SYSTEM``, etc).
+- Ensure that Syncthing has the required privilege to open the port. How to
+  accomplish this depends on your operating system - please refer to the
+  relevant operation system documentation. Keep in mind that Syncthing should
+  not, in general, run as a privileged user (``root``, ``SYSTEM``, etc).
 
- - Use the advanced config editor or edit the configuration file to set the
-   port number.
+- Use the advanced config editor or edit the configuration file to set the
+  port number.
 
 We do not recommend using a port number lower than 1024.
