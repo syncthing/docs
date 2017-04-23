@@ -64,6 +64,7 @@ can use the headings in the left sidebar to navigate the site.
    users/advanced
    users/foldertypes
    users/introducer
+   users/guilisten
 
    users/syncing
 
