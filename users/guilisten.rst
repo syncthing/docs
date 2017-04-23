@@ -4,13 +4,13 @@ The GUI Listen Address
 ======================
 
 The GUI (and, together with it, the REST API) listens on a single TCP port
-for HTTP and HTTPS connections. By default this port is ``127.0.0.1:8443``.
+for HTTP and HTTPS connections. By default this address is ``127.0.0.1:8443``.
 The ``127.0.0.1`` part means "localhost" which means it only listens for
 connections from the same computer Syncthing is running on. This is a
 reasonably safe default as it means you need to be logged in on the computer
 to access the GUI - it cannot be accessed from the network.
 
-To allow access from the network, change the listen port to
+To allow access from the network, change the listen address to
 ``0.0.0.0:8443``, where "0.0.0.0" means roughly "anywhere". You should then
 also set a username and password for authentication and check the option to
 use HTTPS. You are otherwise, potentially, opening up your Syncthing
