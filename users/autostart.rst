@@ -243,7 +243,7 @@ How to set up a system service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. Create the user who should run the service, or choose an existing one.
-#. Copy the ``Syncthing/etc/system/syncthing@.service`` file into the
+#. Copy the ``Syncthing/etc/linux-systemd/system/syncthing@.service`` file into the
    `load path of the system instance
    <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
 #. Enable and start the service. Replace "myuser" with the actual Syncthing
@@ -278,6 +278,10 @@ subcommand. To check the status of a system service::
 To check the status of a user service::
 
     systemctl --user status syncthing.service
+    
+**Note:** Running Syncthing as a system service expects the executable to be at: ``/usr/bin/syncthing``, so (at least) make a symbolic link to the executable from that location should it fail to start and the journal states it can not find the executable at that location::
+
+    ln -s /Syncthing/syncthing (on Debian deratives)
 
 Using the journal
 ^^^^^^^^^^^^^^^^^
