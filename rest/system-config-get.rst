@@ -24,8 +24,10 @@ Returns the current configuration.
               "autoNormalize": true,
               "minDiskFreePct": 1,
               "versioning": {
-                "type": "",
-                "params": {}
+                "type": "simple",
+                "params": {
+                  "keep": "5"
+                }
               },
               "copiers": 0,
               "pullers": 0,
@@ -96,7 +98,6 @@ Returns the current configuration.
             "keepTemporariesH": 24,
             "cacheIgnoredFiles": false,
             "progressUpdateIntervalS": 5,
-            "symlinksEnabled": true,
             "limitBandwidthInLan": false,
             "minHomeDiskFreePct": 1,
             "releasesURL": "https://upgrades.syncthing.net/meta.json",
