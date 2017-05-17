@@ -82,10 +82,10 @@ manner. This means that renaming a large file will not cause a retransmission of
 that file. Additionally, appending data to existing large files should be
 handled efficiently as well.
 
-Temporary files are used to store partial data downloaded from other devices.
-They are automatically removed whenever a file transfer has been completed or
-after the configured amount of time which is set in the configuration file (24
-hours by default).
+:ref:`Temporary files <temporary-files>` are used to store partial data
+downloaded from other devices. They are automatically removed whenever a file
+transfer has been completed or after the configured amount of time which is set
+in the configuration file (24 hours by default).
 
 Why is the sync so slow?
 ~~~~~~~~~~~~~~~~~~~~~~~~
