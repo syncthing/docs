@@ -68,6 +68,8 @@ synchronize the file. The block lists are compared to build a list of needed
 blocks, which are then requested from the network or copied locally, as
 described above.
 
+.. _temporary-files:
+
 Temporary Files
 ---------------
 
