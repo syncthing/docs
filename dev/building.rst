@@ -60,7 +60,7 @@ Building (Unix)
     $ go run build.go
 
 Unless something goes wrong, you will have a ``syncthing`` binary built
-and ready in ``~/src/github.com/syncthing/syncthing/bin``.
+and ready in ``$GOPATH/src/github.com/syncthing/syncthing/bin``.
 
 Building (Windows)
 ------------------
@@ -84,7 +84,7 @@ Building (Windows)
     > go run build.go
 
 Unless something goes wrong, you will have a ``syncthing.exe`` binary
-built and ready in ``c:\src\github.com\syncthing\syncthing\bin``.
+built and ready in ``%GOPATH%\src\github.com\syncthing\syncthing\bin``.
 
 Subcommands and Options
 -----------------------
