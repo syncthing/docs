@@ -47,18 +47,16 @@ Building (Unix)
     # This should output "go version go1.8" or higher.
     $ go version
 
-    # Go is particular about file locations; use this path unless you know very
-    # well what you're doing.
-    $ mkdir -p ~/src/github.com/syncthing
-    $ cd ~/src/github.com/syncthing
-    # Note that if you are building from a source code archive, you need to
-    # rename the directory from syncthing-XX.YY.ZZ to syncthing
-    $ git clone https://github.com/syncthing/syncthing
+    # If you are building from a source code archive you can skip the
+    # next step, all you need to do is extract all the files to 
+    # $GOPATH/src/github.com/syncthing/syncthing
+
+    $ go get github.com/syncthing/syncthing
+    # Ignore the warning about no buildable Go src files, we'll build them
+    # manually.
 
     # Now we have the source. Time to build!
-    $ cd syncthing
-
-    # You should be inside ~/src/github.com/syncthing/syncthing right now.
+    $ cd $GOPATH/src/github.com/syncthing/syncthing
     $ go run build.go
 
 Unless something goes wrong, you will have a ``syncthing`` binary built
@@ -73,16 +71,16 @@ Building (Windows)
     # This should output "go version go1.8" or higher.
     > go version
 
-    # Go is particular about file locations; use this path unless you know very
-    # well what you're doing.
-    > mkdir c:\src\github.com\syncthing
-    > cd c:\src\github.com\syncthing
-    # Note that if you are building from a source code archive, you need to
-    # rename the directory from syncthing-XX.YY.ZZ to syncthing
-    > git clone https://github.com/syncthing/syncthing
+    # If you are building from a source code archive you can skip the
+    # next step, all you need to do is extract all the files to 
+    # %GOPATH%\src\github.com\syncthing\syncthing
+
+    > go get github.com/syncthing/syncthing
+    # Ignore the warning about no buildable Go src files, we'll build them
+    # manually.
 
     # Now we have the source. Time to build!
-    > cd syncthing
+    > cd %GOPATH%\src\github.com\syncthing\syncthing
     > go run build.go
 
 Unless something goes wrong, you will have a ``syncthing.exe`` binary
