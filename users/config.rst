@@ -52,7 +52,7 @@ The following shows an example of the default configuration file (IDs will diffe
     <configuration version="14">
         <folder id="zj2AA-q55a7" label="Default Folder (zj2AA-q55a7)" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" ignorePerms="false" autoNormalize="true">
             <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
-            <minDiskFreePct>1</minDiskFreePct>
+            <minDiskFree unit="%">1</minDiskFree>
             <versioning></versioning>
             <copiers>0</copiers>
             <pullers>0</pullers>
@@ -103,7 +103,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <cacheIgnoredFiles>false</cacheIgnoredFiles>
             <progressUpdateIntervalS>5</progressUpdateIntervalS>
             <limitBandwidthInLan>false</limitBandwidthInLan>
-            <minHomeDiskFreePct>1</minHomeDiskFreePct>
+            <minHomeDiskFree unit="%">1</minHomeDiskFree>
             <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
@@ -126,7 +126,7 @@ Folder Element
 
     <folder id="zj2AA-q55a7" label="Default Folder (zj2AA-q55a7)" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" ignorePerms="false" autoNormalize="true" ro="false">
         <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR"></device>
-        <minDiskFreePct>1</minDiskFreePct>
+        <minDiskFree unit="%">1</minDiskFree>
         <versioning></versioning>
         <copiers>0</copiers>
         <pullers>0</pullers>
@@ -191,10 +191,10 @@ device
     Syncthing will currently add this automatically if it is not present in
     the configuration file.
 
-minDiskFreePct
-    The percentage of space that should be available on the disk this folder
-    resides. The folder will be stopped when the percentage of free space goes
-    below the threshold. Set to zero to disable.
+minDiskFree
+    The minimum required free space that should be available on the disk this folder
+    resides. The folder will be stopped when the value drops below the threshold. Accepted units are
+    ``%``, ``kB``, ``MB``, ``GB`` and ``TB``. Set to zero to disable.
 
 versioning
     Specifies a versioning configuration.
@@ -436,7 +436,7 @@ Options Element
         <cacheIgnoredFiles>false</cacheIgnoredFiles>
         <progressUpdateIntervalS>5</progressUpdateIntervalS>
         <limitBandwidthInLan>false</limitBandwidthInLan>
-        <minHomeDiskFreePct>1</minHomeDiskFreePct>
+        <minHomeDiskFree unit="%">1</minHomeDiskFree>
         <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
         <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
@@ -567,9 +567,10 @@ pingTimeoutS
 pingIdleTimeS
     Ping interval in seconds. Don't change it unless you feel it's necessary.
 
-minHomeDiskFreePct
-    The percentage of space that should be available on the partition holding
-    the configuration and index.
+minHomeDiskFree
+    The minimum required free space that should be available on the the 
+    partition holding the configuration and index. Accepted units are ``%``, ``kB``,
+    ``MB``, ``GB`` and ``TB``.
 
 releasesURL
     The URL from which release information is loaded, for automatic upgrades.
