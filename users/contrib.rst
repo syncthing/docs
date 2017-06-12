@@ -83,10 +83,12 @@ If you want to help testing the upcoming release, and get the newer features ear
 
    $ snap install syncthing --candidate
 
-CentOS
+Fedora / CentOS
 ~~~~~~~~~~~~~~~
 
-Unofficial `RPM package of Syncthing <https://github.com/mlazarov/syncthing-centos>`_
+Unofficial `RPM package of Syncthing <https://github.com/mlazarov/syncthing-centos>`_  
+
+Unofficial `RPM repo of Syncthing <https://copr.fedorainfracloud.org/coprs/daftaupe/syncthing/>`_ (`sources <https://github.com/daftaupe/syncthing-rpms>`_)
 
 ArchLinux
 ~~~~~~~~~
