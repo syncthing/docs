@@ -591,6 +591,10 @@ Listen Addresses
 
 The following address types are accepted in sync protocol listen addresses:
 
+Default listen addresses (``default``)
+    This is equivalent to ``tcp://0.0.0.0:22000`` and
+    ``dynamic+https://relays.syncthing.net/endpoint``.
+
 TCP wildcard and port (``tcp://0.0.0.0:22000``, ``tcp://:22000``)
     These are equivalent and will result in Syncthing listening on all
     interfaces, IPv4 and IPv6, on the specified port.
