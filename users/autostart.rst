@@ -7,7 +7,7 @@ Starting Syncthing Automatically
 Jump to configuration for your system:
 
 - `Windows <#windows>`__
-- `Mac OS X <#mac-os-x>`__
+- `macOS <#macos>`__
 - `Linux <#linux>`__
 
 
@@ -150,7 +150,7 @@ by a sysadmin who knows enough to understand the security implications.
 #. Start the service via ``sc start syncthing`` in the Command Prompt.
 #. Connect to the Syncthing UI, enable HTTPS, and set a secure username and password.
 
-Mac OS X
+macOS
 --------
 
 Using `homebrew <http://brew.sh>`__
@@ -166,7 +166,7 @@ Download and extract Syncthing for Mac:
 https://github.com/syncthing/syncthing/releases/latest.
 
 #. Copy the syncthing binary (the file you would open to launch
-   Syncthing) into a directory called ``bin`` in your home directory i.e. into /home/<username>/bin. If
+   Syncthing) into a directory called ``bin`` in your home directory i.e. into /Users/<username>/bin. If
    "bin" does not exist, create it.
 #. Open ``syncthing.plist`` located in /etc/macosx-launchd. Replace the four occurrences of /Users/USERNAME with your actual home directory location.
 #. Copy the ``syncthing.plist`` file to ``~/Library/LaunchAgents``. If
