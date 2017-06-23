@@ -195,7 +195,7 @@ Configuration management
 Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- `munin-plugins-syncthing <https://github.com/daftaupe/munin-plugins-syncthing>`_
+- `munin-syncthing <https://github.com/daftaupe/munin-syncthing>`_
 
 Resolving conflicts
 ~~~~~~~~~~~~~~~~~~~
