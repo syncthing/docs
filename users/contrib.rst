@@ -52,7 +52,7 @@ Windows
 
 - `Windows Syncthing Installer <https://github.com/sodacode/Windows-Syncthing-Installer>`_
 
-  Minimalist installer to the %appdata% directory and will autostart upon boot.
+  Minimalist installer to the `appdata` directory and will autostart upon boot.
 
 Mac OS
 ~~~~~~ 
