@@ -50,6 +50,10 @@ Windows
 
   Wrapper including a small interface to configure start on boot and puts Syncthing into the systray instead of a console window.
 
+- `Windows Syncthing Installer <https://github.com/sodacode/Windows-Syncthing-Installer>`_
+
+  Minimalist installer to the %appdata% directory and will autostart upon boot.
+
 Mac OS
 ~~~~~~ 
 
@@ -218,7 +222,6 @@ Older, Possibly Unmaintained
 
 -  https://github.com/akissa/pysyncthing
 -  https://github.com/retgoat/syncthing-ruby
--  https://github.com/sodacode/Windows-Syncthing-Installer
 -  https://github.com/gutenye/syncthing-kindle
 -  https://github.com/m0ppers/syncthing-bar (OSX 10.10 only)
 -  https://github.com/graboluk/stiko
