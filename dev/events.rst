@@ -11,7 +11,7 @@ core utility towards a GUI.
 
 To receive events, perform a HTTP GET of ``/rest/events`` or
 ``/rest/events/disk``. The latter returns only :ref:`local-change-detected` and
-:ref:`local-change-detected` events, the former all other events.
+:ref:`remote-change-detected` events, the former all other events.
 
 The optional parameter ``since=<lastSeenID>`` sets the ID of the last event
 you've already seen. Syncthing returns a JSON encoded array of event objects,
