@@ -9,8 +9,8 @@ Description
 Syncthing supports archiving the old version of a file when it is deleted or
 replaced with a newer version from the cluster. This is called "file
 versioning" and uses one of the available *versioning strategies* described
-below. File versioning is configured per folder and defaults to "no file
-versioning", i.e. no old copies of files are kept.
+below. File versioning is configured per folder, on a per-device basis, and
+defaults to "no file versioning", i.e. no old copies of files are kept.
 
 Trash Can File Versioning
 -------------------------
