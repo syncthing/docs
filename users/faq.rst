@@ -405,6 +405,32 @@ creates ``syncthing.log`` in Syncthing's home directory (run ``syncthing
 -paths`` to see where that is). Command line option ``-logfile`` can be used
 to specify a user-defined logfile.
 
+How can I view the history of changes?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The web GUI contains a ``Global Changes`` button under the device list which
+displays changes since the last (re)start of Syncthing. With the ``-audit``
+option you can enable a persistent, detailed log of changes and most
+activities, which contains a ``JSON`` formatted  sequence of events in the
+``~/.config/syncthing/audit-_date_-_time_.log`` file.
+
+Does the audit log contain every change?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The audit log (and the ``Global Changes`` window) sees the changes that your
+Syncthing sees. When Syncthing is continuously connected it usually sees every change
+happening immediately and thus knows which node initiated the change. 
+When topology gets complex or when your node reconnects after some time offline, 
+Syncthing synchronises with its neighbours: It gets the latest synchronised state 
+from the neighbour, which is the *result* of all the changes between the last 
+known state (before disconnect or network delay) and the current state at the 
+neighbour, and if there were updates, deletes, creates, conflicts, which were 
+overlapping we only see the *latest change* for a given file or directory (and 
+the node where that latest change occurred). When we connect to multiple neighbours 
+Syncthing decides which neighbor has the latest state, or if the states conflict 
+it initiates the conflict resolution procedure, which in the end results in a consistant 
+up-to-date state with all the neighbours.
+
 How do I upgrade Syncthing?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
