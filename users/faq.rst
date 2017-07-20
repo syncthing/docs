@@ -428,7 +428,7 @@ neighbour, and if there were updates, deletes, creates, conflicts, which were
 overlapping we only see the *latest change* for a given file or directory (and 
 the node where that latest change occurred). When we connect to multiple neighbours 
 Syncthing decides which neighbor has the latest state, or if the states conflict 
-it initiates the conflict resolution procedure, which in the end results in a consistant 
+it initiates the conflict resolution procedure, which in the end results in a consistent 
 up-to-date state with all the neighbours.
 
 How do I upgrade Syncthing?

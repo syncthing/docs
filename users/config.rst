@@ -568,7 +568,7 @@ pingIdleTimeS
     Ping interval in seconds. Don't change it unless you feel it's necessary.
 
 minHomeDiskFree
-    The minimum required free space that should be available on the the 
+    The minimum required free space that should be available on the 
     partition holding the configuration and index. Accepted units are ``%``, ``kB``,
     ``MB``, ``GB`` and ``TB``.
 

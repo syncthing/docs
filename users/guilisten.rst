@@ -33,7 +33,7 @@ mind the following restrictions:
 - The port should not already be used by something else.
 
 Note that changing the port number is a somewhat dangerous operation. If the
-port number you select is unusuable for whatever reason, Syncthing will not
+port number you select is unusable for whatever reason, Syncthing will not
 be able to present its GUI and you will need to locate and manually edit the
 configuration file to rectify the situation. Changing the port number on a
 remote Syncthing installation is not recommended, unless you have other
