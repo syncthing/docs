@@ -132,7 +132,7 @@ FreshPorts: `syncthing <https://www.freshports.org/net/syncthing>`__
 OpenBSD
 ~~~~~~~
 
-Official ports: `syncthing <http://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/net/syncthing>`__ and `QSyncthingTray <http://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/net/qsyncthingtray>`__
+Official ports: `syncthing <https://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/net/syncthing>`__ and `QSyncthingTray <https://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/net/qsyncthingtray>`__
 
 OpenSUSE
 ~~~~~~~~

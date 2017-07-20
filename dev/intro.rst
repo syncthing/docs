@@ -202,7 +202,7 @@ some advantage just by being legacy;
 
 Another thing that the maintainer might be hard about is whether the
 code actually solves the *entire* problem, or at least enough of it to
-stand on it's own. This will be more relevant to new features than
+stand on its own. This will be more relevant to new features than
 bugfixes and includes questions like;
 
 -  Is the feature general enough to be used by other users? If not, do

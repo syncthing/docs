@@ -141,7 +141,7 @@ by a sysadmin who knows enough to understand the security implications.
 
    -  Optional: Set the rotation settings to your preferences.
 #. Click the *Install Service* Button
-#. To ensure that Syncthing exits, restarts and upgrades are handled correctly by the Windows service manager, some final settings are needed. Execute these in the same Commant Prompt:
+#. To ensure that Syncthing exits, restarts and upgrades are handled correctly by the Windows service manager, some final settings are needed. Execute these in the same Command Prompt:
 
    -  ``nssm set syncthing AppExit Default Exit``
    -  ``nssm set syncthing AppExit 0 Exit``
@@ -153,7 +153,7 @@ by a sysadmin who knows enough to understand the security implications.
 macOS
 --------
 
-Using `homebrew <http://brew.sh>`__
+Using `homebrew <https://brew.sh>`__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. ``brew install syncthing``
@@ -234,7 +234,7 @@ user has logged into the system (e.g., via the graphical login screen, or ssh).
 Thus, the user service is intended to be used on a *(multiuser) desktop
 computer*. It avoids unnecessarily running Syncthing instances.
 
-Several distros (including arch linux) ship the needed service files with the
+Several distros (including Arch Linux) ship the needed service files with the
 Syncthing package. If your distro provides a systemd service file for Syncthing,
 you can skip step 2 when you setting up either the system service or the user
 service, as described below.
