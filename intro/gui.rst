@@ -52,5 +52,5 @@ and, when expanded, more detailed information. All transfer rates ("Download
 Rate" and "Upload Rate") are from the perspective of the local device, even those
 shown for remote devices. The rates for the local device are the sum of those
 for the remote devices. For each rate, you can see the current transfer speed, 
-followed by the total amount of data to be transferred. You can click the current 
+followed by the total amount of data transferred so far. You can click the current 
 transfer speed to toggle the units between bytes and bits.
