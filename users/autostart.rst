@@ -154,7 +154,7 @@ macOS
 --------
 
 Using `homebrew <https://brew.sh>`__
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. ``brew install syncthing``
 #. Follow the information presented by ``brew`` to autostart Syncthing using launchctl.
