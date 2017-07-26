@@ -279,10 +279,6 @@ To check the status of a user service::
 
     systemctl --user status syncthing.service
 
-**Note:** Running Syncthing as a service expects the executable to be located at: ``/usr/bin/syncthing`` (on Debian deratives), so (at least) make a symbolic link to the executable from that location should Syncthing fail to start with the journal stating it can not find the executable::
-
-    ln -s Syncthing/syncthing /usr/bin/syncthing
-
 Using the journal
 ^^^^^^^^^^^^^^^^^
 
