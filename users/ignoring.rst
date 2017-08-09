@@ -1,3 +1,5 @@
+.. role:: strike
+
 .. _ignoring-files:
 
 Ignoring Files
@@ -82,7 +84,8 @@ The ``.stignore`` file contains a list of file or path patterns. The
 
 .. note::
 
-   Prefixes can be specified in any order.
+   Prefixes can be specified in any order (e.g. "(?d)(?i)"), but cannot be in a
+   single pair of parentheses (not ":strike:`(?di)`").
 
 Example
 -------
