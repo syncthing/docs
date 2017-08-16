@@ -107,6 +107,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
+            <defaultFolderPath>~</defaultFolderPath>
         </options>
     </configuration>
 
@@ -440,7 +441,8 @@ Options Element
         <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
         <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
-    </options>
+        <defaultFolderPath>~</defaultFolderPath>
+</options>
 
 The ``options`` element contains all other global configuration options.
 
@@ -584,6 +586,8 @@ tempIndexMinBlocks
     When exchanging index information for incomplete transfers, only take
     into account files that have at least this many blocks.
 
+defaultFolderPath
+    The UI will propose to create new folders at this path and this can be disabled by setting this to an empty string.
 .. _listen-addresses:
 
 Listen Addresses
