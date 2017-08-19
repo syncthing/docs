@@ -73,11 +73,23 @@ External File Versioning
 ------------------------
 
 This versioning method delegates the decision on what to do to an external
-command (program or script). The only configuration option is the name of the
-command. This should be an absolute path name. Just prior to a file being
-replaced, the command will be run with two parameters: the path to the folder,
-and the path to the file within the folder.
+command (program or script). 
+Just prior to a file being replaced, the command will be run. 
+The command should be specified as an absolute path, and can use the following templated arguments:
 
+
+.. 
+    This to be added when actually relevant.
+  
+    %FOLDER_FILESYSTEM%
+      Filesystem type for the underlying folder.
+      
+%FOLDER_PATH%
+  Path to the folder
+  
+%FILE_PATH%
+  Path to the file within the folder
+  
 Example for Unixes
 ~~~~~~~~~~~~~~~~~~
 
@@ -105,8 +117,7 @@ the following script and store it as ``/Users/jb/bin/onlylatest.sh`` (i.e. the
     mv -f "$folderpath/$filepath" "$versionspath/$filepath"
 
 I must ensure that the script has execute permissions (``chmod 755
-onlylatest.sh``), then configure Syncthing with the above path as the command
-name.
+onlylatest.sh``), then configure Syncthing with command ``/Users/jb/bin/onlylatest.sh %FOLDER_PATH% %FILE_PATH%``
 
 Lets assume I have a folder "default" in ~/Sync, and that within that folder
 there is a file ``docs/letter.txt`` that is being replaced or deleted. The
@@ -146,5 +157,5 @@ behavior as mentioned above. I created the following script and saved it as
     :: Finally move the file, overwrite existing file if any
     move /Y "%FOLDER_PATH%\%FILE_PATH%" "%VERSIONS_PATH%\%FILE_PATH%"
 
-Finally, I set ``C:\Users\mfrnd\Scripts\onlylatest.bat`` as command name in
+Finally, I set ``C:\Users\mfrnd\Scripts\onlylatest.bat %FOLDER_PATH% %FILE_PATH%`` as command name in
 Syncthing.
