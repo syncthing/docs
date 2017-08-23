@@ -53,7 +53,7 @@ after each rescan.
 Syncing
 -------
 
-Syncthing keeps track of several version of each file - the version that it
+Syncthing keeps track of several versions of each file - the version that it
 currently has on disk, called the *local* version, the versions announced by
 all other connected devices, and the "best" (usually the most recent)
 version of the file. This version is called the *global* version and is the
