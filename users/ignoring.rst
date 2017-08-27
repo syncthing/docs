@@ -87,7 +87,7 @@ The ``.stignore`` file contains a list of file or path patterns. The
    Prefixes can be specified in any order (e.g. "(?d)(?i)"), but cannot be in a
    single pair of parentheses (not ":strike:`(?di)`").
 
-Example
+1st Example
 -------
 
 Given a directory layout::
@@ -136,6 +136,25 @@ all files and directories called "foo", ending in a "2" or starting with
   ``some/directory/`` matches the content of the directory, but not the
   directory itself. If you want the pattern to match the directory and its
   content, make sure it does not have a ``/`` at the end of the pattern.
+
+2nd Example
+--------
+
+It is possible, yet `not recommended nor supported`_ to use this file to enable nested folders syncing.
+Let's take a look at the following example:
+
+- You sync ``/docs1/`` on device 1 to ``/docs2/`` on a 2nd device.
+- You would like to sync ``/other-files/`` from the 1st device to ``/docs2/other-files/`` on the 2nd device.
+- You don't have an option to change the location of ``/other-files`` on the 1st device to ``/docs1/other-files`` so that you won't need a 2nd pair.
+- It's important for you that ``/other-files`` from the 1st device will be present on the ``/docs2/`` directory on the 2nd device.
+
+You can achive it by using ``.stignore`` inside ``/docs/`` (on the 2nd device):
+
+1. You put the line: ``other-files/`` in ``.stignore`` which makes syncthnig ignore ``/docs2/other-files/`` in the sync pair of ``/docs2/`` and ``/docs1/``.
+2. Now you can create a new sync pair of ``/other-files/`` on the 1st device which syncs to the 2nd device on ``/docs2/other-files``
+
+.. _not recommended nor supported: https://docs.syncthing.net/users/faq.html?highlight=nested#am-i-able-to-use-nested-syncthing-folders
+
 
 Effects on "In Sync" Status
 ---------------------------
