@@ -587,7 +587,8 @@ tempIndexMinBlocks
     into account files that have at least this many blocks.
 
 defaultFolderPath
-    The UI will propose to create new folders at this path and this can be disabled by setting this to an empty string.
+    The UI will propose to create new folders at this path. This can be disabled by
+    setting this to an empty string.
 
 .. _listen-addresses:
 
