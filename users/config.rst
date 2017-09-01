@@ -442,7 +442,7 @@ Options Element
         <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
         <defaultFolderPath>~</defaultFolderPath>
-</options>
+    </options>
 
 The ``options`` element contains all other global configuration options.
 
@@ -588,6 +588,7 @@ tempIndexMinBlocks
 
 defaultFolderPath
     The UI will propose to create new folders at this path and this can be disabled by setting this to an empty string.
+
 .. _listen-addresses:
 
 Listen Addresses
