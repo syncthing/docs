@@ -50,6 +50,20 @@ Error
 	prevent data loss e.g. when the folder path was unmounted. If the marker
 	was deleted accidentally, just recreate it and press the rescan button
 	in the UI.
+	
+Creating new synced Folders
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use the Syncthing web interface. Click the "Add Folder" button:
+
+Set the folder label to something descriptive. The label you enter here will be shared with remote devices, but can be changed on each device, as desired.
+
+The folder id has to be the same across all devices, it is the unique identifier of the folder. Best practice is to keep the auto-generated id to avoid conflicts with equally named folders on other devices.
+
+The folder path designates the physical path to the folder, i.e. on your hard drive.
+
+Next select with which devices to share and you are good to go.
+
 
 Device View
 -----------
@@ -63,3 +77,4 @@ shown for remote devices. The rates for the local device are the sum of those
 for the remote devices. For each rate, you can see the current transfer speed, 
 followed by the total amount of data transferred so far. You can click the current 
 transfer speed to toggle the units between bytes and bits.
+
