@@ -42,6 +42,15 @@ Local State
 Out of Sync
 	shows how much data needs to be synchronized from other devices. Note that this is the sum of all out of sync *files* - if you already have parts of such a file, or an older version of the file, less data than this will need to be transferred over the network.
 
+Error
+	describes the problem when the folder is in state Stopped. One possible
+	message is "folder marker missing". This means that the root directory of
+	this folder does not contain a file or directory called
+	``.stfolder`` (marker). Syncthing stops when this marker goes missing to
+	prevent data loss e.g. when the folder path was unmounted. If the marker
+	was deleted accidentally, just recreate it and press the rescan button
+	in the UI.
+
 Device View
 -----------
 
