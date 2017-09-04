@@ -51,18 +51,18 @@ Error
 	was deleted accidentally, just recreate it and press the rescan button
 	in the UI.
 	
-Creating new synced Folders
+Creating a new synced folder
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Use the Syncthing web interface. Click the "Add Folder" button:
+Use the Syncthing web interface. Click the "Add Folder" button which will bring up a dialogue with the following options:
 
-Set the folder label to something descriptive. The label you enter here will be shared with remote devices, but can be changed on each device, as desired.
+Set the folder label to something descriptive. This label will initially be shared with remote devices, but can be changed on each device, as desired.
 
-The folder id has to be the same across all devices, it is the unique identifier of the folder. Best practice is to keep the auto-generated id to avoid conflicts with equally named folders on other devices.
+The folder id has to be the same across all devices, as it is the unique identifier of the folder. Best practice is to keep the auto-generated id to avoid conflicts with equally named folders on other devices.
 
 The folder path designates the physical path to the folder, i.e. on your hard drive.
 
-Next select with which devices to share and you are good to go.
+Next select with which devices to share the folder with and press add, which will add the folder and start syncing.
 
 
 Device View
