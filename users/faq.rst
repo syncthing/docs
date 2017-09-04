@@ -194,6 +194,19 @@ Am I able to use nested Syncthing folders?
 Do not nest shared folders. This behaviour is in no way supported,
 recommended or coded for in any way, and comes with many pitfalls.
 
+How do I create a new synced folder?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Use the Syncthing web interface. Click the "Add Folder" button:
+
+Set the folder label to something descriptive. The label you enter here will be shared with remote devices, but can be changed on each device, as desired.
+
+The folder id has to be the same across all devices, it is the unique identifier of the folder. Best practice is to keep the auto-generated id to avoid conflicts with equally named folders on other devices.
+
+The folder path designates the physical path to the folder, i.e. on your hard drive.
+
+Next select with which devices to share and you are good to go.
+
 How do I rename/move a synced folder?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
