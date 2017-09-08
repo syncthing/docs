@@ -29,12 +29,14 @@ Prerequisites
 
 If you're not already a Go developer, the easiest way to get going
 is to download the latest version of Go as instructed in
-https://golang.org/doc/install and ``export GOPATH=~``.
+https://golang.org/doc/install and ``export GOPATH=~/go``.
 
 .. note::
-        You need to set ``GOPATH`` correctly and the source **must** be checked
-        out into ``$GOPATH/src/github.com/syncthing/syncthing``. The
-        instructions below accomplish this correctly.
+        You need to set ``GOPATH`` correctly and the source **must** be
+        checked out into ``$GOPATH/src/github.com/syncthing/syncthing``. The
+        instructions below accomplish this correctly. On Go 1.8 and newer
+        you can use the default ``GOPATH`` of ``~/go`` instead of setting
+        the environment variable.
 
 Building (Unix)
 ---------------
@@ -48,9 +50,9 @@ Building (Unix)
     $ go version
 
     # Go is particular about file locations; use this path unless you know very
-    # well what you're doing.
-    $ mkdir -p ~/src/github.com/syncthing
-    $ cd ~/src/github.com/syncthing
+    # well what you're doing and have set GOPATH to something other than ~/go.
+    $ mkdir -p ~/go/src/github.com/syncthing
+    $ cd ~/go/src/github.com/syncthing
     # Note that if you are building from a source code archive, you need to
     # rename the directory from syncthing-XX.YY.ZZ to syncthing
     $ git clone https://github.com/syncthing/syncthing
@@ -58,11 +60,11 @@ Building (Unix)
     # Now we have the source. Time to build!
     $ cd syncthing
 
-    # You should be inside ~/src/github.com/syncthing/syncthing right now.
+    # You should be inside ~/go/src/github.com/syncthing/syncthing right now.
     $ go run build.go
 
 Unless something goes wrong, you will have a ``syncthing`` binary built
-and ready in ``~/src/github.com/syncthing/syncthing/bin``.
+and ready in ``~/go/src/github.com/syncthing/syncthing/bin``.
 
 Building (Windows)
 ------------------
@@ -75,8 +77,8 @@ Building (Windows)
 
     # Go is particular about file locations; use this path unless you know very
     # well what you're doing.
-    > mkdir c:\src\github.com\syncthing
-    > cd c:\src\github.com\syncthing
+    > mkdir %USERPROFILE%\go\src\github.com\syncthing
+    > cd %USERPROFILE%\go\src\github.com\syncthing
     # Note that if you are building from a source code archive, you need to
     # rename the directory from syncthing-XX.YY.ZZ to syncthing
     > git clone https://github.com/syncthing/syncthing
@@ -86,7 +88,7 @@ Building (Windows)
     > go run build.go
 
 Unless something goes wrong, you will have a ``syncthing.exe`` binary
-built and ready in ``c:\src\github.com\syncthing\syncthing\bin``.
+built and ready in ``%USERPROFILE%\go\src\github.com\syncthing\syncthing\bin``.
 
 Subcommands and Options
 -----------------------
