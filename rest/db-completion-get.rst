@@ -7,7 +7,10 @@ folder. Takes ``device`` and ``folder`` parameters.
 .. code-block:: json
 
     {
-      "completion": 0
+      "completion": 0,
+      "globalBytes": 156793013575,
+      "needBytes": 156793013575,
+      "needDeletes": 0
     }
 
 .. note::
