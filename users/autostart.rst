@@ -257,7 +257,7 @@ How to set up a user service
 
 #. Create the user who should run the service, or choose an existing
    one. *Probably this will be your own user account.*
-#. Copy the ``Syncthing/etc/user/syncthing.service`` file into the `load path
+#. Copy the ``Syncthing/etc/linux-systemd/user/syncthing.service`` file into the `load path
    of the user instance
    <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
    To do this without root privileges you can just use this folder under your
