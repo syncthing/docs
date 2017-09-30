@@ -85,7 +85,7 @@ Options
 
     Reset the database, forcing a full rescan and resync.
     Create `.stfolder` folders in each sync folder if they do not already exist. 
-    **Caution**: Ensure that all sync folders which are mountpoints are already mounted. Inconsistent versions may result if the mountpoint is later mounted and cointains older versions.
+    **Caution**: Ensure that all sync folders which are mountpoints are already mounted. Inconsistent versions may result if the mountpoint is later mounted and contains older versions.
 
 
 .. cmdoption:: -reset-deltas
