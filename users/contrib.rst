@@ -59,6 +59,13 @@ Mac OS
 
 - `BitBar plugin <https://github.com/sebw/bitbar-plugins>`_
 
+Linux
+~~~~~
+
+- `Syncthing Icon <https://extensions.gnome.org/extension/989/syncthing-icon/>`_
+
+  A GNOME Shell extension displaying a Syncthing status icon in the top bar.
+
 Packages and Bundlings
 ----------------------
 
