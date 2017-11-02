@@ -6,11 +6,12 @@ Synopsis
 
 ::
 
-    syncthing [-audit] [-auditfile=<file|-|-->] [-browser-only] [-generate=<dir>]
-              [-gui-address=<address>] [-gui-apikey=<key>] [-home=<dir>] [-logfile=<filename>]
-              [-logflags=<flags>] [-no-browser] [-no-console] [-no-restart] [-paths] [-paused]
-              [-reset-database] [-reset-deltas] [-upgrade] [-upgrade-check] [-upgrade-to=<url>]
-              [-verbose] [-version]
+    syncthing [-audit] [-auditfile=<file|-|-->] [-browser-only] [device-id]
+              [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
+              [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>]
+              [-no-browser] [-no-console] [-no-restart] [-paths] [-paused]
+              [-reset-database] [-reset-deltas] [-unpaused] [-upgrade]
+              [-upgrade-check] [-upgrade-to=<url>] [-verbose] [-version]
 
 Description
 -----------
@@ -32,6 +33,14 @@ Options
 .. cmdoption:: -auditfile=<file|-|-->
 
     Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for audit events, rather than the timestamped default file name.
+
+.. cmdoption:: -browser-only
+
+   Open the web UI in a browser for an already running Syncthing instance.
+
+.. cmdoption:: -device-id
+
+   Print device ID to command line.
 
 .. cmdoption:: -generate=<dir>
 
@@ -81,6 +90,10 @@ Options
 
     Print the paths used for configuration, keys, database, GUI overrides, default sync folder and the log file.
 
+.. cmdoption:: -paused
+
+    Start with all devices and folders paused.
+
 .. cmdoption:: -reset-database
 
     Reset the database, forcing a full rescan and resync.
@@ -91,6 +104,10 @@ Options
 .. cmdoption:: -reset-deltas
 
     Reset delta index IDs, forcing a full index exchange.
+
+.. cmdoption:: -unpaused
+
+    Start with all devices and folders unpaused.
 
 .. cmdoption:: -upgrade
 
