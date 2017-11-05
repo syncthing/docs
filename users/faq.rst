@@ -188,6 +188,21 @@ from the user point of view. Moreover, if there's something that automatically
 causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 -...-sync-conflict`` files.
 
+How do I serve a folder from a read only filesystem?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Syncthing requires a "folder marker" to indicate that the folder is present
+and healthy. By default this is a directory called ``.stfolder`` that is
+created by Syncthing when the folder is added. If this folder can't be
+created (you are serving files from a CD or something) you can instead set
+the advanced config ``Marker Name`` to the name of some file or folder that
+you know will always exist in the folder.
+
+I really hate the ``.stfolder`` directory, can I remove it?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+See the previous question.
+
 Am I able to use nested Syncthing folders?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -419,16 +434,16 @@ Does the audit log contain every change?
 
 The audit log (and the ``Global Changes`` window) sees the changes that your
 Syncthing sees. When Syncthing is continuously connected it usually sees every change
-happening immediately and thus knows which node initiated the change. 
-When topology gets complex or when your node reconnects after some time offline, 
-Syncthing synchronises with its neighbours: It gets the latest synchronised state 
-from the neighbour, which is the *result* of all the changes between the last 
-known state (before disconnect or network delay) and the current state at the 
-neighbour, and if there were updates, deletes, creates, conflicts, which were 
-overlapping we only see the *latest change* for a given file or directory (and 
-the node where that latest change occurred). When we connect to multiple neighbours 
-Syncthing decides which neighbor has the latest state, or if the states conflict 
-it initiates the conflict resolution procedure, which in the end results in a consistent 
+happening immediately and thus knows which node initiated the change.
+When topology gets complex or when your node reconnects after some time offline,
+Syncthing synchronises with its neighbours: It gets the latest synchronised state
+from the neighbour, which is the *result* of all the changes between the last
+known state (before disconnect or network delay) and the current state at the
+neighbour, and if there were updates, deletes, creates, conflicts, which were
+overlapping we only see the *latest change* for a given file or directory (and
+the node where that latest change occurred). When we connect to multiple neighbours
+Syncthing decides which neighbor has the latest state, or if the states conflict
+it initiates the conflict resolution procedure, which in the end results in a consistent
 up-to-date state with all the neighbours.
 
 How do I upgrade Syncthing?
