@@ -679,8 +679,8 @@ stunServer
 stunKeepaliveSeconds
     Specify whether weak hashing is used, possible options are
 
-kcpNoDelay, kcpUpdateIntervalMs, kcpFastResend, kcpCongestionControl,
-kcpSendWindowSize, kcpReceiveWindowSize
+kcpNoDelay, kcpUpdateIntervalMs, kcpFastResend, kcpCongestionControl, kcpSendWindowSize, kcpReceiveWindowSize
+    Various KCP tweaking parameters.
 
 defaultFolderPath
     The UI will propose to create new folders at this path. This can be disabled by
