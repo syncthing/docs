@@ -49,9 +49,10 @@ The following shows an example of the default configuration file (IDs will diffe
 
 .. code-block:: xml
 
-    <configuration version="14">
-        <folder id="zj2AA-q55a7" label="Default Folder (zj2AA-q55a7)" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" ignorePerms="false" autoNormalize="true">
+    <configuration version="26">
+        <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
             <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
+            <filesystemType>basic</filesystemType>
             <minDiskFree unit="%">1</minDiskFree>
             <versioning></versioning>
             <copiers>0</copiers>
@@ -60,17 +61,19 @@ The following shows an example of the default configuration file (IDs will diffe
             <order>random</order>
             <ignoreDelete>false</ignoreDelete>
             <scanProgressIntervalS>0</scanProgressIntervalS>
-            <pullerSleepS>0</pullerSleepS>
             <pullerPauseS>0</pullerPauseS>
             <maxConflicts>-1</maxConflicts>
             <disableSparseFiles>false</disableSparseFiles>
             <disableTempIndexes>false</disableTempIndexes>
-            <fsync>false</fsync>
+            <paused>false</paused>
+            <weakHashThresholdPct>25</weakHashThresholdPct>
+            <markerName>.stfolder</markerName>
         </folder>
-        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false">
+        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
+            <paused>false</paused>
         </device>
-        <gui enabled="true" tls="false">
+        <gui enabled="true" tls="false" debugging="false">
             <address>127.0.0.1:8384</address>
             <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
             <theme>default</theme>
@@ -93,40 +96,79 @@ The following shows an example of the default configuration file (IDs will diffe
             <natRenewalMinutes>30</natRenewalMinutes>
             <natTimeoutSeconds>10</natTimeoutSeconds>
             <urAccepted>0</urAccepted>
-            <urUniqueID></urUniqueID>
+            <urSeen>0</urSeen>
+            <urUniqueID>LFWe2vn3</urUniqueID>
             <urURL>https://data.syncthing.net/newdata</urURL>
             <urPostInsecurely>false</urPostInsecurely>
             <urInitialDelayS>1800</urInitialDelayS>
             <restartOnWakeup>true</restartOnWakeup>
             <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
+            <upgradeToPreReleases>false</upgradeToPreReleases>
             <keepTemporariesH>24</keepTemporariesH>
             <cacheIgnoredFiles>false</cacheIgnoredFiles>
             <progressUpdateIntervalS>5</progressUpdateIntervalS>
             <limitBandwidthInLan>false</limitBandwidthInLan>
             <minHomeDiskFree unit="%">1</minHomeDiskFree>
-            <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
+            <releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
+            <trafficClass>0</trafficClass>
+            <weakHashSelectionMethod>auto</weakHashSelectionMethod>
+            <stunServer>default</stunServer>
+            <stunKeepaliveSeconds>24</stunKeepaliveSeconds>
+            <kcpNoDelay>false</kcpNoDelay>
+            <kcpUpdateIntervalMs>25</kcpUpdateIntervalMs>
+            <kcpFastResend>false</kcpFastResend>
+            <kcpCongestionControl>true</kcpCongestionControl>
+            <kcpSendWindowSize>128</kcpSendWindowSize>
+            <kcpReceiveWindowSize>128</kcpReceiveWindowSize>
             <defaultFolderPath>~</defaultFolderPath>
+            <minHomeDiskFreePct>0</minHomeDiskFreePct>
         </options>
     </configuration>
 
 Configuration Element
 ---------------------
 
-This is the root element.
+.. code-block:: xml
+
+    <configuration version="26">
+        <folder></folder>
+        <device></device>
+        <gui></gui>
+        <options></options>
+        <ignoredDevice>5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU</ignoredDevice>
+        <ignoredFolder>bd7q3-zskm5</ignoredDevice>
+    </configuration>
+
+This is the root element. It has one attribute:
 
 version
     The config version. Increments whenever a change is made that requires
     migration from previous formats.
+
+It contains the elements described in the following sections and these two
+additional child elements:
+
+ignoredDevice
+    Contains the ID of the device that should be ignored. Connection attempts
+    from this device are logged to the console but never displayed in the web
+    GUI.
+
+ignoredFolder
+    Contains the ID of the folder that should be ignored. This folder will
+    always be skipped when advertised from a remote device, i.e. this will be
+    logged, but there will be no dialog about it in the web GUI.
+
 
 Folder Element
 --------------
 
 .. code-block:: xml
 
-    <folder id="zj2AA-q55a7" label="Default Folder (zj2AA-q55a7)" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" ignorePerms="false" autoNormalize="true" ro="false">
-        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR"></device>
+    <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
+        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
+        <filesystemType>basic</filesystemType>
         <minDiskFree unit="%">1</minDiskFree>
         <versioning></versioning>
         <copiers>0</copiers>
@@ -135,12 +177,13 @@ Folder Element
         <order>random</order>
         <ignoreDelete>false</ignoreDelete>
         <scanProgressIntervalS>0</scanProgressIntervalS>
-        <pullerSleepS>0</pullerSleepS>
         <pullerPauseS>0</pullerPauseS>
         <maxConflicts>-1</maxConflicts>
         <disableSparseFiles>false</disableSparseFiles>
         <disableTempIndexes>false</disableTempIndexes>
-        <fsync>false</fsync>
+        <paused>false</paused>
+        <weakHashThresholdPct>25</weakHashThresholdPct>
+        <markerName>.stfolder</markerName>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -172,6 +215,13 @@ type
 rescanIntervalS
     The rescan interval, in seconds. Can be set to zero to disable when external
     plugins are used to trigger rescans.
+
+fsWatcherEnabled
+    If enabled this detects changes to files in the folder and scans them.
+
+fsWatcherDelayS
+    The duration during which changes detected are accumulated, before a scan is
+    scheduled (only takes effect if fsWatcherEnabled is true).
 
 ignorePerms
     True if the folder should ignore permissions.
@@ -235,9 +285,9 @@ scanProgressIntervalS
     The interval with which scan progress information is sent to the GUI. Zero
     means the default value (two seconds).
 
-pullerSleepS, pullerPauseS
-    Tweaks for rate limiting the puller. Don't change these unless you know
-    what you're doing.
+pullerPauseS
+    Tweak for rate limiting the puller when it retries pulling files. Don't
+    change these unless you know what you're doing.
 
 maxConflicts
     The maximum number of conflict copies to keep around for any given file.
@@ -254,9 +304,28 @@ disableTempIndexes
     transfers that are still in progress. When set to true, such information
     is not exchanged for this folder.
 
+paused
+    True if this folder is (temporarily) suspended.
+
+weakHashThresholdPct
+    Use weak hash if more than the given percentage of the file has changed. Set
+    to -1 to always use weak hash. Default value is 25.
+
+markerName
+    Name of a directory or file in the folder root to be used as
+    :ref:`marker-faq`. Default is ".stfolder".
+
 fsync
+    .. deprecated:: v0.14.37
+
     Transfer updated (from other devices) files to permanent storage before
     committing the changes to the internal database.
+
+pullerSleepS
+    .. deprecated:: v0.14.41
+
+    Tweak for rate limiting the puller. Don't change these unless you know
+    what you're doing.
 
 
 Device Element
@@ -264,11 +333,13 @@ Device Element
 
 .. code-block:: xml
 
-    <device id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="syno" compression="metadata" introducer="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
+    <device id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
         <address>dynamic</address>
     </device>
     <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false">
         <address>tcp://192.0.2.1:22001</address>
+        <paused>true<paused>
+        <allowedNetwork>192.168.0.0/16<allowedNetwork>
     </device>
 
 One or more ``device`` elements must be present in the file. Each element
@@ -315,49 +386,53 @@ skipIntroductionRemovals
 introducedBy
     Defines which device has introduced us to this device. Used only for following de-introductions.
 
-In addition, one or more ``address`` child elements must be present. Each
-contains an address or host name to use when attempting to connect to this device and will
-be tried in order. Entries other than ``dynamic`` must be prefixed with ``tcp://`` (dual-stack), ``tcp4://`` (IPv4 only) or ``tcp6://`` (IPv6 only). Note that IP addresses need not use tcp4/tcp6; these are optional. Accepted formats are:
+From following child elements at least one ``address`` child must exist.
 
-IPv4 address (``tcp://192.0.2.42``)
-    The default port (22000) is used.
+address
+    Contains an address or host name to use when attempting to connect to this device.
+    Entries other than ``dynamic`` must be prefixed with ``tcp://`` (dual-stack),
+    ``tcp4://`` (IPv4 only) or ``tcp6://`` (IPv6 only). Note that IP addresses need
+    not use tcp4/tcp6; these are optional. Accepted formats are:
 
-IPv4 address and port (``tcp://192.0.2.42:12345``)
-    The address and port is used as given.
+    IPv4 address (``tcp://192.0.2.42``)
+        The default port (22000) is used.
 
-IPv6 address (``tcp://[2001:db8::23:42]``)
-    The default port (22000) is used. The address must be enclosed in
-    square brackets.
+    IPv4 address and port (``tcp://192.0.2.42:12345``)
+        The address and port is used as given.
 
-IPv6 address and port (``tcp://[2001:db8::23:42]:12345``)
-    The address and port is used as given. The address must be enclosed in
-    square brackets.
+    IPv6 address (``tcp://[2001:db8::23:42]``)
+        The default port (22000) is used. The address must be enclosed in
+        square brackets.
 
-Host name (``tcp6://fileserver``)
-    The host name will be used on the default port (22000) and connections will be attempted only via IPv6.
+    IPv6 address and port (``tcp://[2001:db8::23:42]:12345``)
+        The address and port is used as given. The address must be enclosed in
+        square brackets.
 
-Host name and port (``tcp://fileserver:12345``)
-    The host name will be used on the given port and connections will be attempted via both IPv4 and IPv6, depending on name resolution.
+    Host name (``tcp6://fileserver``)
+        The host name will be used on the default port (22000) and connections
+        will be attempted only via IPv6.
 
-``dynamic``
-    The word ``dynamic`` (without ``tcp://`` prefix) means to use local and global discovery to find the
-    device.
+    Host name and port (``tcp://fileserver:12345``)
+        The host name will be used on the given port and connections will be
+        attempted via both IPv4 and IPv6, depending on name resolution.
 
-IgnoredDevice Element
----------------------
+    ``dynamic``
+        The word ``dynamic`` (without ``tcp://`` prefix) means to use local and
+        global discovery to find the device.
 
-.. code-block:: xml
+paused
+    True if synchronization with this devices is (temporarily) suspended.
 
-    <ignoredDevice>5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU</ignoredDevice>
-
-This optional element lists device IDs that have been specifically ignored. One element must be present for each device ID. Connection attempts from these devices are logged to the console but never displayed in the web GUI.
+allowedNetwork
+    If given, this restricts connections to this device to only this network
+    (see :ref:`allowed-networks`).
 
 GUI Element
 -----------
 
 .. code-block:: xml
 
-    <gui enabled="true" tls="false">
+    <gui enabled="true" tls="false" debugging="false">
         <address>127.0.0.1:8384</address>
         <apikey>l7jSbCqPD95JYZ0g8vi4ZLAMg3ulnN1b</apikey>
         <theme>default</theme>
@@ -376,8 +451,8 @@ tls
     be redirected to HTTPS. When this is set to ``false``, TLS connections are
     still possible but it is not mandatory.
 
-theme
-    The name of the theme to use.
+debugging
+    This enables :ref:`profiling` and additional debugging endpoints in the :ref:`rest-api`.
 
 The following child elements may be present:
 
@@ -403,6 +478,13 @@ password
 
 apikey
     If set, this is the API key that enables usage of the REST interface.
+
+insecureAdminAccess
+    If true, this allows access to the web GUI from outside (i.e. not localhost)
+    without authorization. A warning will displayed about this setting on startup.
+
+theme
+    The name of the theme to use.
 
 Options Element
 ---------------
@@ -473,12 +555,6 @@ localAnnouncePort
 localAnnounceMCAddr
     The group address and port to join and send IPv6 multicast announcements on.
 
-relayServer
-    Lists one or more relay servers, on the format ``relay://hostname:port``.
-    Alternatively, a relay list can be loaded over https by using an URL like
-    ``dynamic+https://somehost/path``. The default loads the list of relays
-    from the relay pool server, ``relays.syncthing.net``.
-
 maxSendKbps
     Outgoing data rate limit, in kibibytes per second.
 
@@ -517,6 +593,9 @@ urAccepted
     point in the future. ``-1`` means no, a number above zero means that that
     version of usage reporting has been accepted.
 
+urSeen
+    The highest usage reporting version that has already been shown in the web GUI.
+
 urUniqueID
     The unique ID sent together with the usage report. Generated when usage
     reporting is enabled.
@@ -540,6 +619,10 @@ autoUpgradeIntervalH
     Check for a newer version after this many hours. Set to zero to disable
     automatic upgrades.
 
+upgradeToPreReleases
+    If true, automatical upgrades include release candidates (see
+    :ref:`release-channels`).
+
 keepTemporariesH
     Keep temporary failed transfers for this many hours. While the temporaries
     are kept, the data they contain need not be transferred again.
@@ -557,18 +640,6 @@ limitBandwidthInLan
     Whether to apply bandwidth limits to devices in the same broadcast domain
     as the local device.
 
-databaseBlockCacheMiB
-    Override the automatically calculated database block cache size. Don't,
-    unless you're very short on memory, in which case you want to set this to
-    ``8``.
-
-pingTimeoutS
-    Ping-timeout in seconds. Don't change it unless you are having issues due to
-    slow response time (slow connection/cpu) and large index exchanges.
-
-pingIdleTimeS
-    Ping interval in seconds. Don't change it unless you feel it's necessary.
-
 minHomeDiskFree
     The minimum required free space that should be available on the 
     partition holding the configuration and index. Accepted units are ``%``, ``kB``,
@@ -576,6 +647,9 @@ minHomeDiskFree
 
 releasesURL
     The URL from which release information is loaded, for automatic upgrades.
+
+alwaysLocalNet
+    Network that should be considered as local given in CIDR notation.
 
 overwriteRemoteDeviceNamesOnConnect
     If set, device names will always be overwritten with the name given by
@@ -586,9 +660,51 @@ tempIndexMinBlocks
     When exchanging index information for incomplete transfers, only take
     into account files that have at least this many blocks.
 
+unackedNotificationID
+    ID of a notification to be displayed in the web GUI. Will be removed once
+    the user acknowledged it (e.g. an transition notice on an upgrade).
+
+trafficClass
+    Specify a type of service (TOS)/traffic class of outgoing packets.
+
+weakHashSelectionMethod
+    Specify whether weak hashing is used, possible options are
+    ``WeakHashAlways``, ``WeakHashNever`` and ``WeakHashAuto``. Deciding
+    automatically means running benchmarks at startup to decide whether the
+    performance impact is acceptable (this is the default).
+
+stunServer
+    Specify whether weak hashing is used, possible options are
+
+stunKeepaliveSeconds
+    Specify whether weak hashing is used, possible options are
+
+kcpNoDelay, kcpUpdateIntervalMs, kcpFastResend, kcpCongestionControl,
+kcpSendWindowSize, kcpReceiveWindowSize
+
 defaultFolderPath
     The UI will propose to create new folders at this path. This can be disabled by
     setting this to an empty string.
+
+relayServer
+    .. deprecated:: v0.13.0
+       You can now specify custom relay servers with ``listenAddress``.
+
+    Lists one or more relay servers, on the format ``relay://hostname:port``.
+    Alternatively, a relay list can be loaded over https by using an URL like
+    ``dynamic+https://somehost/path``. The default loads the list of relays
+    from the relay pool server, ``relays.syncthing.net``.
+
+pingTimeoutS
+    .. deprecated:: v0.12.0
+
+    Ping-timeout in seconds. Don't change it unless you are having issues due to
+    slow response time (slow connection/cpu) and large index exchanges.
+
+pingIdleTimeS
+    .. deprecated:: v0.12.0
+
+    Ping interval in seconds. Don't change it unless you feel it's necessary.
 
 .. _listen-addresses:
 
@@ -635,7 +751,7 @@ Dynamic relay pool (``dynamic+https://192.0.2.42/relays``)
     .. todo:: Document available URL parameters.
 
 
-Syncing Configuration files
+Syncing Configuration Files
 ---------------------------
 
 Syncing configuration files between devices (such that multiple devices are
