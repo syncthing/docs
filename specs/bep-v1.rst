@@ -499,7 +499,7 @@ Fields
 ~~~~~~
 
 The **id** is the request identifier. It will be matched in the
-corresponding **Request** message. Each outstanding request must have a
+corresponding **Response** message. Each outstanding request must have a
 unique ID.
 
 The **folder** and **name** fields are as documented for the Index message.
