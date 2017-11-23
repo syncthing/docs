@@ -1,3 +1,5 @@
+.. _allowed-networks:
+
 allowedNetworks
 ===============
 
