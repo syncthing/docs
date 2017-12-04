@@ -674,13 +674,18 @@ weakHashSelectionMethod
     performance impact is acceptable (this is the default).
 
 stunServer
-    Specify whether weak hashing is used, possible options are
+    Server to be used for STUN, given as ip:port. Default are
+    ``stun.callwithus.com:3478``, ``stun.counterpath.com:3478``,
+    ``stun.counterpath.net:3478``, ``stun.ekiga.net:3478``,
+    ``stun.ideasip.com:3478``, ``stun.internetcalls.com:3478``,
+    ``stun.schlund.de:3478``, ``stun.sipgate.net:10000``,
+    ``stun.sipgate.net:3478``, ``stun.voip.aebc.com:3478``,
+    ``stun.voiparound.com:3478``, ``stun.voipbuster.com:3478``,
+    ``stun.voipstunt.com:3478``, ``stun.voxgratia.org:3478`` and
+    ``stun.xten.com:3478``.
 
-stunKeepaliveSeconds
-    Specify whether weak hashing is used, possible options are
-
-kcpNoDelay, kcpUpdateIntervalMs, kcpFastResend, kcpCongestionControl, kcpSendWindowSize, kcpReceiveWindowSize
-    Various KCP tweaking parameters.
+stunKeepaliveSeconds, kcpNoDelay, kcpUpdateIntervalMs, kcpFastResend, kcpCongestionControl, kcpSendWindowSize, kcpReceiveWindowSize
+    Various STUN/KCP tweaking parameters.
 
 defaultFolderPath
     The UI will propose to create new folders at this path. This can be disabled by

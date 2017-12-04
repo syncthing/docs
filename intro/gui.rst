@@ -52,7 +52,7 @@ Error
 	in the UI.
 	
 Creating a new synced folder
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the Syncthing web interface. Click the "Add Folder" button which will bring up a dialogue with the following options:
 
