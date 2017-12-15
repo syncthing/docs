@@ -93,9 +93,9 @@ If you want to help testing the upcoming release, and get the newer features ear
 Fedora / CentOS
 ~~~~~~~~~~~~~~~
 
-Unofficial `RPM package of Syncthing <https://github.com/mlazarov/syncthing-centos>`_  
+For Fedora Syncthing is now in the offical repo : https://src.fedoraproject.org/rpms/syncthing
 
-Unofficial `RPM repo of Syncthing <https://copr.fedorainfracloud.org/coprs/daftaupe/syncthing/>`_ (`sources <https://github.com/daftaupe/syncthing-rpms>`_)
+Unofficial `RPM repo of Syncthing <https://copr.fedorainfracloud.org/coprs/daftaupe/syncthing/>`_ (`sources <https://gitlab.com/daftaupe/syncthing-rpm>`_)
 
 ArchLinux
 ~~~~~~~~~
@@ -202,7 +202,7 @@ Configuration management
 Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- `munin-syncthing <https://github.com/daftaupe/munin-syncthing>`_
+- `munin-syncthing <https://gitlab.com/daftaupe/munin-syncthing>`_
 
 Resolving conflicts
 ~~~~~~~~~~~~~~~~~~~
