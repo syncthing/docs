@@ -66,6 +66,10 @@ Linux
 
   A GNOME Shell extension displaying a Syncthing status icon in the top bar.
 
+- `syncthing-quick-status <https://github.com/serl/syncthing-quick-status>`_
+
+  Small bash application with minimal dependecies, for a simple colorful representation of the current status.
+
 Packages and Bundlings
 ----------------------
 
