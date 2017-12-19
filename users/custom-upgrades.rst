@@ -17,55 +17,52 @@ The URL used to fetch release information can be set in :ref:`advanced`, under
 the name ``releasesURL``. The URL should point to a location serving a valid
 release list. The release list is a JSON file on the following format::
 
-	[
-	  {
-	    "tag_name": "v0.11.24",
-	    "prerelease": false,
-	    "assets": [
-	      {
-	        "url": "https://example.com/dl/syncthing-dragonfly-amd64-v0.11.24.tar.gz",
-	        "name": "syncthing-dragonfly-amd64-v0.11.24.tar.gz",
-	      },
-	      {
-	        "url": "https://example.com/dl/syncthing-freebsd-386-v0.11.24.tar.gz",
-	        "name": "syncthing-freebsd-386-v0.11.24.tar.gz",
-	      },
-	      {
-	        "url": "https://example.com/dl/syncthing-freebsd-amd64-v0.11.24.tar.gz",
-	        "name": "syncthing-freebsd-amd64-v0.11.24.tar.gz",
-	      },
-	      {
-	        "url": "https://example.com/dl/syncthing-linux-386-v0.11.24.tar.gz",
-	        "name": "syncthing-linux-386-v0.11.24.tar.gz",
-	      },
-	      ...
-	    ]
-	  },
-	  {
-	    "tag_name": "v0.11.23",
-	    "prerelease": false,
-	    "assets": [
-	      {
-	        "url": "https://example.com/dl/syncthing-dragonfly-amd64-v0.11.23.tar.gz",
-	        "name": "syncthing-dragonfly-amd64-v0.11.23.tar.gz",
-	      },
-	      {
-	        "url": "https://example.com/dl/syncthing-freebsd-386-v0.11.23.tar.gz",
-	        "name": "syncthing-freebsd-386-v0.11.23.tar.gz",
-	      },
-	      {
-	        "url": "https://example.com/dl/syncthing-freebsd-amd64-v0.11.23.tar.gz",
-	        "name": "syncthing-freebsd-amd64-v0.11.23.tar.gz",
-	      },
-	      {
-	        "url": "https://example.com/dl/syncthing-linux-386-v0.11.23.tar.gz",
-	        "name": "syncthing-linux-386-v0.11.23.tar.gz",
-	      },
-	      ...
-	    ]
-	  }
-	  ...
-	]
+    [
+      {
+        "tag_name": "v0.11.24",
+        "prerelease": false,
+        "assets": [
+          {
+            "url": "https://example.com/dl/syncthing-dragonfly-amd64-v0.11.24.tar.gz",
+            "name": "syncthing-dragonfly-amd64-v0.11.24.tar.gz"
+          },
+          {
+            "url": "https://example.com/dl/syncthing-freebsd-386-v0.11.24.tar.gz",
+            "name": "syncthing-freebsd-386-v0.11.24.tar.gz"
+          },
+          {
+            "url": "https://example.com/dl/syncthing-freebsd-amd64-v0.11.24.tar.gz",
+            "name": "syncthing-freebsd-amd64-v0.11.24.tar.gz"
+          },
+          {
+            "url": "https://example.com/dl/syncthing-linux-386-v0.11.24.tar.gz",
+            "name": "syncthing-linux-386-v0.11.24.tar.gz"
+          }
+        ]
+      },
+      {
+        "tag_name": "v0.11.23",
+        "prerelease": false,
+        "assets": [
+          {
+            "url": "https://example.com/dl/syncthing-dragonfly-amd64-v0.11.23.tar.gz",
+            "name": "syncthing-dragonfly-amd64-v0.11.23.tar.gz"
+          },
+          {
+            "url": "https://example.com/dl/syncthing-freebsd-386-v0.11.23.tar.gz",
+            "name": "syncthing-freebsd-386-v0.11.23.tar.gz"
+          },
+          {
+            "url": "https://example.com/dl/syncthing-freebsd-amd64-v0.11.23.tar.gz",
+            "name": "syncthing-freebsd-amd64-v0.11.23.tar.gz"
+          },
+          {
+            "url": "https://example.com/dl/syncthing-linux-386-v0.11.23.tar.gz",
+            "name": "syncthing-linux-386-v0.11.23.tar.gz"
+          }
+        ]
+      }
+    ]
 
 The file may include additional attributes; these are ignored. Syncthing looks
 for a version number in ``tag_name``, then for an asset ``name`` matching
