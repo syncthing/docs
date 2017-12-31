@@ -124,10 +124,6 @@ The following ``build.go`` subcommands and options exist.
 ``go run build.go deps``
   Updates the in-repo dependencies.
 
-``go run build.go xdr``
-  Regenerates the XDR en/decoders. Only necessary when the protocol has
-  changed.
-
 The options ``-no-upgrade``, ``-goos`` and ``-goarch`` can be given to
 influence ``install``, ``build``, ``tar`` and ``zip``. Examples:
 
