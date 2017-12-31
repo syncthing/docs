@@ -137,6 +137,8 @@ influence ``install``, ``build``, ``tar`` and ``zip``. Examples:
 ``go run build.go -goos windows -no-upgrade zip``
   Builds a zip distribution of Syncthing for Windows (current architecture) with
   upgrading disabled.
+  
+  For more options read directly in the code in https://github.com/syncthing/syncthing/blob/v0.14.42/build.go#L272.
 
 Building without Git
 --------------------
