@@ -144,7 +144,7 @@ Follow these steps:
 
 ::
 
-    $ go run build.go -debugBinary build
+    $ go run build.go -debug-binary build
     $ STNODEFAULTFOLDER=1 STNOUPGRADE=1  STNORESTART=1 dlv --listen=:2345 --headless=true --api-version=2 exec ./syncthing -- -home=./_test_config -no-browser
 
 For installing and using delve itself see:
