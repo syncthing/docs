@@ -134,3 +134,21 @@ GOGC
 Percentage of heap growth at which to trigger GC. Default is 100. Lower
 numbers keep peak memory usage down, at the price of CPU usage (ie.
 performance)
+
+Stepping with breakpoints
+=========================
+
+If you like to step through the running program, build a non-optimized binary and run with  https://github.com/derekparker/delve.
+
+Follow these steps:
+
+::
+
+    $ go run build.go -debugBinary build
+    $ STNODEFAULTFOLDER=1 STNOUPGRADE=1  STNORESTART=1 dlv --listen=:2345 --headless=true --api-version=2 exec ./syncthing -- -home=./_test_config -no-browser
+
+For installing and using delve itself see:
+
+-  VSCode (Microsoft): https://github.com/Microsoft/vscode-go/wiki/Debugging-Go-code-using-VS-Code
+
+-  Goland (JetBrains): create remote run configuration and follow the two steps displayed 
