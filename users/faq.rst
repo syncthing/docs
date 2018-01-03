@@ -56,7 +56,7 @@ The following may be synchronized or not, depending:
 
 -  File Permissions (When supported by file system. On Windows, only the
    read only bit is synchronized.)
--  Symbolic Links (Except on Windows.)
+-  Symbolic Links (synced, except on Windows, but never followed.)
 
 The following are *not* synchronized;
 
