@@ -147,9 +147,10 @@ shared with the main discovery API. If the ``-http`` mode is used the
 certificate is not used for client requests but only for replication
 connections.
 
-Authentication of replication connections is done using Syncthing-style
-device IDs only - CA verification is not available. The device IDs in
-question are those printed by the discovery server on startup.
+Authentication of replication connections is done using `Syncthing-style
+device IDs <https://docs.syncthing.net/dev/device-ids.html#id1>`__ only - CA
+verification is not available. The device IDs in question are those printed
+by the discovery server on startup.
 
 Replication connections are unidirectional - announcements are replication
 from the **sender** to a **listener**. In order to have a bidirectional
