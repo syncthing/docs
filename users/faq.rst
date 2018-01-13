@@ -229,7 +229,7 @@ move. Changes made on other devices may be overwritten, or changes made
 locally may be overwritten by those on other devices.
 
 An alternative way is to shut down Syncthing, move the folder on disk (including
-the ``.stfolder`` marker), edit the path directly in ``config.xml``in the 
+the ``.stfolder`` marker), edit the path directly in ``config.xml`` in the 
 configuration folder (see :ref:`config`) and then start Syncthing again.
 
 How do I configure multiple users on a single machine?
