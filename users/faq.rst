@@ -228,8 +228,9 @@ devices, as it is otherwise unpredictable which changes will "win" after the
 move. Changes made on other devices may be overwritten, or changes made
 locally may be overwritten by those on other devices.
 
-An alternative way is to shut down Syncthing, move the folder on disk, edit
-the path directly in the configuration file and then start Syncthing again.
+An alternative way is to shut down Syncthing, move the folder on disk (including
+the ``.stfolder`` marker), edit the path directly in ``config.xml``in the 
+configuration folder (see :ref:`config`) and then start Syncthing again.
 
 How do I configure multiple users on a single machine?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
