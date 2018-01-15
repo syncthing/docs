@@ -124,6 +124,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <kcpReceiveWindowSize>128</kcpReceiveWindowSize>
             <defaultFolderPath>~</defaultFolderPath>
             <minHomeDiskFreePct>0</minHomeDiskFreePct>
+            <setLowPrio>true</setLowPrio>
         </options>
     </configuration>
 
@@ -641,7 +642,7 @@ limitBandwidthInLan
     as the local device.
 
 minHomeDiskFree
-    The minimum required free space that should be available on the 
+    The minimum required free space that should be available on the
     partition holding the configuration and index. Accepted units are ``%``, ``kB``,
     ``MB``, ``GB`` and ``TB``.
 
@@ -697,25 +698,16 @@ defaultFolderPath
     The UI will propose to create new folders at this path. This can be disabled by
     setting this to an empty string.
 
-relayServer
-    .. deprecated:: v0.13.0
-       You can now specify custom relay servers with ``listenAddress``.
+.. _set-low-priority:
 
-    Lists one or more relay servers, on the format ``relay://hostname:port``.
-    Alternatively, a relay list can be loaded over https by using an URL like
-    ``dynamic+https://somehost/path``. The default loads the list of relays
-    from the relay pool server, ``relays.syncthing.net``.
-
-pingTimeoutS
-    .. deprecated:: v0.12.0
-
-    Ping-timeout in seconds. Don't change it unless you are having issues due to
-    slow response time (slow connection/cpu) and large index exchanges.
-
-pingIdleTimeS
-    .. deprecated:: v0.12.0
-
-    Ping interval in seconds. Don't change it unless you feel it's necessary.
+setLowPriority
+    Syncthing will attempt to lower its process priority at startup.
+    Specifically: on Linux, set itself to a separate process group, set the
+    niceness level of that process group to nine and the I/O priority to
+    best effort level five; on other Unixes, set the process niceness level
+    to nine; on Windows, set the process priority class to below normal. To
+    disable this behavior, for example to control process priority yourself
+    as part of launching Syncthing, set this option to ``false``.
 
 .. _listen-addresses:
 
