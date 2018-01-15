@@ -124,7 +124,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <kcpReceiveWindowSize>128</kcpReceiveWindowSize>
             <defaultFolderPath>~</defaultFolderPath>
             <minHomeDiskFreePct>0</minHomeDiskFreePct>
-            <setLowPrio>true</setLowPrio>
+            <setLowPriority>true</setLowPriority>
         </options>
     </configuration>
 
