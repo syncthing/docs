@@ -112,6 +112,12 @@ STPERFSTATS
     Write running performance statistics to ``perf-$pid.csv``. Not supported on
     Windows.
 
+STRECHECKDBEVERY
+    Time before folder statistics (file, dir, ... counts) are recalculated from
+    scratch. The given duration must be parseable by GO's time.ParseDuration. If
+    missing or not parseable, the default value of 1 month is used. To force
+    recalculation on every startup, set it to ``0``.
+
 GOMAXPROCS
     Set the maximum number of CPU cores to use. Defaults to all available CPU
     cores.
