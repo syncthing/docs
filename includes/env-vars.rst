@@ -65,10 +65,6 @@ STBLOCKPROFILE
 STCPUPROFILE
     Write a CPU profile to cpu-$pid.pprof on exit.
 
-STDEADLOCK
-    Used for debugging internal deadlocks. Use only under direction of a
-    developer.
-
 STDEADLOCKTIMEOUT
     Used for debugging internal deadlocks; sets debug sensitivity. Use only
     under direction of a developer.
