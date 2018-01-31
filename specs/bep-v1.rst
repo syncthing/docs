@@ -241,6 +241,7 @@ Protocol Buffer Schema
         bool   ignore_permissions   = 4;
         bool   ignore_delete        = 5;
         bool   disable_temp_indexes = 6;
+        bool   paused               = 7;
 
         repeated Device devices = 16;
     }
@@ -294,6 +295,8 @@ deletes for.
 The **disable temp indexes** field is set for folders that will not dispatch
 and do not wish to receive progress updates about partially downloaded files
 via Download Progress messages.
+
+The **paused** field is set for folders that are currently paused.
 
 The **devices** field is a list of devices participating in sharing this
 folder.
@@ -390,9 +393,10 @@ Protocol Buffer Schema
     }
 
     message BlockInfo {
-        int64 offset = 1;
-        int32 size   = 2;
-        bytes hash   = 3;
+        int64 offset     = 1;
+        int32 size       = 2;
+        bytes hash       = 3;
+        uint32 weak_hash = 4;
     }
 
     message Vector {
