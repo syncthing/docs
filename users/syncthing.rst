@@ -97,7 +97,7 @@ Options
 .. cmdoption:: -reset-database
 
     Reset the database, forcing a full rescan and resync.
-    Create `.stfolder` folders in each sync folder if they do not already exist. 
+    Create `.stfolder` folders in each sync folder if they do not already exist.
     **Caution**: Ensure that all sync folders which are mountpoints are already mounted. Inconsistent versions may result if the mountpoint is later mounted and contains older versions.
 
 
@@ -129,13 +129,6 @@ Options
 
     Show version.
 
-Deprecated Options
-------------------
-
-.. cmdoption:: -gui-apikey=<key>
-
-    Override GUI API key (deprecated as of v0.13, to be removed in the future - do not use).
-
 Exit Codes
 ----------
 
@@ -155,6 +148,18 @@ process (with environment variable ``STNORESTART`` set). Exit codes over 125 are
 usually returned by the shell/binary loader/default signal handler. Exit codes
 over 128+N on Unix usually represent the signal which caused the process to
 exit. For example, ``128 + 9 (SIGKILL) = 137``.
+
+Proxies
+-------
+
+Syncthing can use a SOCKS, HTTP, or HTTPS proxy to talk to the outside
+world. The proxy is used for outgoing connections only - it is not possible
+to accept incoming connections through the proxy. The proxy is configured
+through the environment variable ``all_proxy``. Somewhat unusually, this
+variable must be named in lower case - it is not ":strike:`ALL_PROXY`". For
+example::
+
+    $ export all_proxy=socks://192.0.2.42:8081
 
 Development Settings
 --------------------
