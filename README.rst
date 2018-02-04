@@ -17,12 +17,17 @@ In the long run, learning to use Git_ and running Sphinx_ on your computer is
 beneficial.
 
 First steps to run it locally::
- 
+
   git clone https://github.com/syncthing/docs.git
   pip install -U Sphinx
-  cd docs 
+  cd docs
   make html
   # open _build/html/index.html
+
+You can also use our Docker image to build the documentation, which is the
+same thing the build server does in the end:
+
+  ./docker-build.sh html
 
 Structure
 ---------
