@@ -187,30 +187,9 @@ above mechanism.
 Discovery Spoofing
 ~~~~~~~~~~~~~~~~~~
 
-Currently, neither the local nor global discovery mechanism is protected
-by crypto. This means that any device can in theory announce itself for
-any device ID and potentially receive connections for that device.
-
-This could be a denial of service attack (we can't find the real device
-for a given device ID, so can't connect to it and sync). It could also
-be an intelligence gathering attack; if I spoof a given ID, I can see
-which devices try to connect to it.
-
-It could be mitigated in several ways:
-
--  Announcements could be signed by the device private key. This
-   requires already having the public key to verify.
-
--  Announcements to the global announce server could be done using TLS,
-   so the server calculates the device ID based on the certificate
-   instead of trusting the device to tell the truth.
-
--  The user could statically configure IP or host name for the devices.
-
--  The user could run a trusted global server.
-
-It's something we might want to look at at some point, but not a huge
-problem as I see it.
+Currently, the local discovery mechanism isn't protected by crypto. This
+means that any device can in theory announce itself for any device ID and
+potentially receive connections for that device from the local network.
 
 Long Device IDs are Painful
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
