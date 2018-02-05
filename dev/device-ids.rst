@@ -3,9 +3,6 @@
 Understanding Device IDs
 ========================
 
-Description
------------
-
 Every device is identified by a device ID. The device ID is used for address
 resolution, authentication and authorization. The term "device ID" could
 interchangeably have been "key ID" since the device ID is a direct property of

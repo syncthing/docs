@@ -3,11 +3,8 @@
 REST API
 ========
 
-Description
------------
-
 Syncthing exposes a REST interface over HTTP on the GUI port. This is used by
-the GUI code (JavaScript) and can be used by other processes wishing to control
+the GUI (from Javascript) and can be used by other processes wishing to control
 Syncthing. In most cases both the input and output data is in JSON format. The
 interface is subject to change.
 
@@ -46,7 +43,6 @@ Event Endpoints
    :maxdepth: 1
    :glob:
 
-   GET /rest/events <events>
    ../rest/events-*
 
 Statistics Endpoints

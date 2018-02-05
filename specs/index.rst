@@ -3,6 +3,14 @@
 Specifications
 ==============
 
+.. toctree::
+   :hidden:
+
+   bep-v1
+   globaldisco-v3
+   localdisco-v4
+   relay-v1
+
 :ref:`bep-v1`
 	The protocol used to exchange file data and metadata between Syncthing devices.
 

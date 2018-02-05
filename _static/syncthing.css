@@ -1,3 +1,11 @@
+p {
+	font-size: 18px;
+}
+
+div[class^='highlight'] pre {
+	font-size: 15px;
+}
+
 /* These don't get the default font size from the theme for whatever reason. */
 .rst-content blockquote, .rst-content li, .rst-content dd, .rst-content dt, .rst-content th, .rst-content td {
 	font-size: 18px !important;

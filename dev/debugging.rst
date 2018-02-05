@@ -136,7 +136,7 @@ numbers keep peak memory usage down, at the price of CPU usage (ie.
 performance)
 
 Stepping with breakpoints
-=========================
+-------------------------
 
 If you like to step through the running program, build a non-optimized binary and run with  https://github.com/derekparker/delve.
 
@@ -151,4 +151,4 @@ For installing and using delve itself see:
 
 -  VSCode (Microsoft): https://github.com/Microsoft/vscode-go/wiki/Debugging-Go-code-using-VS-Code
 
--  Goland (JetBrains): create remote run configuration and follow the two steps displayed 
+-  Goland (JetBrains): create remote run configuration and follow the two steps displayed

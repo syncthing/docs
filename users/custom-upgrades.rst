@@ -1,9 +1,6 @@
 Custom Upgrade Server
 =====================
 
-Description
------------
-
 Syncthing by default upgrades automatically from the `official release packages <https://github.com/syncthing/syncthing/releases>`__
 on Github. If this is unsuitable, Syncthing can instead be configured to look
 for upgrades on a local or private upgrade server.

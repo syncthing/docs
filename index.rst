@@ -36,70 +36,18 @@ Contact
 * For a more real time experience, there's also an IRC channel ``#syncthing`` on
   `Freenode <https://freenode.net/>`_.
 
-* For other concerns you may reach out to members of the core team, currently
-  :user:`calmh`, :user:`AudriusButkevicius` and :user:`Zillode`.
-
-The main documentation for the site is organized into a couple of sections. You
-can use the headings in the left sidebar to navigate the site.
+* For other concerns you may reach out to members of the maintainers, currently
+  :user:`calmh`, :user:`AudriusButkevicius` and :user:`imsodin`.
 
 .. toctree::
-   :caption: Introduction
-   :maxdepth: 1
-   :glob:
+   :maxdepth: 2
+   :numbered: 3
+   :includehidden:
 
-   intro/getting-started
-   intro/gui
-   intro/project-presentation
-
-.. toctree::
-   :caption: For Users
-   :maxdepth: 1
-   :glob:
-
-   Command Line Operation <users/syncthing>
-   users/faq
-   users/releases
-
-   Configuration <users/config>
-   users/advanced
-   users/foldertypes
-   users/introducer
-   users/guilisten
-
-   users/syncing
-
-   users/firewall
-   users/relaying
-   users/proxying
-
-   users/ignoring
-   users/versioning
-
-   users/stdiscosrv
-   users/strelaysrv
-   users/custom-upgrades
-
-   users/autostart
-   users/contrib
-   users/profiling
-   users/reverseproxy
-   users/security
-
-.. toctree::
-   :caption: For Developers
-   :maxdepth: 1
-   :glob:
-
-   Introduction <dev/intro>
-   dev/*
-
-.. toctree::
-   :caption: Specifications
-   :maxdepth: 1
-   :glob:
-
-   Introduction <specs/index>
-   specs/*
+   intro/index
+   users/index
+   dev/index
+   specs/index
 
 .. _`contribution guidelines`: https://github.com/syncthing/syncthing/blob/master/CONTRIBUTING.md
 .. _Github: https://github.com/syncthing/docs

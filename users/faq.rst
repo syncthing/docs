@@ -3,11 +3,8 @@
 FAQ
 ===
 
-General
--------
-
 What is Syncthing?
-~~~~~~~~~~~~~~~~~~
+------------------
 
 Syncthing is an application that lets you synchronize your files across multiple
 devices. This means the creation, modification or deletion of files on one
@@ -17,7 +14,7 @@ Syncthing does not upload your data to the cloud but exchanges your data across
 your machines as soon as they are online at the same time.
 
 Is it "syncthing", "Syncthing" or "SyncThing"?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------
 
 It's **Syncthing**, although the command and source repository is spelled
 ``syncthing`` so it may be referred to in that way as well. It's definitely not
@@ -25,7 +22,7 @@ SyncThing, even though the abbreviation ``st`` is used in some
 circumstances and file names.
 
 How does Syncthing differ from BitTorrent/Resilio Sync?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------------------------
 
 The two are different and not related. Syncthing and BitTorrent/Resilio Sync accomplish
 some of the same things, namely syncing files between two or more computers.
@@ -41,11 +38,8 @@ Sync uses an undocumented, closed protocol with unknown security properties.
 
 .. [#resiliosync] https://en.wikipedia.org/wiki/Resilio_Sync
 
-Usage
------
-
 What things are synced?
-~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 The following things are *always* synchronized:
 
@@ -69,7 +63,7 @@ The following are *not* synchronized;
 -  Sparse file sparseness (will become sparse, when supported by the OS & filesystem)
 
 Is synchronization fast?
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 Syncthing segments files into pieces, called blocks, to transfer data from one
 device to another. Therefore, multiple devices can share the synchronization
@@ -88,7 +82,7 @@ transfer has been completed or after the configured amount of time which is set
 in the configuration file (24 hours by default).
 
 Why is the sync so slow?
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 When troubleshooting a slow sync, there are a number of things to check.
 
@@ -116,7 +110,7 @@ Third, verify that the network connection is OK. Tools such as iperf or just
 an Internet speed test can be used to verify the performance here.
 
 Why does it use so much CPU?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 #. When new or changed files are detected, or Syncthing starts for the
    first time, your files are hashed using SHA-256.
@@ -152,7 +146,7 @@ Android. For other setups, consider using `syncthing-inotify
 <https://github.com/syncthing/syncthing-inotify>`_.
 
 Should I keep my device IDs secret?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 No. The IDs are not sensitive. Given a device ID it's possible to find the IP
 address for that device, if global discovery is enabled on it. Knowing the device
@@ -169,7 +163,7 @@ oyster!)
     :ref:`device-ids`
 
 What if there is a conflict?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------
 
 Syncthing does recognize conflicts. When a file has been modified on two devices
 simultaneously and the content actually differs, one of the files will be
@@ -194,7 +188,7 @@ causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
 .. _marker-faq:
 
 How do I serve a folder from a read only filesystem?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------
 
 Syncthing requires a "folder marker" to indicate that the folder is present
 and healthy. By default this is a directory called ``.stfolder`` that is
@@ -204,18 +198,18 @@ the advanced config ``Marker Name`` to the name of some file or folder that
 you know will always exist in the folder.
 
 I really hate the ``.stfolder`` directory, can I remove it?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------------------
 
 See the previous question.
 
 Am I able to use nested Syncthing folders?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------
 
 Do not nest shared folders. This behaviour is in no way supported,
 recommended or coded for in any way, and comes with many pitfalls.
 
 How do I rename/move a synced folder?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 Syncthing doesn't have a direct way to do this, as it's potentially
 dangerous to do so if you're not careful - it may result in data loss if
@@ -232,24 +226,24 @@ move. Changes made on other devices may be overwritten, or changes made
 locally may be overwritten by those on other devices.
 
 An alternative way is to shut down Syncthing, move the folder on disk (including
-the ``.stfolder`` marker), edit the path directly in ``config.xml`` in the 
+the ``.stfolder`` marker), edit the path directly in ``config.xml`` in the
 configuration folder (see :ref:`config`) and then start Syncthing again.
 
 How do I configure multiple users on a single machine?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------
 
 Each user should run their own Syncthing instance. Be aware that you might need
 to configure listening ports such that they do not overlap (see :ref:`config`).
 
 Does Syncthing support syncing between folders on the same system?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------------------
 
 No. Syncthing is not designed to sync locally and the overhead involved in
 doing so using Syncthing's method would be wasteful. There are better
 programs to achieve this such as rsync or Unison.
 
 When I do have two distinct Syncthing-managed folders on two hosts, how does Syncthing handle moving files between them?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------------------------------------------------------------------------------------------------
 
 Syncthing does not specially handle this case, and most files most likely get
 re-downloaded.
@@ -268,7 +262,7 @@ A workaround would be to copy first from A to B, rescan B, wait for B to
 rebuild on remote ends, and then delete from A.
 
 Is Syncthing my ideal backup application?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------
 
 No. Syncthing is not a great backup application because all changes to your
 files (modifications, deletions, etc.) will be propagated to all your
@@ -276,7 +270,7 @@ devices. You can enable versioning, but we encourage the use of other tools
 to keep your data safe from your (or our) mistakes.
 
 Why is there no iOS client?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 There is an alternative implementation of Syncthing (using the same network
 protocol) called ``fsync()``. There are no plans by the current Syncthing
@@ -284,7 +278,7 @@ team to support iOS in the foreseeable future, as the code required to do so
 would be quite different from what Syncthing is today.
 
 How can I exclude files with brackets (``[]``) in the name?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------------------
 
 The patterns in .stignore are glob patterns, where brackets are used to
 denote character ranges. That is, the pattern ``q[abc]x`` will match the
@@ -298,7 +292,7 @@ character is used as a path separator. On the other hand, special characters
 such as ``[`` and ``?`` are not allowed in file names on Windows.
 
 Why is the setup more complicated than BitTorrent/Resilio Sync?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------------------------------
 
 Security over convenience. In Syncthing you have to setup both sides to
 connect two devices. An attacker can't do much with a stolen device ID, because
@@ -308,7 +302,7 @@ where your files are transferred.
 This is an area that we are working to improve in the long term.
 
 How do I access the web GUI from another computer?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------------
 
 The default listening address is 127.0.0.1:8384, so you can only access the
 GUI from the same machine. This is for security reasons. Change the ``GUI
@@ -362,7 +356,7 @@ The easiest way to install gow is with chocolatey.
 https://chocolatey.org/
 
 Why do I get "Host check error" in the GUI/API?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------
 
 Since version 0.14.6 Syncthing does an extra security check when the GUI/API
 is bound to localhost - namely that the browser is talking to localhost.
@@ -384,12 +378,12 @@ protect against unauthorized access. Either:
 In all cases, username/password authentication and HTTPS should be used.
 
 My Syncthing database is corrupt
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 This is almost always a result of bad RAM, storage device or other hardware. When the index database is found to be corrupt Syncthing cannot operate and will note this in the logs and exit. To overcome this delete the `database folder <https://docs.syncthing.net/users/config.html#description>`__ inside Syncthing's home directory and re-start Syncthing. It will then need to perform a full re-hashing of all shared folders. You should check your system in case the underlying cause is indeed faulty hardware which may put the system at risk of further data loss.
 
 I don't like the GUI or the theme. Can it be changed?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------------------
 
 You can change the theme in the settings. Syncthing ships with other themes
 than the default.
@@ -411,7 +405,7 @@ to get an idea how to do that.
 
 
 Why do I see Syncthing twice in task manager?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------------------
 
 One process manages the other, to capture logs and manage restarts. This
 makes it easier to handle upgrades from within Syncthing itself, and also
@@ -419,7 +413,7 @@ ensures that we get a nice log file to help us narrow down the cause for
 crashes and other bugs.
 
 Where do Syncthing logs go to?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 Syncthing logs to stdout by default. On Windows Syncthing by default also
 creates ``syncthing.log`` in Syncthing's home directory (run ``syncthing
@@ -427,7 +421,7 @@ creates ``syncthing.log`` in Syncthing's home directory (run ``syncthing
 to specify a user-defined logfile.
 
 How can I view the history of changes?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 The web GUI contains a ``Global Changes`` button under the device list which
 displays changes since the last (re)start of Syncthing. With the ``-audit``
@@ -436,7 +430,7 @@ activities, which contains a ``JSON`` formatted  sequence of events in the
 ``~/.config/syncthing/audit-_date_-_time_.log`` file.
 
 Does the audit log contain every change?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------
 
 The audit log (and the ``Global Changes`` window) sees the changes that your
 Syncthing sees. When Syncthing is continuously connected it usually sees every change
@@ -453,7 +447,7 @@ it initiates the conflict resolution procedure, which in the end results in a co
 up-to-date state with all the neighbours.
 
 How do I upgrade Syncthing?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 If you use a package manager such as Debian's apt-get, you should upgrade
 using the package manager. If you use the binary packages linked from
@@ -473,7 +467,7 @@ ca_root_nss``). If ``curl`` or ``wget`` works with normal HTTPS sites, then
 so should Syncthing.
 
 Where do I find the latest release?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 We release new versions through GitHub. The latest release is always found
 `on the release page
@@ -485,7 +479,7 @@ the JSON response.
 
 
 How do I run Syncthing as a daemon process on Linux?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------
 
 If you're using systemd, runit, or upstart, we already ship examples, check
 https://github.com/syncthing/syncthing/tree/master/etc for example

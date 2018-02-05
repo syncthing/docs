@@ -1,9 +1,6 @@
 Release Schedule
 ================
 
-Structure
----------
-
 Syncthing follows the `Semantic Versioning <http://semver.org/>`__
 scheme of versioning. Each release has a three part version number:
 *major*.\ *minor*.\ *patch*.

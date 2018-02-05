@@ -3,9 +3,6 @@
 File Versioning
 ===============
 
-Description
------------
-
 Syncthing supports archiving the old version of a file when it is deleted or
 replaced with a newer version from the cluster. This is called "file
 versioning" and uses one of the available *versioning strategies* described
@@ -73,23 +70,23 @@ External File Versioning
 ------------------------
 
 This versioning method delegates the decision on what to do to an external
-command (program or script). 
-Just prior to a file being replaced, the command will be run. 
+command (program or script).
+Just prior to a file being replaced, the command will be run.
 The command should be specified as an absolute path, and can use the following templated arguments:
 
 
-.. 
+..
     This to be added when actually relevant.
-  
+
     %FOLDER_FILESYSTEM%
       Filesystem type for the underlying folder.
-      
+
 %FOLDER_PATH%
   Path to the folder
-  
+
 %FILE_PATH%
   Path to the file within the folder
-  
+
 Example for Unixes
 ~~~~~~~~~~~~~~~~~~
 
@@ -142,18 +139,18 @@ behavior as mentioned above. I created the following script and saved it as
 
     :: We need command extensions for mkdir to create intermediate folders in one go
     setlocal EnableExtensions
-    
+
     :: Where I want my versions stored
     set VERSIONS_PATH=%USERPROFILE%\.trashcan
-    
+
     :: The parameters we get from Syncthing, '~' removes quotes if any
     set FOLDER_PATH=%~1
     set FILE_PATH=%~2
-    
+
     :: First ensure the dir where we need to store the file exists
     for %%F in ("%VERSIONS_PATH%\%FILE_PATH%") do set OUTPUT_PATH=%%~dpF
     if not exist "%OUTPUT_PATH%" mkdir "%OUTPUT_PATH%" || exit /B
-    
+
     :: Finally move the file, overwrite existing file if any
     move /Y "%FOLDER_PATH%\%FILE_PATH%" "%VERSIONS_PATH%\%FILE_PATH%"
 
