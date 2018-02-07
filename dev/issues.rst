@@ -23,17 +23,20 @@ build
     The issue is caused by or requires changes to the build system
     (scripts or Docker image).
 
-docs
-    Something requires documenting.
-
-easy
-    This could be easily fixed, probably an hour's work or less.
-    These issues are good starting points for new contributors.
-
 enhancement
     This is a new feature or an improvement of some kind, as
     opposed to a problem (bug).
-    
+
+frozen-due-to-age
+    This is set automatically on issues when they have been closed untouched
+    for a long time, together with the issue being locked against
+    discussion.
+
+good-first-issue
+    These issues are good starting points for new contributors. They are
+    contained in scope and size, and it should be clear what is the desired
+    outcome.
+
 not-our-bug
     Rare and temporary label used only when we want to keep an issue
     open for visibility, but the real problem is somewhere else.
@@ -41,14 +44,17 @@ not-our-bug
 protocol
     This requires a change to the protocol.
 
+unreleased
+    This is set on bugs that have never been in a released stable version -
+    i.e., a bug introduced in v0.14.44-rc.1 and fixed in v0.14.44-rc.2. They
+    are excluded from the release notes for v0.14.44.
+
 Milestones
 ----------
 
-There are milestones for major and sometimes minor versions. An issue being
-assigned to a milestone means it is a blocker - the release can't be made
-without the issue being closed. Typically this also means that the issue is
-being actively worked on, at least for version milestones in the foreseeable
-future.
+Each released version gets a milestone. Issues that are resolved and will be
+released as that version get added to the milestone. The release notes are
+based on the issues present in the milestone.
 
 In addition to version specific milestones there are two generic ones:
 
