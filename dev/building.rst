@@ -100,12 +100,8 @@ The following ``build.go`` subcommands and options exist.
   build.go is run without any commands or parameters).
 
 ``go run build.go build``
-  Forces a rebuild of the binary to the current directory; similar to
-  ``install`` but slower.
-
-``go run build.go clean``
-  Removes build artefacts, guaranteeing a complete rebuild. Use this when
-  switching between normal builds and noupgrade builds.
+  Builds just the named target, or ``syncthing`` by default, to the current
+  directory. Use when cross compiling.
 
 ``go run build.go test``
   Runs the tests.
@@ -117,12 +113,6 @@ The following ``build.go`` subcommands and options exist.
 ``go run build.go zip``
   Creates a Syncthing zip dist file in the current directory. Assumes a
   Windows build.
-
-``go run build.go assets``
-  Rebuilds the compiled-in GUI assets.
-
-``go run build.go deps``
-  Updates the in-repo dependencies.
 
 The options ``-no-upgrade``, ``-goos`` and ``-goarch`` can be given to
 influence ``install``, ``build``, ``tar`` and ``zip``. Examples:
