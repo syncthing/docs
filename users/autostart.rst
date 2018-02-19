@@ -20,7 +20,7 @@ there are a number of easy solutions.
 Task Scheduler
 ~~~~~~~~~~~~~~
 
-#. Start the `Task Scheduler <https://en.wikipedia.org/wiki/Windows_Task_Scheduler>`__
+#. Start the `Task Scheduler <https://en.wikipedia.org/wiki/Windows_Task_Scheduler>`__ (``taskschd.msc``)
 #. Create a New Task ("Action" menu -> "Create Task...")
 #. General Tab:
     #. Name the task (for example 'Syncthing')
