@@ -43,6 +43,8 @@ STTRACE
             UPnP discovery and port mapping.
 
     Other facilities:
+        fs
+            Filesystem access.
         events
             Event generation and logging.
         http
@@ -55,6 +57,8 @@ STTRACE
             Mutexes. Used for debugging race conditions and deadlocks.
         upgrade
             Binary upgrades.
+        walkfs
+            Filesystem access while walking.
 
         all
             All of the above.
