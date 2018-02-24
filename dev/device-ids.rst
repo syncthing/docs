@@ -14,11 +14,12 @@ Keys
 To understand device IDs we need to look at the underlying mechanisms. At first
 startup, Syncthing will create a public/private keypair.
 
-Currently this is a 3072 bit RSA key. The keys are saved in the form of the
-private key (``key.pem``) and a self signed certificate (``cert.pem``). The self
-signing part doesn't actually add any security or functionality as far as
-Syncthing is concerned but it enables the use of the keys in a standard TLS
-exchange.
+Currently this is a 384 bit ECDSA key (3072 bit RSA prior to v0.12.5,
+which is what is used as an example in this article). The keys are saved in
+the form of the private key (``key.pem``) and a self signed certificate
+(``cert.pem``). The self signing part doesn't actually add any security or
+functionality as far as Syncthing is concerned but it enables the use of the
+keys in a standard TLS exchange.
 
 The typical certificate will look something like this, inspected with
 ``openssl x509``::
