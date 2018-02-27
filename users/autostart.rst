@@ -194,6 +194,19 @@ On Ubuntu-like systems
 
    -  Name: Syncthing
    -  Command: ``/path/to/syncthing/binary -no-browser -home="/home/your\_user/.config/syncthing"``
+   
+On systems running Xfce
+~~~~~~~~~~~~~~~~~~~~~~~
+
+#. Go to "Session and Startup" in Xfce settings.
+#. Click the "Application Autostart" tab.
+#. Click "Add."
+#. A good choice for the "Name:" field might be: ``Syncthing``
+#. The "Description" field can be left blank or you can add any description you want.
+#. For "Command:" type: ``/your-syncthing-location/syncthing -no-browser``
+
+-  The "Command" field must be edited to coincide with the location of Syncthing on your computer.
+-  You can put Syncthing anywhere you want. Remember to set correct permissions especially if outside of home directory. A good location might be: ``/user/home/Syncthing/syncthing``
 
 Using Supervisord
 ~~~~~~~~~~~~~~~~~
