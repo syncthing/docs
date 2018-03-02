@@ -718,7 +718,7 @@ The following address types are accepted in sync protocol listen addresses:
 
 Default listen addresses (``default``)
     This is equivalent to ``tcp://0.0.0.0:22000`` and
-    ``dynamic+https://relays.syncthing.net/endpoint``.
+    ``dynamic, https://relays.syncthing.net/endpoint``.
 
 TCP wildcard and port (``tcp://0.0.0.0:22000``, ``tcp://:22000``)
     These are equivalent and will result in Syncthing listening on all
@@ -739,20 +739,18 @@ TCP IPv6 wildcard and port (``tcp6://[::]:22000``, ``tcp6://:22000``)
 TCP IPv6 address and port (``tcp6://[2001:db8::42]:22000``)
     This results in Syncthing listening on the specified address and port, IPv6
     only.
-    
-KCP listener address (``kcp://0.0.0.0:22000``, ``kcp://:22020``)
-    Syncthing will connect to and listen for incoming connections via the KCP protocol on IPv6 and IPv6.
 
 Static relay address (``relay://192.0.2.42:22067?id=abcd123...``)
     Syncthing will connect to and listen for incoming connections via the
     specified relay address.
    
-Static relay address with KCP and TCP (``kcp://:22020, relay://your.server.com:22067/?id=abcd123..., tcp://:22000``)
-    Syncthing will utilise KCP and TCP listening along with a private relay as fall back option.
+Static relay address with TCP (``relay://your.server.com:22067/?id=abcd123..., tcp://:22000``)
+    This results in Syncthing listening on all interfaces, IPv4 and IPv6, on the specified port 
+    with a private relay server as a fallback option.
 
     .. todo:: Document available URL parameters.
 
-Dynamic relay pool (``dynamic+https://192.0.2.42/relays``)
+Dynamic relay pool (``dynamic, https://192.0.2.42/relays``)
     Syncthing will fetch the specified HTTPS URL, parse it for a JSON payload
     describing relays, select a relay from the available ones and listen via
     that as if specified as a static relay above.
