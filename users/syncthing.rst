@@ -19,7 +19,7 @@ Synopsis
 Description
 -----------
 
-Syncthing is an application that lets you synchronize your files across multiple
+Syncthing lets you synchronize your files bidirectionally across multiple
 devices. This means the creation, modification or deletion of files on one
 machine will automatically be replicated to your other devices. We believe your
 data is your data alone and you deserve to choose where it is stored. Therefore
@@ -64,8 +64,8 @@ Options
 
 .. cmdoption:: -logflags=<flags>
 
-    Select information in log line prefix, default 2. The ``-logflags`` value is
-    a sum of the following:
+    Select information in log line prefix. The ``-logflags`` value is a sum of
+    the following:
 
     -  1: Date
     -  2: Time
@@ -99,10 +99,11 @@ Options
 
 .. cmdoption:: -reset-database
 
-    Reset the database, forcing a full rescan and resync.
-    Create `.stfolder` folders in each sync folder if they do not already exist.
-    **Caution**: Ensure that all sync folders which are mountpoints are already mounted. Inconsistent versions may result if the mountpoint is later mounted and contains older versions.
-
+    Reset the database, forcing a full rescan and resync. Create `.stfolder`
+    folders in each sync folder if they do not already exist. **Caution**:
+    Ensure that all sync folders which are mountpoints are already mounted.
+    Inconsistent versions may result if the mountpoint is later mounted and
+    contains older versions.
 
 .. cmdoption:: -reset-deltas
 

@@ -67,7 +67,7 @@ STBLOCKPROFILE
     Write block profiles to ``block-$pid-$timestamp.pprof`` every 20 seconds.
 
 STCPUPROFILE
-    Write a CPU profile to cpu-$pid.pprof on exit.
+    Write a CPU profile to ``cpu-$pid.pprof`` on exit.
 
 STDEADLOCKTIMEOUT
     Used for debugging internal deadlocks; sets debug sensitivity. Use only
@@ -95,7 +95,7 @@ STNODEFAULTFOLDER
     variable will be ignored anytime after the first run.
 
 STNORESTART
-    Equivalent to the -no-restart argument. Disable the Syncthing monitor
+    Equivalent to the ``-no-restart`` flag. Disable the Syncthing monitor
     process which handles restarts for some configuration changes, upgrades,
     crashes and also log file writing (stdout is still written).
 
