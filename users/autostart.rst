@@ -185,28 +185,21 @@ access the GUI type 127.0.0.1:8384 (by default) into Safari.
 Linux
 -----
 
-On Ubuntu-like systems
+On Linux systems with a GUI
 ~~~~~~~~~~~~~~~~~~~~~~
 
-#. Launch the program 'Startup Applications'.
+#. Find a program or menu entry similar to 'Startup Applications'.
 #. Click 'Add'.
 #. Fill out the form:
 
    -  Name: Syncthing
    -  Command: ``/path/to/syncthing/binary -no-browser -home="/home/your\_user/.config/syncthing"``
    
-On systems running Xfce
-~~~~~~~~~~~~~~~~~~~~~~~
+#. The "Name:" field can read anything you want. A good choice might be: ``Syncthing``
+  
+#. A "Description" field can be left blank or you can add any description you want.
 
-#. Go to "Session and Startup" in Xfce settings.
-#. Click the "Application Autostart" tab.
-#. Click "Add."
-#. A good choice for the "Name:" field might be: ``Syncthing``
-#. The "Description" field can be left blank or you can add any description you want.
-#. For "Command:" type: ``/your-syncthing-location/syncthing -no-browser``
-
--  The "Command" field must be edited to coincide with the location of Syncthing on your computer.
--  You can put Syncthing anywhere you want. Remember to set correct permissions especially if outside of home directory. A good location might be: ``/user/home/Syncthing/syncthing``
+#. The "Command" field must be edited to coincide with the location of the Syncthing binary and Syncthing data location (default data location is: /home/user/.config/syncthing) on your computer. You can put the Syncthing binary anywhere you want. Remember to set correct permissions especially if outside of home directory. A good location for the Syncthing binary might be: ``/user/home/Syncthing/syncthing``
 
 Using Supervisord
 ~~~~~~~~~~~~~~~~~
