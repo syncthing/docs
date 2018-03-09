@@ -195,11 +195,11 @@ On Linux systems with a GUI
    -  Name: Syncthing
    -  Command: ``/path/to/syncthing/binary -no-browser -home="/home/your\_user/.config/syncthing"``
    
-#. The "Name:" field can read anything you want. A good choice might be: ``Syncthing``
+- The "Name:" field can read anything you want. A good choice might be: ``Syncthing``
   
-#. A "Description" field can be left blank or you can add any description you want.
+- The "Description" field can be left blank or you can add any description you want.
 
-#. The "Command" field must be edited to coincide with the location of the Syncthing binary and Syncthing data location (default data location is: /home/user/.config/syncthing) on your computer. You can put the Syncthing binary anywhere you want. Remember to set correct permissions especially if outside of home directory. A good location for the Syncthing binary might be: ``/user/home/Syncthing/syncthing``
+- The "Command" field must be edited to coincide with the location of the Syncthing binary and Syncthing data location (default data location is: /home/user/.config/syncthing) on your computer. You can put the Syncthing binary anywhere you want. Remember to set correct permissions especially if outside of home directory. A good location for the Syncthing binary might be: ``/user/home/Syncthing/syncthing``
 
 Using Supervisord
 ~~~~~~~~~~~~~~~~~
