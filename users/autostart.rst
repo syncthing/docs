@@ -195,7 +195,7 @@ On Linux systems with a Graphical User Interface.
    -  Name: Syncthing
    -  Command: ``syncthing -no-browser``
 
-The "Command" field must coincide with the location of the Syncthing binary on your computer. ``which syncthing`` can be used to locate the binary. When Syncthing is installed through a package manager the location relative to root is not usually necessary which is why ``syncthing -no-browser`` works. If using a Syncthing binary file directly the command must point to the location of the Syncthing binary realtive to root. Example: ``/home/user/syncthing/syncthing -no-browser``
+The "Command" field must coincide with the location of the Syncthing binary on your computer. ``which syncthing`` can be used to locate the binary. When Syncthing is installed through a package manager the location relative to root is not usually necessary which is why ``syncthing -no-browser`` works. If using Syncthing binary file directly the command must point to the location of the Syncthing binary relative to root. Example: ``/home/user/syncthing/syncthing -no-browser``
 
 Using Supervisord
 ~~~~~~~~~~~~~~~~~
