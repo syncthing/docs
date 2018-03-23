@@ -515,10 +515,10 @@ On many Linux distributions you can run the following to fix it::
     echo "fs.inotify.max_user_watches=204800" | sudo tee -a /etc/sysctl.conf
 
 On Arch Linux and potentially others it is preferred to write this line into a
-separate file, i.e., you should run::
+separate file, i.e. you should run::
 
     echo "fs.inotify.max_user_watches=204800" | sudo tee -a /etc/sysctl.d/90-override.conf
 
-This only takes effect after a reboot. To adjust the limit immediately, run ::
+This only takes effect after a reboot. To adjust the limit immediately, run::
 
     sudo sh -c 'echo 204800 > /proc/sys/fs/inotify/max_user_watches'
