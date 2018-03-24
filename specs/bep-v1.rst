@@ -15,8 +15,10 @@ forms the *global model*. Each device strives to get its folders in sync
 with the global model by requesting missing or outdated blocks from the
 other devices in the cluster.
 
-File data is described and transferred in units of *blocks*, each being
-128 KiB (131072 bytes) in size.
+File data is described and transferred in units of *blocks*, each being from
+128 KiB (131072 bytes) to 16 MiB in size, in steps of powers of two. The
+block size may vary between files but is constant in any given file, except
+for the last block which may be smaller.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
@@ -378,7 +380,8 @@ Protocol Buffer Schema
         bool         invalid        = 7;
         bool         no_permissions = 8;
         Vector       version        = 9;
-        int64        sequence      = 10;
+        int64        sequence       = 10;
+        int32        block_size     = 13;
 
         repeated BlockInfo Blocks         = 16;
         string             symlink_target = 17;
@@ -470,10 +473,15 @@ The **sequence** field is the value of a device local monotonic clock at the
 time of last local database update to a file. The clock ticks on every local
 database update, thus forming a sequence number over database updates.
 
+The **block_size** field is the size, in bytes, of each individual block in
+the block list (except, possibly, the last block). If this field is missing
+or zero, the block size is assumed to be 128 KiB (131072 bytes). Valid
+values of this field are the powers of two from 128 KiB through 16 MiB.
+
 The **blocks** list contains the size and hash for each block in the file.
-Each block represents a 128 KiB slice of the file, except for the last block
-which may represent a smaller amount of data. The block list is empty for
-directories and symlinks.
+Each block represents a **block_size**-sized slice of the file, except for
+the last block which may represent a smaller amount of data. The block list
+is empty for directories and symlinks.
 
 The **symlink_target** field contains the symlink target, for entries of
 symlink type. It is empty for all other entry types.
