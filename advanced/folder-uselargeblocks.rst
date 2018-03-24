@@ -21,7 +21,7 @@ blocks, regardless of whether large blocks are enabled on that device.
 Syncthing version 0.14.45 and older will initially appear to accept files
 scanned with large blocks, but will later panic during some internal file
 operations. Do not enable large blocks in clusters with devices still on
-v0.14.44 or older.
+v0.14.45 or older.
 
 When large blocks are *not* enabled, local changes to any given file file
 are indexed in standard (small) blocks - regardless of whether other devices
