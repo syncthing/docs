@@ -23,9 +23,9 @@ scanned with large blocks, but will later panic during some internal file
 operations. Do not enable large blocks in clusters with devices still on
 v0.14.45 or older.
 
-When large blocks are *not* enabled, local changes to any given file file
-are indexed in standard (small) blocks - regardless of whether other devices
-are using large blocks for the same folder.
+When large blocks are *not* enabled, local changes to any given file are
+indexed in standard (small) blocks - regardless of whether other devices are
+using large blocks for the same folder.
 
 When two devices do not agree on the desired block size for a file, the
 entire file must be transferred instead of only the changed blocks. To avoid
