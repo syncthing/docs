@@ -822,12 +822,12 @@ File Size            Block Size
 16 GiB - up              16 MiB
 =================  ============
 
-An implementation MAY deviate from the block size rule when there
-is good reason to do so. For example, if a file has been indexed at a
-certain block size and grows beyond 2000 blocks, it may be retained at the
-current block size for practical reasons. When there is no overriding reason
-to the contrary, such as when indexing a new file for the first time, the
-block size rule above SHOULD be followed.
+An implementation MAY deviate from the block size rule when there is good
+reason to do so. For example, if a file has been indexed at a certain block
+size and grows beyond 2000 blocks it may be retained at the current block
+size for practical reasons. When there is no overriding reason to the
+contrary, such as when indexing a new file for the first time, the block
+size rule above SHOULD be followed.
 
 An implementation MUST therefore accept files with a block size differing
 from the above rule.
