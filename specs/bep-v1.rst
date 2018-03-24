@@ -831,8 +831,8 @@ size rule above SHOULD be followed.
 
 An implementation MUST therefore accept files with a block size differing
 from the above rule. This does not mean that arbitrary block sizes are
-allowed. The block size used MUST be one of the power-of-two block sizes
-listed in the table above.
+allowed. The block size used MUST be exactly one of the power-of-two block
+sizes listed in the table above.
 
 Example Exchange
 ----------------
