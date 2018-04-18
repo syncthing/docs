@@ -31,21 +31,27 @@ Syncthing tries to find another source for the block.
 Scanning
 --------
 
-Syncthing detects changes to files by scanning. By default this happens
-every 60 seconds, but this can be changed per folder. Increasing the scan
-interval uses less resources and is useful for example on large folders that
-change infrequently. To make sure that not all folders are rescanned at the same
-time, the actual scan interval is a random time between 3/4 and 5/4 of the given
-scan interval. ``syncthing-inotify`` can also be used, which tells
-Syncthing to scan changed files when changes are detected, thus reducing the
-need for periodic scans.
+There are two methods how Syncthing detects changes: By regular full scans and
+by notifications received from the filesystem ("watcher"). By default the
+watcher is enabled and full scans are done once per hour. This behavour can be
+changed by folder. Increasing the full scan interval uses less resources and is
+useful for example on large folders that change infrequently. To make sure that
+not all folders are rescanned at the same time, the actual scan interval is a
+random time between 3/4 and 5/4 of the given scan interval. Even with watcher
+enabled it is advised to keep regular full scans enabled, as it is possible that
+some changes aren't picked up by it.
 
-During a rescan the existing files are checked for changes to their
-modification time, size or permission bits. The file is "rehashed" if a
-change is detected based on those attributes, that is a new block list is
-calculated for the file. It is not possible to know which parts of a file
-have changed without reading the file and computing new SHA256 hashes for
-each block.
+During a rescan (regardless whether full or from watcher) the existing files are
+checked for changes to their modification time, size or permission bits. The
+file is "rehashed" if a change is detected based on those attributes, that is a
+new block list is calculated for the file. It is not possible to know which
+parts of a file have changed without reading the file and computing new SHA256
+hashes for each block.
+
+The watcher does not immedialy schedule a scan when a change is detected. It
+accumulates changes for 10s (adjustable by :ref:`fsWatcherDelayS <fsWatcherDelayS>`) and deleted files
+are further delayed for 1min. Therefore it is expected that you expirience a
+slight delay between making the change and it appearing on another device.
 
 Changes that were detected and hashed are transmitted to the other devices
 after each rescan.

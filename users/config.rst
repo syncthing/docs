@@ -220,9 +220,11 @@ rescanIntervalS
 fsWatcherEnabled
     If enabled this detects changes to files in the folder and scans them.
 
+.. _fsWatcherDelayS:
+
 fsWatcherDelayS
     The duration during which changes detected are accumulated, before a scan is
-    scheduled (only takes effect if fsWatcherEnabled is true).
+    scheduled (only takes effect if ``fsWatcherEnabled`` is true).
 
 ignorePerms
     True if the folder should ignore permissions.
