@@ -185,17 +185,15 @@ access the GUI type 127.0.0.1:8384 (by default) into Safari.
 Linux
 -----
 
-On Linux systems with a Graphical User Interface.
-~~~~~~~~~~~~~~~~~~~~~~
+On any distribution (Arch, Debian, Linux Mint, Ubuntu, openSUSE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Find a program or menu entry similar to 'Startup Applications'.
+#. Launch the program 'Startup Applications'.
 #. Click 'Add'.
 #. Fill out the form:
 
    -  Name: Syncthing
-   -  Command: ``syncthing -no-browser``
-
-The "Command" field must coincide with the location of the Syncthing binary on your computer. ``which syncthing`` can be used to locate the binary. When Syncthing is installed through a package manager the location relative to root is not usually necessary which is why ``syncthing -no-browser`` works. If using Syncthing binary file directly the command must point to the location of the Syncthing binary relative to root. Example: ``/home/user/syncthing/syncthing -no-browser``
+   -  Command: ``/path/to/syncthing/binary -no-browser -home="/home/your\_user/.config/syncthing"``
 
 Using Supervisord
 ~~~~~~~~~~~~~~~~~
