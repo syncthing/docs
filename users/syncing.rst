@@ -33,7 +33,7 @@ Scanning
 
 There are two methods how Syncthing detects changes: By regular full scans and
 by notifications received from the filesystem ("watcher"). By default the
-watcher is enabled and full scans are done once per hour. This behavour can be
+watcher is enabled and full scans are done once per hour. This behaviour can be
 changed by folder. Increasing the full scan interval uses less resources and is
 useful for example on large folders that change infrequently. To make sure that
 not all folders are rescanned at the same time, the actual scan interval is a
@@ -48,9 +48,9 @@ new block list is calculated for the file. It is not possible to know which
 parts of a file have changed without reading the file and computing new SHA256
 hashes for each block.
 
-The watcher does not immedialy schedule a scan when a change is detected. It
+The watcher does not immediately schedule a scan when a change is detected. It
 accumulates changes for 10s (adjustable by :ref:`fsWatcherDelayS <fsWatcherDelayS>`) and deleted files
-are further delayed for 1min. Therefore it is expected that you expirience a
+are further delayed for 1min. Therefore it is expected that you experience a
 slight delay between making the change and it appearing on another device.
 
 Changes that were detected and hashed are transmitted to the other devices
