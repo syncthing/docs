@@ -15,8 +15,10 @@ forms the *global model*. Each device strives to get its folders in sync
 with the global model by requesting missing or outdated blocks from the
 other devices in the cluster.
 
-File data is described and transferred in units of *blocks*, each being
-128 KiB (131072 bytes) in size.
+File data is described and transferred in units of *blocks*, each being from
+128 KiB (131072 bytes) to 16 MiB in size, in steps of powers of two. The
+block size may vary between files but is constant in any given file, except
+for the last block which may be smaller.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
@@ -378,7 +380,8 @@ Protocol Buffer Schema
         bool         invalid        = 7;
         bool         no_permissions = 8;
         Vector       version        = 9;
-        int64        sequence      = 10;
+        int64        sequence       = 10;
+        int32        block_size     = 13;
 
         repeated BlockInfo Blocks         = 16;
         string             symlink_target = 17;
@@ -470,10 +473,16 @@ The **sequence** field is the value of a device local monotonic clock at the
 time of last local database update to a file. The clock ticks on every local
 database update, thus forming a sequence number over database updates.
 
+The **block_size** field is the size, in bytes, of each individual block in
+the block list (except, possibly, the last block). If this field is missing
+or zero, the block size is assumed to be 128 KiB (131072 bytes). Valid
+values of this field are the powers of two from 128 KiB through 16 MiB. See
+also :ref:`blocksize`.
+
 The **blocks** list contains the size and hash for each block in the file.
-Each block represents a 128 KiB slice of the file, except for the last block
-which may represent a smaller amount of data. The block list is empty for
-directories and symlinks.
+Each block represents a **block_size**-sized slice of the file, except for
+the last block which may represent a smaller amount of data. The block list
+is empty for directories and symlinks.
 
 The **symlink_target** field contains the symlink target, for entries of
 symlink type. It is empty for all other entry types.
@@ -789,6 +798,41 @@ a connection close. This size was chosen to accommodate Index messages
 containing a large block list. It's intended that the limit may be further
 reduced in a future protocol update supporting variable block sizes (and
 thus shorter block lists for large files).
+
+.. _blocksize:
+
+Selection of Block Size
+-----------------------
+
+The desired block size for any given file is the smallest block size that
+results in fewer than 2000 blocks, or the maximum block size for larger
+files. This rule results in the following table of block sizes per file
+size:
+
+=================  ============
+File Size            Block Size
+=================  ============
+0 - 250 MiB             128 KiB
+250 MiB - 500 MiB       256 KiB
+500 MiB - 1 GiB         512 KiB
+1 GiB - 2 GiB             1 MiB
+2 GiB - 4 GiB             2 MiB
+4 GiB - 8 GiB             4 MiB
+8 GiB - 16 GiB            8 MiB
+16 GiB - up              16 MiB
+=================  ============
+
+An implementation MAY deviate from the block size rule when there is good
+reason to do so. For example, if a file has been indexed at a certain block
+size and grows beyond 2000 blocks it may be retained at the current block
+size for practical reasons. When there is no overriding reason to the
+contrary, such as when indexing a new file for the first time, the block
+size rule above SHOULD be followed.
+
+An implementation MUST therefore accept files with a block size differing
+from the above rule. This does not mean that arbitrary block sizes are
+allowed. The block size used MUST be exactly one of the power-of-two block
+sizes listed in the table above.
 
 Example Exchange
 ----------------
