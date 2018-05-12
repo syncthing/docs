@@ -11,7 +11,7 @@ interface is subject to change.
 API Key
 -------
 
-To use the REST AP an API key must be set and used. The API key can be
+To use the REST API an API key must be set and used. The API key can be
 generated in the GUI, or set in the ``configuration/gui/apikey`` element in
 the configuration file. To use an API key, set the request header
 ``X-API-Key`` to the API key value. For example, ``curl -X POST -H
