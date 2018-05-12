@@ -15,7 +15,7 @@ Returns the data sent in the anonymous usage report.
 	   "folderUses" : {
 	      "ignorePerms" : 0,
 	      "autoNormalize" : 0,
-	      "readonly" : 0,
+	      "sendonly" : 0,
 	      "ignoreDelete" : 0
 	   },
 	   "memoryUsageMiB" : 13,
