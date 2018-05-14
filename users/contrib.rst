@@ -108,11 +108,6 @@ ArchLinux
 
 - Arch User Repository: `syncthing-discosrv <https://aur.archlinux.org/packages/syncthing-discosrv>`__ and `syncthingtray <https://aur.archlinux.org/packages/syncthingtray>`__
 
-arkOS
-~~~~~
-
-Syncthing is included in `arkOS <https://arkos.io/>`_.
-
 Docker
 ~~~~~~
 
