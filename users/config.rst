@@ -208,10 +208,14 @@ type
 
     sendreceive
         The folder is in default mode. Sending local and accepting remote changes.
+        Note that this type was previously called "readwrite" which is deprecated
+        but still accepted in incoming configs.
 
     sendonly
         The folder is in "send-only" mode -- it will not be modified by
         Syncthing on this device.
+        Note that this type was previously called "readonly" which is deprecated
+        but still accepted in incoming configs.
 
 rescanIntervalS
     The rescan interval, in seconds. Can be set to zero to disable when external
