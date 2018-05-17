@@ -43,14 +43,14 @@ features or non-essential bugfixes added to ``master`` in the meantime.
 
 Stable releases are given version numbers without any suffix - "0.14.35".
 Unless any serious issues were discovered, this release is exactly identical
-to the "-rc.1" release candidated three weeks prior.
+to the "-rc.1" release candidate three weeks prior.
 
 The cycle then restarts one week later with a new release candidate based on
 the current ``master`` branch.
 
-Releases are timed so that stable releases happen on the first tuesday of
+Releases are timed so that stable releases happen on the first Tuesday of
 the month. The next candidate release is one week later, on the second
-tuesday of the month.
+Tuesday of the month.
 
 How to Choose
 -------------
