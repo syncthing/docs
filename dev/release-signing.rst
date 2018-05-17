@@ -13,7 +13,7 @@ Two checksum files are created during the release process. These are
 ``sha1sum.txt`` and ``sha256sum.txt``. They contain the SHA1 and SHA256 checksums
 of the release archives, respectively. To protect against tampering the
 checksum files are signed by the Syncthing Release Management GPG key and thus
-gain a ``.asc`` extension. To verify that a download is geniuine, first verify
+gain a ``.asc`` extension. To verify that a download is genuine, first verify
 the signature on the checksum file is correct, then that the checksum matches
 the release archive.
 

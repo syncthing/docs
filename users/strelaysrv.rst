@@ -169,7 +169,7 @@ on port 22067. You will also need to let both port 443 and 22067 through your
 firewall.
 
 Another option is `described here <https://wiki.apache.org/httpd/NonRootPortBinding>`__,
-although your milage may vary.
+although your mileage may vary.
 
 Firewall Considerations
 -----------------------

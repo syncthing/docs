@@ -74,7 +74,7 @@ most significant bit MUST be zero.
 
 The protocol buffer schemas in this document are in ``proto3`` syntax. This
 means, among other things, that all fields are optional and will assume
-their default value when missing. This does not nececessarily mean that a
+their default value when missing. This does not necessarily mean that a
 message is *valid* with all fields empty - for example, an index entry for a
 file that does not have a name is not useful and MAY be rejected by the
 implementation. However the folder label is for human consumption only so an

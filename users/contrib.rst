@@ -68,7 +68,7 @@ Linux
 
 - `syncthing-quick-status <https://github.com/serl/syncthing-quick-status>`_
 
-  Small bash application with minimal dependecies, for a simple colorful representation of the current status.
+  Small bash application with minimal dependencies, for a simple colorful representation of the current status.
 
 Packages and Bundlings
 ----------------------
@@ -97,7 +97,7 @@ If you want to help testing the upcoming release, and get the newer features ear
 Fedora / CentOS
 ~~~~~~~~~~~~~~~
 
-For Fedora Syncthing is now in the offical repo : https://src.fedoraproject.org/rpms/syncthing
+For Fedora Syncthing is now in the official repo : https://src.fedoraproject.org/rpms/syncthing
 
 Unofficial `RPM repo of Syncthing <https://copr.fedorainfracloud.org/coprs/daftaupe/syncthing/>`_ (`sources <https://gitlab.com/daftaupe/syncthing-rpm>`_)
 

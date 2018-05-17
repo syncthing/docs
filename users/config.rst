@@ -623,7 +623,7 @@ autoUpgradeIntervalH
     automatic upgrades.
 
 upgradeToPreReleases
-    If true, automatical upgrades include release candidates (see
+    If true, automatic upgrades include release candidates (see
     :ref:`release-channels`).
 
 keepTemporariesH
