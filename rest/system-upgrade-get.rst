@@ -7,7 +7,8 @@ newest version and upgrade possibility.
 .. code-block:: json
 
     {
-      "latest": "v0.10.27",
-      "newer": false,
-      "running": "v0.10.27+5-g36c93b7"
+      "latest": "v0.14.47",
+      "majorNewer": false,
+      "newer": true,
+      "running": "v0.14.46"
     }
