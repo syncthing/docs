@@ -13,7 +13,7 @@ at either extreme.
 Compatibility
 -------------
 
-Large blocks can be enabled in Syncthing version 0.14.47 and newer.
+Large blocks can be enabled in Syncthing version 0.14.48 and newer.
 
 Syncthing version 0.14.46 and newer will accept and handle files with large
 blocks, regardless of whether large blocks are enabled on that device.
