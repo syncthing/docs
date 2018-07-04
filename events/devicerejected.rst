@@ -12,6 +12,7 @@ to talk to.
         "time": "2014-08-19T10:43:00.562821045+02:00",
         "data": {
             "address": "127.0.0.1:51807",
+            "name" : "My dusty computer",
             "device": "EJHMPAQ-OGCVORE-ISB4IS3-SYYVJXF-TKJGLTU-66DIQPF-GJ5D2GX-GQ3OWQK"
         }
     }
