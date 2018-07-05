@@ -105,6 +105,7 @@ Returns the current configuration.
             "overwriteRemoteDeviceNamesOnConnect": false,
             "tempIndexMinBlocks": 10
           },
-          "ignoredDevices": []
+          "ignoredDevices": [],
+          "ignoredFolders": []
         }
     }
