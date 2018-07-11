@@ -8,6 +8,7 @@ have, or have but do not share with the device in question.
 
     {
         "id": 27,
+        "globalID": 27,
         "type": "FolderRejected",
         "time": "2014-08-19T10:41:06.761751399+02:00",
         "data": {

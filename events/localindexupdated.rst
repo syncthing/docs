@@ -9,6 +9,7 @@ changes during a scan.
 
     {
         "id": 59,
+        "globalID": 59,
         "type": "LocalIndexUpdated",
         "time": "2014-07-17T13:27:28.051369434+02:00",
         "data": {

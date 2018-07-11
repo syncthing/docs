@@ -11,6 +11,7 @@ configuration can cause multiple files to be shown.
 
     {
         "id": 221,
+        "globalID": 221,
         "type": "DownloadProgress",
         "time": "2014-12-13T00:26:12.9876937Z",
         "data": {

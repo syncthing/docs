@@ -10,6 +10,7 @@ device.
 
     {
         "id": 84,
+        "globalID": 84,
         "type": "FolderCompletion",
         "time": "2015-04-17T14:14:27.043576583+09:00",
         "data": {

@@ -7,6 +7,7 @@ Generated each time a device was resumed.
 
     {
         "id": 2,
+        "globalID": 2,
         "type": "DeviceResumed",
         "time": "2014-07-13T21:04:33.687836696+02:00",
         "data": {

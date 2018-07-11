@@ -7,6 +7,7 @@ Generated each time a connection to a device has been terminated.
 
     {
         "id": 48,
+        "globalID": 48,
         "type": "DeviceDisconnected",
         "time": "2014-07-13T21:18:52.859929215+02:00",
         "data": {

@@ -9,6 +9,7 @@ state.
 
     {
         "id": 16,
+        "globalID": 16,
         "type": "FolderSummary",
         "time": "2015-04-17T14:12:20.460121585+09:00",
         "data": {

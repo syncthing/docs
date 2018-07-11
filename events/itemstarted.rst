@@ -7,6 +7,7 @@ Generated when Syncthing begins synchronizing a file to a newer version.
 
     {
         "id": 93,
+        "globalID": 93,
         "type": "ItemStarted",
         "time": "2014-07-13T21:22:03.414609034+02:00",
         "data": {
