@@ -202,11 +202,12 @@ I really hate the ``.stfolder`` directory, can I remove it?
 
 See the previous question.
 
-Am I able to use nested Syncthing folders?
-------------------------------------------
+Am I able to nest shared folders in Syncthing?
+----------------------------------------------
 
-Do not nest shared folders. This behaviour is in no way supported,
-recommended or coded for in any way, and comes with many pitfalls.
+Do not share a folder which is inside another shared folder. This behaviour
+is in no way supported, recommended or coded for in any way, and comes with
+many pitfalls.
 
 How do I rename/move a synced folder?
 -------------------------------------
