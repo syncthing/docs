@@ -185,8 +185,8 @@ access the GUI type 127.0.0.1:8384 (by default) into Safari.
 Linux
 -----
 
-On Ubuntu-like systems
-~~~~~~~~~~~~~~~~~~~~~~
+On any distribution (Arch, Debian, Linux Mint, Ubuntu, openSUSE)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 #. Launch the program 'Startup Applications'.
 #. Click 'Add'.
