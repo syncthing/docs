@@ -8,6 +8,7 @@ to talk to.
 
     {
         "id": 24,
+        "globalID": 24,
         "type": "DeviceRejected",
         "time": "2014-08-19T10:43:00.562821045+02:00",
         "data": {

@@ -8,6 +8,7 @@ configuration etc.
 
     {
         "id": 1,
+        "globalID": 1,
         "type": "Starting",
         "time": "2014-07-17T13:13:32.044470055+02:00",
         "data": {

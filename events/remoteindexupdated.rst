@@ -7,6 +7,7 @@ Generated each time new index information is received from a device.
 
     {
         "id": 44,
+        "globalID": 44,
         "type": "RemoteIndexUpdated",
         "time": "2014-07-13T21:04:35.394184435+02:00",
         "data": {

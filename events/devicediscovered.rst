@@ -7,6 +7,7 @@ Emitted when a new device is discovered using local discovery.
 
     {
         "id": 13,
+        "globalID": 13,
         "type": "DeviceDiscovered",
         "time": "2014-07-17T13:28:05.043465207+02:00",
         "data": {

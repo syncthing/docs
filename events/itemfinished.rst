@@ -8,6 +8,7 @@ successful operation:
 
     {
         "id": 93,
+        "globalID": 93,
         "type": "ItemFinished",
         "time": "2014-07-13T21:22:03.414609034+02:00",
         "data": {
@@ -25,6 +26,7 @@ An unsuccessful operation:
 
     {
         "id": 44,
+        "globalID": 44,
         "type": "ItemFinished",
         "time": "2015-05-27T11:21:05.711133004+02:00",
         "data": {

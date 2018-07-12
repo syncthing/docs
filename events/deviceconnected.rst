@@ -7,6 +7,7 @@ Generated each time a connection to a device has been established.
 
     {
         "id": 2,
+        "globalID": 2,
         "type": "DeviceConnected",
         "time": "2014-07-13T21:04:33.687836696+02:00",
         "data": {

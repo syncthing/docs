@@ -13,6 +13,7 @@ seconds and is now in state ``idle``.
 
     {
         "id": 8,
+        "globalID": 8,
         "type": "StateChanged",
         "time": "2014-07-17T13:14:28.697493016+02:00",
         "data": {
