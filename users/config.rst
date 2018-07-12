@@ -50,7 +50,7 @@ The following shows an example of the default configuration file (IDs will diffe
 .. code-block:: xml
 
     <configuration version="26">
-        <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
+        <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
             <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
             <filesystemType>basic</filesystemType>
             <minDiskFree unit="%">1</minDiskFree>
@@ -167,7 +167,7 @@ Folder Element
 
 .. code-block:: xml
 
-    <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="readwrite" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
+    <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
         <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
         <filesystemType>basic</filesystemType>
         <minDiskFree unit="%">1</minDiskFree>
@@ -206,12 +206,16 @@ path
 type
     Controls how the folder is handled by Syncthing. Possible values are:
 
-    readwrite
+    sendreceive
         The folder is in default mode. Sending local and accepting remote changes.
+        Note that this type was previously called "readwrite" which is deprecated
+        but still accepted in incoming configs.
 
-    readonly
+    sendonly
         The folder is in "send-only" mode -- it will not be modified by
         Syncthing on this device.
+        Note that this type was previously called "readonly" which is deprecated
+        but still accepted in incoming configs.
 
 rescanIntervalS
     The rescan interval, in seconds. Can be set to zero to disable when external

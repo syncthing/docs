@@ -13,7 +13,7 @@ Returns the current configuration.
               "id": "GXWxf-3zgnU",
               "label": "MyFolder",
               "path": "...",
-              "type": "readwrite",
+              "type": "sendreceive",
               "devices": [
                 {
                   "deviceID": "..."
