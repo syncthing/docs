@@ -212,10 +212,14 @@ type
         but still accepted in incoming configs.
 
     sendonly
-        The folder is in "send-only" mode -- it will not be modified by
+        The folder is in "send only" mode -- it will not be modified by
         Syncthing on this device.
         Note that this type was previously called "readonly" which is deprecated
         but still accepted in incoming configs.
+
+    receiveonly
+        The folder is in "receive only" mode -- it will not propagate
+        changes to other devices.
 
 rescanIntervalS
     The rescan interval, in seconds. Can be set to zero to disable when external
@@ -773,7 +777,7 @@ that the files you are backing up are in a :ref:`folder-sendonly` to prevent oth
 devices from overwriting the per device configuration. The folder on the remote
 device(s) should not be used as configuration for the remote devices.
 
-If you'd like to sync your home folder in non-send-only mode, you may add the
+If you'd like to sync your home folder in non-send only mode, you may add the
 folder that stores the configuration files to the :ref:`ignore list <ignoring-files>`.
 If you'd also like to backup your configuration files, add another folder in
-send-only mode for just the configuration folder.
+send only mode for just the configuration folder.

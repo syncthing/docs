@@ -1,7 +1,7 @@
 POST /rest/db/override
 ======================
 
-Request override of a send-only folder.
+Request override of a send only folder.
 Takes the mandatory parameter `folder` (folder ID).
 
 .. code-block:: bash

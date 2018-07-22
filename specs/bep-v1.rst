@@ -717,15 +717,27 @@ directions.
 Send Only
 ^^^^^^^^^
 
-In send-only mode, a device does not apply any updates from the cluster, but
-publishes changes of its local folder to the cluster as usual. The local
-folder can be seen as a "master copy" that is never affected by the actions
-of other cluster devices.
+In send only mode, a device does not apply any updates from the cluster, but
+publishes changes of its local folder to the cluster as usual.
 
 ::
 
     +------------+     Updates      /---------\
     |            |  ----------->   /           \
+    |   Device   |                 |  Cluster  |
+    |            |                 \           /
+    +------------+                  \---------/
+
+Receive Only
+^^^^^^^^^^^^
+
+In receive only mode, a device does not send any updates to the cluster, but
+accepts changes to its local folder from the cluster as usual.
+
+::
+
+    +------------+     Updates      /---------\
+    |            |  <-----------   /           \
     |   Device   |                 |  Cluster  |
     |            |                 \           /
     +------------+                  \---------/
