@@ -24,6 +24,13 @@ Powered by Discourse.
 
 - `forum.syncthing.net <https://forum.syncthing.net/>`__ (Ubuntu Linux, 2048 MB)
 
+Upgrades Server
+---------------
+
+The ``upgrades.syncthing.net`` server is a virtualhost on ``syncthing.net``.
+And the ``meta.json`` file is just a regular synchronized
+static copy of github releases. The actual signed binary releases are hosted on github.
+
 Global Discovery Servers
 ------------------------
 
@@ -58,9 +65,9 @@ Runs the ``ursrv`` instance, PostgreSQL and Nginx.
 Build Servers, Core
 -------------------
 
-Runs Jenkins and does the core builds, Ubuntu Linux.
+Runs TeamCity and does the core builds, Ubuntu Linux.
 
-- `build.syncthing.net <https://build.syncthing.net/>`__ (Jenkins frontend, SmartOS container, 2048 MB)
+- `build.syncthing.net <https://build.syncthing.net/>`__ (TeamCity frontend, SmartOS container, 2048 MB)
 
 Build Servers, Android and Other
 --------------------------------
