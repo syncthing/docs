@@ -46,7 +46,7 @@ Receive Only Folder
 The receive only folder is the logical opposite of the send only folder. In
 this mode, all changes from the cluster are applied, as they are in the
 default send-receive mode. Local changes are however not distributed to
-other devives. This mode is useful for replication targets, backup
+other devices. This mode is useful for replication targets, backup
 destinations, or other cases where no local modifications are expected or
 allowed.
 
@@ -58,7 +58,7 @@ latest/expected version of the modified file.
 When local changes have been detected Syncthing will show a red "Revert
 Changes" button on the folder. Activating this will cause the local
 modifications to be undone - added files will be deleted, modified or
-deleted files will be resynced from the cluster.
+deleted files will be re-synced from the cluster.
 
 In normal operation, a locally modified file that is subsequently modified
 by the cluster will cause a sync conflict. The conflict will be resolved
