@@ -8,27 +8,71 @@ Parameters: ``folder``, the ID of a folder.
 .. code-block:: bash
 
     {
-      # latest version according to cluster:
-      "globalBytes": 13173473780,
-      "globalDeleted": 1847,
-      "globalFiles": 42106,
-      # what we have locally:
-      "localBytes": 13173473780,
-      "localDeleted": 1847,
-      "localFiles": 42106,
-      # which part of what we have locally is the latest cluster version:
-      "inSyncBytes": 13173473780,
-      "inSyncFiles": 42106,
-      # which part of what we have locally should be fetched from the cluster:
-      "needBytes": 0,
-      "needFiles": 0,
-      # various other metadata
-      "ignorePatterns": true,
+      "globalBytes": 0,
+      "globalDeleted": 0,
+      "globalDirectories": 0,
+      "globalFiles": 0,
+      "globalSymlinks": 0,
+      "ignorePatterns": false,
+      "inSyncBytes": 0,
+      "inSyncFiles": 0,
       "invalid": "",
+      "localBytes": 0,
+      "localDeleted": 0,
+      "localDirectories": 0,
+      "localFiles": 0,
+      "localSymlinks": 0,
+      "needBytes": 0,
+      "needDeletes": 0,
+      "needDirectories": 0,
+      "needFiles": 0,
+      "needSymlinks": 0,
+      "pullErrors": 0,
+      "receiveOnlyChangedBytes": 0,
+      "receiveOnlyChangedDeletes": 0,
+      "receiveOnlyChangedDirectories": 0,
+      "receiveOnlyChangedFiles": 0,
+      "receiveOnlyChangedSymlinks": 0,
+      "sequence": 0,
       "state": "idle",
-      "stateChanged": "2015-03-16T21:47:28.750853241+01:00",
-      "version": 71989
+      "stateChanged": "2018-08-08T07:04:57.301064781+02:00",
+      "version": 0
     }
+
+The various fields have the following meaning:
+
+global*:
+  Data in the cluster latest version.
+
+inSync*:
+  Data that is locally the same as the cluster latest version.
+
+local*:
+  Data that is locally present, regardless of whether it's the same or different version as the cluster latest version.
+
+need*:
+  Data that is needed to become up to date with the cluster latest version (i.e., data that is out of sync).
+
+receiveOnlyChanged*:
+  Data that has changed locally in a receive only folder, and thus not been sent to the cluster.
+
+invalid:
+  Deprecated, always empty.
+
+pullErrors:
+  The number of files that failed to sync during the last sync operations.
+
+sequence:
+  The current folder sequence number.
+
+state:
+  The current folder state.
+
+stateChanged:
+  When the folder state last changed.
+
+version:
+  Deprecated, equivalent to the sequence number.
 
 .. note::
   This is an expensive call, increasing CPU and RAM usage on the device. Use sparingly.
