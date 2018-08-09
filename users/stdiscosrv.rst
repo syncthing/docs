@@ -64,9 +64,10 @@ By default, Syncthing uses a number of global discovery servers, signified by
 the entry ``default`` in the list of discovery servers. To make Syncthing use
 your own instance of stdiscosrv, open up Syncthing's web GUI. Go to settings,
 Global Discovery Server and add stdiscosrv's host address to the comma-separated
-list, e.g. ``https://disco.example.com:8443/``. Note that stdiscosrv uses port
+list, e.g. ``https://disco.example.com:8443/v2/``. Note that stdiscosrv uses port
 8443 by default. For stdiscosrv to be available over the internet with a dynamic
-IP address, you will need a dynamic DNS service.
+IP address, you will need a dynamic DNS service. Do not forget the trailing ``/``
+of ``/v2/``
 
 If you wish to use *only* your own discovery server, remove the ``default``
 entry from the list.
