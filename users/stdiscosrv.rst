@@ -68,8 +68,8 @@ list, e.g. ``https://disco.example.com:8443/``. Note that stdiscosrv uses port
 8443 by default. For stdiscosrv to be available over the internet with a dynamic
 IP address, you will need a dynamic DNS service.
 
-.. warning::
-   Versions prior to ``0.14.44`` may need ``/v2/`` appended to the discovery
+.. deprecated:: v0.14.44
+   Prior version may need ``/v2/`` appended to the discovery
    server address, e.g. ``https://disco.example.com:8443/v2/``.
 
 If you wish to use *only* your own discovery server, remove the ``default``
