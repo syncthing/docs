@@ -305,25 +305,24 @@ This is an area that we are working to improve in the long term.
 How do I access the web GUI from another computer?
 --------------------------------------------------
 
-The default listening address is 127.0.0.1:8384, so you can only access the
-GUI from the same machine. This is for security reasons. Change the ``GUI
-listen address`` through the web UI from ``127.0.0.1:8384`` to
-``0.0.0.0:8384`` or change the config.xml:
+For security reasons the default listening address is 127.0.0.1:8384, so you can only access the
+GUI from the same machine. To connect from another computer you should set a password and
+enable HTTPS from the ``Actions, Settings, GUI`` window then set the  ``GUI Listen Address`` to ``0.0.0.0:8384``.
+
+To make these changes via the configuration file edit:
 
 .. code-block:: xml
 
-    <gui enabled="true" tls="false">
+    <gui enabled="true" tls="false" debugging="false">
       <address>127.0.0.1:8384</address>
 
 to
 
 .. code-block:: xml
 
-    <gui enabled="true" tls="false">
+    <gui enabled="true" tls="true" debugging="false">
       <address>0.0.0.0:8384</address>
-
-Then the GUI is accessible from everywhere. You should set a password and
-enable HTTPS with this configuration. You can do this from inside the GUI.
+      <password>bcrypt hash of GUI password</password>
 
 If both your computers are Unix-like (Linux, Mac, etc.) you can also leave the
 GUI settings at default and use an ssh port forward to access it. For
