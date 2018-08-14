@@ -322,7 +322,6 @@ to
 
     <gui enabled="true" tls="true" debugging="false">
       <address>0.0.0.0:8384</address>
-      <password>bcrypt hash of GUI password</password>
 
 If both your computers are Unix-like (Linux, Mac, etc.) you can also leave the
 GUI settings at default and use an ssh port forward to access it. For
