@@ -22,7 +22,6 @@ syncthing-android
 `syncthing-android`_ is the Android packaging and native UI on top of
 Syncthing.
 
--  Catfriend1 / :user:`Catfriend1`
 -  Audrius Butkevicius / :user:`AudriusButkevicius`
 
 Syncthing-GTK
