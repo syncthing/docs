@@ -431,6 +431,17 @@ address
         The word ``dynamic`` (without ``tcp://`` prefix) means to use local and
         global discovery to find the device.
 
+    You can set multiple addresses *and* combine it with the ``dynamic`` keyword
+    for example:
+
+    .. code-block:: xml
+
+        <device id="...">
+            <address>tcp://192.0.2.1:22001</address>
+            <address>tcp://192.0.1.254:22000</address>
+            <address>dynamic</address>
+        </device>
+
 paused
     True if synchronization with this devices is (temporarily) suspended.
 
