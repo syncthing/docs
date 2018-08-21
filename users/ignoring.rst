@@ -63,10 +63,7 @@ The ``.stignore`` file contains a list of file or path patterns. The
 
 -  A pattern beginning with a ``!`` prefix negates the pattern: matching files
    are *included* (that is, *not* ignored). This can be used to override
-   more general patterns that follow. Note that files in ignored
-   directories can not be re-included this way. This is due to the fact
-   that Syncthing stops scanning when it reaches an ignored directory,
-   so doesn't know what files it might contain.
+   more general patterns that follow.
 
 -  A pattern beginning with a ``(?i)`` prefix enables case-insensitive pattern
    matching. ``(?i)test`` matches ``test``, ``TEST`` and ``tEsT``. The
