@@ -102,7 +102,7 @@ Unofficial `RPM repo of Syncthing <https://copr.fedorainfracloud.org/coprs/dafta
 ArchLinux
 ~~~~~~~~~
 
-- Official Community Repository: `syncthing <https://www.archlinux.org/packages/?name=syncthing>`__, `syncthing-gtk <https://www.archlinux.org/packages/?name=syncthing-gtk>`__ and `syncthing-inotify <https://www.archlinux.org/packages/?name=syncthing-inotify>`__
+- Official Community Repository: `syncthing <https://www.archlinux.org/packages/?name=syncthing>`__ and `syncthing-gtk <https://www.archlinux.org/packages/?name=syncthing-gtk>`__
 
 - Arch User Repository: `syncthing-discosrv <https://aur.archlinux.org/packages/syncthing-discosrv>`__ and `syncthingtray <https://aur.archlinux.org/packages/syncthingtray>`__
 
