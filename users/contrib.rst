@@ -166,7 +166,18 @@ ClearOS / WikiSuite
 
 Syncthing is part of `WikiSuite <http://wikisuite.org/>`_, and thus packaged for `ClearOS <http://wikisuite.org/How-to-install-Syncthing-on-ClearOS>`_.
 
+Cloudron
+~~~~~~~~
 
+Syncthing is available as a 1-click install on `Cloudron <https://cloudron.io>`_. For those unaware,
+Cloudron makes it easy to run apps on your server and keep them up-to-date and secure.
+
+.. image:: https://cloudron.io/img/button.svg
+   :target: https://cloudron.io/button.html?app=net.syncthing.cloudronapp2
+
+There is a `demo available <https://my-demo.cloudron.me>`_ (username: cloudron password: cloudron)
+
+The Cloudron package is developed `here <https://git.cloudron.io/cloudron/syncthing-app>`_.
 
 Integrations
 ------------
