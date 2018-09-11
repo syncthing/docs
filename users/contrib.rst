@@ -186,6 +186,7 @@ REST API Bindings
 ~~~~~~~~~~~~~~~~~
 
 -  Python: https://github.com/blakev/python-syncthing (https://pypi.python.org/pypi/syncthing)
+-  PHP: https://github.com/terzinnorbert/syncthing-rest
 
 Ports
 ~~~~~
