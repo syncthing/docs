@@ -288,6 +288,11 @@ order
         Pull files ordered by modification time; oldest and newest first
         respectively.
 
+    Note that the scanned files are sent in batches and the sorting is applied
+    only to the already discovered files. This means the sync might start with
+    a 1 GB file even if there is 1 KB file available on the source device until
+    the 1 KB becomes known to the pulling device.
+
 ignoreDelete
     When set to true, this device will pretend not to see instructions to
     delete files from other devices.
