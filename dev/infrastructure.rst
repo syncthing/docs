@@ -34,14 +34,14 @@ static copy of github releases. The actual signed binary releases are hosted on 
 Global Discovery Servers
 ------------------------
 
-Runs the ``discosrv`` instances for v0.11 and v0.12.
+Runs the ``stdiscosrv`` instances that serve global discovery requests. The
+discovery setup is a load balanced cluster and the members can change
+without prior notice. As of the time of writing they are all hosted at
+DigitalOcean.
 
-- discovery-v4-1.syncthing.net (Ubuntu 14.04, 512 MB, hosted by :user:`calmh`)
-- discovery-v6-1.syncthing.net (alias for above)
-- discovery-v4-2.syncthing.net (Ubuntu 14.04, 512 MB, hosted at DigitalOcean)
-- discovery-v6-2.syncthing.net (alias for above)
-- discovery-v4-3.syncthing.net (Ubuntu 14.04, 512 MB, hosted at DigitalOcean)
-- discovery-v6-3.syncthing.net (alias for above)
+- discovery.syncthing.net (multiple A and AAAA records, for queries)
+- discovery-v4.syncthing.net (multiple A records, for IPv4 announces)
+- discovery-v6.syncthing.net (multiple AAAA records, for IPv6 announces)
 
 Relay Pool Server
 -----------------
@@ -74,7 +74,7 @@ Build Servers, Android and Other
 
 Runs a Gradle daemon building releases for Android.
 
-- `Travis CI <https://travis-ci.org/syncthing/syncthing-android>`__ 
+- `Travis CI <https://travis-ci.org/syncthing/syncthing-android>`__
 
 Runs a Jenkins slave and builds release builds for their respective OS.
 
