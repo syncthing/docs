@@ -76,7 +76,7 @@ button when necessary. This can be disabled only by compiling Syncthing with
 upgrades disabled.
 
 The actual download, should an upgrade be available, is done from
-GitHub, thus exposing the user to them.
+**GitHub**, thus exposing the user to them.
 
 The upgrade check (or download) requests *do not* contain any identifiable
 information about the user or device.
