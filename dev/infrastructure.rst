@@ -46,7 +46,8 @@ DigitalOcean.
 Relay Pool Server
 -----------------
 
-Runs the ``relaypoolsrv`` to handle dynamic registration and announcement of relays.
+Runs the `relaypoolsrv <https://github.com/syncthing/syncthing/tree/master/cmd/strelaypoolsrv>`__
+daemon to handle dynamic registration and announcement of relays.
 
 - `relays.syncthing.net <http://relays.syncthing.net>`__ (SmartOS container, 256 MB)
 
@@ -58,7 +59,8 @@ Hosted by friendly people on the internet.
 Usage Reporting Server
 ----------------------
 
-Runs the ``ursrv`` instance, PostgreSQL and Nginx.
+Runs the `ursrv <https://github.com/syncthing/usage-reporting/tree/master/cmd/ursrv>`__
+daemon with PostgreSQL and Nginx.
 
 - `data.syncthing.net <https://data.syncthing.net/>`__ (Ubuntu Linux, 512 MB)
 
@@ -96,3 +98,11 @@ Signing Server
 Signs and uploads the release bundles to GitHub.
 
 - secure.syncthing.net (SmartOS container, 2048 MB)
+
+Monitoring
+----------
+
+The infrastructure is monitored and its status is publicly accessible on the following urls:
+
+- `status.syncthing.net <https://status.syncthing.net>`__
+- `monitor.syncthing.net <https://monitor.syncthing.net>`__ (Grafana)
