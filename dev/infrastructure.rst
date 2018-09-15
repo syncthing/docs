@@ -46,7 +46,8 @@ Runs the ``discosrv`` instances for v0.11 and v0.12.
 Relay Pool Server
 -----------------
 
-Runs the `relaypoolsrv <https://github.com/syncthing/syncthing/tree/master/cmd/strelaypoolsrv>`__ daemon to handle dynamic registration and announcement of relays.
+Runs the `relaypoolsrv <https://github.com/syncthing/syncthing/tree/master/cmd/strelaypoolsrv>`__
+daemon to handle dynamic registration and announcement of relays.
 
 - `relays.syncthing.net <http://relays.syncthing.net>`__ (SmartOS container, 256 MB)
 
@@ -58,7 +59,8 @@ Hosted by friendly people on the internet.
 Usage Reporting Server
 ----------------------
 
-Runs the `ursrv <https://github.com/syncthing/usage-reporting/tree/master/cmd/ursrv>`__ daemon with PostgreSQL and Nginx.
+Runs the `ursrv <https://github.com/syncthing/usage-reporting/tree/master/cmd/ursrv>`__
+daemon with PostgreSQL and Nginx.
 
 - `data.syncthing.net <https://data.syncthing.net/>`__ (Ubuntu Linux, 512 MB)
 
@@ -100,7 +102,7 @@ Signs and uploads the release bundles to GitHub.
 Monitoring
 ----------
 
-The infrastructure is monitored and its status is public accessible on the following urls:
+The infrastructure is monitored and its status is publicly accessible on the following urls:
 
 - `status.syncthing.net <https://status.syncthing.net>`__
 - `monitor.syncthing.net <https://monitor.syncthing.net>`__ (Grafana)
