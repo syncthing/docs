@@ -65,8 +65,8 @@ Upgrade Checks
 ~~~~~~~~~~~~~~
 
 When automatic upgrades are enabled, Syncthing checks for a new version at
-startup and then once every twelve hours. This is by an HTTPS request to the
-download site for releases, currently **hosted by :user:`calmh`**.
+startup and then once every twelve hours. This is yby an HTTPS request to the
+download site for releases, currently hosted by :user:`calmh`.
 Automatic upgrades default to **on** (unless Syncthing was compiled with
 upgrades disabled).
 
@@ -76,7 +76,7 @@ button when necessary. This can be disabled only by compiling Syncthing with
 upgrades disabled.
 
 The actual download, should an upgrade be available, is done from
-**GitHub**, thus exposing the user to them.
+GitHub, thus exposing the user to them.
 
 The upgrade check (or download) requests *do not* contain any identifiable
 information about the user or device.
