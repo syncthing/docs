@@ -402,6 +402,9 @@ skipIntroductionRemovals
 introducedBy
     Defines which device has introduced us to this device. Used only for following de-introductions.
 
+certName
+    The device certificate common name, if it is not the default "syncthing".
+
 From following child elements at least one ``address`` child must exist.
 
 address
