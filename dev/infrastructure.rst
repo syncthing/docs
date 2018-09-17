@@ -12,24 +12,19 @@ All repos, issue trackers and binary releases are hosted at `GitHub <https://git
 Main & Documentation Websites
 ------------------------------
 
-Static HTML, served by Nginx.
+Static HTML, served by Caddy.
 
-- `syncthing.net <https://syncthing.net/>`__ (SmartOS container, 1024 MB)
+- `syncthing.net <https://syncthing.net/>`__
+- `apt.syncthing.net <https://apt.syncthing.net>`__ (Debian packages)
 - `docs.syncthing.net <https://docs.syncthing.net/>`__ (Sphinx for site generation)
+- `upgrades.syncthing.net <https://upgrades.syncthing.net/meta.json>`__ (upgrade metadata)
 
 Forum Website
 -------------
 
 Powered by Discourse.
 
-- `forum.syncthing.net <https://forum.syncthing.net/>`__ (Ubuntu Linux, 2048 MB)
-
-Upgrades Server
----------------
-
-The ``upgrades.syncthing.net`` server is a virtualhost on ``syncthing.net``.
-And the ``meta.json`` file is just a regular synchronized
-static copy of github releases. The actual signed binary releases are hosted on github.
+- `forum.syncthing.net <https://forum.syncthing.net/>`__
 
 Global Discovery Servers
 ------------------------
@@ -46,10 +41,10 @@ DigitalOcean.
 Relay Pool Server
 -----------------
 
-Runs the `relaypoolsrv <https://github.com/syncthing/syncthing/tree/master/cmd/strelaypoolsrv>`__
+Runs the `strelaypoolsrv <https://github.com/syncthing/syncthing/tree/master/cmd/strelaypoolsrv>`__
 daemon to handle dynamic registration and announcement of relays.
 
-- `relays.syncthing.net <http://relays.syncthing.net>`__ (SmartOS container, 256 MB)
+- `relays.syncthing.net <http://relays.syncthing.net>`__
 
 Relay Servers
 -------------
@@ -59,50 +54,34 @@ Hosted by friendly people on the internet.
 Usage Reporting Server
 ----------------------
 
-Runs the `ursrv <https://github.com/syncthing/usage-reporting/tree/master/cmd/ursrv>`__
+Runs the `ursrv <https://github.com/syncthing/syncthing/tree/master/cmd/ursrv>`__
 daemon with PostgreSQL and Nginx.
 
-- `data.syncthing.net <https://data.syncthing.net/>`__ (Ubuntu Linux, 512 MB)
+- `data.syncthing.net <https://data.syncthing.net/>`__
 
-Build Servers, Core
--------------------
+Build Servers
+-------------
 
-Runs TeamCity and does the core builds, Ubuntu Linux.
+Runs TeamCity and does the core builds.
 
-- `build.syncthing.net <https://build.syncthing.net/>`__ (TeamCity frontend, SmartOS container, 2048 MB)
+- `build.syncthing.net <https://build.syncthing.net/>`__
 
-Build Servers, Android and Other
---------------------------------
+There are various build agents; Linux, Windows, and Mac. These are currently 
+provided by :users:`calmh` or Kastelo.
 
-Runs a Gradle daemon building releases for Android.
-
-- `Travis CI <https://travis-ci.org/syncthing/syncthing-android>`__
-
-Runs a Jenkins slave and builds release builds for their respective OS.
-
-- native-windows-amd64 (Windows 2012 R2, Amazon EC2 t2.micro)
-- native-darwin-amd64 (Mac OS X 10.8.5, MacBookPro5,1 in calmh's garage)
-- native-ubuntu-amd64 (Ubuntu 14.04, 2048 MB, hosted at DigitalOcean)
-- native-ubuntu-386 (Ubuntu 14.04, 512 MB, hosted at DigitalOcean)
-
-APT Server
-----------
-
-Serves the APT repository for Debian/Ubuntu users. Runs Nginx.
-
-- `apt.syncthing.net <https://apt.syncthing.net>`__ (SmartOS container, 256 MB)
 
 Signing Server
 --------------
 
 Signs and uploads the release bundles to GitHub.
 
-- secure.syncthing.net (SmartOS container, 2048 MB)
+- secure.syncthing.net
 
 Monitoring
 ----------
 
 The infrastructure is monitored and its status is publicly accessible on the following urls:
 
-- `status.syncthing.net <https://status.syncthing.net>`__
+- `status.syncthing.net <https://status.syncthing.net>`__ (Apex Ping)
 - `monitor.syncthing.net <https://monitor.syncthing.net>`__ (Grafana)
+
