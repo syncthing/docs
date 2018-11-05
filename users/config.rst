@@ -500,6 +500,10 @@ address
         These are equivalent and will result in Syncthing listening on all
         interfaces via both IPv4 and IPv6.
 
+    UNIX socket location (``/var/run/st.sock``)
+        If the address is an absolute path it is interpreted as the path to a UNIX socket.
+        (Added in v0.14.52.)
+
 user
     Set to require authentication.
 

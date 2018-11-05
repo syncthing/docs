@@ -51,7 +51,8 @@ Options
 
 .. cmdoption:: -gui-address=<address>
 
-    Override GUI listen address.
+    Override GUI listen address. Set this to an address (``0.0.0.0:8384``)
+    or file path (``/var/run/st.sock``, for UNIX sockets).
 
 .. cmdoption:: -home=<dir>
 
