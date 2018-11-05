@@ -49,7 +49,7 @@ Queries
 
 Queries are performed as HTTPS GET requests to the announce server URL. The
 requested device ID is passed as the query parameter "device", in canonical
-string form, i.e. ``https://announce.syncthing.net/v2/?device=ABC12345-....``
+string form, i.e. ``https://discovery.syncthing.net/?device=ABC12345-....``
 
 Successful responses will have status code ``200`` (OK) and carry a JSON payload
 of the same format as the announcement above. The response will not contain
@@ -63,3 +63,28 @@ Found) is returned.
 
 If the client has exceeded a rate limit, the server may respond with 429 (Too
 Many Requests).
+
+Authentication
+--------------
+
+Global discovery is spoken over HTTPS and is protected against attackers in
+the same manner as other HTTPS traffic. However, there are a few Syncthing
+specific considerations on top of this. As mentioned above, for
+announcements the client must provide a certificate to prove ownership of
+the announced device ID.
+
+In addition, Syncthing has a mechanism to verify the identity of the
+discovery server.  While this would normally be accomplished by using a CA
+signed certificate, Syncthing often runs in environments with outdated or
+simply nonexistent root CA bundles. Instead, Syncthing can verify the
+discovery server certificate fingerprint using the device ID mechanism. This
+is certificate pinning and conveyed in the Syncthing configuration as a
+synthetic "id" parameter on the discovery server URL:
+``https://discovery.syncthing.net/?id=...``. The "id" parameter is not, in
+fact, sent to the discovery server - it's used by Syncthing itself to know
+which certificate to expect on the server side.
+
+The public discovery network uses this authentication mechanism instead of
+CA signed certificates.
+
+The discovery server prints its certificate ID in this manner on startup.
