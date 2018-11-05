@@ -27,30 +27,12 @@ surprises you might run into.
 .. [#] Auto upgrades are not enabled in builds delivered via APT or Snap.
 .. [#] Yes, there is intentionally no difference here.
 
-Life Cycle
-----------
+Schedule
+--------
 
-Every new feature and bugfix begins its life in the development branch,
-``master``. Once a month the current ``master`` becomes a *release
-candidate*. This version is identified by "-rc" in it's name, for example
-"0.14.35-rc.1".
-
-Those running the candidate channel will update to this release candidate.
-For the next three weeks it is tested "in the wild". Any new, serious issues
-that are discovered are fixed, and new release candidates "0.14.35-rc.2" etc
-are created as needed. These release candidates do not include any new
-features or non-essential bugfixes added to ``master`` in the meantime.
-
-Stable releases are given version numbers without any suffix - "0.14.35".
-Unless any serious issues were discovered, this release is exactly identical
-to the "-rc.1" release candidate three weeks prior.
-
-The cycle then restarts one week later with a new release candidate based on
-the current ``master`` branch.
-
-Releases are timed so that stable releases happen on the first Tuesday of
-the month. The next candidate release is one week later, on the second
-Tuesday of the month.
+Barring blocking issues, stable versions are released *on the first Tuesday
+of the month*. A new candidate releases is made *on the second Tuesday of the
+month*.
 
 How to Choose
 -------------
@@ -86,6 +68,27 @@ to this page.
 
 FAQ
 ---
+
+What's the relationship between candidate and release exactly?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Every new feature and bugfix begins its life in the development branch,
+``master``. Once a month the current ``master`` becomes a *release
+candidate*. This version is identified by "-rc" in it's name, for example
+"0.14.35-rc.1".
+
+Those running the candidate channel will update to this release candidate.
+For the next three weeks it is tested "in the wild". Any new, serious issues
+that are discovered are fixed, and new release candidates "0.14.35-rc.2" etc
+are created as needed. These release candidates do not include any new
+features or non-essential bugfixes added to ``master`` in the meantime.
+
+Stable releases are given version numbers without any suffix - "0.14.35".
+Unless any serious issues were discovered, this release is exactly identical
+to the "-rc.1" release candidate three weeks prior.
+
+The cycle then restarts one week later with a new release candidate based on
+the current ``master`` branch.
 
 Which bugfixes trigger a new release candidate?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

@@ -12,7 +12,6 @@ Development
    device-ids
    infrastructure
    issues
-   release-schedule
    release-creation
    release-signing
    rest

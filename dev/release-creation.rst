@@ -19,12 +19,12 @@ Prerequisites
 - A TeamCity account on ``build.syncthing.net`` with deploy access.
 
 Release Procedure
-=================
+-----------------
 
 The procedure differs sligthly depending on whether we're doing a release candidate or a stable release. Candidate releases require work to prepare the changelog, which will just be reused for the stable release. The stable release on the other hand requires a slightly different release process and is announced more widely.
 
 Release Candidates - Write a Change Log
----------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Most of the change log is machine generated from the closed issues. We do however need to make sure that issues belong to the correct milestone, have the correct labels, and that the issue subject makes sense as a line in the change log. To our help we have the purpose written tool [grt](https://github./calmh/github-release-tool). The grt tool requires your GitHub token to manage milestones and issues; you set the environment variable ``GITHUB_TOKEN`` while you are working on the release (but hopefully not all the time - programs can and do steal environment data).
 
@@ -49,12 +49,12 @@ Now write a changelog.txt. Look at the previous ones for inspiration; they are i
 Add further notes or commentary to taste, if required.
 
 Stable Release - Write a Change Log
------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Use the change log from the corresponding release candidate, just change the version in the first line and the first sentence that describes the release status.
 
 Prepare the Release Branch
---------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Releases come from the ``release`` branch. If you are making a new candidate release you will want to fast forward ``release`` to point at current ``master`` ``HEAD``. If you are making a stable release from the latest RC the ``release`` branch is already in the right place.
 
@@ -68,7 +68,7 @@ If there's been some funky business with the ``release`` branch and it can't be 
 Don't push the branch yet, we want to create the tag first.
 
 Create and Push the Tag
------------------------
+~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: bash
 
@@ -83,14 +83,14 @@ You will need your PGP key at hand for this step. It should be your personal PGP
 If your remote spec is nondefault, tailor the push command to suit.
 
 Build the Packages
-------------------
+~~~~~~~~~~~~~~~~~~
 
 If you are building a release candidate and fast forwarded the ``release`` branch the build server will already have started building it. If not, jump in on the build server and trigger the Release/Syncthing job, for the ``release`` branch, while checking the options to rebuild all dependencies in the chain. We need the rebuild for those binaries to pick up the new tag.
 
 Once the build succeds, log in on ``secure.syncthing.net``. If something failed in the build it's hopefully "just" a flaky test - redo the build.
 
 Create the GitHub release
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 From this point on we will work on ``secure.s.n``, as the ``release`` user.
 
@@ -115,7 +115,7 @@ This will create a v0.14.50-rc.1 release, with the "pre-release" bit set, and le
 The milestone will be closed.
 
 Sign and upload the archives
-----------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 At this point the build should haver completed and the artifacts be uploaded to ``secure.s.n``. If the build number was 1234 and the version v0.14.50 the files will be in ``/home/incoming/build-1234-v0.14.50``. Run the following scripts. None of them should fail, barring connectivity issues - so if they do, you get to fix whatever it is without any guidance from me. Sorry.
 
@@ -138,16 +138,16 @@ Publishes the Snap packages to Ubuntu.
 Publishes the regular release archives to GitHub.
 
 Stable Releases - Create a post on the forum
---------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the Announce/Releases category. Use the tag message as the template, make the header a link to the release, make the issue numbers to be links to the corresponding issues. You can use ``grt changelog v0.14.50 --md`` to get the change log with issue links in proper Markdown.
 
 Stable Releases - Optionally, tweet it
---------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you have the Twitter account and the release isn't a cake-in-your-face screwup fix that you'd rather no one ever heard about and want to just silently roll out to everyone during the night.
 
 Merge Release Into Master
--------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If this was a non-first candidate release with cherry picked commits on it, merge ``release`` back into ``master`` and push ``master``.
