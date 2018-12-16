@@ -3,6 +3,24 @@
 Contribution Guidelines
 =======================
 
+Getting Started
+---------------
+
+So you want to contribute? Great! Here's a short checklist with the most
+important points:
+
+- Don't worry. You are not expected to get everything right on the first
+  attempt, we'll guide you through it.
+
+- Make sure there is an `issue
+  <https://github.com/syncthing/syncthing/issues>`__ that describes the
+  change you want to do. If the thing you want to do does not have an issue
+  yet, please file one before starting work on it.
+
+- Fork the repository and make your changes in a new branch. If you already
+  have push access to the Syncthing repository, do *not* create a new branch
+  there. We do all changes as pull requests from personal forks.
+
 Authorship
 ----------
 
