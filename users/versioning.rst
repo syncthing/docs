@@ -64,7 +64,8 @@ Until Maximum Age
 Maximum Age
     The maximum time to keep a version in days. For example, to keep replaced or
     deleted files in the ".stversions" folder for an entire year, use 365. If
-    only for 10 days, use 10. **Note: Set to 0 to keep versions forever.**
+    only for 10 days, use 10. 
+    **Note: Set to 0 to keep versions forever.**
 
 External File Versioning
 ------------------------
