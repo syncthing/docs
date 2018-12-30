@@ -520,6 +520,51 @@ insecureAdminAccess
 theme
     The name of the theme to use.
 
+authMode
+    Authentication mode to use. If not present authentication mode (static)
+    is controlled by presence of user/passward fields for backward compatibility.
+    
+    static
+        Authentication using user and password.
+
+    ldap
+        LDAP authentication. Requires ldap top level config section to be present.
+        
+LDAP Element
+---------------
+
+.. code-block:: xml
+
+    <ldap>
+        <address>localhost:389</address>
+        <bindDN>cn=%s,ou=users,dc=syncthing,dc=net</bindDN>
+        <transport>nontls</transport>
+        <insecureSkipVerify>false</insecureSkipVerify> 
+    </ldap>
+
+The ``ldap`` element contains LDAP configuration options.
+
+address
+    LDAP server address (server:port).
+
+bindDN
+    BindDN for user authentication.
+    Special %s variable shoild be used to pass username to LDAP.
+    
+transport
+
+    nontls
+        Non secure connection.
+
+    tls
+        TLS secured connection.
+
+    starttls
+        StartTLS connection mode.
+
+insecureSkipVerify
+    Skip verification (true or false).    
+
 Options Element
 ---------------
 
