@@ -24,7 +24,7 @@ Prerequisites
 -------------
 
 -  The latest stable version of Go. Earlier releases may work, but we recommend
-   always using the latest stable version. At the time of writing this is **Go 1.9**.
+   always using the latest stable version. At the time of writing this is **Go 1.11**.
 -  Git
 
 If you're not already a Go developer, the easiest way to get going
@@ -46,7 +46,7 @@ Building (Unix)
 
 .. code-block:: bash
 
-    # This should output "go version go1.9" or higher.
+    # This should output "go version go1.11" or higher.
     $ go version
 
     # Go is particular about file locations; use this path unless you know very
@@ -72,7 +72,7 @@ Building (Windows)
 -  Install the prerequisites.
 -  Open a ``cmd`` Window::
 
-    # This should output "go version go1." or higher.
+    # This should output "go version go1.11" or higher.
     > go version
 
     # Go is particular about file locations; use this path unless you know very
