@@ -115,8 +115,9 @@ Why does it use so much CPU?
 #. When new or changed files are detected, or Syncthing starts for the
    first time, your files are hashed using SHA-256.
 
-#. Data that is sent over the network is (optionally) compressed and
-   encrypted using AES-128. When receiving data, it must be decrypted.
+#. Data that is sent over the network is compressed (optionally) and
+   encrypted (always). When receiving data it must be decrypted and then (if
+   compressed) decompressed.
 
 #. There is a certain amount of housekeeping that must be done to track the
    current and available versions of each file in the index database.
