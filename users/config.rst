@@ -139,7 +139,7 @@ Configuration Element
         <gui></gui>
         <options></options>
         <ignoredDevice>5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU</ignoredDevice>
-        <ignoredFolder>bd7q3-zskm5</ignoredDevice>
+        <ignoredFolder>bd7q3-zskm5</ignoredFolder>
     </configuration>
 
 This is the root element. It has one attribute:
