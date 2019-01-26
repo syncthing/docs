@@ -19,6 +19,7 @@ Usage
    firewall
    relaying
    proxying
+   tunneling
 
    ignoring
    versioning
