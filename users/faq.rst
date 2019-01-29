@@ -524,3 +524,23 @@ separate file, i.e. you should run::
 This only takes effect after a reboot. To adjust the limit immediately, run::
 
     sudo sh -c 'echo 204800 > /proc/sys/fs/inotify/max_user_watches'
+
+How do I reset the GUI password?
+--------------------------------
+
+If you've forgotten/lost the GUI password, you can reset it to blank by deleting the **<user>** and **<password>** XML tags from the **<gui>** block in file ``config.xml``. The location of the file depends on OS and is described in the configuration documentation.
+
+For example the two lines **in bold** below would be removed from the file.
+
+| <gui enabled="true" tls="false" debugging="false">
+|    <address>127.0.0.1:8384</address>
+|    **<user>syncguy</user>**
+|    **<password>$2a$10$s9wWHOQetp46Cq7GPye69.KqKantdUrbHCeLnZ9A6VlzkEPPYHDAC</password>**
+|    <apikey>9RCKohqCAyrj5RjpyZdR2wXmQ9PyQFeN</apikey>
+|    <theme>default</theme>
+| </gui>
+|
+
+Restarting Syncthing is required for the change to take effect. To avoid potentially confusing conflicts it is recommended to make the change while Syncthing is not running.
+
+After this the GUI can be accessed without authentication and password reconfigured using normal procedure in the GUI.
