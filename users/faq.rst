@@ -528,7 +528,7 @@ This only takes effect after a reboot. To adjust the limit immediately, run::
 How do I reset the GUI password?
 --------------------------------
 
-If you've forgotten/lost the GUI password, you can reset it to blank by deleting the **<user>** and **<password>** XML tags from the **<gui>** block in file ``config.xml``. The location of the file depends on OS and is described in the configuration documentation.
+If you've forgotten/lost the GUI password, you can remove it by deleting the **<user>** and **<password>** XML tags from the **<gui>** block in file ``config.xml``. This should be done while Syncthing is not running. The location of the file depends on OS and is described in the configuration documentation.
 
 For example the two lines **in bold** below would be removed from the file.
 
@@ -540,7 +540,3 @@ For example the two lines **in bold** below would be removed from the file.
 |    <theme>default</theme>
 | </gui>
 |
-
-Restarting Syncthing is required for the change to take effect. To avoid potentially confusing conflicts it is recommended to make the change while Syncthing is not running.
-
-After this the GUI can be accessed without authentication and password reconfigured using normal procedure in the GUI.
