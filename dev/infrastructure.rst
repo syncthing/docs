@@ -66,8 +66,8 @@ Runs TeamCity and does the core builds.
 
 - `build.syncthing.net <https://build.syncthing.net/>`__
 
-There are various build agents; Linux, Windows, and Mac. These are currently 
-provided by :users:`calmh` or Kastelo.
+There are various build agents; Linux, Windows, and Mac. These are currently
+provided by :user:`calmh` or Kastelo.
 
 
 Signing Server

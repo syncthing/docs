@@ -14,6 +14,7 @@
 
 import sys
 import os
+import re
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -47,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Syncthing'
-copyright = u'2014-2018, The Syncthing Authors'
+copyright = u'2014-2019, The Syncthing Authors'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -154,7 +155,7 @@ def setup(app):
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
-html_last_updated_fmt = None # '%b %d, %Y'
+html_last_updated_fmt = '%b %d, %Y'
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
@@ -327,3 +328,7 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+scv_whitelist_branches = ('master',)
+scv_whitelist_tags = (re.compile(r'^v1\.\d+\.\d+$'),)
+scv_sort = ('semver',)
