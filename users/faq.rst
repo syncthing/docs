@@ -122,7 +122,8 @@ Why does it use so much CPU?
 #. There is a certain amount of housekeeping that must be done to track the
    current and available versions of each file in the index database.
 
-#. By default Syncthing uses periodic scanning every 60 seconds to detect
+#. By default Syncthing uses periodic scanning every hour when watching for
+   changes or every minute if that's disabled to detect
    file changes. This means checking every file's modification time and
    comparing it to the database. This can cause spikes of CPU usage for large
    folders.
@@ -140,11 +141,6 @@ environment variable ``GOMAXPROCS`` to the maximum number of CPU cores
 Syncthing should use at any given moment. For example, ``GOMAXPROCS=2`` on a
 machine with four cores will limit Syncthing to no more than half the
 system's CPU power.
-
-To reduce CPU spikes from scanning activity, use a filesystem notifications
-plugin. This is delivered by default via Synctrayzor, Syncthing-GTK and on
-Android. For other setups, consider using `syncthing-inotify
-<https://github.com/syncthing/syncthing-inotify>`_.
 
 Should I keep my device IDs secret?
 -----------------------------------
@@ -168,7 +164,7 @@ What if there is a conflict?
 
 Syncthing does recognize conflicts. When a file has been modified on two devices
 simultaneously and the content actually differs, one of the files will be
-renamed to ``<filename>.sync-conflict-<date>-<time>.<ext>``. The file with the
+renamed to ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>``. The file with the
 older modification time will be marked as the conflicting file and thus be
 renamed. If the modification times are equal, the file originating from the
 device which has the larger value of the first 63 bits for his device ID will be
@@ -177,14 +173,12 @@ If the conflict is between a modification and a deletion of the file, the
 modified file always wins and is resurrected without renaming on the
 device where it was deleted.
 
-Beware that the ``<filename>.sync-conflict-<date>-<time>.<ext>`` files are
+Beware that the ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>`` files are
 treated as normal files after they are created, so they are propagated between
 devices. We do this because the conflict is detected and resolved on one device,
 creating the ``sync-conflict`` file, but it's just as much of a conflict
 everywhere else and we don't know which of the conflicting files is the "best"
-from the user point of view. Moreover, if there's something that automatically
-causes a conflict on change you'll end up with ``sync-conflict-...sync-conflict
--...-sync-conflict`` files.
+from the user point of view.
 
 .. _marker-faq:
 
