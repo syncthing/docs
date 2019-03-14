@@ -179,6 +179,11 @@ There is a `demo available <https://my-demo.cloudron.me>`_ (username: cloudron p
 
 The Cloudron package is developed `here <https://git.cloudron.io/cloudron/syncthing-app>`_.
 
+WD My Cloud NAS
+~~~~~~~~~~~~~~~
+
+Packages for OS3 available on `WDCommunity <https://wdcommunity.com>`_.
+
 Integrations
 ------------
 
