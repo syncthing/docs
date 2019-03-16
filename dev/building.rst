@@ -61,6 +61,11 @@ Building (Unix)
     $ cd syncthing
 
     # You should be inside ~/go/src/github.com/syncthing/syncthing right now.
+    
+    # Fetch dependencies.
+    $ go get ./...
+    
+    # Build syncthing!
     $ go run build.go
 
 Unless something goes wrong, you will have a ``syncthing`` binary built
