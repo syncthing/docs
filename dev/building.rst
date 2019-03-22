@@ -9,6 +9,11 @@ Building Syncthing
     of it. For all other purposes we recommend using the official binary
     releases instead.
 
+.. note::
+    Syncthing uses Go modules, which is a fairly new development in the Go
+    ecosystem. You can find more information about modules `here <https://blog.golang.org/using-go-modules>`__.
+    If you are not a seasoned Go developer you can just go with the flow as this is the new thing.
+
 Branches and Tags
 -----------------
 
@@ -24,71 +29,71 @@ Prerequisites
 -------------
 
 -  The latest stable version of Go. Earlier releases may work, but we recommend
-   always using the latest stable version. At the time of writing this is **Go 1.11**.
+   always using the latest stable version. At the time of writing this is **Go 1.12**.
 -  Git
 
 If you're not already a Go developer, the easiest way to get going
 is to download the latest version of Go as instructed in
-https://golang.org/doc/install and ``export GOPATH=~/go``.
+https://golang.org/doc/install.
 
 .. note::
-        You need to set ``GOPATH`` correctly and the source **must** be
-        checked out into ``$GOPATH/src/github.com/syncthing/syncthing``. The
-        instructions below accomplish this correctly. On Go 1.8 and newer
-        you can use the default ``GOPATH`` of ``~/go`` instead of setting
-        the environment variable.
+        Becase Syncthing uses Go modules you do not need to set or care about "GOPATH".
+        However, the GOPATH still defaults to ``~/go`` and you'd be best of *not*
+        putting your Syncthing source in there, for now.
 
 Building (Unix)
 ---------------
 
--  Install the prerequisites.
--  Open a terminal.
+- Install the prerequisites.
+- Open a terminal.
+- Run the commands below.
 
 .. code-block:: bash
 
-    # This should output "go version go1.11" or higher.
+    # This should output "go version go1.12" or higher.
     $ go version
 
-    # Go is particular about file locations; use this path unless you know very
-    # well what you're doing and have set GOPATH to something other than ~/go.
-    $ mkdir -p ~/go/src/github.com/syncthing
-    $ cd ~/go/src/github.com/syncthing
-    # Note that if you are building from a source code archive, you need to
-    # rename the directory from syncthing-XX.YY.ZZ to syncthing
-    $ git clone https://github.com/syncthing/syncthing
+    # Pick a place for your Syncthing source.
+    $ mkdir -p ~/dev
+    $ cd ~/dev
+
+    # Grab the code.
+    $ git clone https://github.com/syncthing/syncthing.git
 
     # Now we have the source. Time to build!
     $ cd syncthing
 
-    # You should be inside ~/go/src/github.com/syncthing/syncthing right now.
+    # You should be inside ~/dev/syncthing right now.
     $ go run build.go
 
 Unless something goes wrong, you will have a ``syncthing`` binary built
-and ready in ``~/go/src/github.com/syncthing/syncthing/bin``.
+and ready in ``~/dev/syncthing/bin``.
 
 Building (Windows)
 ------------------
 
--  Install the prerequisites.
--  Open a ``cmd`` Window::
+- Install the prerequisites.
+- Open a ``cmd`` Window.
+- Run the commands below.
 
-    # This should output "go version go1.11" or higher.
+.. code-block:: cmd
+
+    # This should output "go version go1.12" or higher.
     > go version
 
-    # Go is particular about file locations; use this path unless you know very
-    # well what you're doing.
-    > mkdir %USERPROFILE%\go\src\github.com\syncthing
-    > cd %USERPROFILE%\go\src\github.com\syncthing
-    # Note that if you are building from a source code archive, you need to
-    # rename the directory from syncthing-XX.YY.ZZ to syncthing
-    > git clone https://github.com/syncthing/syncthing
+    # Pick a place for your Syncthing source.
+    > mkdir %USERPROFILE%\dev
+    > cd %USERPROFILE%\dev
+
+    # Grab the code.
+    > git clone https://github.com/syncthing/syncthing.git
 
     # Now we have the source. Time to build!
     > cd syncthing
     > go run build.go
 
 Unless something goes wrong, you will have a ``syncthing.exe`` binary
-built and ready in ``%USERPROFILE%\go\src\github.com\syncthing\syncthing\bin``.
+built and ready in ``%USERPROFILE%\dev\syncthing\bin``.
 
 Subcommands and Options
 -----------------------
@@ -101,7 +106,8 @@ The following ``build.go`` subcommands and options exist.
 
 ``go run build.go build``
   Builds just the named target, or ``syncthing`` by default, to the current
-  directory. Use when cross compiling.
+  directory. Use this when cross compiling, with parameters for what to cross
+  compile to: ``go run build.go -goos linux -goarch 386 build``.
 
 ``go run build.go test``
   Runs the tests.
@@ -115,7 +121,7 @@ The following ``build.go`` subcommands and options exist.
   Windows build.
 
 The options ``-no-upgrade``, ``-goos`` and ``-goarch`` can be given to
-influence ``install``, ``build``, ``tar`` and ``zip``. Examples:
+influence ``build``, ``tar`` and ``zip``. Examples:
 
 ``go run build.go -goos linux -goarch 386 tar``
   Builds a tar.gz distribution of Syncthing for linux-386.
