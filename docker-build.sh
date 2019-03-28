@@ -6,5 +6,4 @@ docker run --rm \
   -v "$(pwd):$(pwd)" \
   -w "$(pwd)" \
   kastelo/sphinx-build:latest \
-  sphinx-versioning build . _build/html
-
+  make "$target"
