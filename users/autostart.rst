@@ -168,7 +168,7 @@ https://github.com/syncthing/syncthing/releases/latest.
 #. Copy the syncthing binary (the file you would open to launch
    Syncthing) into a directory called ``bin`` in your home directory i.e. into /Users/<username>/bin. If
    "bin" does not exist, create it.
-#. Open ``syncthing.plist`` located in /etc/macosx-launchd. Replace the four occurrences of /Users/USERNAME with your actual home directory location.
+#. Open ``syncthing.plist`` located in /etc/macos-launchd. Replace the four occurrences of /Users/USERNAME with your actual home directory location.
 #. Copy the ``syncthing.plist`` file to ``~/Library/LaunchAgents``. If
    you have trouble finding this location select the "Go" menu in Finder
    and choose "Go to folder..." and then type
