@@ -133,25 +133,3 @@ all files and directories called "foo", ending in a "2" or starting with
   ``some/directory/`` matches the content of the directory, but not the
   directory itself. If you want the pattern to match the directory and its
   content, make sure it does not have a ``/`` at the end of the pattern.
-
-Effects on "In Sync" Status
----------------------------
-
-Currently the effects on who is in sync with what can be a bit confusing
-when using ignore patterns. This should be cleared up in a future
-version...
-
-Assume two devices, Alice and Bob, where Alice has 100 files to share, but
-Bob ignores 25 of these. From Alice's point of view Bob will become
-about 75% in sync (the actual number depends on the sizes of the
-individual files) and remain in "Syncing" state even though it is in
-fact not syncing anything (:issue:`623`). From Bob's point of view, it's
-100% up to date but will show fewer files in both the local and global
-view.
-
-If Bob adds files that have already been synced to the ignore list, they
-will remain in the "global" view but disappear from the "local" view.
-The end result is more files in the global folder than in the local,
-but still 100% in sync (:issue:`624`). From Alice's point of view, Bob
-will remain 100% in sync until the next reconnect, because Bob has
-already announced that he has the files that are now suddenly ignored.
