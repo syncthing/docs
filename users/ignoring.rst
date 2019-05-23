@@ -84,6 +84,12 @@ The ``.stignore`` file contains a list of file or path patterns. The
    Prefixes can be specified in any order (e.g. "(?d)(?i)"), but cannot be in a
    single pair of parentheses (not ":strike:`(?di)`").
 
+.. note::
+
+   Include patterns (that begin with ``!``) cause Syncthing to traverse and
+   :ref:`watch <scanning>` the entire directory tree regardless of other
+   ignore patterns.
+
 Example
 -------
 

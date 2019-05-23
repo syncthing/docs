@@ -28,6 +28,8 @@ computed and compared with the expected value. If it matches the block is
 written to a temporary copy of the file, otherwise it is discarded and
 Syncthing tries to find another source for the block.
 
+.. _scanning:
+
 Scanning
 --------
 
@@ -93,4 +95,3 @@ on Windows, ``~syncthing~original-filename.ext.tmp`` where
 normally hidden. If the temporary file name would be too long due to the
 addition of the prefix and extra extension, a hash of the original file name
 is used instead of the actual original file name.
-
