@@ -21,9 +21,6 @@ Cross-platform
 
 - `syncthingtray <https://github.com/Martchus/syncthingtray>`__
 
-- `syncthing-tray <https://github.com/alex2108/syncthing-tray>`_
-
-
 Android
 ~~~~~~~
 
@@ -31,7 +28,7 @@ Android
 
   A wrapper app for the Syncthing binary.
 
-- `a-sync-browser <https://github.com/davide-imbriaco/a-sync-browser>`_
+- `syncthing-lite <https://github.com/syncthing/syncthing-lite>`_
 
   Down- or uploads data from accessible devices, does not continuously keep a
   share in sync.
@@ -44,16 +41,15 @@ Windows
 - `SyncTrayzor <https://github.com/canton7/SyncTrayzor>`_
 
   Windows host for Syncthing.  Installer, auto-start, built-in browser, tray
-  icon, folder watcher, and more.
-
-- `SyncthingTray <https://github.com/iss0/SyncthingTray>`_
-
-  Wrapper including a small interface to configure start on boot and puts Syncthing into the systray instead of a console window.
+  icon, and more.
 
 Mac OS
 ~~~~~~ 
 
-- `SyncthingBar <https://github.com/nhojb/SyncthingBar>`_
+- `syncthing-macos <https://github.com/syncthing/syncthing-macos>`_
+
+  syncthing-macos is a native macOS Syncthing tray application bundle.
+  It hosts and wraps Syncthing, making it behave more like a native macOS application and less like a command-line utility with a web browser interface.
 
 Linux
 ~~~~~
@@ -250,3 +246,7 @@ Older, Possibly Unmaintained
 -  https://github.com/thunderbirdtr/syncthing_rpm
 -  https://github.com/dapperstout/pulse-java
 -  https://github.com/cebe/pulse-php-discover
+-  https://github.com/sebw/bitbar-plugins
+-  https://github.com/nhojb/SyncthingBar
+-  https://github.com/iss0/SyncthingTray
+-  https://github.com/alex2108/syncthing-tray
