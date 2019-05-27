@@ -55,8 +55,6 @@ Mac OS
 
 - `SyncthingBar <https://github.com/nhojb/SyncthingBar>`_
 
-- `BitBar plugin <https://github.com/sebw/bitbar-plugins>`_
-
 Linux
 ~~~~~
 
