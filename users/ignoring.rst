@@ -128,9 +128,9 @@ all files and directories called "foo", ending in a "2" or starting with
         baz       # synced
         quux      # ignored, matches "qu*"
         quuz      # synced, matches "qu*" but is excluded by the preceding "!quuz"
-    bar2/         # ignored, matched "*2"
+    bar2/         # synced, despite matching "*2" due to child frobble
         baz       # ignored, due to parent being ignored
-        frobble   # ignored, due to parent being ignored; "!frobble" doesn't help
+        frobble   # synced, due to "!frobble"
     My Pictures/  # ignored, matched case insensitive "(?i)my pictures" pattern
         Img15.PNG # ignored, due to parent being ignored
 
