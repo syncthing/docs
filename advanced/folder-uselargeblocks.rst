@@ -35,6 +35,6 @@ of an existing file is only changed when the difference in block size
 exceeds one level, i.e., from 256 KiB to 1 MiB, but not from 256 KiB to 512
 KiB.
 
-At some point in the future, `useLargeBlocks` will start defaulting to
-`true`. At some further point in the future, the setting will be removed and
-large blocks will be the only mode of operation.
+Syncthing version 1.1.0 and newer have `useLargeBlocks` enabled by default for
+new folders. At some point in the future, the setting will be removed
+and large blocks will be the only mode of operation.
