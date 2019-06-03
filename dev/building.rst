@@ -76,7 +76,7 @@ Building (Windows)
 - Open a ``cmd`` Window.
 - Run the commands below.
 
-.. code-block:: cmd
+.. code-block:: batch
 
     # This should output "go version go1.12" or higher.
     > go version
