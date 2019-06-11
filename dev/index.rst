@@ -9,6 +9,7 @@ Development
    building
    contributing
    debugging
+   crashrep
    device-ids
    infrastructure
    issues
