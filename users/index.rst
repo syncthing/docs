@@ -33,3 +33,4 @@ Usage
    profiling
    reverseproxy
    security
+   crashrep
