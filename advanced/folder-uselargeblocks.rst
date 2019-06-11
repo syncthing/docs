@@ -1,3 +1,17 @@
+.. versionadded:: 1.2.0
+
+    As of Syncthing 1.2.0 large blocks always enabled and the configuration
+    option has been removed.
+
+.. versionadded:: 1.1.0
+
+    Syncthing version 1.1.0 and newer have large blocks enabled by default for
+    new folders.
+
+.. versionadded:: 0.14.48
+
+    Large blocks can be enabled in Syncthing version 0.14.48 and newer.
+
 useLargeBlocks
 ==============
 
@@ -12,8 +26,6 @@ at either extreme.
 
 Compatibility
 -------------
-
-Large blocks can be enabled in Syncthing version 0.14.48 and newer.
 
 Syncthing version 0.14.46 and newer will accept and handle files with large
 blocks, regardless of whether large blocks are enabled on that device.
@@ -35,6 +47,3 @@ of an existing file is only changed when the difference in block size
 exceeds one level, i.e., from 256 KiB to 1 MiB, but not from 256 KiB to 512
 KiB.
 
-Syncthing version 1.1.0 and newer have `useLargeBlocks` enabled by default for
-new folders. At some point in the future, the setting will be removed
-and large blocks will be the only mode of operation.
