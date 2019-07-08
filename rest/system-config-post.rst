@@ -2,5 +2,9 @@ POST /rest/system/config
 ========================
 
 Post the full contents of the configuration, in the same format as returned by
-the corresponding GET request. The configuration will be saved to disk and the
-``configInSync`` flag set to false. Restart Syncthing to activate.
+the corresponding GET request. When posting the configuration is successfully,
+it is directly applied, no restart necessary.
+
+This endpoint is the main point to control Syncthing, even if the change only
+concerns a very small part of the config: The usual workflow is to get the
+config, modify the needed parts and post it again.
