@@ -1,3 +1,5 @@
+.. _rest-config-insync:
+
 GET /rest/system/config/insync
 ==============================
 
