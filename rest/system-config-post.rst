@@ -2,7 +2,7 @@ POST /rest/system/config
 ========================
 
 Post the full contents of the configuration, in the same format as returned by
-the corresponding GET request. When posting the configuration is successfully,
+the corresponding GET request. When posting the configuration is successful,
 it is directly applied, except for changes that require a restart. Query
 :ref:`rest-config-insync` to check if a restart is required.
 
