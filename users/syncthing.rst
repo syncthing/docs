@@ -13,8 +13,9 @@ Synopsis
               [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
               [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>]
               [-no-browser] [-no-console] [-no-restart] [-paths] [-paused]
-              [-reset-database] [-reset-deltas] [-unpaused] [-upgrade]
-              [-upgrade-check] [-upgrade-to=<url>] [-verbose] [-version]
+              [-reset-database] [-reset-deltas] [-umask=<mask>] [-unpaused]
+              [-upgrade] [-upgrade-check] [-upgrade-to=<url>] [-verbose]
+              [-version]
 
 Description
 -----------
@@ -109,6 +110,10 @@ Options
 .. cmdoption:: -reset-deltas
 
     Reset delta index IDs, forcing a full index exchange.
+
+.. cmdoption:: -umask=<mask>
+
+    Set the process umask to the supplied value.
 
 .. cmdoption:: -unpaused
 
