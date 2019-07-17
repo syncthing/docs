@@ -44,11 +44,11 @@ Receive Only Folder
 .. versionadded:: 0.14.50
 
 The receive only folder is the logical opposite of the send only folder. In
-this mode, all changes from the cluster are applied, as they are in the
-default send-receive mode. Local changes are however not distributed to
-other devices. This mode is useful for replication targets, backup
-destinations, or other cases where no local modifications are expected or
-allowed.
+this mode, all changes from the cluster are applied and redistributed to
+other devices, as they are in the default send-receive mode. Local changes
+are however not distributed to other devices. This mode is useful for
+replication mirrors, backup destinations, or other cases where no local
+modifications are expected or allowed.
 
 Much like a send-receive folder, any local modifications are preserved and
 do not cause the folder to become "out of sync". The device will however
