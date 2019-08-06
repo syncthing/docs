@@ -792,11 +792,12 @@ setLowPriority
 Listen Addresses
 ^^^^^^^^^^^^^^^^
 
-The following address types are accepted in sync protocol listen addresses:
+The following address types are accepted in sync protocol listen addresses
+(multiple can be specified by comma separation):
 
 Default listen addresses (``default``)
-    This is equivalent to ``tcp://0.0.0.0:22000`` and
-    ``dynamic+https://relays.syncthing.net/endpoint``.
+    This is equivalent to ``tcp://0.0.0.0:22000``, ``quic://0.0.0.0:22000``
+    and ``dynamic+https://relays.syncthing.net/endpoint``.
 
 TCP wildcard and port (``tcp://0.0.0.0:22000``, ``tcp://:22000``)
     These are equivalent and will result in Syncthing listening on all
@@ -817,6 +818,9 @@ TCP IPv6 wildcard and port (``tcp6://[::]:22000``, ``tcp6://:22000``)
 TCP IPv6 address and port (``tcp6://[2001:db8::42]:22000``)
     This results in Syncthing listening on the specified address and port, IPv6
     only.
+
+QUIC address and port (e.g. ``quic://0.0.0.0:22000``)
+    Syntax is the same as for TCP, also ``quic4`` and ``quic6`` can be used.
 
 Static relay address (``relay://192.0.2.42:22067?id=abcd123...``)
     Syncthing will connect to and listen for incoming connections via the
