@@ -212,7 +212,7 @@ Then start it::
 
 and check it is all working::
 
-    supervisorctl status
+    supervisorctl status syncthing
 
 In case of troubles check the logs::
 
