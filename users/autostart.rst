@@ -197,22 +197,20 @@ On any distribution (Arch, Debian, Linux Mint, Ubuntu, openSUSE)
 
 Using Supervisord
 ~~~~~~~~~~~~~~~~~
-
-Create the ``syncthing.conf`` file in supervisor's ``conf.d`` folder (the folder is located
-at ``/etc/supervisor/conf.d``)::
+Go to ``/etc/supervisor/conf.d/`` and create new config file named ``syncthing.conf`` with the following contenet (ensure you replaced ``<USER>`` with valid name)::
 
     [program:syncthing]
     autorestart = True
-    directory = /home/some_user/
+    directory = /home/<USER>/
     user = some_user
-    command = /path/to/syncthing/binary -no-browser -home="/home/some_user/.config/syncthing"
-    environment = STNORESTART="1", HOME="/home/some_user"
+    command = /usr/bin/syncthing -no-browser -home="/home/<USER>/.config/syncthing"
+    environment = STNORESTART="1", HOME="/home/<USER>"
 
 Then start it::
 
     supervisorctl start syncthing
 
-Check it is all working::
+and check it is all working::
 
     supervisorctl status
 
