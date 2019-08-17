@@ -198,7 +198,8 @@ On any distribution (Arch, Debian, Linux Mint, Ubuntu, openSUSE)
 Using Supervisord
 ~~~~~~~~~~~~~~~~~
 
-Add the following to your supervisor config file::
+Create the ``syncthing.conf` file in supervisor's `conf.d` folder (the folder is located
+at ``/etc/supervisor/conf.d``)::
 
     [program:syncthing]
     command = /path/to/syncthing/binary -no-browser -home="/home/some_user/.config/syncthing"
@@ -207,7 +208,14 @@ Add the following to your supervisor config file::
     user = some_user
     environment = STNORESTART="1", HOME="/home/some_user"
 
-The file is located at ``/etc/supervisor/supervisord.conf`` (Debian/Ubuntu) or ``/etc/supervisord.conf`` .
+Then start/stop it::
+
+    supervisorctl start syncthing
+    supervisorctl stop syncthing
+
+In case of troubles check the logs::
+
+    supervisorctl tail syncthing
 
 Using systemd
 ~~~~~~~~~~~~~
