@@ -20,9 +20,9 @@ in the event IDs.
 If no new events are produced since ``<lastSeenID>``, the HTTP call blocks and
 waits for new events to happen before returning. By default it times out after
 60 seconds returning an empty array. The time out duration can be customized
-with the optional parameter ``timeout=seconds``.
+with the optional parameter ``timeout=<seconds>``.
 
-To receive only a limited number of events, add the ``limit=n`` parameter with a
+To receive only a limited number of events, add the ``limit=<n>`` parameter with a
 suitable value for ``n`` and only the *last* ``n`` events will be returned. This
 can be used to catch up with the latest event ID after a disconnection for
 example: ``/rest/events?since=0&limit=1``.
