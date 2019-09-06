@@ -227,7 +227,7 @@ for the Linux computer operating system. It also offers users the
 ability to manage services under the user's control with a per-user
 systemd instance, enabling users to start, stop, enable, and disable
 their own units. Service files for systemd are provided by Syncthing and
-can be found in
+can be found in this Git location:
 `etc/linux-systemd <https://github.com/syncthing/syncthing/tree/master/etc/linux-systemd>`_.
 
 You have two primary options: You can set up Syncthing as a system service, or a
@@ -252,7 +252,7 @@ How to set up a system service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. Create the user who should run the service, or choose an existing one.
-#. Copy the ``Syncthing/etc/linux-systemd/system/syncthing@.service`` file into the
+#. From git location mentioned above copy the ``Syncthing/etc/linux-systemd/system/syncthing@.service`` file into the
    `load path of the system instance
    <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
 #. Enable and start the service. Replace "myuser" with the actual Syncthing
