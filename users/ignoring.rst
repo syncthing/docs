@@ -21,6 +21,7 @@ If some files should not be synchronized to other devices, a file called
 ``.stignore`` file itself will never be synced to other devices, although it can
 ``#include`` files that *are* synchronized between devices. All patterns are
 relative to the folder root.
+The contents of the ``.stignore`` file must be UTF-8 encoded.
 
 .. note::
 
