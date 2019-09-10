@@ -24,3 +24,5 @@ The ``databaseTuning`` option can have one of three values:
   200 MiB or more in size is considered "large" for the purposes of this
   option.
 
+The default value is ``auto``.
+
