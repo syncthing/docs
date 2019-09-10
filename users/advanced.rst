@@ -16,6 +16,15 @@ The advanced settings dialog is accessed from the main menu:
 
 .. image:: advanced-settings.png
 
+General Settings
+-----------------
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   ../advanced/option-*
+
 Per Folder Settings
 -------------------
 
