@@ -792,8 +792,7 @@ setLowPriority
 Listen Addresses
 ^^^^^^^^^^^^^^^^
 
-The following address types are accepted in sync protocol listen addresses
-(multiple can be specified by comma separation):
+The following address types are accepted in sync protocol listen addresses. If you want Syncthing to listen on multiple addresses, you can have multiple ``<listenAddress></listenAddress>`` sections. The same is achieved in the GUI by entering several addresses separated by comma.
 
 Default listen addresses (``default``)
     This is equivalent to ``tcp://0.0.0.0:22000``, ``quic://0.0.0.0:22000``
