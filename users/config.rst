@@ -356,6 +356,10 @@ Device Element
         <address>tcp://192.0.2.1:22001</address>
         <paused>true<paused>
         <allowedNetwork>192.168.0.0/16<allowedNetwork>
+        <autoAcceptFolders>false</autoAcceptFolders>
+        <maxSendKbps>100</maxSendKbps>
+        <maxRecvKbps>100</maxRecvKbps>
+        <maxRequestKiB>65536</maxRequestKiB>
     </device>
 
 One or more ``device`` elements must be present in the file. Each element
@@ -456,6 +460,19 @@ paused
 allowedNetwork
     If given, this restricts connections to this device to only this network
     (see :ref:`allowed-networks`).
+
+maxSendKbps
+    Maximum send rate to use for this device. Unit is kibibytes/second, despite
+    the config name looking like kilobits/second.
+
+maxRecvKbps
+    Maximum receive rate to use for this device. Unit is kibibytes/second,
+    despite the config name looking like kilobits/second.
+
+maxRequestKiB
+    Maximum amount of data to have outstanding in requests towards this device.
+    Unit is kibibytes.
+
 
 GUI Element
 -----------
