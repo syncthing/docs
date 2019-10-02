@@ -116,6 +116,9 @@ Docker
 - `rpi-syncthing <https://github.com/funkyfuture/docker-rpi-syncthing>`_
 
   Configurable image for the Raspberry Pi.
+- `syncthing for hassio <https://github.com/bestlibre/hassio-addons/tree/master/syncthing>`
+
+  A docker based addon for `hassio <https://www.home-assistant.io/hassio/>`
 
 Gentoo
 ~~~~~~
