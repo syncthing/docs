@@ -18,3 +18,5 @@ If an introducer adds or removes any devices or shares, or changes device-share 
 Note that devices which are introduced cannot be removed so long as the introducer device is still marked as such, and if they are unshared from a folder they will be re-added.
 
 Introducer status is transferable; that is, an introducers' introducer will become your introducer as well.
+
+It is not a good idea to set two devices as introducers to each other. While this will work for adding devices, removing a device may present a problem, as the two devices will be constantly "re-introducing" the removed device to each other.
