@@ -50,7 +50,9 @@ The ``.stignore`` file contains a list of file or path patterns. The
    separator. ``te??st`` matches ``tebest`` but not ``teb/st`` or
    ``test``.
 
--  Characters enclosed in square brackets ``[]`` are interpreted as a character range ``[a-z]``. Before using this syntax you should have a basic understanding of regular expression character classes.
+-  Characters enclosed in square brackets ``[]`` are interpreted as a character
+   range ``[a-z]``. Before using this syntax you should have a basic
+   understanding of regular expression character classes.
 
 -  A pattern beginning with ``/`` matches in the current directory only.
    ``/foo`` matches ``foo`` but not ``subdir/foo``.
