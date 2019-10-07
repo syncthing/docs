@@ -160,6 +160,11 @@ This file can be synced across all devices and helps with ignoring
 ``.DS_Store`` if you sync a folder between devices where at least one is
 Mac OS and will also cause ``foo`` pattern being ignored on all devices.
 
+.. note::
+   This way in case your syncing gets "stucked" with displaying some
+   pending unexpected files and you can't reach the device that contains
+   those files, simply add it to ``.stglobalignore``.
+
 The important part is to ``#include`` this global ignore file per each
 device so that::
 
