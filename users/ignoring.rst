@@ -142,3 +142,42 @@ all files and directories called "foo", ending in a "2" or starting with
   ``some/directory/`` matches the content of the directory, but not the
   directory itself. If you want the pattern to match the directory and its
   content, make sure it does not have a ``/`` at the end of the pattern.
+
+Ignoring files across all devices
+---------------------------------
+
+Although ``.stignore`` files are not synced between the devices, as mentioned
+previously, we can take an advantage of ``#include`` pattern to create
+a single file that will hold globally ignored patterns.
+
+Let's name it ``.stglobalignore``::
+
+    // Globally ignored patterns
+    (?d).DS_Store
+    foo
+
+This file can be synced across all devices and helps with ignoring
+``.DS_Store`` if you sync a folder between devices where at least one is
+Mac OS and will also cause ``foo`` pattern being ignored on all devices.
+
+The important part is to ``#include`` this global ignore file per each
+device so that::
+
+    // .stignore for 1st Device
+    #include .stglobalignore
+
+    // .stignore for 2nd Device
+    #include .stglobalignore
+
+    ...
+
+    // .stignore for N-th Device
+    #include .stglobalignore
+
+The global ``#include`` does not exclude the possibility to add custom
+patterns per each device.
+
+.. note::
+   This can be added even later with a lot of devices in your personal
+   cloud, but it's a way easier to set up ignoring in the beginning than
+   to include that global file to each device separately.
