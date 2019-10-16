@@ -113,7 +113,6 @@ The following shows an example of the default configuration file (IDs will diffe
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
             <trafficClass>0</trafficClass>
-            <weakHashSelectionMethod>auto</weakHashSelectionMethod>
             <stunServer>default</stunServer>
             <stunKeepaliveSeconds>24</stunKeepaliveSeconds>
             <kcpNoDelay>false</kcpNoDelay>
@@ -540,13 +539,13 @@ theme
 authMode
     Authentication mode to use. If not present authentication mode (static)
     is controlled by presence of user/passward fields for backward compatibility.
-    
+
     static
         Authentication using user and password.
 
     ldap
         LDAP authentication. Requires ldap top level config section to be present.
-        
+
 LDAP Element
 ---------------
 
@@ -556,7 +555,7 @@ LDAP Element
         <address>localhost:389</address>
         <bindDN>cn=%s,ou=users,dc=syncthing,dc=net</bindDN>
         <transport>nontls</transport>
-        <insecureSkipVerify>false</insecureSkipVerify> 
+        <insecureSkipVerify>false</insecureSkipVerify>
     </ldap>
 
 The ``ldap`` element contains LDAP configuration options.
@@ -567,7 +566,7 @@ address
 bindDN
     BindDN for user authentication.
     Special %s variable shoild be used to pass username to LDAP.
-    
+
 transport
 
     nontls
@@ -580,7 +579,7 @@ transport
         StartTLS connection mode.
 
 insecureSkipVerify
-    Skip verification (true or false).    
+    Skip verification (true or false).
 
 Options Element
 ---------------
@@ -762,12 +761,6 @@ unackedNotificationID
 
 trafficClass
     Specify a type of service (TOS)/traffic class of outgoing packets.
-
-weakHashSelectionMethod
-    Specify whether weak hashing is used, possible options are
-    ``WeakHashAlways``, ``WeakHashNever`` and ``WeakHashAuto``. Deciding
-    automatically means running benchmarks at startup to decide whether the
-    performance impact is acceptable (this is the default).
 
 stunServer
     Server to be used for STUN, given as ip:port. The keyword ``default`` gets
