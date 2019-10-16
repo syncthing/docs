@@ -115,12 +115,6 @@ The following shows an example of the default configuration file (IDs will diffe
             <trafficClass>0</trafficClass>
             <stunServer>default</stunServer>
             <stunKeepaliveSeconds>24</stunKeepaliveSeconds>
-            <kcpNoDelay>false</kcpNoDelay>
-            <kcpUpdateIntervalMs>25</kcpUpdateIntervalMs>
-            <kcpFastResend>false</kcpFastResend>
-            <kcpCongestionControl>true</kcpCongestionControl>
-            <kcpSendWindowSize>128</kcpSendWindowSize>
-            <kcpReceiveWindowSize>128</kcpReceiveWindowSize>
             <defaultFolderPath>~</defaultFolderPath>
             <minHomeDiskFreePct>0</minHomeDiskFreePct>
             <setLowPriority>true</setLowPriority>
@@ -778,9 +772,6 @@ stunKeepaliveSeconds
     Interval in seconds between contacting a STUN server to
     maintain NAT mapping. Default is ``24`` and you can set it to ``0`` to
     disable contacting STUN servers.
-
-kcpNoDelay, kcpUpdateIntervalMs, kcpFastResend, kcpCongestionControl, kcpSendWindowSize, kcpReceiveWindowSize
-    Various KCP tweaking parameters.
 
 defaultFolderPath
     The UI will propose to create new folders at this path. This can be disabled by
