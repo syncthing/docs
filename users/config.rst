@@ -765,8 +765,7 @@ stunServer
     ``stun.schlund.de:3478``, ``stun.sipgate.net:10000``,
     ``stun.sipgate.net:3478``, ``stun.voip.aebc.com:3478``,
     ``stun.voiparound.com:3478``, ``stun.voipbuster.com:3478``,
-    ``stun.voipstunt.com:3478``, ``stun.voxgratia.org:3478`` and
-    ``stun.xten.com:3478`` (this is the default).
+    ``stun.voipstunt.com:3478`` and ``stun.xten.com:3478`` (this is the default).
 
 stunKeepaliveSeconds
     Interval in seconds between contacting a STUN server to
