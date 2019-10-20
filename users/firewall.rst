@@ -56,6 +56,18 @@ You can then verify that the ports mentioned above are allowed::
 In case you installed Syncthing manually you can follow the `instructions to manually add the syncthing preset
 <https://github.com/syncthing/syncthing/tree/master/etc/firewall-ufw>`__ to ufw.
 
+Firewalld
+~~~~~~~~~
+If you are using [Firewalld](https://www.firewalld.org) it has included
+support for syncthing (since version 0.5.0, January 2018), and you can enable
+it with
+
+    sudo firewall-cmd --zone=public --add-service=syncthing --permanent
+    sudo firewall-cmd --reload
+
+Similarly there is also a syncthing-gui service.
+
+
 Remote Web GUI
 --------------
 
