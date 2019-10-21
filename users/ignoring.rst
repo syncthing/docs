@@ -146,7 +146,7 @@ all files and directories called "foo", ending in a "2" or starting with
 Ignoring files across all devices
 ---------------------------------
 
-Although ``.stignore`` files are not synced between the devices, as mentioned
+Although ``.stignore`` file is not synced between the devices, as mentioned
 previously, we can take an advantage of ``#include`` pattern to create
 a single file that will hold globally ignored patterns.
 
