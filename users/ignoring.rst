@@ -147,8 +147,8 @@ Ignoring files across all devices
 ---------------------------------
 
 Although ``.stignore`` file is not synced between the devices, as mentioned
-previously, we can take an advantage of ``#include`` pattern to create
-a single file that will hold globally ignored patterns.
+previously, it's possible to take an advantage of ``#include`` pattern
+to create a single file that will hold globally ignored patterns.
 
 Assuming the content of the file is::
 
