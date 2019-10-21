@@ -183,6 +183,6 @@ The global ``#include`` does not exclude the possibility to add custom
 patterns per each device.
 
 .. note::
-   This can be added even later with a lot of devices in your personal
-   cloud, but it's a way easier to set up ignoring in the beginning than
-   to include that global file to each device separately.
+   This can be added even later with a lot of devices already being present
+   in Syncthing, but it's a way easier to set up ignoring in the beginning
+   than to include that global file to each device separately.
