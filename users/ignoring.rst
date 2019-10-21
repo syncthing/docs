@@ -161,7 +161,7 @@ This file can be synced across all devices and helps with ignoring
 Mac OS and will also cause ``foo`` pattern being ignored on all devices.
 
 .. note::
-   This way in case your syncing gets "stucked" with displaying some
+   This way in case your syncing gets "stuck" with displaying some
    pending unexpected files and you can't reach the device that contains
    those files, simply add it to ``.stglobalignore``.
 
