@@ -27,7 +27,7 @@ directory the following files are located:
     The configuration file, in XML format.
 
 :file:`cert.pem`, :file:`key.pem`
-    The device's RSA public and private key. These form the basis for the
+    The device's ECDSA public and private key. These form the basis for the
     device ID. The key must be kept private.
 
 :file:`https-cert.pem`, :file:`https-key.pem`
