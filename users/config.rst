@@ -348,7 +348,7 @@ Device Element
     <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false">
         <address>tcp://192.0.2.1:22001</address>
         <paused>true<paused>
-        <allowedNetwork>192.168.0.0/16<allowedNetwork>
+        <allowedNetwork>192.168.0.0/16</allowedNetwork>
         <autoAcceptFolders>false</autoAcceptFolders>
         <maxSendKbps>100</maxSendKbps>
         <maxRecvKbps>100</maxRecvKbps>
