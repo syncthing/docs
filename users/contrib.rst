@@ -150,7 +150,7 @@ execute a Syncthing version upgrade via the web GUI after installation.
 QNAP NAS (QTS)
 ~~~~~~~~~~~~~~
 
-`Syncthing QPKG <https://forum.qnap.com/viewtopic.php?f=320&t=97035>`__ (Qnap
+`Syncthing QPKG <https://qnapclub.eu/en/qpkg/692>`__ (Qnap
 Package) available for ALL models x86, x86\_64, Arm (all including new models).
 
 RockStor
