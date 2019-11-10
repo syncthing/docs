@@ -29,7 +29,7 @@ Prerequisites
 -------------
 
 -  The latest stable version of Go. Earlier releases may work, but we recommend
-   always using the latest stable version. At the time of writing this is **Go 1.12**.
+   always using the latest stable version. At the time of writing this is **Go 1.13**.
 -  Git
 
 If you're not already a Go developer, the easiest way to get going
