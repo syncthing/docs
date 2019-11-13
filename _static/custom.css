@@ -1,0 +1,37 @@
+p.logo {
+    text-align: left;
+}
+img.logo {
+    height: 66px;
+    margin-bottom: 20px;
+}
+
+img.border {
+    border: 1px solid #888;
+    border-radius: 5px;
+}
+
+div#searchbox, div.sphinxsidebar h3.donation {
+    margin-top: 20px;
+}
+
+div.body {
+    /* margin here is same as height + margin of logo */
+    margin-top: 86px;
+}
+
+div.footer-body {
+    /* hack for the "edit on github" container below the body */
+    margin-top: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+li.toctree-l1 {
+    margin-top: 1em;
+}
+
+/* Add a strike-through class. */
+.strike {
+	text-decoration: line-through;
+}

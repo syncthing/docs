@@ -41,7 +41,6 @@ Contact
 
 .. toctree::
    :maxdepth: 2
-   :numbered: 3
    :includehidden:
 
    intro/index
