@@ -1,0 +1,9 @@
+{% extends "!layout.html" %}
+{%- block relbar_bottom %}
+{%- if edit_on_github_url %}
+<div class="body footer-body" role="footer">
+    <a class="reference external" href="{{ edit_on_github_url }}" rel="nofollow">{{ _('Edit this page on GitHub') }}</a>
+</div>
+{%- endif %}
+{{ super() }}
+{%- endblock %}

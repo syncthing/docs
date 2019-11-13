@@ -20,11 +20,12 @@ import re
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('_ext'))
 
 # -- General configuration ------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
-#needs_sphinx = '1.0'
+needs_sphinx = '2.0'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
@@ -32,7 +33,11 @@ import re
 extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.extlinks',
+    'edit_on_github',
 ]
+
+edit_on_github_project = 'syncthing/docs'
+edit_on_github_branch = 'master'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -111,13 +116,25 @@ extlinks = {
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = "sphinx_rtd_theme"
+html_theme = "alabaster"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
 html_theme_options = {
-    'includehidden': False
+    'github_user': 'syncthing',
+    'github_repo': 'syncthing',
+    'github_button': True,
+    'github_type': 'star',
+    'donate_url': 'https://www.syncthing.org/donations/',
+    'logo': 'logo-horizontal.svg',
+    'show_powered_by': False,
+    'font_family': '"Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif',
+    'head_font_family': 'Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif',
+    'font_size': '14pt',
+    'code_font_size': '11pt',
+    'sidebar_width': '250px',
+    'page_width': '960px',
 }
 
 # Add any paths that contain custom themes here, relative to this directory.
@@ -143,10 +160,6 @@ html_favicon = '_static/favicon.png'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
-
-# Hack in an additional stylesheet.
-def setup(app):
-    app.add_stylesheet("syncthing.css")
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
@@ -178,7 +191,7 @@ html_last_updated_fmt = '%b %d, %Y'
 #html_split_index = False
 
 # If true, links to the reST sources are added to the pages.
-#html_show_sourcelink = True
+html_show_sourcelink = False
 
 # If true, "Created using Sphinx" is shown in the HTML footer. Default is True.
 html_show_sphinx = False
@@ -196,14 +209,6 @@ html_show_copyright = False
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'Syncthingdoc'
-
-html_context = {
-    'display_github': True,
-    'github_user': 'syncthing',
-    'github_repo': 'docs',
-    'github_version': 'master/',
-    'source_suffix': '.rst',
-}
 
 # -- Options for LaTeX output ---------------------------------------------
 
