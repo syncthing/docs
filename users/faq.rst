@@ -1,3 +1,5 @@
+.. role:: strike
+
 .. _faq:
 
 FAQ
@@ -18,7 +20,7 @@ Is it "syncthing", "Syncthing" or "SyncThing"?
 
 It's **Syncthing**, although the command and source repository is spelled
 ``syncthing`` so it may be referred to in that way as well. It's definitely not
-SyncThing, even though the abbreviation ``st`` is used in some
+:strike:`SyncThing`, even though the abbreviation ``st`` is used in some
 circumstances and file names.
 
 How does Syncthing differ from BitTorrent/Resilio Sync?
