@@ -128,7 +128,7 @@ html_theme_options = {
     'github_type': 'star',
     'donate_url': 'https://www.syncthing.org/donations/',
     'logo': 'logo-horizontal.svg',
-    'fixed_sidebar': True,
+    'fixed_sidebar': False,
     'show_powered_by': False,
     'font_family': '"Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif',
     'head_font_family': 'Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif',
