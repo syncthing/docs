@@ -20,11 +20,11 @@ on disk on ``T1`` is not affected, but data sent to ``U1`` becomes encrypted
 
     digraph g {
         rankdir=LR;
-        "T1" [label="T1\n(Clear text)", style=filled, color="/accent3/1"];
-        "U1" [label="U1\n(Encrypted)", style=filled, color="/accent3/2"];
+        "T1" [label="T1\n(Clear text)", style=filled, color="/accent3/1"]
+        "U1" [label="U1\n(Encrypted)", style=filled, color="/accent3/2"]
 
-        T1 -> U1 [label="Encrypted by T1"];
-        U1 -> T1 [label="Decrypted by T1"];
+        T1 -> U1 [label="Encrypted by T1"]
+        U1 -> T1 [label="Decrypted by T1"]
     }
 
 From this setup it's also possible to add further trusted devices, say
@@ -38,14 +38,39 @@ becomes available.
 
     digraph g {
         rankdir=LR;
-        "T1" [style=filled, color="/accent3/1"];
-        "U1" [style=filled, color="/accent3/2"];
-        "T2" [style=filled, color="/accent3/1"];
+        "T1" [style=filled, color="/accent3/1"]
+        "U1" [style=filled, color="/accent3/2"]
+        "T2" [style=filled, color="/accent3/1"]
 
-        T1 -> U1 [label="Encrypted by T1"];
-        U1 -> T1 [label="Decrypted by T1"];
-        U1 -> T2 [label="Decrypted by T2"];
-        T2 -> U1 [label="Encrypted by T2"];
+        T1 -> U1 [label="Encrypted by T1"]
+        U1 -> T1 [label="Decrypted by T1"]
+        U1 -> T2 [label="Decrypted by T2"]
+        T2 -> U1 [label="Encrypted by T2"]
+    }
+
+Similarly, it's fine to add "normal mode" synchronization between untrusted devices.
+
+.. graphviz::
+    :align: center
+
+    digraph g {
+        rankdir=LR
+        "T1" [style=filled, color="/accent3/1"]
+        "U1" [style=filled, color="/accent3/2"]
+        "T2" [style=filled, color="/accent3/1"]
+        "U2" [style=filled, color="/accent3/2"]
+
+        T1 -> U1 [label="Encrypted by T1"]
+        U1 -> T1 [label="Decrypted by T1"]
+        T2 -> U2 [label="Encrypted by T2"]
+        U2 -> T2 [label="Decrypted by T2"]
+        U1 -> U2 [dir="both"];
+
+        subgraph U {
+            rank="same"
+            U1
+            U2
+        }
     }
 
 Configuration
@@ -88,8 +113,8 @@ The following things are encrypted / hidden / protected on untrusted devices:
 The following things are *not* protected:
 
 - Folder ID and label
-- File sizes. Files grow a little on the encrypted side compared to the
+- File sizes (files grow a little on the encrypted side compared to the
   plaintext original, but it's still easy to derive the original size from the
-  encrypted file.
+  encrypted file)
 
 Encryption is AES-256-GCM with a key derived from the password and folder ID using scrypt.
