@@ -73,4 +73,4 @@ untrusted and will get encrypted folder data, using different passwords.
     </folder>
 
 There is no specific configuration required on the untrusted devices; they
-will simply accept the encrypted as is.
+will simply accept the encrypted data as is.
