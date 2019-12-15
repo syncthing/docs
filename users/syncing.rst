@@ -9,11 +9,12 @@ on a high level.
 Blocks
 ------
 
-Files are divided into *blocks*. The blocks are currently fixed size, 128
-KiB, except the last one in the file which may be smaller. Each file is
-sliced into a number of these blocks, and the SHA256 hash of each block is
-computed. This results in a *block list* containing the offset, size and
-hash of all blocks in the file.
+Files are divided into *blocks*. The blocks making up a file are all the
+same size (except the last one in the file which may be smaller). The block
+size is dependent on the file size and varies from 128 KiB up to 16 MiB.
+Each file is sliced into a number of these blocks, and the SHA256 hash of
+each block is computed. This results in a *block list* containing the
+offset, size and hash of all blocks in the file.
 
 To update a file, Syncthing compares the block list of the current version
 of the file to the block list of the desired version of the file. It then
