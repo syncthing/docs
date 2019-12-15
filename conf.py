@@ -34,6 +34,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.extlinks',
     'edit_on_github',
+    'sphinx.ext.graphviz',
 ]
 
 edit_on_github_project = 'syncthing/docs'

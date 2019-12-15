@@ -15,6 +15,7 @@ Usage
    guilisten
 
    syncing
+   untrusted
 
    firewall
    relaying

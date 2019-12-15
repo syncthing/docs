@@ -35,3 +35,7 @@ li.toctree-l1 {
 .strike {
 	text-decoration: line-through;
 }
+
+div.admonition {
+    padding: 0.5em;
+}
