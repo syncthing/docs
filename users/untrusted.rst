@@ -74,3 +74,22 @@ untrusted and will get encrypted folder data, using different passwords.
 
 There is no specific configuration required on the untrusted devices; they
 will simply accept the encrypted data as is.
+
+Technicals
+----------
+
+The following things are encrypted / hidden / protected on untrusted devices:
+
+- File data
+- File metadata, including name, times and hashes
+- File structure (your directory structure is not replicated, even in
+  encrypted-name form)
+
+The following things are *not* protected:
+
+- Folder ID and label
+- File sizes. Files grow a little on the encrypted side compared to the
+  plaintext original, but it's still easy to derive the original size from the
+  encrypted file.
+
+Encryption is AES-256-GCM with a key derived from the password and folder ID using scrypt.
