@@ -19,7 +19,7 @@ on disk on ``T1`` is not affected, but data sent to ``U1`` becomes encrypted
     :align: center
 
     digraph g {
-        rankdir=LR;
+        rankdir=LR
         "T1" [label="T1\n(Clear text)", style=filled, color="/accent3/1"]
         "U1" [label="U1\n(Encrypted)", style=filled, color="/accent3/2"]
 
@@ -37,7 +37,7 @@ becomes available.
     :align: center
 
     digraph g {
-        rankdir=LR;
+        rankdir=LR
         "T1" [style=filled, color="/accent3/1"]
         "U1" [style=filled, color="/accent3/2"]
         "T2" [style=filled, color="/accent3/1"]
