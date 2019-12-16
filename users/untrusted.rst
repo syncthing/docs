@@ -137,7 +137,7 @@ the rest:
         "folder" [shape=folder]
         "S.syncthing-enc" [shape=folder]
         "21" [shape=folder]
-        "K3P1VJO0..." [shape=file, style=filled, color="/accent3/1"]
+        "K3P1VJO0..." [shape=file]
 
         "folder" -- "S.syncthing-enc"
         "S.syncthing-enc" -- "21"
@@ -156,19 +156,19 @@ With the same system as above this file gets placed as:
 
     graph {
         "folder" [shape=folder]
-        "S.syncthing-enc" [shape=folder]
-        "21" [shape=folder]
-        "K3P1VJO0..." [shape=file]
         "I.syncthing-enc" [shape=folder]
         "KF" [shape=folder]
-        "EDO9653D..." [shape=file, style=filled, color="/accent3/1"]
+        "EDO9653D..." [shape=file]
+        "S.syncthing-enc" [shape=folder, color=grey]
+        "21" [shape=folder, color=grey]
+        "K3P1VJO0..." [shape=file, color=grey]
 
-        "folder" -- "S.syncthing-enc"
-        "S.syncthing-enc" -- "21"
-        "21" -- "K3P1VJO0..."
         "folder" -- "I.syncthing-enc"
         "I.syncthing-enc" -- "KF"
         "KF" -- "EDO9653D..."
+        "folder" -- "S.syncthing-enc" [color=grey]
+        "S.syncthing-enc" -- "21" [color=grey]
+        "21" -- "K3P1VJO0..." [color=grey]
     }
 
 Even longer files get split into deeper directories, and files sharing
