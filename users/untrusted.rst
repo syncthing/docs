@@ -118,3 +118,59 @@ The following things are *not* protected:
   encrypted file)
 
 Encryption is AES-256-GCM with a key derived from the password and folder ID using scrypt.
+
+Untrusted Side File Structure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The directory structure on the untrusted side doesn't follow that of the
+plaintext hierarchy. Instead file names are encrypted as a whole, with their
+full path within the folder, and then split into a logical structure. As an
+example, the name ``foo.txt`` (in the folder root) might encrypt to
+``S21K3P1VJO08DEQJ1DQJE0DLOMT068JJFD857L8ODM2TAKI3CC``. On disk this gets split
+into a top level directory with a file extension, a second level directory, and
+the rest:
+
+.. graphviz::
+    :align: center
+
+    graph {
+        "folder" [shape=folder]
+        "S.syncthing-enc" [shape=folder]
+        "21" [shape=folder]
+        "K3P1VJO0..." [shape=file, style=filled, color="/accent3/1"]
+
+        "folder" -- "S.syncthing-enc"
+        "S.syncthing-enc" -- "21"
+        "21" -- "K3P1VJO0..."
+    }
+
+The upper level directories serve to combine files, avoiding issues that might
+arise with having too many files in a single directory.
+
+Similarly, a file with the name ``Documents/Project/My project.docx`` might
+encrypt to ``IKFEDO9653D8ON1L776EUI286CPD1C...``.
+With the same system as above this file gets placed as:
+
+.. graphviz::
+    :align: center
+
+    graph {
+        "folder" [shape=folder]
+        "S.syncthing-enc" [shape=folder]
+        "21" [shape=folder]
+        "K3P1VJO0..." [shape=file]
+        "I.syncthing-enc" [shape=folder]
+        "KF" [shape=folder]
+        "EDO9653D..." [shape=file, style=filled, color="/accent3/1"]
+
+        "folder" -- "S.syncthing-enc"
+        "S.syncthing-enc" -- "21"
+        "21" -- "K3P1VJO0..."
+        "folder" -- "I.syncthing-enc"
+        "I.syncthing-enc" -- "KF"
+        "KF" -- "EDO9653D..."
+    }
+
+Even longer files get split into deeper directories, and files sharing
+(encrypted) first characters in the name will end up beside each other --
+regardless of their original placement in the folder.
