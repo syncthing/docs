@@ -144,11 +144,6 @@ If you are building something that will be installed as a package
 (Debian, RPM, ...) you almost certainly want to use ``-no-upgrade`` as
 well to prevent the built in upgrade system from being activated.
 
-.. note::
-  If you do not have ``git`` installed at all, or lack Internet access and
-  want to use the bundled (vendored) modules, set the environment variable
-  ``GOFLAGS=-mod=vendor`` prior to running ``build.go``.
-
 ``go run build.go -version v0.10.26 -no-upgrade tar``
   Builds a tar.gz distribution of Syncthing for the current OS/arch, tagged as
   ``v0.10.26``, with upgrades disabled.
