@@ -106,18 +106,8 @@ should also select the folder(s) that you want to share. The device name is opti
 .. image:: gs2.png
 
 Once you click "Save" the new device will appear on right side of the
-GUI (although disconnected) and a prompt will be shown to indicate the
-need for a restart.
-
-.. image:: gs3.png
-
-Syncthing needs to be restarted for some configuration changes to take
-effect, such as sharing folders with new devices. When you click
-"Restart" Syncthing will first restart:
-
-.. image:: gs4.png
-
-...and then connect to the new device after a minute or so. Remember to repeat this step for the other device.
+GUI (although disconnected) and then connect to the new device after a minute or so.
+Remember to repeat this step for the other device. 
 
 .. image:: gs5.png
 
