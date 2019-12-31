@@ -40,7 +40,7 @@ Syncthing
 ~~~~~~~~~
 
 Grab the `latest release`_ of Syncthing for your operating system and unpack
-it. There will be a binary called ``syncthing`` (or ``syncthing.exe`` on
+it (if you use Debian/Ubuntu you may want to use `Debian repository`_). There will be a binary called ``syncthing`` (or ``syncthing.exe`` on
 Windows). Start this in whatever way you are most comfortable with;
 double-clicking should work in any graphical environment, but I'll use the
 terminal to better illustrate what happens. At first start Syncthing will
@@ -73,6 +73,7 @@ directory. You can use this as a starting point, then remove it or add
 more folders later.
 
 .. _`latest release`: https://github.com/syncthing/syncthing/releases/latest
+.. _`Debian repository`: https://apt.syncthing.net/
 
 Configuring
 -----------
