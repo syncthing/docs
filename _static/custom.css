@@ -35,3 +35,14 @@ li.toctree-l1 {
 .strike {
 	text-decoration: line-through;
 }
+
+div.note {
+    background-color: #ffc;
+}
+div.admonition p.admonition-title {
+    font-size: inherit;
+    font-weight: bold;
+}
+p.admonition-title:after {
+    content: none;
+}
