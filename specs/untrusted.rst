@@ -16,8 +16,13 @@ The untrusted device should *not* be able to observe:
 The untrusted device *will* be able to observe:
 
 - Which other devices are paired with it
-- Approximate file sizes (although files grow slightly due to block overhead, and the last block is padded up to an even kilobyte, file sizes can be determined to the closest kilobyte)
+
+- Approximate file sizes (although files grow slightly due to block
+  overhead, and the last block is padded up to an even kilobyte, file sizes
+  can be determined to the closest kilobyte)
+
 - When and which parts of files are changed by the other devices
+
 - Which identical blocks are reused by more than one file
 
 The last two points (identifying changed and reused blocks) are required
