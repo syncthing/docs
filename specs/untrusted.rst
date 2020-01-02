@@ -1,8 +1,8 @@
 Untrusted Device Encryption
 ===========================
 
-Threat Model
-------------
+Threat Model / Primary Goals
+----------------------------
 
 An "untrusted" device can participate in a Syncthing cluster with the
 following assumptions and limitations;
@@ -11,63 +11,91 @@ The untrusted device should *not* be able to observe:
 
 - File data
 - File or directory names, symlink names, symlink targets
-- File modification time, permissions
+- File modification time, permissions, or modification history (version vectors)
 
 The untrusted device *will* be able to observe:
 
 - Which other devices are paired with it
 
-- Approximate file sizes (although files grow slightly due to block
-  overhead, and the last block is padded up to an even kilobyte, file sizes
-  can be determined to the closest kilobyte)
+- File sizes (although files grow slightly due to block
+  overhead, and some files are padded up to an even kilobyte, file sizes
+  can be determined at least to the closest kilobyte)
 
 - When and which parts of files are changed by the other devices
 
-- Which identical blocks are reused by more than one file
+- Which identical blocks are reused within any given file
 
-The last two points (identifying changed and reused blocks) are required
-by the syncing mechanism, in order to avoid transferring all unchanged file
-data when a file block changes. The actual block data is encrypted by
-XChaCha20-Poly1305 and random nonces, but encrypted block hashes on the form
-``AES-SIV(plaintext hash)`` are available to the untrusted device.
+The last two points (identifying changed and reused blocks) are required by
+the syncing mechanism, in order to avoid transferring all unchanged file
+data when a file block changes. Blocks and block hashes are encrypted with a
+per-file key so correlation is not possible between files -- just within any
+given file.
 
 In addition the untrusted device *must not* be able to modify, remove or
 introduce data by itself without detection.
 
-Secondary Goals
-~~~~~~~~~~~~~~~
-
-Apart from fulfilling the threat model, the implementation also aims for the
-following goals:
-
-- An encrypted folder should be self contained.
-  This is so that it can be copied using non-Syncthing tools and then
-  either used again as an encrypted folder in Syncthing or decrypted in
-  place using an appropriate tool.
-
-- Encrypted file names should be reasonable.
-  We must avoid special characters and stick to length limits appropriate for
-  Windows file systems.
-
-Encryption Keys
+Primitives Used
 ---------------
 
-A password is set on the trusted device, per remote untrusted device and
-folder. The actual 32-byte encryption key is generated using scrypt and the
-folder ID as salt::
+The user input to the system is the *folder ID*, which is a short string
+identifying a given folder between devices, and the *password*. From this we
+generate a *folder key* using ``scrypt`` (32 bytes)::
 
-    scrypt.Key(password, "syncthing" + folderID, 32768, 8, 1, keySize)
+    folderKey = Scrypt(password, "syncthing" + folderID)
 
-This key is used both for AES-SIV where deterministic encryption is required
-(file names and block hashes) and for pure data (XChaCha20-Poly1305 with
-random nonces).
+The string "syncthing" with the folder ID concatenated make up the salt. The
+folder key is used to encrypt file names using AES-SIV::
+
+    encryptedFilename = AES-SIV(filename, folderKey)
+
+To make the encrypted file name usable again as a file name, we encode it
+using base32 and add slashes at strategic places.
+
+From the folder key and the plaintext file name we derive the *file key* by
+xor:ing the folder key with the SHA256 of the plaintext file name::
+
+    fileKey = folderKey ^ SHA256(filename)
+
+This file key is used for all other encryption, specifically file block
+hashes and data blocks. In file metadata, block hashes are encrypted using
+AES-SIV with the file key::
+
+    encryptedBlockHash = AES-SIV(blockHash, fileKey)
+
+Data blocks are encrypted using XChaCha20-Poly1305 with random nonces and
+appended to the nonce itself::
+
+    encryptedBlock = nonce + XChaCha20-Poly1305.Seal(blockData, fileKey)
+
+The original file metadata descriptor is encrypted in the same manner and
+attached to the encrypted-file metadata.
+
+.. note::
+
+    In Syncthing a file is made up of a number of equal size data blocks,
+    followed by a usually shorter last data block. The full size data blocks
+    are at minimum 128 KiB, ranging up to 16 MiB in multiples of two. The
+    last data block can in principle be as small as one byte. For untrusted
+    folders the size of the last data block is padded up to a kilobyte if it
+    was shorter to begin with. The untrusted device isn't allowed to request
+    less than a kilobyte of data.
+
+    I don't actually know if this block padding serves a purpose. It was
+    added to address a worry that something might break or leak if an
+    attacker is allowed to repeatedly request single-byte data blocks of
+    their choosing. If there is nothing to worry about here we can remove
+    the padding. //jb
+
+Implementation Details
+----------------------
 
 Metadata Encryption
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 The Syncthing protocol is essentially two phase:
 
 - A device sends file metadata for a new or changed file
+
 - The other side determines which blocks it needs to construct the new file, and requests these blocks
 
 For untrusted devices a fake file metadata is constructed, with an encrypted
