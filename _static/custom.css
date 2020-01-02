@@ -39,10 +39,17 @@ li.toctree-l1 {
 div.note {
     background-color: #ffc;
 }
+div.admonition {
+    padding: 8px;
+}
 div.admonition p.admonition-title {
     font-size: inherit;
     font-weight: bold;
 }
 p.admonition-title:after {
     content: none;
+}
+
+pre {
+    padding: 8px;
 }

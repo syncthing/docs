@@ -7,28 +7,27 @@ Threat Model / Primary Goals
 An "untrusted" device can participate in a Syncthing cluster with the
 following assumptions and limitations;
 
-The untrusted device should *not* be able to observe:
+The untrusted device can *not* observe:
 
 - File data
+
 - File or directory names, symlink names, symlink targets
-- File modification time, permissions, or modification history (version vectors)
+
+- File modification time, permissions, or modification history (version
+  vectors)
 
 The untrusted device *will* be able to observe:
 
-- Which other devices are paired with it
+- File sizes [#sizes]_
 
-- File sizes (although files grow slightly due to block
-  overhead, and some files are padded up to an even kilobyte, file sizes
-  can be determined at least to the closest kilobyte)
-
-- When and which parts of files are changed by the other devices
+- Which parts of files are changed by the other devices and when
 
 - Which identical blocks are reused within any given file
 
 The last two points (identifying changed and reused blocks) are required by
 the syncing mechanism, in order to avoid transferring all unchanged file
 data when a file block changes. Blocks and block hashes are encrypted with a
-per-file key so correlation is not possible between files -- just within any
+per-file key so correlation is not possible *between* files -- just within any
 given file.
 
 In addition the untrusted device *must not* be able to modify, remove or
@@ -39,7 +38,7 @@ Primitives Used
 
 The user input to the system is the *folder ID*, which is a short string
 identifying a given folder between devices, and the *password*. From this we
-generate a *folder key* using ``scrypt`` (32 bytes)::
+generate a *folder key* (32 bytes) using ``scrypt``::
 
     folderKey = Scrypt(password, "syncthing" + folderID)
 
@@ -65,7 +64,7 @@ AES-SIV with the file key::
 Data blocks are encrypted using XChaCha20-Poly1305 with random nonces and
 appended to the nonce itself::
 
-    encryptedBlock = nonce + XChaCha20-Poly1305.Seal(blockData, fileKey)
+    encryptedBlock = nonce + XChaCha20-Poly1305.Seal(blockData, nonce, fileKey)
 
 The original file metadata descriptor is encrypted in the same manner and
 attached to the encrypted-file metadata.
@@ -86,19 +85,20 @@ attached to the encrypted-file metadata.
     their choosing. If there is nothing to worry about here we can remove
     the padding. //jb
 
+
 Implementation Details
 ----------------------
 
 Metadata Encryption
 ~~~~~~~~~~~~~~~~~~~
 
-The Syncthing protocol is essentially two phase:
+The Syncthing protocol is essentially two-phase:
 
-- A device sends file metadata for a new or changed file
+- A device sends file metadata (a ``FileInfo`` structure) for a new or changed file
 
 - The other side determines which blocks it needs to construct the new file, and requests these blocks
 
-For untrusted devices a fake file metadata is constructed, with an encrypted
+For untrusted devices a fake FileInfo is constructed, with an encrypted
 name and block list and other metadata such as modification time and
 permissions set to static values.
 
@@ -121,13 +121,13 @@ An original file metadata structure looks something like this:
         fileinfo:b -> blocks:a
     }
 
-The fake metadata encrypts and adjusts a couple of attributes:
+The fake FileInfo encrypts and adjusts a couple of attributes:
 
-- The name is encrypted using AES-SIV, base32 encoded, and slashes are
-  inserted after the first and third characters, and then every 200
+- The name is encrypted (with the folder key), base32 encoded, and slashes
+  are inserted after the first and third characters, and then every 200
   characters.
 
-- The size is adjusted for the per block overhead, and rounded up so that
+- The file size is adjusted for the per block overhead, and rounded up so that
   the last block is a multiple of 1024 bytes.
 
 - The block size is adjusted for block overhead.
@@ -138,16 +138,17 @@ time is set to UNIX epoch time 1234567890 and permissions are set to 0644.
 The block list is encrypted and adjusted:
 
 - The offset and size are adjusted to account for block overhead
-- The hash is encrypted using AES-SIV
+
+- The hash is encrypted using AES-SIV (with the file key)
 
 The resulting encrypted hash can't be used for data verification by the
 untrusted device, but it can be used as a form of "token" referring to a
 given data block for reuse purposes.
 
-Finally, the whole original file metadata (in protobuf form) is encrypted
-using XChaCha20-Poly1305 and attached to the fake fileinfo. This is retained
-on the untrusted side and passed along to trusted devices, where it will be
-used in place of the fake fileinfo.
+Finally, the whole original FileInfo (in protobuf form) is encrypted using
+XChaCha20-Poly1305 with the file key and attached to the fake FileInfo. This
+is retained on the untrusted side and passed along to trusted devices, where
+it will be used in place of the fake FileInfo.
 
 .. graphviz::
 
@@ -166,15 +167,26 @@ used in place of the fake fileinfo.
         fileinfo:b -> blocks:a
     }
 
+Incoming Metadata
+~~~~~~~~~~~~~~~~~
+
+File metadata sent from the untrusted device is always decrypted. This means
+the original FileInfo is discarded and the attached encrypted FileInfo is
+decrypted and used instead. If the FileInfo does not decrypt it's considered
+a protocol error and the connection is dropped. This means only file
+metadata created by a trusted device is accepted.
+
 Data Encryption
----------------
+~~~~~~~~~~~~~~~
 
 When an untrusted device makes a request for a data block, the trusted
-device reads the corresponding plaintext data block, encrypts it using the
-encryption key and a random nonce, and responds with the result. If the
-requested block was the last block in the file and size rounding resulted in
-a request for more data than was avaialble, additional random data is added
-to fulfill the request.
+device:
+
+1. decrypts the given filename,
+2. reads the corresponding plaintext data block,
+3. pads the block with random data if the read returned less than 1024 bytes,
+3. encrypts it using the file encryption key and a random nonce, and
+4. responds with the result.
 
 .. graphviz::
 
@@ -187,16 +199,18 @@ to fulfill the request.
             shape = "record"
         ]
         "e" [
-            label = "nonce (24 B) | tag (16 B) | <h> ciphertext (variable)"
+            label = "nonce (24 B) | <h> ciphertext (variable) | tag (16 B)"
             shape = "record"
         ]
         u:h -> e:h [ label = "XChaCha20-Poly1305" ]
     }
 
 This is repeated for all required blocks. At the end, the untrusted device
-appends the fake metadata (including the correct, encrypted, metadata) to
-the file. This serves no purpose during normal operations, but enables
-offline decryption of an encrypted folder without database access.
+appends the fake FileInfo (which includes the original, encrypted, FileInfo)
+to the file. This serves no purpose during normal operations, but enables
+offline decryption of an encrypted folder without database access and, in
+principle, scanning an encrypted folder to populate the database should it
+be lost or corrupted.
 
 .. graphviz::
 
@@ -215,3 +229,19 @@ offline decryption of an encrypted folder without database access.
         u:b0 -> e:b0 [ label = "encryption" ]
         u:b1 -> e:b1
     }
+
+Incoming Data
+~~~~~~~~~~~~~
+
+Making a request to an untrusted device is mostly the reverse of the above.
+The file name is encrypted and the block offset and size adjusted. The
+resulting data is decrypted and thereby also authenticated, meaning it must
+have originated on a trusted device. Contrary to the usual case we cannot
+simply make arbitrary range requests -- only the precise blocks that were
+encrypted to begin with will decrypt properly.
+
+---
+
+.. [#sizes] Although files grow slightly due to block
+    overhead, and some files are padded up to an even kilobyte, file sizes
+    can be determined at least to the closest kilobyte.
