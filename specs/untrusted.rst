@@ -40,7 +40,7 @@ The user input to the system is the *folder ID*, which is a short string
 identifying a given folder between devices, and the *password*. From this we
 generate a *folder key* (32 bytes) using ``scrypt``::
 
-    folderKey = Scrypt(password, "syncthing" + folderID)
+    folderKey = scrypt.Key(password, "syncthing" + folderID)
 
 The string "syncthing" with the folder ID concatenated make up the salt. The
 folder key is used to encrypt file names using AES-SIV without nonce::
