@@ -17,61 +17,61 @@ configuration can cause multiple files to be shown.
         "data": {
             "folder1": {
                 "file1": {
-                    "Total": 800,
-                    "Pulling": 2,
-                    "CopiedFromOrigin": 0,
-                    "Reused": 633,
-                    "CopiedFromElsewhere": 0,
-                    "Pulled": 38,
-                    "BytesTotal": 104792064,
-                    "BytesDone": 87883776
+                    "total": 800,
+                    "pulling": 2,
+                    "copiedFromOrigin": 0,
+                    "reused": 633,
+                    "copiedFromElsewhere": 0,
+                    "pulled": 38,
+                    "bytesTotal": 104792064,
+                    "bytesDone": 87883776
                 },
                 "dir\\file2": {
-                    "Total": 80,
-                    "Pulling": 2,
-                    "CopiedFromOrigin": 0,
-                    "Reused": 0,
-                    "CopiedFromElsewhere": 0,
-                    "Pulled": 32,
-                    "BytesTotal": 10420224,
-                    "BytesDone": 4128768
+                    "total": 80,
+                    "pulling": 2,
+                    "copiedFromOrigin": 0,
+                    "reused": 0,
+                    "copiedFromElsewhere": 0,
+                    "pulled": 32,
+                    "bytesTotal": 10420224,
+                    "bytesDone": 4128768
                 }
             },
             "folder2": {
                 "file3": {
-                    "Total": 800,
-                    "Pulling": 2,
-                    "CopiedFromOrigin": 0,
-                    "Reused": 633,
-                    "CopiedFromElsewhere": 0,
-                    "Pulled": 38,
-                    "BytesTotal": 104792064,
-                    "BytesDone": 87883776
+                    "total": 800,
+                    "pulling": 2,
+                    "copiedFromOrigin": 0,
+                    "reused": 633,
+                    "copiedFromElsewhere": 0,
+                    "pulled": 38,
+                    "bytesTotal": 104792064,
+                    "bytesDone": 87883776
                 },
                 "dir\\file4": {
-                    "Total": 80,
-                    "Pulling": 2,
-                    "CopiedFromOrigin": 0,
-                    "Reused": 0,
-                    "CopiedFromElsewhere": 0,
-                    "Pulled": 32,
-                    "BytesTotal": 10420224,
-                    "BytesDone": 4128768
+                    "total": 80,
+                    "pulling": 2,
+                    "copiedFromOrigin": 0,
+                    "reused": 0,
+                    "copiedFromElsewhere": 0,
+                    "pulled": 32,
+                    "bytesTotal": 10420224,
+                    "bytesDone": 4128768
                 }
             }
         }
     }
 
--  ``Total`` - total number of blocks in the file
--  ``Pulling`` - number of blocks currently being downloaded
--  ``CopiedFromOrigin`` - number of blocks copied from the file we are
+-  ``total`` - total number of blocks in the file
+-  ``pulling`` - number of blocks currently being downloaded
+-  ``copiedFromOrigin`` - number of blocks copied from the file we are
    about to replace
--  ``Reused`` - number of blocks reused from a previous temporary file
--  ``CopiedFromElsewhere`` - number of blocks copied from other files or
+-  ``reused`` - number of blocks reused from a previous temporary file
+-  ``copiedFromElsewhere`` - number of blocks copied from other files or
    potentially other folders
--  ``Pulled`` - number of blocks actually downloaded so far
--  ``BytesTotal`` - approximate total file size
--  ``BytesDone`` - approximate number of bytes already handled (already
+-  ``pulled`` - number of blocks actually downloaded so far
+-  ``bytesTotal`` - approximate total file size
+-  ``bytesDone`` - approximate number of bytes already handled (already
    reused, copied or pulled)
 
 Where block size is 128KB.
