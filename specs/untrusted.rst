@@ -47,8 +47,9 @@ folder key is used to encrypt file names using AES-SIV without nonce::
 
     encryptedFilename = AES-SIV(filename, folderKey)
 
-To make the encrypted file name usable again as a file name, we encode it
-using base32 and add slashes at strategic places.
+Given the key length of 32 bytes the algorithm in use will be AES-128
+("AES-SIV-256"). To make the encrypted file name usable again as a file
+name, we encode it using base32 and add slashes at strategic places.
 
 From the folder key and the plaintext file name we derive the *file key* by
 xor:ing the folder key with the SHA256 of the plaintext file name::
