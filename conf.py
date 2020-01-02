@@ -127,7 +127,7 @@ html_theme_options = {
     'github_repo': 'syncthing',
     'github_button': True,
     'github_type': 'star',
-    'donate_url': 'https://www.syncthing.org/donations/',
+    'donate_url': 'https://syncthing.net/donations/',
     'logo': 'logo-horizontal.svg',
     'fixed_sidebar': False,
     'show_powered_by': False,

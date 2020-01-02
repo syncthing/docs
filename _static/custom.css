@@ -36,6 +36,13 @@ li.toctree-l1 {
 	text-decoration: line-through;
 }
 
-div.admonition {
-    padding: 0.5em;
+div.note {
+    background-color: #ffc;
+}
+div.admonition p.admonition-title {
+    font-size: inherit;
+    font-weight: bold;
+}
+p.admonition-title:after {
+    content: none;
 }

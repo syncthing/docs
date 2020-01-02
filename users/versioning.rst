@@ -9,6 +9,13 @@ versioning" and uses one of the available *versioning strategies* described
 below. File versioning is configured per folder, on a per-device basis, and
 defaults to "no file versioning", i.e. no old copies of files are kept.
 
+.. note::
+    Versioning applies to changes received *from other devices*. That is, if
+    Alice has versioning turned on and Bob changes a file, the old version
+    will be archived on Alice's computer when that change is synced from
+    Bob. If Alice changes a file locally on her own computer Syncthing will
+    not and can not archive the old version.
+
 Trash Can File Versioning
 -------------------------
 
@@ -64,7 +71,7 @@ Until Maximum Age
 Maximum Age
     The maximum time to keep a version in days. For example, to keep replaced or
     deleted files in the ".stversions" folder for an entire year, use 365. If
-    only for 10 days, use 10. 
+    only for 10 days, use 10.
     **Note: Set to 0 to keep versions forever.**
 
 External File Versioning
