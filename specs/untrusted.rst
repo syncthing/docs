@@ -43,7 +43,7 @@ generate a *folder key* (32 bytes) using ``scrypt``::
     folderKey = Scrypt(password, "syncthing" + folderID)
 
 The string "syncthing" with the folder ID concatenated make up the salt. The
-folder key is used to encrypt file names using AES-SIV::
+folder key is used to encrypt file names using AES-SIV without nonce::
 
     encryptedFilename = AES-SIV(filename, folderKey)
 
