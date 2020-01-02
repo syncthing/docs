@@ -64,7 +64,7 @@ AES-SIV with the file key::
 Data blocks are encrypted using XChaCha20-Poly1305 with random nonces and
 appended to the nonce itself::
 
-    encryptedBlock = nonce + XChaCha20-Poly1305.Seal(blockData, nonce, fileKey)
+    encryptedBlock = nonce + XChaCha20-Poly1305.Seal(block, nonce, fileKey)
 
 The original file metadata descriptor is encrypted in the same manner and
 attached to the encrypted-file metadata.
@@ -84,6 +84,15 @@ attached to the encrypted-file metadata.
     attacker is allowed to repeatedly request single-byte data blocks of
     their choosing. If there is nothing to worry about here we can remove
     the padding. //jb
+
+.. note::
+
+    While a well behaved implementation is expected to request data blocks
+    precisely as announced in the file metadata there is no enforcement of
+    this. This means that an attacker on the untrusted side can repeatedly
+    request arbitrary ranges of a file and receive the encrypted result.
+    With the restriction above, the minimum block size that can be requested
+    in 1024 bytes.
 
 
 Implementation Details
@@ -185,8 +194,8 @@ device:
 1. decrypts the given filename,
 2. reads the corresponding plaintext data block,
 3. pads the block with random data if the read returned less than 1024 bytes,
-3. encrypts it using the file encryption key and a random nonce, and
-4. responds with the result.
+4. encrypts it using the file encryption key and a random nonce, and
+5. responds with the result.
 
 .. graphviz::
 
