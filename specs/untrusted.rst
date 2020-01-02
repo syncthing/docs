@@ -52,9 +52,9 @@ Given the key length of 32 bytes the algorithm in use will be AES-128
 name, we encode it using base32 and add slashes at strategic places.
 
 From the folder key and the plaintext file name we derive the *file key* by
-xor:ing the folder key with the SHA256 of the plaintext file name::
+HKDF of the folder key and the plaintext file name::
 
-    fileKey = folderKey ^ SHA256(filename)
+    fileKey = HKDF(SHA256, folderKey+filename, salt: "syncthing", info: nil)
 
 This file key is used for all other encryption, specifically file block
 hashes and data blocks. In file metadata, block hashes are encrypted using
