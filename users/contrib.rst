@@ -43,8 +43,8 @@ Windows
   Windows host for Syncthing.  Installer, auto-start, built-in browser, tray
   icon, and more.
 
-Mac OS
-~~~~~~ 
+macOS
+~~~~~
 
 - `syncthing-macos <https://github.com/syncthing/syncthing-macos>`_
 
@@ -74,7 +74,7 @@ Debian / Ubuntu
 - Debian packages: `syncthing <https://packages.debian.org/search?keywords=syncthing>`__, `syncthing-discosrv <https://packages.debian.org/search?keywords=syncthing-discosrv>`__ and `syncthing-relaysrv <https://packages.debian.org/search?keywords=syncthing-relaysrv>`_
 
 - `Ubuntu PPA containing Syncthing-GTK <https://launchpad.net/~nilarimogard/+archive/ubuntu/webupd8/>`_
-   
+
 Snap
 ~~~~
 
@@ -82,7 +82,7 @@ On any of the `Linux distributions that support snaps <https://snapcraft.io/docs
 
    $ snap install syncthing
 
-If you want to help testing the upcoming release, and get the newer features earlier, you can install the snap from the candidate channel:
+If you want to help testing the upcoming release, and get the newer features earlier, you can install the snap from the candidate channel: ::
 
    $ snap install syncthing --candidate
 
@@ -116,9 +116,9 @@ Docker
 - `rpi-syncthing <https://github.com/funkyfuture/docker-rpi-syncthing>`_
 
   Configurable image for the Raspberry Pi.
-- `syncthing for hassio <https://github.com/bestlibre/hassio-addons/tree/master/syncthing>`
+- `syncthing for hassio <https://github.com/bestlibre/hassio-addons/tree/master/syncthing>`_
 
-  A docker based addon for `hassio <https://www.home-assistant.io/hassio/>`
+  A docker based addon for `hassio <https://www.home-assistant.io/hassio/>`_
 
 Gentoo
 ~~~~~~
@@ -129,6 +129,13 @@ FreeBSD
 ~~~~~~~
 
 FreshPorts: `syncthing <https://www.freshports.org/net/syncthing>`__
+
+macOS
+~~~~~
+
+MacPorts: `syncthing <https://ports.macports.org/port/syncthing/summary>`__ ::
+
+    $ sudo port install syncthing
 
 OpenBSD
 ~~~~~~~
@@ -187,8 +194,8 @@ Integrations
 REST API Bindings
 ~~~~~~~~~~~~~~~~~
 
--  Python: https://github.com/blakev/python-syncthing (https://pypi.python.org/pypi/syncthing)
--  PHP: https://github.com/terzinnorbert/syncthing-rest
+- Python: https://github.com/blakev/python-syncthing (https://pypi.python.org/pypi/syncthing)
+- PHP: https://github.com/terzinnorbert/syncthing-rest
 
 Ports
 ~~~~~
@@ -206,9 +213,9 @@ Ports
 Configuration management
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
--  `puppet-syncthing <https://github.com/whefter/puppet-syncthing>`_
--  `ansible-syncthing <https://github.com/le9i0nx/ansible-syncthing>`_
--  Command line interface: `syncthingmanager <https://github.com/classicsc/syncthingmanager>`_
+- `puppet-syncthing <https://github.com/whefter/puppet-syncthing>`_
+- `ansible-syncthing <https://github.com/le9i0nx/ansible-syncthing>`_
+- Command line interface: `syncthingmanager <https://github.com/classicsc/syncthingmanager>`_
 
 Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -224,7 +231,7 @@ Resolving conflicts
   files that may pop up when using Syncthing.  It is inspired by the
   `pacdiff` utility from Arch Linux.  A diff utility can be used to
   merge the files and keep them up to date.
-  
+
 Older, Possibly Unmaintained
 ----------------------------
 
