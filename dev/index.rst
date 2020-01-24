@@ -6,6 +6,7 @@ Development
    :maxdepth: 1
 
    Introduction <intro>
+   web
    building
    contributing
    debugging
