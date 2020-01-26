@@ -180,7 +180,7 @@ device so that::
     #include .stglobalignore
 
 The global ``#include`` does not exclude the possibility to add custom
-patterns per each device.
+patterns for single devices.
 
 .. note::
    This can be added even later with a lot of devices already being present
