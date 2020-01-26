@@ -148,11 +148,11 @@ Ignoring files across all devices
 
 Although ``.stignore`` file is not synced between the devices, as mentioned
 previously, it's possible to take advantage of an ``#include`` pattern
-to create a single file that will hold globally ignored patterns.
+to create a single file that will hold shared ignoring patterns.
 
-Assuming the content of the file is::
+Assuming the content of a file ``.stignore-shared`` is::
 
-    // Globally ignored patterns
+    // Shared ignoring patterns
     (?d).DS_Store
     foo
 
@@ -163,26 +163,26 @@ Mac OS and will also cause ``foo`` pattern being ignored on all devices.
 .. note::
    This way in case your syncing gets "stuck" with displaying some
    pending unexpected files and you can't reach the device that contains
-   those files, simply add it to ``.stglobalignore``.
+   those files, simply add it to ``.stignore-shared``.
 
-The important part is to ``#include`` this global ignore file per each
+The important part is to ``#include`` this shared ignore file per each
 device so that::
 
     // .stignore for 1st Device
-    #include .stglobalignore
+    #include .stignore-shared
 
     // .stignore for 2nd Device
-    #include .stglobalignore
+    #include .stignore-shared
 
     ...
 
     // .stignore for N-th Device
-    #include .stglobalignore
+    #include .stignore-shared
 
-The global ``#include`` does not exclude the possibility to add custom
+The shared ``#include`` does not exclude the possibility to add custom
 patterns for single devices.
 
 .. note::
    This can be added even later with a lot of devices already being present
    in Syncthing, but it's a way easier to set up ignoring in the beginning
-   than to include that global file to each device separately.
+   than to include that shared file to each device separately.
