@@ -34,7 +34,7 @@ incoming and outgoing traffic:
 
 -  Port **22000/TCP** (or the actual listening port if you have changed
    the *Sync Protocol Listen Address* setting.)
--  Port **21027/UDP** (for discovery broadcasts on IPv4 and multicasts on IPv6)
+-  Port **21025/UDP** (for discovery broadcasts on IPv4 and multicasts on IPv6) (For v0.12 or earlier use Port 21027/UDP)
 
 Uncomplicated Firewall (ufw)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
