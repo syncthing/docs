@@ -57,7 +57,7 @@ Options
 .. cmdoption:: -home=<dir>
 
     Set configuration directory. The default configuration directory is
-    ``$HOME/.config/syncthing`` (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac) and ``%LOCALAPPDATA%\Syncthing`` (Windows).
+    ``$HOME/.config/syncthing`` (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac) and ``%LOCALAPPDATA%\Syncthing`` or  (Windows). For Custom path in Windows ``X:\ABC\DEF``, directory ``ABC`` has to exist. 
 
 .. cmdoption:: -logfile=<filename>
 
