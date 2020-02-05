@@ -123,7 +123,7 @@ Session mode
 ------------
 
 The first and only message the client sends in the session mode is the
-SessionInvitation message which contains the session key identifying which
+JoinSessionRequest message which contains the session key identifying which
 session you are trying to join. The relay responds with one of the following
 Response messages:
 
