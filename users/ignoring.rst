@@ -15,7 +15,7 @@ Synopsis
 Description
 -----------
 
-If some files should not be synchronized to other devices, a file called
+If some files should not be synchronized to (or from) other devices, a file called
 ``.stignore`` can be created containing file patterns to ignore. The
 ``.stignore`` file must be placed in the root of the folder. The
 ``.stignore`` file itself will never be synced to other devices, although it can
