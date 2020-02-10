@@ -120,6 +120,8 @@ contributed wrappers include file system "watcher" features to speed this up. Th
 rescan interval can be changed for each folder by clicking on a folder,
 clicking "Edit" and entering a new value for "Rescan Interval".
 
+If you are using a Syncthing flavor that adds OS specific functionality (e.g. the Android app), you may need to access the Web GUI to enable syncing folders, and other configuration options.
+
 --------------
 
 Good luck and have fun! There is more `documentation
