@@ -514,6 +514,9 @@ address
         If the address is an absolute path it is interpreted as the path to a UNIX socket.
         (Added in v0.14.52.)
 
+unixPerms
+    In the case that a UNIX socket location is used for ``address``, set this to an octal to override the default permissions of the socket.
+
 user
     Set to require authentication.
 
