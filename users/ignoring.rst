@@ -47,7 +47,7 @@ subdir/foo as well as any directory named foo. Spaces are treated as regular cha
 |                 |                 |                 | not             |
 |                 |                 |                 | ``subdir/foo``. |
 +-----------------+-----------------+-----------------+-----------------+
-| ``!``           | Beginning       | Folders         | Ignore other    |
+| ``!``           | Beginning       | All         | Ignore other    |
 |                 |                 |                 | patterns and    |
 |                 |                 |                 | force sync of   |
 |                 |                 |                 | matching files. |
