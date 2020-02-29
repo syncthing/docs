@@ -34,62 +34,144 @@ Patterns
 The ``.stignore`` file contains a list of file or path patterns. The
 *first* pattern that matches will decide the fate of a given file.
 
--  Regular file names match themselves, i.e. the pattern ``foo`` matches
-   the files ``foo``, ``subdir/foo`` as well as any directory named
-   ``foo``. Spaces are treated as regular characters.
+Regular file names match themselves, i.e. the pattern foo matches the files foo,
+subdir/foo as well as any directory named foo. Spaces are treated as regular characters.
 
--  Asterisk matches zero or more characters in a filename, but does not
-   match the directory separator. ``te*st`` matches ``test``,
-   ``subdir/telerest`` but not ``tele/rest``.
++-----------------+-----------------+-----------------+-----------------+
+| Character       | Where           | Affects         | Action          |
++=================+=================+=================+=================+
+| ``/``           | Beginning       | Folders         | Match in the    |
+|                 |                 |                 | root directory  |
+|                 |                 |                 | only. ``/foo``  |
+|                 |                 |                 | matches foo but |
+|                 |                 |                 | not             |
+|                 |                 |                 | ``subdir/foo``. |
++-----------------+-----------------+-----------------+-----------------+
+| ``!``           | Beginning       | Folders         | Ignore other    |
+|                 |                 |                 | patterns and    |
+|                 |                 |                 | force sync of   |
+|                 |                 |                 | matching files. |
+|                 |                 |                 | Matching        |
+|                 |                 |                 | directory trees |
+|                 |                 |                 | will be synced  |
+|                 |                 |                 | entirely        |
+|                 |                 |                 | regardless of   |
+|                 |                 |                 | other ignore    |
+|                 |                 |                 | patterns.       |
++-----------------+-----------------+-----------------+-----------------+
+| ``?d``          | Beginning       | Files           | Files with      |
+|                 |                 |                 | names matching  |
+|                 |                 |                 | the pattern     |
+|                 |                 |                 | will be removed |
+|                 |                 |                 | if they prevent |
+|                 |                 |                 | directory       |
+|                 |                 |                 | deletion.       |
+|                 |                 |                 | Examples:       |
+|                 |                 |                 | ``?.DS_Store``, |
+|                 |                 |                 | ``?.Recycle``   |
++-----------------+-----------------+-----------------+-----------------+
+| ``?i``          | Beginning       | All             | Enable          |
+|                 |                 |                 | case-insensitiv |
+|                 |                 |                 | e               |
+|                 |                 |                 | pattern         |
+|                 |                 |                 | matching. The   |
+|                 |                 |                 | (?i) prefix can |
+|                 |                 |                 | be combined     |
+|                 |                 |                 | with other      |
+|                 |                 |                 | patterns, for   |
+|                 |                 |                 | example the     |
+|                 |                 |                 | pattern         |
+|                 |                 |                 | ``(?i)!picture* |
+|                 |                 |                 | .png``          |
+|                 |                 |                 | indicates that  |
+|                 |                 |                 | Picture1.PNG    |
+|                 |                 |                 | should be       |
+|                 |                 |                 | synchronized.   |
+|                 |                 |                 | On Mac OS and   |
+|                 |                 |                 | Windows,        |
+|                 |                 |                 | patterns are    |
+|                 |                 |                 | always          |
+|                 |                 |                 | case-insensitiv |
+|                 |                 |                 | e.              |
++-----------------+-----------------+-----------------+-----------------+
+| ``//``          | Beginning       | N/A             | Comments.       |
+|                 |                 |                 | Contents of the |
+|                 |                 |                 | line will have  |
+|                 |                 |                 | no effect.      |
++-----------------+-----------------+-----------------+-----------------+
+| ``#include``    | Beginning       | N/A             | Load sync       |
+|                 |                 |                 | patterns from   |
+|                 |                 |                 | the referenced  |
+|                 |                 |                 | file. Including |
+|                 |                 |                 | a file more     |
+|                 |                 |                 | than once, or a |
+|                 |                 |                 | file that does  |
+|                 |                 |                 | not exist,      |
+|                 |                 |                 | results in an   |
+|                 |                 |                 | error. Patterns |
+|                 |                 |                 | are always      |
+|                 |                 |                 | relative to     |
+|                 |                 |                 | root -          |
+|                 |                 |                 | including files |
+|                 |                 |                 | in a            |
+|                 |                 |                 | subdirectory    |
+|                 |                 |                 | will not affect |
+|                 |                 |                 | that directory. |
+|                 |                 |                 | Example:        |
+|                 |                 |                 | ``#include more |
+|                 |                 |                 | -patterns.txt`` |
++-----------------+-----------------+-----------------+-----------------+
+| ``*``           | Anywhere        | All             | Match zero or   |
+|                 |                 |                 | more characters |
+|                 |                 |                 | in a            |
+|                 |                 |                 | file/directory  |
+|                 |                 |                 | name, but not   |
+|                 |                 |                 | directory       |
+|                 |                 |                 | separators.     |
+|                 |                 |                 | ``te*st``       |
+|                 |                 |                 | matches         |
+|                 |                 |                 | ``test``,       |
+|                 |                 |                 | ``subdir/telere |
+|                 |                 |                 | st``            |
+|                 |                 |                 | but not         |
+|                 |                 |                 | ``tele/rest``.  |
++-----------------+-----------------+-----------------+-----------------+
+| ``**``          | Anywhere        | All             | Match every     |
+|                 |                 |                 | character       |
+|                 |                 |                 | including       |
+|                 |                 |                 | directory       |
+|                 |                 |                 | separators.     |
+|                 |                 |                 | ``te**st``      |
+|                 |                 |                 | matches         |
+|                 |                 |                 | ``test``,       |
+|                 |                 |                 | ``subdir/telere |
+|                 |                 |                 | st``            |
+|                 |                 |                 | and             |
+|                 |                 |                 | ``tele/sub/dir/ |
+|                 |                 |                 | rest``.         |
++-----------------+-----------------+-----------------+-----------------+
+| ``?``           | Anywhere        | All             | Match a single  |
+|                 |                 |                 | character that  |
+|                 |                 |                 | is not the      |
+|                 |                 |                 | directory       |
+|                 |                 |                 | separator.      |
++-----------------+-----------------+-----------------+-----------------+
+| ``[]``          | Anywhere        | All             | Acts like regex |
+|                 |                 |                 | character range |
+|                 |                 |                 | ``[a-z]``       |
+|                 |                 |                 | matchs all      |
+|                 |                 |                 | alphabet        |
+|                 |                 |                 | characters.     |
++-----------------+-----------------+-----------------+-----------------+
 
--  Double asterisk matches as above, but also directory separators.
-   ``te**st`` matches ``test``, ``subdir/telerest`` and
-   ``tele/sub/dir/rest``.
-
--  Question mark matches a single character that is not the directory
-   separator. ``te??st`` matches ``tebest`` but not ``teb/st`` or
-   ``test``.
-
--  Characters enclosed in square brackets ``[]`` are interpreted as a character range ``[a-z]``. Before using this syntax you should have a basic understanding of regular expression character classes.
-
--  A pattern beginning with ``/`` matches in the current directory only.
-   ``/foo`` matches ``foo`` but not ``subdir/foo``.
-
--  A pattern beginning with ``#include`` results in loading patterns
-   from the named file. It is an error for a file to not exist or be
-   included more than once. Note that while this can be used to include
-   patterns from a file in a subdirectory, the patterns themselves are
-   still relative to the folder *root*. Example:
-   ``#include more-patterns.txt``.
-
--  A pattern beginning with a ``!`` prefix negates the pattern: matching files
-   are *included* (that is, *not* ignored). This can be used to override
-   more general patterns that follow.
-
--  A pattern beginning with a ``(?i)`` prefix enables case-insensitive pattern
-   matching. ``(?i)test`` matches ``test``, ``TEST`` and ``tEsT``. The
-   ``(?i)`` prefix can be combined with other patterns, for example the
-   pattern ``(?i)!picture*.png`` indicates that ``Picture1.PNG`` should
-   be synchronized. On Mac OS and Windows, patterns are always case-insensitive.
-
--  A pattern beginning with a ``(?d)`` prefix enables removal of these files if
-   they are preventing directory deletion. This prefix should be used by any OS
-   generated files which you are happy to be removed.
-
--  A line beginning with ``//`` is a comment and has no effect.
-
--  Windows does not support escaping ``\[foo - bar\]``.
-
-.. note::
-
-   Prefixes can be specified in any order (e.g. "(?d)(?i)"), but cannot be in a
+Notes
+-----
+-  Prefixes can be specified in any order (e.g. "(?d)(?i)"), but cannot be in a
    single pair of parentheses (not ":strike:`(?di)`").
-
-.. note::
-
-   Include patterns (that begin with ``!``) cause Syncthing to traverse and
+-  Include patterns (that begin with ``!``) cause Syncthing to traverse and
    :ref:`watch <scanning>` the entire directory tree regardless of other
    ignore patterns.
+-  Windows does not support escaping ``\[foo - bar\]``.
 
 Example
 -------
