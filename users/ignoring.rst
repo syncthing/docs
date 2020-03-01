@@ -34,8 +34,8 @@ Patterns
 The ``.stignore`` file contains a list of file or path patterns. The
 *first* pattern that matches will decide the fate of a given file.
 
-Regular file names match themselves, i.e. the pattern foo matches the files foo,
-subdir/foo as well as any directory named foo. Spaces are treated as regular characters.
+Regular file names match themselves, i.e. the pattern foo matches the files ``foo``,
+``subdir/foo`` as well as any directory named ``foo``. Spaces are treated as regular characters.
 
 +--------------+-----------+----------+-----------------------------------------------------------------------------------+
 | Character    | Where     | Affects  | Action                                                                            |
