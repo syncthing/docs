@@ -40,7 +40,7 @@ subdir/foo as well as any directory named foo. Spaces are treated as regular cha
 +--------------+-----------+----------+-----------------------------------------------------------------------------------+
 | Character    | Where     | Affects  | Action                                                                            |
 +==============+===========+==========+===================================================================================+
-| ``/``        | Beginning | Folders  | Match in the root directory only. ``/foo`` matches foo but not ``subdir/foo``.    |
+| ``/``        | Beginning | Folders  | Match in the root directory only. ``/foo`` matches ``foo`` but not ``subdir/foo``.    |
 |              |           |          |                                                                                   |
 +--------------+-----------+----------+-----------------------------------------------------------------------------------+
 | ``!``        | Beginning | All      | Ignore all other patterns and force sync of matching files. Matching directory    |
