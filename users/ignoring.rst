@@ -67,7 +67,7 @@ Regular file names match themselves, i.e. the pattern foo matches the files ``fo
 | ``//``    | Beginning | N/A      | A line beginning with ``//`` is a comment and has no effect.                  |
 |           |           |          |                                                                               |
 +-----------+-----------+----------+-------------------------------------------------------------------------------+
-| ``#include| Beginning | N/A      | A pattern beginning with ``#include`` results in loading patterns             |
+| ``#include``| Beginning | N/A      | A pattern beginning with ``#include`` results in loading patterns             |
 |           |           |          | from the named file. It is an error for a file to not exist or be             |
 |           |           |          | included more than once. Note that while this can be used to include          |
 |           |           |          | patterns from a file in a subdirectory, the patterns themselves are           |
