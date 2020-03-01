@@ -72,7 +72,7 @@ subdir/foo as well as any directory named foo. Spaces are treated as regular cha
 |              |           |          |                                                                                   |
 +--------------+-----------+----------+-----------------------------------------------------------------------------------+
 | ``**``       | Anywhere  | All      | Match every character including directory separators. ``te**st`` matches          |
-|              |           |          | ``test``, ``subdir/telere st`` and ``tele/sub/dir/ rest``.                        |
+|              |           |          | ``test``, ``subdir/telerest`` and ``tele/sub/dir/rest``.                          |
 |              |           |          |                                                                                   |
 +--------------+-----------+----------+-----------------------------------------------------------------------------------+
 | ``?``        | Anywhere  | All      | Match a single character that is not the directory separator.                     |
