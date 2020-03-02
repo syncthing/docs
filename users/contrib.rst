@@ -15,7 +15,7 @@ GUI Wrappers
 Cross-platform
 ~~~~~~~~~~~~~~
 
-- `Syncthing-GTK <https://github.com/syncthing/syncthing-gtk>`_
+- `Syncthing-GTK <https://github.com/kozec/syncthing-gtk>`_
 
 - `QSyncthingTray <https://github.com/sieren/QSyncthingTray>`_
 

@@ -34,7 +34,7 @@ all community flavors run the same Syncthing core underneath, so don't worry
 about changing your flavor at a later point in time. The remainder of this page
 will explain how to set up two devices with the core Syncthing flavor.
 
-.. _`Syncthing-GTK`: https://github.com/syncthing/syncthing-gtk
+.. _`Syncthing-GTK`: https://github.com/kozec/syncthing-gtk
 
 Syncthing
 ~~~~~~~~~
