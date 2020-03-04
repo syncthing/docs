@@ -1,7 +1,7 @@
 GET /rest/system/status
 =======================
 
-Returns information about current system status and resource usage.
+Returns information about current system status and resource usage. The CPU percent value has been deprected from the API and will always report 0.
 
 .. code-block:: json
 
@@ -27,7 +27,7 @@ Returns information about current system status and resource usage.
           ]
         }
       },
-      "cpuPercent": 0.006944836512046966,
+      "cpuPercent": 0,
       "discoveryEnabled": true,
       "discoveryErrors": {
         "global@https://discovery-v4-1.syncthing.net/v2/": "500 Internal Server Error",
