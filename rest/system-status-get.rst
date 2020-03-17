@@ -1,7 +1,7 @@
 GET /rest/system/status
 =======================
 
-Returns information about current system status and resource usage. The CPU percent value has been deprected from the API and will always report 0.
+Returns information about current system status and resource usage. The CPU percent value has been deprecated from the API and will always report 0.
 
 .. code-block:: json
 
