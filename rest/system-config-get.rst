@@ -6,22 +6,29 @@ Returns the current configuration.
 .. code-block:: json
 
     {
-      "version": 15,
+      "version": 30,
       "folders": [
 	{
 	  "id": "GXWxf-3zgnU",
 	  "label": "MyFolder",
+	  "filesystemType": "basic",
 	  "path": "...",
 	  "type": "sendreceive",
 	  "devices": [
 	    {
-	      "deviceID": "..."
+	      "deviceID": "...",
+	      "introducedBy": ""
 	    }
 	  ],
 	  "rescanIntervalS": 60,
+	  "fsWatcherEnabled": false,
+	  "fsWatcherDelayS": 10,
 	  "ignorePerms": false,
 	  "autoNormalize": true,
-	  "minDiskFreePct": 1,
+	  "minDiskFree": {
+	    "value": 1,
+	    "unit": "%"
+	  },
 	  "versioning": {
 	    "type": "simple",
 	    "params": {
@@ -29,18 +36,20 @@ Returns the current configuration.
 	    }
 	  },
 	  "copiers": 0,
-	  "pullers": 0,
+	  "pullerMaxPendingKiB": 0,
 	  "hashers": 0,
 	  "order": "random",
 	  "ignoreDelete": false,
 	  "scanProgressIntervalS": 0,
-	  "pullerSleepS": 0,
 	  "pullerPauseS": 0,
 	  "maxConflicts": 10,
 	  "disableSparseFiles": false,
 	  "disableTempIndexes": false,
-	  "fsync": false,
-	  "invalid": ""
+	  "paused": false,
+	  "weakHashThresholdPct": 25,
+	  "markerName": ".stfolder",
+	  "copyOwnershipFromParent": false,
+	  "modTimeWindowS": 0
 	}
       ],
       "devices": [
@@ -53,7 +62,21 @@ Returns the current configuration.
 	  ],
 	  "compression": "metadata",
 	  "certName": "",
-	  "introducer": false
+	  "introducer": false,
+	  "skipIntroductionRemovals": false,
+	  "introducedBy": "",
+	  "paused": false,
+	  "allowedNetworks": [],
+	  "autoAcceptFolders": false,
+	  "maxSendKbps": 0,
+	  "maxRecvKbps": 0,
+	  "ignoredFolders": [],
+	  "pendingFolders": [
+	    "time": "2019-06-05T10:21:22+02:00",
+	    "id": "cpkn4-57ysy",
+	    "label": "SomeonesFolder"
+	  ],
+	  "maxRequestKiB": 0
 	}
       ],
       "gui": {
@@ -61,10 +84,20 @@ Returns the current configuration.
 	"address": "127.0.0.1:8384",
 	"user": "Username",
 	"password": "$2a$10$ZFws69T4FlvWwsqeIwL.TOo5zOYqsa/.TxlUnsGYS.j3JvjFTmxo6",
+	"authMode": "static",
 	"useTLS": false,
 	"apiKey": "pGahcht56664QU5eoFQW6szbEG6Ec2Cr",
 	"insecureAdminAccess": false,
-	"theme": "default"
+	"theme": "default",
+	"debugging": false,
+	"insecureSkipHostcheck": false,
+	"insecureAllowFrameLoading": false
+      },
+      "ldap": {
+	"addresd": "",
+	"bindDN": "",
+	"transport": "plain",
+	"insecureSkipVerify": false
       },
       "options": {
 	"listenAddresses": [
@@ -88,22 +121,41 @@ Returns the current configuration.
 	"natRenewalMinutes": 30,
 	"natTimeoutSeconds": 10,
 	"urAccepted": -1,
+	"urSeen": 2,
 	"urUniqueId": "",
 	"urURL": "https://data.syncthing.net/newdata",
 	"urPostInsecurely": false,
 	"urInitialDelayS": 1800,
 	"restartOnWakeup": true,
 	"autoUpgradeIntervalH": 12,
+	"upgradeToPreReleases": false,
 	"keepTemporariesH": 24,
 	"cacheIgnoredFiles": false,
 	"progressUpdateIntervalS": 5,
 	"limitBandwidthInLan": false,
-	"minHomeDiskFreePct": 1,
+	"minHomeDiskFree": {
+	  "value": 1,
+	  "unit": "%"
+	},
 	"releasesURL": "https://upgrades.syncthing.net/meta.json",
 	"alwaysLocalNets": [],
 	"overwriteRemoteDeviceNamesOnConnect": false,
-	"tempIndexMinBlocks": 10
+	"tempIndexMinBlocks": 10,
+	"unackedNotificationIDs": [],
+	"trafficClass": 0,
+	"defaultFolderPath": "~",
+	"setLowPriority": true,
+	"maxFolderConcurrency": 0,
+	"crURL": "https://crash.syncthing.net/newcrash",
+	"crashReportingEnabled": true,
+	"stunKeepaliveStartS": 180,
+	"stunKeepaliveMinS": 20,
+	"stunServers": [
+	  "default"
+	],
+	"databaseTuning": "auto",
+	"maxConcurrentIncomingRequestKiB": 0
       },
-      "ignoredDevices": [],
-      "ignoredFolders": []
+      "remoteIgnoredDevices": [],
+      "pendingDevices": []
     }
