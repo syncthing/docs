@@ -213,6 +213,8 @@ protocol buffer message just as in the uncompressed case.
 Message Subtypes
 ----------------
 
+.. _clusterconfig:
+
 Cluster Config
 ^^^^^^^^^^^^^^
 
