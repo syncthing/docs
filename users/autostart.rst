@@ -243,10 +243,11 @@ user has logged into the system (e.g., via the graphical login screen, or ssh).
 Thus, the user service is intended to be used on a *(multiuser) desktop
 computer*. It avoids unnecessarily running Syncthing instances.
 
-Several distros (including Arch Linux) ship the needed service files with the
-Syncthing package. If your distro provides a systemd service file for Syncthing,
-you can skip step 2 when you setting up either the system service or the user
-service, as described below.
+The official `Debian/Ubuntu Syncthing repository <https://syncthing.net/downloads/#debian--ubuntu-packages>`__, and 
+several distros (including Arch Linux) ship these service files along with
+the Syncthing package. If your distro provides the systemd service files for
+Syncthing, you can skip step #2 when you're setting up either the system service
+or the user service, as described below.
 
 How to set up a system service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
