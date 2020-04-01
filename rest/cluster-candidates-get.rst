@@ -1,5 +1,7 @@
-GET /rest/system/candidates
-===========================
+GET /rest/cluster/candidates
+============================
+
+.. versionadded:: 1.FIXME
 
 Lists remote devices which were introduced as part of another remote
 device's ``ClusterConfig`` message, but do not directly share a
