@@ -27,6 +27,17 @@ System Endpoints
 
    ../rest/system-*
 
+Cluster Endpoints
+-----------------
+
+Concerns the mesh network structure.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   ../rest/cluster-*
+
 Database Endpoints
 ------------------
 

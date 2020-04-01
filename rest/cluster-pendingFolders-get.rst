@@ -1,5 +1,7 @@
-GET /rest/system/pendingFolders
-===============================
+GET /rest/cluster/pendingFolders
+================================
+
+.. versionadded:: 1.FIXME
 
 Lists folders which remote devices have offered to us, but are not yet
 shared from our instance to them.  Takes the optional ``device``

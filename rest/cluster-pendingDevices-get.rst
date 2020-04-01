@@ -1,5 +1,7 @@
-GET /rest/system/pendingDevices
-===============================
+GET /rest/cluster/pendingDevices
+================================
+
+.. versionadded:: 1.FIXME
 
 Lists remote devices which have tried to connect, but are not yet
 configured in our instance.
