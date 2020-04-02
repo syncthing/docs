@@ -22,7 +22,7 @@ following options are available:
     servers.
 
 ``Insecure Skip Verify``
-    When set, this option disables all certification verification for LDAPS.
+    When set, this option disables all certificate verification for LDAPS.
     Use with care and only when absolutely necessary.
 
 ``Search Base DN``
