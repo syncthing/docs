@@ -1,3 +1,5 @@
+.. _rest-cluster-pendingDevices:
+
 GET /rest/cluster/pendingDevices
 ================================
 

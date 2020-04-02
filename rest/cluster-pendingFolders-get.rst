@@ -1,3 +1,5 @@
+.. _rest-cluster-pendingFolders:
+
 GET /rest/cluster/pendingFolders
 ================================
 
