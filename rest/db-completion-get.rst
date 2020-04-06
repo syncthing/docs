@@ -10,7 +10,8 @@ folder. Takes ``device`` and ``folder`` parameters.
       "completion": 100,
       "globalBytes": 156793013575,
       "needBytes": 0,
-      "needDeletes": 0
+      "needDeletes": 0,
+      "needItems": 0
     }
 
 .. note::
