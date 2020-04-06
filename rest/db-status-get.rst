@@ -13,6 +13,7 @@ Parameters: ``folder``, the ID of a folder.
       "globalDirectories": 0,
       "globalFiles": 0,
       "globalSymlinks": 0,
+      "globalTotalItems": 0,
       "ignorePatterns": false,
       "inSyncBytes": 0,
       "inSyncFiles": 0,
