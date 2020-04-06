@@ -35,6 +35,7 @@ Parameters: ``folder``, the ID of a folder.
       "receiveOnlyChangedDirectories": 0,
       "receiveOnlyChangedFiles": 0,
       "receiveOnlyChangedSymlinks": 0,
+      "receiveOnlyTotalItems": 0,
       "sequence": 0,
       "state": "idle",
       "stateChanged": "2018-08-08T07:04:57.301064781+02:00",
