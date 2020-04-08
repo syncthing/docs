@@ -85,6 +85,17 @@ The ``.stignore`` file contains a list of file or path patterns. The
    Prefixes can be specified in any order (e.g. "(?d)(?i)"), but cannot be in a
    single pair of parentheses (not ":strike:`(?di)`").
 
+.. note::
+
+   Include patterns (that begin with ``!``) cause Syncthing to traverse and
+   :ref:`watch <scanning>` the entire directory tree regardless of other
+   ignore patterns.
+
+   Top-level Include patterns (beginning with ``/`` and matching at the root of
+   the folder only) are treated as special cases and will not force Syncthing to
+   scan the entire directory tree. For example: ``!/foo`` is a top-level include
+   pattern, while ``!/foo/bar`` is not.
+
 Examples
 --------
 
@@ -134,23 +145,3 @@ all files and directories called "foo", ending in a "2" or starting with
   ``some/directory/`` matches the content of the directory, but not the
   directory itself. If you want the pattern to match the directory and its
   content, make sure it does not have a ``/`` at the end of the pattern.
-
-Include only
-~~~~~~~~~~~~
-
-You can write include-only ``.stignore`` files::
-
-    !/bar
-    !/baz.txt
-    !/foo
-    *
-
-This will only sync ``bar``, ``baz.txt`` and ``foo`` while ignoring everything
-else in the folder.
-
-.. note::
-
-   Syncthing optimizes the performance of this use case by only scanning and
-   watching the included files and directories. This applies **only** to top-level
-   include patterns. So having a pattern like ``!foobar`` or ``!**foo**`` without a
-   leading ``/`` in your ignore file will disable this optimization!
