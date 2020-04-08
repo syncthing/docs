@@ -91,13 +91,12 @@ The ``.stignore`` file contains a list of file or path patterns. The
    :ref:`watch <scanning>` the entire directory tree regardless of other
    ignore patterns.
 
-   Top-level Include patterns (beginning with ``/`` and matching at the root of
-   the folder only) are treated as special cases and will not force Syncthing to
+   Top-level include patterns are treated as special cases and will not force Syncthing to
    scan the entire directory tree. For example: ``!/foo`` is a top-level include
    pattern, while ``!/foo/bar`` is not.
 
-Examples
---------
+Example
+-------
 
 Given a directory layout::
 
