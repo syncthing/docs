@@ -52,7 +52,7 @@ The ``.stignore`` file contains a list of file or path patterns. The
 
 -  Characters enclosed in square brackets ``[]`` are interpreted as a character range ``[a-z]``. Before using this syntax you should have a basic understanding of regular expression character classes.
 
--  A pattern beginning with ``/`` matches in the current directory only.
+-  A pattern beginning with ``/`` matches in the root of the folder only.
    ``/foo`` matches ``foo`` but not ``subdir/foo``.
 
 -  A pattern beginning with ``#include`` results in loading patterns
