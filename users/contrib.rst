@@ -75,17 +75,6 @@ Debian / Ubuntu
 
 - `Ubuntu PPA containing Syncthing-GTK <https://launchpad.net/~nilarimogard/+archive/ubuntu/webupd8/>`_
 
-Snap
-~~~~
-
-On any of the `Linux distributions that support snaps <https://snapcraft.io/docs/core/install>`_: ::
-
-   $ snap install syncthing
-
-If you want to help testing the upcoming release, and get the newer features earlier, you can install the snap from the candidate channel: ::
-
-   $ snap install syncthing --candidate
-
 Fedora / CentOS
 ~~~~~~~~~~~~~~~
 

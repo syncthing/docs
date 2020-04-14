@@ -127,12 +127,6 @@ Publishes the Debian archives to apt.syncthing.net.
 
 .. code-block:: bash
 
-    $ upload-snaps /home/incoming/build-1234-v0.14.50
-
-Publishes the Snap packages to Ubuntu.
-
-.. code-block:: bash
-
     $ sign-upload-release /home/incoming/build-1234-v0.14.50
 
 Publishes the regular release archives to GitHub.

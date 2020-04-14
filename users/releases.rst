@@ -24,7 +24,7 @@ Run the candidate channel if you are technically savvy and enjoy new
 features. Run the stable channel if you want to minimize the amount of
 surprises you might run into.
 
-.. [#] Auto upgrades are not enabled in builds delivered via APT or Snap.
+.. [#] Auto upgrades are not enabled in builds delivered via APT.
 .. [#] Yes, there is intentionally no difference here.
 
 Schedule
@@ -51,12 +51,6 @@ APT (Debian)
 The choice between stable and candidate is done in the APT source
 configuration. Please see `our APT instructions
 <https://apt.syncthing.net/>`__.
-
-Snap
-~~~~
-
-The ``snap`` tool can be told to install the candidate channel, but defaults
-to the stable channel. See the Snap documentation for detail.
 
 Some Other Distribution Channel
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
