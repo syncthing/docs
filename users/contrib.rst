@@ -139,9 +139,15 @@ Official packages: `syncthing <https://software.opensuse.org/package/syncthing>`
 Synology NAS (DSM)
 ~~~~~~~~~~~~~~~~~~
 
-Add ``http://packages.synocommunity.com/`` to the Package Center in DSM or view the `browsable repository <https://synocommunity.com/packages>`__. Numerous CPU
-architectures are supported. SPK's may be older versions, however you can
-execute a Syncthing version upgrade via the web GUI after installation.
+- Synocommunity: add ``http://packages.synocommunity.com/`` to the Package
+  Center in DSM or view the `browsable repository
+  <https://synocommunity.com/packages>`__. Numerous CPU architectures are
+  supported. SPK's may be older versions, however you can execute a Syncthing
+  version upgrade via the web GUI after installation.
+
+- Kastelo maintains `Synology packages <https://docs.kastelo.net/synology/>`__
+  in a custom package source. Packages auto upgrade via the Synology package
+  manager.
 
 QNAP NAS (QTS)
 ~~~~~~~~~~~~~~
