@@ -92,21 +92,21 @@ ArchLinux
 Docker
 ~~~~~~
 
-- Dockerfiles for `Syncthing <https://github.com/firecat53/dockerfiles/tree/master/syncthing>`_ and `Syncthing Discovery Server <https://github.com/firecat53/dockerfiles/tree/master/syncthing_discovery>`_. Latest binary releases used for both.
+- Dockerfiles for `Syncthing <https://github.com/firecat53/dockerfiles/tree/master/syncthing>`_ and `Syncthing Discovery Server <https://github.com/firecat53/dockerfiles/tree/master/syncthing_discovery>`_.
+  Latest binary releases used for both.
 
 - `docker-syncthing <https://github.com/joeybaker/docker-syncthing>`_
-
   A fully baked docker container that allows custom config and will keep your
   settings and data past docker image restarts.
-- `syncthing-docker-scratch <https://github.com/djtm/syncthing-docker-scratch>`_
 
+- `syncthing-docker-scratch <https://github.com/djtm/syncthing-docker-scratch>`_
   Builds docker containers from scratch base and/or runs the containers in
   docker or rkt.
+  
 - `rpi-syncthing <https://github.com/funkyfuture/docker-rpi-syncthing>`_
-
   Configurable image for the Raspberry Pi.
+  
 - `syncthing for hassio <https://github.com/bestlibre/hassio-addons/tree/master/syncthing>`_
-
   A docker based addon for `hassio <https://www.home-assistant.io/hassio/>`_
 
 Gentoo
