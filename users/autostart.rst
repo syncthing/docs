@@ -185,15 +185,28 @@ access the GUI type 127.0.0.1:8384 (by default) into Safari.
 Linux
 -----
 
-On any distribution (Arch, Debian, Linux Mint, Ubuntu, openSUSE)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using the Desktop Environment (KDE, Gnome, Xfce, Cinnamon, ...)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Launch the program 'Startup Applications'.
-#. Click 'Add'.
-#. Fill out the form:
+You can make Syncthing start when you log into your desktop environment (DE) in
+two ways.
 
-   -  Name: Syncthing
-   -  Command: ``/path/to/syncthing/binary -no-browser -home="/home/your\_user/.config/syncthing"``
+Using DE tools:  
+
+#. Search for and launch a tool related to autostart or startup applications.
+#. Add a new autostart application and search for and choose "Start Syncthing".
+
+If you don't find "Start Syncthing" in the steps above or just prefer doing it
+manually:
+
+#. Find the file ``syncthing-start.desktop``: Either from the package you
+   downloaded from Github in ``etc/linux-desktop/`` or in
+   ``/usr/share/applications/`` if installed from your package manager.
+#. Copy ``syncthing-start.desktop`` to ``~/.config/autostart/``.
+
+For more information relating to ``.desktop`` files e.g. for application menus,
+refer to https://github.com/syncthing/syncthing/tree/master/etc/linux-desktop.
+
 
 Using Supervisord
 ~~~~~~~~~~~~~~~~~
