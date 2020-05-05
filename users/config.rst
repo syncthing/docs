@@ -130,6 +130,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <stunKeepaliveMinS>20</stunKeepaliveMinS>
             <stunServer>default</stunServer>
             <databaseTuning>auto</databaseTuning>
+            <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
         </options>
     </configuration>
 
