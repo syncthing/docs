@@ -121,10 +121,10 @@ The following shows an example of the default configuration file (IDs will diffe
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
             <trafficClass>0</trafficClass>
             <defaultFolderPath>~</defaultFolderPath>
+            <setLowPriority>true</setLowPriority>
             <stunServer>default</stunServer>
             <stunKeepaliveSeconds>24</stunKeepaliveSeconds>
             <minHomeDiskFreePct>0</minHomeDiskFreePct>
-            <setLowPriority>true</setLowPriority>
         </options>
     </configuration>
 
