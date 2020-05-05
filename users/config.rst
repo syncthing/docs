@@ -103,7 +103,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <natRenewalMinutes>30</natRenewalMinutes>
             <natTimeoutSeconds>10</natTimeoutSeconds>
             <urAccepted>-1</urAccepted>
-            <urSeen>0</urSeen>
+            <urSeen>3</urSeen>
             <urUniqueID>LFWe2vn3</urUniqueID>
             <urURL>https://data.syncthing.net/newdata</urURL>
             <urPostInsecurely>false</urPostInsecurely>
