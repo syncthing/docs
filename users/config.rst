@@ -104,7 +104,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <natTimeoutSeconds>10</natTimeoutSeconds>
             <urAccepted>-1</urAccepted>
             <urSeen>3</urSeen>
-            <urUniqueID>LFWe2vn3</urUniqueID>
+            <urUniqueID></urUniqueID>
             <urURL>https://data.syncthing.net/newdata</urURL>
             <urPostInsecurely>false</urPostInsecurely>
             <urInitialDelayS>1800</urInitialDelayS>
