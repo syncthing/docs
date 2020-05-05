@@ -29,7 +29,7 @@ Task Scheduler
 #. Triggers Tab:
     #. Click "New...".
     #. Set "Begin the task" to "At Startup".
-    #. (optional) choose a delay.
+    #. (optional) Choose a delay.
     #. Make sure Enabled is checked.
     #. Click "OK".
 #. Actions Tab:
