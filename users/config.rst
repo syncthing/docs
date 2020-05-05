@@ -77,6 +77,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <autoAcceptFolders>false</autoAcceptFolders>
             <maxSendKbps>0</maxSendKbps>
             <maxRecvKbps>0</maxRecvKbps>
+            <maxRequestKiB>0</maxRequestKiB>
         </device>
         <gui enabled="true" tls="false" debugging="false">
             <address>127.0.0.1:8384</address>
