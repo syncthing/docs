@@ -56,7 +56,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <minDiskFree unit="%">1</minDiskFree>
             <versioning></versioning>
             <copiers>0</copiers>
-            <pullers>0</pullers>
+            <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
             <hashers>0</hashers>
             <order>random</order>
             <ignoreDelete>false</ignoreDelete>
