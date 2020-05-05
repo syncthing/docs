@@ -25,6 +25,7 @@ Task Scheduler
 #. General Tab:
     #. Name the task (for example 'Syncthing')
     #. Check "Run whether user is logged on or not"
+    #. (recommended) Check "Do not store password. The task will only have access to local resources". Leave this option unchecked if you intend to store your folders on network drives and such.
 #. Triggers Tab:
     #. Click "New..."
     #. Set "Begin the task" to "At Startup"
@@ -42,7 +43,7 @@ Task Scheduler
     #. Clear checkbox from "Stop task if it runs longer than:"
     #. (recommended) Keep "Do not start a new instance" for "If the task is already running, then the following rule applies"
 #. Click OK
-#. Enter password for the user.
+#. If prompted, enter password for the user.
 
 Third-party Tools
 ~~~~~~~~~~~~~~~~~
