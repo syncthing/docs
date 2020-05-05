@@ -38,6 +38,8 @@ Task Scheduler
     #. Enter the path to syncthing.exe in "Program/Script"
     #. (optional) Enter the path to the parent folder of syncthing.exe in "Start in (optional)". This will allow you to use paths relative to this folder in Syncthing.
     #. Click "OK"
+#. Conditions Tab:
+    #. (optional) Uncheck "Stop if the computer switches to battery power"
 #. Settings Tab:
     #. (recommended) Keep the checkbox on "Allow task to be run on demand"
     #. Clear checkbox from "Stop task if it runs longer than:"
