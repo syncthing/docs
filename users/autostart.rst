@@ -43,9 +43,7 @@ Task Scheduler
     #. (optional) Uncheck "Start the task only if the computer is on AC power"
     #. (optional) Check "Start only if the following network connection is available" and set to "Network". Use this option on a laptop, when you want Syncthing to start only on a wired Internet connection, and not on Wi-Fi. Note that once started, Syncthing will not stop running if the connection changes or becomes unavailable later.
 #. Settings Tab:
-    #. (recommended) Keep the checkbox on "Allow task to be run on demand"
     #. Clear checkbox from "Stop task if it runs longer than:"
-    #. (recommended) Keep "Do not start a new instance" for "If the task is already running, then the following rule applies"
 #. Click OK
 #. If prompted, enter password for the user.
 
