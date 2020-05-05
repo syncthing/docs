@@ -122,6 +122,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <trafficClass>0</trafficClass>
             <defaultFolderPath>~</defaultFolderPath>
             <setLowPriority>true</setLowPriority>
+            <maxFolderConcurrency>0</maxFolderConcurrency>
             <stunServer>default</stunServer>
             <stunKeepaliveSeconds>24</stunKeepaliveSeconds>
             <minHomeDiskFreePct>0</minHomeDiskFreePct>
