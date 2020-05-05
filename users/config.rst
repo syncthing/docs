@@ -74,6 +74,7 @@ The following shows an example of the default configuration file (IDs will diffe
         <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
             <paused>false</paused>
+            <autoAcceptFolders>false</autoAcceptFolders>
         </device>
         <gui enabled="true" tls="false" debugging="false">
             <address>127.0.0.1:8384</address>
