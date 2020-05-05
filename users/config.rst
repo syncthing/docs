@@ -129,6 +129,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <stunKeepaliveStartS>180</stunKeepaliveStartS>
             <stunKeepaliveMinS>20</stunKeepaliveMinS>
             <stunServer>default</stunServer>
+            <databaseTuning>auto</databaseTuning>
         </options>
     </configuration>
 
