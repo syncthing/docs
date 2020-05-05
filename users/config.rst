@@ -310,8 +310,10 @@ disableSparseFiles
 
 disableTempIndexes
     By default, devices exchange information about blocks available in
-    transfers that are still in progress. When set to true, such information
-    is not exchanged for this folder.
+    transfers that are still in progress, which allows other devices to
+    download parts of files that are not yet fully downloaded on your own
+    device, essentially making transfers more torrent like. When set to
+    true, such information is not exchanged for this folder.
 
 paused
     True if this folder is (temporarily) suspended.
