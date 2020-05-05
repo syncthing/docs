@@ -39,7 +39,9 @@ Task Scheduler
     #. (optional) Enter the path to the parent folder of syncthing.exe in "Start in (optional)". This will allow you to use paths relative to this folder in Syncthing.
     #. Click "OK"
 #. Conditions Tab:
-    #. (optional) Uncheck "Stop if the computer switches to battery power"
+    #. (optional) Uncheck "Stop if the computer switches to battery power". Note that unchecking "Start the task only if the computer is on AC power" does not disable this option. Even if greyed out, it still applies, and has to be unchecked separately.
+    #. (optional) Uncheck "Start the task only if the computer is on AC power"
+    #. (optional) Check "Start only if the following network connection is available" and set to "Network". Use this option on a laptop, when you want Syncthing to start only on a wired Internet connection, and not on Wi-Fi. Note that once started, Syncthing will not stop running if the connection changes or becomes unavailable later.
 #. Settings Tab:
     #. (recommended) Keep the checkbox on "Allow task to be run on demand"
     #. Clear checkbox from "Stop task if it runs longer than:"
