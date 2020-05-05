@@ -713,7 +713,7 @@ autoUpgradeIntervalH
 
 upgradeToPreReleases
     If true, automatic upgrades include release candidates (see
-    :ref:`release-channels`).
+    :ref:`releases`).
 
 keepTemporariesH
     Keep temporary failed transfers for this many hours. While the temporaries
