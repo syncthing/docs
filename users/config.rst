@@ -85,7 +85,8 @@ The following shows an example of the default configuration file (IDs will diffe
             <theme>default</theme>
         </gui>
         <options>
-            <listenAddress>default</listenAddress>
+            <listenAddress>tcp://0.0.0.0:8384</listenAddress>
+            <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
             <globalAnnounceServer>default</globalAnnounceServer>
             <globalAnnounceEnabled>true</globalAnnounceEnabled>
             <localAnnounceEnabled>true</localAnnounceEnabled>
