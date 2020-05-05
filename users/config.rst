@@ -68,6 +68,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <paused>false</paused>
             <weakHashThresholdPct>25</weakHashThresholdPct>
             <markerName>.stfolder</markerName>
+            <copyOwnershipFromParent>false</copyOwnershipFromParent>
         </folder>
         <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
