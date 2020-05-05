@@ -49,7 +49,7 @@ The following shows an example of the default configuration file (IDs will diffe
 
 .. code-block:: xml
 
-    <configuration version="26">
+    <configuration version="30">
         <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
             <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
             <filesystemType>basic</filesystemType>
