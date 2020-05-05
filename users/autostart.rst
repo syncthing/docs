@@ -20,31 +20,31 @@ there are a number of easy solutions.
 Task Scheduler
 ~~~~~~~~~~~~~~
 
-#. Start the `Task Scheduler <https://en.wikipedia.org/wiki/Windows_Task_Scheduler>`__ (``taskschd.msc``)
-#. Create a New Task ("Action" menu -> "Create Task...")
+#. Start the `Task Scheduler <https://en.wikipedia.org/wiki/Windows_Task_Scheduler>`__ (``taskschd.msc``).
+#. Create a New Task ("Action" menu -> "Create Task...").
 #. General Tab:
-    #. Name the task (for example 'Syncthing')
-    #. Check "Run whether user is logged on or not"
+    #. Name the task (for example 'Syncthing').
+    #. Check "Run whether user is logged on or not".
     #. (recommended) Check "Do not store password. The task will only have access to local resources". Leave this option unchecked if you intend to store your folders on network drives and such.
 #. Triggers Tab:
-    #. Click "New..."
-    #. Set "Begin the task" to "At Startup"
-    #. (optional) choose a delay
-    #. Make sure Enabled is checked
-    #. Click "OK"
+    #. Click "New...".
+    #. Set "Begin the task" to "At Startup".
+    #. (optional) choose a delay.
+    #. Make sure Enabled is checked.
+    #. Click "OK".
 #. Actions Tab:
-    #. Click "New..."
-    #. [Action] should be set as "Start a program"
-    #. Enter the path to syncthing.exe in "Program/Script"
+    #. Click "New...".
+    #. [Action] should be set as "Start a program".
+    #. Enter the path to syncthing.exe in "Program/Script".
     #. (optional) Enter the path to the parent folder of syncthing.exe in "Start in (optional)". This will allow you to use paths relative to this folder in Syncthing.
-    #. Click "OK"
+    #. Click "OK".
 #. Conditions Tab:
     #. (optional) Uncheck "Stop if the computer switches to battery power". Note that unchecking "Start the task only if the computer is on AC power" does not disable this option. Even if greyed out, it still applies, and has to be unchecked separately.
-    #. (optional) Uncheck "Start the task only if the computer is on AC power"
+    #. (optional) Uncheck "Start the task only if the computer is on AC power".
     #. (optional) Check "Start only if the following network connection is available" and set to "Network". Use this option on a laptop, when you want Syncthing to start only on a wired Internet connection, and not on Wi-Fi. Note that once started, Syncthing will not stop running if the connection changes or becomes unavailable later.
 #. Settings Tab:
-    #. Clear checkbox from "Stop task if it runs longer than:"
-#. Click OK
+    #. Clear checkbox from "Stop task if it runs longer than:".
+#. Click OK.
 #. If prompted, enter password for the user.
 
 Third-party Tools
