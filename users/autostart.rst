@@ -37,6 +37,7 @@ Task Scheduler
     #. [Action] should be set as "Start a program"
     #. Enter the path to syncthing.exe in "Program/Script"
     #. (optional) Enter "-no-console -no-browser" for "Add arguments (optional)"
+    #. (optional) Enter the path to the parent folder of syncthing.exe in "Start in (optional)". This will allow you to use paths relative to this folder in Syncthing.
     #. Click "OK"
 #. Settings Tab:
     #. (recommended) Keep the checkbox on "Allow task to be run on demand"
