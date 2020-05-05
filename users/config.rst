@@ -125,8 +125,9 @@ The following shows an example of the default configuration file (IDs will diffe
             <maxFolderConcurrency>0</maxFolderConcurrency>
             <crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>
             <crashReportingEnabled>true</crashReportingEnabled>
+            <stunKeepaliveStartS>180</stunKeepaliveStartS>
+            <stunKeepaliveMinS>20</stunKeepaliveMinS>
             <stunServer>default</stunServer>
-            <stunKeepaliveSeconds>24</stunKeepaliveSeconds>
             <minHomeDiskFreePct>0</minHomeDiskFreePct>
         </options>
     </configuration>
