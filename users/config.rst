@@ -84,6 +84,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
             <theme>default</theme>
         </gui>
+        <ldap></ldap>
         <options>
             <listenAddress>tcp://0.0.0.0:8384</listenAddress>
             <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
