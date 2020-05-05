@@ -120,9 +120,9 @@ The following shows an example of the default configuration file (IDs will diffe
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
             <trafficClass>0</trafficClass>
+            <defaultFolderPath>~</defaultFolderPath>
             <stunServer>default</stunServer>
             <stunKeepaliveSeconds>24</stunKeepaliveSeconds>
-            <defaultFolderPath>~</defaultFolderPath>
             <minHomeDiskFreePct>0</minHomeDiskFreePct>
             <setLowPriority>true</setLowPriority>
         </options>
