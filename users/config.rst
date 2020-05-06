@@ -139,10 +139,11 @@ Configuration Element
 
 .. code-block:: xml
 
-    <configuration version="26">
+    <configuration version="30">
         <folder></folder>
         <device></device>
         <gui></gui>
+        <ldap></ldap>
         <options></options>
         <ignoredDevice>5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU</ignoredDevice>
         <ignoredFolder>bd7q3-zskm5</ignoredFolder>
