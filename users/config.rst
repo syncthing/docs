@@ -607,7 +607,8 @@ Options Element
 .. code-block:: xml
 
     <options>
-        <listenAddress>default</listenAddress>
+        <listenAddress>tcp://0.0.0.0:8384</listenAddress>
+        <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
         <globalAnnounceServer>default</globalAnnounceServer>
         <globalAnnounceEnabled>true</globalAnnounceEnabled>
         <localAnnounceEnabled>true</localAnnounceEnabled>
@@ -623,22 +624,34 @@ Options Element
         <natLeaseMinutes>60</natLeaseMinutes>
         <natRenewalMinutes>30</natRenewalMinutes>
         <natTimeoutSeconds>10</natTimeoutSeconds>
-        <urAccepted>0</urAccepted>
+        <urAccepted>-1</urAccepted>
+        <urSeen>3</urSeen>
         <urUniqueID></urUniqueID>
         <urURL>https://data.syncthing.net/newdata</urURL>
         <urPostInsecurely>false</urPostInsecurely>
         <urInitialDelayS>1800</urInitialDelayS>
         <restartOnWakeup>true</restartOnWakeup>
         <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
+        <upgradeToPreReleases>false</upgradeToPreReleases>
         <keepTemporariesH>24</keepTemporariesH>
         <cacheIgnoredFiles>false</cacheIgnoredFiles>
         <progressUpdateIntervalS>5</progressUpdateIntervalS>
         <limitBandwidthInLan>false</limitBandwidthInLan>
         <minHomeDiskFree unit="%">1</minHomeDiskFree>
-        <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
+        <releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>
         <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
+        <trafficClass>0</trafficClass>
         <defaultFolderPath>~</defaultFolderPath>
+        <setLowPriority>true</setLowPriority>
+        <maxFolderConcurrency>0</maxFolderConcurrency>
+        <crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>
+        <crashReportingEnabled>true</crashReportingEnabled>
+        <stunKeepaliveStartS>180</stunKeepaliveStartS>
+        <stunKeepaliveMinS>20</stunKeepaliveMinS>
+        <stunServer>default</stunServer>
+        <databaseTuning>auto</databaseTuning>
+        <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
     </options>
 
 The ``options`` element contains all other global configuration options.
