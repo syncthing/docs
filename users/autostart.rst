@@ -219,6 +219,10 @@ Go to ``/etc/supervisor/conf.d/`` and create a new file named ``syncthing.conf``
     command = /usr/bin/syncthing -no-browser -home="/home/<USERNAME>/.config/syncthing"
     environment = STNORESTART="1", HOME="/home/<USERNAME>"
 
+Reload Supervisord::
+
+    supervisorctl reload
+
 Then start it::
 
     supervisorctl start syncthing
