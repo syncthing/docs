@@ -10,8 +10,7 @@ Synopsis
 
     $HOME/.config/syncthing
     $HOME/Library/Application Support/Syncthing
-    %AppData%/Syncthing
-    %localappdata%/Syncthing
+    %LOCALAPPDATA%/Syncthing
 
 Description
 -----------
@@ -19,9 +18,9 @@ Description
 Syncthing uses a single directory to store configuration, crypto keys
 and index caches. The location defaults to ``$HOME/.config/syncthing``
 (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac),
-``%AppData%/Syncthing`` (Windows XP) or ``%LocalAppData%/Syncthing``
-(Windows 7+). It can be changed at runtime using the ``-home`` flag. In this
-directory the following files are located:
+or ``%LOCALAPPDATA%/Syncthing`` (Windows). It can be changed at runtime
+using the ``-home`` flag. In this directory the following files are 
+located:
 
 :file:`config.xml`
     The configuration file, in XML format.
