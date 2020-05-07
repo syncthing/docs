@@ -102,8 +102,8 @@ The following shows an example of the default configuration file (IDs will diffe
             <natLeaseMinutes>60</natLeaseMinutes>
             <natRenewalMinutes>30</natRenewalMinutes>
             <natTimeoutSeconds>10</natTimeoutSeconds>
-            <urAccepted>-1</urAccepted>
-            <urSeen>3</urSeen>
+            <urAccepted>0</urAccepted>
+            <urSeen>0</urSeen>
             <urUniqueID></urUniqueID>
             <urURL>https://data.syncthing.net/newdata</urURL>
             <urPostInsecurely>false</urPostInsecurely>
@@ -623,8 +623,8 @@ Options Element
         <natLeaseMinutes>60</natLeaseMinutes>
         <natRenewalMinutes>30</natRenewalMinutes>
         <natTimeoutSeconds>10</natTimeoutSeconds>
-        <urAccepted>-1</urAccepted>
-        <urSeen>3</urSeen>
+        <urAccepted>0</urAccepted>
+        <urSeen>0</urSeen>
         <urUniqueID></urUniqueID>
         <urURL>https://data.syncthing.net/newdata</urURL>
         <urPostInsecurely>false</urPostInsecurely>
