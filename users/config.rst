@@ -49,14 +49,14 @@ The following shows an example of the default configuration file (IDs will diffe
 
 .. code-block:: xml
 
-    <configuration version="26">
-        <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
-            <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
+    <configuration version="30">
+        <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
+            <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
             <minDiskFree unit="%">1</minDiskFree>
             <versioning></versioning>
             <copiers>0</copiers>
-            <pullers>0</pullers>
+            <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
             <hashers>0</hashers>
             <order>random</order>
             <ignoreDelete>false</ignoreDelete>
@@ -68,18 +68,26 @@ The following shows an example of the default configuration file (IDs will diffe
             <paused>false</paused>
             <weakHashThresholdPct>25</weakHashThresholdPct>
             <markerName>.stfolder</markerName>
+            <copyOwnershipFromParent>false</copyOwnershipFromParent>
+            <modTimeWindowS>0</modTimeWindowS>
         </folder>
         <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
             <paused>false</paused>
+            <autoAcceptFolders>false</autoAcceptFolders>
+            <maxSendKbps>0</maxSendKbps>
+            <maxRecvKbps>0</maxRecvKbps>
+            <maxRequestKiB>0</maxRequestKiB>
         </device>
         <gui enabled="true" tls="false" debugging="false">
             <address>127.0.0.1:8384</address>
             <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
             <theme>default</theme>
         </gui>
+        <ldap></ldap>
         <options>
-            <listenAddress>default</listenAddress>
+            <listenAddress>tcp://0.0.0.0:8384</listenAddress>
+            <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
             <globalAnnounceServer>default</globalAnnounceServer>
             <globalAnnounceEnabled>true</globalAnnounceEnabled>
             <localAnnounceEnabled>true</localAnnounceEnabled>
@@ -95,9 +103,9 @@ The following shows an example of the default configuration file (IDs will diffe
             <natLeaseMinutes>60</natLeaseMinutes>
             <natRenewalMinutes>30</natRenewalMinutes>
             <natTimeoutSeconds>10</natTimeoutSeconds>
-            <urAccepted>0</urAccepted>
-            <urSeen>0</urSeen>
-            <urUniqueID>LFWe2vn3</urUniqueID>
+            <urAccepted>-1</urAccepted>
+            <urSeen>3</urSeen>
+            <urUniqueID></urUniqueID>
             <urURL>https://data.syncthing.net/newdata</urURL>
             <urPostInsecurely>false</urPostInsecurely>
             <urInitialDelayS>1800</urInitialDelayS>
@@ -113,11 +121,16 @@ The following shows an example of the default configuration file (IDs will diffe
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
             <trafficClass>0</trafficClass>
-            <stunServer>default</stunServer>
-            <stunKeepaliveSeconds>24</stunKeepaliveSeconds>
             <defaultFolderPath>~</defaultFolderPath>
-            <minHomeDiskFreePct>0</minHomeDiskFreePct>
             <setLowPriority>true</setLowPriority>
+            <maxFolderConcurrency>0</maxFolderConcurrency>
+            <crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>
+            <crashReportingEnabled>true</crashReportingEnabled>
+            <stunKeepaliveStartS>180</stunKeepaliveStartS>
+            <stunKeepaliveMinS>20</stunKeepaliveMinS>
+            <stunServer>default</stunServer>
+            <databaseTuning>auto</databaseTuning>
+            <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
         </options>
     </configuration>
 
@@ -126,10 +139,11 @@ Configuration Element
 
 .. code-block:: xml
 
-    <configuration version="26">
+    <configuration version="30">
         <folder></folder>
         <device></device>
         <gui></gui>
+        <ldap></ldap>
         <options></options>
         <ignoredDevice>5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU</ignoredDevice>
         <ignoredFolder>bd7q3-zskm5</ignoredFolder>
@@ -160,13 +174,13 @@ Folder Element
 
 .. code-block:: xml
 
-    <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
-        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
+    <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
+        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
         <minDiskFree unit="%">1</minDiskFree>
         <versioning></versioning>
         <copiers>0</copiers>
-        <pullers>0</pullers>
+        <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
         <hashers>0</hashers>
         <order>random</order>
         <ignoreDelete>false</ignoreDelete>
@@ -178,6 +192,8 @@ Folder Element
         <paused>false</paused>
         <weakHashThresholdPct>25</weakHashThresholdPct>
         <markerName>.stfolder</markerName>
+        <copyOwnershipFromParent>false</copyOwnershipFromParent>
+        <modTimeWindowS>0</modTimeWindowS>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -346,10 +362,15 @@ Device Element
 
     <device id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
         <address>dynamic</address>
+        <paused>false</paused>
+        <autoAcceptFolders>false</autoAcceptFolders>
+        <maxSendKbps>0</maxSendKbps>
+        <maxRecvKbps>0</maxRecvKbps>
+        <maxRequestKiB>0</maxRequestKiB>
     </device>
-    <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false">
+    <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>tcp://192.0.2.1:22001</address>
-        <paused>true<paused>
+        <paused>true</paused>
         <allowedNetwork>192.168.0.0/16</allowedNetwork>
         <autoAcceptFolders>false</autoAcceptFolders>
         <maxSendKbps>100</maxSendKbps>
@@ -586,7 +607,8 @@ Options Element
 .. code-block:: xml
 
     <options>
-        <listenAddress>default</listenAddress>
+        <listenAddress>tcp://0.0.0.0:8384</listenAddress>
+        <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
         <globalAnnounceServer>default</globalAnnounceServer>
         <globalAnnounceEnabled>true</globalAnnounceEnabled>
         <localAnnounceEnabled>true</localAnnounceEnabled>
@@ -602,22 +624,34 @@ Options Element
         <natLeaseMinutes>60</natLeaseMinutes>
         <natRenewalMinutes>30</natRenewalMinutes>
         <natTimeoutSeconds>10</natTimeoutSeconds>
-        <urAccepted>0</urAccepted>
+        <urAccepted>-1</urAccepted>
+        <urSeen>3</urSeen>
         <urUniqueID></urUniqueID>
         <urURL>https://data.syncthing.net/newdata</urURL>
         <urPostInsecurely>false</urPostInsecurely>
         <urInitialDelayS>1800</urInitialDelayS>
         <restartOnWakeup>true</restartOnWakeup>
         <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
+        <upgradeToPreReleases>false</upgradeToPreReleases>
         <keepTemporariesH>24</keepTemporariesH>
         <cacheIgnoredFiles>false</cacheIgnoredFiles>
         <progressUpdateIntervalS>5</progressUpdateIntervalS>
         <limitBandwidthInLan>false</limitBandwidthInLan>
         <minHomeDiskFree unit="%">1</minHomeDiskFree>
-        <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
+        <releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>
         <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
+        <trafficClass>0</trafficClass>
         <defaultFolderPath>~</defaultFolderPath>
+        <setLowPriority>true</setLowPriority>
+        <maxFolderConcurrency>0</maxFolderConcurrency>
+        <crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>
+        <crashReportingEnabled>true</crashReportingEnabled>
+        <stunKeepaliveStartS>180</stunKeepaliveStartS>
+        <stunKeepaliveMinS>20</stunKeepaliveMinS>
+        <stunServer>default</stunServer>
+        <databaseTuning>auto</databaseTuning>
+        <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
     </options>
 
 The ``options`` element contains all other global configuration options.
