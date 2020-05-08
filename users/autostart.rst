@@ -17,6 +17,17 @@ Windows
 There is currently no official installer available for Windows. However,
 there are a number of easy solutions.
 
+Built-in solutions:
+
+- `Run at user log on or at system startup using Task Scheduler
+  <#task-scheduler>`__
+- `Run at user log on using Startup folder <#start-on-login>`__
+
+Other solutions:
+
+- `Install and run using third-party tools <#third-party-tools>`__
+- `Run as a service independent of user logon <#run-as-a-service-independent-of-user-login>`__
+
 Task Scheduler
 ~~~~~~~~~~~~~~
 
