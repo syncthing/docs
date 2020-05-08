@@ -20,32 +20,141 @@ there are a number of easy solutions.
 Task Scheduler
 ~~~~~~~~~~~~~~
 
-#. Start the `Task Scheduler <https://en.wikipedia.org/wiki/Windows_Task_Scheduler>`__ (``taskschd.msc``).
-#. Create a New Task ("Action" menu -> "Create Task...").
-#. General Tab:
-    #. Name the task (for example 'Syncthing').
-    #. Check "Run whether user is logged on or not".
-    #. (recommended) Check "Do not store password. The task will only have access to local resources". Leave this option unchecked if you intend to store your folders on network drives and such.
-#. Triggers Tab:
-    #. Click "New...".
-    #. Set "Begin the task" to "At Startup".
-    #. (optional) Choose a delay.
-    #. Make sure Enabled is checked.
-    #. Click "OK".
-#. Actions Tab:
-    #. Click "New...".
-    #. [Action] should be set as "Start a program".
-    #. Enter the path to syncthing.exe in "Program/Script".
-    #. (optional) Enter the path to the parent folder of syncthing.exe in "Start in (optional)". This will allow you to use paths relative to this folder in Syncthing.
-    #. Click "OK".
+Task Scheduler is a built-in administrative tool, which can be used to
+start Syncthing automatically either at user log on, or at system
+startup. In both cases, Syncthing will open and stay invisible in
+background.
+
+You can launch Task Scheduler by going to ``Start Menu > Windows
+Administrative Tools`` and clicking on ``Task Scheduler``
+
+|Windows Task Scheduler Start Menu Screenshot|
+
+or by opening ``taskschd.msc`` from the Run command (``Win+R``).
+
+|Windows Task Scheduler Run Screenshot|
+
+For technical information about Task Scheduler visit
+https://docs.microsoft.com/windows/win32/taskschd
+
+Run at user log on with Task Scheduler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This option will make Task Scheduler automatically start Syncthing when you
+log on, and end it when you log out of your account.
+
+#. Create a new Task ("Actions" sidebar > "Create Task...").
+
+   |Windows Task Scheduler Screenshot|
+
+#. General tab:
+
+   #. Name the task (for example "Syncthing").
+
+   |Windows Task Scheduler General Logon Screenshot|
+
+#. Triggers tab:
+
+   #. Click "New...".
+   #. Set "Begin the task:" to "At log on".
+   #. Select "Specific user:"
+   #. Click "OK".
+
+   |Windows Task Scheduler Triggers Logon Screenshot|
+
+#. Actions tab:
+
+   #. Click "New...".
+   #. Enter the path to ``syncthing.exe`` in "Program/script:" (for example
+      ``C:\syncthing\syncthing.exe``).
+   #. Enter ``-no-console -no-browser`` for "Add arguments (optional):"
+   #. Click "OK".
+
+   |Windows Task Scheduler Actions Logon Screenshot|
+
+#. Settings tab:
+
+   #. Uncheck "Stop task if it runs longer than:".
+   #. Click OK.
+
+   |Windows Task Scheduler Settings Screenshot|
+
+Run at system startup with Task Scheduler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This option makes Syncthing start as soon as Windows boots. It will run in
+background regardless of which user is logged on and using the computer.
+
+#. Create a new Task ("Action" menu -> "Create Task...").
+
+   |Windows Task Scheduler Screenshot|
+
+#. General tab:
+
+   #. Name the task (for example "Syncthing").
+   #. Check "Run whether user is logged on or not".
+   #. Check "Do not store password. The task will only have
+      access to local resources". Leave this option unchecked if you intend
+      to store your folders on network drives and such.
+
+   |Windows Task Scheduler General Startup Screenshot|
+
+#. Triggers tab:
+
+   #. Click "New...".
+   #. Set "Begin the task:" to "At startup".
+   #. Click "OK".
+
+   |Windows Task Scheduler Triggers Startup Screenshot|
+
+#. Actions tab:
+
+   #. Click "New...".
+   #. Enter the path to ``syncthing.exe`` in "Program/script:" (for example
+      ``C:\syncthing\syncthing.exe``).
+   #. Click "OK".
+
+   |Windows Task Scheduler Actions Startup Screenshot|
+
+#. Settings tab:
+
+   #. Uncheck "Stop task if it runs longer than:".
+   #. Click OK.
+   #. If prompted, enter password for the user.
+
+   |Windows Task Scheduler Settings Screenshot|
+
+Additional configuration in Task Scheduler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following settings are optional. They are not required for Syncthing to
+run properly, but can offer additional functionality. Feel free to make use
+of them depending on your needs.
+
 #. Conditions Tab:
-    #. (optional) Uncheck "Stop if the computer switches to battery power". Note that unchecking "Start the task only if the computer is on AC power" does not disable this option. Even if greyed out, it still applies, and has to be unchecked separately.
-    #. (optional) Uncheck "Start the task only if the computer is on AC power".
-    #. (optional) Check "Start only if the following network connection is available" and set to "Network". Use this option on a laptop, when you want Syncthing to start only on a wired Internet connection, and not on Wi-Fi. Note that once started, Syncthing will not stop running if the connection changes or becomes unavailable later.
-#. Settings Tab:
-    #. Clear checkbox from "Stop task if it runs longer than:".
-#. Click OK.
-#. If prompted, enter password for the user.
+
+   #. Uncheck "Stop if the computer switches to battery power". Note that
+      unchecking "Start the task only if the computer is on AC power" does
+      not disable this option. Even if greyed out, it still applies, and has
+      to be unchecked separately.
+   #. Uncheck "Start the task only if the computer is on AC power".
+   #. Check "Start only if the following network connection is available"
+      and set to "Network". Use this option on a laptop, when you want
+      Syncthing to start only on a wired Internet connection, and not on
+      Wi-Fi. Note that once started, Syncthing will not stop running if the
+      connection changes or becomes unavailable later.
+
+   |Windows Task Scheduler Conditions Screenshot|
+
+#. Actions Tab:
+
+   #. Select the previously created action and click "Edit...".
+   #. Enter the path to the parent folder of ``syncthing.exe`` in "Start in
+      (optional)". This will allow you to use paths relative to this folder
+      in Syncthing.
+   #. Click "OK".
+
+   |Windows Task Scheduler Actions Start in Screenshot|
 
 Third-party Tools
 ~~~~~~~~~~~~~~~~~
@@ -352,5 +461,17 @@ This will create an additional configuration file automatically and you
 can define (or overwrite) further service parameters like e.g.
 ``Environment=STTRACE=model``.
 
+.. |Windows Task Scheduler Screenshot| image:: windows-taskschd.png
+.. |Windows Task Scheduler Start Menu Screenshot| image:: windows-taskschd-startmenu.png
+.. |Windows Task Scheduler Run Screenshot| image:: windows-taskschd-run.png
+.. |Windows Task Scheduler General Logon Screenshot| image:: windows-taskschd-general-logon.png
+.. |Windows Task Scheduler General Startup Screenshot| image:: windows-taskschd-general-startup.png
+.. |Windows Task Scheduler Triggers Logon Screenshot| image:: windows-taskschd-triggers-logon.png
+.. |Windows Task Scheduler Triggers Startup Screenshot| image:: windows-taskschd-triggers-startup.png
+.. |Windows Task Scheduler Actions Logon Screenshot| image:: windows-taskschd-actions-logon.png
+.. |Windows Task Scheduler Actions Startup Screenshot| image:: windows-taskschd-actions-startup.png
+.. |Windows Task Scheduler Settings Screenshot| image:: windows-taskschd-settings.png
+.. |Windows Task Scheduler Conditions Screenshot| image:: windows-taskschd-conditions.png
+.. |Windows Task Scheduler Actions Start in Screenshot| image:: windows-taskschd-actions-startin.png
 .. |Windows NSSM Configuration Screenshot| image:: windows-nssm-config.png
 .. |Setup Screenshot| image:: st2.png
