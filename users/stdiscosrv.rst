@@ -205,20 +205,46 @@ allows:
 - Use of a subdomain name without requiring a port number added to the URL
 - Sharing an SSL certificate with multiple services on the same server
 
+Note that after this configuration, clients have to omit the :code`?id=...`
+parameter of the discovery server URL on their configuration. Client-side
+validation will be done by checking the visible proxy server's certificate.
+
 Requirements
 ^^^^^^^^^^^^
 
 - Run the discovery server using the -http flag  :code:`stdiscosrv -http`.
 - SSL certificate/key configured for the reverse proxy
-- The "X-Forwarded-For" http header must be passed through with the client's
+- The "X-Forwarded-For" HTTP header must be passed through with the client's
   real IP address
-- The "X-SSL-Cert" must be passed through with the PEM-encoded client SSL
-  certificate
+- The "X-SSL-Cert" HTTP header must be passed through with the PEM-encoded
+  client SSL certificate
 - The proxy must request the client SSL certificate but not require it to be
   signed by a trusted CA.
 
+Apache
+""""""
+Add the following lines to the configuration:
+
+.. code-block:: apache
+
+    SSLProxyEngine On
+    SSLVerifyClient optional_no_ca
+    # The following is required, otherwise syncthing-discosrv
+    # outputs 'no certificates' when a POST is issued on it
+    RequestHeader set X-SSL-Cert "%{SSL_CLIENT_CERT}s"
+    # Apparently the RemoteIPHeader directive is not really required.
+    # I couldn't understand why it is recommended for a simple reverse proxy
+    # with no other services in front.
+    # Using this would require using a2enmod remoteip
+    #RemoteIPHeader X-Forwarded-For
+
+See also the recommendations in the
+`Reverse Proxy Setup <https://docs.syncthing.net/users/reverseproxy.html>`__
+page.
+
+
 Nginx
-^^^^^
+"""""
 
 These three lines in the configuration take care of the last three requirements
 listed above:
