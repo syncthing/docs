@@ -219,8 +219,8 @@ Requirements
 - The "X-SSL-Cert" HTTP header must be passed through with the PEM-encoded
   client SSL certificate. This will be present in POST requests and may be empty
   in GET requests from clients. If you see syncthing-discosrv outputting
-  :code:`no certificates` when POSTs are issued on it, that's because the
-  proxy is not passing this header through.
+  :code:`no certificates` when receiving POST requests, that's because the proxy
+  is not passing this header through.
 - The proxy must request the client SSL certificate but not require it to be
   signed by a trusted CA.
 
@@ -311,7 +311,7 @@ configuration:
 For more details, see also the recommendations in the
 `Reverse Proxy Setup <https://docs.syncthing.net/users/reverseproxy.html>`__
 page. Note that that page is directed at setting up a proxy for the
-Syncthing WebUI. You should do the proper path and port adjustments to proxying
+Syncthing web UI. You should do the proper path and port adjustments to proxying
 the discovery server and your particular setup.
 
 
