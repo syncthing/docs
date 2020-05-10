@@ -205,43 +205,24 @@ allows:
 - Use of a subdomain name without requiring a port number added to the URL
 - Sharing an SSL certificate with multiple services on the same server
 
-Note that after this configuration, clients have to omit the :code`?id=...`
-parameter of the discovery server URL on their configuration. Client-side
-validation will be done by checking the visible proxy server's certificate.
+Note that after this configuration, **clients have to omit the** :code:`?id=...`
+**parameter from the discovery server URL on their configuration**. Client-side
+validation will be done by checking the visible proxy server's HTTPS certificate.
 
 Requirements
 ^^^^^^^^^^^^
 
-- Run the discovery server using the -http flag  :code:`stdiscosrv -http`.
+- Run the discovery server using the -http flag: :code:`stdiscosrv -http`.
 - SSL certificate/key configured for the reverse proxy
 - The "X-Forwarded-For" HTTP header must be passed through with the client's
   real IP address
 - The "X-SSL-Cert" HTTP header must be passed through with the PEM-encoded
-  client SSL certificate
+  client SSL certificate. This will be present in POST requests and may be empty
+  in GET requests from clients. If you see syncthing-discosrv outputting
+  :code:`no certificates` when POSTs are issued on it, that's because the
+  proxy is not passing this header through.
 - The proxy must request the client SSL certificate but not require it to be
   signed by a trusted CA.
-
-Apache
-""""""
-Add the following lines to the configuration:
-
-.. code-block:: apache
-
-    SSLProxyEngine On
-    SSLVerifyClient optional_no_ca
-    # The following is required, otherwise syncthing-discosrv
-    # outputs 'no certificates' when a POST is issued on it
-    RequestHeader set X-SSL-Cert "%{SSL_CLIENT_CERT}s"
-    # Apparently the RemoteIPHeader directive is not really required.
-    # I couldn't understand why it is recommended for a simple reverse proxy
-    # with no other services in front.
-    # Using this would require using a2enmod remoteip
-    #RemoteIPHeader X-Forwarded-For
-
-See also the recommendations in the
-`Reverse Proxy Setup <https://docs.syncthing.net/users/reverseproxy.html>`__
-page.
-
 
 Nginx
 """""
@@ -305,6 +286,35 @@ Server and Syncthing using Nginx, `Let's Encrypt`_ and Docker can be found here_
 
 .. _Let's Encrypt: https://letsencrypt.org/
 .. _here: https://forum.syncthing.net/t/docker-syncthing-and-syncthing-discovery-behind-nginx-reverse-proxy-with-lets-encrypt/6880
+
+
+Apache
+""""""
+The following lines must be added to the configuration:
+
+.. code-block:: apache
+
+    SSLProxyEngine On
+    SSLVerifyClient optional_no_ca
+    RequestHeader set X-SSL-Cert "%{SSL_CLIENT_CERT}s"
+
+The following was observed to not be required at least under
+Apache httpd 2.4.38, as the proxy module adds the needed header by default.
+If you need to explicitly add the following directive, make sure to issue
+:code:`a2enmod remoteip` first. Then, add the following to your Apache httpd
+configuration:
+
+.. code-block:: apache
+
+    RemoteIPHeader X-Forwarded-For
+
+For more details, see also the recommendations in the
+`Reverse Proxy Setup <https://docs.syncthing.net/users/reverseproxy.html>`__
+page. Note that that page is directed at setting up a proxy for the
+Syncthing WebUI. You should do the proper path and port adjustments to proxying
+the discovery server and your particular setup.
+
+
 
 See Also
 --------
