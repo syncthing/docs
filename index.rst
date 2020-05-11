@@ -48,6 +48,13 @@ Contact
    dev/index
    specs/index
 
+Thanks
+------
+
+We thank all the documentation contributors for their hard work:
+
+.. include:: thanks.txt
+
 .. _`contribution guidelines`: https://github.com/syncthing/syncthing/blob/master/CONTRIBUTING.md
 .. _Github: https://github.com/syncthing/docs
 .. _`issue tracker`: https://github.com/syncthing/syncthing/issues
