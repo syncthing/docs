@@ -45,23 +45,23 @@ What things are synced?
 
 The following things are *always* synchronized:
 
--  File Contents
--  File Modification Times
+-  File contents
+-  File modification times
 
 The following may be synchronized or not, depending:
 
--  File Permissions (When supported by file system. On Windows, only the
-   read only bit is synchronized.)
--  Symbolic Links (synced, except on Windows, but never followed.)
+-  File permissions (when supported by file system; on Windows only the
+   read only bit is synchronized)
+-  Symbolic links (synced, except on Windows, but never followed)
 
 The following are *not* synchronized;
 
--  File or Directory Owners and Groups (not preserved)
--  Directory Modification Times (not preserved)
--  Hard Links (followed, not preserved)
--  Extended Attributes, Resource Forks (not preserved)
+-  File or directory owners and Groups (not preserved)
+-  Directory modification times (not preserved)
+-  Hard links and Windows directory junctions (followed, not preserved)
+-  Extended attributes, resource forks (not preserved)
 -  Windows, POSIX or NFS ACLs (not preserved)
--  Devices, FIFOs, and Other Specials (ignored)
+-  Devices, FIFOs, and other specials (ignored)
 -  Sparse file sparseness (will become sparse, when supported by the OS & filesystem)
 
 Is synchronization fast?
