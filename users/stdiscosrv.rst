@@ -205,17 +205,22 @@ allows:
 - Use of a subdomain name without requiring a port number added to the URL
 - Sharing an SSL certificate with multiple services on the same server
 
-Note that after this configuration, **clients have to omit the** :code:`?id=...`
-**parameter from the discovery server URL on their configuration**. Client-side
-validation will be done by checking the visible proxy server's HTTPS certificate.
+Note that after this configuration, if the proxy uses a valid HTTPS
+certificate, **clients should omit the** :code:`?id=...` **parameter from the
+discovery server URL on their configuration**. Client-side validation will be
+done by checking the visible proxy server's HTTPS certificate. If, however, the
+proxy uses a self-signed or somehow invalid certificate, clients must still set
+the :code:`?id=...` parameter with the computed hash of the proxy's
+certificate. Using such setup is discouraged and is not covered in this page.
+Always favour using valid and widely recognised certificates.
 
 Requirements
 ^^^^^^^^^^^^
 
 - Run the discovery server using the -http flag: :code:`stdiscosrv -http`.
-- SSL certificate/key configured for the reverse proxy
+- SSL certificate/key configured for the reverse proxy.
 - The "X-Forwarded-For" HTTP header must be passed through with the client's
-  real IP address
+  real IP address.
 - The "X-SSL-Cert" HTTP header must be passed through with the PEM-encoded
   client SSL certificate. This will be present in POST requests and may be empty
   in GET requests from clients. If you see syncthing-discosrv outputting
