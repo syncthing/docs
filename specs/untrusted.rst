@@ -1,3 +1,5 @@
+.. _untrusted:
+
 Untrusted Device Encryption
 ===========================
 
@@ -69,6 +71,16 @@ appended to the nonce itself::
 
 The original file metadata descriptor is encrypted in the same manner and
 attached to the encrypted-file metadata.
+
+Devices sharing a folder need to use the same password.
+To ensure that a *password token* in the form of an arbitrary, but commonly
+known string encrypted using AES-SIV with the folder key is sent in the
+:ref:`cluster-config`::
+
+    passwordToken = AES-SIV("syncthing" + folderID, folderKey)
+
+Thus an encrypted device can verify all its connected devices use the same
+password comparing the encrypted token, without knowing the password itself.
 
 .. note::
 
