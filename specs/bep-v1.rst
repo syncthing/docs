@@ -213,6 +213,8 @@ protocol buffer message just as in the uncompressed case.
 Message Subtypes
 ----------------
 
+.. _cluster-config:
+
 Cluster Config
 ^^^^^^^^^^^^^^
 
@@ -258,6 +260,7 @@ Protocol Buffer Schema
         bool            introducer                 = 7;
         uint64          index_id                   = 8;
         bool            skip_introduction_removals = 9;
+        bytes           enc_pw_token               = 10;
     }
 
     enum Compression {
@@ -338,6 +341,12 @@ index data. See :ref:`deltaidx` for the usage of this field.
 The **skip introduction removals** field signifies if the remote device has
 opted to ignore introduction removals for the given device. This setting is
 copied across as we are being introduced to a new device.
+
+The **enc pw token** field contains a token derived from the password, that is
+used to encrypt data sent to this device. If the device is the same as the
+device sending the message, it signifies that the device itself has encrypted
+data that was encrypted with the given token. It is empty or missing if there is
+no encryption. See :ref:`untrusted` for details on the encryption scheme.
 
 Index and Index Update
 ^^^^^^^^^^^^^^^^^^^^^^
