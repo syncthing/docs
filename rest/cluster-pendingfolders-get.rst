@@ -1,4 +1,4 @@
-GET /rest/cluster/pendingFolders
+GET /rest/cluster/pendingfolders
 ================================
 
 .. versionadded:: 1.FIXME

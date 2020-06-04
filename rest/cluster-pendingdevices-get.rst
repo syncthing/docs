@@ -1,4 +1,4 @@
-GET /rest/cluster/pendingDevices
+GET /rest/cluster/pendingdevices
 ================================
 
 .. versionadded:: 1.FIXME
