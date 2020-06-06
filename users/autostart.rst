@@ -46,9 +46,9 @@ https://docs.microsoft.com/windows/win32/taskschd.
 #. Triggers tab:
 
    Syncthing can be set up to start either at user log on, or at system
-   startup. Pick your preferred method and follow the instructions for
-   each below. If unsure, read the explanations underneath each of the
-   two options.
+   startup. Pick your preferred method and follow the instructions
+   below. If unsure, read the explanations underneath each of the two
+   options.
 
    - Run at user log on
 
