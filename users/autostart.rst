@@ -19,14 +19,15 @@ there are a number of easy solutions.
 
 Built-in solutions:
 
-- `Run at user log on or at system startup using Task Scheduler
-  <#task-scheduler>`__
-- `Run at user log on using Startup folder <#start-on-login>`__
+- :ref:`Run at user log on or at system startup using Task Scheduler <autostart-windows-taskschd>`
+- :ref:`Run at user log on using the Startup folder <autostart-windows-startup>`
 
 Other solutions:
 
-- `Install and run using third-party tools <#third-party-tools>`__
-- `Run as a service independent of user logon <#run-as-a-service-independent-of-user-login>`__
+- :ref:`Install and run using third-party tools <autostart-windows-tools>`
+- :ref:`Run as a service independent of user log on <autostart-windows-service>`
+
+.. _autostart-windows-taskschd:
 
 Task Scheduler
 ~~~~~~~~~~~~~~
@@ -137,6 +138,8 @@ make selective use of them depending on your needs.
 
    |Windows Task Scheduler Additional Actions Screenshot|
 
+.. _autostart-windows-tools:
+
 Third-party Tools
 ~~~~~~~~~~~~~~~~~
 
@@ -147,6 +150,8 @@ a "proper" Windows application, rather than forcing you to start your
 browser to interact with Syncthing).
 
 .. seealso:: :ref:`Windows GUI Wrappers <contrib-windows>`, :ref:`Cross-platform GUI Wrappers <contrib-all>`.
+
+.. _autostart-windows-startup:
 
 Run at user log on using the Startup folder
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -180,6 +185,8 @@ Syncthing will now automatically start the next time you log on to your
 user account in Windows. No console or browser window will pop-up, but
 you can still access the interface by opening http://localhost:8384 in
 a Web browser.
+
+.. _autostart-windows-service:
 
 Run as a service independent of user login
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
