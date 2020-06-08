@@ -158,7 +158,7 @@ opening on start, is relatively easy.
 
 #. Enter the path to ``syncthing.exe`` in "Type the location of the item:"
    followed by ``-no-console -no-browser`` (for example ``C:\syncthing\syncthing.exe
-   -no-console -no-browser``)
+   -no-console -no-browser``).
 
    |Windows Startup Folder Create Shortcut Screenshot|
 
