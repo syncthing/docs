@@ -29,8 +29,8 @@ Other solutions:
 
 .. _autostart-windows-taskschd:
 
-Task Scheduler
-~~~~~~~~~~~~~~
+Run at user log on or at system startup using Task Scheduler
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Task Scheduler is a built-in administrative tool, which can be used to
 start Syncthing automatically either at user log on, or at system
