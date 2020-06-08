@@ -137,40 +137,38 @@ browser to interact with Syncthing).
 
 .. seealso:: :ref:`Windows GUI Wrappers <contrib-windows>`, :ref:`Cross-platform GUI Wrappers <contrib-all>`.
 
-Start on Login
-~~~~~~~~~~~~~~
+Run at user log on using the Startup folder
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Starting Syncthing on login, without a console window or browser opening
-on start, is relatively easy.
+Starting Syncthing at user log on, without a console window or browser
+opening on start, is relatively easy.
 
-#. Find the correct link of the Windows binary from the `Syncthing
-   website <https://github.com/syncthing/syncthing/releases>`__ (choose
-   **amd64** if you have a 64-bit version of Windows)
-#. Extract the files in the folder (``syncthing-windows-*``) in the zip
-   to the folder ``C:\syncthing``
-#. Go to the ``C:\syncthing`` folder, make a file named
-   ``syncthing.bat``
-#. Right-click the file and choose **Edit**. The file should open in
-   Notepad or your default text editor.
-#. Paste the following command into the file and save the changes:
-   ``start "Syncthing" syncthing.exe -no-console -no-browser``
-#. Right-click on ``syncthing.bat`` and press "Create Shortcut"
-#. Right-click the shortcut file ``syncthing.bat - Shortcut`` and click
-   **Copy**
-#. Click **Start**, click **All Programs**, then click **Startup**.
-   Right-click on **Startup** then click **Open**.
-   |Setup Screenshot|
-#. Paste the shortcut (right-click in the folder and choose **Paste**,
-   or press ``CTRL+V``)
+#. Copy and paste ``%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup``
+   into the Address Bar in Windows Explorer, and press Enter.
 
-Syncthing will now automatically start the next time you open a new Windows session. No
-console or browser window will pop-up. Access the interface by browsing
-to http://localhost:8384/
+   |Windows Startup Folder Address Bar Screenshot|
 
-If you prefer slower indexing but a more responsive system during scans,
-copy the following command instead of the command in step 5::
+   Alternatively, in newer versions of Windows, open ``shell:startup``
+   from the Run command (``Win+R``).
 
-    start "Syncthing" /low syncthing.exe -no-console -no-browser
+#. Right-click empty space in the folder and choose "New", and then
+   "Shortcut".
+
+   |Windows Startup Folder New Shortcut Screenshot|
+
+#. Enter the path to ``syncthing.exe`` in "Type the location of the item:"
+   followed by ``-no-console -no-browser`` (for example ``C:\syncthing\syncthing.exe
+   -no-console -no-browser``).
+
+   |Windows Startup Folder Create Shortcut Screenshot|
+
+#. Click "Next".
+#. Click "Finish".
+
+Syncthing will now automatically start the next time you log on to your
+user account in Windows. No console or browser window will pop-up, but
+you can still access the interface by opening http://localhost:8384 in
+a Web browser.
 
 Run as a service independent of user login
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -439,5 +437,7 @@ can define (or overwrite) further service parameters like e.g.
 .. |Windows Task Scheduler Settings Screenshot| image:: windows-taskschd-settingstab.png
 .. |Windows Task Scheduler Additional Conditions Screenshot| image:: windows-taskschd-additional-conditions.png
 .. |Windows Task Scheduler Additional Actions Screenshot| image:: windows-taskschd-additional-actions.png
+.. |Windows Startup Folder Address Bar Screenshot| image:: windows-startup-addressbar.png
+.. |Windows Startup Folder New Shortcut Screenshot| image:: windows-startup-newshortcut.png
+.. |Windows Startup Folder Create Shortcut Screenshot| image:: windows-startup-createshortcut.png
 .. |Windows NSSM Configuration Screenshot| image:: windows-nssm-config.png
-.. |Setup Screenshot| image:: st2.png
