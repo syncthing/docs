@@ -9,30 +9,25 @@ parameter to only return folders offered by a specific remote device.
 
 .. code-block:: json
 
-    [
-      {
-	"id": "cpkn4-57ysy",
-	"offeredBy": [
-	  {
-	    "deviceID": "...",
+    {
+      "cpkn4-57ysy": {
+	"offeredBy": {
+	  "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2": {
 	    "time": "2020-03-18T11:43:07+01:00",
 	    "label": "Joe's folder"
 	  },
-	  {
-	    "deviceID": "...",
+	  "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
 	    "time": "2020-03-01T10:12:13+01:00",
 	    "label": "Jane's and Joe's folder"
 	  }
-	]
+	}
       },
-      {
-	"id": "abcde-fghij",
-	"offeredBy": [
-	  {
-	    "deviceID": "...",
+      "abcde-fghij": {
+	"offeredBy": {
+	  "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2": {
 	    "time": "2020-03-18T11:43:07+01:00",
 	    "label": "MyPics"
 	  }
-	]
+	}
       }
-    ]
+    }
