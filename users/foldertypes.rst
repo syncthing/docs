@@ -18,7 +18,7 @@ A folder can be set in "send only mode" among the folder settings.
 
 .. image:: foldersendonly.png
 
-The intention is for this to be used on devices where a "master copy" of
+The intention is for this to be used on devices where a "reference copy" of
 files are kept - where the files are not expected to be changed on other
 devices or where such changes would be undesirable.
 

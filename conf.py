@@ -37,7 +37,7 @@ extensions = [
 ]
 
 edit_on_github_project = 'syncthing/docs'
-edit_on_github_branch = 'master'
+edit_on_github_branch = 'main'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -335,6 +335,6 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
 
-scv_whitelist_branches = ('master',)
+scv_whitelist_branches = ('main',)
 scv_whitelist_tags = (re.compile(r'^v1\.\d+\.\d+$'),)
 scv_sort = ('semver',)

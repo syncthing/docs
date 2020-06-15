@@ -6,7 +6,7 @@ Prerequisites
 
 - About ten minutes to half an hour of free time.
 
-- The master branch in a clean and buildable state, full of commits you are proud of and know the users will love. This is of course the default state at any given time.
+- The main branch in a clean and buildable state, full of commits you are proud of and know the users will love. This is of course the default state at any given time.
 
 - A normal computer (real or virtual) that has a command line and can run bash scripts. Macs and Linux boxes are good choices here. If you know what you're doing I'm sure it's entirely possible to do it on Windows as well - but then you're on your own. In a pinch you can use ``secure.syncthing.net`` as it has all the required tools installed, although you'll need to add your git config, keys etc.
 
@@ -56,14 +56,14 @@ Use the change log from the corresponding release candidate, just change the ver
 Prepare the Release Branch
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Releases come from the ``release`` branch. If you are making a new candidate release you will want to fast forward ``release`` to point at current ``master`` ``HEAD``. If you are making a stable release from the latest RC the ``release`` branch is already in the right place.
+Releases come from the ``release`` branch. If you are making a new candidate release you will want to fast forward ``release`` to point at current ``main`` ``HEAD``. If you are making a stable release from the latest RC the ``release`` branch is already in the right place.
 
 .. code-block:: bash
 
     $ git checkout release
-    $ git merge --ff-only master
+    $ git merge --ff-only main
 
-If there's been some funky business with the ``release`` branch and it can't be fast forwarded to ``master``, 1) the previous release manager screwed up, 2) don't do a merge, just reset the branch to the right place.
+If there's been some funky business with the ``release`` branch and it can't be fast forwarded to ``main``, 1) the previous release manager screwed up, 2) don't do a merge, just reset the branch to the right place.
 
 Don't push the branch yet, we want to create the tag first.
 
@@ -141,7 +141,7 @@ Stable Releases - Optionally, tweet it
 
 If you have the Twitter account and the release isn't a cake-in-your-face screwup fix that you'd rather no one ever heard about and want to just silently roll out to everyone during the night.
 
-Merge Release Into Master
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Merge Release Into Main
+~~~~~~~~~~~~~~~~~~~~~~~
 
-If this was a non-first candidate release with cherry picked commits on it, merge ``release`` back into ``master`` and push ``master``.
+If this was a non-first candidate release with cherry picked commits on it, merge ``release`` back into ``main`` and push ``main``.

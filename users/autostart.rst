@@ -289,7 +289,7 @@ Using the Desktop Environment (KDE, Gnome, Xfce, Cinnamon, ...)
 You can make Syncthing start when you log into your desktop environment (DE) in
 two ways.
 
-Using DE tools:  
+Using DE tools:
 
 #. Search for and launch a tool related to autostart or startup applications.
 #. Add a new autostart application and search for and choose "Start Syncthing".
@@ -303,7 +303,7 @@ manually:
 #. Copy ``syncthing-start.desktop`` to ``~/.config/autostart/``.
 
 For more information relating to ``.desktop`` files e.g. for application menus,
-refer to https://github.com/syncthing/syncthing/tree/master/etc/linux-desktop.
+refer to https://github.com/syncthing/syncthing/tree/main/etc/linux-desktop.
 
 
 Using Supervisord
@@ -343,7 +343,7 @@ ability to manage services under the user's control with a per-user
 systemd instance, enabling users to start, stop, enable, and disable
 their own units. Service files for systemd are provided by Syncthing and
 can be found in this Git location:
-`etc/linux-systemd <https://github.com/syncthing/syncthing/tree/master/etc/linux-systemd>`_.
+`etc/linux-systemd <https://github.com/syncthing/syncthing/tree/main/etc/linux-systemd>`_.
 
 You have two primary options: You can set up Syncthing as a system service, or a
 user service.
@@ -358,7 +358,7 @@ user has logged into the system (e.g., via the graphical login screen, or ssh).
 Thus, the user service is intended to be used on a *(multiuser) desktop
 computer*. It avoids unnecessarily running Syncthing instances.
 
-The official `Debian/Ubuntu Syncthing repository <https://syncthing.net/downloads/#debian--ubuntu-packages>`__, and 
+The official `Debian/Ubuntu Syncthing repository <https://syncthing.net/downloads/#debian--ubuntu-packages>`__, and
 several distros (including Arch Linux) ship these service files along with
 the Syncthing package. If your distro provides the systemd service files for
 Syncthing, you can skip step #2 when you're setting up either the system service

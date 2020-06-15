@@ -395,7 +395,7 @@ To add e.g. a red theme, you can create the file ``red/assets/css/theme.css``
 inside the GUI override directory to override the default CSS styles.
 
 To create a whole new GUI, you should checkout the files at
-https://github.com/syncthing/syncthing/tree/master/gui/default
+https://github.com/syncthing/syncthing/tree/main/gui/default
 to get an idea how to do that.
 
 
@@ -477,7 +477,7 @@ How do I run Syncthing as a daemon process on Linux?
 ----------------------------------------------------
 
 If you're using systemd, runit, or upstart, we already ship examples, check
-https://github.com/syncthing/syncthing/tree/master/etc for example
+https://github.com/syncthing/syncthing/tree/main/etc for example
 configurations.
 
 If however you're not using one of these tools, you have a couple of options.

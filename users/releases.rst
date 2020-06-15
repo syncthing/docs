@@ -89,7 +89,7 @@ What's the relationship between candidate and release exactly?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Every new feature and bugfix begins its life in the development branch,
-``master``. Once a month the current ``master`` becomes a *release
+``main``. Once a month the current ``main`` becomes a *release
 candidate*. This version is identified by "-rc" in it's name, for example
 ``v1.5.0-rc.1``.
 
@@ -97,14 +97,14 @@ Those running the candidate channel will update to this release candidate.
 For the next three weeks it is tested "in the wild". Any new, serious issues
 that are discovered are fixed, and new release candidates ``v1.5.0-rc.2`` etc
 are created as needed. These release candidates do not include any new
-features or non-essential bugfixes added to ``master`` in the meantime.
+features or non-essential bugfixes added to ``main`` in the meantime.
 
 Stable releases are given version numbers without any suffix - ``v1.5.0``.
 Unless any serious issues were discovered, this release is exactly identical
 to the "-rc.1" release candidate three weeks prior.
 
 The cycle then restarts one week later with a new release candidate based on
-the current ``master`` branch.
+the current ``main`` branch.
 
 Which bugfixes trigger a new release candidate?
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

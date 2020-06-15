@@ -54,7 +54,7 @@ You can then verify that the ports mentioned above are allowed::
     sudo ufw status verbose
 
 In case you installed Syncthing manually you can follow the `instructions to manually add the syncthing preset
-<https://github.com/syncthing/syncthing/tree/master/etc/firewall-ufw>`__ to ufw.
+<https://github.com/syncthing/syncthing/tree/main/etc/firewall-ufw>`__ to ufw.
 
 Firewalld
 ~~~~~~~~~

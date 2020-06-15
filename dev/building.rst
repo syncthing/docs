@@ -17,12 +17,12 @@ Building Syncthing
 Branches and Tags
 -----------------
 
-You should base your work on the ``master`` branch when doing your
+You should base your work on the ``main`` branch when doing your
 development. This branch is usually what will be going into the next
 release and always what pull requests should be based on.
 
 If you're looking to build and package a release of Syncthing you should
-instead use the latest tag (``vX.Y.Z``) as the contents of ``master``
+instead use the latest tag (``vX.Y.Z``) as the contents of ``main``
 may be unstable and unsuitable for general consumption.
 
 Prerequisites
