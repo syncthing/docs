@@ -193,6 +193,10 @@ Folder Element
         <markerName>.stfolder</markerName>
         <copyOwnershipFromParent>false</copyOwnershipFromParent>
         <modTimeWindowS>0</modTimeWindowS>
+        <maxConcurrentWrites>2</maxConcurrentWrites>
+        <disableFsync>false</disableFsync>
+        <blockPullOrder>standard</blockPullOrder>
+        <copyRangeMethod>standard</copyRangeMethod>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -340,6 +344,99 @@ weakHashThresholdPct
 markerName
     Name of a directory or file in the folder root to be used as
     :ref:`marker-faq`. Default is ".stfolder".
+
+copyOwnershipFromParent
+    On Unix systems, tries to copy file/folder ownership from the parent directory (the directory it's located in).
+    Requires running Syncthing as privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux).
+
+modTimeWindowS
+    Allowed modification timestamp difference when comparing local and remote file for equivalence.
+    To be used on systems that have unstable modification timestamps, that might change after being observed after
+    the last write operation. Used in Android only.
+
+maxConcurrentWrites
+    Maximum number of concurrent write operations while syncing. Defaults to 2. Increasing this might increase or
+    decrease disk performance, depending on the underlying storage.
+
+disableFsync
+    Disables committing file operations to disk before recording them in the database.
+    Can lead to data corruption if disabled.
+
+blockPullOrder
+    Order in which parts of a file are downloaded. This option controls how quickly the different parts of the
+    file spread between the connected devices, at the cost of causing strain on the storage.
+
+    Available options:
+
+    standard (default):
+        The file is split into N equal continuous part sequences, where N is the number of connected
+        devices, each device starts downloading it's own sequence, after which it picks other devices
+        sequence at random. Provides acceptable data distribution, minimal spinning disk strain.
+
+    random:
+        File parts are downloaded in a random order. Provides great data distribution, but very taxing on
+        spinning disk drives
+
+    inOrder:
+        File parts are downloaded sequentially, from start to finish. Spinning disk drive friendly, but provides
+        no improvements to data distribution.
+
+copyRangeMethod
+    Provides an choice of method for copying data between files. This can be used to optimise copies on network
+    filesystems, improve speed of large copies or clone the data using copy-on-write functionality if the underlying
+    filesystem supports it.
+
+    .. warning::
+        This is an experimental feature, so please use at your own risk.
+
+    standard (default)
+        Reads the data from source file into application memory, writes the data from application memory into the
+        destination file.
+
+        Available on: All platforms
+
+    copy_file_range
+        Uses copy_file_range syscall, which if underlying filesystem supports, uses copy-on-write semantics to
+        clone the data. Introduced in Linux 4.5 and tested on XFS and BTRFS. Some network filesystems might use this
+        to perform server-side copies.
+
+        Tested on: BTRFS, XFS
+        Available on: Linux
+
+    ioctl
+        Uses ioctl syscall with FICLONERANGE option, which if underlying filesystem supports, uses copy-on-write
+        semantics to clone the data. Officially introduced in Linux 4.5, but was previously known as
+        BTRFS_IOC_CLONE_RANGE, which was used to provide copy-on-write semantics to BTRFS filesystems since Linux 2.6.29.
+        Some network filesystems might use this to perform server-side copies. Will fail if not supported by the
+        underlying filesystem.
+
+        Tested on: BTRFS
+        Not available on: Windows, Solaris, Darwin (OS X)
+
+    sendfile
+        Uses sendfile syscall, which performs in-kernel copy, avoiding having to copy the data into application memory.
+
+        Tested on: BTRFS, XFS
+        Not available on: Windows, Darwin (OS X)
+
+    duplicate_extents
+        Uses Windows Block Cloning via FSCTL_DUPLICATE_EXTENTS_TO_FILE, which provides copy-on-write semantics to clone
+        the data. Requires Windows Server 2016 or later, and a compatible filesystem (ReFS, SMB 3.1.1, CsvFS). Will
+        fail if not supported by the underlying filesystem.
+
+        .. warning::
+            Completely untested, use at your own risk.
+
+        Available on: Windows
+
+    all
+        Tries all of the copy methods in the following order: ioctl, copy_file_range, sendfile, duplicate_extents,
+        standard.
+
+        Available on: All platforms
+
+        .. warning::
+            Not recommended on Windows as it has not been tested, might be very costly on all other platforms.
 
 fsync
     .. deprecated:: v0.14.37
