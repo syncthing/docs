@@ -68,7 +68,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <weakHashThresholdPct>25</weakHashThresholdPct>
             <markerName>.stfolder</markerName>
             <copyOwnershipFromParent>false</copyOwnershipFromParent>
-            <modTimeWindowS>0</modTimeWindowS>                    
+            <modTimeWindowS>0</modTimeWindowS>
             <maxConcurrentWrites>2</maxConcurrentWrites>
             <disableFsync>false</disableFsync>
             <blockPullOrder>standard</blockPullOrder>
