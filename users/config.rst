@@ -371,7 +371,7 @@ disableFsync
     Disabling fsync can lead to data corruption.
 
 blockPullOrder
-    Order in which parts of a file are downloaded. This option controls how quickly the different parts of the
+    Order in which the blocks of a file are downloaded. This option controls how quickly different parts of the
     file spread between the connected devices, at the cost of causing strain on the storage.
 
     Available options:
@@ -382,11 +382,11 @@ blockPullOrder
         sequences at random. Provides acceptable data distribution and minimal spinning disk strain.
 
     random:
-        File parts are downloaded in a random order. Provides great data distribution, but very taxing on
+        The blocks of a file are downloaded in a random order. Provides great data distribution, but very taxing on
         spinning disk drives.
 
     inOrder:
-        File parts are downloaded sequentially, from start to finish. Spinning disk drive friendly, but provides
+        The blocks of a file are downloaded sequentially, from start to finish. Spinning disk drive friendly, but provides
         no improvements to data distribution.
 
 copyRangeMethod
