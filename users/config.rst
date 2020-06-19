@@ -354,7 +354,7 @@ copyOwnershipFromParent
     Requires running Syncthing as privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux).
 
 modTimeWindowS
-    Allowed modification timestamp difference when comparing local and remote file for equivalence.
+    Allowed modification timestamp difference when comparing files for equivalence.
     To be used on systems that have unstable modification timestamps, that might change after being observed after
     the last write operation. Used in Android only.
 
@@ -363,8 +363,12 @@ maxConcurrentWrites
     decrease disk performance, depending on the underlying storage.
 
 disableFsync
+
+    .. warning::
+        This is a known insecure option - use at your own risk.
+
     Disables committing file operations to disk before recording them in the database.
-    Can lead to data corruption if disabled.
+    Disabling fsync can lead to data corruption.
 
 blockPullOrder
     Order in which parts of a file are downloaded. This option controls how quickly the different parts of the
@@ -373,20 +377,20 @@ blockPullOrder
     Available options:
 
     standard (default):
-        The file is split into N equal continuous part sequences, where N is the number of connected
-        devices, each device starts downloading it's own sequence, after which it picks other devices
-        sequence at random. Provides acceptable data distribution, minimal spinning disk strain.
+        The blocks of a file are split into N equal continuous sequences, where N is the number of connected
+        devices. Each device starts downloading it's own sequence, after which it picks other devices
+        sequences at random. Provides acceptable data distribution and minimal spinning disk strain.
 
     random:
         File parts are downloaded in a random order. Provides great data distribution, but very taxing on
-        spinning disk drives
+        spinning disk drives.
 
     inOrder:
         File parts are downloaded sequentially, from start to finish. Spinning disk drive friendly, but provides
         no improvements to data distribution.
 
 copyRangeMethod
-    Provides an choice of method for copying data between files. This can be used to optimise copies on network
+    Provides a choice of method for copying data between files. This can be used to optimise copies on network
     filesystems, improve speed of large copies or clone the data using copy-on-write functionality if the underlying
     filesystem supports it.
 
