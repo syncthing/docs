@@ -82,6 +82,22 @@ then you should be getting the *stable* channel. If you get a release
 candidate you should complain to your distributor or vendor and refer them
 to this page.
 
+Nightly Builds
+--------------
+
+It's also possible to run the nightly development builds. These are not
+releases in any sense of the word, they are simply builds of the current
+``main`` branch of the repository. These builds are not supported and may
+contain functionality that is changed or improved before the actual release.
+
+To use nightly releases, in Advanced Settings -> Options,
+
+- Change "Releases URL" to ``https://upgrades.syncthing.net/nightly.json``
+- Enable "Upgrade To Pre Releases"
+
+Restart Syncthing and it will upgrade to the latest nightly. New nightlies
+are published at midnight UTC.
+
 FAQ
 ~~~
 
