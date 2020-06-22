@@ -284,7 +284,7 @@ the brackets, like so: ``q\[abc\]x``.
 
 On Windows, escaping special characters is not supported as the ``\``
 character is used as a path separator. On the other hand, special characters
-such as ``[`` and ``?`` are not allowed in file names on Windows.
+such as ``?`` are not allowed in file names on Windows. 
 
 Why is the setup more complicated than BitTorrent/Resilio Sync?
 ---------------------------------------------------------------
