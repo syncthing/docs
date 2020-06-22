@@ -88,7 +88,7 @@ Nightly Builds
 It's also possible to run the nightly development builds. These are not
 releases in any sense of the word, they are simply builds of the current
 ``main`` branch of the repository. These builds are not supported and may
-contain functionality that is changed or improved before the actual release.
+contain functionality that is changed or removed before the actual release.
 
 To use nightly releases, in Advanced Settings -> Options,
 
