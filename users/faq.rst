@@ -234,8 +234,8 @@ Does Syncthing support syncing between folders on the same system?
 
 No. Syncthing is not designed to sync locally and the overhead involved in
 doing so using Syncthing's method would be wasteful. There are better
-programs to achieve this such as [rsync](https://rsync.samba.org/) or
-[Unison](https://www.cis.upenn.edu/~bcpierce/unison).
+programs to achieve this such as `rsync <https://rsync.samba.org/>`__ or
+`Unison <https://www.cis.upenn.edu/~bcpierce/unison>`__.
 
 When I do have two distinct Syncthing-managed folders on two hosts, how does Syncthing handle moving files between them?
 ------------------------------------------------------------------------------------------------------------------------
@@ -341,14 +341,9 @@ If only your remote computer is Unix-like,
 you can still access it with ssh from Windows.
 
 Under Windows 10 (64 bit) you can use the same ssh command if you install
-the Windows Subsystem for Linux.
-https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide
+the `Windows Subsystem for Linux <https://docs.microsoft.com/en-gb/windows/wsl/install-win10>`__.
 
-Another Windows way to run ssh is to install gow.
-(Gnu On Windows) https://github.com/bmatzelle/gow
-
-The easiest way to install gow is with chocolatey.
-https://chocolatey.org/
+Another Windows way to run ssh is to install `gow (Gnu On Windows) <https://github.com/bmatzelle/gow>`__. The easiest way to install gow is with the `chocolatey <https://chocolatey.org/>`__ package manager.
 
 Why do I get "Host check error" in the GUI/API?
 -----------------------------------------------
@@ -468,17 +463,14 @@ We release new versions through GitHub. The latest release is always found
 `on the release page
 <https://github.com/syncthing/syncthing/releases/latest>`_. Unfortunately
 GitHub does not provide a single URL to automatically download the latest
-version. We suggest to use the GitHub API at
-https://api.github.com/repos/syncthing/syncthing/releases/latest and parsing
+version. We suggest to use the `GitHub API <https://api.github.com/repos/syncthing/syncthing/releases/latest>`__ and parsing
 the JSON response.
 
 
 How do I run Syncthing as a daemon process on Linux?
 ----------------------------------------------------
 
-If you're using systemd, runit, or upstart, we already ship examples, check
-https://github.com/syncthing/syncthing/tree/main/etc for example
-configurations.
+If you're using systemd, runit, or upstart, we ship `example configurations <https://github.com/syncthing/syncthing/tree/main/etc>`__.
 
 If however you're not using one of these tools, you have a couple of options.
 If your system has a tool called ``start-stop-daemon`` installed (that's the name
@@ -499,8 +491,7 @@ You are probably reading this because you encountered the following error with
 the filesystem watcher on linux:
 
     Failed to start filesystem watcher for folder yourLabel (yourID): failed to
-    setup inotify handler. Please increase inotify limits, see
-    https://docs.syncthing.net/users/faq.html#inotify-limits
+    setup inotify handler. Please increase inotify limits, see https://docs.syncthing.net/users/faq.html#inotify-limits
 
 Linux typically restricts the amount of watches per user (usually 8192). When
 you have more directories you need to adjust that number.
