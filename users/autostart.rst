@@ -391,6 +391,10 @@ How to set up a user service
 
     systemctl --user enable syncthing.service
     systemctl --user start syncthing.service
+#. If your home directory is encrypted with eCryptfs on Debian/Ubuntu, then you will need to make
+   the change described in `Ubuntu bug 1734290 <https://bugs.launchpad.net/ecryptfs/+bug/1734290>`__.
+   Otherwise the user service will not start, because by default, systemd checks for user
+   services before your home directory has been decrypted.
 
 Checking the service status
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
