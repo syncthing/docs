@@ -304,6 +304,9 @@ order
         Pull files ordered by modification time; oldest and newest first
         respectively.
 
+    disabled 
+        Pull order is ignored when folder type is send only. 
+
     Note that the scanned files are sent in batches and the sorting is applied
     only to the already discovered files. This means the sync might start with
     a 1 GB file even if there is 1 KB file available on the source device until
