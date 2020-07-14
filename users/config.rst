@@ -19,7 +19,7 @@ Syncthing uses a single directory to store configuration, crypto keys
 and index caches. The location defaults to ``$HOME/.config/syncthing``
 (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac),
 or ``%LOCALAPPDATA%/Syncthing`` (Windows). It can be changed at runtime
-using the ``-home`` flag. In this directory the following files are 
+using the ``-home`` flag. In this directory the following files are
 located:
 
 :file:`config.xml`
@@ -394,57 +394,7 @@ copyRangeMethod
     filesystems, improve speed of large copies or clone the data using copy-on-write functionality if the underlying
     filesystem supports it.
 
-    .. warning::
-        This is an experimental feature, so please use at your own risk.
-
-    standard (default)
-        Reads the data from source file into application memory, writes the data from application memory into the
-        destination file.
-
-        Available on: All platforms
-
-    copy_file_range
-        Uses copy_file_range syscall, which if underlying filesystem supports, uses copy-on-write semantics to
-        clone the data. Introduced in Linux 4.5 and tested on XFS and BTRFS. Some network filesystems might use this
-        to perform server-side copies.
-
-        Tested on: BTRFS, XFS
-        Available on: Linux
-
-    ioctl
-        Uses ioctl syscall with FICLONERANGE option, which if underlying filesystem supports, uses copy-on-write
-        semantics to clone the data. Officially introduced in Linux 4.5, but was previously known as
-        BTRFS_IOC_CLONE_RANGE, which was used to provide copy-on-write semantics to BTRFS filesystems since Linux 2.6.29.
-        Some network filesystems might use this to perform server-side copies. Will fail if not supported by the
-        underlying filesystem.
-
-        Tested on: BTRFS
-        Not available on: Windows, Solaris, Darwin (OS X)
-
-    sendfile
-        Uses sendfile syscall, which performs in-kernel copy, avoiding having to copy the data into application memory.
-
-        Tested on: BTRFS, XFS
-        Not available on: Windows, Darwin (OS X)
-
-    duplicate_extents
-        Uses Windows Block Cloning via FSCTL_DUPLICATE_EXTENTS_TO_FILE, which provides copy-on-write semantics to clone
-        the data. Requires Windows Server 2016 or later, and a compatible filesystem (ReFS, SMB 3.1.1, CsvFS). Will
-        fail if not supported by the underlying filesystem.
-
-        .. warning::
-            Completely untested, use at your own risk.
-
-        Available on: Windows
-
-    all
-        Tries all of the copy methods in the following order: ioctl, copy_file_range, sendfile, duplicate_extents,
-        standard.
-
-        Available on: All platforms
-
-        .. warning::
-            Not recommended on Windows as it has not been tested, might be very costly on all other platforms.
+    See :ref:`folder-copyRangeMethod` for details.
 
 fsync
     .. deprecated:: v0.14.37
