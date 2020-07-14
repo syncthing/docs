@@ -396,19 +396,6 @@ copyRangeMethod
 
     See :ref:`folder-copyRangeMethod` for details.
 
-fsync
-    .. deprecated:: v0.14.37
-
-    Transfer updated (from other devices) files to permanent storage before
-    committing the changes to the internal database.
-
-pullerSleepS
-    .. deprecated:: v0.14.41
-
-    Tweak for rate limiting the puller. Don't change these unless you know
-    what you're doing.
-
-
 Device Element
 --------------
 
