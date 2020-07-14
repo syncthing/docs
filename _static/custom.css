@@ -1,55 +1,60 @@
 @media screen and (max-width: 875px) {
-    div.body {
-        /* prevent horizontal overflowing on mobile */
-        min-width: inherit;
-    }
+  div.body {
+    /* prevent horizontal overflowing on mobile */
+    min-width: inherit;
+  }
 }
 
 p.logo {
-    text-align: left;
+  text-align: left;
 }
 img.logo {
-    height: 66px;
-    margin-bottom: 20px;
+  height: 66px;
+  margin-bottom: 20px;
 }
 
 img.border {
-    border: 1px solid #888;
-    border-radius: 5px;
+  border: 1px solid #888;
+  border-radius: 5px;
 }
 
-div#searchbox, div.sphinxsidebar h3.donation {
-    margin-top: 20px;
+div#searchbox,
+div.sphinxsidebar h3.donation {
+  margin-top: 20px;
 }
 
 div.body {
-    /* margin here is same as height + margin of logo */
-    margin-top: 86px;
+  /* margin here is same as height + margin of logo */
+  margin-top: 86px;
 }
 
 div.footer-body {
-    /* hack for the "edit on github" container below the body */
-    margin-top: 30px;
-    margin-bottom: 20px;
-    text-align: center;
+  /* hack for the "edit on github" container below the body */
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
 li.toctree-l1 {
-    margin-top: 1em;
+  margin-top: 1em;
 }
 
 /* Add a strike-through class. */
 .strike {
-	text-decoration: line-through;
+  text-decoration: line-through;
 }
 
 div.note {
-    background-color: #ffc;
+  background-color: #ffc;
+}
+div.admonition {
+  /* reduce default padding a bit because it's asymmetrical and ugly */
+  padding: 5px;
 }
 div.admonition p.admonition-title {
-    font-size: inherit;
-    font-weight: bold;
+  font-size: inherit;
+  font-weight: bold;
 }
 p.admonition-title:after {
-    content: none;
+  content: none;
 }
