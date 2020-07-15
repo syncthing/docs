@@ -199,6 +199,10 @@ discovery servers.
 Reverse Proxy Setup
 ~~~~~~~~~~~~~~~~~~~
 
+.. versionadded:: 1.8.0
+
+    A new "X-Client-Port" HTTP header was added.
+
 The discovery server can be run behind an SSL-secured reverse proxy. This
 allows:
 
@@ -221,6 +225,7 @@ Requirements
 - SSL certificate/key configured for the reverse proxy.
 - The "X-Forwarded-For" HTTP header must be passed through with the client's
   real IP address.
+- The "X-Client-Port" HTTP header should be passed through, containing the client's real connection port.
 - The "X-SSL-Cert" HTTP header must be passed through with the PEM-encoded
   client SSL certificate. This will be present in POST requests and may be empty
   in GET requests from clients. If you see syncthing-discosrv outputting
@@ -232,12 +237,13 @@ Requirements
 Nginx
 """""
 
-These three lines in the configuration take care of the last three requirements
+These lines in the configuration take care of the last four requirements
 listed above:
 
 .. code-block:: nginx
 
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Client-Port $remote_port;
     proxy_set_header X-SSL-Cert $ssl_client_cert;
     ssl_verify_client optional_no_ca;
 
@@ -254,6 +260,7 @@ the Syncthing settings.
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $http_connection;
     proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Client-Port $remote_port;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_set_header X-SSL-Cert $ssl_client_cert;
