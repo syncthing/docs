@@ -276,18 +276,33 @@ the Syncthing settings.
     }
     server {
             server_name discovery.example.com;
+
             listen 443 ssl http2;
             access_log /var/log/nginx/access.log vhost;
-            ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-            ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384: DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:E CDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA25 6:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA3 84:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS -DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA;
-            ssl_prefer_server_ciphers on;
+
+            # Mozilla Intermediate configuration (https://wiki.mozilla.org/Security/Server_Side_TLS)
+            ssl_protocols TLSv1.2 TLSv1.3;
+            ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+            ssl_prefer_server_ciphers off;
+            ssl_session_tickets off;
             ssl_session_timeout 5m;
             ssl_session_cache shared:SSL:50m;
+            ssl_verify_client optional_no_ca;
+
+            # OCSP stapling
+            ssl_stapling on;
+            ssl_stapling_verify on;
+
+            # Certificates
             ssl_certificate /etc/nginx/certs/discovery.example.com.crt;
             ssl_certificate_key /etc/nginx/certs/discovery.example.com.key;
-            ssl_dhparam /etc/nginx/certs/discovery.example.com.dhparam.pem;
-            add_header Strict-Transport-Security "max-age=31536000";
-            ssl_verify_client optional_no_ca;
+
+            # curl https://ssl-config.mozilla.org/ffdhe2048.txt > /path/to/dhparam
+            ssl_dhparam /path/to/dhparam;
+
+            # HSTS (ngx_http_headers_module is required) (63072000 seconds)
+            add_header Strict-Transport-Security "max-age=63072000" always;
+
             location / {
                     proxy_pass http://discovery.example.com;
             }
