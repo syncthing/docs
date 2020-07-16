@@ -18,7 +18,7 @@ The following values are accepted:
     ``standard`` (default)
         Reads the data from source file into application memory, writes the
         data from application memory into the destination file. (This is the
-        method used by Synction prior to this option being introduced.)
+        method used by Syncthing prior to this option being introduced.)
 
         *Available on: All platforms*
 
