@@ -47,7 +47,7 @@ Returns the current configuration.
 	  "disableTempIndexes": false,
 	  "paused": false,
 	  "weakHashThresholdPct": 25,
-	  "markerName": ".stfolder",
+	  "markerName": ".syncthing",
 	  "copyOwnershipFromParent": false,
 	  "modTimeWindowS": 0
 	}

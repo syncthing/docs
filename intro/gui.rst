@@ -46,7 +46,7 @@ Error
 	describes the problem when the folder is in state Stopped. One possible
 	message is "folder marker missing". This means that the root directory of
 	this folder does not contain a file or directory called
-	``.stfolder`` (marker). Syncthing stops when this marker goes missing to
+	``.syncthing`` (marker). Syncthing stops when this marker goes missing to
 	prevent data loss e.g. when the folder path was unmounted. If the marker
 	was deleted accidentally, just recreate it and press the rescan button
 	in the UI.

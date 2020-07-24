@@ -8,4 +8,4 @@ information for that folder will be erased::
 
 	$ curl -X POST -H "X-API-Key: abc123" http://localhost:8384/rest/system/reset?folder=default
 
-**Caution**: See ``-reset-database`` for ``.stfolder`` creation side-effect and caution regarding mountpoints.
+**Caution**: See ``-reset-database`` for ``.syncthing`` creation side-effect and caution regarding mountpoints.

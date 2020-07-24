@@ -182,13 +182,13 @@ How do I serve a folder from a read only filesystem?
 ----------------------------------------------------
 
 Syncthing requires a "folder marker" to indicate that the folder is present
-and healthy. By default this is a directory called ``.stfolder`` that is
+and healthy. By default this is a directory called ``.syncthing`` that is
 created by Syncthing when the folder is added. If this folder can't be
 created (you are serving files from a CD or something) you can instead set
 the advanced config ``Marker Name`` to the name of some file or folder that
 you know will always exist in the folder.
 
-I really hate the ``.stfolder`` directory, can I remove it?
+I really hate the ``.syncthing`` directory, can I remove it?
 -----------------------------------------------------------
 
 See the previous question.
@@ -220,7 +220,7 @@ move. Changes made on other devices may be overwritten, or changes made
 locally may be overwritten by those on other devices.
 
 An alternative way is to shut down Syncthing, move the folder on disk (including
-the ``.stfolder`` marker), edit the path directly in ``config.xml`` in the
+the ``.syncthing`` marker), edit the path directly in ``config.xml`` in the
 configuration folder (see :ref:`config`) and then start Syncthing again.
 
 How do I configure multiple users on a single machine?

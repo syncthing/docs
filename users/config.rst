@@ -66,7 +66,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <disableTempIndexes>false</disableTempIndexes>
             <paused>false</paused>
             <weakHashThresholdPct>25</weakHashThresholdPct>
-            <markerName>.stfolder</markerName>
+            <markerName>.syncthing</markerName>
             <copyOwnershipFromParent>false</copyOwnershipFromParent>
             <modTimeWindowS>0</modTimeWindowS>
             <maxConcurrentWrites>2</maxConcurrentWrites>
