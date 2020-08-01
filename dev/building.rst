@@ -130,6 +130,23 @@ influence ``build``, ``tar`` and ``zip``. Examples:
   Builds a zip distribution of Syncthing for Windows (current architecture) with
   upgrading disabled.
 
+.. _versiontagging:
+
+Version Tagging
+---------------
+
+The binaries are "tagged" with a version derived from the current Git commit
+(or the ``RELEASE`` file, see below) and the current username and hostname.
+The username and hostname can be overridden by the ``BUILD_USER`` and
+``BUILD_HOST`` enviroment variables, for example::
+
+  $ BUILD_USER=builder BUILD_HOST=buildhost.local go run build.go
+  $ ./bin/syncthing --version
+  syncthing v1.8.0 ... builder@buildhost.local 2020-07-30 11:49:14 UTC
+
+In addition the timestamp (by default taken from the current Git commit) can
+be overridden by the ``SOURCE_DATE_EPOCH`` variable, in Unix epoch seconds.
+
 Building without Git
 --------------------
 
