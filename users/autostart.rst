@@ -1,9 +1,6 @@
 Starting Syncthing Automatically
 ================================
 
-.. warning::
-  This page may be outdated and requires review.
-
 Jump to configuration for your system:
 
 - `Windows <#windows>`__
