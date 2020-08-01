@@ -82,8 +82,8 @@ Building (Windows)
     > go version
 
     # Pick a place for your Syncthing source.
-    > mkdir %USERPROFILE%\dev
-    > cd %USERPROFILE%\dev
+    > md "%USERPROFILE%\dev"
+    > cd "%USERPROFILE%\dev"
 
     # Grab the code.
     > git clone https://github.com/syncthing/syncthing.git
