@@ -29,7 +29,7 @@ Prerequisites
 -------------
 
 -  The latest stable version of Go. Earlier releases may work, but we recommend
-   always using the latest stable version. At the time of writing this is **Go 1.13**.
+   always using the latest stable version. At the time of writing this is **Go 1.14**.
 -  Git
 
 If you're not already a Go developer, the easiest way to get going
@@ -50,7 +50,7 @@ Building (Unix)
 
 .. code-block:: bash
 
-    # This should output "go version go1.12" or higher.
+    # This should output "go version go1.14" or higher.
     $ go version
 
     # Pick a place for your Syncthing source.
@@ -78,7 +78,7 @@ Building (Windows)
 
 .. code-block:: batch
 
-    # This should output "go version go1.12" or higher.
+    # This should output "go version go1.14" or higher.
     > go version
 
     # Pick a place for your Syncthing source.
