@@ -96,7 +96,7 @@ Returns the current configuration.
 	"insecureAllowFrameLoading": false
       },
       "ldap": {
-	"addresd": "",
+	"address": "",
 	"bindDN": "",
 	"transport": "plain",
 	"insecureSkipVerify": false
