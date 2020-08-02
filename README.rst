@@ -40,7 +40,7 @@ subsections. The sections are:
 - Information for developers in ``dev``.
 
 The documentation uses the `rst format`_. For a starting point check out the
-`reStructuredText Primer`_
+`reStructuredText Primer`_.
 
 .. _Git: https://www.git-scm.com/
 .. _Sphinx: http://sphinx-doc.org/
