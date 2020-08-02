@@ -87,7 +87,7 @@ Build the Packages
 
 If you are building a release candidate and fast forwarded the ``release`` branch the build server will already have started building it. If not, jump in on the build server and trigger the Release/Syncthing job, for the ``release`` branch, while checking the options to rebuild all dependencies in the chain. We need the rebuild for those binaries to pick up the new tag.
 
-Once the build succeds, log in on ``secure.syncthing.net``. If something failed in the build it's hopefully "just" a flaky test - redo the build.
+Once the build succeeds, log in on ``secure.syncthing.net``. If something failed in the build it's hopefully "just" a flaky test - redo the build.
 
 Create the GitHub release
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -117,7 +117,7 @@ The milestone will be closed.
 Sign and upload the archives
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-At this point the build should haver completed and the artifacts be uploaded to ``secure.s.n``. If the build number was 1234 and the version v0.14.50 the files will be in ``/home/incoming/build-1234-v0.14.50``. Run the following scripts. None of them should fail, barring connectivity issues - so if they do, you get to fix whatever it is without any guidance from me. Sorry.
+At this point the build should have completed and the artifacts should have been uploaded to ``secure.s.n``. If the build number was 1234 and the version v0.14.50 the files will be in ``/home/incoming/build-1234-v0.14.50``. Run the following scripts. None of them should fail, barring connectivity issues - so if they do, you get to fix whatever it is without any guidance from me. Sorry.
 
 .. code-block:: bash
 

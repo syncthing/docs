@@ -599,7 +599,7 @@ theme
 
 authMode
     Authentication mode to use. If not present authentication mode (static)
-    is controlled by presence of user/passward fields for backward compatibility.
+    is controlled by presence of user/password fields for backward compatibility.
 
     static
         Authentication using user and password.
@@ -626,7 +626,7 @@ address
 
 bindDN
     BindDN for user authentication.
-    Special %s variable shoild be used to pass username to LDAP.
+    Special %s variable should be used to pass username to LDAP.
 
 transport
 

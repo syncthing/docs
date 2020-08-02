@@ -295,7 +295,7 @@ If you don't find "Start Syncthing" in the steps above or just prefer doing it
 manually:
 
 #. Find the file ``syncthing-start.desktop``: Either from the package you
-   downloaded from Github in ``etc/linux-desktop/`` or in
+   downloaded from GitHub in ``etc/linux-desktop/`` or in
    ``/usr/share/applications/`` if installed from your package manager.
 #. Copy ``syncthing-start.desktop`` to ``~/.config/autostart/``.
 

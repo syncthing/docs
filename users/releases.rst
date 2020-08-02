@@ -144,6 +144,6 @@ are on the candidate channel, your Syncthing will "upgrade" from
 
 ---
 
-.. [1] Semver-*like* because semver is absolutist about what constitutes an
+.. [1] SemVer-*like* because semver is absolutist about what constitutes an
        API change, in a way that isn't super helpful to the average user of a
        program like Syncthing.

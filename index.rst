@@ -13,7 +13,7 @@ get it to work.
 
 As a developer looking to get started with a contribution, see :ref:`how to
 build <building>`, :ref:`how to debug <debugging>` and the `contribution
-guidelines`_. This documentation site can be edited on Github_.
+guidelines`_. This documentation site can be edited on GitHub_.
 
 Contact
 -------
@@ -56,7 +56,7 @@ We thank all the documentation contributors for their hard work:
 .. include:: thanks.txt
 
 .. _`contribution guidelines`: https://github.com/syncthing/syncthing/blob/main/CONTRIBUTING.md
-.. _Github: https://github.com/syncthing/docs
+.. _GitHub: https://github.com/syncthing/docs
 .. _`issue tracker`: https://github.com/syncthing/syncthing/issues
 .. _`latest version`: https://github.com/syncthing/syncthing/releases/latest
 .. _`Security page`: https://syncthing.net/security.html
