@@ -48,4 +48,4 @@ For installing and using delve itself see:
 
 -  VSCode (Microsoft): https://github.com/golang/vscode-go/blob/master/docs/debugging.md
 
--  Goland (JetBrains): create remote run configuration and follow the two steps displayed
+-  GoLand (JetBrains): create remote run configuration and follow the two steps displayed

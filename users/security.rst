@@ -99,7 +99,7 @@ Sync Connections (BEP)
 
 Sync connections are attempted to all configured devices, when the address is
 possible to resolve. The sync connection is based on TLS 1.2 or TLS 1.3. The TLS
-certificates can be obtained by an eavesdropper, altough it is more difficult to do so in TLS 1.3. This means that the contents of the certificate are visible, which includes certificate Common Name (by default ``syncthing``).
+certificates can be obtained by an eavesdropper, although it is more difficult to do so in TLS 1.3. This means that the contents of the certificate are visible, which includes certificate Common Name (by default ``syncthing``).
 
 An eavesdropper can deduce that this is a Syncthing connection and under certain circumstances calculate the
 device IDs involved based on the hashes of the sent certificates.

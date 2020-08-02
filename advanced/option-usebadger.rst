@@ -37,7 +37,7 @@ can't even migrate it back), the simply rename the
 Directory Names
 ---------------
 
-The following names are used for the various databases, allways inside the
+The following names are used for the various databases, always inside the
 Syncthing database dir (set with ``-home`` or ``--data``):
 
 ``index-v0.14.0.db``
