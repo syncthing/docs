@@ -46,4 +46,4 @@ This information is essential for the developers to interpret the log in
 context. If you compile Syncthing locally and want to prevent your build
 from having such data embedded, see :ref:`versiontagging`.
 
-For a more details description of the format and how the sending happens, see :ref:`crashrep-dev`.
+For a more detailed description of the format and how the sending happens, see :ref:`crashrep-dev`.
