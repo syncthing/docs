@@ -163,7 +163,7 @@ simultaneously and the content actually differs, one of the files will be
 renamed to ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>``. The file with the
 older modification time will be marked as the conflicting file and thus be
 renamed. If the modification times are equal, the file originating from the
-device which has the larger value of the first 63 bits for his device ID will be
+device which has the larger value of the first 63 bits for its device ID will be
 marked as the conflicting file.
 If the conflict is between a modification and a deletion of the file, the
 modified file always wins and is resurrected without renaming on the
