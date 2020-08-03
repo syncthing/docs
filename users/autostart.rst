@@ -137,8 +137,8 @@ make selective use of them depending on your needs.
 
 .. _autostart-windows-tools:
 
-Third-party Tools
-~~~~~~~~~~~~~~~~~
+Install and run using third-party tools
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 There are a number of third-party utilities which aim to address this
 issue. These typically provide an installer, let Syncthing start
