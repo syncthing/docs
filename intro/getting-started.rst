@@ -114,11 +114,7 @@ Remember to repeat this step for the other device.
 
 At this point the two devices share an empty directory. Adding files to
 the shared directory on either device will synchronize those files to the
-other side. Each device scans for changes every 60 seconds, so changes
-can take a little over a minute to propagate to the other side, although some
-contributed wrappers include file system "watcher" features to speed this up. The
-rescan interval can be changed for each folder by clicking on a folder,
-clicking "Edit" and entering a new value for "Rescan Interval".
+other side.
 
 If you are using a Syncthing flavor that adds OS specific functionality (e.g. the Android app), you may need to access the Web GUI to enable syncing folders, and other configuration options.
 
