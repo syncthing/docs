@@ -43,32 +43,37 @@ Grab the `latest release`_ of Syncthing for your operating system and unpack
 it (if you use Debian/Ubuntu you may want to use `Debian repository`_). There will be a binary called ``syncthing`` (or ``syncthing.exe`` on
 Windows). Start this in whatever way you are most comfortable with;
 double-clicking should work in any graphical environment, but I'll use the
-terminal to better illustrate what happens. At first start Syncthing will
+command line to better illustrate what happens. At first start Syncthing will
 generate a configuration file, some keys and then start the admin GUI in your
-browser. Something like the following will be printed in the terminal::
+browser. Something like the following will be printed in the command line::
 
-    $ syncthing
-    [monitor] 15:56:58 INFO: Starting syncthing
-    15:56:58 INFO: Generating RSA key and certificate for syncthing...
-    [ANSMX] 15:57:05 INFO: syncthing v0.10.14 (go1.4 darwin-amd64 default) jb@syno...
-    [ANSMX] 15:57:05 INFO: My ID: ANSMXYD-E6CF3JC-TCVPYGF-GXJPHSJ-MKUXBUQ-ZSPOKXH-...
-    [ANSMX] 15:57:05 INFO: No config file; starting with empty defaults
-    [ANSMX] 15:57:05 INFO: Edit gs1/config.xml to taste or use the GUI
-    [ANSMX] 15:57:05 INFO: Starting web GUI on http://127.0.0.1:8384/
-    [ANSMX] 15:57:05 INFO: Loading HTTPS certificate: open gs1/https-cert.pem: no ...
-    [ANSMX] 15:57:05 INFO: Creating new HTTPS certificate
-    [ANSMX] 15:57:05 INFO: Generating RSA key and certificate for syno...
-    [ANSMX] 15:57:07 INFO: Starting UPnP discovery...
-    [ANSMX] 15:57:13 INFO: UPnP discovery complete (found 0 devices).
-    [ANSMX] 15:57:13 INFO: Starting local discovery announcements
-    [ANSMX] 15:57:13 INFO: Local discovery over IPv4 unavailable
-    [ANSMX] 15:57:13 INFO: Starting global discovery announcements
-    [ANSMX] 15:57:13 OK: Ready to synchronize default (read-write)
-    [ANSMX] 15:57:13 INFO: Device ANSMXYD-E6CF3JC-TCVPYGF-GXJPHSJ-MKUXBUQ-ZSPOKXH-...
-    [ANSMX] 15:57:13 INFO: Completed initial scan (rw) of folder default
+    > syncthing
+    [monitor] 22:56:32 INFO: Log output saved to file "C:\Users\User\AppData\Local\Syncthing\syncthing.log"
+    [monitor] 22:56:32 INFO: Default folder created and/or linked to new config
+    [start] 22:56:32 INFO: syncthing v1.7.1 "Fermium Flea" (go1.14.4 windows-386) teamcity@build.syncthing.net 2020-07-11 18:17:41 UTC
+    [start] 22:56:32 INFO: Default folder created and/or linked to new config
+    [start] 22:56:32 INFO: Default config saved. Edit C:\Users\User\AppData\Local\Syncthing\config.xml to taste (with Syncthing stopped) or use the GUI
+    [6FOKX] 22:56:33 INFO: My ID: 6FOKXKK-SKUBWFW-GSKX6IQ-ZC4SYUZ-5IEVZKE-TC42AAX-HW7IBW4-GAZFAQ7
+    [6FOKX] 22:56:34 INFO: Single thread SHA256 performance is 123 MB/s using crypto/sha256 (108 MB/s using minio/sha256-simd).
+    [6FOKX] 22:56:34 INFO: Hashing performance is 106.31 MB/s
+    [6FOKX] 22:56:34 INFO: Overall send rate is unlimited, receive rate is unlimited
+    [6FOKX] 22:56:34 INFO: Using discovery server https://discovery.syncthing.net/v2/?noannounce&id=LYXKCHX-VI3NYZR-ALCJBHF-WMZYSPK-QG6QJA3-MPFYMSO-U56GTUK-NA2MIAW
+    [6FOKX] 22:56:34 INFO: Using discovery server https://discovery-v4.syncthing.net/v2/?nolookup&id=LYXKCHX-VI3NYZR-ALCJBHF-WMZYSPK-QG6QJA3-MPFYMSO-U56GTUK-NA2MIAW
+    [6FOKX] 22:56:34 INFO: Using discovery server https://discovery-v6.syncthing.net/v2/?nolookup&id=LYXKCHX-VI3NYZR-ALCJBHF-WMZYSPK-QG6QJA3-MPFYMSO-U56GTUK-NA2MIAW
+    [6FOKX] 22:56:34 INFO: Ready to synchronize "Default Folder" (default) (sendreceive)
+    [6FOKX] 22:56:34 INFO: QUIC listener ([::]:22000) starting
+    [6FOKX] 22:56:34 INFO: TCP listener ([::]:22000) starting
+    [6FOKX] 22:56:34 INFO: Relay listener (dynamic+https://relays.syncthing.net/endpoint) starting
+    [6FOKX] 22:56:34 INFO: Completed initial scan of sendreceive folder "Default Folder" (default)
+    [6FOKX] 22:56:34 INFO: GUI and API listening on 127.0.0.1:8384
+    [6FOKX] 22:56:34 INFO: Access the GUI via the following URL: http://127.0.0.1:8384/
+    [6FOKX] 22:56:34 INFO: My name is "This computer"
+    [6FOKX] 22:56:45 INFO: quic://0.0.0.0:22000 detected NAT type: Symmetric NAT
+    [6FOKX] 22:56:45 INFO: quic://0.0.0.0:22000 resolved external address quic://125.190.151.7:59296 (via stun.syncthing.net:3478)
+    [6FOKX] 22:56:46 INFO: Detected 0 NAT services
 
 At this point Syncthing will also have set up a folder called
-``default`` for you, in a directory called ``Sync`` in your home
+``Default Folder`` for you, in a directory called ``Sync`` in your home
 directory. You can use this as a starting point, then remove it or add
 more folders later.
 
@@ -84,7 +89,7 @@ The admin GUI starts automatically and remains available on
 .. image:: gs1.png
 
 On the left is the list of "folders", or directories to synchronize. You
-can see the ``default`` folder was created for you, and it's currently
+can see the ``Default Folder`` was created for you, and it's currently
 marked "Unshared" since it's not yet shared with any other device. On
 the right is the list of devices. Currently there is only one device:
 the computer you are running this on.
@@ -94,17 +99,19 @@ must be told about that device. This is accomplished by exchanging
 "device IDs". A device ID is a unique, cryptographically-secure
 identifier that is generated as part of the key generation the first
 time you start Syncthing. It is printed in the log above, and you can
-see it in the web GUI by selecting the "gear menu" (top right) and "Show
-ID".
+see it in the web GUI by selecting "Actions" (top right) and "Show ID".
 
 Two devices will *only* connect and talk to each other if they are both configured with each other's device ID. Since the configuration must be mutual for
 a connection to happen, device IDs don't need to be kept secret. They are essentially part of the public key.
 
-To get your two devices to talk to each other click "Add Device" at the
-bottom right on both, and enter the device ID of the other side. You
-should also select the folder(s) that you want to share. The device name is optional and purely cosmetic. It can be changed later if required.
+To get your two devices to talk to each other click "Add Remote Device"
+at the bottom right on both, and enter the device ID of the other side.
+You should also select the folder(s) that you want to share. The device
+name is optional and purely cosmetic. It can be changed later if
+required.
 
 .. image:: gs2.png
+.. image:: gs3.png
 
 Once you click "Save" the new device will appear on right side of the
 GUI (although disconnected) and then connect to the new device after a minute or so.
