@@ -8,7 +8,4 @@ grep \# AUTHORS > authors-hdr
 cat authors-hdr authors-new > AUTHORS
 rm authors-hdr authors-new
 
-git contributors --read-authors=AUTHORS --names --geekrank > thanks.txt
-
-# Underscores need be escaped in RST.
-sed -i '/_/ s//\\_/g' thanks.txt
+git contributors --read-authors=AUTHORS --names --geekrank | sed 's/_/\\_/g' > thanks.txt
