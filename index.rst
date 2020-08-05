@@ -44,6 +44,7 @@ Contact
    :includehidden:
 
    intro/index
+   how-to/index
    users/index
    dev/index
    specs/index
