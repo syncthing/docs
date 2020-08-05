@@ -135,19 +135,6 @@ make selective use of them depending on your needs.
 
    |Windows Task Scheduler Additional Actions Screenshot|
 
-.. _autostart-windows-tools:
-
-Install and run using third-party tools
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-There are a number of third-party utilities which aim to address this
-issue. These typically provide an installer, let Syncthing start
-automatically, and a more polished user experience (e.g. by behaving as
-a "proper" Windows application, rather than forcing you to start your
-browser to interact with Syncthing).
-
-.. seealso:: :ref:`Windows GUI Wrappers <contrib-windows>`, :ref:`Cross-platform GUI Wrappers <contrib-all>`.
-
 .. _autostart-windows-startup:
 
 Run at user log on using the Startup folder
@@ -182,6 +169,19 @@ Syncthing will now automatically start the next time you log on to your
 user account in Windows. No console or browser window will pop-up, but
 you can still access the interface by opening http://localhost:8384 in
 a Web browser.
+
+.. _autostart-windows-tools:
+
+Install and run using third-party tools
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are a number of third-party utilities which aim to address this
+issue. These typically provide an installer, let Syncthing start
+automatically, and a more polished user experience (e.g. by behaving as
+a "proper" Windows application, rather than forcing you to start your
+browser to interact with Syncthing).
+
+.. seealso:: :ref:`Windows GUI Wrappers <contrib-windows>`, :ref:`Cross-platform GUI Wrappers <contrib-all>`.
 
 .. _autostart-windows-service:
 
