@@ -1,0 +1,1 @@
+https://docs.syncthing.net/users/faq.html#how-do-i-rename-move-a-synced-folder -> https://docs.syncthing.net/how-to/user/index.html#how-to-rename-or-move-a-synced-folder
