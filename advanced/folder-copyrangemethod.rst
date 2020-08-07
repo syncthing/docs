@@ -6,7 +6,7 @@ copyRangeMethod
 .. versionadded:: 1.8.0
 
 .. warning::
-    This is an experimental, partially untested feature.
+    This is an experimental feature.
 
 Provides a choice of method for copying data between files. This can be used
 to optimise copies on network filesystems, improve speed of large copies or
@@ -28,7 +28,7 @@ The following values are accepted:
         data. Introduced in Linux 4.5 and tested on XFS and BTRFS. Some
         network filesystems might use this to perform server-side copies.
 
-        | *Tested on: BTRFS, XFS*
+        | *Tested on: BTRFS, XFS, EXT4*
         | *Available on: Linux*
 
     ``ioctl``
@@ -42,14 +42,14 @@ The following values are accepted:
         filesystem.
 
         | *Tested on: BTRFS*
-        | *Not available on: Windows, Solaris, macOS (Darwin)*
+        | *Available on: Linux*
 
     ``sendfile``
         Uses the ``sendfile`` syscall which performs in-kernel copy,
         avoiding having to copy the data into application memory.
 
-        | *Tested on: BTRFS, XFS*
-        | *Not available on: Windows, macOS (Darwin)*
+        | *Tested on: BTRFS, XFS, EXT4*
+        | *Available on: Linux, Solaris*
 
     ``duplicate_extents``
         Uses Windows Block Cloning via ``FSCTL_DUPLICATE_EXTENTS_TO_FILE``,
@@ -58,9 +58,7 @@ The following values are accepted:
         3.1.1, CsvFS). Will fail if not supported by the underlying
         filesystem.
 
-        .. warning::
-            Completely untested, use at your own risk.
-
+        | *Tested on: ReFS*
         | *Available on: Windows*
 
     ``all``
@@ -69,7 +67,3 @@ The following values are accepted:
         ``standard``.
 
         *Available on: All platforms*
-
-        .. warning::
-            Not recommended on Windows as it has not been tested, might be
-            very costly on all other platforms.
