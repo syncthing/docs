@@ -21,7 +21,7 @@ Contact
 * If you're looking for specific people to talk to, check out the
   :ref:`project-presentation`.
 
-* To report bugs or request features, please use the `issue tracker`_ Before you
+* To report bugs or request features, please use the `issue tracker`_. Before you
   do so, make sure you are running the `latest version`_, and please do a
   quick search to see if the issue has already been reported.
 
@@ -30,7 +30,7 @@ Contact
 * To report security issues, please follow the instructions on the
   `Security page`_.
 
-* To get help and support, to discuss scenarios, or just connect with other
+* To get help and support, discuss scenarios, or just connect with other
   users and developers you can head over to the `friendly forum`_.
 
 * For a more real time experience, there's also an IRC channel ``#syncthing`` on
