@@ -54,9 +54,9 @@ The following values are accepted:
     ``duplicate_extents``
         Uses Windows Block Cloning via ``FSCTL_DUPLICATE_EXTENTS_TO_FILE``,
         which provides copy-on-write semantics to clone the data. Requires
-        Windows Server 2016 or later, and a compatible filesystem (ReFS, SMB
-        3.1.1, CsvFS). Will fail if not supported by the underlying
-        filesystem.
+        Windows 10 v1607 / Windows Server 2016 or later, and a compatible
+        filesystem (ReFS, SMB 3.1.1, CsvFS). Will fail if not supported
+        by the underlying filesystem.
 
         | *Tested on: ReFS*
         | *Available on: Windows*
