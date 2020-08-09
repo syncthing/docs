@@ -3,6 +3,12 @@
 Firewall Setup
 ==============
 
+Local Discovery
+-------------
+If your devices aren't mobile, you can replace the default ``dynamic`` setting for 
+Addresses with something like: ``tcp://192.168.1.xxx:22000, dynamic``
+
+
 Port Forwards
 -------------
 
