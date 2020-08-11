@@ -3,14 +3,11 @@
 Firewall Setup
 ==============
 
-Local Discovery
--------------
-If your devices aren't mobile, you can replace the default ``dynamic`` setting for 
-Addresses with something like: ``tcp://192.168.1.xxx:22000, dynamic``
-
+Router Setup
+------------
 
 Port Forwards
--------------
+~~~~~~~~~~~~~
 
 If you have a NAT router which supports UPnP, the easiest way to get a working
 port forward is to make sure UPnP setting is enabled on both Syncthing and the
@@ -31,6 +28,18 @@ they are behind a NAT network or firewall.
 In the absence of port forwarding, :ref:`relaying` may work well enough to get
 devices connected and synced, but will perform poorly in comparison to a
 direct connection.
+
+Local Discovery
+~~~~~~~~~~~~~~~
+
+The router needs to allow/forward broad-/multicasts for local discovery to work.
+Usually these are allowed by default in a single local subnet, but may be
+blocked between different subnets or even between a bridged Wi-Fi and LAN.
+
+If you are unable to set up your router thus or your firewall as shown below,
+and your devices have static IP addresses, you can specify them directly by
+changing the default ``dynamic`` setting for *Addresses* with something like:
+``tcp://192.168.1.xxx:22000, dynamic``.
 
 Local Firewall
 --------------
