@@ -16,10 +16,10 @@ message in the console saying::
 
     Created UPnP port mapping for external port XXXXX on UPnP device YYYYY.
 
-If this is not possible or desirable you should set up a port forward for port
-**22000/TCP**, or the port set in the *Sync Protocol Listen Address* setting.
+If this is not possible or desirable, you should set up a port forward for port
+**22000/TCP** (or whichever port is set in the *Sync Protocol Listen Address* setting).
 The external forwarded port and the internal destination port has to be the same
-(i.e. 22000/TCP).
+(e.g. 22000/TCP).
 
 Communication in Syncthing works both ways. Therefore if you set up port
 forwards for one device, other devices will be able to connect to it even when
@@ -38,7 +38,7 @@ blocked between different subnets or even between a bridged Wi-Fi and LAN.
 
 If you are unable to set up your router thus or your firewall as shown below,
 and your devices have static IP addresses, you can specify them directly by
-changing the default ``dynamic`` setting for *Addresses* with something like:
+changing the default ``dynamic`` setting for *Addresses* to something like:
 ``tcp://192.168.1.xxx:22000, dynamic``.
 
 Local Firewall
