@@ -175,11 +175,11 @@ a Web browser.
 Install and run using third-party tools
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-There are a number of third-party utilities which aim to address this
-issue. These typically provide an installer, let Syncthing start
-automatically, and a more polished user experience (e.g. by behaving as
-a "proper" Windows application, rather than forcing you to start your
-browser to interact with Syncthing).
+There are a number of third-party utilities which aim to help install
+and run Syncthing more easily. These typically provide an installer,
+an option to start the program automatically, and a more polished user
+experience (e.g. by behaving as a "proper" Windows application, rather
+than forcing you to start a Web browser to interact with Syncthing).
 
 .. seealso:: :ref:`Windows GUI Wrappers <contrib-windows>`, :ref:`Cross-platform GUI Wrappers <contrib-all>`.
 
