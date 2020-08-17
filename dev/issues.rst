@@ -17,10 +17,13 @@ error", "Rendered moot by #123" and so on. We don't use the "invalid" or
 "wontfix" labels.
 
 api
-    Issues related to the API and configuration.
+    Issues or pull requests that change public APIs (config, REST). Used
+    to highlight these specifically in the release notes, and ensure we
+    don't miss to bump the minor version.
 
 bug
-    Issues verified to be a bug.
+    A problem with current functionality, as opposed to missing
+    functionality (enhancement).
 
 build
     Issues caused by or requiring changes to the build system (scripts
@@ -67,7 +70,8 @@ ui
     Issues related to the graphical user interface.
 
 waiting-for-info
-    Issues that require more information on how to reproduce.
+    Issues that require more information from the author on how to
+    reproduce.
 
 Milestones
 ----------
