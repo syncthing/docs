@@ -10,8 +10,7 @@ Synopsis
 
     $HOME/.config/syncthing
     $HOME/Library/Application Support/Syncthing
-    %AppData%/Syncthing
-    %localappdata%/Syncthing
+    %LOCALAPPDATA%/Syncthing
 
 Description
 -----------
@@ -19,9 +18,9 @@ Description
 Syncthing uses a single directory to store configuration, crypto keys
 and index caches. The location defaults to ``$HOME/.config/syncthing``
 (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac),
-``%AppData%/Syncthing`` (Windows XP) or ``%LocalAppData%/Syncthing``
-(Windows 7+). It can be changed at runtime using the ``-home`` flag. In this
-directory the following files are located:
+or ``%LOCALAPPDATA%/Syncthing`` (Windows). It can be changed at runtime
+using the ``-home`` flag. In this directory the following files are
+located:
 
 :file:`config.xml`
     The configuration file, in XML format.
@@ -49,14 +48,14 @@ The following shows an example of the default configuration file (IDs will diffe
 
 .. code-block:: xml
 
-    <configuration version="26">
-        <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
-            <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
+    <configuration version="30">
+        <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
+            <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
             <minDiskFree unit="%">1</minDiskFree>
             <versioning></versioning>
             <copiers>0</copiers>
-            <pullers>0</pullers>
+            <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
             <hashers>0</hashers>
             <order>random</order>
             <ignoreDelete>false</ignoreDelete>
@@ -68,18 +67,30 @@ The following shows an example of the default configuration file (IDs will diffe
             <paused>false</paused>
             <weakHashThresholdPct>25</weakHashThresholdPct>
             <markerName>.stfolder</markerName>
+            <copyOwnershipFromParent>false</copyOwnershipFromParent>
+            <modTimeWindowS>0</modTimeWindowS>
+            <maxConcurrentWrites>2</maxConcurrentWrites>
+            <disableFsync>false</disableFsync>
+            <blockPullOrder>standard</blockPullOrder>
+            <copyRangeMethod>standard</copyRangeMethod>
         </folder>
         <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
             <paused>false</paused>
+            <autoAcceptFolders>false</autoAcceptFolders>
+            <maxSendKbps>0</maxSendKbps>
+            <maxRecvKbps>0</maxRecvKbps>
+            <maxRequestKiB>0</maxRequestKiB>
         </device>
         <gui enabled="true" tls="false" debugging="false">
             <address>127.0.0.1:8384</address>
             <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
             <theme>default</theme>
         </gui>
+        <ldap></ldap>
         <options>
-            <listenAddress>default</listenAddress>
+            <listenAddress>tcp://0.0.0.0:8384</listenAddress>
+            <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
             <globalAnnounceServer>default</globalAnnounceServer>
             <globalAnnounceEnabled>true</globalAnnounceEnabled>
             <localAnnounceEnabled>true</localAnnounceEnabled>
@@ -97,7 +108,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <natTimeoutSeconds>10</natTimeoutSeconds>
             <urAccepted>0</urAccepted>
             <urSeen>0</urSeen>
-            <urUniqueID>LFWe2vn3</urUniqueID>
+            <urUniqueID></urUniqueID>
             <urURL>https://data.syncthing.net/newdata</urURL>
             <urPostInsecurely>false</urPostInsecurely>
             <urInitialDelayS>1800</urInitialDelayS>
@@ -113,11 +124,16 @@ The following shows an example of the default configuration file (IDs will diffe
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
             <trafficClass>0</trafficClass>
-            <stunServer>default</stunServer>
-            <stunKeepaliveSeconds>24</stunKeepaliveSeconds>
             <defaultFolderPath>~</defaultFolderPath>
-            <minHomeDiskFreePct>0</minHomeDiskFreePct>
             <setLowPriority>true</setLowPriority>
+            <maxFolderConcurrency>0</maxFolderConcurrency>
+            <crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>
+            <crashReportingEnabled>true</crashReportingEnabled>
+            <stunKeepaliveStartS>180</stunKeepaliveStartS>
+            <stunKeepaliveMinS>20</stunKeepaliveMinS>
+            <stunServer>default</stunServer>
+            <databaseTuning>auto</databaseTuning>
+            <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
         </options>
     </configuration>
 
@@ -126,10 +142,11 @@ Configuration Element
 
 .. code-block:: xml
 
-    <configuration version="26">
+    <configuration version="30">
         <folder></folder>
         <device></device>
         <gui></gui>
+        <ldap></ldap>
         <options></options>
         <ignoredDevice>5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU</ignoredDevice>
         <ignoredFolder>bd7q3-zskm5</ignoredFolder>
@@ -160,13 +177,13 @@ Folder Element
 
 .. code-block:: xml
 
-    <folder id="zj2AA-q55a7" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="60" fsWatcherEnabled="false" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
-        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
+    <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
+        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
         <minDiskFree unit="%">1</minDiskFree>
         <versioning></versioning>
         <copiers>0</copiers>
-        <pullers>0</pullers>
+        <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
         <hashers>0</hashers>
         <order>random</order>
         <ignoreDelete>false</ignoreDelete>
@@ -178,6 +195,12 @@ Folder Element
         <paused>false</paused>
         <weakHashThresholdPct>25</weakHashThresholdPct>
         <markerName>.stfolder</markerName>
+        <copyOwnershipFromParent>false</copyOwnershipFromParent>
+        <modTimeWindowS>0</modTimeWindowS>
+        <maxConcurrentWrites>2</maxConcurrentWrites>
+        <disableFsync>false</disableFsync>
+        <blockPullOrder>standard</blockPullOrder>
+        <copyRangeMethod>standard</copyRangeMethod>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -310,8 +333,10 @@ disableSparseFiles
 
 disableTempIndexes
     By default, devices exchange information about blocks available in
-    transfers that are still in progress. When set to true, such information
-    is not exchanged for this folder.
+    transfers that are still in progress, which allows other devices to
+    download parts of files that are not yet fully downloaded on your own
+    device, essentially making transfers more torrent like. When set to
+    true, such information is not exchanged for this folder.
 
 paused
     True if this folder is (temporarily) suspended.
@@ -324,18 +349,52 @@ markerName
     Name of a directory or file in the folder root to be used as
     :ref:`marker-faq`. Default is ".stfolder".
 
-fsync
-    .. deprecated:: v0.14.37
+copyOwnershipFromParent
+    On Unix systems, tries to copy file/folder ownership from the parent directory (the directory it's located in).
+    Requires running Syncthing as privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux).
 
-    Transfer updated (from other devices) files to permanent storage before
-    committing the changes to the internal database.
+modTimeWindowS
+    Allowed modification timestamp difference when comparing files for equivalence.
+    To be used on systems that have unstable modification timestamps, that might change after being observed after
+    the last write operation. Used in Android only.
 
-pullerSleepS
-    .. deprecated:: v0.14.41
+maxConcurrentWrites
+    Maximum number of concurrent write operations while syncing. Defaults to 2. Increasing this might increase or
+    decrease disk performance, depending on the underlying storage.
 
-    Tweak for rate limiting the puller. Don't change these unless you know
-    what you're doing.
+disableFsync
 
+    .. warning::
+        This is a known insecure option - use at your own risk.
+
+    Disables committing file operations to disk before recording them in the database.
+    Disabling fsync can lead to data corruption.
+
+blockPullOrder
+    Order in which the blocks of a file are downloaded. This option controls how quickly different parts of the
+    file spread between the connected devices, at the cost of causing strain on the storage.
+
+    Available options:
+
+    standard (default):
+        The blocks of a file are split into N equal continuous sequences, where N is the number of connected
+        devices. Each device starts downloading it's own sequence, after which it picks other devices
+        sequences at random. Provides acceptable data distribution and minimal spinning disk strain.
+
+    random:
+        The blocks of a file are downloaded in a random order. Provides great data distribution, but very taxing on
+        spinning disk drives.
+
+    inOrder:
+        The blocks of a file are downloaded sequentially, from start to finish. Spinning disk drive friendly, but provides
+        no improvements to data distribution.
+
+copyRangeMethod
+    Provides a choice of method for copying data between files. This can be used to optimise copies on network
+    filesystems, improve speed of large copies or clone the data using copy-on-write functionality if the underlying
+    filesystem supports it.
+
+    See :ref:`folder-copyRangeMethod` for details.
 
 Device Element
 --------------
@@ -344,10 +403,15 @@ Device Element
 
     <device id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
         <address>dynamic</address>
+        <paused>false</paused>
+        <autoAcceptFolders>false</autoAcceptFolders>
+        <maxSendKbps>0</maxSendKbps>
+        <maxRecvKbps>0</maxRecvKbps>
+        <maxRequestKiB>0</maxRequestKiB>
     </device>
-    <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false">
+    <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>tcp://192.0.2.1:22001</address>
-        <paused>true<paused>
+        <paused>true</paused>
         <allowedNetwork>192.168.0.0/16</allowedNetwork>
         <autoAcceptFolders>false</autoAcceptFolders>
         <maxSendKbps>100</maxSendKbps>
@@ -514,6 +578,9 @@ address
         If the address is an absolute path it is interpreted as the path to a UNIX socket.
         (Added in v0.14.52.)
 
+unixSocketPermissions
+    In the case that a UNIX socket location is used for ``address``, set this to an octal to override the default permissions of the socket.
+
 user
     Set to require authentication.
 
@@ -532,7 +599,7 @@ theme
 
 authMode
     Authentication mode to use. If not present authentication mode (static)
-    is controlled by presence of user/passward fields for backward compatibility.
+    is controlled by presence of user/password fields for backward compatibility.
 
     static
         Authentication using user and password.
@@ -559,7 +626,7 @@ address
 
 bindDN
     BindDN for user authentication.
-    Special %s variable shoild be used to pass username to LDAP.
+    Special %s variable should be used to pass username to LDAP.
 
 transport
 
@@ -581,7 +648,8 @@ Options Element
 .. code-block:: xml
 
     <options>
-        <listenAddress>default</listenAddress>
+        <listenAddress>tcp://0.0.0.0:8384</listenAddress>
+        <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
         <globalAnnounceServer>default</globalAnnounceServer>
         <globalAnnounceEnabled>true</globalAnnounceEnabled>
         <localAnnounceEnabled>true</localAnnounceEnabled>
@@ -598,21 +666,33 @@ Options Element
         <natRenewalMinutes>30</natRenewalMinutes>
         <natTimeoutSeconds>10</natTimeoutSeconds>
         <urAccepted>0</urAccepted>
+        <urSeen>0</urSeen>
         <urUniqueID></urUniqueID>
         <urURL>https://data.syncthing.net/newdata</urURL>
         <urPostInsecurely>false</urPostInsecurely>
         <urInitialDelayS>1800</urInitialDelayS>
         <restartOnWakeup>true</restartOnWakeup>
         <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
+        <upgradeToPreReleases>false</upgradeToPreReleases>
         <keepTemporariesH>24</keepTemporariesH>
         <cacheIgnoredFiles>false</cacheIgnoredFiles>
         <progressUpdateIntervalS>5</progressUpdateIntervalS>
         <limitBandwidthInLan>false</limitBandwidthInLan>
         <minHomeDiskFree unit="%">1</minHomeDiskFree>
-        <releasesURL>https://api.github.com/repos/syncthing/syncthing/releases?per_page=30</releasesURL>
+        <releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>
         <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
+        <trafficClass>0</trafficClass>
         <defaultFolderPath>~</defaultFolderPath>
+        <setLowPriority>true</setLowPriority>
+        <maxFolderConcurrency>0</maxFolderConcurrency>
+        <crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>
+        <crashReportingEnabled>true</crashReportingEnabled>
+        <stunKeepaliveStartS>180</stunKeepaliveStartS>
+        <stunKeepaliveMinS>20</stunKeepaliveMinS>
+        <stunServer>default</stunServer>
+        <databaseTuning>auto</databaseTuning>
+        <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
     </options>
 
 The ``options`` element contains all other global configuration options.
@@ -710,7 +790,7 @@ autoUpgradeIntervalH
 
 upgradeToPreReleases
     If true, automatic upgrades include release candidates (see
-    :ref:`release-channels`).
+    :ref:`releases`).
 
 keepTemporariesH
     Keep temporary failed transfers for this many hours. While the temporaries

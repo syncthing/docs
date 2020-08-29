@@ -2,7 +2,7 @@ Issue Management
 ================
 
 Bugs, feature requests and other things we need to do are tracked as
-Github issues. Issues can be of various types and in various states, and
+GitHub issues. Issues can be of various types and in various states, and
 also belong to milestones or not. This page is an attempt to document
 the current practice.
 
@@ -87,7 +87,7 @@ There are some exceptions though;
 
 -  "Popular" issues that attract lots of "me too" and "+1" comments.
    These are noise and annoy people with useless notifications via mail
-   and in the Github interface. Once the issue is clear and it suffers
+   and in the GitHub interface. Once the issue is clear and it suffers
    from this symptom I may lock it.
 
 -  Contentious bikeshedding discussions. After two sides in a discussion

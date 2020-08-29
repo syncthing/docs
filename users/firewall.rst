@@ -3,8 +3,11 @@
 Firewall Setup
 ==============
 
+Router Setup
+------------
+
 Port Forwards
--------------
+~~~~~~~~~~~~~
 
 If you have a NAT router which supports UPnP, the easiest way to get a working
 port forward is to make sure UPnP setting is enabled on both Syncthing and the
@@ -13,10 +16,10 @@ message in the console saying::
 
     Created UPnP port mapping for external port XXXXX on UPnP device YYYYY.
 
-If this is not possible or desirable you should set up a port forward for port
-**22000/TCP**, or the port set in the *Sync Protocol Listen Address* setting.
+If this is not possible or desirable, you should set up a port forward for port
+**22000/TCP** (or whichever port is set in the *Sync Protocol Listen Address* setting).
 The external forwarded port and the internal destination port has to be the same
-(i.e. 22000/TCP).
+(e.g. 22000/TCP).
 
 Communication in Syncthing works both ways. Therefore if you set up port
 forwards for one device, other devices will be able to connect to it even when
@@ -25,6 +28,18 @@ they are behind a NAT network or firewall.
 In the absence of port forwarding, :ref:`relaying` may work well enough to get
 devices connected and synced, but will perform poorly in comparison to a
 direct connection.
+
+Local Discovery
+~~~~~~~~~~~~~~~
+
+The router needs to allow/forward broad-/multicasts for local discovery to work.
+Usually these are allowed by default in a single local subnet, but may be
+blocked between different subnets or even between a bridged Wi-Fi and LAN.
+
+If you are unable to set up your router thus or your firewall as shown below,
+and your devices have static IP addresses, you can specify them directly by
+changing the default ``dynamic`` setting for *Addresses* to something like:
+``tcp://192.168.1.xxx:22000, dynamic``.
 
 Local Firewall
 --------------
@@ -54,7 +69,7 @@ You can then verify that the ports mentioned above are allowed::
     sudo ufw status verbose
 
 In case you installed Syncthing manually you can follow the `instructions to manually add the syncthing preset
-<https://github.com/syncthing/syncthing/tree/master/etc/firewall-ufw>`__ to ufw.
+<https://github.com/syncthing/syncthing/tree/main/etc/firewall-ufw>`__ to ufw.
 
 Firewalld
 ~~~~~~~~~

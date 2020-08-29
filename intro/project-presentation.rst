@@ -22,16 +22,18 @@ syncthing-android
 `syncthing-android`_ is the Android packaging and native UI on top of
 Syncthing.
 
+-  Simon Frei / :user:`imsodin`
 -  Audrius Butkevicius / :user:`AudriusButkevicius`
+-  :user:`Catfriend1`
 
-Syncthing-GTK
--------------
+syncthing-macos
+---------------
 
-`Syncthing-GTK`_ is a native UI wrapper on top of Syncthing.
+`syncthing-macos`_ is a native macOS Syncthing application bundle.
 
--  Tomas Cerveny / :user:`kozec`
+- Jerry Jacobs / :user:`xor-gate`
 
 .. _Syncthing: https://github.com/syncthing/syncthing
 .. _`syncthing-android`: https://github.com/syncthing/syncthing-android
 .. _`syncthing-inotify`: https://github.com/syncthing/syncthing-inotify
-.. _`Syncthing-GTK`: https://github.com/syncthing/syncthing-gtk
+.. _`syncthing-macos`: https://github.com/syncthing/syncthing-macos

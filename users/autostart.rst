@@ -1,9 +1,6 @@
 Starting Syncthing Automatically
 ================================
 
-.. warning::
-  This page may be outdated and requires review.
-
 Jump to configuration for your system:
 
 - `Windows <#windows>`__
@@ -17,78 +14,176 @@ Windows
 There is currently no official installer available for Windows. However,
 there are a number of easy solutions.
 
-Task Scheduler
-~~~~~~~~~~~~~~
+Built-in solutions:
 
-#. Start the `Task Scheduler <https://en.wikipedia.org/wiki/Windows_Task_Scheduler>`__ (``taskschd.msc``)
-#. Create a New Task ("Action" menu -> "Create Task...")
-#. General Tab:
-    #. Name the task (for example 'Syncthing')
-    #. Check "Run whether user is logged on or not"
-#. Triggers Tab:
-    #. Click "New..."
-    #. Set "Begin the task" to "At Startup"
-    #. (optional) choose a delay
-    #. Make sure Enabled is checked
-    #. Click "OK"
+- :ref:`Run at user log on or at system startup using Task Scheduler <autostart-windows-taskschd>`
+- :ref:`Run at user log on using the Startup folder <autostart-windows-startup>`
+
+Other solutions:
+
+- :ref:`Install and run using third-party tools <autostart-windows-tools>`
+- :ref:`Run as a service independent of user log on <autostart-windows-service>`
+
+.. _autostart-windows-taskschd:
+
+Run at user log on or at system startup using Task Scheduler
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Task Scheduler is a built-in administrative tool, which can be used to
+start Syncthing automatically either at user log on, or at system
+startup. In both cases, Syncthing will open and stay invisible in
+background.
+
+For technical information about Task Scheduler visit
+https://docs.microsoft.com/windows/win32/taskschd.
+
+#. Start the Task Scheduler either by going to ``Start Menu > Windows
+   Administrative Tools`` and clicking on ``Task Scheduler``, or by
+   opening ``taskschd.msc`` from the Run command (``Win+R``).
+
+#. Create a new Task ("Actions" sidebar > "Create Task...").
+
+   |Windows Task Scheduler Create Task Screenshot|
+
+#. General tab:
+
+   #. Name the task (for example "Syncthing").
+   #. Select "Run whether user is logged on or not".
+
+   |Windows Task Scheduler General Screenshot|
+
+#. Triggers tab:
+
+   Syncthing can be set up to start either at user log on, or at system
+   startup. Pick your preferred method and follow the instructions
+   below. If unsure, read the explanations underneath each of the two
+   options.
+
+   - Run at user log on
+
+     Choose this option if you intend to use Syncthing only when being
+     logged on to your Windows user account.
+
+     #. Click "New...".
+     #. Set "Begin the task:" to "At log on".
+     #. Select "Specific user:"
+     #. Click "OK".
+
+     |Windows Task Scheduler Triggers Logon Screenshot|
+
+   - Run at system startup
+
+     Choose this option if you want Syncthing to open in background as
+     soon as Windows starts, and even when not being logged on to your
+     user account. Do not use this method if your Syncthing folders are
+     stored on a non-system partition protected by BitLocker, as they
+     will be inaccessible before user log on.
+
+     #. Click "New...".
+     #. Set "Begin the task:" to "At startup".
+     #. Click "OK".
+
+     |Windows Task Scheduler Triggers Startup Screenshot|
+
+#. Actions tab:
+
+   #. Click "New...".
+   #. Enter the path to ``syncthing.exe`` in "Program/script:" (for
+      example ``C:\syncthing\syncthing.exe``).
+   #. Enter ``-no-console -no-browser`` in "Add arguments (optional):"
+   #. Click "OK".
+
+   |Windows Task Scheduler Actions Screenshot|
+
+#. Settings tab:
+
+   #. Uncheck "Stop task if it runs longer than:".
+   #. Click OK.
+   #. Enter password for the user.
+
+   |Windows Task Scheduler Settings Screenshot|
+
+Additional configuration in Task Scheduler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following settings are optional. They are not required for Syncthing
+to run properly, but can offer additional functionality. Feel free to
+make selective use of them depending on your needs.
+
+#. Conditions Tab:
+
+   - Uncheck "Stop if the computer switches to battery power". Note that
+     unchecking "Start the task only if the computer is on AC power"
+     does not disable this option. Even if greyed out, it still applies,
+     and has to be unchecked separately.
+   - Uncheck "Start the task only if the computer is on AC power".
+   - Check "Start only if the following network connection is available"
+     and set to "Network". Use this option on a laptop, when you want
+     Syncthing to start only on a wired Internet connection, and not on
+     Wi-Fi. Note that once started, Syncthing will not stop running if
+     the connection changes or becomes unavailable later.
+
+   |Windows Task Scheduler Additional Conditions Screenshot|
+
 #. Actions Tab:
-    #. Click "New..."
-    #. [Action] should be set as "Start a program"
-    #. Enter the path to syncthing.exe in "Program/Script"
-    #. (optional) Enter "-no-console -no-browser" for "Add arguments (optional)"
-    #. Click "OK"
-#. Settings Tab:
-    #. (recommended) Keep the checkbox on "Allow task to be run on demand"
-    #. Clear checkbox from "Stop task if it runs longer than:"
-    #. (recommended) Keep "Do not start a new instance" for "If the task is already running, then the following rule applies"
-#. Click OK
-#. Enter password for the user.
 
-Third-party Tools
-~~~~~~~~~~~~~~~~~
+   #. Select the previously created action and click "Edit...".
+   #. Enter the path to the parent folder of ``syncthing.exe`` in "Start
+      in (optional)". This will allow you to use paths relative to this
+      folder in Syncthing.
+   #. Click "OK".
 
-There are a number of third-party utilities which aim to address this
-issue. These typically provide an installer, let Syncthing start
-automatically, and a more polished user experience (e.g. by behaving as
-a "proper" Windows application, rather than forcing you to start your
-browser to interact with Syncthing).
+   |Windows Task Scheduler Additional Actions Screenshot|
+
+.. _autostart-windows-startup:
+
+Run at user log on using the Startup folder
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Starting Syncthing at user log on, without a console window or browser
+opening on start, is relatively easy.
+
+#. Copy and paste ``%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup``
+   into the Address Bar in Windows Explorer, and press Enter.
+
+   |Windows Startup Folder Address Bar Screenshot|
+
+   Alternatively, in newer versions of Windows, open ``shell:startup``
+   from the Run command (``Win+R``).
+
+#. Right-click empty space in the folder and choose "New", and then
+   "Shortcut".
+
+   |Windows Startup Folder New Shortcut Screenshot|
+
+#. Enter the path to ``syncthing.exe`` in "Type the location of the item:"
+   followed by ``-no-console -no-browser`` (for example ``C:\syncthing\syncthing.exe
+   -no-console -no-browser``).
+
+   |Windows Startup Folder Create Shortcut Screenshot|
+
+#. Click "Next".
+#. Click "Finish".
+
+Syncthing will now automatically start the next time you log on to your
+user account in Windows. No console or browser window will pop-up, but
+you can still access the interface by opening http://localhost:8384 in
+a Web browser.
+
+.. _autostart-windows-tools:
+
+Install and run using third-party tools
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are a number of third-party utilities which aim to help install
+and run Syncthing more easily. These typically provide an installer,
+an option to start the program automatically, and a more polished user
+experience (e.g. by behaving as a "proper" Windows application, rather
+than forcing you to start a Web browser to interact with Syncthing).
 
 .. seealso:: :ref:`Windows GUI Wrappers <contrib-windows>`, :ref:`Cross-platform GUI Wrappers <contrib-all>`.
 
-Start on Login
-~~~~~~~~~~~~~~
-
-Starting Syncthing on login, without a console window or browser opening
-on start, is relatively easy.
-
-#. Find the correct link of the Windows binary from the `Syncthing
-   website <https://github.com/syncthing/syncthing/releases>`__ (choose
-   **amd64** if you have a 64-bit version of Windows)
-#. Extract the files in the folder (``syncthing-windows-*``) in the zip
-   to the folder ``C:\syncthing``
-#. Go to the ``C:\syncthing`` folder, make a file named
-   ``syncthing.bat``
-#. Right-click the file and choose **Edit**. The file should open in
-   Notepad or your default text editor.
-#. Paste the following command into the file and save the changes:
-   ``start "Syncthing" syncthing.exe -no-console -no-browser``
-#. Right-click on ``syncthing.bat`` and press "Create Shortcut"
-#. Right-click the shortcut file ``syncthing.bat - Shortcut`` and click
-   **Copy**
-#. Click **Start**, click **All Programs**, then click **Startup**.
-   Right-click on **Startup** then click **Open**.
-   |Setup Screenshot|
-#. Paste the shortcut (right-click in the folder and choose **Paste**,
-   or press ``CTRL+V``)
-
-Syncthing will now automatically start the next time you open a new Windows session. No
-console or browser window will pop-up. Access the interface by browsing
-to http://localhost:8384/
-
-If you prefer slower indexing but a more responsive system during scans,
-copy the following command instead of the command in step 5::
-
-    start "Syncthing" /low syncthing.exe -no-console -no-browser
+.. _autostart-windows-service:
 
 Run as a service independent of user login
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -185,15 +280,28 @@ access the GUI type 127.0.0.1:8384 (by default) into Safari.
 Linux
 -----
 
-On any distribution (Arch, Debian, Linux Mint, Ubuntu, openSUSE)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Using the Desktop Environment (KDE, Gnome, Xfce, Cinnamon, ...)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#. Launch the program 'Startup Applications'.
-#. Click 'Add'.
-#. Fill out the form:
+You can make Syncthing start when you log into your desktop environment (DE) in
+two ways.
 
-   -  Name: Syncthing
-   -  Command: ``/path/to/syncthing/binary -no-browser -home="/home/your\_user/.config/syncthing"``
+Using DE tools:
+
+#. Search for and launch a tool related to autostart or startup applications.
+#. Add a new autostart application and search for and choose "Start Syncthing".
+
+If you don't find "Start Syncthing" in the steps above or just prefer doing it
+manually:
+
+#. Find the file ``syncthing-start.desktop``: Either from the package you
+   downloaded from GitHub in ``etc/linux-desktop/`` or in
+   ``/usr/share/applications/`` if installed from your package manager.
+#. Copy ``syncthing-start.desktop`` to ``~/.config/autostart/``.
+
+For more information relating to ``.desktop`` files e.g. for application menus,
+refer to https://github.com/syncthing/syncthing/tree/main/etc/linux-desktop.
+
 
 Using Supervisord
 ~~~~~~~~~~~~~~~~~
@@ -205,6 +313,10 @@ Go to ``/etc/supervisor/conf.d/`` and create a new file named ``syncthing.conf``
     user = <USERNAME>
     command = /usr/bin/syncthing -no-browser -home="/home/<USERNAME>/.config/syncthing"
     environment = STNORESTART="1", HOME="/home/<USERNAME>"
+
+Reload Supervisord::
+
+    supervisorctl reload
 
 Then start it::
 
@@ -228,7 +340,7 @@ ability to manage services under the user's control with a per-user
 systemd instance, enabling users to start, stop, enable, and disable
 their own units. Service files for systemd are provided by Syncthing and
 can be found in this Git location:
-`etc/linux-systemd <https://github.com/syncthing/syncthing/tree/master/etc/linux-systemd>`_.
+`etc/linux-systemd <https://github.com/syncthing/syncthing/tree/main/etc/linux-systemd>`_.
 
 You have two primary options: You can set up Syncthing as a system service, or a
 user service.
@@ -243,10 +355,11 @@ user has logged into the system (e.g., via the graphical login screen, or ssh).
 Thus, the user service is intended to be used on a *(multiuser) desktop
 computer*. It avoids unnecessarily running Syncthing instances.
 
-Several distros (including Arch Linux) ship the needed service files with the
-Syncthing package. If your distro provides a systemd service file for Syncthing,
-you can skip step 2 when you setting up either the system service or the user
-service, as described below.
+The official `Debian/Ubuntu Syncthing repository <https://syncthing.net/downloads/#debian--ubuntu-packages>`__, and
+several distros (including Arch Linux) ship these service files along with
+the Syncthing package. If your distro provides the systemd service files for
+Syncthing, you can skip step #2 when you're setting up either the system service
+or the user service, as described below.
 
 How to set up a system service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -275,6 +388,10 @@ How to set up a user service
 
     systemctl --user enable syncthing.service
     systemctl --user start syncthing.service
+#. If your home directory is encrypted with eCryptfs on Debian/Ubuntu, then you will need to make
+   the change described in `Ubuntu bug 1734290 <https://bugs.launchpad.net/ecryptfs/+bug/1734290>`__.
+   Otherwise the user service will not start, because by default, systemd checks for user
+   services before your home directory has been decrypted.
 
 Checking the service status
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -331,5 +448,15 @@ This will create an additional configuration file automatically and you
 can define (or overwrite) further service parameters like e.g.
 ``Environment=STTRACE=model``.
 
+.. |Windows Task Scheduler Create Task Screenshot| image:: windows-taskschd-createtask.png
+.. |Windows Task Scheduler General Screenshot| image:: windows-taskschd-general.png
+.. |Windows Task Scheduler Triggers Logon Screenshot| image:: windows-taskschd-triggers-logon.png
+.. |Windows Task Scheduler Triggers Startup Screenshot| image:: windows-taskschd-triggers-startup.png
+.. |Windows Task Scheduler Actions Screenshot| image:: windows-taskschd-actions.png
+.. |Windows Task Scheduler Settings Screenshot| image:: windows-taskschd-settingstab.png
+.. |Windows Task Scheduler Additional Conditions Screenshot| image:: windows-taskschd-additional-conditions.png
+.. |Windows Task Scheduler Additional Actions Screenshot| image:: windows-taskschd-additional-actions.png
+.. |Windows Startup Folder Address Bar Screenshot| image:: windows-startup-addressbar.png
+.. |Windows Startup Folder New Shortcut Screenshot| image:: windows-startup-newshortcut.png
+.. |Windows Startup Folder Create Shortcut Screenshot| image:: windows-startup-createshortcut.png
 .. |Windows NSSM Configuration Screenshot| image:: windows-nssm-config.png
-.. |Setup Screenshot| image:: st2.png

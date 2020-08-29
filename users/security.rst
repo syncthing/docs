@@ -10,7 +10,7 @@ All device to device traffic is protected by TLS. To prevent uninvited devices
 from joining a cluster, the certificate fingerprint of each device is compared
 to a preset list of acceptable devices at connection establishment. The
 fingerprint is computed as the SHA-256 hash of the certificate and displayed
-in BASE32 encoding to form a reasonably compact and convenient string.
+in a human-friendly encoding, called Device ID.
 
 Incoming requests for file data are verified to the extent that the requested
 file name must exist in the local index and the global model.
@@ -98,11 +98,10 @@ Sync Connections (BEP)
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Sync connections are attempted to all configured devices, when the address is
-possible to resolve. The sync connection is based on TLS 1.2. The TLS
-certificates are sent in clear text (as in HTTPS etc), meaning that the
-certificate Common Name (by default ``syncthing``) is visible.
+possible to resolve. The sync connection is based on TLS 1.2 or TLS 1.3. The TLS
+certificates can be obtained by an eavesdropper, although it is more difficult to do so in TLS 1.3. This means that the contents of the certificate are visible, which includes certificate Common Name (by default ``syncthing``).
 
-An eavesdropper can deduce that this is a Syncthing connection and calculate the
+An eavesdropper can deduce that this is a Syncthing connection and under certain circumstances calculate the
 device IDs involved based on the hashes of the sent certificates.
 
 Likewise, if the sync port (default 22000) is accessible from the internet, a

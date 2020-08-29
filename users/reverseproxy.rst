@@ -24,6 +24,11 @@ GUI hosted on ``localhost:8384``.
 Apache
 ~~~~~~
 
+First of all, execute the following command to enable the Apache HTTP Proxy
+module: ``a2enmod proxy_http``.
+
+Then, you may add the following to your Apache httpd configuration:
+
 .. code-block:: apache
 
     ProxyPass /syncthing/ http://localhost:8384/

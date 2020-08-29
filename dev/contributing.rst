@@ -58,7 +58,7 @@ different requirements on review.
 Trivial:
   A small change or refactor that is obviously correct. These may be pushed
   without review by any member of the core team. Examples:
-  `removing dead code <https://github.com/syncthing/syncthing/commits/master>`__,
+  `removing dead code <https://github.com/syncthing/syncthing/commits/main>`__,
   `updating values <https://github.com/syncthing/syncthing/commit/2aa028facb7ccbe48e85c8c444501cc3fb38ef24>`__.
 
 Minor:
@@ -125,11 +125,11 @@ Commits
   why the change is made and what it accomplishes.
 
 - When drafting a pull request, please feel free to add commits with
-  corrections and merge from master when necessary. This provides a clear time
+  corrections and merge from ``main`` when necessary. This provides a clear time
   line with changes and simplifies review. Do not, in general, rebase your
   commits.
 
-- Pull requests are merged to master using squash merge. The "stream of
+- Pull requests are merged to ``main`` using squash merge. The "stream of
   consciousness" set of commits described in the previous point will be reduced
   to a single commit at merge time.
 
@@ -144,7 +144,7 @@ includes:
 
 - That the code is correctly formatted (``go fmt``).
 
-- That the commits are based on a reasonably recent ``master``.
+- That the commits are based on a reasonably recent ``main``.
 
 - That the author is listed in AUTHORS.
 
@@ -157,12 +157,12 @@ suite can be run as well.
 Branches
 --------
 
-- ``master`` is the main branch containing good code that will end up
+- ``main`` is the main branch containing good code that will end up
   in the next release. You should base your work on it. It won't ever
   be rebased or force-pushed to.
 
 - ``vx.y`` branches exist to make patch releases on otherwise obsolete
-  minor releases. Should only contain fixes cherry picked from master.
+  minor releases. Should only contain fixes cherry picked from ``main``.
   Don't base any work on them.
 
 - Other branches are probably topic branches and may be subject to

@@ -33,7 +33,7 @@ done so with it being their first contact with Go.
 
 When you are ready to start hacking, take a quick glance at the :ref:`contribution-guidelines`
 to know what to expect and to make the process smoother. The main take away is
-to keep the code clean, base it on the ``master`` branch, and we'll sort out
+to keep the code clean, base it on the ``main`` branch, and we'll sort out
 the rest once you file a pull request.
 
 

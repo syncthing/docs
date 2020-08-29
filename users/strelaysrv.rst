@@ -100,7 +100,7 @@ Options
 .. cmdoption:: -status-srv=<listen addr>
 
     Listen address for status service (blank to disable) (default ":22070").
-    Status service is used by the relay pool server UI for displaying stats (data transfered, number of clients, etc.)
+    Status service is used by the relay pool server UI for displaying stats (data transferred, number of clients, etc.)
 
 
 Setting Up

@@ -123,7 +123,7 @@ Session mode
 ------------
 
 The first and only message the client sends in the session mode is the
-SessionInvitation message which contains the session key identifying which
+JoinSessionRequest message which contains the session key identifying which
 session you are trying to join. The relay responds with one of the following
 Response messages:
 
@@ -362,7 +362,7 @@ SessionInvitation message (Type = 6)
 	Empty/all zero IP should be replaced with the relay's public IP address that
 	was used when establishing the protocol mode connection.
 : Port
- 	An optional port on which the relay server is expecting you to connect,
+ 	The port on which the relay server is expecting you to connect,
 	in order to start a connection in session mode.
 : Server Socket
 	Because both sides connecting to the relay use the client side of the socket,
