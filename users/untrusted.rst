@@ -79,7 +79,22 @@ Configuration
 GUI
 ~~~
 
-TBD
+On a trusted device you can set a password for a device and folder in the share
+tab of folder and device edit dialogs. To share a folder to a trusted device,
+you simply leave the password field empty. For an untrusted device, enter a
+password. You can click on the eye to toggle the password visibility.
+
+.. image:: untrusted-folder-share.png
+
+For a single device, it is possible the share different folders both in the
+usual way and encrypted. This may be useful, if you have one folder with
+sensitive data, that you do not want another device to read, and another folder
+with data that is unproblematic. If you never want to sync any unencrypted data
+to a particular device, you can mark it as untrusted in the advanced tab of the
+device edit dialog. This will prevent a connection to that device if you forget
+to set a password on any folder shared with it.
+
+On untrusted devices, you need to set the folder type to "Receive Encrypted".
 
 config.xml
 ~~~~~~~~~~
@@ -97,8 +112,20 @@ untrusted and will get encrypted folder data, using different passwords.
         <device id="I6KAH76-..." encryptionPassword="bar"></device>
     </folder>
 
-There is no specific configuration required on the untrusted devices; they
-will simply accept the encrypted data as is.
+On untrusted devices the type of the folders has to be ``receiveenctyped``.
+
+Caveats
+-------
+
+The untrusted device must not be able to compare encrypted data between
+different files and detect if data is equal, This means that blocks cannot as
+usual be reused between files. When a file is changed, blocks from the old file
+can still be reused. As an example, if you rename a file ``foo`` to ``Foo``
+syncthing will usually do an efficient rename or at least copy all the data
+before deleting the old one. On an untrusted device, it will delete the old file
+and receive the data for the new file over the network. However if you have a big file,
+e.g. ``video.mp4``, and you modify just a part of it (e.g. video metadata), only
+the changed block is transferred as usual.
 
 Technicals
 ----------
@@ -117,7 +144,8 @@ The following things are *not* protected:
   plaintext original, but it's still easy to derive the original size from the
   encrypted file)
 
-Encryption is AES-256-GCM with a key derived from the password and folder ID using scrypt.
+Encryption is XChaCha20-Poly1305 and AES-SIV with a key derived from the
+password and folder ID using scrypt. Refer to :ref:`untrusted` for details.
 
 Untrusted Side File Structure
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

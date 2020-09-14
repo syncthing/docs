@@ -260,7 +260,7 @@ Protocol Buffer Schema
         bool            introducer                 = 7;
         uint64          index_id                   = 8;
         bool            skip_introduction_removals = 9;
-        bytes           enc_pw_token               = 10;
+        bytes           encryption_password_token  = 10;
     }
 
     enum Compression {
