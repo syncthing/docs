@@ -74,6 +74,21 @@ The choice between stable and candidate is done in the APT source
 configuration. Please see `our APT instructions
 <https://apt.syncthing.net/>`__.
 
+Docker
+^^^^^^
+
+Docker images are pushed to several tags. By pulling a specific tag you can
+select the release channel you want:
+
+- ``syncthing/syncthing:latest`` points to the latest stable release, e.g. ``v1.9.0``
+- ``syncthing/syncthing:rc`` points to the latest release candidate, e.g. ``v1.10.0-rc.3``
+- ``syncthing/syncthing:nightly`` points to the latest nightly development build, e.g. ``v1.10.0-rc.3.dev.1.gd2e32957``
+
+There are also tags for the major and minor versions, for example
+``syncthing/syncthing:1.9`` for the latest stable 1.9 patch release and
+``syncthing/syncthing:1`` for the latest stable release with major version
+one.
+
 Some Other Distribution Channel
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
