@@ -64,6 +64,41 @@ The following are *not* synchronized;
 -  Devices, FIFOs, and other specials (ignored)
 -  Sparse file sparseness (will become sparse, when supported by the OS & filesystem)
 
+How does it handle case-sensitivity in file names?
+--------------------------------------------------
+
+In principle Syncthing works with *case-sensitive* paths, meaning that
+`file.txt` and `FILE.txt` denotes two independent things. It does not
+support synchronizing the contents of both as if they were somehow
+related.
+
+Some operating systems (e.g. Windows, Mac and Android) assume the
+opposite, treating them as the same file (or directory) and can never
+have both file names simultaneously. They will *preserve* the case
+from file creation, however.
+
+Thus, if two remote devices share these differing case variants with
+your local device, they cannot both be synchronized to such a system
+and will be reported as a case conflict by Syncthing. One of them will
+likely be pulled, and the other one marked with an appropriate error
+message. Which one "wins" is currently not predictable. In order to
+resolve such a case conflict situation, you need to decide on a
+consistent file name and **manually** enforce that across all
+involved, case-insensitive devices.
+
+This cautious behavior tries to save you from possible data loss
+caused by different files overwriting each other's contents. That
+could have happened before version 1.9.0, where the same file would
+erroneously be accessed under two case-differing file names.
+
+Note that the :ref:`caseSensitiveFS advanced option
+<case-sensitive-fs>` is **not** meant to change that basic principle,
+but only provides a performance optimization when the underlying
+filesystem is positively known to be case-sensitive already.
+
+All this does not concern the folder "root" path, but only relative
+paths within each shared folder.
+
 Is synchronization fast?
 ------------------------
 
