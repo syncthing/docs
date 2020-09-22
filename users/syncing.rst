@@ -79,6 +79,38 @@ synchronize the file. The block lists are compared to build a list of needed
 blocks, which are then requested from the network or copied locally, as
 described above.
 
+.. _case-sensitivity:
+
+Case Sensitivity in File Names
+------------------------------
+
+In principle Syncthing works with *case-sensitive* paths, meaning that
+`file.txt` and `FILE.txt` denote two independent things. It does not
+support synchronizing the contents of both as if they were somehow
+related.
+
+Some operating systems (e.g. Windows, Mac and Android) assume the
+opposite, treating them as the same file (or directory) and can never
+have both file names simultaneously. They will *preserve* the case
+from file creation, however.
+
+Thus, if two remote devices share these differing case variants with
+your local device, they cannot both be synchronized to such a system
+and will be reported as a case conflict by Syncthing. One of them will
+likely be pulled, and the other one marked with an appropriate error
+message. Which one "wins" is currently not predictable. In order to
+resolve such a case conflict situation, you need to decide on a
+consistent file name and **manually** enforce that across all
+involved, case-insensitive devices.
+
+This cautious behavior tries to save you from possible data loss
+caused by different files overwriting each other's contents. That
+could have happened before version 1.9.0, where the same file would
+erroneously be accessed under two case-differing file names.
+
+All this does not concern the folder "root" path, but only relative
+paths within each shared folder.
+
 .. _temporary-files:
 
 Temporary Files

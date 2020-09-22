@@ -13,4 +13,8 @@ the default) Syncthing will attempt to detect and prevent case-only file
 name collisions that can occur on case insensitive systems such as Windows
 and macOS, or other systems with case insensitive file systems.
 
-.. note:: This option should normally be set to ``false``.
+.. note:: This option should normally be set to ``false``. It is
+	  **not** meant to change the basic principles how Syncthing
+	  :ref:`handles case-sensitivity <case-sensitivity>`, but only provides
+	  a performance optimization when the underlying filesystem is
+	  positively known to be case-sensitive already.
