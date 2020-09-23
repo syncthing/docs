@@ -11,7 +11,8 @@ Synopsis
 
     syncthing [-audit] [-auditfile=<file|-|-->] [-browser-only] [device-id]
               [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
-              [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>]
+              [-home=<dir> | -config=<dir> -data=<dir>]
+              [-logfile=<filename>] [-logflags=<flags>]
               [-no-browser] [-no-console] [-no-restart] [-paths] [-paused]
               [-reset-database] [-reset-deltas] [-unpaused] [-upgrade]
               [-upgrade-check] [-upgrade-to=<url>] [-verbose] [-version]
@@ -56,8 +57,20 @@ Options
 
 .. cmdoption:: -home=<dir>
 
-    Set configuration directory. The default configuration directory is
-    ``$HOME/.config/syncthing`` (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac) and ``%LOCALAPPDATA%\Syncthing`` (Windows).
+    Set common configuration and data directory. The default configuration
+    directory is ``$HOME/.config/syncthing`` (Unix-like),
+    ``$HOME/Library/Application Support/Syncthing`` (Mac) and
+    ``%LOCALAPPDATA%\Syncthing`` (Windows).
+
+.. cmdoption:: -config=<dir>
+
+    Set configuration directory. Alternative to ``-home`` and must be used
+    together with ``-data``.
+
+.. cmdoption:: -data=<dir>
+
+    Set data (e.g. database) directory. Alternative to ``-home`` and must be used
+    together with ``-config``.
 
 .. cmdoption:: -logfile=<filename>
 
