@@ -84,15 +84,13 @@ described above.
 Case Sensitivity in File Names
 ------------------------------
 
-In principle Syncthing works with *case-sensitive* paths, meaning that
-`file.txt` and `FILE.txt` denote two independent things. It does not
-support synchronizing the contents of both as if they were somehow
-related.
-
-Some operating systems (e.g. Windows, Mac and Android) assume the
-opposite, treating them as the same file (or directory) and can never
-have both file names simultaneously. They will *preserve* the case
-from file creation, however.
+In principle, Syncthing works with *case-sensitive* paths, meaning
+that `file.txt` and `FILE.txt` denote two independent
+things. Consequently, it never considers both as if they were somehow
+related for synchronizing their contents. Some operating systems
+(e.g. Windows, Mac and Android to an extent) assume the opposite,
+treating them as the same file (or directory) and can never have both
+file names simultaneously.
 
 Thus, if two remote devices share these differing case variants with
 your local device, they cannot both be synchronized to such a system
