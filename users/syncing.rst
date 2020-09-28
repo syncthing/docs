@@ -79,6 +79,28 @@ synchronize the file. The block lists are compared to build a list of needed
 blocks, which are then requested from the network or copied locally, as
 described above.
 
+.. _conflict-handling:
+
+Conflicting Changes
+-------------------
+
+Syncthing does recognize conflicts.  When a file has been modified on two
+devices simultaneously and the content actually differs, one of the files will
+be renamed to ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>``.
+The file with the older modification time will be marked as the conflicting file
+and thus be renamed.  If the modification times are equal, the file originating
+from the device which has the larger value of the first 63 bits for its device
+ID will be marked as the conflicting file.  If the conflict is between a
+modification and a deletion of the file, the modified file always wins and is
+resurrected without renaming on the device where it was deleted.
+
+Beware that the ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>``
+files are treated as normal files after they are created, so they are propagated
+between devices.  We do this because the conflict is detected and resolved on
+one device, creating the ``sync-conflict`` file, but it's just as much of a
+conflict everywhere else and we don't know which of the conflicting files is the
+"best" from the user point of view.
+
 .. _case-sensitivity:
 
 Case Sensitivity in File Names
