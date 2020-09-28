@@ -85,7 +85,7 @@ Case Sensitivity in File Names
 ------------------------------
 
 In principle, Syncthing works with *case-sensitive* paths, meaning
-that `file.txt` and `FILE.txt` denote two independent things.
+that ``file.txt`` and ``FILE.txt`` denote two independent things.
 Consequently, it never considers both as if they were somehow related
 for synchronizing their contents.  Some operating systems
 (e.g. Windows, Mac and Android to an extent) assume the opposite,
