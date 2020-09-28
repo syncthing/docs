@@ -92,13 +92,16 @@ for synchronizing their contents.  Some operating systems
 treating them as the same file (or directory) and can never have both
 names simultaneously.
 
-Thus, if two remote devices share these differing case variants with
-your local device, they cannot both be synchronized to such a system
-and will be reported as a case conflict by Syncthing. One of them will
-likely be pulled, and the other one marked with an appropriate error
-message. Which one "wins" is currently not predictable. In order to
-resolve such a case conflict situation, you need to decide on a
-consistent file name and **manually** enforce that across all
+Thus, if a remote device shares a file which would clash with an
+existing local file, it cannot be synchronized to such a system and
+will be reported as a case conflict by Syncthing.  Similarly, if two
+remote devices share differing case variants to your local device,
+only one of them will be pulled, and the other one marked with an
+appropriate error message.  Which one "wins" is currently not
+predictable.
+
+In order to resolve such a case conflict situation, you need to decide
+on a consistent file name and **manually** enforce that across all
 involved, case-insensitive devices.
 
 This cautious behavior tries to save you from possible data loss
