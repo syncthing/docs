@@ -417,6 +417,9 @@ Device Element
         <maxSendKbps>100</maxSendKbps>
         <maxRecvKbps>100</maxRecvKbps>
         <maxRequestKiB>65536</maxRequestKiB>
+        <webUi>false</webUi>
+        <webUiPort>8384</webUiPort>
+
     </device>
 
 One or more ``device`` elements must be present in the file. Each element
@@ -529,6 +532,12 @@ maxRecvKbps
 maxRequestKiB
     Maximum amount of data to have outstanding in requests towards this device.
     Unit is kibibytes.
+    
+webUi
+    Set if a link will be display to the remote device. Defaults to 8384
+
+webUiPort
+    Set the exact port number use in for the remote gui.
 
 
 GUI Element
