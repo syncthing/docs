@@ -109,7 +109,7 @@ caused by different files overwriting each other's contents.  That
 could have happened before version 1.9.0, where the same file would
 erroneously be accessed under two case-differing file names.
 
-All this does not concern the folder "root" path, but only relative
+All this does not concern the folder root path, but only relative
 paths within each shared folder.
 
 .. _temporary-files:
