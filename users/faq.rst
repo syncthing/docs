@@ -425,8 +425,10 @@ How do I upgrade Syncthing?
 ---------------------------
 
 If you use a package manager such as Debian's apt-get, you should upgrade
-using the package manager. If you use the binary packages linked from
-Syncthing.net, you can use Syncthing built in automatic upgrades.
+using the package manager. If you installed syncthing from
+https://apt.syncthing.net on Debian, check that site for automatic update
+instructions. If you use the binary packages linked from Syncthing.net,
+you can use Syncthing built in automatic upgrades.
 
 - If automatic upgrades is enabled (which is the default), Syncthing will
   upgrade itself automatically within 24 hours of a new release.
