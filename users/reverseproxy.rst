@@ -68,6 +68,16 @@ Caddy
         write none
         header none
     }
+    
+Caddy
+~~~~~
+
+.. code-block:: none
+
+    :2016
+
+    reverse_proxy 127.0.0.1:8384
+
 
 Folder Configuration
 --------------------
