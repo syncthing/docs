@@ -17,8 +17,6 @@ Cross-platform
 
 - `Syncthing-GTK <https://github.com/kozec/syncthing-gtk>`_
 
-- `QSyncthingTray <https://github.com/sieren/QSyncthingTray>`_
-
 - `syncthingtray <https://github.com/Martchus/syncthingtray>`__
 
 Android
@@ -236,6 +234,7 @@ Older, Possibly Unmaintained
    these and you have revived the project, please update this page
    accordingly.
 
+-  https://github.com/sieren/QSyncthingTray
 -  https://github.com/akissa/pysyncthing
 -  https://github.com/retgoat/syncthing-ruby
 -  https://github.com/sodacode/Windows-Syncthing-Installer
