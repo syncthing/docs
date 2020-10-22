@@ -426,8 +426,7 @@ it is not present. The following attributes may be set on the ``device``
 element:
 
 id
-    The device ID. This must be written in canonical form, that is without any
-    spaces or dashes. (mandatory)
+    The :ref:`device ID <device-ids>`. (mandatory)
 
 name
     A friendly name for the device. (optional)
