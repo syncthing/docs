@@ -1,6 +1,8 @@
 Config Endpoints
 ================
 
+.. versionadded:: 1.12.0
+
 These endpoints facilitate access and modification of the :ref:`configuration
 <config>` in a granular way. Config sent to the endpoints must be in the same
 format as returned by the corresponding GET request. When posting the
@@ -14,12 +16,6 @@ replace the existing objects, not extend them. For example for
 ``RawListenAddresses` in options, which is an array of strings, sending
 ``{RawListenAddresses: ["tcp://10.0.0.2"]`` will replace all existing listen
 addresses.
-
-.. note::
-   Changing config in quick succession can be problematic. The changes may not
-   be applied in order, which might change the outcome. It is advicabable to
-   prevent too frequent config changes and/or check that changes were applied as
-   desired.
 
 .. _rest-config:
 
