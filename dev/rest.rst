@@ -27,6 +27,14 @@ System Endpoints
 
    ../rest/system-*
 
+Config Endpoints
+----------------
+
+.. toctree::
+   :maxdepth: 1
+
+   /rest/config/... <../rest/config.rst>
+
 Database Endpoints
 ------------------
 
