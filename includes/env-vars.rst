@@ -95,9 +95,7 @@ STNODEFAULTFOLDER
     variable will be ignored anytime after the first run.
 
 STNORESTART
-    Equivalent to the ``-no-restart`` flag. Disable the Syncthing monitor
-    process which handles restarts for some configuration changes, upgrades,
-    crashes and also log file writing (stdout is still written).
+    Equivalent to the ``-no-restart`` flag
 
 STNOUPGRADE
     Disable automatic upgrades.

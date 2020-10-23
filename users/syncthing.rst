@@ -36,7 +36,8 @@ Options
 
 .. cmdoption:: -auditfile=<file|-|-->
 
-    Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for audit events, rather than the timestamped default file name.
+    Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for
+    audit events, rather than the timestamped default file name.
 
 .. cmdoption:: -browser-only
 
@@ -74,7 +75,8 @@ Options
 
 .. cmdoption:: -logfile=<filename>
 
-    Set destination filename for logging (use ``"-"`` for stdout, which is the default option).
+    Set destination filename for logging (use ``"-"`` for stdout, which is the
+    default option).
 
 .. cmdoption:: -logflags=<flags>
 
@@ -101,11 +103,13 @@ Options
 
 .. cmdoption:: -no-restart
 
-    Disable the Syncthing monitor process which handles restarts for some configuration changes, upgrades, crashes and also log file writing (stdout is still written).
+    Do not restart Syncthing when it exits. The monitor process will still run
+    to handle crashes and writing to logfiles (if configured to).
 
 .. cmdoption:: -paths
 
-    Print the paths used for configuration, keys, database, GUI overrides, default sync folder and the log file.
+    Print the paths used for configuration, keys, database, GUI overrides,
+    default sync folder and the log file.
 
 .. cmdoption:: -paused
 
@@ -161,11 +165,9 @@ Exit Codes
 4
     Upgrading
 
-Some of these exit codes are only returned when running without a monitor
-process (with environment variable ``STNORESTART`` set). Exit codes over 125 are
-usually returned by the shell/binary loader/default signal handler. Exit codes
-over 128+N on Unix usually represent the signal which caused the process to
-exit. For example, ``128 + 9 (SIGKILL) = 137``.
+Exit codes over 125 are usually returned by the shell/binary loader/default
+signal handler. Exit codes over 128+N on Unix usually represent the signal which
+caused the process to exit. For example, ``128 + 9 (SIGKILL) = 137``.
 
 Proxies
 -------
