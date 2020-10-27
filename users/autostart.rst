@@ -135,6 +135,12 @@ make selective use of them depending on your needs.
 
    |Windows Task Scheduler Additional Actions Screenshot|
 
+.. warning::
+  Due to technical limitations, ending the task in Task Scheduler
+  terminates only the monitor process of Syncthing. In order to actually
+  exit Syncthing, open the Web GUI and press the "Shutdown" button under
+  the "Actions" dropdown menu.
+
 .. _autostart-windows-startup:
 
 Run at user log on using the Startup folder
