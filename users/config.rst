@@ -354,9 +354,12 @@ copyOwnershipFromParent
     Requires running Syncthing as privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux).
 
 modTimeWindowS
-    Allowed modification timestamp difference when comparing files for equivalence.
-    To be used on systems that have unstable modification timestamps, that might change after being observed after
-    the last write operation. Used in Android only.
+    Allowed modification timestamp difference when comparing files for
+    equivalence. To be used on file systems which have unstable or
+    imprecise modification timestamps (e.g. FAT) that might change after
+    being recorded during the last write operation. Must be set before
+    adding files to the folder in order to take effect. Usually defaults
+    to 2 on Android, and always to 0 elsewhere.
 
 maxConcurrentWrites
     Maximum number of concurrent write operations while syncing. Defaults to 2. Increasing this might increase or
