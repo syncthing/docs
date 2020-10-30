@@ -69,14 +69,11 @@ Caddy
         header none
     }
     
-Caddy
-~~~~~
+    caddy2
 
-.. code-block:: none
+    example.com
 
-    :2016
-
-    reverse_proxy 127.0.0.1:8384
+    reverse_proxy /syncthing 127.0.0.1:8384
 
 
 Folder Configuration
