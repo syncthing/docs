@@ -31,6 +31,9 @@ Prerequisites
 -  The latest stable version of Go. Earlier releases may work, but we recommend
    always using the latest stable version. At the time of writing this is **Go 1.14**.
 -  Git
+-  If you want to build Debian packages FPM is required. See FPM's
+   `installation information <https://fpm.readthedocs.io/en/latest/installing.html>`__.
+
 
 If you're not already a Go developer, the easiest way to get going
 is to download the latest version of Go as instructed in
@@ -111,6 +114,10 @@ The following ``build.go`` subcommands and options exist.
 
 ``go run build.go test``
   Runs the tests.
+
+``go run build.go deb``
+  Creates a Debian package in the current directory. Requires FPM
+  and a Unixy build.
 
 ``go run build.go tar``
   Creates a Syncthing tar.gz dist file in the current directory. Assumes a
