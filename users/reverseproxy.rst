@@ -73,6 +73,8 @@ Caddy
 Caddy v2
 ~~~~~~~~
 
+.. code-block:: none
+
     example.com
 
     reverse_proxy /syncthing 127.0.0.1:8384
