@@ -59,8 +59,6 @@ Caddy
 
 .. code-block:: none
     
-    Caddy
-    
     proxy /syncthing localhost:8384 {
         transparent
     }
@@ -70,10 +68,10 @@ Caddy
         write none
         header none
     }
-    
-    ---------------------------------------------
-    
-    Caddy2 
+
+
+Caddy v2
+~~~~~~~~
 
     example.com
 
