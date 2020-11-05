@@ -59,7 +59,7 @@ Caddy
 
 .. code-block:: none
     
-    caddy
+    Caddy
     
     proxy /syncthing localhost:8384 {
         transparent
@@ -70,6 +70,8 @@ Caddy
         write none
         header none
     }
+    
+    ---------------------------------------------
     
     Caddy2 
 
