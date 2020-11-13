@@ -26,6 +26,11 @@ Android
 
   A wrapper app for the Syncthing binary.
 
+- `Syncthing-Fork <https://github.com/catfriend1/syncthing-android>`_
+
+  An alternative wrapper app for the Syncthing binary with extended
+  functionality.
+
 - `syncthing-lite <https://github.com/syncthing/syncthing-lite>`_
 
   Down- or uploads data from accessible devices, does not continuously keep a
