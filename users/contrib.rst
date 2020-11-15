@@ -31,11 +31,6 @@ Android
   An alternative wrapper app for the Syncthing binary with extended
   functionality.
 
-- `syncthing-lite <https://github.com/syncthing/syncthing-lite>`_
-
-  Down- or uploads data from accessible devices, does not continuously keep a
-  share in sync.
-
 .. _contrib-windows:
 
 Windows
@@ -239,6 +234,7 @@ Older, Possibly Unmaintained
    these and you have revived the project, please update this page
    accordingly.
 
+-  https://github.com/syncthing/syncthing-lite
 -  https://github.com/sieren/QSyncthingTray
 -  https://github.com/akissa/pysyncthing
 -  https://github.com/retgoat/syncthing-ruby
