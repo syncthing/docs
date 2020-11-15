@@ -58,3 +58,11 @@ div.admonition p.admonition-title {
 p.admonition-title:after {
   content: none;
 }
+
+/* Override Alabaster theme defaults to add space between list items. */
+li > p:last-child {
+  margin-bottom: 1em;
+}
+li:last-child > p:last-child {
+  margin-bottom: 0;
+}
