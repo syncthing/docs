@@ -6,6 +6,7 @@ GET /rest/cluster/pendingfolders
 Lists folders which remote devices have offered to us, but are not yet
 shared from our instance to them.  Takes the optional ``device``
 parameter to only return folders offered by a specific remote device.
+Other offering devices are also omitted from the result.
 
 .. code-block:: json
 
