@@ -30,7 +30,7 @@ on disk on ``T1`` is not affected, but data sent to ``U1`` becomes encrypted
 From this setup it's also possible to add further trusted devices, say
 ``T2``, and have these sync the data from the untrusted device ``U1``
 without being in contact with ``T1``. Using the *same folder password* on
-``T2`` makes the existing data on ``U2`` intelligeble and the plaintext data
+``T2`` makes the existing data on ``U1`` intelligeble and the plaintext data
 becomes available.
 
 .. graphviz::
@@ -86,7 +86,7 @@ password. You can click on the eye to toggle the password visibility.
 
 .. image:: untrusted-folder-share.png
 
-For a single device, it is possible the share different folders both in the
+For a single device, it is possible to share different folders both in the
 usual way and encrypted. This may be useful, if you have one folder with
 sensitive data, that you do not want another device to read, and another folder
 with data that is unproblematic. If you never want to sync any unencrypted data
