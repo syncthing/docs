@@ -199,33 +199,51 @@ discovery servers.
 Reverse Proxy Setup
 ~~~~~~~~~~~~~~~~~~~
 
+.. versionadded:: 1.8.0
+
+    A new "X-Client-Port" HTTP header was added.
+
 The discovery server can be run behind an SSL-secured reverse proxy. This
 allows:
 
 - Use of a subdomain name without requiring a port number added to the URL
 - Sharing an SSL certificate with multiple services on the same server
 
+Note that after this configuration, if the proxy uses a valid HTTPS
+certificate, **clients should omit the** :code:`?id=...` **parameter from the
+discovery server URL on their configuration**. Client-side validation will be
+done by checking the visible proxy server's HTTPS certificate. If, however, the
+proxy uses a self-signed or somehow invalid certificate, clients must still set
+the :code:`?id=...` parameter with the computed hash of the proxy's
+certificate. Using such setup is discouraged and is not covered in this page.
+Always favour using valid and widely recognised certificates.
+
 Requirements
 ^^^^^^^^^^^^
 
-- Run the discovery server using the -http flag  :code:`stdiscosrv -http`.
-- SSL certificate/key configured for the reverse proxy
-- The "X-Forwarded-For" http header must be passed through with the client's
-  real IP address
-- The "X-SSL-Cert" must be passed through with the PEM-encoded client SSL
-  certificate
+- Run the discovery server using the -http flag: :code:`stdiscosrv -http`.
+- SSL certificate/key configured for the reverse proxy.
+- The "X-Forwarded-For" HTTP header must be passed through with the client's
+  real IP address.
+- The "X-Client-Port" HTTP header should be passed through, containing the client's real connection port.
+- The "X-SSL-Cert" HTTP header must be passed through with the PEM-encoded
+  client SSL certificate. This will be present in POST requests and may be empty
+  in GET requests from clients. If you see syncthing-discosrv outputting
+  :code:`no certificates` when receiving POST requests, that's because the proxy
+  is not passing this header through.
 - The proxy must request the client SSL certificate but not require it to be
   signed by a trusted CA.
 
 Nginx
-^^^^^
+"""""
 
-These three lines in the configuration take care of the last three requirements
+These lines in the configuration take care of the last four requirements
 listed above:
 
 .. code-block:: nginx
 
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Client-Port $remote_port;
     proxy_set_header X-SSL-Cert $ssl_client_cert;
     ssl_verify_client optional_no_ca;
 
@@ -242,6 +260,7 @@ the Syncthing settings.
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection $http_connection;
     proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Client-Port $remote_port;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_set_header X-SSL-Cert $ssl_client_cert;
@@ -257,18 +276,33 @@ the Syncthing settings.
     }
     server {
             server_name discovery.example.com;
+
             listen 443 ssl http2;
             access_log /var/log/nginx/access.log vhost;
-            ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
-            ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384: DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:E CDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA25 6:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA3 84:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS -DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA;
-            ssl_prefer_server_ciphers on;
+
+            # Mozilla Intermediate configuration (https://wiki.mozilla.org/Security/Server_Side_TLS)
+            ssl_protocols TLSv1.2 TLSv1.3;
+            ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+            ssl_prefer_server_ciphers off;
+            ssl_session_tickets off;
             ssl_session_timeout 5m;
             ssl_session_cache shared:SSL:50m;
+            ssl_verify_client optional_no_ca;
+
+            # OCSP stapling
+            ssl_stapling on;
+            ssl_stapling_verify on;
+
+            # Certificates
             ssl_certificate /etc/nginx/certs/discovery.example.com.crt;
             ssl_certificate_key /etc/nginx/certs/discovery.example.com.key;
-            ssl_dhparam /etc/nginx/certs/discovery.example.com.dhparam.pem;
-            add_header Strict-Transport-Security "max-age=31536000";
-            ssl_verify_client optional_no_ca;
+
+            # curl https://ssl-config.mozilla.org/ffdhe2048.txt > /path/to/dhparam
+            ssl_dhparam /path/to/dhparam;
+
+            # HSTS (ngx_http_headers_module is required) (63072000 seconds)
+            add_header Strict-Transport-Security "max-age=63072000" always;
+
             location / {
                     proxy_pass http://discovery.example.com;
             }
@@ -279,6 +313,35 @@ Server and Syncthing using Nginx, `Let's Encrypt`_ and Docker can be found here_
 
 .. _Let's Encrypt: https://letsencrypt.org/
 .. _here: https://forum.syncthing.net/t/docker-syncthing-and-syncthing-discovery-behind-nginx-reverse-proxy-with-lets-encrypt/6880
+
+
+Apache
+""""""
+The following lines must be added to the configuration:
+
+.. code-block:: apache
+
+    SSLProxyEngine On
+    SSLVerifyClient optional_no_ca
+    RequestHeader set X-SSL-Cert "%{SSL_CLIENT_CERT}s"
+
+The following was observed to not be required at least under
+Apache httpd 2.4.38, as the proxy module adds the needed header by default.
+If you need to explicitly add the following directive, make sure to issue
+:code:`a2enmod remoteip` first. Then, add the following to your Apache httpd
+configuration:
+
+.. code-block:: apache
+
+    RemoteIPHeader X-Forwarded-For
+
+For more details, see also the recommendations in the
+`Reverse Proxy Setup <https://docs.syncthing.net/users/reverseproxy.html>`__
+page. Note that that page is directed at setting up a proxy for the
+Syncthing web UI. You should do the proper path and port adjustments to proxying
+the discovery server and your particular setup.
+
+
 
 See Also
 --------

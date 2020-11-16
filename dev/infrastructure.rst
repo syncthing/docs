@@ -41,7 +41,7 @@ DigitalOcean.
 Relay Pool Server
 -----------------
 
-Runs the `strelaypoolsrv <https://github.com/syncthing/syncthing/tree/master/cmd/strelaypoolsrv>`__
+Runs the `strelaypoolsrv <https://github.com/syncthing/syncthing/tree/main/cmd/strelaypoolsrv>`__
 daemon to handle dynamic registration and announcement of relays.
 
 - `relays.syncthing.net <http://relays.syncthing.net>`__
@@ -54,7 +54,7 @@ Hosted by friendly people on the internet.
 Usage Reporting Server
 ----------------------
 
-Runs the `ursrv <https://github.com/syncthing/syncthing/tree/master/cmd/ursrv>`__
+Runs the `ursrv <https://github.com/syncthing/syncthing/tree/main/cmd/ursrv>`__
 daemon with PostgreSQL and Nginx.
 
 - `data.syncthing.net <https://data.syncthing.net/>`__

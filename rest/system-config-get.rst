@@ -1,6 +1,10 @@
 GET /rest/system/config
 =======================
 
+.. deprecated:: v1.12.0
+   This endpoint still works as before but is deprecated. Use :ref:`rest-config`
+   instead.
+
 Returns the current configuration.
 
 .. code-block:: json
@@ -72,9 +76,11 @@ Returns the current configuration.
 	  "maxRecvKbps": 0,
 	  "ignoredFolders": [],
 	  "pendingFolders": [
-	    "time": "2019-06-05T10:21:22+02:00",
-	    "id": "cpkn4-57ysy",
-	    "label": "SomeonesFolder"
+	    {
+	      "time": "2019-06-05T10:21:22+02:00",
+	      "id": "cpkn4-57ysy",
+	      "label": "SomeonesFolder"
+	    }
 	  ],
 	  "maxRequestKiB": 0
 	}
@@ -94,7 +100,7 @@ Returns the current configuration.
 	"insecureAllowFrameLoading": false
       },
       "ldap": {
-	"addresd": "",
+	"address": "",
 	"bindDN": "",
 	"transport": "plain",
 	"insecureSkipVerify": false

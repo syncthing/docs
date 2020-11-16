@@ -45,23 +45,23 @@ What things are synced?
 
 The following things are *always* synchronized:
 
--  File Contents
--  File Modification Times
+-  File contents
+-  File modification times
 
 The following may be synchronized or not, depending:
 
--  File Permissions (When supported by file system. On Windows, only the
-   read only bit is synchronized.)
--  Symbolic Links (synced, except on Windows, but never followed.)
+-  File permissions (when supported by file system; on Windows only the
+   read only bit is synchronized)
+-  Symbolic links (synced, except on Windows, but never followed)
 
 The following are *not* synchronized;
 
--  File or Directory Owners and Groups (not preserved)
--  Directory Modification Times (not preserved)
--  Hard Links (followed, not preserved)
--  Extended Attributes, Resource Forks (not preserved)
+-  File or directory owners and Groups (not preserved)
+-  Directory modification times (not preserved)
+-  Hard links and Windows directory junctions (followed, not preserved)
+-  Extended attributes, resource forks (not preserved)
 -  Windows, POSIX or NFS ACLs (not preserved)
--  Devices, FIFOs, and Other Specials (ignored)
+-  Devices, FIFOs, and other specials (ignored)
 -  Sparse file sparseness (will become sparse, when supported by the OS & filesystem)
 
 Is synchronization fast?
@@ -158,23 +158,8 @@ oyster!)
 What if there is a conflict?
 ----------------------------
 
-Syncthing does recognize conflicts. When a file has been modified on two devices
-simultaneously and the content actually differs, one of the files will be
-renamed to ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>``. The file with the
-older modification time will be marked as the conflicting file and thus be
-renamed. If the modification times are equal, the file originating from the
-device which has the larger value of the first 63 bits for his device ID will be
-marked as the conflicting file.
-If the conflict is between a modification and a deletion of the file, the
-modified file always wins and is resurrected without renaming on the
-device where it was deleted.
-
-Beware that the ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>`` files are
-treated as normal files after they are created, so they are propagated between
-devices. We do this because the conflict is detected and resolved on one device,
-creating the ``sync-conflict`` file, but it's just as much of a conflict
-everywhere else and we don't know which of the conflicting files is the "best"
-from the user point of view.
+.. seealso::
+    :ref:`conflict-handling`
 
 .. _marker-faq:
 
@@ -234,8 +219,8 @@ Does Syncthing support syncing between folders on the same system?
 
 No. Syncthing is not designed to sync locally and the overhead involved in
 doing so using Syncthing's method would be wasteful. There are better
-programs to achieve this such as [rsync](https://rsync.samba.org/) or
-[Unison](https://www.cis.upenn.edu/~bcpierce/unison).
+programs to achieve this such as `rsync <https://rsync.samba.org/>`__ or
+`Unison <https://www.cis.upenn.edu/~bcpierce/unison>`__.
 
 When I do have two distinct Syncthing-managed folders on two hosts, how does Syncthing handle moving files between them?
 ------------------------------------------------------------------------------------------------------------------------
@@ -341,14 +326,9 @@ If only your remote computer is Unix-like,
 you can still access it with ssh from Windows.
 
 Under Windows 10 (64 bit) you can use the same ssh command if you install
-the Windows Subsystem for Linux.
-https://msdn.microsoft.com/en-gb/commandline/wsl/install_guide
+the `Windows Subsystem for Linux <https://docs.microsoft.com/windows/wsl/install-win10>`__.
 
-Another Windows way to run ssh is to install gow.
-(Gnu On Windows) https://github.com/bmatzelle/gow
-
-The easiest way to install gow is with chocolatey.
-https://chocolatey.org/
+Another Windows way to run ssh is to install `gow (Gnu On Windows) <https://github.com/bmatzelle/gow>`__. The easiest way to install gow is with the `chocolatey <https://chocolatey.org/>`__ package manager.
 
 Why do I get "Host check error" in the GUI/API?
 -----------------------------------------------
@@ -395,7 +375,7 @@ To add e.g. a red theme, you can create the file ``red/assets/css/theme.css``
 inside the GUI override directory to override the default CSS styles.
 
 To create a whole new GUI, you should checkout the files at
-https://github.com/syncthing/syncthing/tree/master/gui/default
+https://github.com/syncthing/syncthing/tree/main/gui/default
 to get an idea how to do that.
 
 
@@ -468,17 +448,14 @@ We release new versions through GitHub. The latest release is always found
 `on the release page
 <https://github.com/syncthing/syncthing/releases/latest>`_. Unfortunately
 GitHub does not provide a single URL to automatically download the latest
-version. We suggest to use the GitHub API at
-https://api.github.com/repos/syncthing/syncthing/releases/latest and parsing
+version. We suggest to use the `GitHub API <https://api.github.com/repos/syncthing/syncthing/releases/latest>`__ and parsing
 the JSON response.
 
 
 How do I run Syncthing as a daemon process on Linux?
 ----------------------------------------------------
 
-If you're using systemd, runit, or upstart, we already ship examples, check
-https://github.com/syncthing/syncthing/tree/master/etc for example
-configurations.
+If you're using systemd, runit, or upstart, we ship `example configurations <https://github.com/syncthing/syncthing/tree/main/etc>`__.
 
 If however you're not using one of these tools, you have a couple of options.
 If your system has a tool called ``start-stop-daemon`` installed (that's the name
@@ -499,8 +476,7 @@ You are probably reading this because you encountered the following error with
 the filesystem watcher on linux:
 
     Failed to start filesystem watcher for folder yourLabel (yourID): failed to
-    setup inotify handler. Please increase inotify limits, see
-    https://docs.syncthing.net/users/faq.html#inotify-limits
+    setup inotify handler. Please increase inotify limits, see https://docs.syncthing.net/users/faq.html#inotify-limits
 
 Linux typically restricts the amount of watches per user (usually 8192). When
 you have more directories you need to adjust that number.

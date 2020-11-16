@@ -2,7 +2,7 @@ Issue Management
 ================
 
 Bugs, feature requests and other things we need to do are tracked as
-Github issues. Issues can be of various types and in various states, and
+GitHub issues. Issues can be of various types and in various states, and
 also belong to milestones or not. This page is an attempt to document
 the current practice.
 
@@ -16,38 +16,62 @@ Examples include "Duplicate of #123", "Discovered to be configuration
 error", "Rendered moot by #123" and so on. We don't use the "invalid" or
 "wontfix" labels.
 
+api
+    Issues or pull requests that change public APIs (config, REST). Used
+    to highlight these specifically in the release notes, and ensure we
+    don't miss to bump the minor version.
+
 bug
-    The issue is a verified bug.
+    A problem with current functionality, as opposed to missing
+    functionality (enhancement).
 
 build
-    The issue is caused by or requires changes to the build system
-    (scripts or Docker image).
+    Issues caused by or requiring changes to the build system (scripts
+    or Docker image).
+
+dependencies
+    Pull requests that update a dependency file.
+
+documentation
+    Issues related to the documentation.
 
 enhancement
-    This is a new feature or an improvement of some kind, as
-    opposed to a problem (bug).
+    New features or improvements of some kind, as opposed to a problem
+    (bug).
 
 frozen-due-to-age
-    This is set automatically on issues when they have been closed untouched
-    for a long time, together with the issue being locked against
-    discussion.
+    Set automatically on issues when they have been closed untouched
+    for a long time, together with being locked for discussion.
 
-good-first-issue
-    These issues are good starting points for new contributors. They are
-    contained in scope and size, and it should be clear what is the desired
-    outcome.
+good first issue
+    Good starting points for new contributors, contained in scope and
+    size, and clear about what is the desired outcome.
+
+needs-triage
+    New issues needed to be validated.
 
 not-our-bug
     Rare and temporary label used only when we want to keep an issue
     open for visibility, but the real problem is somewhere else.
 
-protocol
-    This requires a change to the protocol.
+pr-merged
+    Legacy label used in the past for pull requests merged to the main
+    tree.
 
-unreleased
-    This is set on bugs that have never been in a released stable version -
-    i.e., a bug introduced in v0.14.44-rc.1 and fixed in v0.14.44-rc.2. They
-    are excluded from the release notes for v0.14.44.
+protocol
+    Issues that require a change to the protocol.
+
+skip-changelog
+    Set on bugs that have never been in a released stable version, i.e.
+    a bug introduced in v1.8.0-rc.1 and fixed in v1.8.0-rc.2, and as
+    such excluded from the release notes for v1.8.0.
+
+ui
+    Issues related to the graphical user interface.
+
+waiting-for-info
+    Issues that require more information from the author on how to
+    reproduce.
 
 Milestones
 ----------
@@ -87,7 +111,7 @@ There are some exceptions though;
 
 -  "Popular" issues that attract lots of "me too" and "+1" comments.
    These are noise and annoy people with useless notifications via mail
-   and in the Github interface. Once the issue is clear and it suffers
+   and in the GitHub interface. Once the issue is clear and it suffers
    from this symptom I may lock it.
 
 -  Contentious bikeshedding discussions. After two sides in a discussion

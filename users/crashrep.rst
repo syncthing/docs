@@ -39,4 +39,11 @@ The following is an example of a crash report as sent::
     main.syncthingMain(0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x49651b4, 0x1, 0x0, 0x0, ...)
             /buildagent/work/github.com/syncthing/syncthing/cmd/syncthing/main.go:873 +0x1bc5
 
-For a more details description of the format and how the sending happens, see :ref:`crashrep-dev`.
+
+Note that the username and hostname of the machine where Syncthing was
+built will be included in the crash log as part of the version string.
+This information is essential for the developers to interpret the log in
+context. If you compile Syncthing locally and want to prevent your build
+from having such data embedded, see :ref:`versiontagging`.
+
+For a more detailed description of the format and how the sending happens, see :ref:`crashrep-dev`.

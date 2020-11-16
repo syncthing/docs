@@ -6,7 +6,7 @@ Prerequisites
 
 - About ten minutes to half an hour of free time.
 
-- The master branch in a clean and buildable state, full of commits you are proud of and know the users will love. This is of course the default state at any given time.
+- The main branch in a clean and buildable state, full of commits you are proud of and know the users will love. This is of course the default state at any given time.
 
 - A normal computer (real or virtual) that has a command line and can run bash scripts. Macs and Linux boxes are good choices here. If you know what you're doing I'm sure it's entirely possible to do it on Windows as well - but then you're on your own. In a pinch you can use ``secure.syncthing.net`` as it has all the required tools installed, although you'll need to add your git config, keys etc.
 
@@ -56,14 +56,14 @@ Use the change log from the corresponding release candidate, just change the ver
 Prepare the Release Branch
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Releases come from the ``release`` branch. If you are making a new candidate release you will want to fast forward ``release`` to point at current ``master`` ``HEAD``. If you are making a stable release from the latest RC the ``release`` branch is already in the right place.
+Releases come from the ``release`` branch. If you are making a new candidate release you will want to fast forward ``release`` to point at current ``main`` ``HEAD``. If you are making a stable release from the latest RC the ``release`` branch is already in the right place.
 
 .. code-block:: bash
 
     $ git checkout release
-    $ git merge --ff-only master
+    $ git merge --ff-only main
 
-If there's been some funky business with the ``release`` branch and it can't be fast forwarded to ``master``, 1) the previous release manager screwed up, 2) don't do a merge, just reset the branch to the right place.
+If there's been some funky business with the ``release`` branch and it can't be fast forwarded to ``main``, 1) the previous release manager screwed up, 2) don't do a merge, just reset the branch to the right place.
 
 Don't push the branch yet, we want to create the tag first.
 
@@ -87,7 +87,7 @@ Build the Packages
 
 If you are building a release candidate and fast forwarded the ``release`` branch the build server will already have started building it. If not, jump in on the build server and trigger the Release/Syncthing job, for the ``release`` branch, while checking the options to rebuild all dependencies in the chain. We need the rebuild for those binaries to pick up the new tag.
 
-Once the build succeds, log in on ``secure.syncthing.net``. If something failed in the build it's hopefully "just" a flaky test - redo the build.
+Once the build succeeds, log in on ``secure.syncthing.net``. If something failed in the build it's hopefully "just" a flaky test - redo the build.
 
 Create the GitHub release
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -117,19 +117,13 @@ The milestone will be closed.
 Sign and upload the archives
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-At this point the build should haver completed and the artifacts be uploaded to ``secure.s.n``. If the build number was 1234 and the version v0.14.50 the files will be in ``/home/incoming/build-1234-v0.14.50``. Run the following scripts. None of them should fail, barring connectivity issues - so if they do, you get to fix whatever it is without any guidance from me. Sorry.
+At this point the build should have completed and the artifacts should have been uploaded to ``secure.s.n``. If the build number was 1234 and the version v0.14.50 the files will be in ``/home/incoming/build-1234-v0.14.50``. Run the following scripts. None of them should fail, barring connectivity issues - so if they do, you get to fix whatever it is without any guidance from me. Sorry.
 
 .. code-block:: bash
 
     $ sign-upload-debian /home/incoming/build-1234-v0.14.50
 
 Publishes the Debian archives to apt.syncthing.net.
-
-.. code-block:: bash
-
-    $ upload-snaps /home/incoming/build-1234-v0.14.50
-
-Publishes the Snap packages to Ubuntu.
 
 .. code-block:: bash
 
@@ -147,7 +141,7 @@ Stable Releases - Optionally, tweet it
 
 If you have the Twitter account and the release isn't a cake-in-your-face screwup fix that you'd rather no one ever heard about and want to just silently roll out to everyone during the night.
 
-Merge Release Into Master
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Merge Release Into Main
+~~~~~~~~~~~~~~~~~~~~~~~
 
-If this was a non-first candidate release with cherry picked commits on it, merge ``release`` back into ``master`` and push ``master``.
+If this was a non-first candidate release with cherry picked commits on it, merge ``release`` back into ``main`` and push ``main``.

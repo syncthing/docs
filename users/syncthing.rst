@@ -11,7 +11,8 @@ Synopsis
 
     syncthing [-audit] [-auditfile=<file|-|-->] [-browser-only] [device-id]
               [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
-              [-home=<dir>] [-logfile=<filename>] [-logflags=<flags>]
+              [-home=<dir> | -config=<dir> -data=<dir>]
+              [-logfile=<filename>] [-logflags=<flags>]
               [-no-browser] [-no-console] [-no-restart] [-paths] [-paused]
               [-reset-database] [-reset-deltas] [-unpaused] [-upgrade]
               [-upgrade-check] [-upgrade-to=<url>] [-verbose] [-version]
@@ -35,7 +36,8 @@ Options
 
 .. cmdoption:: -auditfile=<file|-|-->
 
-    Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for audit events, rather than the timestamped default file name.
+    Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for
+    audit events, rather than the timestamped default file name.
 
 .. cmdoption:: -browser-only
 
@@ -56,12 +58,25 @@ Options
 
 .. cmdoption:: -home=<dir>
 
-    Set configuration directory. The default configuration directory is
-    ``$HOME/.config/syncthing`` (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac) and ``%LOCALAPPDATA%\Syncthing`` (Windows).
+    Set common configuration and data directory. The default configuration
+    directory is ``$HOME/.config/syncthing`` (Unix-like),
+    ``$HOME/Library/Application Support/Syncthing`` (Mac) and
+    ``%LOCALAPPDATA%\Syncthing`` (Windows).
+
+.. cmdoption:: -config=<dir>
+
+    Set configuration directory. Alternative to ``-home`` and must be used
+    together with ``-data``.
+
+.. cmdoption:: -data=<dir>
+
+    Set data (e.g. database) directory. Alternative to ``-home`` and must be used
+    together with ``-config``.
 
 .. cmdoption:: -logfile=<filename>
 
-    Set destination filename for logging (use ``"-"`` for stdout, which is the default option).
+    Set destination filename for logging (use ``"-"`` for stdout, which is the
+    default option).
 
 .. cmdoption:: -logflags=<flags>
 
@@ -88,11 +103,13 @@ Options
 
 .. cmdoption:: -no-restart
 
-    Disable the Syncthing monitor process which handles restarts for some configuration changes, upgrades, crashes and also log file writing (stdout is still written).
+    Do not restart Syncthing when it exits. The monitor process will still run
+    to handle crashes and writing to logfiles (if configured to).
 
 .. cmdoption:: -paths
 
-    Print the paths used for configuration, keys, database, GUI overrides, default sync folder and the log file.
+    Print the paths used for configuration, keys, database, GUI overrides,
+    default sync folder and the log file.
 
 .. cmdoption:: -paused
 
@@ -148,11 +165,9 @@ Exit Codes
 4
     Upgrading
 
-Some of these exit codes are only returned when running without a monitor
-process (with environment variable ``STNORESTART`` set). Exit codes over 125 are
-usually returned by the shell/binary loader/default signal handler. Exit codes
-over 128+N on Unix usually represent the signal which caused the process to
-exit. For example, ``128 + 9 (SIGKILL) = 137``.
+Exit codes over 125 are usually returned by the shell/binary loader/default
+signal handler. Exit codes over 128+N on Unix usually represent the signal which
+caused the process to exit. For example, ``128 + 9 (SIGKILL) = 137``.
 
 Proxies
 -------

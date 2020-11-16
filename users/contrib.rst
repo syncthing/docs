@@ -17,8 +17,6 @@ Cross-platform
 
 - `Syncthing-GTK <https://github.com/kozec/syncthing-gtk>`_
 
-- `QSyncthingTray <https://github.com/sieren/QSyncthingTray>`_
-
 - `syncthingtray <https://github.com/Martchus/syncthingtray>`__
 
 Android
@@ -28,10 +26,10 @@ Android
 
   A wrapper app for the Syncthing binary.
 
-- `syncthing-lite <https://github.com/syncthing/syncthing-lite>`_
+- `Syncthing-Fork <https://github.com/catfriend1/syncthing-android>`_
 
-  Down- or uploads data from accessible devices, does not continuously keep a
-  share in sync.
+  An alternative wrapper app for the Syncthing binary with extended
+  functionality.
 
 .. _contrib-windows:
 
@@ -75,17 +73,6 @@ Debian / Ubuntu
 
 - `Ubuntu PPA containing Syncthing-GTK <https://launchpad.net/~nilarimogard/+archive/ubuntu/webupd8/>`_
 
-Snap
-~~~~
-
-On any of the `Linux distributions that support snaps <https://snapcraft.io/docs/core/install>`_: ::
-
-   $ snap install syncthing
-
-If you want to help testing the upcoming release, and get the newer features earlier, you can install the snap from the candidate channel: ::
-
-   $ snap install syncthing --candidate
-
 Fedora / CentOS
 ~~~~~~~~~~~~~~~
 
@@ -103,21 +90,21 @@ ArchLinux
 Docker
 ~~~~~~
 
-- Dockerfiles for `Syncthing <https://github.com/firecat53/dockerfiles/tree/master/syncthing>`_ and `Syncthing Discovery Server <https://github.com/firecat53/dockerfiles/tree/master/syncthing_discovery>`_. Latest binary releases used for both.
+- Dockerfiles for `Syncthing <https://github.com/firecat53/dockerfiles/tree/master/syncthing>`_ and `Syncthing Discovery Server <https://github.com/firecat53/dockerfiles/tree/master/syncthing_discovery>`_.
+  Latest binary releases used for both.
 
 - `docker-syncthing <https://github.com/joeybaker/docker-syncthing>`_
-
   A fully baked docker container that allows custom config and will keep your
   settings and data past docker image restarts.
-- `syncthing-docker-scratch <https://github.com/djtm/syncthing-docker-scratch>`_
 
+- `syncthing-docker-scratch <https://github.com/djtm/syncthing-docker-scratch>`_
   Builds docker containers from scratch base and/or runs the containers in
   docker or rkt.
+  
 - `rpi-syncthing <https://github.com/funkyfuture/docker-rpi-syncthing>`_
-
   Configurable image for the Raspberry Pi.
+  
 - `syncthing for hassio <https://github.com/bestlibre/hassio-addons/tree/master/syncthing>`_
-
   A docker based addon for `hassio <https://www.home-assistant.io/hassio/>`_
 
 Gentoo
@@ -150,9 +137,15 @@ Official packages: `syncthing <https://software.opensuse.org/package/syncthing>`
 Synology NAS (DSM)
 ~~~~~~~~~~~~~~~~~~
 
-Add ``http://packages.synocommunity.com/`` to the Package Center in DSM or view the `browsable repository <https://synocommunity.com/packages>`__. Numerous CPU
-architectures are supported. SPK's may be older versions, however you can
-execute a Syncthing version upgrade via the web GUI after installation.
+- Synocommunity: add ``http://packages.synocommunity.com/`` to the Package
+  Center in DSM or view the `browsable repository
+  <https://synocommunity.com/packages>`__. Numerous CPU architectures are
+  supported. SPK's may be older versions, however you can execute a Syncthing
+  version upgrade via the web GUI after installation.
+
+- Kastelo maintains `Synology packages <https://docs.kastelo.net/synology/>`__
+  in a custom package source. Packages auto upgrade via the Synology package
+  manager.
 
 QNAP NAS (QTS)
 ~~~~~~~~~~~~~~
@@ -241,6 +234,8 @@ Older, Possibly Unmaintained
    these and you have revived the project, please update this page
    accordingly.
 
+-  https://github.com/syncthing/syncthing-lite
+-  https://github.com/sieren/QSyncthingTray
 -  https://github.com/akissa/pysyncthing
 -  https://github.com/retgoat/syncthing-ruby
 -  https://github.com/sodacode/Windows-Syncthing-Installer
