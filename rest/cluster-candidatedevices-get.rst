@@ -51,6 +51,12 @@ devices.
 	      "cpkn4-57ysy": "Family pics",
 	      "abcde-fghij": "Mighty nice folder"
 	    }
+	  },
+	  "AIBAEAQ-CAIBAEC-AQCAIBA-EAQCAIA-BAEAQCA-IBAEAQC-CAIBAEA-QCAIBA7": {
+	    "time": "2020-02-22T14:56:00+01:00",
+	    "commonFolders": {
+	      "cpkn4-57ysy": "Family pics"
+	    }
 	  }
 	}
       },
