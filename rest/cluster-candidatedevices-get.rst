@@ -26,18 +26,16 @@ devices.
 	  "192.168.1.2:22000",
 	  "[2a02:8070:::ff34:1234::aabb]:22000"
 	],
-	"introducedBy": [
-	  {
-	    "deviceID": "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC",
+	"introducedBy": {
+	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
 	    "time": "2020-03-18T11:43:07+01:00",
 	    "suggestedName": "Jane's Laptop"
 	  },
-	  {
+	  "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
 	    "time": "2020-03-01T10:12:13+01:00",
-	    "deviceID": "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA",
 	    "suggestedName": "Jane"
 	  }
-	],
+	},
 	"folders": [
 	  "cpkn4-57ysy"
 	]
@@ -46,11 +44,21 @@ devices.
 	"folders": [
 	  "cpkn4-57ysy",
 	  "abcde-fghij"
-	]
+	],
+	"introducedBy": {
+	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
+	    "time": "2020-03-18T11:43:07+01:00"
+	  }
+	}
       },
       "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
 	"folders": [
 	  "cpkn4-57ysy"
-	]
+	],
+	"introducedBy": {
+	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
+	    "time": "2020-03-18T11:43:07+01:00"
+	  }
+	}
       }
     }
