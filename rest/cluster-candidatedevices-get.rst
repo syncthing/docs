@@ -29,35 +29,38 @@ devices.
 	"introducedBy": {
 	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
 	    "time": "2020-03-18T11:43:07+01:00",
+	    "commonFolders": {
+	      "cpkn4-57ysy": "Pics of J & J"
+	    },
 	    "suggestedName": "Jane's Laptop"
 	  },
 	  "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
 	    "time": "2020-03-01T10:12:13+01:00",
+	    "commonFolders": {
+	      "cpkn4-57ysy": "Pics from Jane"
+	    },
 	    "suggestedName": "Jane"
 	  }
-	},
-	"folders": [
-	  "cpkn4-57ysy"
-	]
+	}
       },
       "UYGDMA4-TPHOFO5-2VQYDCC-7CWX7XW-INZINQT-LE4B42N-4JUZTSM-IWCSXA4": {
-	"folders": [
-	  "cpkn4-57ysy",
-	  "abcde-fghij"
-	],
 	"introducedBy": {
 	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
-	    "time": "2020-03-18T11:43:07+01:00"
+	    "time": "2020-03-18T11:43:07+01:00",
+	    "commonFolders": {
+	      "cpkn4-57ysy": "Family pics",
+	      "abcde-fghij": "Mighty nice folder"
+	    }
 	  }
 	}
       },
       "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
-	"folders": [
-	  "cpkn4-57ysy"
-	],
 	"introducedBy": {
 	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
-	    "time": "2020-03-18T11:43:07+01:00"
+	    "time": "2020-03-18T11:43:07+01:00",
+	    "commonFolders": {
+	      "cpkn4-57ysy": "Pictures from Joe"
+	    }
 	  }
 	}
       }
