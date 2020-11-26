@@ -1,3 +1,5 @@
+.. _option-databaseTuning:
+
 databaseTuning
 ==============
 
@@ -25,4 +27,3 @@ The ``databaseTuning`` option can have one of three values:
   option.
 
 The default value is ``auto``.
-

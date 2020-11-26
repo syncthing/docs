@@ -95,9 +95,7 @@ STNODEFAULTFOLDER
     variable will be ignored anytime after the first run.
 
 STNORESTART
-    Equivalent to the ``-no-restart`` flag. Disable the Syncthing monitor
-    process which handles restarts for some configuration changes, upgrades,
-    crashes and also log file writing (stdout is still written).
+    Equivalent to the ``-no-restart`` flag
 
 STNOUPGRADE
     Disable automatic upgrades.
@@ -114,9 +112,9 @@ STPERFSTATS
 
 STRECHECKDBEVERY
     Time before folder statistics (file, dir, ... counts) are recalculated from
-    scratch. The given duration must be parseable by GO's time.ParseDuration. If
+    scratch. The given duration must be parseable by Go's time.ParseDuration. If
     missing or not parseable, the default value of 1 month is used. To force
-    recalculation on every startup, set it to ``0``.
+    recalculation on every startup, set it to ``1s``.
 
 GOMAXPROCS
     Set the maximum number of CPU cores to use. Defaults to all available CPU

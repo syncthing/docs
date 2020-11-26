@@ -79,6 +79,61 @@ synchronize the file. The block lists are compared to build a list of needed
 blocks, which are then requested from the network or copied locally, as
 described above.
 
+.. _conflict-handling:
+
+Conflicting Changes
+-------------------
+
+Syncthing does recognize conflicts.  When a file has been modified on two
+devices simultaneously and the content actually differs, one of the files will
+be renamed to ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>``.
+The file with the older modification time will be marked as the conflicting file
+and thus be renamed.  If the modification times are equal, the file originating
+from the device which has the larger value of the first 63 bits for its device
+ID will be marked as the conflicting file.  If the conflict is between a
+modification and a deletion of the file, the modified file always wins and is
+resurrected without renaming on the device where it was deleted.
+
+Beware that the ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>``
+files are treated as normal files after they are created, so they are propagated
+between devices.  We do this because the conflict is detected and resolved on
+one device, creating the ``sync-conflict`` file, but it's just as much of a
+conflict everywhere else and we don't know which of the conflicting files is the
+"best" from the user point of view.
+
+.. _case-sensitivity:
+
+Case Sensitivity in File Names
+------------------------------
+
+In principle, Syncthing works with *case-sensitive* paths, meaning
+that ``file.txt`` and ``FILE.txt`` denote two independent things.
+Consequently, it never considers both as if they were somehow related
+for synchronizing their contents.  Some operating systems
+(e.g. Windows, Mac and Android to an extent) assume the opposite,
+treating them as the same file (or directory) and can never have both
+names simultaneously.
+
+Thus, if a remote device shares a file which would clash with an
+existing local file, it cannot be synchronized to such a system and
+will be reported as a case conflict by Syncthing.  Similarly, if two
+remote devices share differing case variants to your local device,
+only one of them will be pulled, and the other one marked with an
+appropriate error message.  Which one "wins" is currently not
+predictable.
+
+In order to resolve such a case conflict situation, you need to decide
+on a consistent file name and **manually** enforce that across all
+involved, case-insensitive devices.
+
+This cautious behavior tries to save you from possible data loss
+caused by different files overwriting each other's contents.  That
+could have happened before version 1.9.0, where the same file would
+erroneously be accessed under two case-differing file names.
+
+All this does not concern the folder root path, but only relative
+paths within each shared folder.
+
 .. _temporary-files:
 
 Temporary Files

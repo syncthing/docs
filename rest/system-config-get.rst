@@ -1,6 +1,10 @@
 GET /rest/system/config
 =======================
 
+.. deprecated:: v1.12.0
+   This endpoint still works as before but is deprecated. Use :ref:`rest-config`
+   instead.
+
 Returns the current configuration.
 
 .. code-block:: json
@@ -96,7 +100,7 @@ Returns the current configuration.
 	"insecureAllowFrameLoading": false
       },
       "ldap": {
-	"addresd": "",
+	"address": "",
 	"bindDN": "",
 	"transport": "plain",
 	"insecureSkipVerify": false

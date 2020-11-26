@@ -13,6 +13,7 @@ Usage
    foldertypes
    introducer
    guilisten
+   ldap
 
    syncing
 

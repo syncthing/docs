@@ -38,21 +38,30 @@ The ``.stignore`` file contains a list of file or path patterns. The
    the files ``foo``, ``subdir/foo`` as well as any directory named
    ``foo``. Spaces are treated as regular characters.
 
--  Asterisk matches zero or more characters in a filename, but does not
-   match the directory separator. ``te*st`` matches ``test``,
-   ``subdir/telerest`` but not ``tele/rest``.
+-  **Asterisk** (``*``) matches zero or more characters in a filename, but does not
+   match the directory separator. ``te*ne`` matches ``telephone``,
+   ``subdir/telephone`` but not ``tele/phone``.
 
--  Double asterisk matches as above, but also directory separators.
-   ``te**st`` matches ``test``, ``subdir/telerest`` and
-   ``tele/sub/dir/rest``.
+-  **Double asterisk** (``**``) matches as above, but also directory separators.
+   ``te**ne`` matches ``telephone``, ``subdir/telephone`` and
+   ``tele/sub/dir/phone``.
 
--  Question mark matches a single character that is not the directory
+-  **Question mark** (``?``) matches a single character that is not the directory
    separator. ``te??st`` matches ``tebest`` but not ``teb/st`` or
    ``test``.
 
--  Characters enclosed in square brackets ``[]`` are interpreted as a character range ``[a-z]``. Before using this syntax you should have a basic understanding of regular expression character classes.
+-  **Square brackets** (``[]``) denote a character range: ``[a-z]`` matches
+   any lower case character.
 
--  A pattern beginning with ``/`` matches in the current directory only.
+-  **Curly brackets** (``{}``) denote a set of comma separated alternatives:
+   ``{banana,pineapple}`` matches either ``banana`` or ``pineapple``.
+
+-  **Backslash** (``\``) "escapes" a special character so that it loses its
+   special meaning. For example, ``\{banana\}`` matches ``{banana}`` exactly
+   and does not denote a set of alternatives as above. *Escaped characters
+   are not supported on Windows.*
+
+-  A pattern beginning with ``/`` matches in the root of the folder only.
    ``/foo`` matches ``foo`` but not ``subdir/foo``.
 
 -  A pattern beginning with ``#include`` results in loading patterns
@@ -78,8 +87,6 @@ The ``.stignore`` file contains a list of file or path patterns. The
 
 -  A line beginning with ``//`` is a comment and has no effect.
 
--  Windows does not support escaping ``\[foo - bar\]``.
-
 .. note::
 
    Prefixes can be specified in any order (e.g. "(?d)(?i)"), but cannot be in a
@@ -90,6 +97,10 @@ The ``.stignore`` file contains a list of file or path patterns. The
    Include patterns (that begin with ``!``) cause Syncthing to traverse and
    :ref:`watch <scanning>` the entire directory tree regardless of other
    ignore patterns.
+
+   Top-level include patterns are treated as special cases and will not force Syncthing to
+   scan the entire directory tree. For example: ``!/foo`` is a top-level include
+   pattern, while ``!/foo/bar`` is not.
 
 Example
 -------

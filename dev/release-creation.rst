@@ -6,7 +6,7 @@ Prerequisites
 
 - About ten minutes to half an hour of free time.
 
-- The master branch in a clean and buildable state, full of commits you are proud of and know the users will love. This is of course the default state at any given time.
+- The main branch in a clean and buildable state, full of commits you are proud of and know the users will love. This is of course the default state at any given time.
 
 - A normal computer (real or virtual) that has a command line and can run bash scripts. Macs and Linux boxes are good choices here. If you know what you're doing I'm sure it's entirely possible to do it on Windows as well - but then you're on your own. In a pinch you can use ``secure.syncthing.net`` as it has all the required tools installed, although you'll need to add your git config, keys etc.
 
@@ -26,7 +26,7 @@ The procedure differs sligthly depending on whether we're doing a release candid
 Release Candidates - Write a Change Log
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Most of the change log is machine generated from the closed issues. We do however need to make sure that issues belong to the correct milestone, have the correct labels, and that the issue subject makes sense as a line in the change log. To our help we have the purpose written tool [grt](https://github./calmh/github-release-tool). The grt tool requires your GitHub token to manage milestones and issues; you set the environment variable ``GITHUB_TOKEN`` while you are working on the release (but hopefully not all the time - programs can and do steal environment data).
+Most of the change log is machine generated from the closed issues. We do however need to make sure that issues belong to the correct milestone, have the correct labels, and that the issue subject makes sense as a line in the change log. To our help we have the purpose written tool `grt <https://github./calmh/github-release-tool>`__. The grt tool requires your GitHub token to manage milestones and issues; you set the environment variable ``GITHUB_TOKEN`` while you are working on the release (but hopefully not all the time - programs can and do steal environment data).
 
 To ensure that all closed issues are tagged with the milestone for the release you are doing, use the following command. First, find the commit hash or tag of the last commit on the *previous* release - changes since this point is what we are going to consider part of this release. If there haven't been any special releases or branching you can simply use the previous release as the starting point.
 
@@ -34,7 +34,7 @@ To ensure that all closed issues are tagged with the milestone for the release y
 
     $ grt milestone v0.14.50 --from=v0.14.49
 
-Visit the milestone in your browser and double check the issue subjects and labels. Remember that only closed issues (not pull requests) will appear in the change log. You can preview the change log using grt:
+Visit the milestone in your browser and double check the issue subjects and labels. Remember that only closed issues (not pull requests) will appear in the change log. If there are specific things to note about this release, such as changed APIs or config formats, briefly describe these changes in the notes field. You can preview the change log using grt:
 
 .. code-block:: bash
 
@@ -44,7 +44,7 @@ Visit the milestone in your browser and double check the issue subjects and labe
      - #5063: panic: cannot start already running folder
      - #5073: lib/logger: tests fail due to compilation error with go 1.11
 
-Now write a changelog.txt. Look at the previous ones for inspiration; they are in the tag message for each recent previous release. The first line is the version being described. Then start with a sentence describing the release type (scheduled feature and bugfix, hotfix, ...) and who should use it. Follow with the set of issues closed since last release - just pipe the output from ``grt changelog`` here.
+In principle the output should be a complete, valid release note for the release in question. Pipe it to a text file. If you're preparing a release candidate you will need to update the version on the first line of output to add the ``-rc.1`` or similar suffix.
 
 Add further notes or commentary to taste, if required.
 
@@ -56,14 +56,14 @@ Use the change log from the corresponding release candidate, just change the ver
 Prepare the Release Branch
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Releases come from the ``release`` branch. If you are making a new candidate release you will want to fast forward ``release`` to point at current ``master`` ``HEAD``. If you are making a stable release from the latest RC the ``release`` branch is already in the right place.
+Releases come from the ``release`` branch. If you are making a new candidate release you will want to fast forward ``release`` to point at current ``main`` ``HEAD``. If you are making a stable release from the latest RC the ``release`` branch is already in the right place.
 
 .. code-block:: bash
 
     $ git checkout release
-    $ git merge --ff-only master
+    $ git merge --ff-only main
 
-If there's been some funky business with the ``release`` branch and it can't be fast forwarded to ``master``, 1) the previous release manager screwed up, 2) don't do a merge, just reset the branch to the right place.
+If there's been some funky business with the ``release`` branch and it can't be fast forwarded to ``main``, 1) the previous release manager screwed up, 2) don't do a merge, just reset the branch to the right place.
 
 Don't push the branch yet, we want to create the tag first.
 
@@ -80,14 +80,14 @@ The changelog file is the one you prepared previously.
 
 You will need your PGP key at hand for this step. It should be your personal PGP key, whatever you would normally use. If you don't have one you'll need to create one for the purpose. Keep it around, keep it secure, upload the public part to a key server.
 
-If your remote spec is nondefault, tailor the push command to suit.
+If your remote spec is nondefault, tailor the push command to suit. We deliberately pushed the tags before the release branch, because the builder may start building the release branch immediately and needs to see the right tags at that point.
 
 Build the Packages
 ~~~~~~~~~~~~~~~~~~
 
 If you are building a release candidate and fast forwarded the ``release`` branch the build server will already have started building it. If not, jump in on the build server and trigger the Release/Syncthing job, for the ``release`` branch, while checking the options to rebuild all dependencies in the chain. We need the rebuild for those binaries to pick up the new tag.
 
-Once the build succeds, log in on ``secure.syncthing.net``. If something failed in the build it's hopefully "just" a flaky test - redo the build.
+Once the build succeeds, log in on ``secure.syncthing.net``. If something failed in the build it's hopefully "just" a flaky test - redo the build.
 
 Create the GitHub release
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -117,7 +117,7 @@ The milestone will be closed.
 Sign and upload the archives
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-At this point the build should haver completed and the artifacts be uploaded to ``secure.s.n``. If the build number was 1234 and the version v0.14.50 the files will be in ``/home/incoming/build-1234-v0.14.50``. Run the following scripts. None of them should fail, barring connectivity issues - so if they do, you get to fix whatever it is without any guidance from me. Sorry.
+At this point the build should have completed and the artifacts should have been uploaded to ``secure.s.n``. If the build number was 1234 and the version v0.14.50 the files will be in ``/home/incoming/build-1234-v0.14.50``. Run the following scripts. None of them should fail, barring connectivity issues - so if they do, you get to fix whatever it is without any guidance from me. Sorry.
 
 .. code-block:: bash
 
@@ -127,15 +127,18 @@ Publishes the Debian archives to apt.syncthing.net.
 
 .. code-block:: bash
 
-    $ upload-snaps /home/incoming/build-1234-v0.14.50
+    $ upload-release /home/incoming/build-1234-v0.14.50
 
-Publishes the Snap packages to Ubuntu.
+Publishes the regular release archives to GitHub.
+
+Stable Releases - Trigger update of the website
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The main website needs to be redeployed to reflect the new release version on the download page.
 
 .. code-block:: bash
 
-    $ sign-upload-release /home/incoming/build-1234-v0.14.50
-
-Publishes the regular release archives to GitHub.
+    $ ./deploy-web
 
 Stable Releases - Create a post on the forum
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -147,7 +150,7 @@ Stable Releases - Optionally, tweet it
 
 If you have the Twitter account and the release isn't a cake-in-your-face screwup fix that you'd rather no one ever heard about and want to just silently roll out to everyone during the night.
 
-Merge Release Into Master
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Merge Release Into Main
+~~~~~~~~~~~~~~~~~~~~~~~
 
-If this was a non-first candidate release with cherry picked commits on it, merge ``release`` back into ``master`` and push ``master``.
+If this was a non-first candidate release with cherry picked commits on it, merge ``release`` back into ``main`` and push ``main``.
