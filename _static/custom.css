@@ -66,3 +66,14 @@ li > p:last-child {
 li:last-child > p:last-child {
   margin-bottom: 0;
 }
+
+/* Overrides for built in contents directive */
+div.contents {
+  margin: inherit;
+  padding: inherit;
+  background-color: inherit;
+  border: inherit;
+}
+div.contents li > p:last-child {
+  margin-bottom: inherit;
+}
