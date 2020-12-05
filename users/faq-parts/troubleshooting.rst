@@ -145,3 +145,14 @@ the node where that latest change occurred). When we connect to multiple neighbo
 Syncthing decides which neighbor has the latest state, or if the states conflict
 it initiates the conflict resolution procedure, which in the end results in a consistent
 up-to-date state with all the neighbours.
+
+Why does Syncthing connect to this unknown/suspicious address?
+--------------------------------------------------------------
+
+If you see outgoing connections to odd and unexpected addresses these are
+most likely connections to :ref:`relay servers <Relaying>`. Relay servers
+are run by volunteers all over the world. They usually listen on port 443 or
+22067, though this is controlled by the user running it. You can compare the
+address you are concernced about with `the current list of active relays
+<https://relays.syncthing.net>`__. Relays do not and can not see the data
+transmitted via them.
