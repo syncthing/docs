@@ -1,5 +1,5 @@
-GET /rest/cluster/pendingdevices
-================================
+GET /rest/cluster/pending/devices
+=================================
 
 .. versionadded:: 1.FIXME
 
