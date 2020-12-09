@@ -3,7 +3,8 @@ GET /rest/system/config
 
 .. deprecated:: v1.12.0
    This endpoint still works as before but is deprecated. Use :ref:`rest-config`
-   instead.
+   instead.  Also note that the ``pendingFolders`` and ``pendingDevices``
+   fields have been removed as of v1.FIXME.
 
 Returns the current configuration.
 
