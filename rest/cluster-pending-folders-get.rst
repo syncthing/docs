@@ -1,7 +1,7 @@
 GET /rest/cluster/pending/folders
 =================================
 
-.. versionadded:: 1.FIXME
+.. versionadded:: 1.13.0
 
 Lists folders which remote devices have offered to us, but are not yet
 shared from our instance to them.  Takes the optional ``device``

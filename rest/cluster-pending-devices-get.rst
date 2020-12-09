@@ -1,7 +1,7 @@
 GET /rest/cluster/pending/devices
 =================================
 
-.. versionadded:: 1.FIXME
+.. versionadded:: 1.13.0
 
 Lists remote devices which have tried to connect, but are not yet
 configured in our instance.
