@@ -32,7 +32,6 @@ Config Endpoints
 
 .. toctree::
    :maxdepth: 1
-   :glob:
 
    /rest/config/... <../rest/config.rst>
 
