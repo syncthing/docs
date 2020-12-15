@@ -24,7 +24,7 @@ devices.
 	"certName": "",
 	"addresses": [
 	  "192.168.1.2:22000",
-	  "[2a02:8070:::ff34:1234::aabb]:22000"
+	  "[2a02:8070::ff34:1234::aabb]:22000"
 	],
 	"introducedBy": {
 	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
