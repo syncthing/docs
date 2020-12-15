@@ -1,5 +1,5 @@
-GET /rest/cluster/candidatedevices
-==================================
+GET /rest/cluster/candidate/devices
+===================================
 
 .. versionadded:: 1.FIXME
 

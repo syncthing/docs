@@ -1,5 +1,5 @@
-GET /rest/cluster/candidatefolders
-==================================
+GET /rest/cluster/candidate/folders
+===================================
 
 .. versionadded:: 1.FIXME
 
