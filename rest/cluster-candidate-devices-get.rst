@@ -20,6 +20,16 @@ devices.
 .. code-block:: json
 
     {
+      "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
+	"introducedBy": {
+	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
+	    "commonFolders": {
+	      "cpkn4-57ysy": "Pictures from Joe"
+	    },
+	    "time": "2020-03-18T11:43:07+01:00"
+	  }
+	}
+      },
       "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2": {
 	"certName": "",
 	"addresses": [
@@ -27,46 +37,36 @@ devices.
 	  "[2a02:8070::ff34:1234::aabb]:22000"
 	],
 	"introducedBy": {
-	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
-	    "time": "2020-03-18T11:43:07+01:00",
-	    "commonFolders": {
-	      "cpkn4-57ysy": "Pics of J & J"
-	    },
-	    "suggestedName": "Jane's Laptop"
-	  },
 	  "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
-	    "time": "2020-03-01T10:12:13+01:00",
 	    "commonFolders": {
 	      "cpkn4-57ysy": "Pics from Jane"
 	    },
-	    "suggestedName": "Jane"
+	    "suggestedName": "Jane",
+	    "time": "2020-03-01T10:12:13+01:00"
+	  },
+	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
+	    "commonFolders": {
+	      "cpkn4-57ysy": "Pics of J & J"
+	    },
+	    "suggestedName": "Jane's Laptop",
+	    "time": "2020-03-18T11:43:07+01:00"
 	  }
 	}
       },
       "UYGDMA4-TPHOFO5-2VQYDCC-7CWX7XW-INZINQT-LE4B42N-4JUZTSM-IWCSXA4": {
 	"introducedBy": {
-	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
-	    "time": "2020-03-18T11:43:07+01:00",
-	    "commonFolders": {
-	      "cpkn4-57ysy": "Family pics",
-	      "abcde-fghij": "Mighty nice folder"
-	    }
-	  },
 	  "AIBAEAQ-CAIBAEC-AQCAIBA-EAQCAIA-BAEAQCA-IBAEAQC-CAIBAEA-QCAIBA7": {
-	    "time": "2020-02-22T14:56:00+01:00",
 	    "commonFolders": {
 	      "cpkn4-57ysy": "Family pics"
-	    }
-	  }
-	}
-      },
-      "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
-	"introducedBy": {
+	    },
+	    "time": "2020-02-22T14:56:00+01:00"
+	  },
 	  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
-	    "time": "2020-03-18T11:43:07+01:00",
 	    "commonFolders": {
-	      "cpkn4-57ysy": "Pictures from Joe"
-	    }
+	      "abcde-fghij": "Mighty nice folder",
+	      "cpkn4-57ysy": "Family pics"
+	    },
+	    "time": "2020-03-18T11:43:07+01:00"
 	  }
 	}
       }
