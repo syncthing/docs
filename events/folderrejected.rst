@@ -1,6 +1,10 @@
 FolderRejected
 --------------
 
+.. deprecated:: v1.13.0
+   This event is still emitted for compatibility, but deprecated.  Use
+   the replacement :ref:`pending-folders-changed` event instead.
+
 Emitted when a device sends index information for a folder we do not
 have, or have but do not share with the device in question.
 
