@@ -1,3 +1,5 @@
+.. _pending-devices-changed:
+
 PendingDevicesChanged
 ---------------------
 

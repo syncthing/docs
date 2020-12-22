@@ -1,3 +1,5 @@
+.. _pending-folders-changed:
+
 PendingFoldersChanged
 ---------------------
 
