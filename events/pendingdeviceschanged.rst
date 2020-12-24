@@ -21,7 +21,9 @@ unknown ID) or removed (device is ignored or added).
 	  }
 	],
 	"removed": [
-	  "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2"
+	  {
+	    "device": "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2"
+	  }
 	]
       }
     }
