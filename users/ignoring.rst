@@ -36,7 +36,8 @@ The ``.stignore`` file contains a list of file or path patterns. The
 
 -  Regular file names match themselves, i.e. the pattern ``foo`` matches
    the files ``foo``, ``subdir/foo`` as well as any directory named
-   ``foo``. Spaces are treated as regular characters.
+   ``foo``. Spaces are treated as regular characters, except for leading
+   and trailing spaces, which are automatically trimmed.
 
 -  **Asterisk** (``*``) matches zero or more characters in a filename, but does not
    match the directory separator. ``te*ne`` matches ``telephone``,
