@@ -107,12 +107,18 @@ untrusted and will get encrypted folder data, using different passwords.
 .. code-block:: text
 
     <folder id="default" ...>
-        <device id="373HSRP-..."></device>
-        <device id="CJBIJBJ-..." encryptionPassword="foo"></device>
-        <device id="I6KAH76-..." encryptionPassword="bar"></device>
+        <device id="373HSRP-...">
+            <encryptionPassword></encryptionPassword>
+        </device>
+        <device id="CJBIJBJ-...">
+            <encryptionPassword>foo</encryptionPassword>
+        </device>
+        <device id="I6KAH76-...">
+            <encryptionPassword>bar</encryptionPassword>
+        </device>
     </folder>
 
-On untrusted devices the type of the folders has to be ``receiveenctyped``.
+On untrusted devices the type of the folders has to be ``receiveencrypted``.
 
 Caveats
 -------
