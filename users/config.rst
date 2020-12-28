@@ -426,8 +426,7 @@ it is not present. The following attributes may be set on the ``device``
 element:
 
 id
-    The device ID. This must be written in canonical form, that is without any
-    spaces or dashes. (mandatory)
+    The :ref:`device ID <device-ids>`. (mandatory)
 
 name
     A friendly name for the device. (optional)
@@ -872,7 +871,7 @@ setLowPriority
 Listen Addresses
 ^^^^^^^^^^^^^^^^
 
-The following address types are accepted in sync protocol listen addresses. If you want Syncthing to listen on multiple addresses, you can have multiple ``<listenAddress>`` tags. The same is achieved in the GUI by entering several addresses separated by comma.
+The following address types are accepted in sync protocol listen addresses. If you want Syncthing to listen on multiple addresses, you can either: add multiple ``<listenAddress>`` tags in the configuration file or enter several addresses separated by commas in the GUI.
 
 Default listen addresses (``default``)
     This is equivalent to ``tcp://0.0.0.0:22000``, ``quic://0.0.0.0:22000``

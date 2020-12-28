@@ -26,7 +26,7 @@ The procedure differs sligthly depending on whether we're doing a release candid
 Release Candidates - Write a Change Log
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Most of the change log is machine generated from the closed issues. We do however need to make sure that issues belong to the correct milestone, have the correct labels, and that the issue subject makes sense as a line in the change log. To our help we have the purpose written tool [grt](https://github./calmh/github-release-tool). The grt tool requires your GitHub token to manage milestones and issues; you set the environment variable ``GITHUB_TOKEN`` while you are working on the release (but hopefully not all the time - programs can and do steal environment data).
+Most of the change log is machine generated from the closed issues. We do however need to make sure that issues belong to the correct milestone, have the correct labels, and that the issue subject makes sense as a line in the change log. To our help we have the purpose written tool `grt <https://github./calmh/github-release-tool>`__. The grt tool requires your GitHub token to manage milestones and issues; you set the environment variable ``GITHUB_TOKEN`` while you are working on the release (but hopefully not all the time - programs can and do steal environment data).
 
 To ensure that all closed issues are tagged with the milestone for the release you are doing, use the following command. First, find the commit hash or tag of the last commit on the *previous* release - changes since this point is what we are going to consider part of this release. If there haven't been any special releases or branching you can simply use the previous release as the starting point.
 
@@ -34,7 +34,7 @@ To ensure that all closed issues are tagged with the milestone for the release y
 
     $ grt milestone v0.14.50 --from=v0.14.49
 
-Visit the milestone in your browser and double check the issue subjects and labels. Remember that only closed issues (not pull requests) will appear in the change log. You can preview the change log using grt:
+Visit the milestone in your browser and double check the issue subjects and labels. Remember that only closed issues (not pull requests) will appear in the change log. If there are specific things to note about this release, such as changed APIs or config formats, briefly describe these changes in the notes field. You can preview the change log using grt:
 
 .. code-block:: bash
 
@@ -44,7 +44,7 @@ Visit the milestone in your browser and double check the issue subjects and labe
      - #5063: panic: cannot start already running folder
      - #5073: lib/logger: tests fail due to compilation error with go 1.11
 
-Now write a changelog.txt. Look at the previous ones for inspiration; they are in the tag message for each recent previous release. The first line is the version being described. Then start with a sentence describing the release type (scheduled feature and bugfix, hotfix, ...) and who should use it. Follow with the set of issues closed since last release - just pipe the output from ``grt changelog`` here.
+In principle the output should be a complete, valid release note for the release in question. Pipe it to a text file. If you're preparing a release candidate you will need to update the version on the first line of output to add the ``-rc.1`` or similar suffix.
 
 Add further notes or commentary to taste, if required.
 
@@ -80,7 +80,7 @@ The changelog file is the one you prepared previously.
 
 You will need your PGP key at hand for this step. It should be your personal PGP key, whatever you would normally use. If you don't have one you'll need to create one for the purpose. Keep it around, keep it secure, upload the public part to a key server.
 
-If your remote spec is nondefault, tailor the push command to suit.
+If your remote spec is nondefault, tailor the push command to suit. We deliberately pushed the tags before the release branch, because the builder may start building the release branch immediately and needs to see the right tags at that point.
 
 Build the Packages
 ~~~~~~~~~~~~~~~~~~
@@ -127,9 +127,18 @@ Publishes the Debian archives to apt.syncthing.net.
 
 .. code-block:: bash
 
-    $ sign-upload-release /home/incoming/build-1234-v0.14.50
+    $ upload-release /home/incoming/build-1234-v0.14.50
 
 Publishes the regular release archives to GitHub.
+
+Stable Releases - Trigger update of the website
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The main website needs to be redeployed to reflect the new release version on the download page.
+
+.. code-block:: bash
+
+    $ ./deploy-web
 
 Stable Releases - Create a post on the forum
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

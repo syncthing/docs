@@ -17,8 +17,6 @@ Cross-platform
 
 - `Syncthing-GTK <https://github.com/kozec/syncthing-gtk>`_
 
-- `QSyncthingTray <https://github.com/sieren/QSyncthingTray>`_
-
 - `syncthingtray <https://github.com/Martchus/syncthingtray>`__
 
 Android
@@ -28,10 +26,10 @@ Android
 
   A wrapper app for the Syncthing binary.
 
-- `syncthing-lite <https://github.com/syncthing/syncthing-lite>`_
+- `Syncthing-Fork <https://github.com/catfriend1/syncthing-android>`_
 
-  Down- or uploads data from accessible devices, does not continuously keep a
-  share in sync.
+  An alternative wrapper app for the Syncthing binary with extended
+  functionality.
 
 .. _contrib-windows:
 
@@ -236,6 +234,8 @@ Older, Possibly Unmaintained
    these and you have revived the project, please update this page
    accordingly.
 
+-  https://github.com/syncthing/syncthing-lite
+-  https://github.com/sieren/QSyncthingTray
 -  https://github.com/akissa/pysyncthing
 -  https://github.com/retgoat/syncthing-ruby
 -  https://github.com/sodacode/Windows-Syncthing-Installer

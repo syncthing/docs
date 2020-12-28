@@ -1,6 +1,10 @@
 POST /rest/system/config
 ========================
 
+.. deprecated:: v1.12.0
+   This endpoint still works as before but is deprecated. Use :ref:`rest-config`
+   instead.
+
 Post the full contents of the configuration, in the same format as returned by
 the corresponding GET request. When posting the configuration succeeds,
 the posted configuration is immediately applied, except for changes that require a restart. Query

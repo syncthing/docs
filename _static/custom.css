@@ -59,6 +59,25 @@ p.admonition-title:after {
   content: none;
 }
 
+/* Override Alabaster theme defaults to add space between list items. */
+li > p:last-child {
+  margin-bottom: 1em;
+}
+li:last-child > p:last-child {
+  margin-bottom: 0;
+}
+
+/* Overrides for built in contents directive */
+div.contents {
+  margin: inherit;
+  padding: inherit;
+  background-color: inherit;
+  border: inherit;
+}
+div.contents li > p:last-child {
+  margin-bottom: inherit;
+}
+
 pre {
   padding: 8px;
 }
