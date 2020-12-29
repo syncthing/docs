@@ -81,7 +81,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <maxSendKbps>0</maxSendKbps>
             <maxRecvKbps>0</maxRecvKbps>
             <maxRequestKiB>0</maxRequestKiB>
-            <remoteGUIPort>8384</remoteGUIPort>
+            <remoteGUIPort>0</remoteGUIPort>
         </device>
         <gui enabled="true" tls="false" debugging="false">
             <address>127.0.0.1:8384</address>
@@ -409,7 +409,7 @@ Device Element
         <maxSendKbps>0</maxSendKbps>
         <maxRecvKbps>0</maxRecvKbps>
         <maxRequestKiB>0</maxRequestKiB>
-        <remoteGUIPort>8384</remoteGUIPort>
+        <remoteGUIPort>0</remoteGUIPort>
     </device>
     <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>tcp://192.0.2.1:22001</address>
@@ -419,6 +419,7 @@ Device Element
         <maxSendKbps>100</maxSendKbps>
         <maxRecvKbps>100</maxRecvKbps>
         <maxRequestKiB>65536</maxRequestKiB>
+        <remoteGUIPort>8384</remoteGUIPort>
     </device>
 
 One or more ``device`` elements must be present in the file. Each element
