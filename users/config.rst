@@ -81,6 +81,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <maxSendKbps>0</maxSendKbps>
             <maxRecvKbps>0</maxRecvKbps>
             <maxRequestKiB>0</maxRequestKiB>
+            <remoteGUIPort>8384</remoteGUIPort>
         </device>
         <gui enabled="true" tls="false" debugging="false">
             <address>127.0.0.1:8384</address>
@@ -408,6 +409,7 @@ Device Element
         <maxSendKbps>0</maxSendKbps>
         <maxRecvKbps>0</maxRecvKbps>
         <maxRequestKiB>0</maxRequestKiB>
+        <remoteGUIPort>8384</remoteGUIPort>
     </device>
     <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>tcp://192.0.2.1:22001</address>
@@ -528,6 +530,13 @@ maxRecvKbps
 maxRequestKiB
     Maximum amount of data to have outstanding in requests towards this device.
     Unit is kibibytes.
+
+remoteGUIPort
+    If set to a positive integer, the GUI will display an HTTP link to the IP
+    address which is currently used for synchronization.  Only the TCP port is
+    exchanged for the value specified here.  Note that any port forwarding or
+    firewall settings need to be done manually and the link will probably not
+    work for link-local IPv6 addresses because of modern browser limitations.
 
 
 GUI Element
