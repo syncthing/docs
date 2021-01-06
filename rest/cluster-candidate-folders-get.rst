@@ -12,6 +12,7 @@ what information is available about such devices.  They share a folder
 with us already, but only indirectly over at least one extra "hop",
 the introducing device.  Adding the missing direct link densifies the
 cluster's mesh structure without giving additional access to anyone.
+This endpoint does not mention any locally unknown devices.
 
 Given a known device ID in the ``device`` parameter, the list is
 limited to only folder IDs for which that device is a candidate.
