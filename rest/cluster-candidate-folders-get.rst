@@ -21,35 +21,35 @@ limited to only folder IDs for which that device is a candidate.
 
     {
       "abcde-fghij": {
-	"UYGDMA4-TPHOFO5-2VQYDCC-7CWX7XW-INZINQT-LE4B42N-4JUZTSM-IWCSXA4": {
-	  "introducedBy": {
-	    "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
-	      "label": "Mighty nice folder",
-	      "time": "2020-03-18T11:43:07+01:00"
-	    }
-	  }
-	}
+        "UYGDMA4-TPHOFO5-2VQYDCC-7CWX7XW-INZINQT-LE4B42N-4JUZTSM-IWCSXA4": {
+          "introducedBy": {
+            "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
+              "label": "Mighty nice folder",
+              "time": "2020-03-18T11:43:07+01:00"
+            }
+          }
+        }
       },
       "cpkn4-57ysy": {
-	"DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
-	  "introducedBy": {
-	    "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
-	      "label": "Pictures from Joe",
-	      "time": "2020-03-18T11:43:07+01:00"
-	    }
-	  }
-	},
-	"UYGDMA4-TPHOFO5-2VQYDCC-7CWX7XW-INZINQT-LE4B42N-4JUZTSM-IWCSXA4": {
-	  "introducedBy": {
-	    "AIBAEAQ-CAIBAEC-AQCAIBA-EAQCAIA-BAEAQCA-IBAEAQC-CAIBAEA-QCAIBA7": {
-	      "label": "Family pics",
-	      "time": "2020-11-22T14:56:00+01:00"
-	    },
-	    "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
-	      "label": "Family pics",
-	      "time": "2020-03-18T11:43:07+01:00"
-	    }
-	  }
-	}
+        "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
+          "introducedBy": {
+            "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
+              "label": "Pictures from Joe",
+              "time": "2020-03-18T11:43:07+01:00"
+            }
+          }
+        },
+        "UYGDMA4-TPHOFO5-2VQYDCC-7CWX7XW-INZINQT-LE4B42N-4JUZTSM-IWCSXA4": {
+          "introducedBy": {
+            "AIBAEAQ-CAIBAEC-AQCAIBA-EAQCAIA-BAEAQCA-IBAEAQC-CAIBAEA-QCAIBA7": {
+              "label": "Family pics",
+              "time": "2020-11-22T14:56:00+01:00"
+            },
+            "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC": {
+              "label": "Family pics",
+              "time": "2020-03-18T11:43:07+01:00"
+            }
+          }
+        }
       }
     }
