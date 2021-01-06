@@ -31,11 +31,13 @@ devices.
 	}
       },
       "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2": {
-	"certName": "",
 	"addresses": [
-	  "192.168.1.2:22000",
-	  "[2a02:8070::ff34:1234::aabb]:22000"
+	  "tcp://192.168.1.2:22000",
+	  "tcp://[2a02:8070::ff34:1234::aabb]:22000",
+	  "tcp://janes.laptop.example.com:22000",
+	  "dynamic"
 	],
+	"certName": "",
 	"introducedBy": {
 	  "DOVII4U-SQEEESM-VZ2CVTC-CJM4YN5-QNV7DCU-5U3ASRL-YVFG6TH-W5DV5AA": {
 	    "commonFolders": {
