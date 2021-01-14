@@ -5,7 +5,10 @@ ignoreDelete
 incoming index updates. When set, incoming updates with the delete flag set
 are ignored.
 
-.. note:: This option should normally be set to ``false``.
+.. warning:: This option should normally be set to ``false``. Changing
+  it is not recommended, unless you are a power user and know exactly
+  what you are doing. If you still indend to modify the default value,
+  please read the explanation below very thoroughly before doing so.
 
 Example Scenario
 ----------------
