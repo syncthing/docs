@@ -102,6 +102,23 @@ Options
     Listen address for status service (blank to disable) (default ":22070").
     Status service is used by the relay pool server UI for displaying stats (data transferred, number of clients, etc.)
 
+Installing
+~~~~~~~~~~
+
+Go to `releases <https://github.com/syncthing/relaysrv/releases>`__ and
+download the file appropriate for your operating system. Unpacking it will
+yield a binary called ``relaysrv`` (or ``relaysrv.exe`` on Windows).
+Start this in whatever way you are most comfortable with; double clicking
+should work in any graphical environment. At first start, relaysrv will
+generate certificate files and database in the current directory unless
+given flags to the contrary. It will also join the default pools of relays,
+which means that it is publicly visible and any client can connect to it.
+The startup message the prints instructions on how to change this.
+
+The relay server can also be obtained through apt, the Debian/Ubuntu package
+manager. Recent releases can be found at syncthing's
+`apt repository <https://apt.syncthing.net/>`_. The name of the package is
+syncthing-relaysrv.
 
 Setting Up
 ----------
