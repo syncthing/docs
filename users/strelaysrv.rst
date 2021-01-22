@@ -113,7 +113,7 @@ should work in any graphical environment. At first start, relaysrv will
 generate certificate files and database in the current directory unless
 given flags to the contrary. It will also join the default pools of relays,
 which means that it is publicly visible and any client can connect to it.
-The startup message the prints instructions on how to change this.
+The startup message prints instructions on how to change this.
 
 The relay server can also be obtained through apt, the Debian/Ubuntu package
 manager. Recent releases can be found at syncthing's
