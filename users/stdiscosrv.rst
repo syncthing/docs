@@ -95,6 +95,11 @@ should work in any graphical environment. At first start, stdiscosrv will
 generate certificate files and database in the current directory unless
 given flags to the contrary.
 
+The discovery server can also be obtained through apt, the Debian/Ubuntu package
+manager. Recent releases can be found at syncthing's
+`apt repository <https://apt.syncthing.net/>`_. The name of the package is
+syncthing-discosrv.
+
 Configuring
 ~~~~~~~~~~~
 
