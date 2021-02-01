@@ -24,13 +24,11 @@ The untrusted device *will* be able to observe:
 
 - Which parts of files are changed by the other devices and when
 
-- Which identical blocks are reused within any given file
-
-The last two points (identifying changed and reused blocks) are required by
-the syncing mechanism, in order to avoid transferring all unchanged file
-data when a file block changes. Blocks and block hashes are encrypted with a
-per-file key so correlation is not possible *between* files -- just within any
-given file.
+The last point is required by the syncing mechanism, in order to avoid
+transferring all unchanged file data when a file block changes. Blocks and
+block hashes are encrypted with a per-file key and depends on the block
+offset, so correlation is not possible between blocks at different offsets
+or different files.
 
 In addition the untrusted device *must not* be able to modify, remove or
 introduce data by itself without detection.
