@@ -355,11 +355,10 @@ copyOwnershipFromParent
 
 modTimeWindowS
     Allowed modification timestamp difference when comparing files for
-    equivalence. To be used on file systems which have unstable or
-    imprecise modification timestamps that might change after being
-    recorded during the last write operation. Defaults to 2 on Android
-    when the folder is located on a FAT partition, and always to 0
-    elsewhere.
+    equivalence. To be used on file systems which have unstable
+    modification timestamps that might change after being recorded
+    during the last write operation. Defaults to 2 on Android when the
+    folder is located on a FAT partition, and always to 0 elsewhere.
 
 maxConcurrentWrites
     Maximum number of concurrent write operations while syncing. Defaults to 2. Increasing this might increase or
