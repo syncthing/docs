@@ -150,6 +150,14 @@ Stable Releases - Optionally, tweet it
 
 If you have the Twitter account and the release isn't a cake-in-your-face screwup fix that you'd rather no one ever heard about and want to just silently roll out to everyone during the night.
 
+Stable Releases - Create new milestone
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Create a milestone for the next release, with the due date set to the first
+Tuesday of the next month.
+Which version number to bump depends on what kind of changes are already in main (see :ref:`semver`).
+This might change in the time until the first candidate is released.
+
 Merge Release Into Main
 ~~~~~~~~~~~~~~~~~~~~~~~
 
