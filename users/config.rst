@@ -828,9 +828,8 @@ keepTemporariesH
     are kept, the data they contain need not be transferred again.
 
 cacheIgnoredFiles
-    Whether to cache the results of ignore pattern evaluation. Performance
-    at the price of memory. Defaults to ``false`` as the cost for evaluating
-    ignores is usually not significant.
+    Ignored; defaults to ``false``. In previous versions of Syncthing, this
+    option enabled caching of ignore pattern evaluation.
 
 progressUpdateIntervalS
     How often in seconds the progress of ongoing downloads is made available to
