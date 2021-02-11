@@ -27,11 +27,16 @@ See the previous question.
 Am I able to nest shared folders in Syncthing?
 ----------------------------------------------
 
-Sharing a folder that is within an already shared folder is possible, but it has
-its caveats. What you must absolutely avoid are circular shares. This is just
-one example, there may be other undesired effects. Nesting shared folders is not
-supported, recommended or coded for, but it can be done successfully when you
-know what you're doing - you have been warned.
+Sharing a folder that is within an already shared folder is possible,
+but it has its caveats. What you must absolutely avoid are circular
+shares. You should also be careful when using :ref:`introducer`, which
+can lead to sharing both the nested folder and its parent between the
+same devices. These are just two examples, there may be other undesired
+effects. Nesting shared folders is not supported, recommended or coded
+for, but it can be done successfully when you know what you're doing -
+you have been warned.
+
+
 
 How do I rename/move a synced folder?
 -------------------------------------
