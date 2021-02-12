@@ -332,7 +332,7 @@ order
 
 ignoreDelete
     .. warning::
-        This has irreversible consequences - use at your own risk.
+        Enabling this is highly not recommended - use at your own risk.
 
     When set to true, this device will pretend not to see instructions to
     delete files from other devices.
