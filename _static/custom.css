@@ -77,3 +77,9 @@ div.contents {
 div.contents li > p:last-child {
   margin-bottom: inherit;
 }
+
+/* Make terms bold in definition lists for better visibility, e.g. in
+   users/config. */
+dt {
+  font-weight: bold;
+}
