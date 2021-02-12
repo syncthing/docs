@@ -332,7 +332,8 @@ order
 
 ignoreDelete
     .. warning::
-        Enabling this is highly not recommended - use at your own risk.
+        Enabling this will willingly corrupt the database and lead to a
+        permanent out-of-sync state - use at your own risk.
 
     When set to true, this device will pretend not to see instructions to
     delete files from other devices.
