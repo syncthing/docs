@@ -77,3 +77,8 @@ div.contents {
 div.contents li > p:last-child {
   margin-bottom: inherit;
 }
+
+/* Add spacing between each setting in users/config */
+dl {
+  margin-top: 1em;
+}

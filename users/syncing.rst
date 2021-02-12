@@ -52,7 +52,7 @@ parts of a file have changed without reading the file and computing new SHA256
 hashes for each block.
 
 The watcher does not immediately schedule a scan when a change is detected. It
-accumulates changes for 10s (adjustable by :ref:`fsWatcherDelayS <fsWatcherDelayS>`) and deleted files
+accumulates changes for 10s (adjustable by :ref:`fsWatcherDelayS <folder-fsWatcherDelayS>`) and deleted files
 are further delayed for 1min. Therefore it is expected that you experience a
 slight delay between making the change and it appearing on another device.
 

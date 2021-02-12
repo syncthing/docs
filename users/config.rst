@@ -175,6 +175,8 @@ Configuration Element
 
 This is the root element. It has one attribute:
 
+.. _configuration-version:
+
 version
     The config version. Increments whenever a change is made that requires
     migration from previous formats.
@@ -182,10 +184,14 @@ version
 It contains the elements described in the following sections and these two
 additional child elements:
 
+.. _configuration-ignoredDevice:
+
 ignoredDevice
     Contains the ID of the device that should be ignored. Connection attempts
     from this device are logged to the console but never displayed in the web
     GUI.
+
+.. _configuration-ignoredFolder:
 
 ignoredFolder
     Contains the ID of the folder that should be ignored. This folder will
@@ -228,25 +234,37 @@ One or more ``folder`` elements must be present in the file. Each element
 describes one folder. The following attributes may be set on the ``folder``
 element:
 
+.. _folder-id:
+
 id
     The folder ID, must be unique. (mandatory)
+
+.. _folder-label:
 
 label
     The label of a folder is a human readable and descriptive local name. May
     be different on each device, empty, and/or identical to other folder
     labels. (optional)
 
+.. _folder-path:
+
 path
     The path to the directory where the folder is stored on this
     device; not sent to other devices. (mandatory)
 
+.. _folder-type:
+
 type
     Controls how the folder is handled by Syncthing. Possible values are:
+
+    .. _folder-type-sendreceive:
 
     sendreceive
         The folder is in default mode. Sending local and accepting remote changes.
         Note that this type was previously called "readwrite" which is deprecated
         but still accepted in incoming configs.
+
+    .. _folder-type-sendonly:
 
     sendonly
         The folder is in "send only" mode -- it will not be modified by
@@ -254,30 +272,42 @@ type
         Note that this type was previously called "readonly" which is deprecated
         but still accepted in incoming configs.
 
+    .. _folder-type-receiveonly:
+
     receiveonly
         The folder is in "receive only" mode -- it will not propagate
         changes to other devices.
+
+.. _folder-rescanIntervalS:
 
 rescanIntervalS
     The rescan interval, in seconds. Can be set to zero to disable when external
     plugins are used to trigger rescans.
 
+.. _folder-fsWatcherEnabled:
+
 fsWatcherEnabled
     If enabled this detects changes to files in the folder and scans them.
 
-.. _fsWatcherDelayS:
+.. _folder-fsWatcherDelayS:
 
 fsWatcherDelayS
     The duration during which changes detected are accumulated, before a scan is
     scheduled (only takes effect if ``fsWatcherEnabled`` is true).
 
+.. _folder-ignorePerms:
+
 ignorePerms
     True if the folder should ignore permissions.
+
+.. _folder-autoNormalize:
 
 autoNormalize
     Automatically correct UTF-8 normalization errors found in file names.
 
 The following child elements may exist:
+
+.. _folder-device:
 
 device
     These must have the ``id`` attribute and can have an ``introducedBy`` attribute,
@@ -290,16 +320,22 @@ device
     Syncthing will currently add this automatically if it is not present in
     the configuration file.
 
+.. _folder-minDiskFree:
+
 minDiskFree
     The minimum required free space that should be available on the disk this folder
     resides. The folder will be stopped when the value drops below the threshold. Accepted units are
     ``%``, ``kB``, ``MB``, ``GB`` and ``TB``. Set to zero to disable.
 
+.. _folder-versioning:
+
 versioning
     Specifies a versioning configuration.
 
-.. seealso::
-    :ref:`versioning`
+    .. seealso::
+        :ref:`versioning`
+
+.. _folder-copiers-pullers-hashers:
 
 copiers, pullers, hashers
     The number of copier, puller and hasher routines to use, or zero for the
@@ -307,19 +343,29 @@ copiers, pullers, hashers
     advanced users only; do not change unless requested to or you've actually
     read and understood the code yourself. :)
 
+.. _folder-order:
+
 order
     The order in which needed files should be pulled from the cluster.
     The possibles values are:
+
+    .. _folder-order-random:
 
     random
         Pull files in random order. This optimizes for balancing resources among
         the devices in a cluster.
 
+    .. _folder-order-alphabetic:
+
     alphabetic
         Pull files ordered by file name alphabetically.
 
+    .. _folder-order-smallestFirst-largestFirst:
+
     smallestFirst, largestFirst
         Pull files ordered by file size; smallest and largest first respectively.
+
+    .. _folder-order-oldestFirst-newestFirst:
 
     oldestFirst, newestFirst
         Pull files ordered by modification time; oldest and newest first
@@ -330,27 +376,39 @@ order
     a 1 GB file even if there is 1 KB file available on the source device until
     the 1 KB becomes known to the pulling device.
 
+.. _folder-ignoreDelete:
+
 ignoreDelete
     When set to true, this device will pretend not to see instructions to
     delete files from other devices.
+
+.. _folder-scanProgressIntervalS:
 
 scanProgressIntervalS
     The interval with which scan progress information is sent to the GUI. Zero
     means the default value (two seconds).
 
+.. _folder-pullerPauseS:
+
 pullerPauseS
     Tweak for rate limiting the puller when it retries pulling files. Don't
     change these unless you know what you're doing.
+
+.. _folder-maxConflicts:
 
 maxConflicts
     The maximum number of conflict copies to keep around for any given file.
     The default, -1, means an unlimited number. Setting this to zero disables
     conflict copies altogether.
 
+.. _folder-disableSparseFiles:
+
 disableSparseFiles
     By default, blocks containing all zeroes are not written, causing files
     to be sparse on filesystems that support the concept. When set to true,
     sparse files will not be created.
+
+.. _folder-disableTempIndexes:
 
 disableTempIndexes
     By default, devices exchange information about blocks available in
@@ -359,20 +417,30 @@ disableTempIndexes
     device, essentially making transfers more torrent like. When set to
     true, such information is not exchanged for this folder.
 
+.. _folder-paused:
+
 paused
     True if this folder is (temporarily) suspended.
+
+.. _folder-weakHashThresholdPct:
 
 weakHashThresholdPct
     Use weak hash if more than the given percentage of the file has changed. Set
     to -1 to always use weak hash. Default value is 25.
 
+.. _folder-markerName:
+
 markerName
     Name of a directory or file in the folder root to be used as
     :ref:`marker-faq`. Default is ".stfolder".
 
+.. _folder-copyOwnershipFromParent:
+
 copyOwnershipFromParent
     On Unix systems, tries to copy file/folder ownership from the parent directory (the directory it's located in).
     Requires running Syncthing as privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux).
+
+.. _folder-modTimeWindowS:
 
 modTimeWindowS
     Allowed modification timestamp difference when comparing files for
@@ -381,17 +449,22 @@ modTimeWindowS
     during the last write operation. Defaults to 2 on Android when the
     folder is located on a FAT partition, and always to 0 elsewhere.
 
+.. _folder-maxConcurrentWrites:
+
 maxConcurrentWrites
     Maximum number of concurrent write operations while syncing. Defaults to 2. Increasing this might increase or
     decrease disk performance, depending on the underlying storage.
 
-disableFsync
+.. _folder-disableFsync:
 
+disableFsync
     .. warning::
         This is a known insecure option - use at your own risk.
 
     Disables committing file operations to disk before recording them in the database.
     Disabling fsync can lead to data corruption.
+
+.. _folder-blockPullOrder:
 
 blockPullOrder
     Order in which the blocks of a file are downloaded. This option controls how quickly different parts of the
@@ -399,25 +472,33 @@ blockPullOrder
 
     Available options:
 
+    .. _folder-blockPullOrder-standard:
+
     standard (default):
         The blocks of a file are split into N equal continuous sequences, where N is the number of connected
         devices. Each device starts downloading it's own sequence, after which it picks other devices
         sequences at random. Provides acceptable data distribution and minimal spinning disk strain.
 
+    .. _folder-blockPullOrder-random:
+
     random:
         The blocks of a file are downloaded in a random order. Provides great data distribution, but very taxing on
         spinning disk drives.
 
+    .. _blockPullOrder-inOrder:
+
     inOrder:
         The blocks of a file are downloaded sequentially, from start to finish. Spinning disk drive friendly, but provides
         no improvements to data distribution.
+
+.. _folder-copyRangeMethod:
 
 copyRangeMethod
     Provides a choice of method for copying data between files. This can be used to optimise copies on network
     filesystems, improve speed of large copies or clone the data using copy-on-write functionality if the underlying
     filesystem supports it.
 
-    See :ref:`folder-copyRangeMethod` for details.
+    See :ref:`copyRangeMethod` for details.
 
 Device Element
 --------------
@@ -450,47 +531,69 @@ describes a device participating in the cluster. It is customary to include a
 it is not present. The following attributes may be set on the ``device``
 element:
 
+.. _device-id:
+
 id
     The :ref:`device ID <device-ids>`. (mandatory)
 
+.. _device-name:
+
 name
     A friendly name for the device. (optional)
+
+.. _device-compression:
 
 compression
     Whether to use protocol compression when sending messages to this device.
     The possible values are:
 
+    .. _device-compression-metadata:
+
     metadata
         Compress metadata packets, such as index information. Metadata is
         usually very compression friendly so this is a good default.
+
+    .. _device-compression-always:
 
     always
         Compress all packets, including file data. This is recommended if the
         folders contents are mainly compressible data such as documents or
         text files.
 
+    .. _device-compression-never:
+
     never
         Disable all compression.
+
+.. _device-introducer:
 
 introducer
     Set to true if this device should be trusted as an introducer, i.e. we
     should copy their list of devices per folder when connecting.
 
-.. seealso::
-    :ref:`introducer`
+    .. seealso::
+        :ref:`introducer`
+
+.. _device-skipIntroductionRemovals:
 
 skipIntroductionRemovals
     Set to true if you wish to follow only introductions and not de-introductions.
     For example, if this is set, we would not remove a device that we were introduced
     to even if the original introducer is no longer listing the remote device as known.
 
+.. _device-introducedBy:
+
 introducedBy
     Defines which device has introduced us to this device. Used only for following de-introductions.
+
+.. _device-certName:
 
 certName
     The device certificate common name, if it is not the default "syncthing".
 
 From following child elements at least one ``address`` child must exist.
+
+.. _device-address:
 
 address
     Contains an address or host name to use when attempting to connect to this device.
@@ -535,24 +638,36 @@ address
             <address>dynamic</address>
         </device>
 
+.. _device-paused:
+
 paused
     True if synchronization with this devices is (temporarily) suspended.
+
+.. _device-allowedNetwork:
 
 allowedNetwork
     If given, this restricts connections to this device to only this network
     (see :ref:`allowed-networks`).
 
+.. _device-maxSendKbps:
+
 maxSendKbps
     Maximum send rate to use for this device. Unit is kibibytes/second, despite
     the config name looking like kilobits/second.
+
+.. _device-maxRecvKbps:
 
 maxRecvKbps
     Maximum receive rate to use for this device. Unit is kibibytes/second,
     despite the config name looking like kilobits/second.
 
+.. _device-maxRequestKiB:
+
 maxRequestKiB
     Maximum amount of data to have outstanding in requests towards this device.
     Unit is kibibytes.
+
+.. _device-remoteGUIPort:
 
 remoteGUIPort
     If set to a positive integer, the GUI will display an HTTP link to the IP
@@ -578,18 +693,26 @@ There must be exactly one ``gui`` element. The GUI configuration is also used
 by the :ref:`rest-api` and the :ref:`event-api`. The following attributes may
 be set on the ``gui`` element:
 
+.. _gui-enabled:
+
 enabled
     If not ``true``, the GUI and API will not be started.
+
+.. _gui-tls:
 
 tls
     If set to ``true``, TLS (HTTPS) will be enforced. Non-HTTPS requests will
     be redirected to HTTPS. When this is set to ``false``, TLS connections are
     still possible but it is not mandatory.
 
+.. _gui-debugging:
+
 debugging
     This enables :ref:`profiling` and additional debugging endpoints in the :ref:`rest-api`.
 
 The following child elements may be present:
+
+.. _gui-address:
 
 address
     Set the listen address. One address element must be present. Allowed address formats are:
@@ -609,31 +732,49 @@ address
         If the address is an absolute path it is interpreted as the path to a UNIX socket.
         (Added in v0.14.52.)
 
+.. _gui-unixSocketPermissions:
+
 unixSocketPermissions
     In the case that a UNIX socket location is used for ``address``, set this to an octal to override the default permissions of the socket.
+
+.. _gui-user:
 
 user
     Set to require authentication.
 
+.. _gui-password:
+
 password
     Contains the bcrypt hash of the real password.
 
+.. _gui-apikey:
+
 apikey
     If set, this is the API key that enables usage of the REST interface.
+
+.. _gui-insecureAdminAccess:
 
 insecureAdminAccess
     If true, this allows access to the web GUI from outside (i.e. not localhost)
     without authorization. A warning will displayed about this setting on startup.
 
+.. _gui-theme:
+
 theme
     The name of the theme to use.
+
+.. _gui-authMode:
 
 authMode
     Authentication mode to use. If not present authentication mode (static)
     is controlled by presence of user/password fields for backward compatibility.
 
+    .. _gui-authMode-static:
+
     static
         Authentication using user and password.
+
+    .. _gui-authMode-ldap:
 
     ldap
         LDAP authentication. Requires ldap top level config section to be present.
@@ -652,23 +793,36 @@ LDAP Element
 
 The ``ldap`` element contains LDAP configuration options.
 
+.. _ldap-address:
+
 address
     LDAP server address (server:port).
+
+.. _ldap-bindDN:
 
 bindDN
     BindDN for user authentication.
     Special %s variable should be used to pass username to LDAP.
 
+.. _ldap-transport:
+
 transport
+    .. _ldap-transport-nontls:
 
     nontls
         Non secure connection.
 
+    .. _ldap-transport-tls:
+
     tls
         TLS secured connection.
 
+    .. _ldap-transport-starttls:
+
     starttls
         StartTLS connection mode.
+
+.. _ldap-transport-insecureSkipVerify:
 
 insecureSkipVerify
     Skip verification (true or false).
@@ -728,9 +882,13 @@ Options Element
 
 The ``options`` element contains all other global configuration options.
 
+.. _options-listenAddress:
+
 listenAddress
     The listen address for incoming sync connections. See
     :ref:`listen-addresses` for allowed syntax.
+
+.. _options-globalAnnounceServer:
 
 globalAnnounceServer
     A URI to a global announce (discovery) server, or the word ``default`` to
@@ -741,51 +899,81 @@ globalAnnounceServer
     and ``id=<device ID>`` to perform certificate pinning. The device ID to
     use is printed by the discovery server on startup.
 
+.. _options-globalAnnounceEnabled:
+
 globalAnnounceEnabled
     Whether to announce this device to the global announce (discovery) server,
     and also use it to look up other devices.
+
+.. _options-localAnnounceEnabled:
 
 localAnnounceEnabled
     Whether to send announcements to the local LAN, also use such
     announcements to find other devices.
 
+.. _options-localAnnouncePort:
+
 localAnnouncePort
     The port on which to listen and send IPv4 broadcast announcements to.
+
+.. _options-localAnnounceMCAddr:
 
 localAnnounceMCAddr
     The group address and port to join and send IPv6 multicast announcements on.
 
+.. _options-maxSendKbps:
+
 maxSendKbps
     Outgoing data rate limit, in kibibytes per second.
 
+.. _options-maxRecvKbps:
+
 maxRecvKbps
     Incoming data rate limits, in kibibytes per second.
+
+.. _options-reconnectionIntervalS:
 
 reconnectionIntervalS
     The number of seconds to wait between each attempt to connect to currently
     unconnected devices.
 
+.. _options-relaysEnabled:
+
 relaysEnabled
     When true, relays will be connected to and potentially used for device to device connections.
+
+.. _options-relayReconnectIntervalM:
 
 relayReconnectIntervalM
     Sets the interval, in minutes, between relay reconnect attempts.
 
+.. _options-startBrowser:
+
 startBrowser
     Whether to attempt to start a browser to show the GUI when Syncthing starts.
+
+.. _options-natEnabled:
 
 natEnabled
     Whether to attempt to perform a UPnP and NAT-PMP port mapping for
     incoming sync connections.
 
+.. _options-natLeaseMinutes:
+
 natLeaseMinutes
     Request a lease for this many minutes; zero to request a permanent lease.
+
+.. _options-natRenewalMinutes:
 
 natRenewalMinutes
     Attempt to renew the lease after this many minutes.
 
+.. _options-natTimeoutSeconds:
+
 natTimeoutSeconds
     When scanning for UPnP devices, wait this long for responses.
+
+.. _options-urAccepted:
 
 urAccepted
     Whether the user has accepted to submit anonymous usage data. The default,
@@ -793,79 +981,119 @@ urAccepted
     point in the future. ``-1`` means no, a number above zero means that that
     version of usage reporting has been accepted.
 
+.. _options-urSeen:
+
 urSeen
     The highest usage reporting version that has already been shown in the web GUI.
+
+.. _options-urUniqueID:
 
 urUniqueID
     The unique ID sent together with the usage report. Generated when usage
     reporting is enabled.
 
+.. _options-urURL:
+
 urURL
     The URL to post usage report data to, when enabled.
+
+.. _options-urPostInsecurely:
 
 urPostInsecurely
     When true, the UR URL can be http instead of https, or have a self-signed
     certificate. The default is ``false``.
 
+.. _options-urInitialDelayS:
+
 urInitialDelayS
     The time to wait from startup to the first usage report being sent. Allows
     the system to stabilize before reporting statistics.
+
+.. _options-restartOnWakeup:
 
 restartOnWakeup
     Whether to perform a restart of Syncthing when it is detected that we are
     waking from sleep mode (i.e. a folded up laptop).
 
+.. _options-autoUpgradeIntervalH:
+
 autoUpgradeIntervalH
     Check for a newer version after this many hours. Set to zero to disable
     automatic upgrades.
+
+.. _options-upgradeToPreReleases:
 
 upgradeToPreReleases
     If true, automatic upgrades include release candidates (see
     :ref:`releases`).
 
+.. _options-keepTemporariesH:
+
 keepTemporariesH
     Keep temporary failed transfers for this many hours. While the temporaries
     are kept, the data they contain need not be transferred again.
+
+.. _options-cacheIgnoredFiles:
 
 cacheIgnoredFiles
     Whether to cache the results of ignore pattern evaluation. Performance
     at the price of memory. Defaults to ``false`` as the cost for evaluating
     ignores is usually not significant.
 
+.. _options-progressUpdateIntervalS:
+
 progressUpdateIntervalS
     How often in seconds the progress of ongoing downloads is made available to
     the GUI.
 
+.. _options-limitBandwidthInLan:
+
 limitBandwidthInLan
     Whether to apply bandwidth limits to devices in the same broadcast domain
     as the local device.
+
+.. _options-minHomeDiskFree:
 
 minHomeDiskFree
     The minimum required free space that should be available on the
     partition holding the configuration and index. Accepted units are ``%``, ``kB``,
     ``MB``, ``GB`` and ``TB``.
 
+.. _options-releasesURL:
+
 releasesURL
     The URL from which release information is loaded, for automatic upgrades.
 
+.. _options-alwaysLocalNet:
+
 alwaysLocalNet
     Network that should be considered as local given in CIDR notation.
+
+.. _options-overwriteRemoteDeviceNamesOnConnect:
 
 overwriteRemoteDeviceNamesOnConnect
     If set, device names will always be overwritten with the name given by
     remote on each connection. By default, the name that the remote device
     announces will only be adopted when a name has not already been set.
 
+.. _options-tempIndexMinBlocks:
+
 tempIndexMinBlocks
     When exchanging index information for incomplete transfers, only take
     into account files that have at least this many blocks.
+
+.. _options-unackedNotificationID:
 
 unackedNotificationID
     ID of a notification to be displayed in the web GUI. Will be removed once
     the user acknowledged it (e.g. an transition notice on an upgrade).
 
+.. _options-trafficClass:
+
 trafficClass
     Specify a type of service (TOS)/traffic class of outgoing packets.
+
+.. _options-stunServer:
 
 stunServer
     Server to be used for STUN, given as ip:port. The keyword ``default`` gets
@@ -878,16 +1106,20 @@ stunServer
     ``stun.voiparound.com:3478``, ``stun.voipbuster.com:3478``,
     ``stun.voipstunt.com:3478`` and ``stun.xten.com:3478`` (this is the default).
 
+.. _options-stunKeepaliveSeconds:
+
 stunKeepaliveSeconds
     Interval in seconds between contacting a STUN server to
     maintain NAT mapping. Default is ``24`` and you can set it to ``0`` to
     disable contacting STUN servers.
 
+.. _options-defaultFolderPath:
+
 defaultFolderPath
     The UI will propose to create new folders at this path. This can be disabled by
     setting this to an empty string.
 
-.. _set-low-priority:
+.. _options-setLowPriority:
 
 setLowPriority
     Syncthing will attempt to lower its process priority at startup.
