@@ -331,6 +331,9 @@ order
     the 1 KB becomes known to the pulling device.
 
 ignoreDelete
+    .. warning::
+        Enabling this is highly not recommended - use at your own risk.
+
     When set to true, this device will pretend not to see instructions to
     delete files from other devices.
 
