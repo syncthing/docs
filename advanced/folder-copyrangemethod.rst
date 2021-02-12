@@ -1,4 +1,4 @@
-.. _folder-copyRangeMethod:
+.. _copyRangeMethod:
 
 copyRangeMethod
 ===============
