@@ -331,11 +331,11 @@ order
     the 1 KB becomes known to the pulling device.
 
 ignoreDelete
-    When set to true, this device will pretend not to see instructions to
-    delete files from other devices.
-
     .. warning::
         This has irreversible consequences - use at your own risk.
+
+    When set to true, this device will pretend not to see instructions to
+    delete files from other devices.
 
 scanProgressIntervalS
     The interval with which scan progress information is sent to the GUI. Zero
