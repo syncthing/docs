@@ -20,7 +20,7 @@ Trash Can File Versioning
 -------------------------
 
 This versioning strategy emulates the common "trash can" approach. When a file
-is deleted or replaced due to a change on a remote device, it is a moved to
+is deleted or replaced due to a change on a remote device, it is moved to
 the trash can in the ``.stversions`` folder. If a file with the same name was
 already in the trash can it is replaced.
 
