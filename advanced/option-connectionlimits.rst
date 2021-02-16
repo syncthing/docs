@@ -1,3 +1,5 @@
+.. _advanced-option-connectionlimits:
+
 Connection Limits
 =================
 

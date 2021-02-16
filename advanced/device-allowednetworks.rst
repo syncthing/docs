@@ -1,4 +1,4 @@
-.. _allowed-networks:
+.. _advanced-device-allowednetworks:
 
 allowedNetworks
 ===============

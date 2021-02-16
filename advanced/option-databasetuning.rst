@@ -1,4 +1,4 @@
-.. _option-databaseTuning:
+.. _advanced-option-databasetuning:
 
 databaseTuning
 ==============

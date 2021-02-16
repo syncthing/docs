@@ -68,12 +68,16 @@ The following shows an example of the default configuration file (IDs will diffe
 
 .. code-block:: xml
 
-    <configuration version="30">
+    <configuration version="33">
         <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
-            <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
-            <minDiskFree unit="%">1</minDiskFree>
-            <versioning></versioning>
+            <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ">
+                <encryptionPassword></encryptionPassword>
+            </device>
+            <minDiskFree unit="%">0</minDiskFree>
+            <versioning>
+                <cleanupIntervalS>3600</cleanupIntervalS>
+            </versioning>
             <copiers>0</copiers>
             <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
             <hashers>0</hashers>
@@ -93,6 +97,8 @@ The following shows an example of the default configuration file (IDs will diffe
             <disableFsync>false</disableFsync>
             <blockPullOrder>standard</blockPullOrder>
             <copyRangeMethod>standard</copyRangeMethod>
+            <caseSensitiveFS>false</caseSensitiveFS>
+            <junctionsAsDirs>false</junctionsAsDirs>
         </folder>
         <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
@@ -112,6 +118,7 @@ The following shows an example of the default configuration file (IDs will diffe
         <options>
             <listenAddress>tcp://0.0.0.0:8384</listenAddress>
             <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
+            <listenAddress>quic://0.0.0.0:8384</listenAddress>
             <globalAnnounceServer>default</globalAnnounceServer>
             <globalAnnounceEnabled>true</globalAnnounceEnabled>
             <localAnnounceEnabled>true</localAnnounceEnabled>
@@ -144,6 +151,7 @@ The following shows an example of the default configuration file (IDs will diffe
             <releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
+            <unackedNotificationID>authenticationUserAndPassword</unackedNotificationID>
             <trafficClass>0</trafficClass>
             <defaultFolderPath>~</defaultFolderPath>
             <setLowPriority>true</setLowPriority>
@@ -155,6 +163,10 @@ The following shows an example of the default configuration file (IDs will diffe
             <stunServer>default</stunServer>
             <databaseTuning>auto</databaseTuning>
             <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
+            <announceLANAddresses>true</announceLANAddresses>
+            <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
+            <connectionLimitEnough>0</connectionLimitEnough>
+            <connectionLimitMax>0</connectionLimitMax>
         </options>
     </configuration>
 
@@ -163,7 +175,7 @@ Configuration Element
 
 .. code-block:: xml
 
-    <configuration version="30">
+    <configuration version="33">
         <folder></folder>
         <device></device>
         <gui></gui>
@@ -200,9 +212,13 @@ Folder Element
 
     <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
-        <minDiskFree unit="%">1</minDiskFree>
-        <versioning></versioning>
+        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ">
+            <encryptionPassword></encryptionPassword>
+        </device>
+        <minDiskFree unit="%">0</minDiskFree>
+        <versioning>
+            <cleanupIntervalS>3600</cleanupIntervalS>
+        </versioning>
         <copiers>0</copiers>
         <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
         <hashers>0</hashers>
@@ -222,6 +238,8 @@ Folder Element
         <disableFsync>false</disableFsync>
         <blockPullOrder>standard</blockPullOrder>
         <copyRangeMethod>standard</copyRangeMethod>
+        <caseSensitiveFS>false</caseSensitiveFS>
+        <junctionsAsDirs>false</junctionsAsDirs>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -272,12 +290,17 @@ fsWatcherDelayS
     scheduled (only takes effect if ``fsWatcherEnabled`` is true).
 
 ignorePerms
-    True if the folder should ignore permissions.
+    If ``true``, files originating from this folder will be announced to
+    remote devices with the "no permission bits" flag. The remote
+    devices will use whatever their default permission setting is when
+    creating the files. The primary use case is for file systems that do
+    not support permissions, such as FAT, or environments where changing
+    permissions is impossible.
 
-autoNormalize
+:ref:`autoNormalize <advanced-folder-autonormalize>`
     Automatically correct UTF-8 normalization errors found in file names.
 
-The following child elements may exist:
+filesystemType
 
 device
     These must have the ``id`` attribute and can have an ``introducedBy`` attribute,
@@ -295,42 +318,46 @@ minDiskFree
     resides. The folder will be stopped when the value drops below the threshold. Accepted units are
     ``%``, ``kB``, ``MB``, ``GB`` and ``TB``. Set to zero to disable.
 
-versioning
+:ref:`versioning <versioning>`
     Specifies a versioning configuration.
 
-.. seealso::
-    :ref:`versioning`
-
-copiers, pullers, hashers
+copiers
     The number of copier, puller and hasher routines to use, or zero for the
     system determined optimum. These are low level performance options for
     advanced users only; do not change unless requested to or you've actually
     read and understood the code yourself. :)
 
+pullerMaxPendingKiB
+
+hashers
+
 order
     The order in which needed files should be pulled from the cluster.
     The possibles values are:
 
-    random
-        Pull files in random order. This optimizes for balancing resources among
-        the devices in a cluster.
+    random (default)
+        Pull files in random order. This optimizes for balancing resources among the devices in a cluster.
 
     alphabetic
         Pull files ordered by file name alphabetically.
 
-    smallestFirst, largestFirst
+    smallestFirs
         Pull files ordered by file size; smallest and largest first respectively.
 
-    oldestFirst, newestFirst
+    largestFirst
+
+    oldestFirst
         Pull files ordered by modification time; oldest and newest first
         respectively.
+    
+    newestFirst
 
     Note that the scanned files are sent in batches and the sorting is applied
     only to the already discovered files. This means the sync might start with
     a 1 GB file even if there is 1 KB file available on the source device until
     the 1 KB becomes known to the pulling device.
 
-ignoreDelete
+:ref:`ignoreDelete <advanced-folder-ignoredelete>`
     .. warning::
         Enabling this is highly not recommended - use at your own risk.
 
@@ -388,8 +415,7 @@ maxConcurrentWrites
     Maximum number of concurrent write operations while syncing. Defaults to 2. Increasing this might increase or
     decrease disk performance, depending on the underlying storage.
 
-disableFsync
-
+:ref:`disableFsync <advanced-folder-disablefsync>`
     .. warning::
         This is a known insecure option - use at your own risk.
 
@@ -402,32 +428,34 @@ blockPullOrder
 
     Available options:
 
-    standard (default):
+    standard (default)
         The blocks of a file are split into N equal continuous sequences, where N is the number of connected
         devices. Each device starts downloading it's own sequence, after which it picks other devices
         sequences at random. Provides acceptable data distribution and minimal spinning disk strain.
 
-    random:
+    random
         The blocks of a file are downloaded in a random order. Provides great data distribution, but very taxing on
         spinning disk drives.
 
-    inOrder:
+    inOrder
         The blocks of a file are downloaded sequentially, from start to finish. Spinning disk drive friendly, but provides
         no improvements to data distribution.
 
-copyRangeMethod
+:ref:`copyRangeMethod <advanced-folder-copyrangemethod>`
     Provides a choice of method for copying data between files. This can be used to optimise copies on network
     filesystems, improve speed of large copies or clone the data using copy-on-write functionality if the underlying
     filesystem supports it.
 
-    See :ref:`folder-copyRangeMethod` for details.
+:ref:`caseSensitiveFS <advanced-folder-casesensitivefs>`
+
+junctionsAsDirs
 
 Device Element
 --------------
 
 .. code-block:: xml
 
-    <device id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
+    <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -435,16 +463,6 @@ Device Element
         <maxRecvKbps>0</maxRecvKbps>
         <maxRequestKiB>0</maxRequestKiB>
         <remoteGUIPort>0</remoteGUIPort>
-    </device>
-    <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
-        <address>tcp://192.0.2.1:22001</address>
-        <paused>true</paused>
-        <allowedNetwork>192.168.0.0/16</allowedNetwork>
-        <autoAcceptFolders>false</autoAcceptFolders>
-        <maxSendKbps>100</maxSendKbps>
-        <maxRecvKbps>100</maxRecvKbps>
-        <maxRequestKiB>65536</maxRequestKiB>
-        <remoteGUIPort>8384</remoteGUIPort>
     </device>
 
 One or more ``device`` elements must be present in the file. Each element
@@ -463,7 +481,7 @@ compression
     Whether to use protocol compression when sending messages to this device.
     The possible values are:
 
-    metadata
+    metadata (default)
         Compress metadata packets, such as index information. Metadata is
         usually very compression friendly so this is a good default.
 
@@ -475,12 +493,12 @@ compression
     never
         Disable all compression.
 
-introducer
+certName
+    The device certificate common name, if it is not the default "syncthing".
+
+:ref:`introducer <introducer>`
     Set to true if this device should be trusted as an introducer, i.e. we
     should copy their list of devices per folder when connecting.
-
-.. seealso::
-    :ref:`introducer`
 
 skipIntroductionRemovals
     Set to true if you wish to follow only introductions and not de-introductions.
@@ -489,9 +507,6 @@ skipIntroductionRemovals
 
 introducedBy
     Defines which device has introduced us to this device. Used only for following de-introductions.
-
-certName
-    The device certificate common name, if it is not the default "syncthing".
 
 From following child elements at least one ``address`` child must exist.
 
@@ -523,7 +538,7 @@ address
         The host name will be used on the given port and connections will be
         attempted via both IPv4 and IPv6, depending on name resolution.
 
-    ``dynamic``
+    dynamic
         The word ``dynamic`` (without ``tcp://`` prefix) means to use local and
         global discovery to find the device.
 
@@ -541,9 +556,17 @@ address
 paused
     True if synchronization with this devices is (temporarily) suspended.
 
-allowedNetwork
-    If given, this restricts connections to this device to only this network
-    (see :ref:`allowed-networks`).
+:ref:`allowedNetwork <advanced-device-allowednetworks>`
+    If given, this restricts connections to this device to only this network.
+
+autoAcceptFolders
+   If ``true``, folders created on a remote device are automatically
+   added and synced to the current device under the default path. For
+   the folder name, Syncthing tries to use the label from the remote
+   device, and if the same label already exists, it then tries to use
+   the folder's ID. If that exists as well, it does not do anything and
+   just logs an error. If you already have a folder with that ID, the
+   new one will just be shared rather than created separately.
 
 maxSendKbps
     Maximum send rate to use for this device. Unit is kibibytes/second, despite
@@ -572,7 +595,7 @@ GUI Element
 
     <gui enabled="true" tls="false" debugging="false">
         <address>127.0.0.1:8384</address>
-        <apikey>l7jSbCqPD95JYZ0g8vi4ZLAMg3ulnN1b</apikey>
+        <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
         <theme>default</theme>
     </gui>
 
@@ -684,6 +707,7 @@ Options Element
     <options>
         <listenAddress>tcp://0.0.0.0:8384</listenAddress>
         <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
+        <listenAddress>quic://0.0.0.0:8384</listenAddress>
         <globalAnnounceServer>default</globalAnnounceServer>
         <globalAnnounceEnabled>true</globalAnnounceEnabled>
         <localAnnounceEnabled>true</localAnnounceEnabled>
@@ -716,6 +740,7 @@ Options Element
         <releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>
         <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
+        <unackedNotificationID>authenticationUserAndPassword</unackedNotificationID>
         <trafficClass>0</trafficClass>
         <defaultFolderPath>~</defaultFolderPath>
         <setLowPriority>true</setLowPriority>
@@ -727,6 +752,10 @@ Options Element
         <stunServer>default</stunServer>
         <databaseTuning>auto</databaseTuning>
         <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
+        <announceLANAddresses>true</announceLANAddresses>
+        <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
+        <connectionLimitEnough>0</connectionLimitEnough>
+        <connectionLimitMax>0</connectionLimitMax>
     </options>
 
 The ``options`` element contains all other global configuration options.

@@ -1,3 +1,8 @@
+.. _advanced-folder-uselargeblocks:
+
+useLargeBlocks
+==============
+
 .. versionadded:: 1.2.0
 
     As of Syncthing 1.2.0 large blocks always enabled and the configuration
@@ -11,9 +16,6 @@
 .. versionadded:: 0.14.48
 
     Large blocks can be enabled in Syncthing version 0.14.48 and newer.
-
-useLargeBlocks
-==============
 
 ``useLargeBlocks`` is an advanced folder setting that affects the handling
 of blocks for files larger than 256 MiB. When enabled, the file will be

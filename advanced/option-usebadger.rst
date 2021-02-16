@@ -1,3 +1,5 @@
+.. _advanced-option-usebadger:
+
 Environment variable USE_BADGER
 ===============================
 
@@ -60,6 +62,6 @@ We're interested in both stability and performance data. As such, please
 have usage reporting and/or (at the very least) :ref:`crashRep` enabled so
 that we might hear of any serious issues.
 
-Currently the :ref:`option-databaseTuning` option has no effect on Badger.
+Currently the :ref:`advanced-option-databasetuning` option has no effect on Badger.
 It's possible that we might implement the tuning options in Badger as well
 after gathering more data on how it behaves.
