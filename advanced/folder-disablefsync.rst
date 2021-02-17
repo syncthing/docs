@@ -1,3 +1,5 @@
+.. _advanced-folder-disablefsync:
+
 disableFsync
 ============
 

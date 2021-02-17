@@ -1,3 +1,5 @@
+.. _advanced-folder-autonormalize:
+
 autoNormalize
 =============
 

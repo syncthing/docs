@@ -1,4 +1,4 @@
-.. _case-sensitive-fs:
+.. _advanced-folder-casesensitivefs:
 
 caseSensitiveFS
 ===============
