@@ -33,7 +33,10 @@ Prerequisites
 -  Git
 -  If you want to build Debian packages FPM is required. See FPM's
    `installation information <https://fpm.readthedocs.io/en/latest/installing.html>`__.
-
+-  To build Windows executables, installing `goversioninfo
+   <https://github.com/josephspurrier/goversioninfo>`__ is recommended
+   in order to add file properties and icon to the compiled binaries.
+-  Building Android binaries requires `Android NDK <https://developer.android.com/ndk>`__.
 
 If you're not already a Go developer, the easiest way to get going
 is to download the latest version of Go as instructed in
