@@ -16,9 +16,9 @@ message in the console saying::
 
     Created UPnP port mapping for external port XXXXX on UPnP device YYYYY.
 
-If this is not possible or desirable, you should set up a port forward for port
-**22000/TCP** (or whichever port is set in the *Sync Protocol Listen Address* setting).
-The external forwarded port and the internal destination port has to be the same
+If this is not possible or desirable, you should set up a port forwarding for ports
+**22000/TCP** and **22000/UDP** (or whichever port is set in the *Sync Protocol Listen Address* setting).
+The external forwarded ports and the internal destination ports have to be the same
 (e.g. 22000/TCP).
 
 Communication in Syncthing works both ways. Therefore if you set up port
@@ -45,11 +45,12 @@ Local Firewall
 --------------
 
 If your PC has a local firewall, you will need to open the following ports for
-incoming and outgoing traffic:
+incoming and outgoing traffic, assuming that you configured port **22000** in
+the *Sync Protocol Listen Address* setting:
 
--  Port **22000/TCP** (or the actual listening port if you have changed
-   the *Sync Protocol Listen Address* setting.)
--  Port **21027/UDP** (for discovery broadcasts on IPv4 and multicasts on IPv6)
+-  Port **22000/TCP**: TCP based sync protocol traffic
+-  Port **22000/UDP**: QUIC based sync protocol traffic
+-  Port **21027/UDP**: for discovery broadcasts on IPv4 and multicasts on IPv6
 
 Uncomplicated Firewall (ufw)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
