@@ -44,7 +44,7 @@ Visit the milestone in your browser and double check the issue subjects and labe
      - #5063: panic: cannot start already running folder
      - #5073: lib/logger: tests fail due to compilation error with go 1.11
 
-In principle the output should be a complete, valid release note for the release in question. Pipe it to a text file. If you're preparing a release candidate you will need to update the version on the first line of output to add the ``-rc.1`` or similar suffix.
+In principle the output should be a complete, valid release note for the release in question. Pipe it to a text file. If you're preparing a release candidate you should specify the full candidate tag (e.g. v0.14.50-rc.1) to the command above to get the correct title on the changelog.
 
 Add further notes or commentary to taste, if required.
 
@@ -69,6 +69,9 @@ Don't push the branch yet, we want to create the tag first.
 
 Create and Push the Tag
 ~~~~~~~~~~~~~~~~~~~~~~~
+
+Make sure you push the tag before the release branch, as the latter
+currently triggers the release job on the CI (and requires the tag already being in place).
 
 .. code-block:: bash
 
@@ -100,11 +103,11 @@ From this point on we will work on ``secure.s.n``, as the ``release`` user.
     jb@secure$ sudo su - release
     release@secure$
 
-We will use grt to create the release with the appropriate change log, and possibly close the milestone. If we are doing a candidate release we need to tell grt about that:
+We will use grt to create the release with the appropriate change log, and possibly close the milestone. If we are doing a candidate release we need to specify the tag including the candidate suffix:
 
 .. code-block:: bash
 
-    $ grt release v0.14.50 --to=v0.14.50-rc.1
+    $ grt release v0.14.50-rc.1
 
 This will create a v0.14.50-rc.1 release, with the "pre-release" bit set, and leave the v0.14.50 milestone open. For a stable release:
 
