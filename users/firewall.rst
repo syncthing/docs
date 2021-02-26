@@ -45,12 +45,14 @@ Local Firewall
 --------------
 
 If your PC has a local firewall, you will need to open the following ports for
-incoming and outgoing traffic, assuming that you configured port **22000** in
-the *Sync Protocol Listen Address* setting:
+incoming and outgoing traffic:
 
 -  Port **22000/TCP**: TCP based sync protocol traffic
 -  Port **22000/UDP**: QUIC based sync protocol traffic
 -  Port **21027/UDP**: for discovery broadcasts on IPv4 and multicasts on IPv6
+
+If you configured a custom port in the *Sync Protocol Listen Address* setting,
+you have to adapt the firewall rules accordingly.
 
 Uncomplicated Firewall (ufw)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
