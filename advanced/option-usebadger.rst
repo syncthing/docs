@@ -7,7 +7,8 @@ Environment variable USE_BADGER
 *Removed in version 1.14.0.*
 
 .. warning:: Badger experiment has been removed and the environment
-   variable is no longer supported.
+   variable is no longer supported. Version 1.14.0 is that last one that
+   allows switching back from Badger to LevelDB.
 
 Syncthing traditionally uses the LevelDB database (`syndtr/goleveldb
 <https://github.com/syndtr/goleveldb>`__). While this has served us well for
