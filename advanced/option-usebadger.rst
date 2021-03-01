@@ -4,8 +4,6 @@ Environment variable USE_BADGER
 .. versionadded:: 1.7.0
 .. deprecated:: 1.12.0
 
-*Removed in version 1.14.0.*
-
 .. warning:: Badger experiment has been removed and the environment
    variable is no longer supported. Version 1.14.0 is that last one that
    allows switching back from Badger to LevelDB.
