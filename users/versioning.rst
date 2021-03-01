@@ -77,11 +77,12 @@ Maximum Age
 External File Versioning
 ------------------------
 
-This versioning method delegates the decision on what to do to an external
-command (program or script).
-Just prior to a file being replaced, the command will be run.
-The command should be specified as an absolute path, and can use the following templated arguments:
-
+This versioning method delegates the decision on what to do to an
+external command (e.g. a program or a command line script). Just prior
+to a file being replaced, the command will be executed. The file needs
+to be removed from the folder in the process, or otherwise Syncthing
+will report an error. The command should be specified as an absolute
+path, and it can use the following templated arguments:
 
 ..
     This to be added when actually relevant.
@@ -94,6 +95,13 @@ The command should be specified as an absolute path, and can use the following t
 
 %FILE_PATH%
   Path to the file within the folder
+
+Note that the former expands to the path of the actual Syncthing folder,
+and the latter to the path inside that folder. For instance, if you use
+the default ``Sync`` folder in Windows, and the full path to the file is
+``C:\Users\User\Sync\Family photos\IMG_2021-03-01.jpg``, then the
+``%FOLDER_PATH%`` will be ``C:\Users\User\Sync``, and the
+``%FILE_PATH%`` will be ``Family photos\IMG_2021-03-01.jpg``.
 
 Example for Unixes
 ~~~~~~~~~~~~~~~~~~
