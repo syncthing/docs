@@ -2,6 +2,9 @@ Environment variable USE_BADGER
 ===============================
 
 .. versionadded:: 1.7.0
+.. deprecated:: 1.14.0
+.. warning:: Badger support has been removed and the environment variable is no
+   longer supported.
 
 Syncthing traditionally uses the LevelDB database (`syndtr/goleveldb
 <https://github.com/syndtr/goleveldb>`__). While this has served us well for
