@@ -15,8 +15,6 @@ GUI Wrappers
 Cross-platform
 ~~~~~~~~~~~~~~
 
-- `Syncthing-GTK <https://github.com/kozec/syncthing-gtk>`_
-
 - `syncthingtray <https://github.com/Martchus/syncthingtray>`__
 
 Android
@@ -71,7 +69,6 @@ Debian / Ubuntu
 
 - Debian packages: `syncthing <https://packages.debian.org/search?keywords=syncthing>`__, `syncthing-discosrv <https://packages.debian.org/search?keywords=syncthing-discosrv>`__ and `syncthing-relaysrv <https://packages.debian.org/search?keywords=syncthing-relaysrv>`_
 
-- `Ubuntu PPA containing Syncthing-GTK <https://launchpad.net/~nilarimogard/+archive/ubuntu/webupd8/>`_
 
 Fedora / CentOS
 ~~~~~~~~~~~~~~~
@@ -83,7 +80,7 @@ Unofficial `RPM repo of Syncthing <https://copr.fedorainfracloud.org/coprs/dafta
 ArchLinux
 ~~~~~~~~~
 
-- Official Community Repository: `syncthing <https://www.archlinux.org/packages/?name=syncthing>`__ and `syncthing-gtk <https://www.archlinux.org/packages/?name=syncthing-gtk>`__
+- Official Community Repository: `syncthing <https://www.archlinux.org/packages/?name=syncthing>`__
 
 - Arch User Repository: `syncthing-discosrv <https://aur.archlinux.org/packages/syncthing-discosrv>`__ and `syncthingtray <https://aur.archlinux.org/packages/syncthingtray>`__
 
@@ -100,10 +97,10 @@ Docker
 - `syncthing-docker-scratch <https://github.com/djtm/syncthing-docker-scratch>`_
   Builds docker containers from scratch base and/or runs the containers in
   docker or rkt.
-  
+
 - `rpi-syncthing <https://github.com/funkyfuture/docker-rpi-syncthing>`_
   Configurable image for the Raspberry Pi.
-  
+
 - `syncthing for hassio <https://github.com/bestlibre/hassio-addons/tree/master/syncthing>`_
   A docker based addon for `hassio <https://www.home-assistant.io/hassio/>`_
 
@@ -234,6 +231,7 @@ Older, Possibly Unmaintained
    these and you have revived the project, please update this page
    accordingly.
 
+- `Syncthing-GTK <https://github.com/kozec/syncthing-gtk>`_
 -  https://github.com/syncthing/syncthing-lite
 -  https://github.com/sieren/QSyncthingTray
 -  https://github.com/akissa/pysyncthing
