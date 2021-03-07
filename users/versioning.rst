@@ -81,8 +81,8 @@ This versioning method delegates the decision on what to do to an
 external command (e.g. a program or a command line script). Just prior
 to a file being replaced, the command will be executed. The file needs
 to be removed from the folder in the process, or otherwise Syncthing
-will report an error. The command should be specified as an absolute
-path, and it can use the following templated arguments:
+will report an error. The command should be specified as a path, and it
+can use the following templated arguments:
 
 ..
     This to be added when actually relevant.
