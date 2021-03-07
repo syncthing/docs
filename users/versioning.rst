@@ -106,7 +106,7 @@ the default ``Sync`` folder in Windows, and the full path to the file is
 Example for Unixes
 ~~~~~~~~~~~~~~~~~~
 
-Lets say I want to keep the latest version of each file as they are replaced
+Let's say I want to keep the latest version of each file as they are replaced
 or removed; essentially I want a "trash can"-like behavior. For this, I create
 the following script and store it as ``/Users/jb/bin/onlylatest.sh`` (i.e. the
 ``bin`` directory in my home directory):
@@ -124,7 +124,7 @@ the following script and store it as ``/Users/jb/bin/onlylatest.sh`` (i.e. the
     filepath="$2"
 
     # First ensure the dir where we need to store the file exists
-    outpath=`dirname "$versionspath/$filepath"`
+    outpath=$(dirname "$versionspath/$filepath")
     mkdir -p "$outpath"
     # Then move the file there
     mv -f "$folderpath/$filepath" "$versionspath/$filepath"
@@ -132,7 +132,7 @@ the following script and store it as ``/Users/jb/bin/onlylatest.sh`` (i.e. the
 I must ensure that the script has execute permissions (``chmod 755
 onlylatest.sh``), then configure Syncthing with command ``/Users/jb/bin/onlylatest.sh %FOLDER_PATH% %FILE_PATH%``
 
-Lets assume I have a folder "default" in ~/Sync, and that within that folder
+Let's assume I have a folder "default" in ~/Sync, and that within that folder
 there is a file ``docs/letter.txt`` that is being replaced or deleted. The
 script will be called as if I ran this from the command line::
 
@@ -173,5 +173,5 @@ behavior as mentioned above. I created the following script and saved it as
     rem Finally move the file, overwrite existing file if any
     move /Y "%FOLDER_PATH%\%FILE_PATH%" "%VERSIONS_PATH%\%FILE_PATH%"
 
-Finally, I set ``C:\Users\mfrnd\Scripts\onlylatest.bat %FOLDER_PATH% %FILE_PATH%`` as command name in
-Syncthing.
+Finally, I set ``C:\Users\mfrnd\Scripts\onlylatest.bat %FOLDER_PATH% %FILE_PATH%``
+as the command name in Syncthing.
