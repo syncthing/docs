@@ -16,6 +16,7 @@ Usage
    ldap
 
    syncing
+   untrusted
 
    firewall
    relaying

@@ -15,3 +15,9 @@
   from = "/branch/*"
   to = "https://web.syncthing.net/docs-branch/:splat"
   status = 200
+
+# Branches are served from the old webserver
+[[redirects]]
+  from = "/branch/*"
+  to = "https://web.syncthing.net/docs-branch/:splat"
+  status = 200

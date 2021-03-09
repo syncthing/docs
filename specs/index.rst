@@ -10,6 +10,7 @@ Specifications
    globaldisco-v3
    localdisco-v4
    relay-v1
+   untrusted
 
 :ref:`bep-v1`
 	The protocol used to exchange file data and metadata between Syncthing devices.

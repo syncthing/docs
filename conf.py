@@ -34,6 +34,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.extlinks',
     'edit_on_github',
+    'sphinx.ext.graphviz',
 ]
 
 edit_on_github_project = 'syncthing/docs'
@@ -214,21 +215,22 @@ htmlhelp_basename = 'Syncthingdoc'
 # -- Options for LaTeX output ---------------------------------------------
 
 latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
+    # The paper size ('letterpaper' or 'a4paper').
     'papersize': 'a4paper',
 
-# The font size ('10pt', '11pt' or '12pt').
+    # The font size ('10pt', '11pt' or '12pt').
     'pointsize': '11pt',
 
-# Additional stuff for the LaTeX preamble.
-#'preamble': '',
+    # Additional stuff for the LaTeX preamble.
+    # 'preamble': '',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    ('intro/getting-started', u'Getting-Started.tex', u'Getting Started', u'The Syncthing Authors', 'manual'),
+    ('intro/getting-started', u'Getting-Started.tex',
+     u'Getting Started', u'The Syncthing Authors', 'manual'),
     ('users/faq', u'FAQ.tex', u'FAQ', u'The Syncthing Authors', 'manual'),
 ]
 
@@ -318,9 +320,9 @@ man_show_urls = True
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Syncthing', u'Syncthing Documentation',
-   u'The Syncthing Authors', 'Syncthing', 'One line description of project.',
-   'Miscellaneous'),
+    ('index', 'Syncthing', u'Syncthing Documentation',
+     u'The Syncthing Authors', 'Syncthing', 'One line description of project.',
+     'Miscellaneous'),
 ]
 
 # Documents to append as an appendix to all manuals.
@@ -338,3 +340,5 @@ texinfo_documents = [
 scv_whitelist_branches = ('main',)
 scv_whitelist_tags = (re.compile(r'^v1\.\d+\.\d+$'),)
 scv_sort = ('semver',)
+
+graphviz_output_format = 'svg'
