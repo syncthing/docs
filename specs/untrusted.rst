@@ -2,7 +2,7 @@
 
 .. warning::
    This feature is currently in public testing and not yet recommended to be
-   used for critical data. Related UI controls are hidden by a feature flag -
+   used for important data. Related UI controls are hidden by a feature flag -
    check the release notes for information on how to test it.
 
 Untrusted Device Encryption
