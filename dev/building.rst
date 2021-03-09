@@ -29,11 +29,14 @@ Prerequisites
 -------------
 
 -  The latest stable version of Go. Earlier releases may work, but we recommend
-   always using the latest stable version. At the time of writing this is **Go 1.14**.
+   always using the latest stable version. At the time of writing this is **Go 1.16**.
 -  Git
 -  If you want to build Debian packages FPM is required. See FPM's
    `installation information <https://fpm.readthedocs.io/en/latest/installing.html>`__.
-
+-  To build Windows executables, installing `goversioninfo
+   <https://github.com/josephspurrier/goversioninfo>`__ is recommended
+   in order to add file properties and icon to the compiled binaries.
+-  Building Android binaries requires `Android NDK <https://developer.android.com/ndk>`__.
 
 If you're not already a Go developer, the easiest way to get going
 is to download the latest version of Go as instructed in
@@ -53,7 +56,7 @@ Building (Unix)
 
 .. code-block:: bash
 
-    # This should output "go version go1.14" or higher.
+    # This should output "go version go1.16" or higher.
     $ go version
 
     # Pick a place for your Syncthing source.
@@ -81,7 +84,7 @@ Building (Windows)
 
 .. code-block:: batch
 
-    # This should output "go version go1.14" or higher.
+    # This should output "go version go1.16" or higher.
     > go version
 
     # Pick a place for your Syncthing source.

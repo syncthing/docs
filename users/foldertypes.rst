@@ -55,7 +55,7 @@ do not cause the folder to become "out of sync". The device will however
 look out of sync on *other* devices, as it does no longer have the
 latest/expected version of the modified file.
 
-When local changes have been detected Syncthing will show a red "Revert
+When local changes have been detected Syncthing will show a red "Revert Local
 Changes" button on the folder. Activating this will cause the local
 modifications to be undone - added files will be deleted, modified or
 deleted files will be re-synced from the cluster.
@@ -64,4 +64,4 @@ In normal operation, a locally modified file that is subsequently modified
 by the cluster will cause a sync conflict. The conflict will be resolved
 with the cluster version as the winner. Being a receive-only folder, the
 sync conflict copy will not be sent to the cluster - and will be deleted if
-"Revert Changes" is used.
+"Revert Local Changes" is used.

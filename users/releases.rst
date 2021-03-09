@@ -3,6 +3,8 @@
 Versions & Releases
 ===================
 
+.. _semver:
+
 Major, Minor, or Patch
 ----------------------
 

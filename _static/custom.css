@@ -81,3 +81,10 @@ div.contents li > p:last-child {
 pre {
   padding: 8px;
 }
+
+/* Make terms bold in definition lists for better visibility, e.g. in
+   users/config. */
+dt {
+  font-weight: bold;
+}
+

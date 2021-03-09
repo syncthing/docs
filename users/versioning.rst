@@ -20,7 +20,7 @@ Trash Can File Versioning
 -------------------------
 
 This versioning strategy emulates the common "trash can" approach. When a file
-is deleted or replaced due to a change on a remote device, it is a moved to
+is deleted or replaced due to a change on a remote device, it is moved to
 the trash can in the ``.stversions`` folder. If a file with the same name was
 already in the trash can it is replaced.
 
@@ -145,21 +145,24 @@ behavior as mentioned above. I created the following script and saved it as
 
     @echo off
 
-    :: We need command extensions for mkdir to create intermediate folders in one go
+    rem Enable UTF-8 encoding to deal with multilingual folder and file names
+    chcp 65001
+
+    rem We need command extensions for md to create intermediate folders in one go
     setlocal EnableExtensions
 
-    :: Where I want my versions stored
-    set VERSIONS_PATH=%USERPROFILE%\.trashcan
+    rem Where I want my versions stored
+    set "VERSIONS_PATH=%USERPROFILE%\.trashcan"
 
-    :: The parameters we get from Syncthing, '~' removes quotes if any
-    set FOLDER_PATH=%~1
-    set FILE_PATH=%~2
+    rem The parameters we get from Syncthing, '~' removes quotes if any
+    set "FOLDER_PATH=%~1"
+    set "FILE_PATH=%~2"
 
-    :: First ensure the dir where we need to store the file exists
-    for %%F in ("%VERSIONS_PATH%\%FILE_PATH%") do set OUTPUT_PATH=%%~dpF
-    if not exist "%OUTPUT_PATH%" mkdir "%OUTPUT_PATH%" || exit /B
+    rem First ensure the dir where we need to store the file exists
+    for %%F in ("%VERSIONS_PATH%\%FILE_PATH%") do set "OUTPUT_PATH=%%~dpF"
+    if not exist "%OUTPUT_PATH%" md "%OUTPUT_PATH%" || exit /B
 
-    :: Finally move the file, overwrite existing file if any
+    rem Finally move the file, overwrite existing file if any
     move /Y "%FOLDER_PATH%\%FILE_PATH%" "%VERSIONS_PATH%\%FILE_PATH%"
 
 Finally, I set ``C:\Users\mfrnd\Scripts\onlylatest.bat %FOLDER_PATH% %FILE_PATH%`` as command name in

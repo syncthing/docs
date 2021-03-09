@@ -35,6 +35,17 @@ Config Endpoints
 
    /rest/config/... <../rest/config.rst>
 
+Cluster Endpoints
+-----------------
+
+Concerns the mesh network structure.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   ../rest/cluster-*
+
 Database Endpoints
 ------------------
 

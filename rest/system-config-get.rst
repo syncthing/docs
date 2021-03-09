@@ -75,13 +75,6 @@ Returns the current configuration.
 	  "maxSendKbps": 0,
 	  "maxRecvKbps": 0,
 	  "ignoredFolders": [],
-	  "pendingFolders": [
-	    {
-	      "time": "2019-06-05T10:21:22+02:00",
-	      "id": "cpkn4-57ysy",
-	      "label": "SomeonesFolder"
-	    }
-	  ],
 	  "maxRequestKiB": 0
 	}
       ],
@@ -162,6 +155,5 @@ Returns the current configuration.
 	"databaseTuning": "auto",
 	"maxConcurrentIncomingRequestKiB": 0
       },
-      "remoteIgnoredDevices": [],
-      "pendingDevices": []
+      "remoteIgnoredDevices": []
     }

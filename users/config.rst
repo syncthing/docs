@@ -10,16 +10,22 @@ Synopsis
 
     $HOME/.config/syncthing
     $HOME/Library/Application Support/Syncthing
-    %LOCALAPPDATA%/Syncthing
+    %LOCALAPPDATA%\Syncthing
 
 Description
 -----------
 
-Syncthing uses a single directory to store configuration, crypto keys
-and index caches. The location defaults to ``$HOME/.config/syncthing``
+.. versionadded:: 1.5.0
+
+    Database and config can now be set separately. Previously the database was
+    always located in the same directory as the config.
+
+Syncthing uses a single directory to store configuration and crypto keys.
+Syncthing also has a database, which is often stored in this directory too.
+The config location defaults to ``$HOME/.config/syncthing``
 (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac),
-or ``%LOCALAPPDATA%/Syncthing`` (Windows). It can be changed at runtime
-using the ``-home`` flag. In this directory the following files are
+or ``%LOCALAPPDATA%\Syncthing`` (Windows). It can be changed at runtime
+using the ``-config`` flag. In this directory the following files are
 located:
 
 :file:`config.xml`
@@ -33,13 +39,27 @@ located:
     The certificate and key for HTTPS GUI connections. These may be replaced
     with a custom certificate for HTTPS as desired.
 
-:file:`index-{*}.db`
-    A directory holding the database with metadata and hashes of the files
-    currently on disk and available from peers.
-
 :file:`csrftokens.txt`
     A list of recently issued CSRF tokens (for protection against browser cross
     site request forgery).
+
+The database is stored either in the same directory as the config (usually the
+default), but may also be located in one of the following directories (Unix-like 
+platforms only):
+
+* If a database exists in the old default location, that location is
+  still used.
+* If ``$XDG_DATA_HOME`` is set, use ``$XDG_DATA_HOME/syncthing``.
+* If ``~/.local/share/syncthing`` exists, use that location.
+* Use the old default location (same as config).
+
+The location of the database can be changed using the ``-data`` flag. The
+``-home`` flag sets both config and database locations at the same time.
+The database contains the following files:
+
+:file:`index-{*}.db`
+    A directory holding the database with metadata and hashes of the files
+    currently on disk and available from peers.
 
 Config File Format
 ------------------
@@ -311,6 +331,9 @@ order
     the 1 KB becomes known to the pulling device.
 
 ignoreDelete
+    .. warning::
+        Enabling this is highly not recommended - use at your own risk.
+
     When set to true, this device will pretend not to see instructions to
     delete files from other devices.
 
@@ -355,9 +378,11 @@ copyOwnershipFromParent
     Requires running Syncthing as privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux).
 
 modTimeWindowS
-    Allowed modification timestamp difference when comparing files for equivalence.
-    To be used on systems that have unstable modification timestamps, that might change after being observed after
-    the last write operation. Used in Android only.
+    Allowed modification timestamp difference when comparing files for
+    equivalence. To be used on file systems which have unstable
+    modification timestamps that might change after being recorded
+    during the last write operation. Defaults to 2 on Android when the
+    folder is located on a FAT partition, and always to 0 elsewhere.
 
 maxConcurrentWrites
     Maximum number of concurrent write operations while syncing. Defaults to 2. Increasing this might increase or
@@ -472,9 +497,10 @@ From following child elements at least one ``address`` child must exist.
 
 address
     Contains an address or host name to use when attempting to connect to this device.
-    Entries other than ``dynamic`` must be prefixed with ``tcp://`` (dual-stack),
-    ``tcp4://`` (IPv4 only) or ``tcp6://`` (IPv6 only). Note that IP addresses need
-    not use tcp4/tcp6; these are optional. Accepted formats are:
+	Entries other than ``dynamic`` need a protocol specific prefix. For the TCP protocol
+    the prefixes ``tcp://`` (dual-stack), ``tcp4://`` (IPv4 only) or ``tcp6://`` (IPv6 only) can be used.
+	The prefixes for the QUIC protocol are analogous: ``quic://``, ``quic4://`` and ``quic6://``
+    Note that IP addresses need not use IPv4 or IPv6 prefixes; these are optional. Accepted formats are:
 
     IPv4 address (``tcp://192.0.2.42``)
         The default port (22000) is used.
@@ -499,7 +525,7 @@ address
         attempted via both IPv4 and IPv6, depending on name resolution.
 
     ``dynamic``
-        The word ``dynamic`` (without ``tcp://`` prefix) means to use local and
+        The word ``dynamic`` (without any prefix) means to use local and
         global discovery to find the device.
 
     You can set multiple addresses *and* combine it with the ``dynamic`` keyword
@@ -509,7 +535,7 @@ address
 
         <device id="...">
             <address>tcp://192.0.2.1:22001</address>
-            <address>tcp://192.0.1.254:22000</address>
+            <address>quic://192.0.1.254:22000</address>
             <address>dynamic</address>
         </device>
 
