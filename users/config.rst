@@ -70,7 +70,7 @@ The following shows an example of a default configuration file (IDs will differ)
 .. note::
    The config examples are present for illustration. Do **not** copy them
    entirely to use as your config. They are likely out-of-date and the values
-   might not correspond any more to the defaults.
+   may no longer correspond to the defaults.
 
 
 .. code-block:: xml
