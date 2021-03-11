@@ -64,7 +64,14 @@ The database contains the following files:
 Config File Format
 ------------------
 
-The following shows an example of the default configuration file (IDs will differ):
+The following shows an example of a default configuration file (IDs will differ):
+
+
+.. note::
+   The config examples are present for illustration. Do **not** copy them
+   entirely to use as your config. They are likely out-of-date and the values
+   might not correspond any more to the defaults.
+
 
 .. code-block:: xml
 
@@ -110,8 +117,7 @@ The following shows an example of the default configuration file (IDs will diffe
         </gui>
         <ldap></ldap>
         <options>
-            <listenAddress>tcp://0.0.0.0:8384</listenAddress>
-            <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
+            <listenAddress>default</listenAddress>
             <globalAnnounceServer>default</globalAnnounceServer>
             <globalAnnounceEnabled>true</globalAnnounceEnabled>
             <localAnnounceEnabled>true</localAnnounceEnabled>
@@ -683,8 +689,7 @@ Options Element
 .. code-block:: xml
 
     <options>
-        <listenAddress>tcp://0.0.0.0:8384</listenAddress>
-        <listenAddress>dynamic+https://relays.syncthing.net/endpoint</listenAddress>
+        <listenAddress>default</listenAddress>
         <globalAnnounceServer>default</globalAnnounceServer>
         <globalAnnounceEnabled>true</globalAnnounceEnabled>
         <localAnnounceEnabled>true</localAnnounceEnabled>
