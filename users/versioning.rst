@@ -142,8 +142,11 @@ The script will then move the file in question to
 ``~/.trashcan/docs/letter.txt``, replacing any previous version of that letter
 that may already have been there.
 
-Example for Windows
-~~~~~~~~~~~~~~~~~~~
+Examples for Windows
+~~~~~~~~~~~~~~~~~~~~
+
+Move to a given folder using the command prompt (:abbr:`CMD`)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 On Windows we can use a batch script to perform the same "trash can"-like
 behavior as mentioned above. I created the following script and saved it as
@@ -175,3 +178,57 @@ behavior as mentioned above. I created the following script and saved it as
 
 Finally, I set ``C:\Users\mfrnd\Scripts\onlylatest.bat %FOLDER_PATH% %FILE_PATH%``
 as the command name in Syncthing.
+
+Move to the Recycle Bin using PowerShell
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We can use PowerShell to send files directly to the Recycle Bin, which
+mimics the behaviour of deleting them using the Windows Explorer.
+Firstly, create the following script and save it in your preferred
+location, e.g. ``C:\Users\User\Scripts\SendToRecycleBin.ps1``.
+
+.. code-block:: powershell
+
+    # PowerShell has no native method to recycle files, so we use Visual
+    # Basic to perform the operation. If succeeded, we also include the
+    # recycled file in the Syncthing's DEBUG output.
+    Add-Type -AssemblyName Microsoft.VisualBasic
+    [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile($args,'OnlyErrorDialogs','SendToRecycleBin')
+    if ($?) {
+      Write-Output ("Recycled " + $args + ".")
+    }
+
+Alternatively, the script can be expanded to send only deleted files to
+the Recycle Bin, and permanently delete modified ones, which makes it
+more consistent with how the Explorer works.
+
+.. code-block:: powershell
+
+    # PowerShell has no native method to recycle files, so we use Visual
+    # Basic to perform the operation.
+    Add-Type -AssemblyName Microsoft.VisualBasic
+
+    # We need to test if a Syncthing .tmp file exists. If it does, we assume
+    # a modification and delete the existing file. If if does not, we assume
+    # a deletion and recycle the current file. If succeeded, we also include
+    # the deleted/recycled file in the Syncthing's DEBUG output.
+    if (Test-Path -LiteralPath ((Split-Path -Path $args) + "\~syncthing~" + (Split-Path -Path $args -Leaf) + ".tmp")) {
+      [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile($args,'OnlyErrorDialogs','DeletePermanently')
+      if ($?) {
+        Write-Output ("Deleted " + $args + ".")
+      }
+    } else {
+      [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile($args,'OnlyErrorDialogs','SendToRecycleBin')
+      if ($?) {
+        Write-Output ("Recycled " + $args + ".")
+      }
+    }
+
+Finally, we set the command name in Syncthing to ``powershell.exe
+-ExecutionPolicy Bypass -File "C:\Users\User\Scripts\SendToRecycleBin.ps1"
+"%FOLDER_PATH%\%FILE_PATH%"``.
+
+The only caveat that you should be aware of is that if your Syncthing
+folder is located on a portable storage, such as a USB stick, or if you
+have the Recycle Bin disabled, then the script will end up deleting all
+files permanently.
