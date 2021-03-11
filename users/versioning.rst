@@ -176,8 +176,8 @@ behavior as mentioned above. I created the following script and saved it as
     rem Finally move the file, overwrite existing file if any
     move /Y "%FOLDER_PATH%\%FILE_PATH%" "%VERSIONS_PATH%\%FILE_PATH%"
 
-Finally, I set ``C:\Users\mfrnd\Scripts\onlylatest.bat %FOLDER_PATH% %FILE_PATH%``
-as the command name in Syncthing.
+Finally, I set ``"C:\Users\mfrnd\Scripts\onlylatest.bat" "%FOLDER_PATH%"
+"%FILE_PATH%"`` as the command name in Syncthing.
 
 Move to the Recycle Bin using PowerShell
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
