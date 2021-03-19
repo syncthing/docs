@@ -75,8 +75,7 @@ Caddy v2
 
 .. code-block:: none
 
-    handle /syncthing/* {
-        uri strip_prefix /syncthing
+    handle_path /syncthing/* {
         reverse_proxy http://localhost:8384
     }
 
