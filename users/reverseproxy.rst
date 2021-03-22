@@ -75,9 +75,9 @@ Caddy v2
 
 .. code-block:: none
 
-    example.com
-
-    reverse_proxy /syncthing 127.0.0.1:8384
+    handle_path /syncthing/* {
+        reverse_proxy http://localhost:8384
+    }
 
 
 Folder Configuration
