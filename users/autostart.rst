@@ -344,9 +344,10 @@ utilities designed as a central management and configuration platform
 for the Linux computer operating system. It also offers users the
 ability to manage services under the user's control with a per-user
 systemd instance, enabling users to start, stop, enable, and disable
-their own units. Service files for systemd are provided by Syncthing and
-can be found in this Git location:
-`etc/linux-systemd <https://github.com/syncthing/syncthing/tree/main/etc/linux-systemd>`_.
+their own units. Service files for systemd are provided by Syncthing,
+either in the ``etc/linux-systemd`` directory of the downloaded tarball
+or directly installed to the appropriate location on your system when
+installed through `apt.syncthing.net <https://apt.syncthing.net>`_.
 
 You have two primary options: You can set up Syncthing as a system service, or a
 user service.
