@@ -13,8 +13,8 @@ a restart is required.
 For all endpoints supporting ``PATCH``, it takes the existing config and
 unmarshals the given JSON object on top of it. This means all child objects will
 replace the existing objects, not extend them. For example for
-``RawListenAddresses` in options, which is an array of strings, sending
-``{RawListenAddresses: ["tcp://10.0.0.2"]`` will replace all existing listen
+``RawListenAddresses`` in options, which is an array of strings, sending
+``{RawListenAddresses: ["tcp://10.0.0.2"]}`` will replace all existing listen
 addresses.
 
 .. _rest-config:
