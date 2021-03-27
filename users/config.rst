@@ -503,9 +503,9 @@ From following child elements at least one ``address`` child must exist.
 
 address
     Contains an address or host name to use when attempting to connect to this device.
-	Entries other than ``dynamic`` need a protocol specific prefix. For the TCP protocol
+    Entries other than ``dynamic`` need a protocol specific prefix. For the TCP protocol
     the prefixes ``tcp://`` (dual-stack), ``tcp4://`` (IPv4 only) or ``tcp6://`` (IPv6 only) can be used.
-	The prefixes for the QUIC protocol are analogous: ``quic://``, ``quic4://`` and ``quic6://``
+    The prefixes for the QUIC protocol are analogous: ``quic://``, ``quic4://`` and ``quic6://``
     Note that IP addresses need not use IPv4 or IPv6 prefixes; these are optional. Accepted formats are:
 
     IPv4 address (``tcp://192.0.2.42``)
