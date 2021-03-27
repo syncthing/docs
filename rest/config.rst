@@ -26,7 +26,7 @@ addresses.
 
 .. _rest-config-insync:
 
-/rest/system/config/insync
+/rest/config/insync
 --------------------------
 
 ``GET`` returns whether the config is in sync, i.e. whether the running configuration is
