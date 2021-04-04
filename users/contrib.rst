@@ -54,6 +54,10 @@ Linux
 
   A GNOME Shell extension displaying a Syncthing status icon in the top bar.
 
+- `Syncthing Indicator <https://extensions.gnome.org/extension/1070/syncthing-indicator/>`_
+
+  Shell indicator for starting, monitoring and controlling the Syncthing daemon using SystemD.
+
 - `syncthing-quick-status <https://github.com/serl/syncthing-quick-status>`_
 
   Small bash application with minimal dependencies, for a simple colorful representation of the current status.
