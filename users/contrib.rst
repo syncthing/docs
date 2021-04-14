@@ -65,6 +65,19 @@ Linux
 Packages and Bundlings
 ----------------------
 
+Cross-platform
+~~~~~~~~~~~~~~
+
+- Webi: `syncthing <https://webinstall.dev/syncthing>`__
+
+  Mac, Linux: ::
+
+    $ curl -sS https://webinstall.dev/syncthing | bash
+
+  Windows 10 ::
+
+    > curl.exe -A MS https://webinstall.dev/syncthing | powershell
+
 Debian / Ubuntu
 ~~~~~~~~~~~~~~~
 
