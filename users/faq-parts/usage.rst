@@ -22,7 +22,7 @@ you know will always exist in the folder.
 I really hate the ``.stfolder`` directory, can I remove it?
 -----------------------------------------------------------
 
-See the previous question.
+See the previous question. It is heavily advised against, but `.` is a valid marker (alias) name as well.
 
 Am I able to nest shared folders in Syncthing?
 ----------------------------------------------
