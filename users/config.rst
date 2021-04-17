@@ -25,7 +25,7 @@ Syncthing also has a database, which is often stored in this directory too.
 The config location defaults to ``$HOME/.config/syncthing``
 (Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac),
 or ``%LOCALAPPDATA%\Syncthing`` (Windows). It can be changed at runtime
-using the ``-config`` flag. In this directory the following files are
+using the ``--config`` flag. In this directory the following files are
 located:
 
 :file:`config.xml`
@@ -53,8 +53,8 @@ platforms only):
 * If ``~/.local/share/syncthing`` exists, use that location.
 * Use the old default location (same as config).
 
-The location of the database can be changed using the ``-data`` flag. The
-``-home`` flag sets both config and database locations at the same time.
+The location of the database can be changed using the ``--data`` flag. The
+``--home`` flag sets both config and database locations at the same time.
 The database contains the following files:
 
 :file:`index-{*}.db`
