@@ -123,7 +123,7 @@ crashes and other bugs.
 How can I view the history of changes?
 --------------------------------------
 
-The web GUI contains a ``Global Changes`` button under the device list which
+The web GUI contains a ``Recent Changes`` button under the device list which
 displays changes since the last (re)start of Syncthing. With the ``-audit``
 option you can enable a persistent, detailed log of changes and most
 activities, which contains a ``JSON`` formatted  sequence of events in the
@@ -132,7 +132,7 @@ activities, which contains a ``JSON`` formatted  sequence of events in the
 Does the audit log contain every change?
 ----------------------------------------
 
-The audit log (and the ``Global Changes`` window) sees the changes that your
+The audit log (and the ``Recent Changes`` window) sees the changes that your
 Syncthing sees. When Syncthing is continuously connected it usually sees every change
 happening immediately and thus knows which node initiated the change.
 When topology gets complex or when your node reconnects after some time offline,
