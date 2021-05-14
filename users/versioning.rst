@@ -61,18 +61,28 @@ The following intervals are used and they each have a maximum number of files
 that will be kept for each.
 
 1 Hour
-    For the first hour, the most recent version is kept every 30 seconds.
+    For the first hour, the oldest version in every 30-seconds interval is
+    kept.
 1 Day
-    For the first day, the most recent version is kept every hour.
+    For the first day, the oldest version in every hour is kept.
 30 Days
-    For the first 30 days, the most recent version is kept every day.
+    For the first 30 days, the oldest version in every day is kept.
 Until Maximum Age
-    Until maximum age, the most recent version is kept every week.
+    Until maximum age, the oldest version in every week is kept.
 Maximum Age
     The maximum time to keep a version in days. For example, to keep replaced or
     deleted files in the ".stversions" folder for an entire year, use 365. If
     only for 10 days, use 10.
     **Note: Set to 0 to keep versions forever.**
+
+This means that there is only one version in each interval and as files age they
+will be deleted unless when the interval they are entering is empty. By keeping
+the oldest versions this versioning scheme preserves the file if it is
+overwritten.
+
+For more info, check the `unit test file
+<https://github.com/syncthing/syncthing/blob/main/lib/versioner/staggered_test.go#L32>`__
+that shows which versions are deleted for a specific run.
 
 External File Versioning
 ------------------------
