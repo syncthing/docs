@@ -129,7 +129,7 @@ Caveats
 -------
 
 The untrusted device must not be able to compare encrypted data between
-different files and detect if data is equal, This means that blocks cannot as
+different files and detect if data is equal, this means that blocks cannot as
 usual be reused between files. When a file is changed, blocks from the old file
 can still be reused. As an example, if you rename a file ``foo`` to ``Foo``
 syncthing will usually do an efficient rename or at least copy all the data
