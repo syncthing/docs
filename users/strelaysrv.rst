@@ -20,7 +20,7 @@ Description
 Syncthing relies on a network of community-contributed relay servers. Anyone
 can run a relay server, and it will automatically join the relay pool and be
 available to Syncthing users. The current list of relays can be found at
-http://relays.syncthing.net/.
+https://relays.syncthing.net/.
 
 Options
 -------
@@ -86,7 +86,7 @@ Options
 .. cmdoption:: -pools=<pool addresses>
 
     Comma separated list of relay pool addresses to join (default
-    "http://relays.syncthing.net/endpoint"). Blank to disable announcement to
+    "https://relays.syncthing.net/endpoint"). Blank to disable announcement to
     a pool, thereby remaining a private relay.
 
 .. cmdoption:: -protocol=<string>
@@ -107,9 +107,9 @@ Installing
 
 Go to `releases <https://github.com/syncthing/relaysrv/releases>`__ and
 download the file appropriate for your operating system. Unpacking it will
-yield a binary called ``relaysrv`` (or ``relaysrv.exe`` on Windows).
+yield a binary called ``strelaysrv`` (or ``strelaysrv.exe`` on Windows).
 Start this in whatever way you are most comfortable with; double clicking
-should work in any graphical environment. At first start, relaysrv will
+should work in any graphical environment. At first start, strelaysrv will
 generate certificate files and database in the current directory unless
 given flags to the contrary. It will also join the default pools of relays,
 which means that it is publicly visible and any client can connect to it.
@@ -131,12 +131,12 @@ as root or a privileged user, see `Running on port 443 as an unprivileged user`_
 below. In principle something similar to this should work on a Linux/Unix
 system::
 
-    $ sudo useradd relaysrv
-    $ sudo mkdir /etc/relaysrv
-    $ sudo chown relaysrv /etc/relaysrv
-    $ sudo -u relaysrv /usr/local/bin/relaysrv -keys /etc/relaysrv
+    $ sudo useradd strelaysrv
+    $ sudo mkdir /etc/strelaysrv
+    $ sudo chown strelaysrv /etc/strelaysrv
+    $ sudo -u strelaysrv /usr/local/bin/strelaysrv -keys /etc/strelaysrv
 
-This creates a user ``relaysrv`` and a directory ``/etc/relaysrv`` to store
+This creates a user ``strelaysrv`` and a directory ``/etc/strelaysrv`` to store
 the keys. The keys are generated on first startup. The relay will join the
 global relay pool, unless a ``-pools=""`` argument is given.
 
@@ -180,8 +180,8 @@ Or, if you're using ``ufw``, add the following to ``/etc/ufw/before.rules``::
 
     COMMIT
 
-You will need to start ``relaysrv`` with ``-ext-address ":443"``. This tells
-``relaysrv`` that it can be contacted on port 443, even though it is listening
+You will need to start ``strelaysrv`` with ``-ext-address ":443"``. This tells
+``strelaysrv`` that it can be contacted on port 443, even though it is listening
 on port 22067. You will also need to let both port 443 and 22067 through your
 firewall.
 
@@ -192,7 +192,7 @@ Firewall Considerations
 -----------------------
 
 The relay server listens on two ports by default.  One for data connections and the other
-for providing public statistics at http://relays.syncthing.net/.  The firewall, such as
+for providing public statistics at https://relays.syncthing.net/.  The firewall, such as
 ``iptables``, must permit incoming TCP connections to the following ports:
 
 * Data port:  ``22067/tcp`` overridden with ``-listen`` and advertised with ``-ext-address``
