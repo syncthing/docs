@@ -104,6 +104,8 @@ ArchLinux
 Docker
 ~~~~~~
 
+- `docker-syncthing <https://docs.linuxserver.io/images/docker-syncthing>`_ from `LinuxServer <https://www.linuxserver.io>`_
+
 - Dockerfiles for `Syncthing <https://github.com/firecat53/dockerfiles/tree/master/syncthing>`_ and `Syncthing Discovery Server <https://github.com/firecat53/dockerfiles/tree/master/syncthing_discovery>`_.
   Latest binary releases used for both.
 
