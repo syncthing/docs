@@ -33,9 +33,6 @@ Contact
 * To get help and support, discuss scenarios, or just connect with other
   users and developers you can head over to the `friendly forum`_.
 
-* For a more real time experience, there's also an IRC channel ``#syncthing`` on
-  `Freenode <https://freenode.net/>`_.
-
 * For other concerns you may reach out to members of the maintainers, currently
   :user:`calmh`, :user:`AudriusButkevicius` and :user:`imsodin`.
 
