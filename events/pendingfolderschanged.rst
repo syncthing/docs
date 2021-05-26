@@ -7,9 +7,9 @@ PendingFoldersChanged
 
 Emitted when pending folders were added / updated (offered by some
 device, but not shared to them) or removed (folder ignored, dismissed
-or added or no longer offered from the remote device).  An entry
-without a ``device`` attribute means that the folder is no longer
-pending for any device.
+or added or no longer offered from the remote device).  A removed
+entry without a ``deviceID`` attribute means that the folder is no
+longer pending for any device.
 
 .. code-block:: json
 
@@ -20,18 +20,18 @@ pending for any device.
       "data": {
 	"added": [
 	  {
-	    "device": "EJHMPAQ-OGCVORE-ISB4IS3-SYYVJXF-TKJGLTU-66DIQPF-GJ5D2GX-GQ3OWQK",
-	    "folder": "GXWxf-3zgnU",
+	    "deviceID": "EJHMPAQ-OGCVORE-ISB4IS3-SYYVJXF-TKJGLTU-66DIQPF-GJ5D2GX-GQ3OWQK",
+	    "folderID": "GXWxf-3zgnU",
 	    "folderLabel": "My Pictures"
 	  }
 	],
 	"removed": [
 	  {
-	    "device": "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2",
-	    "folder": "neyfh-sa2nu"
+	    "deviceID": "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2",
+	    "folderID": "neyfh-sa2nu"
 	  },
 	  {
-	    "folder": "abcde-fghij"
+	    "folderID": "abcde-fghij"
 	  }
 	]
       }
