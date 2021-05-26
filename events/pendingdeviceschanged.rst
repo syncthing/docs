@@ -6,7 +6,7 @@ PendingDevicesChanged
 .. versionadded:: 1.14.0
 
 Emitted when pending devices were added / updated (connection from
-unknown ID) or removed (device is ignored or added).
+unknown ID) or removed (device is ignored, dismissed or added).
 
 .. code-block:: json
 

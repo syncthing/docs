@@ -6,8 +6,8 @@ PendingFoldersChanged
 .. versionadded:: 1.14.0
 
 Emitted when pending folders were added / updated (offered by some
-device, but not shared to them) or removed (folder ignored or added or
-no longer offered from the remote device).
+device, but not shared to them) or removed (folder ignored, dismissed
+or added or no longer offered from the remote device).
 
 .. code-block:: json
 
