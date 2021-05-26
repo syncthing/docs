@@ -3,12 +3,12 @@ DELETE /rest/cluster/pending/folders
 
 .. versionadded:: 1.18.0
 
-Remove records about a pending folder, without ignoring it in the
-configuration.  Valid values for the ``folder`` and ``device``
-parameters are those from the corresponding
-:doc:`/rest/cluster-pending-folders-get` endpoint.  The ``device``
-parameter is optional and affects announcements of this folder from
-*any* device if omitted.
+Remove records about a pending folder announced from a remote device.
+Valid values for the ``folder`` and ``device`` parameters are those
+from the corresponding :doc:`/rest/cluster-pending-folders-get`
+endpoint.  The ``device`` parameter is optional and affects
+announcements of this folder from the given device, or from *any*
+device if omitted.
 
 .. code-block:: bash
 
@@ -17,3 +17,7 @@ parameter is optional and affects announcements of this folder from
 Returns status 200 and no content upon success, or status 500 and a
 plain text error on failure.  A :doc:`/events/pendingfolderschanged`
 event will be generated in response.
+
+For a more permanent effect, also for future announcements of the same
+folder ID, the folder should be ignored in the :doc:`configuration
+</users/config>` instead.

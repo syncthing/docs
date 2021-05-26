@@ -3,10 +3,9 @@ DELETE /rest/cluster/pending/devices
 
 .. versionadded:: 1.18.0
 
-Remove records about a pending remote device, without ignoring it in
-the configuration.  Valid values for the ``device`` parameter are
-those from the corresponding :doc:`/rest/cluster-pending-devices-get`
-endpoint.
+Remove records about a pending remote device which tried to connect.
+Valid values for the ``device`` parameter are those from the
+corresponding :doc:`/rest/cluster-pending-devices-get` endpoint.
 
 .. code-block:: bash
 
@@ -15,3 +14,7 @@ endpoint.
 Returns status 200 and no content upon success, or status 500 and a
 plain text error on failure.  A :doc:`/events/pendingdeviceschanged`
 event will be generated in response.
+
+For a more permanent effect, also for future connections from the same
+device ID, the device should be ignored in the :doc:`configuration
+</users/config>` instead.
