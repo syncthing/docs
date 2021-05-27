@@ -26,11 +26,11 @@ addresses.
 
 .. _rest-config-insync:
 
-/rest/system/config/insync
---------------------------
+/rest/config/restart-required
+-----------------------------
 
-``GET`` returns whether the config is in sync, i.e. whether the running configuration is
-the same as that on disk or if a restart is required.
+``GET`` returns whether a restart of Syncthing is required for the current
+config to take effect.
 
 /rest/config/folders, /rest/config/devices
 ------------------------------------------
