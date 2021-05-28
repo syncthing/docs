@@ -49,8 +49,8 @@ configuration:
 
 .. _groupmembership:
 
-Enforcing Group Memberhip
--------------------------
+Enforcing Group Membership
+--------------------------
 
 .. versionadded:: 1.5.0
 
