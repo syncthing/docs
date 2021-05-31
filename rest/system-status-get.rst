@@ -30,6 +30,8 @@ Returns information about current system status and resource usage. The CPU perc
       "cpuPercent": 0,
       "discoveryEnabled": true,
       "discoveryErrors": {
+        "IPv4 local": null,
+        "IPv6 local": null,
         "global@https://discovery-v4-1.syncthing.net/v2/": "500 Internal Server Error",
         "global@https://discovery-v4-2.syncthing.net/v2/": "Post https://discovery-v4-2.syncthing.net/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)",
         "global@https://discovery-v4-3.syncthing.net/v2/": "Post https://discovery-v4-3.syncthing.net/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)",
@@ -72,3 +74,10 @@ Returns information about current system status and resource usage. The CPU perc
   The ``connectionServiceStatus`` entries gained ``"error": null``
   attributes where previously there would be no ``error`` attribute at all
   in the success case.
+
+.. versionadded:: 1.18.0
+
+  The ``discoveryErrors`` dictionary now lists all configured discovery methods,
+  not only failed ones.  When running successfully, the entry has a ``null``
+  value.  This effectively deprecates the ``discoveryMethods`` attribute, which
+  not always matches the number of entries in ``discoveryErrors``.
