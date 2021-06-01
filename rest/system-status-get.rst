@@ -30,14 +30,38 @@ Returns information about current system status and resource usage. The CPU perc
       "cpuPercent": 0,
       "discoveryEnabled": true,
       "discoveryErrors": {
-        "IPv4 local": null,
-        "IPv6 local": null,
         "global@https://discovery-v4-1.syncthing.net/v2/": "500 Internal Server Error",
         "global@https://discovery-v4-2.syncthing.net/v2/": "Post https://discovery-v4-2.syncthing.net/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)",
         "global@https://discovery-v4-3.syncthing.net/v2/": "Post https://discovery-v4-3.syncthing.net/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)",
         "global@https://discovery-v6-1.syncthing.net/v2/": "Post https://discovery-v6-1.syncthing.net/v2/: dial tcp [2001:470:28:4d6::5]:443: connect: no route to host",
         "global@https://discovery-v6-2.syncthing.net/v2/": "Post https://discovery-v6-2.syncthing.net/v2/: dial tcp [2604:a880:800:10::182:a001]:443: connect: no route to host",
         "global@https://discovery-v6-3.syncthing.net/v2/": "Post https://discovery-v6-3.syncthing.net/v2/: dial tcp [2400:6180:0:d0::d9:d001]:443: connect: no route to host"
+      },
+      "discoveryStatus": {
+        "IPv4 local": {
+          "error": null
+        },
+        "IPv6 local": {
+          "error": null
+        },
+        "global@https://discovery-v4-1.syncthing.net/v2/": {
+          "error": "500 Internal Server Error"
+        },
+        "global@https://discovery-v4-2.syncthing.net/v2/": {
+          "error": "Post https://discovery-v4-2.syncthing.net/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)"
+        },
+        "global@https://discovery-v4-3.syncthing.net/v2/": {
+          "error": "Post https://discovery-v4-3.syncthing.net/v2/: net/http: request canceled while waiting for connection (Client.Timeout exceeded while awaiting headers)"
+        },
+        "global@https://discovery-v6-1.syncthing.net/v2/": {
+          "error": "Post https://discovery-v6-1.syncthing.net/v2/: dial tcp [2001:470:28:4d6::5]:443: connect: no route to host"
+        },
+        "global@https://discovery-v6-2.syncthing.net/v2/": {
+          "error": "Post https://discovery-v6-2.syncthing.net/v2/: dial tcp [2604:a880:800:10::182:a001]:443: connect: no route to host"
+        },
+        "global@https://discovery-v6-3.syncthing.net/v2/": {
+          "error": "Post https://discovery-v6-3.syncthing.net/v2/: dial tcp [2400:6180:0:d0::d9:d001]:443: connect: no route to host"
+        }
       },
       "discoveryMethods": 8,
       "goroutines": 49,
@@ -77,7 +101,9 @@ Returns information about current system status and resource usage. The CPU perc
 
 .. versionadded:: 1.18.0
 
-  The ``discoveryErrors`` dictionary now lists all configured discovery methods,
-  not only failed ones.  When running successfully, the entry has a ``null``
-  value.  This effectively deprecates the ``discoveryMethods`` attribute, which
-  not always matches the number of entries in ``discoveryErrors``.
+  The ``discoveryStatus`` dictionary lists all configured discovery methods, not
+  only failed ones like the now deprecated ``discoveryErrors``.  Each entry is
+  an object itself (for consistency with other fields), where a ``null`` value
+  for the ``error`` attribute means the method is running successfully.  This
+  effectively deprecates the ``discoveryMethods`` attribute as well, which now
+  always matches the number of entries in ``discoveryStatus``.
