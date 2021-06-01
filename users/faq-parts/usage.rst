@@ -87,6 +87,19 @@ block) from A, and then as A gets rescanned remove the files from A.
 A workaround would be to copy first from A to B, rescan B, wait for B to
 rebuild on remote ends, and then delete from A.
 
+Can I help initial sync by copying files manually?
+--------------------------------------------------
+
+If you have a large folder that you want to keep in sync over a not-so-fast network, and you have the possibility to move all files to the remote site in a faster manner, here is a procedure to follow to make sure that you don't confude Syncthing.
+
+Create the folder on site 1, but don't share it with anyone.
+Create the folder on site 2, and this time copy the Folder Id from the folder on site 1. Normally you would always use the value that Syncthing supplies to you since it must be unique, but in this case we want the folders to be considered the same.
+Copy the files from site 1 to site 2 using normal file copy.
+
+After that rescan the folders on both sides so that Syncthing knows all the files. Then share them. Syncthing will exchange file information but existing files (or parts) will not be transferred.
+
+Always make sure that if you add many files to a folder that is used by Syncthing, that the folders are either paused or Syncthing is not running. Then run rescan.
+
 Is Syncthing my ideal backup application?
 -----------------------------------------
 
