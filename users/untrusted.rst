@@ -12,7 +12,7 @@ be decrypted by the same password.
 
     The data is encrypted using both the password and the folder ID. You
     shouldn't ever need the folder ID as it's stored in the folder marker,
-    however to be on the safe side make sure you store both securily and
+    however to be on the safe side make sure you store both securely and
     reliably.
 
 As an example, lets assume a *trusted* device ``T1``, maybe your laptop. You
@@ -148,13 +148,13 @@ Decrypting data
 
 Say you recovered a backup or lost the Syncthing database on an untrusted
 device, and need to get the plaintext data. To do that there's a command to
-convert the encrypted data to plaintext on disk. Meaning you should only do tath
+convert the encrypted data to plaintext on disk. Meaning you should only do that
 on a trusted device. To decrypt the data, run the following command pointed at
 the root of the encrypted folder:
 
 .. code-block:: bash
 
-    $ syncthing decrypt <path>
+    $ syncthing decrypt --to <plaintext-destination> --password <your-password> <encrypted-folder-path>
 
 Technicals
 ----------
