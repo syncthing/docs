@@ -146,11 +146,11 @@ the changed block is transferred as usual.
 Decrypting data
 ---------------
 
-Say you recovered a backup of an untrusted device. To get at the plaintext data,
-you can either set up Syncthing to share the data as a receive-only folder to
-a trusted device as explained above. It's also possibly to directly decrypt the
-files without involving sharing, running the following command pointed at the
-root of the encrypted folder:
+Say you recovered a backup or lost the Syncthing database on an untrusted
+device, and need to get the plaintext data. To do that there's a command to
+convert the encrypted data to plaintext on disk. Meaning you should only do tath
+on a trusted device. To decrypt the data, run the following command pointed at
+the root of the encrypted folder:
 
 .. code-block:: bash
 
