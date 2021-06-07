@@ -1,5 +1,5 @@
-Folder Scan Progress
---------------------
+FolderScanProgress
+------------------
 
 Emitted in regular intervals (folder setting ProgressIntervalS, 2s by default)
 during scans giving the amount of bytes already scanned and to be scanned in

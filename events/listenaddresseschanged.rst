@@ -1,7 +1,5 @@
-.. listen-addresses-changed:
-
-Listen Addresses Changed
-------------------------
+ListenAddressesChanged
+----------------------
 
 This event is emitted when a :ref:`listen address <listen-addresses>` changes.
 

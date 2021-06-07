@@ -1,5 +1,5 @@
-Login Attempt
--------------
+LoginAttempt
+------------
 
 When authentication is enabled for the GUI, this event is emitted on every
 login attempt. If either the username or password are incorrect, ``success``
