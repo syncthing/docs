@@ -8,6 +8,13 @@ It is possible to set a password on a folder when it's shared with another
 device. Data sent will be encrypted by this password, and data received will
 be decrypted by the same password.
 
+.. note::
+
+    The data is encrypted using both the password and the folder ID. You
+    shouldn't ever need the folder ID as it's stored in the folder marker,
+    however to be on the safe side make sure you store both securely and
+    reliably.
+
 As an example, lets assume a *trusted* device ``T1``, maybe your laptop. You
 have sensitive documents here but they are in cleartext from Syncthing's
 point of view (perhaps protected by full disk encryption). There is also an
@@ -135,6 +142,19 @@ before deleting the old one. On an untrusted device, it will delete the old file
 and receive the data for the new file over the network. However if you have a big file,
 e.g. ``video.mp4``, and you modify just a part of it (e.g. video metadata), only
 the changed block is transferred as usual.
+
+Decrypting data
+---------------
+
+Say you recovered a backup or lost the Syncthing database on an untrusted
+device, and need to get the plaintext data. To do that there's a command to
+convert the encrypted data to plaintext on disk. Meaning you should only do that
+on a trusted device. To decrypt the data, run the following command pointed at
+the root of the encrypted folder:
+
+.. code-block:: bash
+
+    $ syncthing decrypt --to <plaintext-destination> --password <your-password> <encrypted-folder-path>
 
 Technicals
 ----------
