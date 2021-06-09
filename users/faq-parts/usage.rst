@@ -98,8 +98,6 @@ If you have a large folder that you want to keep in sync over a not-so-fast netw
 
 Now share the folder with the other device, on both sides. Syncthing will exchange file information but existing files (or parts) will not be transferred.
 
-Always make sure that if you add many files to a folder that is used by Syncthing, that the folders are either paused or Syncthing is not running. Then run rescan.
-
 Is Syncthing my ideal backup application?
 -----------------------------------------
 
