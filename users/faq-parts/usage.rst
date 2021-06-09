@@ -96,7 +96,7 @@ If you have a large folder that you want to keep in sync over a not-so-fast netw
 - Copy the files from site 1 to site 2 using normal file copy. If this takes a long time (perhaps travelling to site 2), it could be a good idea to make sure that the files on site 1 is not updated while you do this.
 - Create the folder on site 2, and this time copy the Folder ID from the folder on site 1. Normally you would always use the value that Syncthing supplies to you - since it must be unique - but in this case we want the folders to be considered the same.
 
-After that rescan the folders on both sides so that Syncthing knows all the files. Then share them. Syncthing will exchange file information but existing files (or parts) will not be transferred.
+Now share the folder with the other device, on both sides. Syncthing will exchange file information but existing files (or parts) will not be transferred.
 
 Always make sure that if you add many files to a folder that is used by Syncthing, that the folders are either paused or Syncthing is not running. Then run rescan.
 
