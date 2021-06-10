@@ -1,5 +1,5 @@
-Remote Download Progress
-------------------------
+RemoteDownloadProgress
+----------------------
 
 This event is emitted when a :ref:`download-progress` message is
 received. It returns a map ``data`` of filenames with a count of
