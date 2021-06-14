@@ -6,7 +6,7 @@ PendingDevicesChanged
 .. versionadded:: 1.14.0
 
 Emitted when pending devices were added / updated (connection from
-unknown ID) or removed (device is ignored or added).
+unknown ID) or removed (device is ignored, dismissed or added).
 
 .. code-block:: json
 
@@ -18,13 +18,13 @@ unknown ID) or removed (device is ignored or added).
 	"added": [
 	  {
 	    "address": "127.0.0.1:51807",
-	    "device": "EJHMPAQ-OGCVORE-ISB4IS3-SYYVJXF-TKJGLTU-66DIQPF-GJ5D2GX-GQ3OWQK",
+	    "deviceID": "EJHMPAQ-OGCVORE-ISB4IS3-SYYVJXF-TKJGLTU-66DIQPF-GJ5D2GX-GQ3OWQK",
 	    "name": "My dusty computer"
 	  }
 	],
 	"removed": [
 	  {
-	    "device": "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2"
+	    "deviceID": "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2"
 	  }
 	]
       }
