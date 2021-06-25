@@ -43,8 +43,9 @@ it's replaced, otherwise a new one is added.
 --------------------------------------------------------
 
 Put the desired folder- respectively device-ID in place of \*id\*. ``GET``
-returns the folder/device for the given ID, ``PUT`` replaces the entire config
-and ``PATCH`` replaces only the given child objects.
+returns the folder/device for the given ID, ``PUT`` replaces the entire config,
+``PATCH`` replaces only the given child objects and ``DELETE`` removes the
+folder/device.
 
 /rest/config/options, /rest/config/ldap, /rest/config/gui
 ---------------------------------------------------------
