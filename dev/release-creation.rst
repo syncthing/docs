@@ -26,7 +26,7 @@ The procedure differs sligthly depending on whether we're doing a release candid
 Release Candidates - Write a Change Log
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Most of the change log is machine generated from the closed issues. We do however need to make sure that issues belong to the correct milestone, have the correct labels, and that the issue subject makes sense as a line in the change log. To our help we have the purpose written tool `grt <https://github./calmh/github-release-tool>`__. The grt tool requires your GitHub token to manage milestones and issues; you set the environment variable ``GITHUB_TOKEN`` while you are working on the release (but hopefully not all the time - programs can and do steal environment data).
+Most of the change log is machine generated from the closed issues. We do however need to make sure that issues belong to the correct milestone, have the correct labels, and that the issue subject makes sense as a line in the change log. To our help we have the purpose written tool `grt <https://github.com/syncthing/github-release-tool>`__. The grt tool requires your GitHub token to manage milestones and issues; you set the environment variable ``GITHUB_TOKEN`` while you are working on the release (but hopefully not all the time - programs can and do steal environment data).
 
 To ensure that all closed issues are tagged with the milestone for the release you are doing, use the following command. First, find the commit hash or tag of the last commit on the *previous* release - changes since this point is what we are going to consider part of this release. If there haven't been any special releases or branching you can simply use the previous release as the starting point.
 
