@@ -65,7 +65,7 @@ Does Syncthing support syncing between folders on the same system?
 
 No. Syncthing is not designed to sync locally and the overhead involved in
 doing so using Syncthing's method would be wasteful. There are better
-programs to achieve this such as `rsync <https://rsync.samba.org/>`__ or
+programs to achieve this such as `rclone <http://rclone.org/>`__, `restic <https://restic.net/>`__, `rsync <https://rsync.samba.org/>`__ or
 `Unison <https://www.cis.upenn.edu/~bcpierce/unison>`__.
 
 When I do have two distinct Syncthing-managed folders on two hosts, how does Syncthing handle moving files between them?
