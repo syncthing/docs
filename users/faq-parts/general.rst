@@ -83,7 +83,9 @@ Why is there no iOS client?
 ---------------------------
 
 There is an alternative implementation of Syncthing (using the same network
-protocol) called ``fsync()``. There are no plans by the current Syncthing
+protocol) called `Möbius Sync <https://www.mobiussync.com/>`__, which uses a
+somewhat outdated fork of Syncthing's code at its core. The iOS application
+is currently closed source. There are no plans by the current Syncthing
 team to support iOS in the foreseeable future, as the code required to do so
 would be quite different from what Syncthing is today.
 
