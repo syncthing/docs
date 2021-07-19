@@ -62,6 +62,15 @@ Linux
 
   Small bash application with minimal dependencies, for a simple colorful representation of the current status.
 
+iOS
+~~~
+
+- `Möbius Sync <https://www.mobiussync.com/>`_
+
+  Möbius Sync is an alternative implementation of Syncthing (using the same network
+  protocol) and uses a somewhat outdated fork of Syncthing's code at its core. The
+  iOS application is currently closed source.
+  
 Packages and Bundlings
 ----------------------
 
