@@ -67,9 +67,8 @@ iOS
 
 - `Möbius Sync <https://www.mobiussync.com/>`_
 
-  Möbius Sync is an alternative implementation of Syncthing (using the same network
-  protocol) and uses a somewhat outdated fork of Syncthing's code at its core. The
-  iOS application is currently closed source.
+  Möbius Sync is a native iOS application bundle. It hosts and wraps a somewhat outdated fork of Syncthing's code. 
+  The iOS application is currently closed source.
   
 Packages and Bundlings
 ----------------------
