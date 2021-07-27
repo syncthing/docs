@@ -633,7 +633,7 @@ apikey
 
 insecureAdminAccess
     If true, this allows access to the web GUI from outside (i.e. not localhost)
-    without authorization. A warning will displayed about this setting on startup.
+    without authorization.
 
 theme
     The name of the theme to use.
