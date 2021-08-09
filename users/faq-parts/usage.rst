@@ -90,7 +90,7 @@ rebuild on remote ends, and then delete from A.
 Can I help initial sync by copying files manually?
 --------------------------------------------------
 
-If you have a large folder that you want to keep in sync over a not-so-fast network, and you have the possibility to move all files to the remote site in a faster manner, here is a procedure to follow to make sure that you don't confuse Syncthing.
+If you have a large folder that you want to keep in sync over a not-so-fast network, and you have the possibility to move all files to the remote site in a faster manner, here is a procedure to follow:
 
 - Create the folder on site 1, but don't share it with anyone.
 - Copy the files from site 1 to site 2 using normal file copy. If this takes a long time (perhaps travelling to site 2), it could be a good idea to make sure that the files on site 1 is not updated while you do this.
