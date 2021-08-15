@@ -85,7 +85,7 @@ peers will then reconstruct the files (not rename, more like copying block by
 block) from A, and then as A gets rescanned, it will remove the files from A.
 
 A workaround would be to copy first from A to B, rescan B, wait for B to
-rebuild on remote ends, and then delete from A.
+copy the files on the remote side, and then delete from A.
 
 Is Syncthing my ideal backup application?
 -----------------------------------------
