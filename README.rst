@@ -45,7 +45,7 @@ The documentation uses the `rst format`_. For a starting point check out the
 .. _Git: https://www.git-scm.com/
 .. _Sphinx: http://sphinx-doc.org/
 .. _`rst format`: http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html
-.. _`reStructuredText Primer`: http://sphinx-doc.org/rest.html
+.. _`reStructuredText Primer`: https://www.sphinx-doc.org/en/master/usage/restructuredtext/basics.html
 
 License
 =======
