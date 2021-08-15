@@ -40,11 +40,12 @@ Syncthing
 ~~~~~~~~~
 
 Grab the `latest release`_ of Syncthing for your operating system and unpack
-it (if you use Debian/Ubuntu you may want to use `Debian repository`_). There will be a binary called ``syncthing`` (or ``syncthing.exe`` on
+it (if you use Debian/Ubuntu you may want to use the `Debian repository`_). 
+There will be a binary called ``syncthing`` (or ``syncthing.exe`` on
 Windows). Start this in whatever way you are most comfortable with;
 double-clicking should work in any graphical environment, but I'll use the
 command line to better illustrate what happens. At first start Syncthing will
-generate a configuration file, some keys and then start the admin GUI in your
+generate a configuration file, some encryption keys and then start the admin GUI in your
 browser. Something like the following will be printed in the command line::
 
     > syncthing
@@ -74,8 +75,8 @@ browser. Something like the following will be printed in the command line::
 
 At this point Syncthing will also have set up a folder called
 ``Default Folder`` for you, in a directory called ``Sync`` in your home
-directory. You can use this as a starting point, then remove it or add
-more folders later.
+directory (`%USERPROFILE%` on Windows). You can use this as a starting 
+point, then remove it or add more folders later.
 
 .. _`latest release`: https://github.com/syncthing/syncthing/releases/latest
 .. _`Debian repository`: https://apt.syncthing.net/
@@ -105,15 +106,15 @@ Two devices will *only* connect and talk to each other if they are both configur
 a connection to happen, device IDs don't need to be kept secret. They are essentially part of the public key.
 
 To get your two devices to talk to each other click "Add Remote Device"
-at the bottom right on both, and enter the device ID of the other side.
+at the bottom right on both devices, and enter the device ID of the other side.
 You should also select the folder(s) that you want to share. The device
-name is optional and purely cosmetic. It can be changed later if
-required.
+name is optional and purely cosmetic. You can change it later if
+desired.
 
 .. image:: gs2.png
 .. image:: gs3.png
 
-Once you click "Save" the new device will appear on right side of the
+Once you click "Save" the new device will appear on the right side of the
 GUI (although disconnected) and then connect to the new device after a minute or so.
 Remember to repeat this step for the other device. 
 
