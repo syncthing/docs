@@ -108,7 +108,7 @@ a connection to happen, device IDs don't need to be kept secret. They are essent
 To get your two devices to talk to each other click "Add Remote Device"
 at the bottom right on both devices, and enter the device ID of the other side.
 You should also select the folder(s) that you want to share. The device
-name is optional and purely cosmetic. You can be changed later if
+name is optional and purely cosmetic. You can change it later if
 desired.
 
 .. image:: gs2.png
