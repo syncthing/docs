@@ -71,28 +71,28 @@ programs to achieve this such as `rsync <https://rsync.samba.org/>`__ or
 When I do have two distinct Syncthing-managed folders on two hosts, how does Syncthing handle moving files between them?
 ------------------------------------------------------------------------------------------------------------------------
 
-Syncthing does not specially handle this case, and most files most likely get
+Syncthing does not specially handle this case, and most files will most likely get
 re-downloaded.
 
-In detail, the behavior depends on the scan order. If you have folder A and B,
-and move files from A to B, if A gets scanned first, it will announce removal of
-the files to others who will remove the files. As you rescan B, B will
-announce addition of new files, and other peers will have nowhere to get
+In detail, the behavior depends on the scan order. If you have folders A and B,
+and move files from A to B, if A gets scanned first, it will announce the removal of
+the files to others who will then remove the files. As you rescan B, B will
+announce the addition of new files, and other peers will have nowhere to get
 them from apart from re-downloading them.
 
-If B gets rescanned first, B will announce additions first, remote
-peers will reconstruct the files (not rename, more like copy block by
-block) from A, and then as A gets rescanned remove the files from A.
+If B gets rescanned first, B will announce additions first, and remote
+peers will then reconstruct the files (not rename, more like copying block by
+block) from A, and then as A gets rescanned, it will remove the files from A.
 
 A workaround would be to copy first from A to B, rescan B, wait for B to
-rebuild on remote ends, and then delete from A.
+copy the files on the remote side, and then delete from A.
 
 Is Syncthing my ideal backup application?
 -----------------------------------------
 
 No. Syncthing is not a great backup application because all changes to your
 files (modifications, deletions, etc.) will be propagated to all your
-devices. You can enable versioning, but we encourage the use of other tools
+devices. You can enable versioning, but we encourage you to use other tools
 to keep your data safe from your (or our) mistakes.
 
 How can I exclude files with brackets (``[]``) in the name?
@@ -112,8 +112,9 @@ How do I access the web GUI from another computer?
 --------------------------------------------------
 
 The default listening address is 127.0.0.1:8384, so you can only access the
-GUI from the same machine. This is for security reasons. Change the ``GUI
-listen address`` through the web UI from ``127.0.0.1:8384`` to
+GUI from the same machine. This is for security reasons. To access the web 
+GUI from another computer, change the ``GUI listen address`` through the web
+UI from ``127.0.0.1:8384`` to
 ``0.0.0.0:8384`` or change the config.xml:
 
 .. code-block:: xml
@@ -185,7 +186,7 @@ How do I upgrade Syncthing?
 
 If you use a package manager such as Debian's apt-get, you should upgrade
 using the package manager. If you use the binary packages linked from
-Syncthing.net, you can use Syncthing built in automatic upgrades.
+Syncthing.net, you can use Syncthing's built-in automatic upgrade functionality.
 
 - If automatic upgrades is enabled (which is the default), Syncthing will
   upgrade itself automatically within 24 hours of a new release.
@@ -195,7 +196,7 @@ Syncthing.net, you can use Syncthing built in automatic upgrades.
 
 - To force an upgrade from the command line, run ``syncthing -upgrade``.
 
-Note that your system should have CA certificates installed which allow a
+Note that your system should have CA certificates installed which allows a
 secure connection to GitHub (e.g. FreeBSD requires ``sudo pkg install
 ca_root_nss``). If ``curl`` or ``wget`` works with normal HTTPS sites, then
 so should Syncthing.
@@ -222,7 +223,7 @@ of the command, not the package), look into the local documentation for that, it
 will almost certainly cover 100% of what you want to do.  If you don't have
 ``start-stop-daemon``, there are a bunch of other software packages you could use
 to do this.  The most well known is called daemontools, and can be found in the
-standard package repositories for  almost every modern Linux distribution.
+standard package repositories for almost every modern Linux distribution.
 Other popular tools with similar functionality include S6 and the aforementioned
 runit.
 
@@ -251,12 +252,12 @@ separate file, i.e. you should run::
 
 This only takes effect after a reboot. To adjust the limit immediately, run::
 
-    sudo sh -c 'echo 204800 > /proc/sys/fs/inotify/max_user_watches'
+    echo 204800 | sudo tee /proc/sys/fs/inotify/max_user_watches
 
 How do I reset the GUI password?
 --------------------------------
 
-If you've forgotten/lost the GUI password, you can remove it by deleting the **<user>** and **<password>** XML tags from the **<gui>** block in file ``config.xml``. This should be done while Syncthing is not running. The location of the file depends on OS and is described in the configuration documentation.
+If you've forgotten/lost the GUI password, you can remove it by deleting the **<user>** and **<password>** XML tags from the **<gui>** block in file ``config.xml``. This should be done while Syncthing is not running. The location of the file depends on the OS and is described in the configuration documentation.
 
 For example, the two emphasized lines below would be removed from the file.
 
