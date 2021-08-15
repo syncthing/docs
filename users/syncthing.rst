@@ -1,7 +1,7 @@
 .. _syncthing:
 .. role:: strike
 
-Syncthing
+Syncthing Command Line Operation
 =========
 
 Synopsis
