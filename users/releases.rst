@@ -123,7 +123,7 @@ What's the relationship between candidate and release exactly?
 
 Every new feature and bugfix begins its life in the development branch,
 ``main``. Once a month the current ``main`` becomes a *release
-candidate*. This version is identified by "-rc" in it's name, for example
+candidate*. This version is identified by "-rc" in its name, for example
 ``v1.5.0-rc.1``.
 
 Those running the candidate channel will update to this release candidate.
