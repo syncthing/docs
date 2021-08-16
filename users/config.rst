@@ -345,7 +345,7 @@ ignoreDelete
 
 scanProgressIntervalS
     The interval in seconds with which scan progress information is sent to the GUI. Setting to ``0``
-    will cause the system to use the default value of two.
+    will cause Syncthing to use the default value of two.
 
 pullerPauseS
     Tweak for rate limiting the puller when it retries pulling files. Don't
@@ -358,7 +358,7 @@ maxConflicts
 
 disableSparseFiles
     By default, blocks containing all zeros are not written, causing files
-    to be sparse on filesystems that support the concept. When set to ``true``,
+    to be sparse on filesystems that support this feature. When set to ``true``,
     sparse files will not be created.
 
 disableTempIndexes
