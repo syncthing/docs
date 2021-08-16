@@ -309,7 +309,7 @@ versioning
 
 copiers, pullers, hashers
     The number of copier, puller and hasher routines to use, or ``0`` for the
-    system determined optimum. These are low level performance options for
+    system determined optimums. These are low level performance options for
     advanced users only; do not change unless requested to or you've actually
     read and understood the code yourself. :)
 
@@ -340,7 +340,7 @@ ignoreDelete
     .. warning::
         Enabling this is highly discouraged - use at your own risk. You have been warned.
 
-    When set to true, this device will pretend not to see instructions to
+    When set to ``true``, this device will pretend not to see instructions to
     delete files from other devices.
 
 scanProgressIntervalS
