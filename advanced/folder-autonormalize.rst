@@ -2,10 +2,10 @@ autoNormalize
 =============
 
 ``autoNormalize`` is an advanced folder setting that affects the handling of
-files with incorrect UTF-8 normalization in their name. When set, such files
+files with incorrect UTF-8 normalization in their names. When set, such files
 are renamed to the correctly normalized form during scanning.
 
-.. note:: This option should normally be set to ``true``.
+.. note:: This option should normally be set to ``true``, which is the default.
 
 Background
 ----------
@@ -28,4 +28,4 @@ another normalization form (Windows) without translation; say, via a USB
 stick.
 
 To avoid such issues, Syncthing automatically corrects normalization errors
-when it runs into them, unless this option is disabled.
+when it runs into them, unless this option is set to ``false``.
