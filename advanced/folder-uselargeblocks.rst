@@ -1,6 +1,6 @@
 .. versionadded:: 1.2.0
 
-    As of Syncthing 1.2.0 large blocks always enabled and the configuration
+    As of Syncthing 1.2.0 large blocks are always enabled and this configuration
     option has been removed.
 
 .. versionadded:: 1.1.0
@@ -19,9 +19,9 @@ useLargeBlocks
 of blocks for files larger than 256 MiB. When enabled, the file will be
 indexed and transferred using blocks larger than the standard 128 KiB. This
 results in a smaller block list and thus lower overhead. The larger block
-sizes are powers of two from from 128 KiB up to 16 MiB. Syncthing will
+sizes are powers of two from 128 KiB up to 16 MiB. Syncthing will
 attempt to select a block size to keep the number of blocks in a file
-between 1000 and 2000, using the largest and smallest block size accordingly
+between 1,000 and 2,000, using the largest and smallest block size accordingly
 at either extreme.
 
 Compatibility
@@ -42,7 +42,7 @@ using large blocks for the same folder.
 When two devices do not agree on the desired block size for a file, the
 entire file must be transferred instead of only the changed blocks. To avoid
 frequent block size changes for files straddling a threshold boundary there
-is a certain elasticity or hysteresis built in to the system. The block size
+is a certain elasticity or hysteresis built into the system. The block size
 of an existing file is only changed when the difference in block size
 exceeds one level, i.e., from 256 KiB to 1 MiB, but not from 256 KiB to 512
 KiB.
