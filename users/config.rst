@@ -196,7 +196,7 @@ ignoredDevice
 ignoredFolder
     Contains the ID of the folder that should be ignored. This folder will
     always be skipped when advertised from a remote device, i.e. this will be
-    logged, but there will be no dialog about it in the web GUI.
+    logged, but there will be no dialog shown in the web GUI.
 
 
 Folder Element
@@ -235,7 +235,7 @@ describes one folder. The following attributes may be set on the ``folder``
 element:
 
 id
-    The folder ID, must be unique. (mandatory)
+    The folder ID, which must be unique. (mandatory)
 
 label
     The label of a folder is a human readable and descriptive local name. May
@@ -265,17 +265,17 @@ type
         changes to other devices.
 
 rescanIntervalS
-    The rescan interval, in seconds. Can be set to zero to disable when external
+    The rescan interval, in seconds. Can be set to ``0`` to disable when external
     plugins are used to trigger rescans.
 
 fsWatcherEnabled
-    If enabled this detects changes to files in the folder and scans them.
+    If set to ``true``, this detects changes to files in the folder and scans them.
 
 .. _fsWatcherDelayS:
 
 fsWatcherDelayS
     The duration during which changes detected are accumulated, before a scan is
-    scheduled (only takes effect if ``fsWatcherEnabled`` is true).
+    scheduled (only takes effect if ``fsWatcherEnabled`` is set to ``true``).
 
 ignorePerms
     True if the folder should ignore permissions.
@@ -308,7 +308,7 @@ versioning
     :ref:`versioning`
 
 copiers, pullers, hashers
-    The number of copier, puller and hasher routines to use, or zero for the
+    The number of copier, puller and hasher routines to use, or ``0`` for the
     system determined optimum. These are low level performance options for
     advanced users only; do not change unless requested to or you've actually
     read and understood the code yourself. :)
@@ -338,27 +338,27 @@ order
 
 ignoreDelete
     .. warning::
-        Enabling this is highly not recommended - use at your own risk.
+        Enabling this is highly discouraged - use at your own risk. You have been warned.
 
     When set to true, this device will pretend not to see instructions to
     delete files from other devices.
 
 scanProgressIntervalS
-    The interval with which scan progress information is sent to the GUI. Zero
-    means the default value (two seconds).
+    The interval in seconds with which scan progress information is sent to the GUI. Setting to ``0``
+    will force the system to use the default value of two.
 
 pullerPauseS
     Tweak for rate limiting the puller when it retries pulling files. Don't
-    change these unless you know what you're doing.
+    change this unless you know what you're doing.
 
 maxConflicts
     The maximum number of conflict copies to keep around for any given file.
-    The default, -1, means an unlimited number. Setting this to zero disables
+    The default, ``-1``, means an unlimited number. Setting this to ``0`` disables
     conflict copies altogether.
 
 disableSparseFiles
-    By default, blocks containing all zeroes are not written, causing files
-    to be sparse on filesystems that support the concept. When set to true,
+    By default, blocks containing all zeros are not written, causing files
+    to be sparse on filesystems that support the concept. When set to ``true``,
     sparse files will not be created.
 
 disableTempIndexes
@@ -366,33 +366,33 @@ disableTempIndexes
     transfers that are still in progress, which allows other devices to
     download parts of files that are not yet fully downloaded on your own
     device, essentially making transfers more torrent like. When set to
-    true, such information is not exchanged for this folder.
+    ``true``, such information is not exchanged for this folder.
 
 paused
     True if this folder is (temporarily) suspended.
 
 weakHashThresholdPct
     Use weak hash if more than the given percentage of the file has changed. Set
-    to -1 to always use weak hash. Default value is 25.
+    to ``-1`` to always use weak hash. Default is ``25``.
 
 markerName
     Name of a directory or file in the folder root to be used as
-    :ref:`marker-faq`. Default is ".stfolder".
+    :ref:`marker-faq`. Default is ``.stfolder``.
 
 copyOwnershipFromParent
     On Unix systems, tries to copy file/folder ownership from the parent directory (the directory it's located in).
-    Requires running Syncthing as privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux).
+    Requires running Syncthing as a privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux).
 
 modTimeWindowS
     Allowed modification timestamp difference when comparing files for
     equivalence. To be used on file systems which have unstable
     modification timestamps that might change after being recorded
-    during the last write operation. Defaults to 2 on Android when the
-    folder is located on a FAT partition, and always to 0 elsewhere.
+    during the last write operation. Default is ``2`` on Android when the
+    folder is located on a FAT partition, and ``0`` otherwise.
 
 maxConcurrentWrites
-    Maximum number of concurrent write operations while syncing. Defaults to 2. Increasing this might increase or
-    decrease disk performance, depending on the underlying storage.
+    Maximum number of concurrent write operations while syncing. Increasing this might increase or
+    decrease disk performance, depending on the underlying storage. Default is ``2``.
 
 disableFsync
 
@@ -410,7 +410,7 @@ blockPullOrder
 
     standard (default):
         The blocks of a file are split into N equal continuous sequences, where N is the number of connected
-        devices. Each device starts downloading it's own sequence, after which it picks other devices
+        devices. Each device starts downloading its own sequence, after which it picks other devices
         sequences at random. Provides acceptable data distribution and minimal spinning disk strain.
 
     random:
@@ -497,9 +497,9 @@ introducedBy
     Defines which device has introduced us to this device. Used only for following de-introductions.
 
 certName
-    The device certificate common name, if it is not the default "syncthing".
+    The device certificate's common name, if it is not the default "syncthing".
 
-From following child elements at least one ``address`` child must exist.
+From the following child elements at least one ``address`` child must exist.
 
 address
     Contains an address or host name to use when attempting to connect to this device.
@@ -593,8 +593,8 @@ enabled
 
 tls
     If set to ``true``, TLS (HTTPS) will be enforced. Non-HTTPS requests will
-    be redirected to HTTPS. When this is set to ``false``, TLS connections are
-    still possible but it is not mandatory.
+    be redirected to HTTPS. When set to ``false``, TLS connections are
+    still possible but not required.
 
 debugging
     This enables :ref:`profiling` and additional debugging endpoints in the :ref:`rest-api`.
@@ -605,10 +605,10 @@ address
     Set the listen address. One address element must be present. Allowed address formats are:
 
     IPv4 address and port (``127.0.0.1:8384``)
-        The address and port is used as given.
+        The address and port are used as given.
 
     IPv6 address and port (``[::1]:8384``)
-        The address and port is used as given. The address must be enclosed in
+        The address and port are used as given. The address must be enclosed in
         square brackets.
 
     Wildcard and port (``0.0.0.0:12345``, ``[::]:12345``, ``:12345``)
@@ -617,10 +617,10 @@ address
 
     UNIX socket location (``/var/run/st.sock``)
         If the address is an absolute path it is interpreted as the path to a UNIX socket.
-        (Added in v0.14.52.)
 
 unixSocketPermissions
-    In the case that a UNIX socket location is used for ``address``, set this to an octal to override the default permissions of the socket.
+    When ``address`` is set to a UNIX socket location, set this to an octal value 
+    to override the default permissions of the socket.
 
 user
     Set to require authentication.
@@ -639,8 +639,8 @@ theme
     The name of the theme to use.
 
 authMode
-    Authentication mode to use. If not present authentication mode (static)
-    is controlled by presence of user/password fields for backward compatibility.
+    Authentication mode to use. If not present, the authentication mode (static)
+    is controlled by the presence of user/password fields for backward compatibility.
 
     static
         Authentication using user and password.
@@ -667,7 +667,7 @@ address
 
 bindDN
     BindDN for user authentication.
-    Special %s variable should be used to pass username to LDAP.
+    Special ``%s`` variable should be used to pass username to LDAP.
 
 transport
 
@@ -681,7 +681,7 @@ transport
         StartTLS connection mode.
 
 insecureSkipVerify
-    Skip verification (true or false).
+    Skip verification (``true`` or ``false``).
 
 Options Element
 ---------------
@@ -739,12 +739,12 @@ The ``options`` element contains all other global configuration options.
 
 listenAddress
     The listen address for incoming sync connections. See
-    :ref:`listen-addresses` for allowed syntax.
+    :ref:`listen-addresses` for the allowed syntax.
 
 globalAnnounceServer
     A URI to a global announce (discovery) server, or the word ``default`` to
     include the default servers. Any number of globalAnnounceServer elements
-    may be present. The syntax for non-default entries is that of a HTTP or
+    may be present. The syntax for non-default entries is that of an HTTP or
     HTTPS URL. A number of options may be added as query options to the URL:
     ``insecure`` to prevent certificate validation (required for HTTP URLs)
     and ``id=<device ID>`` to perform certificate pinning. The device ID to
@@ -775,7 +775,7 @@ reconnectionIntervalS
     unconnected devices.
 
 relaysEnabled
-    When true, relays will be connected to and potentially used for device to device connections.
+    When ``true``, relays will be connected to and potentially used for device to device connections.
 
 relayReconnectIntervalM
     Sets the interval, in minutes, between relay reconnect attempts.
@@ -817,19 +817,19 @@ urPostInsecurely
     certificate. The default is ``false``.
 
 urInitialDelayS
-    The time to wait from startup to the first usage report being sent. Allows
+    The time to wait from startup for the first usage report to be sent. Allows
     the system to stabilize before reporting statistics.
 
 restartOnWakeup
     Whether to perform a restart of Syncthing when it is detected that we are
-    waking from sleep mode (i.e. a folded up laptop).
+    waking from sleep mode (i.e. an unfolding laptop).
 
 autoUpgradeIntervalH
-    Check for a newer version after this many hours. Set to zero to disable
+    Check for a newer version after this many hours. Set to ``0`` to disable
     automatic upgrades.
 
 upgradeToPreReleases
-    If true, automatic upgrades include release candidates (see
+    If ``true``, automatic upgrades include release candidates (see
     :ref:`releases`).
 
 keepTemporariesH
@@ -912,7 +912,10 @@ setLowPriority
 Listen Addresses
 ^^^^^^^^^^^^^^^^
 
-The following address types are accepted in sync protocol listen addresses. If you want Syncthing to listen on multiple addresses, you can either: add multiple ``<listenAddress>`` tags in the configuration file or enter several addresses separated by commas in the GUI.
+The following address types are accepted in sync protocol listen addresses. 
+If you want Syncthing to listen on multiple addresses, you can either: add 
+multiple ``<listenAddress>`` tags in the configuration file or enter several
+addresses separated by commas in the GUI.
 
 Default listen addresses (``default``)
     This is equivalent to ``tcp://0.0.0.0:22000``, ``quic://0.0.0.0:22000``
