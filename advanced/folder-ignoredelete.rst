@@ -7,14 +7,14 @@ are ignored.
 
 .. warning:: This option should normally be set to ``false``. Changing
   it is not recommended, unless you are a power user and know exactly
-  what you are doing. If you still indend to modify the default value,
+  what you are doing. If you still intend to enable this option,
   please read the explanation below very thoroughly before doing so.
 
 Example Scenario
 ----------------
 
 Assume two devices, "Alice" and "Bob", are sharing a folder. Bob has set
-``ignoreDelete``.
+``ignoreDelete`` to ``true``.
 
 New and updated files are synchronized as usual between Alice and Bob. When
 Bob deletes a file, it is deleted for Alice as well. When Alice deletes a
@@ -24,8 +24,8 @@ In this state, Bob is fully up to date from his own point of view, as is Alice
 from her own point of view.
 
 However from the point of view of Alice, who deleted a file and propagated the
-update, Bob is now out of date because he is yet to remove the file that was
-deleted.
+update, Bob is now out of date because he has yet to remove the file that was
+deleted by Alice.
 
 From the point of view of Bob, who ignored the delete entry from Alice, Alice
 is now out of date because she is missing the file that was deleted.
