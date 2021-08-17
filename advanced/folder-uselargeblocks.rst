@@ -21,7 +21,7 @@ indexed and transferred using blocks larger than the standard 128 KiB. This
 results in a smaller block list and thus lower overhead. The larger block
 sizes are powers of two from 128 KiB up to 16 MiB. Syncthing will
 attempt to select a block size to keep the number of blocks in a file
-between 1,000 and 2,000, using the largest and smallest block size accordingly
+between 1000 and 2000, using the largest and smallest block size accordingly
 at either extreme.
 
 Compatibility
