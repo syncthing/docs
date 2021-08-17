@@ -5,19 +5,19 @@ allowedNetworks
 
 ``allowedNetworks`` is an advanced device setting that affects connection
 handling. The default is for this setting to be empty, indicating that there
-are no restrictions on the allowed networks for a device.
+are no restrictions on the allowed network addresses for remote devices.
 
-By setting this to a comma separated list of networks, connections to the
-given device will be limited to those networks. The networks refer to the
-address range of *remote* devices, not the network that the local device is
-presently on.
+By setting this to a network, or a comma separated list of networks, connections to the
+local device will be limited to those remote devices with an address in any of the 
+specified networks. The networks refer to address ranges of *remote* devices,
+not the network that the local device is presently on.
 
 Given a value of ``192.168.0.0/16, 172.16.0.0/12, 2001:db8::/32`` Syncthing will:
 
- - Allow connections from devices from addresses in the specified
+ - Allow connections from a device with an address in any of the specified
    networks.
 
- - Reject connections from devices from addresses outside the specified
+ - Reject connections from a device with an address outside all of the specified
    networks.
 
  - Attempt connections to addresses in the specified networks (manually
