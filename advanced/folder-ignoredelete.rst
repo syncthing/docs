@@ -25,7 +25,7 @@ from her own point of view.
 
 However from the point of view of Alice, who deleted a file and propagated the
 update, Bob is now out of date because he has yet to remove the file that was
-deleted on Alice.
+deleted by Alice.
 
 From the point of view of Bob, who ignored the delete entry from Alice, Alice
 is now out of date because she is missing the file that was deleted.
