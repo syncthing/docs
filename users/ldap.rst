@@ -6,7 +6,7 @@ source. Typical examples include Microsoft Active Directory and OpenLDAP /
 OpenDirectory servers.
 
 To enable LDAP authentication some configuration options must be set in the
-advanced config editor. Under Actions, selecting Advanced displays the LDAP tab. 
+advanced config editor. Under Actions, selecting Advanced expands the LDAP tab. 
 The following options are available:
 
 ``Address``
