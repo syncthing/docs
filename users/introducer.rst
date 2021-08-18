@@ -5,7 +5,7 @@ Introducer Configuration
 
 The introducer feature lets a device automatically add new devices. When two devices connect they exchange a list of mutually shared folders and the devices connected to those shares. In the following example:
 
-  Local device L sets remote device R as an introducer. They share the folder "Pictures." Device R is also sharing the folder with A and B, but L only shares with R.
+  Local device L sets remote device R as an introducer. They share the folder "Pictures." Device R is also sharing the folder with devices A and B, but L only shares with R.
   
   Once L and R connect, L will add A and B automatically, as if R "introduced" A and B to L.
   
