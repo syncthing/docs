@@ -13,16 +13,16 @@ to access the GUI - it cannot be accessed from the network.
 To allow access from the network, change the listen address to
 ``0.0.0.0:8384``, where "0.0.0.0" means roughly "anywhere". You should then
 also set a username and a strong password for authentication and check the
-option to use HTTPS. You are otherwise, potentially, opening up your
-Syncthing installation for the world.
+option to use HTTPS. If you don't, you are potentially allowing anyone on the
+internet to access and control your Syncthing installation.
 
 Port Numbers
 ------------
 
 The default port number is 8384. It's traditional for custom HTTP services
 to live somewhere in the 8xxx-series and it's an unusual enough port that
-it's usually free. Syncthing will however choose another, random, port if
-port 8384 is taken by something else at the time of installation. The port
+it's usually free. If port 8384 is in use by something else at the time of 
+installation, Syncthing will choose an random unused port. The port
 used is always displayed on the console when starting up.
 
 You can change the port number to something else if you prefer, keeping in
