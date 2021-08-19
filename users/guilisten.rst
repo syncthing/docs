@@ -22,7 +22,7 @@ Port Numbers
 The default port number is 8384. It's traditional for custom HTTP services
 to live somewhere in the 8xxx-series and it's an unusual enough port that
 it's usually free. If port 8384 is in use by something else at the time of 
-installation, Syncthing will choose an random unused port. The port
+installation, Syncthing will choose a random unused port. The port
 used is always displayed on the console when starting up.
 
 You can change the port number to something else if you prefer, keeping in
