@@ -23,6 +23,8 @@ longer pending for any device.
 	    "deviceID": "EJHMPAQ-OGCVORE-ISB4IS3-SYYVJXF-TKJGLTU-66DIQPF-GJ5D2GX-GQ3OWQK",
 	    "folderID": "GXWxf-3zgnU",
 	    "folderLabel": "My Pictures"
+	    "receiveEncrypted" : "false"
+	    "remoteEncrypted" : "false"
 	  }
 	],
 	"removed": [
