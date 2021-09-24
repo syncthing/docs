@@ -384,7 +384,7 @@ custom TLS options.
           - "traefik.http.routers.syncthing-discosrv.tls.options=syncthing-discosrv@file"
           - "traefik.http.routers.syncthing-discosrv.middlewares=syncthing-discosrv-middleware"
 
-To send ``X-Client-Port``
+To send ``X-Client-Port``:
 
 Traefik has ``X-Forwarded-Port`` which can only be changed using a
 plugin (added in version 2.5).
