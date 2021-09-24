@@ -431,7 +431,7 @@ a Rule that sets X-Client-Port to the value of X-Forwarded-Port.
                   HeaderPrefix: "^"
                   Type: 'Set'
 
-4. Add the middleware to the containers dynamic configuration
+4. Add the middleware to the containers dynamic configuration.
 
 .. code-block:: yaml
 
