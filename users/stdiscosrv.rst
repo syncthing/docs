@@ -390,7 +390,8 @@ Traefik has ``X-Forwarded-Port`` which can only be changed using a
 plugin (added in version 2.5).
 
 1. Clone down a header rewriting plugin, the example here uses
-https://github.com/adyanth/header-transform
+https://github.com/adyanth/header-transform.
+
 2. Mount the plugin into the Traefik Docker container using a volume and
 configure Traefik to read it
 
