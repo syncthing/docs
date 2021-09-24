@@ -393,7 +393,7 @@ plugin (added in version 2.5).
 https://github.com/adyanth/header-transform.
 
 2. Mount the plugin into the Traefik Docker container using a volume and
-configure Traefik to read it
+configure Traefik to read it.
 
 .. code-block:: yaml
 
