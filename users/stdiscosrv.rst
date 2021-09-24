@@ -414,7 +414,7 @@ configure Traefik to read it.
           # ...
 
 3. In your dynamic config, define a middleware using the plugin which has
-a Rule that sets X-Client-Port to the value of X-Forwarded-Port
+a Rule that sets X-Client-Port to the value of X-Forwarded-Port.
 
 .. code-block:: yaml
 
