@@ -403,7 +403,7 @@ configure Traefik to read it.
         command:
           # ...
           # Will read the plugin at /plugins-local/src/github.com/adyanth/header-transform and assign it
-          # to a middleware plugin named `header-transform-plugin`
+          # to a middleware plugin named `header-transform-plugin`.
           - "--experimental.localPlugins.header-transform-plugin.moduleName=github.com/adyanth/header-transform"
           # ...
         volumes:
