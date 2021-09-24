@@ -351,7 +351,7 @@ Traefik 2
 
 Traefik will send ``X-Forwarded-For`` by default.
 
-To send ``X-Forwarded-Tls-Client-Cert``
+To send ``X-Forwarded-Tls-Client-Cert``:
 
 1. Add a `TLS Options <https://doc.traefik.io/traefik/https/tls/#client-authentication-mtls>`_
 that sets ``clientAuthType`` to ``RequireAnyClientCert`` in your dynamic
