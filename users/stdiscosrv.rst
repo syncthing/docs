@@ -346,6 +346,99 @@ page. Note that that page is directed at setting up a proxy for the
 Syncthing web UI. You should do the proper path and port adjustments to proxying
 the discovery server and your particular setup.
 
+Traefik 2
+"""""""""
+
+Traefik will send ``X-Forwarded-For`` by default
+
+To send ``X-Forwarded-Tls-Client-Cert``
+
+1. Add a `TLS Options <https://doc.traefik.io/traefik/https/tls/#client-authentication-mtls>`_
+that sets ``clientAuthType`` to ``RequireAnyClientCert`` in your dynamic
+config. Without this, Traefik will not pass the client certificate in the
+``X-Forwarded-Tls-Client-Cert`` header.
+
+.. code-block:: yaml
+
+    tls:
+      options:
+        syncthing-discosrv:
+          clientAuth:
+            clientAuthType: RequireAnyClientCert
+
+2. Also in your dynamic config, add a middleware to pass the TLS client
+cert (`passtlsclientcert.pem=true`), add that to the router, and set your
+custom TLS options.
+
+.. code-block:: yaml
+
+      syncthing-discosrv:
+        image: syncthing/discosrv
+        # ...
+        labels:
+          - "traefik.enable=true"
+          - "traefik.http.middlewares.syncthing-discosrv-middleware.passtlsclientcert.pem=true"
+          - "traefik.http.services.syncthing-discosrv.loadbalancer.server.port=8443"
+          - "traefik.http.routers.syncthing-discosrv.entrypoints=https"
+          - "traefik.http.routers.syncthing-discosrv.rule=Host(`st-ds.xxx.dev`)"
+          - "traefik.http.routers.syncthing-discosrv.tls.options=syncthing-discosrv@file"
+          - "traefik.http.routers.syncthing-discosrv.middlewares=syncthing-discosrv-middleware"
+
+To send ``X-Client-Port``
+
+Traefik has ``X-Forwarded-Port`` which can only be changed using a
+plugin (added in version 2.5).
+
+1. Clone down a header rewriting plugin, the example here uses
+https://github.com/adyanth/header-transform
+2. Mount the plugin into the Traefik Docker container using a volume and
+configure Traefik to read it
+
+.. code-block:: yaml
+
+      traefik:
+        image: traefik:v2.5
+        # ...
+        command:
+          # ...
+          # Will read the plugin at /plugins-local/src/github.com/adyanth/header-transform and assign it
+          # to a middleware plugin named `header-transform-plugin`
+          - "--experimental.localPlugins.header-transform-plugin.moduleName=github.com/adyanth/header-transform"
+          # ...
+        volumes:
+          # ...
+          # Traefik reads local plugins using a specific path, rooted at /plugins-local
+          # https://github.com/traefik/traefik/pull/8224
+          - "./traefik/header-transform:/plugins-local/src/github.com/adyanth/header-transform"
+          # ...
+
+3. In your dynamic config, define a middleware using the plugin which has
+a Rule that sets X-Client-Port to the value of X-Forwarded-Port
+
+.. code-block:: yaml
+
+    http:
+      middlewares:
+        header-transform:
+          plugin:
+            header-transform:
+              Rules:
+                - Rule:
+                  Name: 'X-Client-Port Set'
+                  Header: 'X-Client-Port'
+                  Value: '^X-Forwarded-Port'
+                  HeaderPrefix: "^"
+                  Type: 'Set'
+
+4. Add the middleware to the containers dynamic configuration
+
+.. code-block:: yaml
+
+  syncthing-discosrv:
+    # ...
+    labels:
+      # ...
+      - "traefik.http.routers.syncthing-discosrv.middlewares=syncthing-discosrv-middleware,header-transform@file"
 
 
 See Also
