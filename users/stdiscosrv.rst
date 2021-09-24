@@ -349,7 +349,7 @@ the discovery server and your particular setup.
 Traefik 2
 """""""""
 
-Traefik will send ``X-Forwarded-For`` by default
+Traefik will send ``X-Forwarded-For`` by default.
 
 To send ``X-Forwarded-Tls-Client-Cert``
 
