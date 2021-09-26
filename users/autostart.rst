@@ -432,7 +432,7 @@ Permissions
 
 If you enabled the ``Ignore Permissions`` option in the Syncthing client's
 folder settings, then you will also need to add the line ``UMask=0002`` (or any
-other `umask setting <http://www.tech-faq.com/umask.html>` you like) in the
+other `umask setting <http://www.tech-faq.com/umask.html>`_ you like) in the
 ``[Service]`` section of the ``syncthing@.service`` file.
 
 Debugging
