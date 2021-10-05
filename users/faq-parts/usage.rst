@@ -90,7 +90,7 @@ rebuild on remote ends, and then delete from A.
 Can I help initial sync by copying files manually?
 --------------------------------------------------
 
-If you have a large folder that you want to keep in sync over a not-so-fast network, and you have the possibility to move all files to the remote site in a faster manner, here is a procedure to follow:
+If you have a large folder that you want to keep in sync over a not-so-fast network, and you have the possibility to move all files to the remote device in a faster manner, here is a procedure to follow:
 
 - Create the folder on the local device, but don't share it with the remote device yet.
 - Copy the files from the local device to the remote device using regular file copy. If this takes a long time (perhaps requiring travelling there physically), it may be a good idea to make sure that the files on the local device are not updated while you are doing this.
