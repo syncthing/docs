@@ -94,9 +94,9 @@ If you have a large folder that you want to keep in sync over a not-so-fast netw
 
 - Create the folder on the local device, but don't share it with the remote device yet.
 - Copy the files from the local device to the remote device using regular file copy. If this takes a long time (perhaps requiring travelling there physically), it may be a good idea to make sure that the files on the local device are not updated while you are doing this.
-- Create the folder on the remote device, and this time copy the Folder ID from the folder on the local device. Normally, you would always use the value that Syncthing supplies to you – since it must be unique – but in this case we want the folders to be considered the same.
+- Create the folder on the remote device, and copy the Folder ID from the folder on the local device, as we want the folders to be considered the same. Then wait until scanning the folder is done.
 
-Now share the folder with the other device, on both sides. Syncthing will exchange file information, but existing files will not be transferred.
+- Now share the folder with the other device, on both sides. Syncthing will exchange file information, updating the database, but existing files will not be transferred. This may still take a while initially, be patient and wait until it settled.
 
 Is Syncthing my ideal backup application?
 -----------------------------------------
