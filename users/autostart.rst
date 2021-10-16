@@ -366,13 +366,15 @@ The official `Debian/Ubuntu Syncthing repository <https://apt.syncthing.net/>`__
 several distros (including Arch Linux) ship these service files along with
 the Syncthing package. If your distro provides the systemd service files for
 Syncthing, you can skip step #2 when you're setting up either the system service
-or the user service, as described below.
+or the user service, as described below.  If in doubt, try if it works without and
+go back to step #2 only if enabling the service failed.
 
 How to set up a system service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. Create the user who should run the service, or choose an existing one.
-#. From git location mentioned above copy the ``Syncthing/etc/linux-systemd/system/syncthing@.service`` file into the
+#. (Skip if your distribution package already installs these files, see above.)
+   From git location mentioned above copy the ``Syncthing/etc/linux-systemd/system/syncthing@.service`` file into the
    `load path of the system instance
    <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
 #. Enable and start the service. Replace "myuser" with the actual Syncthing
@@ -386,7 +388,8 @@ How to set up a user service
 
 #. Create the user who should run the service, or choose an existing
    one. *Probably this will be your own user account.*
-#. Copy the ``Syncthing/etc/linux-systemd/user/syncthing.service`` file into the `load path
+#. (Skip if your distribution package already installs these files, see above.)
+   Copy the ``Syncthing/etc/linux-systemd/user/syncthing.service`` file into the `load path
    of the user instance
    <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
    To do this without root privileges you can just use this folder under your
