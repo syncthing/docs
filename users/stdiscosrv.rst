@@ -346,8 +346,8 @@ page. Note that that page is directed at setting up a proxy for the
 Syncthing web UI. You should do the proper path and port adjustments to proxying
 the discovery server and your particular setup.
 
-Traefik 2
-"""""""""
+Traefik 2.5+
+""""""""""""
 
 Traefik will send ``X-Forwarded-For`` by default.
 
@@ -358,13 +358,13 @@ To send ``X-Forwarded-Tls-Client-Cert``:
    config. Without this, Traefik will not pass the client certificate in the
    ``X-Forwarded-Tls-Client-Cert`` header.
 
-    .. code-block:: yaml
+   .. code-block:: yaml
 
-       tls:
-         options:
-           syncthing-discosrv:
-             clientAuth:
-               clientAuthType: RequireAnyClientCert
+     tls:
+       options:
+         syncthing-discosrv:
+           clientAuth:
+             clientAuthType: RequireAnyClientCert
 
 #. Also in your dynamic config, add a middleware to pass the TLS client
    cert (`passtlsclientcert.pem=true`), add that to the router, and set your
@@ -372,25 +372,25 @@ To send ``X-Forwarded-Tls-Client-Cert``:
 
    .. code-block:: yaml
 
-      syncthing-discosrv:
-        image: syncthing/discosrv
-        volumes:
-          - ./syncthing/DATA/syncthing-discosrv:/var/stdiscosrv
-        labels:
-          - "traefik.enable=true"
-          - "traefik.http.middlewares.syncthing-discosrv-middleware.passtlsclientcert.pem=true"
-          - "traefik.http.services.syncthing-discosrv.loadbalancer.server.port=8443"
-          - "traefik.http.routers.syncthing-discosrv.entrypoints=https"
-          - "traefik.http.routers.syncthing-discosrv.rule=Host(`st-ds.xxx.dev`)"
-          - "traefik.http.routers.syncthing-discosrv.tls.options=syncthing-discosrv@file"
-          - "traefik.http.routers.syncthing-discosrv.middlewares=syncthing-discosrv-middleware"
-        command:
-          - "-http"
+     syncthing-discosrv:
+       image: syncthing/discosrv
+       volumes:
+         - ./syncthing/DATA/syncthing-discosrv:/var/stdiscosrv
+       labels:
+         - "traefik.enable=true"
+         - "traefik.http.middlewares.syncthing-discosrv-middleware.passtlsclientcert.pem=true"
+         - "traefik.http.services.syncthing-discosrv.loadbalancer.server.port=8443"
+         - "traefik.http.routers.syncthing-discosrv.entrypoints=https"
+         - "traefik.http.routers.syncthing-discosrv.rule=Host(`st-ds.xxx.dev`)"
+         - "traefik.http.routers.syncthing-discosrv.tls.options=syncthing-discosrv@file"
+         - "traefik.http.routers.syncthing-discosrv.middlewares=syncthing-discosrv-middleware"
+       command:
+         - "-http"
 
 To send ``X-Client-Port``:
 
 Traefik has ``X-Forwarded-Port`` which can only be changed using a
-plugin (added in version 2.5).
+plugin (plugins were added in version 2.5 of Traefik).
 
 #. Clone down a header rewriting plugin, the example here uses
    https://github.com/adyanth/header-transform.
@@ -400,67 +400,67 @@ plugin (added in version 2.5).
 
    .. code-block:: yaml
 
-      traefik:
-        image: traefik:v2.5
-        command:
-          - "--providers.docker=true"
-          - "--providers.docker.exposedbydefault=false"
-          
-          - "--entrypoints.http.address=:80"
-          - "--entrypoints.https.address=:443"
-          
-          # Will read the plugin at /plugins-local/src/github.com/adyanth/header-transform and assign it
-          # to a middleware plugin named `header-transform-plugin`.
-          - "--experimental.localPlugins.header-transform-plugin.moduleName=github.com/adyanth/header-transform"
-        volumes:
-          - "/opt/traefik:/data"
-          - "/var/run/docker.sock:/var/run/docker.sock:ro"
-          
-          # Traefik reads local plugins using a specific path, rooted at /plugins-local.
-          # https://github.com/traefik/traefik/pull/8224
-          - "./traefik/header-transform:/plugins-local/src/github.com/adyanth/header-transform"
-        ports:
-          - "80:80"
-          - "443:443"
+     traefik:
+       image: traefik:v2.5
+       command:
+         - "--providers.docker=true"
+         - "--providers.docker.exposedbydefault=false"
+         
+         - "--entrypoints.http.address=:80"
+         - "--entrypoints.https.address=:443"
+         
+         # Will read the plugin at /plugins-local/src/github.com/adyanth/header-transform and assign it
+         # to a middleware plugin named `header-transform-plugin`.
+         - "--experimental.localPlugins.header-transform-plugin.moduleName=github.com/adyanth/header-transform"
+       volumes:
+         - "/opt/traefik:/data"
+         - "/var/run/docker.sock:/var/run/docker.sock:ro"
+         
+         # Traefik reads local plugins using a specific path, rooted at /plugins-local.
+         # https://github.com/traefik/traefik/pull/8224
+         - "./traefik/header-transform:/plugins-local/src/github.com/adyanth/header-transform"
+       ports:
+         - "80:80"
+         - "443:443"
 
 #. In your dynamic config, define a middleware using the plugin which has
    a Rule that sets X-Client-Port to the value of X-Forwarded-Port.
 
    .. code-block:: yaml
 
-      http:
-        middlewares:
-          header-transform:
-            plugin:
-              header-transform:
-                Rules:
-                  - Rule:
-                    Name: 'X-Client-Port Set'
-                    Header: 'X-Client-Port'
-                    Value: '^X-Forwarded-Port'
-                    HeaderPrefix: "^"
-                    Type: 'Set'
+     http:
+       middlewares:
+         header-transform:
+           plugin:
+             header-transform-plugin:
+               Rules:
+                 - Rule:
+                   Name: 'X-Client-Port Set'
+                   Header: 'X-Client-Port'
+                   Value: '^X-Forwarded-Port'
+                   HeaderPrefix: "^"
+                   Type: 'Set'
 
 #. Add the middleware to the containers dynamic configuration.
 
    .. code-block:: yaml
 
-      syncthing-discosrv:
-        image: syncthing/discosrv
-        volumes:
-          - ./syncthing/DATA/syncthing-discosrv:/var/stdiscosrv
-        labels:
-          - "traefik.enable=true"
-          - "traefik.http.middlewares.syncthing-discosrv-middleware.passtlsclientcert.pem=true"
-          - "traefik.http.services.syncthing-discosrv.loadbalancer.server.port=8443"
-          - "traefik.http.routers.syncthing-discosrv.entrypoints=https"
-          - "traefik.http.routers.syncthing-discosrv.rule=Host(`st-ds.xxx.dev`)"
-          - "traefik.http.routers.syncthing-discosrv.tls.options=syncthing-discosrv@file"
+     syncthing-discosrv:
+       image: syncthing/discosrv
+       volumes:
+         - ./syncthing/DATA/syncthing-discosrv:/var/stdiscosrv
+       labels:
+         - "traefik.enable=true"
+         - "traefik.http.middlewares.syncthing-discosrv-middleware.passtlsclientcert.pem=true"
+         - "traefik.http.services.syncthing-discosrv.loadbalancer.server.port=8443"
+         - "traefik.http.routers.syncthing-discosrv.entrypoints=https"
+         - "traefik.http.routers.syncthing-discosrv.rule=Host(`st-ds.xxx.dev`)"
+         - "traefik.http.routers.syncthing-discosrv.tls.options=syncthing-discosrv@file"
 
-          # Add this line
-          - "traefik.http.routers.syncthing-discosrv.middlewares=syncthing-discosrv-middleware,header-transform@file"
-        command:
-          - "-http"
+         # Add this line
+         - "traefik.http.routers.syncthing-discosrv.middlewares=syncthing-discosrv-middleware,header-transform@file"
+       command:
+         - "-http"
 
 
 See Also
