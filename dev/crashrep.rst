@@ -6,17 +6,13 @@ Automatic Crash Reporting for Developers
 Collecting and Sending
 ----------------------
 
-Syncthing will normally run with one *monitor process* and one *main
+Syncthing runs with one *monitor process* and one *main
 process*. The main process is the thing that is really "Syncthing". The
 monitor process is responsible for reading the console output from the main
 process, restarting it if it exits, and reporting any crashes of the main
 process -- when it's allowed to do so.
 
-No monitor process is used when Syncthing is started with the
-``--no-restart`` flag or the ``STNORESTART`` environment variable. In these
-cases there is also no crash reporting.
-
-When the monitor process is running and detects a crash it creates a file
+When the monitor process detects a crash it creates a file
 ``panic-$timestamp.log`` in the config directory and attempts to upload it
 to the crash reporting server -- if crash reporting is enabled. When a log
 has been successfully reported it is renamed with the double file ending
