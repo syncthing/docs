@@ -9,13 +9,15 @@ Synopsis
 
 ::
 
-    syncthing [-audit] [-auditfile=<file|-|-->] [-browser-only] [device-id]
-              [-generate=<dir>] [-gui-address=<address>] [-gui-apikey=<key>]
-              [-home=<dir> | -config=<dir> -data=<dir>]
-              [-logfile=<filename>] [-logflags=<flags>]
-              [-no-browser] [-no-console] [-no-restart] [-paths] [-paused]
-              [-reset-database] [-reset-deltas] [-unpaused] [-upgrade]
-              [-upgrade-check] [-upgrade-to=<url>] [-verbose] [-version]
+    syncthing [--audit] [--auditfile=<file|-|-->] [--browser-only] [--device-id]
+              [--generate=<dir>] [--gui-address=<address>] [--gui-apikey=<key>]
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--logfile=<filename>] [--logflags=<flags>]
+              [--log-max-files=<num>] [--log-max-size=<num>]
+              [--no-browser] [--no-console] [--no-restart] [--paths] [--paused]
+              [--reset-database] [--reset-deltas] [--unpaused] [--allow-newer-config]
+              [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
+              [--verbose] [--version]
 
 Description
 -----------
@@ -38,57 +40,66 @@ few log messages.
 Options
 -------
 
-.. cmdoption:: -audit
+.. cmdoption:: --allow-newer-config
+
+    Try loading a config file written by a newer program version, instead of
+    failing immediately.
+
+.. cmdoption:: --audit
 
     Write events to timestamped file ``audit-YYYYMMDD-HHMMSS.log``.
 
-.. cmdoption:: -auditfile=<file|-|-->
+.. cmdoption:: --auditfile=<file|-|-->
 
     Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for
     audit events, rather than the timestamped default file name.
 
-.. cmdoption:: -browser-only
+.. cmdoption:: --browser-only
 
    Open the web UI in a browser for an already running Syncthing instance.
 
-.. cmdoption:: -device-id
+.. cmdoption:: --device-id
 
    Print device ID to command line.
 
-.. cmdoption:: -generate=<dir>
+.. cmdoption:: --generate=<dir>
 
     Generate key and config in specified dir, then exit.
 
-.. cmdoption:: -gui-address=<address>
+.. cmdoption:: --gui-address=<address>
 
     Override GUI listen address. Set this to an address (``0.0.0.0:8384``)
     or file path (``/var/run/st.sock``, for UNIX sockets).
 
-.. cmdoption:: -home=<dir>
+.. cmdoption:: --gui-apikey=<string>
+
+    Override the API key needed to access the GUI / REST API.
+
+.. cmdoption:: --home=<dir>
 
     Set common configuration and data directory. The default configuration
     directory is ``$HOME/.config/syncthing`` (Unix-like),
     ``$HOME/Library/Application Support/Syncthing`` (Mac) and
     ``%LOCALAPPDATA%\Syncthing`` (Windows).
 
-.. cmdoption:: -config=<dir>
+.. cmdoption:: --config=<dir>
 
-    Set configuration directory. Alternative to ``-home`` and must be used
-    together with ``-data``.
+    Set configuration directory. Alternative to ``--home`` and must be used
+    together with ``--data``.
 
-.. cmdoption:: -data=<dir>
+.. cmdoption:: --data=<dir>
 
-    Set data (e.g. database) directory. Alternative to ``-home`` and must be used
-    together with ``-config``.
+    Set data (e.g. database) directory. Alternative to ``--home`` and must be used
+    together with ``--config``.
 
-.. cmdoption:: -logfile=<filename>
+.. cmdoption:: --logfile=<filename>
 
     Set destination filename for logging (use ``"-"`` for stdout, which is the
     default option).
 
-.. cmdoption:: -logflags=<flags>
+.. cmdoption:: --logflags=<flags>
 
-    Select information in log line prefix. The ``-logflags`` value is a sum of
+    Select information in log line prefix. The ``--logflags`` value is a sum of
     the following:
 
     -  1: Date
@@ -97,33 +108,47 @@ Options
     -  8: Long filename
     - 16: Short filename
 
-    To prefix each log line with date and time, set ``-logflags=3`` (1 + 2 from
+    To prefix each log line with date and time, set ``--logflags=3`` (1 + 2 from
     above). The value 0 is used to disable all of the above. The default is to
     show time only (2).
 
-.. cmdoption:: -no-browser
+.. cmdoption:: --log-max-files=<num>
+
+    Number of old files to keep (zero to keep only current).  Applies only when
+    log rotation is enabled through ``--log-max-size``.
+
+.. cmdoption:: --log-max-size=<num>
+
+    Maximum size of any log file (zero to disable log rotation).
+
+.. cmdoption:: --no-browser
 
     Do not start a browser.
 
-.. cmdoption:: -no-console
+.. cmdoption:: --no-console
 
     Hide the console window. (On Windows only)
 
-.. cmdoption:: -no-restart
+.. cmdoption:: --no-restart
 
     Do not restart Syncthing when it exits. The monitor process will still run
     to handle crashes and writing to logfiles (if configured to).
 
-.. cmdoption:: -paths
+.. cmdoption:: --no-upgrade
+
+    Disable automatic upgrades.  Equivalent to the ``STNOUPGRADE`` environment
+    variable, see below.
+
+.. cmdoption:: --paths
 
     Print the paths used for configuration, keys, database, GUI overrides,
     default sync folder and the log file.
 
-.. cmdoption:: -paused
+.. cmdoption:: --paused
 
     Start with all devices and folders paused.
 
-.. cmdoption:: -reset-database
+.. cmdoption:: --reset-database
 
     Reset the database, forcing a full rescan and resync. Create `.stfolder`
     folders in each sync folder if they do not already exist. **Caution**:
@@ -131,31 +156,31 @@ Options
     Inconsistent versions may result if the mountpoint is later mounted and
     contains older versions.
 
-.. cmdoption:: -reset-deltas
+.. cmdoption:: --reset-deltas
 
     Reset delta index IDs, forcing a full index exchange.
 
-.. cmdoption:: -unpaused
+.. cmdoption:: --unpaused
 
     Start with all devices and folders unpaused.
 
-.. cmdoption:: -upgrade
+.. cmdoption:: --upgrade
 
     Perform upgrade.
 
-.. cmdoption:: -upgrade-check
+.. cmdoption:: --upgrade-check
 
     Check for available upgrade.
 
-.. cmdoption:: -upgrade-to=<url>
+.. cmdoption:: --upgrade-to=<url>
 
     Force upgrade directly from specified URL.
 
-.. cmdoption:: -verbose
+.. cmdoption:: --verbose
 
     Print verbose log output.
 
-.. cmdoption:: -version
+.. cmdoption:: --version
 
     Show version.
 

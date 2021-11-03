@@ -6,7 +6,7 @@ Where are the Syncthing logs?
 
 Syncthing logs to stdout by default. On Windows Syncthing by default also
 creates ``syncthing.log`` in Syncthing's home directory (run ``syncthing
--paths`` to see where that is). The command line option ``-logfile`` can be
+--paths`` to see where that is). The command line option ``--logfile`` can be
 used to specify a user-defined logfile.
 
 If you're running a process manager like systemd, check there. If you're
@@ -124,7 +124,7 @@ How can I view the history of changes?
 --------------------------------------
 
 The web GUI contains a ``Recent Changes`` button under the device list which
-displays changes since the last (re)start of Syncthing. With the ``-audit``
+displays changes since the last (re)start of Syncthing. With the ``--audit``
 option you can enable a persistent, detailed log of changes and most
 activities, which contains a ``JSON`` formatted  sequence of events in the
 ``~/.config/syncthing/audit-_date_-_time_.log`` file.

@@ -90,7 +90,7 @@ https://docs.microsoft.com/windows/win32/taskschd.
    #. Click "New...".
    #. Enter the path to ``syncthing.exe`` in "Program/script:" (for
       example ``C:\syncthing\syncthing.exe``).
-   #. Enter ``-no-console -no-browser`` in "Add arguments (optional):"
+   #. Enter ``--no-console --no-browser`` in "Add arguments (optional):"
    #. Click "OK".
 
    |Windows Task Scheduler Actions Screenshot|
@@ -163,8 +163,8 @@ opening on start, is relatively easy.
    |Windows Startup Folder New Shortcut Screenshot|
 
 #. Enter the path to ``syncthing.exe`` in "Type the location of the item:"
-   followed by ``-no-console -no-browser`` (for example ``C:\syncthing\syncthing.exe
-   -no-console -no-browser``).
+   followed by ``--no-console --no-browser`` (for example ``C:\syncthing\syncthing.exe
+   --no-console --no-browser``).
 
    |Windows Startup Folder Create Shortcut Screenshot|
 
@@ -217,7 +217,7 @@ by a sysadmin who knows enough to understand the security implications.
 #. From an administrator Command Prompt, CD to the NSSM folder and run ``nssm.exe install <syncthing service name>``
 #. Application Tab
 
-   -  Set *Path* to your ``syncthing.exe`` and enter ``-no-restart -no-browser -home="<path to your Syncthing folder>"`` as Arguments. Note: Logging is set later on. ``-logfile`` here will not be applied.
+   -  Set *Path* to your ``syncthing.exe`` and enter ``--no-restart --no-browser --home="<path to your Syncthing folder>"`` as Arguments. Note: Logging is set later on. ``--logfile`` here will not be applied.
    -  |Windows NSSM Configuration Screenshot|
 #. Details Tab
 
@@ -317,7 +317,7 @@ Go to ``/etc/supervisor/conf.d/`` and create a new file named ``syncthing.conf``
     autorestart = True
     directory = /home/<USERNAME>/
     user = <USERNAME>
-    command = /usr/bin/syncthing -no-browser -home="/home/<USERNAME>/.config/syncthing"
+    command = /usr/bin/syncthing --no-browser --home="/home/<USERNAME>/.config/syncthing"
     environment = STNORESTART="1", HOME="/home/<USERNAME>"
 
 Reload Supervisord::

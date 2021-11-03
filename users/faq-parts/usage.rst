@@ -170,7 +170,7 @@ own.
 By default, Syncthing will look for a directory ``gui`` inside the Syncthing
 home folder. To change the directory to look for themes, you need to set the
 STGUIASSETS environment variable. To get the concrete directory, run
-syncthing with the ``-paths`` parameter. It will print all the relevant paths,
+syncthing with the ``--paths`` parameter. It will print all the relevant paths,
 including the "GUI override directory".
 
 To add e.g. a red theme, you can create the file ``red/assets/css/theme.css``
@@ -194,7 +194,7 @@ Syncthing.net, you can use Syncthing's built-in automatic upgrade functionality.
 - The upgrade button appears in the web GUI when a new version has been
   released. Pressing it will perform an upgrade.
 
-- To force an upgrade from the command line, run ``syncthing -upgrade``.
+- To force an upgrade from the command line, run ``syncthing --upgrade``.
 
 Note that your system should have CA certificates installed which allows a
 secure connection to GitHub (e.g. FreeBSD requires ``sudo pkg install
