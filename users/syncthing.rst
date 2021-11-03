@@ -13,11 +13,11 @@ Synopsis
               [--generate=<dir>] [--gui-address=<address>] [--gui-apikey=<key>]
               [--home=<dir> | --config=<dir> --data=<dir>]
               [--logfile=<filename>] [--logflags=<flags>]
-	      [--log-max-files=<num>] [--log-max-size=<num>]
+              [--log-max-files=<num>] [--log-max-size=<num>]
               [--no-browser] [--no-console] [--no-restart] [--paths] [--paused]
               [--reset-database] [--reset-deltas] [--unpaused] [--allow-newer-config]
-	      [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
-	      [--verbose] [--version]
+              [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
+              [--verbose] [--version]
 
 Description
 -----------
