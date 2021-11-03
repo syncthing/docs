@@ -20,6 +20,17 @@ Synopsis
               [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
               [--verbose] [--version] [--help] [--debug-*]
 
+    syncthing decrypt (--to=<dir> | --verify-only)
+              [--password=<pw>] [--folder-id=<id>] [--token-path=<file>]
+              [--continue] [--verbose] [--version] [--help]
+              <path>
+
+    syncthing cli
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--gui-address=<address>] [--gui-apikey=<key>]
+              [--help]
+              <command> [command options...] [arguments...]
+
 Description
 -----------
 
@@ -207,6 +218,24 @@ Exit Codes
 Exit codes over 125 are usually returned by the shell/binary loader/default
 signal handler. Exit codes over 128+N on Unix usually represent the signal which
 caused the process to exit. For example, ``128 + 9 (SIGKILL) = 137``.
+
+Sub-Commands
+------------
+
+The command line syntax actually supports different modes of operation through
+several sub-commands, specified as the first argument.  The default one is
+``serve`` and can therefore be omitted.
+
+The ``decrypt`` sub-command is used in conjunction with untrusted (encrypted)
+devices, see the relevant section on :ref:`decryption <untrusted-decrypt>` for
+details.  It does not depend on Syncthing to be running, but works on offline
+data.
+
+To work with the REST API for debugging or automating things in Syncthing, the
+``cli`` sub-command provides easy access to individual features.  It basically
+saves the hassle of handling HTTP connections and API authentication.
+
+.. include:: ../includes/cli-commands.rst
 
 Proxies
 -------
