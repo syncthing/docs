@@ -2,7 +2,7 @@ STTRACE
     Used to increase the debugging verbosity in specific or all facilities,
     generally mapping to a Go package. Enabling any of these also enables
     microsecond timestamps, file names plus line numbers. Enter a
-    comma-separated string of facilities to trace. ``syncthing -help`` always
+    comma-separated string of facilities to trace. ``syncthing --help`` always
     outputs an up-to-date list. The valid facility strings are:
 
     Main and operational facilities:
@@ -95,7 +95,7 @@ STNODEFAULTFOLDER
     variable will be ignored anytime after the first run.
 
 STNORESTART
-    Equivalent to the ``-no-restart`` flag
+    Equivalent to the ``--no-restart`` flag
 
 STNOUPGRADE
     Disable automatic upgrades.
