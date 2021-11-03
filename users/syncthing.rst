@@ -13,9 +13,11 @@ Synopsis
               [--generate=<dir>] [--gui-address=<address>] [--gui-apikey=<key>]
               [--home=<dir> | --config=<dir> --data=<dir>]
               [--logfile=<filename>] [--logflags=<flags>]
+	      [--log-max-files=<num>] [--log-max-size=<num>]
               [--no-browser] [--no-console] [--no-restart] [--paths] [--paused]
-              [--reset-database] [--reset-deltas] [--unpaused] [--upgrade]
-              [--upgrade-check] [--upgrade-to=<url>] [--verbose] [--version]
+              [--reset-database] [--reset-deltas] [--unpaused] [--allow-newer-config]
+	      [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
+	      [--verbose] [--version]
 
 Description
 -----------
@@ -37,6 +39,11 @@ few log messages.
 
 Options
 -------
+
+.. cmdoption:: --allow-newer-config
+
+    Try loading a config file written by a newer program version, instead of
+    failing immediately.
 
 .. cmdoption:: --audit
 
@@ -63,6 +70,10 @@ Options
 
     Override GUI listen address. Set this to an address (``0.0.0.0:8384``)
     or file path (``/var/run/st.sock``, for UNIX sockets).
+
+.. cmdoption:: --gui-apikey=<string>
+
+    Override the API key needed to access the GUI / REST API.
 
 .. cmdoption:: --home=<dir>
 
@@ -101,6 +112,15 @@ Options
     above). The value 0 is used to disable all of the above. The default is to
     show time only (2).
 
+.. cmdoption:: --log-max-files=<num>
+
+    Number of old files to keep (zero to keep only current).  Applies only when
+    log rotation is enabled through ``--log-max-size``.
+
+.. cmdoption:: --log-max-size=<num>
+
+    Maximum size of any log file (zero to disable log rotation).
+
 .. cmdoption:: --no-browser
 
     Do not start a browser.
@@ -113,6 +133,11 @@ Options
 
     Do not restart Syncthing when it exits. The monitor process will still run
     to handle crashes and writing to logfiles (if configured to).
+
+.. cmdoption:: --no-upgrade
+
+    Disable automatic upgrades.  Equivalent to the ``STNOUPGRADE`` environment
+    variable, see below.
 
 .. cmdoption:: --paths
 

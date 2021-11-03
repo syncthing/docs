@@ -95,10 +95,10 @@ STNODEFAULTFOLDER
     variable will be ignored anytime after the first run.
 
 STNORESTART
-    Equivalent to the ``--no-restart`` flag
+    Equivalent to the ``--no-restart`` flag.
 
 STNOUPGRADE
-    Disable automatic upgrades.
+    Disable automatic upgrades.  Equivalent to the ``--no-upgrade`` flag.
 
 STPROFILER
     Set to a listen address such as "127.0.0.1:9090" to start the profiler with
