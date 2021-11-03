@@ -9,7 +9,8 @@ Synopsis
 
 ::
 
-    syncthing [--audit] [--auditfile=<file|-|-->] [--browser-only] [--device-id]
+    syncthing [serve]
+              [--audit] [--auditfile=<file|-|-->] [--browser-only] [--device-id]
               [--generate=<dir>] [--gui-address=<address>] [--gui-apikey=<key>]
               [--home=<dir> | --config=<dir> --data=<dir>]
               [--logfile=<filename>] [--logflags=<flags>]
@@ -17,7 +18,7 @@ Synopsis
               [--no-browser] [--no-console] [--no-restart] [--paths] [--paused]
               [--reset-database] [--reset-deltas] [--unpaused] [--allow-newer-config]
               [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
-              [--verbose] [--version]
+              [--verbose] [--version] [--help] [--debug-*]
 
 Description
 -----------
@@ -74,6 +75,11 @@ Options
 .. cmdoption:: --gui-apikey=<string>
 
     Override the API key needed to access the GUI / REST API.
+
+.. cmdoption:: --help -h
+
+    Show help text about command line usage.  Context-sensitive depending on the
+    given sub-command.
 
 .. cmdoption:: --home=<dir>
 
