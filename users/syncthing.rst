@@ -201,6 +201,32 @@ Options
 
     Show version.
 
+.. cmdoption:: --to=<dir>
+
+    Destination directory where files should be stored after decryption.
+
+.. cmdoption:: --verify-only
+
+    Don't write decrypted files to disk (but verify plaintext hashes).
+
+.. cmdoption:: --password=<pw>
+
+    Folder password for decryption / verification.  Can be passed through the
+    ``FOLDER_PASSWORD`` environment variable instead to avoid recording in a
+    shell's history buffer or sniffing from the running processes list.
+
+.. cmdoption:: --folder-id=<id>
+
+    Folder ID of the encrypted folder, if it cannot be determined automatically.
+
+.. cmdoption:: --token-path=<file>
+
+    Path to the token file within the folder (used to determine folder ID).
+
+.. cmdoption:: --continue
+
+    Continue processing next file in case of error, instead of aborting.
+
 Exit Codes
 ----------
 
