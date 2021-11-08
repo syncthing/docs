@@ -16,6 +16,7 @@ Synopsis
               [--logfile=<filename>] [--logflags=<flags>]
               [--log-max-files=<num>] [--log-max-size=<num>]
               [--no-browser] [--no-console] [--no-restart] [--paths] [--paused]
+              [--no-default-folder]
               [--reset-database] [--reset-deltas] [--unpaused] [--allow-newer-config]
               [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
               [--verbose] [--version] [--help] [--debug-*]
@@ -145,6 +146,11 @@ Options
 .. cmdoption:: --no-console
 
     Hide the console window. (On Windows only)
+
+.. cmdoption:: --no-default-folder
+
+    Don't create a default folder when generating an initial configuration /
+    starting for the first time.
 
 .. cmdoption:: --no-restart
 
