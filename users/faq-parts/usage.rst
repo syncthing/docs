@@ -45,7 +45,7 @@ The easy way to rename or move a synced folder on the local system is to
 remove the folder in the Syncthing UI, move it on disk, then re-add it using
 the new path.
 
-It's best to do this when the folder is already in sync between your
+It's important to do this when the folder is already in sync between your
 devices, as it is otherwise unpredictable which changes will "win" after the
 move. Changes made on other devices may be overwritten, or changes made
 locally may be overwritten by those on other devices.
