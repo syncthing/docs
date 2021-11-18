@@ -602,7 +602,7 @@ debugging
 The following child elements may be present:
 
 address
-    Set the listen address. One address element must be present. Allowed address formats are:
+    Set the listen address. Exactly one address element must be present. Allowed address formats are:
 
     IPv4 address and port (``127.0.0.1:8384``)
         The address and port are used as given.
