@@ -88,10 +88,10 @@ Options
 
     Override the API key needed to access the GUI / REST API.
 
-.. cmdoption:: --help -h
+.. cmdoption:: --help, -h
 
     Show help text about command line usage.  Context-sensitive depending on the
-    given sub-command.
+    given subcommand.
 
 .. cmdoption:: --home=<dir>
 
@@ -251,20 +251,20 @@ Exit codes over 125 are usually returned by the shell/binary loader/default
 signal handler. Exit codes over 128+N on Unix usually represent the signal which
 caused the process to exit. For example, ``128 + 9 (SIGKILL) = 137``.
 
-Sub-Commands
-------------
+Subcommands
+-----------
 
 The command line syntax actually supports different modes of operation through
-several sub-commands, specified as the first argument.  The default one is
-``serve`` and can therefore be omitted.
+several subcommands, specified as the first argument.  If omitted, the default
+``serve`` is assumed.
 
-The ``decrypt`` sub-command is used in conjunction with untrusted (encrypted)
+The ``decrypt`` subcommand is used in conjunction with untrusted (encrypted)
 devices, see the relevant section on :ref:`decryption <untrusted-decrypt>` for
 details.  It does not depend on Syncthing to be running, but works on offline
 data.
 
 To work with the REST API for debugging or automating things in Syncthing, the
-``cli`` sub-command provides easy access to individual features.  It basically
+``cli`` subcommand provides easy access to individual features.  It basically
 saves the hassle of handling HTTP connections and API authentication.
 
 .. include:: ../includes/cli-commands.rst

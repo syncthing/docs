@@ -1,7 +1,7 @@
-The available sub-commands are grouped into several nested hierarchies and
-dynamically generated from the running Syncthing instance.  On every level, the
-``--help`` option lists the available properties, actions and commands for the
-user to discover interactively.  The top-level groups are:
+The available subcommands are grouped into several nested hierarchies and some
+parts dynamically generated from the running Syncthing instance.  On every
+level, the ``--help`` option lists the available properties, actions and
+commands for the user to discover interactively.  The top-level groups are:
 
 config
     Access the live configuration in a running instance over the REST API to
@@ -27,6 +27,6 @@ debug
     therefore only work when Syncthing is not running.
 
 ``-`` (a single dash)
-    Switches to an interactive mode where commands can be entered sequentially
-    without calling the ``syncthing cli`` command over and over.  Exits on any
-    invalid command or when EOF (end-of-file) is received.
+    Reads subsequent commands from the standard input stream, without needing to
+    call the ``syncthing cli`` command over and over.  Exits on any invalid
+    command or when EOF (end-of-file) is received.
