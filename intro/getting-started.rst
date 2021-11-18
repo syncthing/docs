@@ -40,7 +40,9 @@ Syncthing
 ~~~~~~~~~
 
 Grab the `latest release`_ of Syncthing for your operating system and unpack
-it (if you use Debian/Ubuntu you may want to use the `Debian repository`_). 
+it. If you are running Linux, it is best to install Syncthing via the local
+package manager of your Linux distribution. If you use Debian/Ubuntu and want a
+more up-to-date version of Syncthing, you can use the `Debian repository`_.
 There will be a binary called ``syncthing`` (or ``syncthing.exe`` on
 Windows). Start this in whatever way you are most comfortable with;
 double-clicking should work in any graphical environment, but I'll use the
