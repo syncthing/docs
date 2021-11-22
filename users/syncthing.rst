@@ -9,15 +9,28 @@ Synopsis
 
 ::
 
-    syncthing [--audit] [--auditfile=<file|-|-->] [--browser-only] [--device-id]
+    syncthing [serve]
+              [--audit] [--auditfile=<file|-|-->] [--browser-only] [--device-id]
               [--generate=<dir>] [--gui-address=<address>] [--gui-apikey=<key>]
               [--home=<dir> | --config=<dir> --data=<dir>]
               [--logfile=<filename>] [--logflags=<flags>]
               [--log-max-files=<num>] [--log-max-size=<num>]
               [--no-browser] [--no-console] [--no-restart] [--paths] [--paused]
+              [--no-default-folder]
               [--reset-database] [--reset-deltas] [--unpaused] [--allow-newer-config]
               [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
-              [--verbose] [--version]
+              [--verbose] [--version] [--help] [--debug-*]
+
+    syncthing decrypt (--to=<dir> | --verify-only)
+              [--password=<pw>] [--folder-id=<id>] [--token-path=<file>]
+              [--continue] [--verbose] [--version] [--help]
+              <path>
+
+    syncthing cli
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--gui-address=<address>] [--gui-apikey=<key>]
+              [--help]
+              <command> [command options...] [arguments...]
 
 Description
 -----------
@@ -75,6 +88,11 @@ Options
 
     Override the API key needed to access the GUI / REST API.
 
+.. cmdoption:: --help, -h
+
+    Show help text about command line usage.  Context-sensitive depending on the
+    given subcommand.
+
 .. cmdoption:: --home=<dir>
 
     Set common configuration and data directory. The default configuration
@@ -128,6 +146,11 @@ Options
 .. cmdoption:: --no-console
 
     Hide the console window. (On Windows only)
+
+.. cmdoption:: --no-default-folder
+
+    Don't create a default folder when generating an initial configuration /
+    starting for the first time.
 
 .. cmdoption:: --no-restart
 
@@ -184,6 +207,32 @@ Options
 
     Show version.
 
+.. cmdoption:: --to=<dir>
+
+    Destination directory where files should be stored after decryption.
+
+.. cmdoption:: --verify-only
+
+    Don't write decrypted files to disk (but verify plaintext hashes).
+
+.. cmdoption:: --password=<pw>
+
+    Folder password for decryption / verification.  Can be passed through the
+    ``FOLDER_PASSWORD`` environment variable instead to avoid recording in a
+    shell's history buffer or sniffing from the running processes list.
+
+.. cmdoption:: --folder-id=<id>
+
+    Folder ID of the encrypted folder, if it cannot be determined automatically.
+
+.. cmdoption:: --token-path=<file>
+
+    Path to the token file within the folder (used to determine folder ID).
+
+.. cmdoption:: --continue
+
+    Continue processing next file in case of error, instead of aborting.
+
 Exit Codes
 ----------
 
@@ -201,6 +250,24 @@ Exit Codes
 Exit codes over 125 are usually returned by the shell/binary loader/default
 signal handler. Exit codes over 128+N on Unix usually represent the signal which
 caused the process to exit. For example, ``128 + 9 (SIGKILL) = 137``.
+
+Subcommands
+-----------
+
+The command line syntax actually supports different modes of operation through
+several subcommands, specified as the first argument.  If omitted, the default
+``serve`` is assumed.
+
+The ``decrypt`` subcommand is used in conjunction with untrusted (encrypted)
+devices, see the relevant section on :ref:`decryption <untrusted-decrypt>` for
+details.  It does not depend on Syncthing to be running, but works on offline
+data.
+
+To work with the REST API for debugging or automating things in Syncthing, the
+``cli`` subcommand provides easy access to individual features.  It basically
+saves the hassle of handling HTTP connections and API authentication.
+
+.. include:: ../includes/cli-commands.rst
 
 Proxies
 -------

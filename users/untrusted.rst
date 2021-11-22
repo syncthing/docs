@@ -143,6 +143,8 @@ and receive the data for the new file over the network. However if you have a bi
 e.g. ``video.mp4``, and you modify just a part of it (e.g. video metadata), only
 the changed block is transferred as usual.
 
+.. _untrusted-decrypt:
+
 Decrypting data
 ---------------
 

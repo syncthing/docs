@@ -92,7 +92,8 @@ STHEAPPROFILE
 
 STNODEFAULTFOLDER
     Don't create a default folder when starting for the first time. This
-    variable will be ignored anytime after the first run.
+    variable will be ignored anytime after the first run.  Equivalent to the
+    ``--no-default-folder`` flag.
 
 STNORESTART
     Equivalent to the ``--no-restart`` flag.
