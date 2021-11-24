@@ -79,13 +79,17 @@ Sync uses an undocumented, closed protocol with unknown security properties.
 
 .. [#resiliosync] https://en.wikipedia.org/wiki/Resilio_Sync
 
-Why is there no iOS client?
----------------------------
+Is there an iOS client?
+-----------------------
 
-There is an alternative implementation of Syncthing (using the same network
-protocol) called ``fsync()``. There are no plans by the current Syncthing
-team to support iOS in the foreseeable future, as the code required to do so
-would be quite different from what Syncthing is today.
+There are no plans by the current Syncthing team to officially support iOS in the foreseeable future.
+
+iOS has significant restrictions on background processing that make it very hard to
+run Syncthing reliably and integrate it into the system.
+
+However, there is a commercial client for iOS that is compatible with Syncthing. [#mobiussync]_
+
+.. [#mobiussync] https://www.mobiussync.com
 
 Should I keep my device IDs secret?
 -----------------------------------
