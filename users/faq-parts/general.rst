@@ -87,7 +87,7 @@ There are no plans by the current Syncthing team to officially support iOS in th
 iOS has significant restrictions on background processing that make it very hard to
 run Syncthing reliably and integrate it into the system.
 
-However, there is a commercial client for iOS that is compatible with Syncthing. [#mobiussync]_
+However, there is a commercial packaging of Syncthing for iOS that attempts to work within these limitations. [#mobiussync]_
 
 .. [#mobiussync] https://www.mobiussync.com
 
