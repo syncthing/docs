@@ -53,9 +53,9 @@ the faster an additional device will receive the data
 because small blocks will be fetched from all devices in parallel.
 
 Syncthing handles renaming files and updating their metadata in an efficient
-manner. This means that renaming a large file will not cause a retransmission of
-that file. Additionally, appending data to existing large files should be
-handled efficiently as well.
+manner. This means that renaming a file will not cause a retransmission of
+that file. Additionally, appending data to existing files should be handled
+efficiently as well.
 
 :ref:`Temporary files <temporary-files>` are used to store partial data
 downloaded from other devices. They are automatically removed whenever a file
