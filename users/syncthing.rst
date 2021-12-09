@@ -21,6 +21,12 @@ Synopsis
               [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
               [--verbose] [--version] [--help] [--debug-*]
 
+    syncthing generate
+              [--home=<dir> | --config=<dir>]
+              [--gui-user=<username>] [--gui-password=<password|->]
+              [--no-default-folder] [--no-console]
+              [--help]
+
     syncthing decrypt (--to=<dir> | --verify-only)
               [--password=<pw>] [--folder-id=<id>] [--token-path=<file>]
               [--continue] [--verbose] [--version] [--help]
@@ -87,6 +93,17 @@ Options
 .. cmdoption:: --gui-apikey=<string>
 
     Override the API key needed to access the GUI / REST API.
+
+.. cmdoption:: --gui-password=<password|->
+
+    Specify new GUI authentication password, to update the config file.  Read
+    from the standard input stream if only a single dash (``-``) is given.  The
+    password is hashed before writing to the config file.  As a special case,
+    giving the existing password hash as password will leave it untouched.
+
+.. cmdoption:: --gui-user=<username>
+
+    Specify new GUI authentication user name, to update the config file.
 
 .. cmdoption:: --help, -h
 
@@ -257,6 +274,11 @@ Subcommands
 The command line syntax actually supports different modes of operation through
 several subcommands, specified as the first argument.  If omitted, the default
 ``serve`` is assumed.
+
+The initial setup of a device ID and default configuration can be called
+explicitly with the ``generate`` subcommand.  It can also update the configured
+GUI authentication credentials, without going through the REST API.  Otherwise,
+an existing device certificate or configuration file is left untouched.
 
 The ``decrypt`` subcommand is used in conjunction with untrusted (encrypted)
 devices, see the relevant section on :ref:`decryption <untrusted-decrypt>` for
