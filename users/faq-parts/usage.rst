@@ -87,6 +87,17 @@ block) from A, and then as A gets rescanned, it will remove the files from A.
 A workaround would be to copy first from A to B, rescan B, wait for B to
 copy the files on the remote side, and then delete from A.
 
+Can I help initial sync by copying files manually?
+--------------------------------------------------
+
+If you have a large folder that you want to keep in sync over a not-so-fast network, and you have the possibility to move all files to the remote device in a faster manner, here is a procedure to follow:
+
+- Create the folder on the local device, but don't share it with the remote device yet.
+- Copy the files from the local device to the remote device using regular file copy. If this takes a long time (perhaps requiring travelling there physically), it may be a good idea to make sure that the files on the local device are not updated while you are doing this.
+- Create the folder on the remote device, and copy the Folder ID from the folder on the local device, as we want the folders to be considered the same. Then wait until scanning the folder is done.
+
+- Now share the folder with the other device, on both sides. Syncthing will exchange file information, updating the database, but existing files will not be transferred. This may still take a while initially, be patient and wait until it settled.
+
 Is Syncthing my ideal backup application?
 -----------------------------------------
 
