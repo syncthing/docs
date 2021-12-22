@@ -143,6 +143,28 @@ global relay pool, unless a ``-pools=""`` argument is given.
 To make the relay server start automatically at boot, use the recommended
 procedure for your operating system.
 
+Debian/Ubuntu Package
+---------------------
+
+If the Debian/Ubuntu repository instructions were used to install the relay,
+the configuration file is located at ``/etc/default/syncthing-relaysrv``,
+the working directory for keys is ``/var/lib/syncthing-relaysrv/`` which
+will be used by the systemd unit ``strelaysrv.service``, owned by the user
+``syncthing-relaysrv``. The relay ID will be located in the systemd unit
+logs/journal startup messages.
+
+systemd Unit
+------------
+
+To start the relay service and enable it on boot with systemd, use::
+
+    $ sudo systemctl enable --now strelay.service
+    $ sudo systemctl status strelay.service
+
+If using a privileged port, see the below section on adding a systemd
+override for the non-privileged user to bind.
+
+
 Client configuration
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -187,6 +209,26 @@ firewall.
 
 Another option is `described here <https://wiki.apache.org/httpd/NonRootPortBinding>`__,
 although your mileage may vary.
+
+systemd Methodology
+-------------------
+
+If using the systemd unit provided by the package, create an override to allow the
+``syncthing-relaysrv`` user to bind to a privileged port::
+
+    $ sudo systemctl edit strelay.service
+
+Once in the editor, add::
+
+    [Service]
+    AmbientCapabilities=CAP_NET_BIND_SERVICE
+
+Save, exit the editor, reload the systemd units and restart the relay::
+
+    $ sudo systemctl daemon-reload
+    $ sudo systemctl restart strelay.service
+    $ sudo systemctl status strelay.service
+
 
 Firewall Considerations
 -----------------------
