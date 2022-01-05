@@ -14,7 +14,7 @@ Synopsis
               [--generate=<dir>] [--gui-address=<address>] [--gui-apikey=<key>]
               [--home=<dir> | --config=<dir> --data=<dir>]
               [--logfile=<filename>] [--logflags=<flags>]
-              [--log-max-files=<num>] [--log-max-size=<num>]
+              [--log-max-old-files=<num>] [--log-max-size=<num>]
               [--no-browser] [--no-console] [--no-restart] [--paths] [--paused]
               [--no-default-folder]
               [--reset-database] [--reset-deltas] [--unpaused] [--allow-newer-config]
@@ -147,7 +147,7 @@ Options
     above). The value 0 is used to disable all of the above. The default is to
     show time only (2).
 
-.. cmdoption:: --log-max-files=<num>
+.. cmdoption:: --log-max-old-files=<num>
 
     Number of old files to keep (zero to keep only current).  Applies only when
     log rotation is enabled through ``--log-max-size``.
