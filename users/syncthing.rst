@@ -284,7 +284,8 @@ The initial setup of a device ID and default configuration can be called
 explicitly with the ``generate`` subcommand.  It can also update the configured
 GUI authentication credentials, without going through the REST API.  An existing
 device certificate is left untouched.  If the configuration file already exists,
-it is validated and any missing entries added with default values.
+it is validated and updated to the latest configuration schema, including adding
+default values for any new options.
 
 The ``decrypt`` subcommand is used in conjunction with untrusted (encrypted)
 devices, see the relevant section on :ref:`decryption <untrusted-decrypt>` for
