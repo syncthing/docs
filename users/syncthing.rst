@@ -16,7 +16,7 @@ Synopsis
               [--logfile=<filename>] [--logflags=<flags>]
               [--log-max-old-files=<num>] [--log-max-size=<num>]
               [--no-browser] [--no-console] [--no-restart] [--paths] [--paused]
-              [--no-default-folder]
+              [--no-default-folder] [--skip-port-probing]
               [--reset-database] [--reset-deltas] [--unpaused] [--allow-newer-config]
               [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
               [--verbose] [--version] [--help] [--debug-*]
@@ -24,7 +24,7 @@ Synopsis
     syncthing generate
               [--home=<dir> | --config=<dir>]
               [--gui-user=<username>] [--gui-password=<password|->]
-              [--no-default-folder] [--no-console]
+              [--no-default-folder] [--skip-port-probing] [--no-console]
               [--help]
 
     syncthing decrypt (--to=<dir> | --verify-only)
@@ -200,6 +200,11 @@ Options
 
     Reset delta index IDs, forcing a full index exchange.
 
+.. cmdoption:: --skip-port-probing
+
+    Don't try to find unused random ports for the GUI and listen address when
+    generating an initial configuration / starting for the first time.
+
 .. cmdoption:: --unpaused
 
     Start with all devices and folders unpaused.
@@ -277,8 +282,10 @@ several subcommands, specified as the first argument.  If omitted, the default
 
 The initial setup of a device ID and default configuration can be called
 explicitly with the ``generate`` subcommand.  It can also update the configured
-GUI authentication credentials, without going through the REST API.  Otherwise,
-an existing device certificate or configuration file is left untouched.
+GUI authentication credentials, without going through the REST API.  An existing
+device certificate is left untouched.  If the configuration file already exists,
+it is validated and updated to the latest configuration schema, including adding
+default values for any new options.
 
 The ``decrypt`` subcommand is used in conjunction with untrusted (encrypted)
 devices, see the relevant section on :ref:`decryption <untrusted-decrypt>` for
