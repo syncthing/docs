@@ -56,7 +56,7 @@ Linux
 
 - `Syncthing Indicator <https://extensions.gnome.org/extension/1070/syncthing-indicator/>`_
 
-  A GNOME Shell indicator for starting, monitoring and controlling the Syncthing daemon using SystemD.
+  A GNOME Shell indicator for starting, monitoring and controlling the Syncthing daemon using systemd.
 
 - `syncthing-quick-status <https://github.com/serl/syncthing-quick-status>`_
 
