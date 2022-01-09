@@ -75,12 +75,18 @@ The following shows an example of a default configuration file (IDs will differ)
 
 .. code-block:: xml
 
-    <configuration version="30">
+    <configuration version="35">
         <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
-            <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
+            <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" introducedBy="">
+                <encryptionPassword></encryptionPassword>
+            </device>
             <minDiskFree unit="%">1</minDiskFree>
-            <versioning></versioning>
+            <versioning>
+                <cleanupIntervalS>3600</cleanupIntervalS>
+                <fsPath></fsPath>
+                <fsType>basic</fsType>
+            </versioning>
             <copiers>0</copiers>
             <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
             <hashers>0</hashers>
@@ -100,14 +106,18 @@ The following shows an example of a default configuration file (IDs will differ)
             <disableFsync>false</disableFsync>
             <blockPullOrder>standard</blockPullOrder>
             <copyRangeMethod>standard</copyRangeMethod>
+            <caseSensitiveFS>false</caseSensitiveFS>
+            <junctionsAsDirs>true</junctionsAsDirs>
         </folder>
-        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+        <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
             <paused>false</paused>
             <autoAcceptFolders>false</autoAcceptFolders>
             <maxSendKbps>0</maxSendKbps>
             <maxRecvKbps>0</maxRecvKbps>
+            <ignoredFolder time="2022-01-09T19:09:52Z" id="br63e-wyhb7" label="Foo"></ignoredFolder>
             <maxRequestKiB>0</maxRequestKiB>
+            <untrusted>false</untrusted>
             <remoteGUIPort>0</remoteGUIPort>
         </device>
         <gui enabled="true" tls="false" debugging="false">
@@ -150,8 +160,8 @@ The following shows an example of a default configuration file (IDs will differ)
             <releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>
             <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
             <tempIndexMinBlocks>10</tempIndexMinBlocks>
+            <unackedNotificationID>authenticationUserAndPassword</unackedNotificationID>
             <trafficClass>0</trafficClass>
-            <defaultFolderPath>~</defaultFolderPath>
             <setLowPriority>true</setLowPriority>
             <maxFolderConcurrency>0</maxFolderConcurrency>
             <crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>
@@ -161,7 +171,58 @@ The following shows an example of a default configuration file (IDs will differ)
             <stunServer>default</stunServer>
             <databaseTuning>auto</databaseTuning>
             <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
+            <announceLANAddresses>true</announceLANAddresses>
+            <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
+            <connectionLimitEnough>0</connectionLimitEnough>
+            <connectionLimitMax>0</connectionLimitMax>
+            <insecureAllowOldTLSVersions>false</insecureAllowOldTLSVersions>
         </options>
+        <remoteIgnoredDevice time="2022-01-09T20:02:01Z" id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="bugger" address="192.168.0.20:22000"></remoteIgnoredDevice>
+        <defaults>
+            <folder id="" label="" path="~" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
+                <filesystemType>basic</filesystemType>
+                <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" introducedBy="">
+                    <encryptionPassword></encryptionPassword>
+                </device>
+                <minDiskFree unit="%">1</minDiskFree>
+                <versioning>
+                    <cleanupIntervalS>3600</cleanupIntervalS>
+                    <fsPath></fsPath>
+                    <fsType>basic</fsType>
+                </versioning>
+                <copiers>0</copiers>
+                <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
+                <hashers>0</hashers>
+                <order>random</order>
+                <ignoreDelete>false</ignoreDelete>
+                <scanProgressIntervalS>0</scanProgressIntervalS>
+                <pullerPauseS>0</pullerPauseS>
+                <maxConflicts>10</maxConflicts>
+                <disableSparseFiles>false</disableSparseFiles>
+                <disableTempIndexes>false</disableTempIndexes>
+                <paused>false</paused>
+                <weakHashThresholdPct>25</weakHashThresholdPct>
+                <markerName>.stfolder</markerName>
+                <copyOwnershipFromParent>false</copyOwnershipFromParent>
+                <modTimeWindowS>0</modTimeWindowS>
+                <maxConcurrentWrites>2</maxConcurrentWrites>
+                <disableFsync>false</disableFsync>
+                <blockPullOrder>standard</blockPullOrder>
+                <copyRangeMethod>standard</copyRangeMethod>
+                <caseSensitiveFS>false</caseSensitiveFS>
+                <junctionsAsDirs>false</junctionsAsDirs>
+            </folder>
+            <device id="" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+                <address>dynamic</address>
+                <paused>false</paused>
+                <autoAcceptFolders>false</autoAcceptFolders>
+                <maxSendKbps>0</maxSendKbps>
+                <maxRecvKbps>0</maxRecvKbps>
+                <maxRequestKiB>0</maxRequestKiB>
+                <untrusted>false</untrusted>
+                <remoteGUIPort>0</remoteGUIPort>
+            </device>
+        </defaults>
     </configuration>
 
 Configuration Element
@@ -169,14 +230,14 @@ Configuration Element
 
 .. code-block:: xml
 
-    <configuration version="30">
+    <configuration version="35">
         <folder></folder>
         <device></device>
         <gui></gui>
         <ldap></ldap>
         <options></options>
-        <ignoredDevice>5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU</ignoredDevice>
-        <ignoredFolder>bd7q3-zskm5</ignoredFolder>
+        <remoteIgnoredDevice></remoteIgnoredDevice>
+	<defaults></defaults>
     </configuration>
 
 This is the root element. It has one attribute:
@@ -185,18 +246,13 @@ version
     The config version. Increments whenever a change is made that requires
     migration from previous formats.
 
-It contains the elements described in the following sections and these two
-additional child elements:
+It contains the elements described in the following sections and any number of
+this additional child element:
 
-ignoredDevice
+remoteIgnoredDevice
     Contains the ID of the device that should be ignored. Connection attempts
     from this device are logged to the console but never displayed in the web
     GUI.
-
-ignoredFolder
-    Contains the ID of the folder that should be ignored. This folder will
-    always be skipped when advertised from a remote device, i.e. this will be
-    logged, but there will be no dialog shown in the web GUI.
 
 
 Folder Element
@@ -206,9 +262,15 @@ Folder Element
 
     <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
-        <device id="3LT2GA5-CQI4XJM-WTZ264P-MLOGMHL-MCRLDNT-MZV4RD3-KA745CL-OGAERQZ"></device>
+        <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" introducedBy="">
+            <encryptionPassword></encryptionPassword>
+        </device>
         <minDiskFree unit="%">1</minDiskFree>
-        <versioning></versioning>
+        <versioning>
+            <cleanupIntervalS>3600</cleanupIntervalS>
+            <fsPath></fsPath>
+            <fsType>basic</fsType>
+        </versioning>
         <copiers>0</copiers>
         <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
         <hashers>0</hashers>
@@ -228,6 +290,8 @@ Folder Element
         <disableFsync>false</disableFsync>
         <blockPullOrder>standard</blockPullOrder>
         <copyRangeMethod>standard</copyRangeMethod>
+        <caseSensitiveFS>false</caseSensitiveFS>
+        <junctionsAsDirs>true</junctionsAsDirs>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -433,16 +497,18 @@ Device Element
 
 .. code-block:: xml
 
-    <device id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
+    <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
         <maxSendKbps>0</maxSendKbps>
         <maxRecvKbps>0</maxRecvKbps>
+        <ignoredFolder time="2022-01-09T19:09:52Z" id="br63e-wyhb7" label="Foo"></ignoredFolder>
         <maxRequestKiB>0</maxRequestKiB>
+        <untrusted>false</untrusted>
         <remoteGUIPort>0</remoteGUIPort>
     </device>
-    <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+    <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="true" skipIntroductionRemovals="false" introducedBy="">
         <address>tcp://192.0.2.1:22001</address>
         <paused>true</paused>
         <allowedNetwork>192.168.0.0/16</allowedNetwork>
@@ -450,6 +516,7 @@ Device Element
         <maxSendKbps>100</maxSendKbps>
         <maxRecvKbps>100</maxRecvKbps>
         <maxRequestKiB>65536</maxRequestKiB>
+        <untrusted>false</untrusted>
         <remoteGUIPort>8384</remoteGUIPort>
     </device>
 
@@ -560,6 +627,11 @@ maxRecvKbps
     Maximum receive rate to use for this device. Unit is kibibytes/second,
     despite the config name looking like kilobits/second.
 
+ignoredFolder
+    Contains the ID of the folder that should be ignored. This folder will
+    always be skipped when advertised from the containing remote device,
+    i.e. this will be logged, but there will be no dialog shown in the web GUI.
+
 maxRequestKiB
     Maximum amount of data to have outstanding in requests towards this device.
     Unit is kibibytes.
@@ -579,7 +651,7 @@ GUI Element
 
     <gui enabled="true" tls="false" debugging="false">
         <address>127.0.0.1:8384</address>
-        <apikey>l7jSbCqPD95JYZ0g8vi4ZLAMg3ulnN1b</apikey>
+        <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
         <theme>default</theme>
     </gui>
 
@@ -649,7 +721,7 @@ authMode
         LDAP authentication. Requires ldap top level config section to be present.
 
 LDAP Element
----------------
+------------
 
 .. code-block:: xml
 
@@ -722,8 +794,8 @@ Options Element
         <releasesURL>https://upgrades.syncthing.net/meta.json</releasesURL>
         <overwriteRemoteDeviceNamesOnConnect>false</overwriteRemoteDeviceNamesOnConnect>
         <tempIndexMinBlocks>10</tempIndexMinBlocks>
+        <unackedNotificationID>authenticationUserAndPassword</unackedNotificationID>
         <trafficClass>0</trafficClass>
-        <defaultFolderPath>~</defaultFolderPath>
         <setLowPriority>true</setLowPriority>
         <maxFolderConcurrency>0</maxFolderConcurrency>
         <crashReportingURL>https://crash.syncthing.net/newcrash</crashReportingURL>
@@ -733,6 +805,11 @@ Options Element
         <stunServer>default</stunServer>
         <databaseTuning>auto</databaseTuning>
         <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
+        <announceLANAddresses>true</announceLANAddresses>
+        <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
+        <connectionLimitEnough>0</connectionLimitEnough>
+        <connectionLimitMax>0</connectionLimitMax>
+        <insecureAllowOldTLSVersions>false</insecureAllowOldTLSVersions>
     </options>
 
 The ``options`` element contains all other global configuration options.
@@ -892,10 +969,6 @@ stunKeepaliveSeconds
     maintain NAT mapping. Default is ``24`` and you can set it to ``0`` to
     disable contacting STUN servers.
 
-defaultFolderPath
-    The UI will propose to create new folders at this path. This can be disabled by
-    setting this to an empty string.
-
 .. _set-low-priority:
 
 setLowPriority
@@ -906,6 +979,79 @@ setLowPriority
     to nine; on Windows, set the process priority class to below normal. To
     disable this behavior, for example to control process priority yourself
     as part of launching Syncthing, set this option to ``false``.
+
+Defaults Element
+----------------
+
+.. code-block:: xml
+
+    <defaults>
+        <folder id="" label="" path="~" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
+            <filesystemType>basic</filesystemType>
+            <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" introducedBy="">
+                <encryptionPassword></encryptionPassword>
+            </device>
+            <minDiskFree unit="%">1</minDiskFree>
+            <versioning>
+                <cleanupIntervalS>3600</cleanupIntervalS>
+                <fsPath></fsPath>
+                <fsType>basic</fsType>
+            </versioning>
+            <copiers>0</copiers>
+            <pullerMaxPendingKiB>0</pullerMaxPendingKiB>
+            <hashers>0</hashers>
+            <order>random</order>
+            <ignoreDelete>false</ignoreDelete>
+            <scanProgressIntervalS>0</scanProgressIntervalS>
+            <pullerPauseS>0</pullerPauseS>
+            <maxConflicts>10</maxConflicts>
+            <disableSparseFiles>false</disableSparseFiles>
+            <disableTempIndexes>false</disableTempIndexes>
+            <paused>false</paused>
+            <weakHashThresholdPct>25</weakHashThresholdPct>
+            <markerName>.stfolder</markerName>
+            <copyOwnershipFromParent>false</copyOwnershipFromParent>
+            <modTimeWindowS>0</modTimeWindowS>
+            <maxConcurrentWrites>2</maxConcurrentWrites>
+            <disableFsync>false</disableFsync>
+            <blockPullOrder>standard</blockPullOrder>
+            <copyRangeMethod>standard</copyRangeMethod>
+            <caseSensitiveFS>false</caseSensitiveFS>
+            <junctionsAsDirs>false</junctionsAsDirs>
+        </folder>
+        <device id="" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+            <address>dynamic</address>
+            <paused>false</paused>
+            <autoAcceptFolders>false</autoAcceptFolders>
+            <maxSendKbps>0</maxSendKbps>
+            <maxRecvKbps>0</maxRecvKbps>
+            <maxRequestKiB>0</maxRequestKiB>
+            <untrusted>false</untrusted>
+            <remoteGUIPort>0</remoteGUIPort>
+        </device>
+    </defaults>
+
+The ``defaults`` element describes a template for newly added device and folder
+options.  These will be used when adding a new remote device or folder, either
+through the GUI or the command line interface.  The following child elements can
+be present in the ``defaults`` element:
+
+device
+    Template for a ``device`` element, with the same internal structure.  Any
+    fields here will be used for a newly added remote device.  The ``id``
+    attribute is meaningless in this context.
+
+folder
+    Template for a ``folder`` element, with the same internal structure.  Any
+    fields here will be used for a newly added shared folder.  The ``id``
+    attribute is meaningless in this context.
+
+    The UI will propose to create new folders at the path given by the ``path``
+    attribute (used to be ``defaultFolderPath`` under ``options``).  It also
+    applies for automatically accepted folders from a remote device.
+
+    Even sharing with other remote devices can be done in the template by
+    including the appropriate ``device`` element underneath.
 
 .. _listen-addresses:
 
