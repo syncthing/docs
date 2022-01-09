@@ -24,6 +24,7 @@ The connection types are ``TCP (Client)``, ``TCP (Server)``, ``Relay (Client)`` 
 		     "inBytesTotal" : 556,
 		     "paused" : false,
 		     "at" : "2015-11-07T17:29:47.691548971+01:00",
+		     "startedAt" : "2015-11-07T00:09:47Z",
 		     "clientVersion" : "v0.12.1",
 		     "address" : "127.0.0.1:22002",
 		     "type" : "TCP (Client)",
@@ -34,6 +35,7 @@ The connection types are ``TCP (Client)``, ``TCP (Server)``, ``Relay (Client)`` 
 		     "type" : "",
 		     "address" : "",
 		     "at" : "0001-01-01T00:00:00Z",
+		     "startedAt" : "0001-01-01T00:00:00Z",
 		     "clientVersion" : "",
 		     "paused" : false,
 		     "inBytesTotal" : 0,
@@ -47,6 +49,7 @@ The connection types are ``TCP (Client)``, ``TCP (Server)``, ``Relay (Client)`` 
 		     "inBytesTotal" : 0,
 		     "paused" : false,
 		     "at" : "0001-01-01T00:00:00Z",
+		     "startedAt" : "0001-01-01T00:00:00Z",
 		     "clientVersion" : ""
 		  }
 	   }
