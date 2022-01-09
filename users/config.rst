@@ -107,7 +107,7 @@ The following shows an example of a default configuration file (IDs will differ)
             <blockPullOrder>standard</blockPullOrder>
             <copyRangeMethod>standard</copyRangeMethod>
             <caseSensitiveFS>false</caseSensitiveFS>
-            <junctionsAsDirs>true</junctionsAsDirs>
+            <junctionsAsDirs>false</junctionsAsDirs>
         </folder>
         <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
@@ -291,7 +291,7 @@ Folder Element
         <blockPullOrder>standard</blockPullOrder>
         <copyRangeMethod>standard</copyRangeMethod>
         <caseSensitiveFS>false</caseSensitiveFS>
-        <junctionsAsDirs>true</junctionsAsDirs>
+        <junctionsAsDirs>false</junctionsAsDirs>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
