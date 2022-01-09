@@ -384,7 +384,7 @@ The following child elements may exist:
     Specifies a versioning configuration.
 
     .. seealso::
-	:ref:`versioning`
+	:doc:`versioning`
 
 .. option:: folder.copiers
 	    folder.pullers
@@ -591,7 +591,7 @@ element:
     should copy their list of devices per folder when connecting.
 
     .. seealso::
-	:ref:`introducer`
+	:doc:`introducer`
 
 .. option:: device.skipIntroductionRemovals
 

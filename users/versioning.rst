@@ -1,5 +1,3 @@
-.. _versioning:
-
 File Versioning
 ===============
 
