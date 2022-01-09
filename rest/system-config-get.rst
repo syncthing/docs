@@ -138,7 +138,7 @@ Returns the current configuration.
 	"natLeaseMinutes": 60,
 	"natRenewalMinutes": 30,
 	"natTimeoutSeconds": 10,
-	"urAccepted": 3,
+	"urAccepted": 0,
 	"urSeen": 0,
 	"urUniqueId": "...",
 	"urURL": "https://data.syncthing.net/newdata",
@@ -185,7 +185,7 @@ Returns the current configuration.
 	{
 	  "time": "2022-01-09T20:02:01Z",
 	  "deviceID": "...",
-	  "name": "bugger",
+	  "name": "...",
 	  "address": "192.168.0.20:22000"
 	}
       ],
