@@ -2,7 +2,7 @@ GET /rest/system/connections
 ============================
 
 
-.. note:: Return format changed in 0.13.0.
+.. note:: Return format changed in versions 0.13.0 and 1.19.0.
 
 
 Returns the list of configured devices and some metadata associated
@@ -14,14 +14,9 @@ The connection types are ``TCP (Client)``, ``TCP (Server)``, ``Relay (Client)`` 
 
 	{
 	   "total" : {
-		  "paused" : false,
-		  "clientVersion" : "",
 		  "at" : "2015-11-07T17:29:47.691637262+01:00",
-		  "connected" : false,
 		  "inBytesTotal" : 1479,
-		  "type" : "",
 		  "outBytesTotal" : 1318,
-		  "address" : ""
 	   },
 	   "connections" : {
 		  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC" : {
