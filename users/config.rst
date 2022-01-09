@@ -1046,9 +1046,9 @@ folder
     fields here will be used for a newly added shared folder.  The ``id``
     attribute is meaningless in this context.
 
-    The UI will propose to create new folders at the path given by the ``path``
+    The UI will propose to create new folders at the path given in the ``path``
     attribute (used to be ``defaultFolderPath`` under ``options``).  It also
-    applies for automatically accepted folders from a remote device.
+    applies to folders automatically accepted from a remote device.
 
     Even sharing with other remote devices can be done in the template by
     including the appropriate ``device`` element underneath.
