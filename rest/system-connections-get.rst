@@ -17,6 +17,7 @@ The connection types are ``TCP (Client)``, ``TCP (Server)``, ``Relay (Client)`` 
 		  "at" : "2015-11-07T17:29:47.691637262+01:00",
 		  "inBytesTotal" : 1479,
 		  "outBytesTotal" : 1318,
+                  "startedAt": "0001-01-01T00:00:00Z"
 	   },
 	   "connections" : {
 		  "YZJBJFX-RDBL7WY-6ZGKJ2D-4MJB4E7-ZATSDUY-LD6Y3L3-MLFUYWE-AEMXJAC" : {
