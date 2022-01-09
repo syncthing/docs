@@ -383,8 +383,8 @@ The following child elements may exist:
 
     Specifies a versioning configuration.
 
-.. seealso::
-    :ref:`versioning`
+    .. seealso::
+	:ref:`versioning`
 
 .. option:: folder.copiers
 	    folder.pullers
@@ -590,8 +590,8 @@ element:
     Set to true if this device should be trusted as an introducer, i.e. we
     should copy their list of devices per folder when connecting.
 
-.. seealso::
-    :ref:`introducer`
+    .. seealso::
+	:ref:`introducer`
 
 .. option:: device.skipIntroductionRemovals
 
