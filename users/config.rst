@@ -344,12 +344,10 @@ element:
 
     If set to ``true``, this detects changes to files in the folder and scans them.
 
-.. _fsWatcherDelayS:
-
 .. option:: folder.fsWatcherDelayS
 
     The duration during which changes detected are accumulated, before a scan is
-    scheduled (only takes effect if ``fsWatcherEnabled`` is set to ``true``).
+    scheduled (only takes effect if :opt:`fsWatcherEnabled` is set to ``true``).
 
 .. option:: folder.ignorePerms
 
@@ -1069,7 +1067,6 @@ The ``options`` element contains all other global configuration options.
     maintain NAT mapping. Default is ``24`` and you can set it to ``0`` to
     disable contacting STUN servers.
 
-.. _set-low-priority:
 
 .. option:: options.setLowPriority
 
@@ -1154,7 +1151,7 @@ be present in the ``defaults`` element:
     applies to folders automatically accepted from a remote device.
 
     Even sharing with other remote devices can be done in the template by
-    including the appropriate ``device`` element underneath.
+    including the appropriate :opt:`folder.device` element underneath.
 
 .. _listen-addresses:
 
