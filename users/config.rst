@@ -312,6 +312,12 @@ element:
     be different on each device, empty, and/or identical to other folder
     labels. (optional)
 
+.. option:: folder.filesystemType
+
+    .. todo:: Document available filesystem types.
+    .. FILESYSTEM_TYPE_BASIC
+    .. FILESYSTEM_TYPE_FAKE
+
 .. option:: folder.path
     :mandatory:
 
@@ -373,11 +379,15 @@ The following child elements may exist:
     Syncthing will currently add this automatically if it is not present in
     the configuration file.
 
+    .. todo:: Describe ``encryptionPassword`` sub-element!
+
 .. option:: folder.minDiskFree
 
-    The minimum required free space that should be available on the disk this folder
-    resides. The folder will be stopped when the value drops below the threshold. Accepted units are
-    ``%``, ``kB``, ``MB``, ``GB`` and ``TB``. Set to zero to disable.
+    The minimum required free space that should be available on the disk this
+    folder resides.  The folder will be stopped when the value drops below the
+    threshold.  The element content is interpreted according to the given
+    ``unit`` attribute.  Accepted ``unit`` values are ``%`` (percent of the disk
+    / volume size), ``kB``, ``MB``, ``GB`` and ``TB``.  Set to zero to disable.
 
 .. option:: folder.versioning
 
@@ -387,13 +397,17 @@ The following child elements may exist:
 	:doc:`versioning`
 
 .. option:: folder.copiers
-	    folder.pullers
 	    folder.hashers
 
-    The number of copier, puller and hasher routines to use, or ``0`` for the
+    The number of copier and hasher routines to use, or ``0`` for the
     system determined optimums. These are low level performance options for
     advanced users only; do not change unless requested to or you've actually
     read and understood the code yourself. :)
+
+.. option:: folder.pullerMaxPendingKiB
+
+    .. todo:: Describe element!
+    .. int32                              puller_max_pending_kib     = 15 [(ext.goname) = "PullerMaxPendingKiB", (ext.xml) = "pullerMaxPendingKiB", (ext.json) = "pullerMaxPendingKiB"];
 
 .. option:: folder.order
 
@@ -524,6 +538,16 @@ The following child elements may exist:
     filesystem supports it.
 
     See :ref:`folder-copyRangeMethod` for details.
+
+.. option:: folder.caseSensitiveFS
+
+    .. todo:: Describe element!
+    .. bool                               case_sensitive_fs          = 33 [(ext.goname) = "CaseSensitiveFS", (ext.xml) = "caseSensitiveFS", (ext.json) = "caseSensitiveFS"];
+
+.. option:: folder.junctionsAsDirs
+
+    .. todo:: Describe element!
+    .. bool                               follow_junctions           = 34 [(ext.goname) = "JunctionsAsDirs", (ext.xml) = "junctionsAsDirs", (ext.json) = "junctionsAsDirs"];
 
 Device Element
 --------------
@@ -664,6 +688,11 @@ From the following child elements at least one ``address`` child must exist.
     If given, this restricts connections to this device to only this network
     (see :ref:`allowed-networks`).
 
+.. option:: device.autoAcceptFolders
+
+    .. todo:: Describe element!
+    .. bool                    auto_accept_folders        = 11;
+
 .. option:: device.maxSendKbps
 
     Maximum send rate to use for this device. Unit is kibibytes/second, despite
@@ -693,6 +722,9 @@ From the following child elements at least one ``address`` child must exist.
     firewall settings need to be done manually and the link will probably not
     work for link-local IPv6 addresses because of modern browser limitations.
 
+.. option:: device.untrusted
+
+    .. todo:: Describe element!
 
 GUI Element
 -----------
@@ -767,6 +799,14 @@ The following child elements may be present:
     If true, this allows access to the web GUI from outside (i.e. not localhost)
     without authorization. A warning will displayed about this setting on startup.
 
+.. option:: gui.insecureSkipHostcheck
+
+    .. todo:: Describe element!
+
+.. option:: gui.insecureAllowFrameLoading
+
+    .. todo:: Describe element!
+
 .. option:: gui.theme
 
     The name of the theme to use.
@@ -819,6 +859,16 @@ The ``ldap`` element contains LDAP configuration options.
 .. option:: ldap.insecureSkipVerify
 
     Skip verification (``true`` or ``false``).
+
+.. option:: ldap.searchBaseDN
+
+    .. todo:: Describe element!
+    .. string        search_base_dn       = 5 [(ext.goname) = "SearchBaseDN", (ext.xml) = "searchBaseDN,omitempty", (ext.json) = "searchBaseDN"];
+
+.. option:: ldap.searchFilter
+
+    .. todo:: Describe element!
+    .. string        search_filter        = 6 [(ext.xml) = "searchFilter,omitempty"];
 
 Options Element
 ---------------
@@ -1022,9 +1072,11 @@ The ``options`` element contains all other global configuration options.
 
 .. option:: options.minHomeDiskFree
 
-    The minimum required free space that should be available on the
-    partition holding the configuration and index. Accepted units are ``%``, ``kB``,
-    ``MB``, ``GB`` and ``TB``.
+    The minimum required free space that should be available on the partition
+    holding the configuration and index.  The element content is interpreted
+    according to the given ``unit`` attribute.  Accepted ``unit`` values are
+    ``%`` (percent of the disk / volume size), ``kB``, ``MB``, ``GB`` and
+    ``TB``.  Set to zero to disable.
 
 .. option:: options.releasesURL
 
@@ -1068,10 +1120,21 @@ The ``options`` element contains all other global configuration options.
 
 .. option:: options.stunKeepaliveSeconds
 
+    .. todo:: Replaced by :opt:`stunKeepaliveStartS` and :opt:`stunKeepaliveMinS`
+
     Interval in seconds between contacting a STUN server to
     maintain NAT mapping. Default is ``24`` and you can set it to ``0`` to
     disable contacting STUN servers.
 
+.. option:: options.stunKeepaliveStartS
+
+    .. todo:: Describe element!
+    .. int32           stun_keepalive_start_s                   = 43 [(ext.default) = "180"];
+
+.. option:: options.stunKeepaliveMinS
+
+    .. todo:: Describe element!
+    .. int32           stun_keepalive_min_s                     = 44 [(ext.default) = "20"];
 
 .. option:: options.setLowPriority
 
@@ -1082,6 +1145,60 @@ The ``options`` element contains all other global configuration options.
     to nine; on Windows, set the process priority class to below normal. To
     disable this behavior, for example to control process priority yourself
     as part of launching Syncthing, set this option to ``false``.
+
+.. option:: options.crashReportingURL
+
+    .. todo:: Describe element!
+    .. string          crash_reporting_url                      = 41 [(ext.goname) = "CRURL", (ext.xml) = "crashReportingURL", (ext.json) = "crURL", (ext.default) = "https://crash.syncthing.net/newcrash"];
+
+.. option:: options.crashReportingEnabled
+
+    .. todo:: Describe element!
+    .. bool            crash_reporting_enabled                  = 42 [(ext.goname) = "CREnabled", (ext.default) = "true"];
+
+.. option:: options.databaseTuning
+
+    .. todo:: Describe element!
+    .. Tuning          database_tuning                          = 46 [(ext.restart) = true];
+    .. TUNING_AUTO  = 0;
+    .. TUNING_SMALL = 1;
+    .. TUNING_LARGE = 2;
+
+.. option:: options.maxConcurrentIncomingRequestKiB
+
+    .. todo:: Describe element!
+    .. int32           max_concurrent_incoming_request_kib      = 47 [(ext.goname) = "RawMaxCIRequestKiB", (ext.xml) = "maxConcurrentIncomingRequestKiB", (ext.json) = "maxConcurrentIncomingRequestKiB"];
+
+.. option:: options.announceLANAddresses
+
+    .. todo:: Describe element!
+    .. bool            announce_lan_addresses                   = 48 [(ext.goname)= "AnnounceLANAddresses", (ext.xml) = "announceLANAddresses", (ext.json) = "announceLANAddresses", (ext.default) = "true"];
+
+.. option:: options.sendFullIndexOnUpgrade
+
+    .. todo:: Describe element!
+    .. bool            send_full_index_on_upgrade               = 49;
+
+.. option:: options.featureFlag
+
+    .. todo:: Describe element!
+    .. repeated string feature_flags                            = 50;
+
+.. option:: options.connectionLimitEnough
+
+    The number of connections at which we stop trying to connect to more
+    devices, zero meaning no limit. Does not affect incoming connections.
+
+.. option:: options.connectionLimitMax
+
+    The maximum number of connections which we will allow in total, zero meaning
+    no limit. Affects incoming connections and prevents attempting outgoing
+    connections.
+
+.. option:: options.insecureAllowOldTLSVersions
+
+    .. todo:: Describe element!
+    .. bool insecure_allow_old_tls_versions = 53 [(ext.goname)= "InsecureAllowOldTLSVersions", (ext.xml) = "insecureAllowOldTLSVersions", (ext.json) = "insecureAllowOldTLSVersions"];
 
 Defaults Element
 ----------------

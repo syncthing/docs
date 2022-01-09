@@ -14,6 +14,15 @@ defaults to "no file versioning", i.e. no old copies of files are kept.
     Bob. If Alice changes a file locally on her own computer Syncthing will
     not and can not archive the old version.
 
+.. .. stconf:option:: folder.versioning
+
+    .. todo:: Describe element attributes!
+    .. string              type               = 1[(ext.xml) = "type,attr"];
+    .. map<string, string> parameters         = 2 [(ext.goname) = "Params", (ext.json) = "params"];
+    .. int32               cleanup_interval_s = 3 [(ext.default) = "3600"];
+    .. string              fs_path            = 4 [(ext.goname) = "FSPath"];
+    .. fs.FilesystemType   fs_type            = 5 [(ext.goname) = "FSType"];
+
 Trash Can File Versioning
 -------------------------
 
