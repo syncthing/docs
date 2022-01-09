@@ -302,8 +302,9 @@ describes one folder. The following attributes may be set on the ``folder``
 element:
 
 .. option:: folder.id
+    :mandatory:
 
-    The folder ID, which must be unique. (mandatory)
+    The folder ID, which must be unique.
 
 .. option:: folder.label
 
@@ -312,9 +313,10 @@ element:
     labels. (optional)
 
 .. option:: folder.path
+    :mandatory:
 
     The path to the directory where the folder is stored on this
-    device; not sent to other devices. (mandatory)
+    device; not sent to other devices.
 
 .. option:: folder.type
 
@@ -558,8 +560,9 @@ it is not present. The following attributes may be set on the ``device``
 element:
 
 .. option:: device.id
+    :mandatory:
 
-    The :ref:`device ID <device-ids>`. (mandatory)
+    The :ref:`device ID <device-ids>`.
 
 .. option:: device.name
 
@@ -607,6 +610,7 @@ element:
 From the following child elements at least one ``address`` child must exist.
 
 .. option:: device.address
+    :mandatory: At least one must be present.
 
     Contains an address or host name to use when attempting to connect to this device.
     Entries other than ``dynamic`` need a protocol specific prefix. For the TCP protocol
@@ -723,8 +727,9 @@ be set on the ``gui`` element:
 The following child elements may be present:
 
 .. option:: gui.address
+    :mandatory: Exactly one element must be present.
 
-    Set the listen address. Exactly one address element must be present. Allowed address formats are:
+    Set the listen address.  Allowed address formats are:
 
     IPv4 address and port (``127.0.0.1:8384``)
         The address and port are used as given.

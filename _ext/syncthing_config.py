@@ -7,6 +7,7 @@ Modeled after the standard :directive:`cmdoption` directive.
 from typing import Tuple, Dict, Iterator, Set, NamedTuple
 
 from docutils.nodes import Element
+from docutils.parsers.rst import directives
 from sphinx import addnodes
 from sphinx.addnodes import pending_xref
 from sphinx.builders import Builder
@@ -54,6 +55,9 @@ class ConfigOptionDirective(ObjectDescription):
 
     has_content = True
     required_arguments = 1
+    option_spec = {
+        'mandatory': directives.unchanged,
+    }
 
     def handle_signature(self, sig, signode) -> Tuple[str, str]:
         parts = sig.split(sep='.', maxsplit=1)
@@ -62,6 +66,13 @@ class ConfigOptionDirective(ObjectDescription):
         else:
             section, option = '', sig
         signode += addnodes.desc_name(text=option)
+        if 'mandatory' in self.options:
+            annotation = self.options['mandatory']
+            if annotation:
+                annotation = ' (mandatory: {})'.format(annotation)
+            else:
+                annotation = ' (mandatory)'
+            signode += addnodes.desc_annotation(annotation, annotation)
         return section, option
 
     def add_target_and_index(self, name, sig, signode):
