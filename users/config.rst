@@ -314,9 +314,8 @@ element:
 
 .. option:: folder.filesystemType
 
-    .. todo:: Document available filesystem types.
-    .. FILESYSTEM_TYPE_BASIC
-    .. FILESYSTEM_TYPE_FAKE
+    The internal file system implementation used to access this folder, detailed
+    in a :doc:`separate chapter </advanced/folder-filesystem-type>`.
 
 .. option:: folder.path
     :mandatory:
@@ -359,11 +358,17 @@ element:
 
 .. option:: folder.ignorePerms
 
-    True if the folder should ignore permissions.
+    If ``true``, files originating from this folder will be announced to remote
+    devices with the "no permission bits" flag.  The remote devices will use
+    whatever their default permission setting is when creating the files.  The
+    primary use case is for file systems that do not support permissions, such
+    as FAT, or environments where changing permissions is impossible.
 
 .. option:: folder.autoNormalize
 
-    Automatically correct UTF-8 normalization errors found in file names.
+    Automatically correct UTF-8 normalization errors found in file names.  The
+    mechanism and how to set it up is described in a :doc:`separate chapter
+    </advanced/folder-autonormalize>`.
 
 The following child elements may exist:
 
@@ -379,7 +384,10 @@ The following child elements may exist:
     Syncthing will currently add this automatically if it is not present in
     the configuration file.
 
-    .. todo:: Describe ``encryptionPassword`` sub-element!
+    The ``encryptionPassword`` sub-element contains the secret needed to decrypt
+    this folder's data on the remote device.  If left empty, the data is plainly
+    accessible (but still protected by the transport encryption).  The mechanism
+    and how to set it up is described in a :doc:`separate chapter <untrusted>`.
 
 .. option:: folder.minDiskFree
 
@@ -406,8 +414,8 @@ The following child elements may exist:
 
 .. option:: folder.pullerMaxPendingKiB
 
-    .. todo:: Describe element!
-    .. int32                              puller_max_pending_kib     = 15 [(ext.goname) = "PullerMaxPendingKiB", (ext.xml) = "pullerMaxPendingKiB", (ext.json) = "pullerMaxPendingKiB"];
+    The number of pullers is automatically adjusted based on this desired amount
+    of outstanding request data.
 
 .. option:: folder.order
 
@@ -439,7 +447,8 @@ The following child elements may exist:
         Enabling this is highly discouraged - use at your own risk. You have been warned.
 
     When set to ``true``, this device will pretend not to see instructions to
-    delete files from other devices.
+    delete files from other devices.  The mechanism is described in a
+    :doc:`separate chapter </advanced/folder-ignoredelete>`.
 
 .. option:: folder.scanProgressIntervalS
 
@@ -508,8 +517,9 @@ The following child elements may exist:
     .. warning::
         This is a known insecure option - use at your own risk.
 
-    Disables committing file operations to disk before recording them in the database.
-    Disabling fsync can lead to data corruption.
+    Disables committing file operations to disk before recording them in the
+    database.  Disabling fsync can lead to data corruption.  The mechanism is
+    described in a :doc:`separate chapter </advanced/folder-disable-fsync>`.
 
 .. option:: folder.blockPullOrder
 
@@ -533,16 +543,17 @@ The following child elements may exist:
 
 .. option:: folder.copyRangeMethod
 
-    Provides a choice of method for copying data between files. This can be used to optimise copies on network
-    filesystems, improve speed of large copies or clone the data using copy-on-write functionality if the underlying
-    filesystem supports it.
-
-    See :ref:`folder-copyRangeMethod` for details.
+    Provides a choice of method for copying data between files.  This can be
+    used to optimise copies on network filesystems, improve speed of large
+    copies or clone the data using copy-on-write functionality if the underlying
+    filesystem supports it.  The mechanism is described in a :doc:`separate
+    chapter </advanced/folder-copyrangemethod>`.
 
 .. option:: folder.caseSensitiveFS
 
-    .. todo:: Describe element!
-    .. bool                               case_sensitive_fs          = 33 [(ext.goname) = "CaseSensitiveFS", (ext.xml) = "caseSensitiveFS", (ext.json) = "caseSensitiveFS"];
+    Affects performance by disabling the extra safety checks for case
+    insensitive filesystems.  The mechanism and how to set it up is described in
+    a :doc:`separate chapter </advanced/folder-caseSensitiveFS>`.
 
 .. option:: folder.junctionsAsDirs
 
@@ -685,13 +696,18 @@ From the following child elements at least one ``address`` child must exist.
 
 .. option:: device.allowedNetwork
 
-    If given, this restricts connections to this device to only this network
-    (see :ref:`allowed-networks`).
+    If given, this restricts connections to this device to only this network.
+    The mechanism is described in detail in a :doc:`separate chapter
+    </advanced/device-allowednetworks>`).
 
 .. option:: device.autoAcceptFolders
 
-    .. todo:: Describe element!
-    .. bool                    auto_accept_folders        = 11;
+    If ``true``, folders shared from this remote device are automatically added
+    and synced locally under the :opt:`default path <defaults.folder>`.  For the
+    folder name, Syncthing tries to use the label from the remote device, and if
+    the same label already exists, it then tries to use the folder's ID.  If
+    that exists as well, it just logs an error.  A local folder already added
+    with the same ID will just be shared rather than created separately.
 
 .. option:: device.maxSendKbps
 
@@ -724,7 +740,10 @@ From the following child elements at least one ``address`` child must exist.
 
 .. option:: device.untrusted
 
-    .. todo:: Describe element!
+    This boolean value marks a particular device as untrusted, which disallows
+    ever sharing any unencrypted data with it.  Every folder shared with that
+    device then needs an encryption password set.  Refer to the detailed
+    explanation under :doc:`untrusted`.
 
 GUI Element
 -----------
@@ -801,11 +820,14 @@ The following child elements may be present:
 
 .. option:: gui.insecureSkipHostcheck
 
-    .. todo:: Describe element!
+    When the GUI / API is bound to localhost, we enforce that the ``Host``
+    header looks like localhost.  This option bypasses that check.
 
 .. option:: gui.insecureAllowFrameLoading
 
-    .. todo:: Describe element!
+    Allow rendering the GUI within an ``<iframe>``, ``<frame>`` or ``<object>``
+    by not setting the ``X-Frame-Options: SAMEORIGIN`` HTTP header.  This may be
+    needed for serving the Syncthing GUI as part of a website through a proxy.
 
 .. option:: gui.theme
 
@@ -834,13 +856,16 @@ LDAP Element
         <insecureSkipVerify>false</insecureSkipVerify>
     </ldap>
 
-The ``ldap`` element contains LDAP configuration options.
+The ``ldap`` element contains LDAP configuration options.  The mechanism is
+described in detail under :doc:`ldap`.
 
 .. option:: ldap.address
+   :mandatory:
 
     LDAP server address (server:port).
 
 .. option:: ldap.bindDN
+   :mandatory:
 
     BindDN for user authentication.
     Special ``%s`` variable should be used to pass username to LDAP.
@@ -862,13 +887,11 @@ The ``ldap`` element contains LDAP configuration options.
 
 .. option:: ldap.searchBaseDN
 
-    .. todo:: Describe element!
-    .. string        search_base_dn       = 5 [(ext.goname) = "SearchBaseDN", (ext.xml) = "searchBaseDN,omitempty", (ext.json) = "searchBaseDN"];
+    Base DN for user searches.
 
 .. option:: ldap.searchFilter
 
-    .. todo:: Describe element!
-    .. string        search_filter        = 6 [(ext.xml) = "searchFilter,omitempty"];
+    Search filter for user searches.
 
 Options Element
 ---------------
@@ -1146,28 +1169,34 @@ The ``options`` element contains all other global configuration options.
     disable this behavior, for example to control process priority yourself
     as part of launching Syncthing, set this option to ``false``.
 
+.. option:: options.maxFolderConcurrency
+
+    This option controls how many folders may concurrently be in I/O-intensive
+    operations such as syncing or scanning.  The mechanism is described in
+    detail in a :doc:`separate chapter </advanced/option-max-concurrency>`.
+
 .. option:: options.crashReportingURL
 
-    .. todo:: Describe element!
-    .. string          crash_reporting_url                      = 41 [(ext.goname) = "CRURL", (ext.xml) = "crashReportingURL", (ext.json) = "crURL", (ext.default) = "https://crash.syncthing.net/newcrash"];
+    Server URL where :doc:`automatic crash reports <crashrep>` will be sent if
+    enabled.
 
 .. option:: options.crashReportingEnabled
 
-    .. todo:: Describe element!
-    .. bool            crash_reporting_enabled                  = 42 [(ext.goname) = "CREnabled", (ext.default) = "true"];
+    Switch to opt out from the :doc:`automatic crash reporting <crashrep>`
+    feature to avoid Syncthing "phoning home" on serious troubles.  Defaults to
+    ``true``, to help the developers troubleshoot.
 
 .. option:: options.databaseTuning
 
-    .. todo:: Describe element!
-    .. Tuning          database_tuning                          = 46 [(ext.restart) = true];
-    .. TUNING_AUTO  = 0;
-    .. TUNING_SMALL = 1;
-    .. TUNING_LARGE = 2;
+    Controls how Syncthing uses the backend key-value database that stores the
+    index data and other persistent data it needs.  The available options and
+    implications are explained in a :doc:`separate chapter
+    </advanced/option-database-tuning>`.
 
 .. option:: options.maxConcurrentIncomingRequestKiB
 
-    .. todo:: Describe element!
-    .. int32           max_concurrent_incoming_request_kib      = 47 [(ext.goname) = "RawMaxCIRequestKiB", (ext.xml) = "maxConcurrentIncomingRequestKiB", (ext.json) = "maxConcurrentIncomingRequestKiB"];
+    This limits how many bytes we have "in the air" in the form of response data
+    being read and processed.
 
 .. option:: options.announceLANAddresses
 
@@ -1187,18 +1216,21 @@ The ``options`` element contains all other global configuration options.
 .. option:: options.connectionLimitEnough
 
     The number of connections at which we stop trying to connect to more
-    devices, zero meaning no limit. Does not affect incoming connections.
+    devices, zero meaning no limit.  Does not affect incoming connections.  The
+    mechanism is described in detail in a :doc:`separate chapter
+    </advanced/option-connection-limits>`.
 
 .. option:: options.connectionLimitMax
 
     The maximum number of connections which we will allow in total, zero meaning
-    no limit. Affects incoming connections and prevents attempting outgoing
-    connections.
+    no limit.  Affects incoming connections and prevents attempting outgoing
+    connections.  The mechanism is described in detail in a :doc:`separate
+    chapter </advanced/option-connection-limits>`.
 
 .. option:: options.insecureAllowOldTLSVersions
 
-    .. todo:: Describe element!
-    .. bool insecure_allow_old_tls_versions = 53 [(ext.goname)= "InsecureAllowOldTLSVersions", (ext.xml) = "insecureAllowOldTLSVersions", (ext.json) = "insecureAllowOldTLSVersions"];
+    Only for compatibility with old devices, as detailed in
+    :doc:`/advanced/option-insecure-allow-old-tls-versions`.
 
 Defaults Element
 ----------------
