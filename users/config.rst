@@ -327,18 +327,18 @@ element:
 
     Controls how the folder is handled by Syncthing. Possible values are:
 
-    sendreceive
+    ``sendreceive``
         The folder is in default mode. Sending local and accepting remote changes.
         Note that this type was previously called "readwrite" which is deprecated
         but still accepted in incoming configs.
 
-    sendonly
+    ``sendonly``
         The folder is in "send only" mode -- it will not be modified by
         Syncthing on this device.
         Note that this type was previously called "readonly" which is deprecated
         but still accepted in incoming configs.
 
-    receiveonly
+    ``receiveonly``
         The folder is in "receive only" mode -- it will not propagate
         changes to other devices.
 
@@ -374,10 +374,12 @@ The following child elements may exist:
 
 .. option:: folder.device
 
-    These must have the ``id`` attribute and can have an ``introducedBy`` attribute,
-    identifying the device that introduced us to share this folder with the given device.
-    If the original introducer unshares this folder with this device, our device will follow
-    and unshare the folder (subject to skipIntroductionRemovals being false on the introducer device).
+    These must have the ``id`` attribute and can have an ``introducedBy``
+    attribute, identifying the device that introduced us to share this folder
+    with the given device.  If the original introducer unshares this folder with
+    this device, our device will follow and unshare the folder (subject to
+    :opt:`skipIntroductionRemovals` being ``false`` on the introducer device).
+
     All mentioned devices are those that will be sharing the folder in question.
     Each mentioned device must have a separate ``device`` element later in the file.
     It is customary that the local device ID is included in all folders.
@@ -422,17 +424,17 @@ The following child elements may exist:
     The order in which needed files should be pulled from the cluster.
     The possibles values are:
 
-    random
+    ``random``
         Pull files in random order. This optimizes for balancing resources among
         the devices in a cluster.
 
-    alphabetic
+    ``alphabetic``
         Pull files ordered by file name alphabetically.
 
-    smallestFirst, largestFirst
+    ``smallestFirst``, ``largestFirst``
         Pull files ordered by file size; smallest and largest first respectively.
 
-    oldestFirst, newestFirst
+    ``oldestFirst``, ``newestFirst``
         Pull files ordered by modification time; oldest and newest first
         respectively.
 
@@ -528,16 +530,16 @@ The following child elements may exist:
 
     Available options:
 
-    standard (default):
+    ``standard`` (default)
         The blocks of a file are split into N equal continuous sequences, where N is the number of connected
         devices. Each device starts downloading its own sequence, after which it picks other devices
         sequences at random. Provides acceptable data distribution and minimal spinning disk strain.
 
-    random:
+    ``random``
         The blocks of a file are downloaded in a random order. Provides great data distribution, but very taxing on
         spinning disk drives.
 
-    inOrder:
+    ``inOrder``
         The blocks of a file are downloaded sequentially, from start to finish. Spinning disk drive friendly, but provides
         no improvements to data distribution.
 
@@ -608,16 +610,16 @@ element:
     Whether to use protocol compression when sending messages to this device.
     The possible values are:
 
-    metadata
+    ``metadata``
         Compress metadata packets, such as index information. Metadata is
         usually very compression friendly so this is a good default.
 
-    always
+    ``always``
         Compress all packets, including file data. This is recommended if the
         folders contents are mainly compressible data such as documents or
         text files.
 
-    never
+    ``never``
         Disable all compression.
 
 .. option:: device.introducer
@@ -838,10 +840,10 @@ The following child elements may be present:
     Authentication mode to use. If not present, the authentication mode (static)
     is controlled by the presence of user/password fields for backward compatibility.
 
-    static
+    ``static``
         Authentication using user and password.
 
-    ldap
+    ``ldap``
         LDAP authentication. Requires ldap top level config section to be present.
 
 LDAP Element
@@ -872,13 +874,13 @@ described in detail under :doc:`ldap`.
 
 .. option:: ldap.transport
 
-    nontls
+    ``nontls``
         Non secure connection.
 
-    tls
+    ``tls``
         TLS secured connection.
 
-    starttls
+    ``starttls``
         StartTLS connection mode.
 
 .. option:: ldap.insecureSkipVerify
