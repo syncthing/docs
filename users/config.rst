@@ -14,6 +14,7 @@ Synopsis
     $HOME/Library/Application Support/Syncthing
     %LOCALAPPDATA%\Syncthing
 
+
 Description
 -----------
 
@@ -62,6 +63,7 @@ The database contains the following files:
 :file:`index-{*}.db`
     A directory holding the database with metadata and hashes of the files
     currently on disk and available from peers.
+
 
 Config File Format
 ------------------
@@ -227,6 +229,7 @@ The following shows an example of a default configuration file (IDs will differ)
         </defaults>
     </configuration>
 
+
 Configuration Element
 ---------------------
 
@@ -257,6 +260,7 @@ this additional child element:
     Contains the ID of the device that should be ignored. Connection attempts
     from this device are logged to the console but never displayed in the web
     GUI.
+
 
 Folder Element
 --------------
@@ -562,6 +566,7 @@ The following child elements may exist:
     .. todo:: Describe element!
     .. bool                               follow_junctions           = 34 [(ext.goname) = "JunctionsAsDirs", (ext.xml) = "junctionsAsDirs", (ext.json) = "junctionsAsDirs"];
 
+
 Device Element
 --------------
 
@@ -747,6 +752,7 @@ From the following child elements at least one ``address`` child must exist.
     device then needs an encryption password set.  Refer to the detailed
     explanation under :doc:`untrusted`.
 
+
 GUI Element
 -----------
 
@@ -846,6 +852,7 @@ The following child elements may be present:
     ``ldap``
         LDAP authentication. Requires ldap top level config section to be present.
 
+
 LDAP Element
 ------------
 
@@ -894,6 +901,7 @@ described in detail under :doc:`ldap`.
 .. option:: ldap.searchFilter
 
     Search filter for user searches.
+
 
 Options Element
 ---------------
@@ -1234,6 +1242,7 @@ The ``options`` element contains all other global configuration options.
     Only for compatibility with old devices, as detailed in
     :doc:`/advanced/option-insecure-allow-old-tls-versions`.
 
+
 Defaults Element
 ----------------
 
@@ -1308,6 +1317,7 @@ be present in the ``defaults`` element:
 
     Even sharing with other remote devices can be done in the template by
     including the appropriate :opt:`folder.device` element underneath.
+
 
 .. _listen-addresses:
 
