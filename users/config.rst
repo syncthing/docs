@@ -428,7 +428,7 @@ The following child elements may exist:
     The order in which needed files should be pulled from the cluster.
     The possibles values are:
 
-    ``random``
+    ``random`` (default)
         Pull files in random order. This optimizes for balancing resources among
         the devices in a cluster.
 
