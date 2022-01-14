@@ -420,8 +420,9 @@ The following child elements may exist:
 
 .. option:: folder.pullerMaxPendingKiB
 
-    The number of pullers is automatically adjusted based on this desired amount
-    of outstanding request data.
+    Controls when we stop sending requests to other devices once we’ve got this
+    much unserved requests.  The number of pullers is automatically adjusted
+    based on this desired amount of outstanding request data.
 
 .. option:: folder.order
 
@@ -563,8 +564,8 @@ The following child elements may exist:
 
 .. option:: folder.junctionsAsDirs
 
-    .. todo:: Describe element!
-    .. bool                               follow_junctions           = 34 [(ext.goname) = "JunctionsAsDirs", (ext.xml) = "junctionsAsDirs", (ext.json) = "junctionsAsDirs"];
+    NTFS directory junctions can be treated as ordinary directories, if this is
+    set to ``true``.
 
 
 Device Element
@@ -1210,13 +1211,16 @@ The ``options`` element contains all other global configuration options.
 
 .. option:: options.announceLANAddresses
 
-    .. todo:: Describe element!
-    .. bool            announce_lan_addresses                   = 48 [(ext.goname)= "AnnounceLANAddresses", (ext.xml) = "announceLANAddresses", (ext.json) = "announceLANAddresses", (ext.default) = "true"];
+    Enable (the default) or disable announcing private (RFC1918) LAN IP
+    addresses to global discovery.
 
 .. option:: options.sendFullIndexOnUpgrade
 
-    .. todo:: Describe element!
-    .. bool            send_full_index_on_upgrade               = 49;
+    Controls whether all index data is resent when an upgrade is detected,
+    equivalent to starting Syncthing with :option:`--reset-deltas`.  This used
+    to be the default behavior in previous versions, but is mainly useful as a
+    troubleshooting step and causes high database churn. The default is now
+    ``false``.
 
 .. option:: options.featureFlag
 
