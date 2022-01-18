@@ -1224,8 +1224,10 @@ The ``options`` element contains all other global configuration options.
 
 .. option:: options.featureFlag
 
-    .. todo:: Describe element!
-    .. repeated string feature_flags                            = 50;
+    Feature flags are simple strings that, when added to the configuration, may
+    unleash unfished or still-in-development features to allow early user
+    testing.  Any supported value will be separately announced with the feature,
+    so that regular users do not enable it by accident.
 
 .. option:: options.connectionLimitEnough
 
