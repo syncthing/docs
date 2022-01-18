@@ -1152,23 +1152,16 @@ The ``options`` element contains all other global configuration options.
     ``stun.voiparound.com:3478``, ``stun.voipbuster.com:3478``,
     ``stun.voipstunt.com:3478`` and ``stun.xten.com:3478`` (this is the default).
 
-.. option:: options.stunKeepaliveSeconds
-
-    .. todo:: Replaced by :opt:`stunKeepaliveStartS` and :opt:`stunKeepaliveMinS`
-
-    Interval in seconds between contacting a STUN server to
-    maintain NAT mapping. Default is ``24`` and you can set it to ``0`` to
-    disable contacting STUN servers.
-
 .. option:: options.stunKeepaliveStartS
 
-    .. todo:: Describe element!
-    .. int32           stun_keepalive_start_s                   = 43 [(ext.default) = "180"];
+    Interval in seconds between contacting a STUN server to maintain NAT
+    mapping. Default is ``24`` and you can set it to ``0`` to disable contacting
+    STUN servers.  The interval is automatically reduced if needed, down to a
+    minimum of :opt:`stunKeepaliveMinS`.
 
 .. option:: options.stunKeepaliveMinS
 
-    .. todo:: Describe element!
-    .. int32           stun_keepalive_min_s                     = 44 [(ext.default) = "20"];
+    Minimum for the :opt:`stunKeepaliveStartS` interval, in seconds.
 
 .. option:: options.setLowPriority
 
