@@ -414,7 +414,7 @@ The following child elements may exist:
 	    folder.hashers
 
     The number of copier and hasher routines to use, or ``0`` for the
-    system determined optimums. These are low level performance options for
+    system determined optimums. These are low-level performance options for
     advanced users only; do not change unless requested to or you've actually
     read and understood the code yourself. :)
 
@@ -564,8 +564,8 @@ The following child elements may exist:
 
 .. option:: folder.junctionsAsDirs
 
-    NTFS directory junctions can be treated as ordinary directories, if this is
-    set to ``true``.
+    NTFS directory junctions are treated as ordinary directories, if this is set
+    to ``true``.
 
 
 Device Element
@@ -714,8 +714,9 @@ From the following child elements at least one ``address`` child must exist.
     and synced locally under the :opt:`default path <defaults.folder>`.  For the
     folder name, Syncthing tries to use the label from the remote device, and if
     the same label already exists, it then tries to use the folder's ID.  If
-    that exists as well, it just logs an error.  A local folder already added
-    with the same ID will just be shared rather than created separately.
+    that exists as well, the folder is just offered to accept manually.  A local
+    folder already added with the same ID will just be shared rather than
+    created separately.
 
 .. option:: device.maxSendKbps
 
@@ -1211,14 +1212,14 @@ The ``options`` element contains all other global configuration options.
 
     Controls whether all index data is resent when an upgrade is detected,
     equivalent to starting Syncthing with :option:`--reset-deltas`.  This used
-    to be the default behavior in previous versions, but is mainly useful as a
+    to be the default behavior in older versions, but is mainly useful as a
     troubleshooting step and causes high database churn. The default is now
     ``false``.
 
 .. option:: options.featureFlag
 
     Feature flags are simple strings that, when added to the configuration, may
-    unleash unfished or still-in-development features to allow early user
+    unleash unfinished or still-in-development features to allow early user
     testing.  Any supported value will be separately announced with the feature,
     so that regular users do not enable it by accident.
 
@@ -1238,8 +1239,8 @@ The ``options`` element contains all other global configuration options.
 
 .. option:: options.insecureAllowOldTLSVersions
 
-    Only for compatibility with old devices, as detailed in
-    :doc:`/advanced/option-insecure-allow-old-tls-versions`.
+    Only for compatibility with old versions of Syncthing on remote devices, as
+    detailed in :doc:`/advanced/option-insecure-allow-old-tls-versions`.
 
 
 Defaults Element
