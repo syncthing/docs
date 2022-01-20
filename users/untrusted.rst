@@ -128,7 +128,8 @@ untrusted and will get encrypted folder data, using different passwords.
         </device>
     </folder>
 
-On untrusted devices the type of the folders has to be ``receiveencrypted``.
+On untrusted devices the :stconf:opt:`type of the folders <folder.type>` has to
+be ``receiveencrypted``.
 
 Caveats
 -------

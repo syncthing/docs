@@ -346,6 +346,10 @@ element:
         The folder is in "receive only" mode -- it will not propagate
         changes to other devices.
 
+    ``receiveencrypted``
+        Must be used on untrusted devices, where the data cannot be decrypted
+        because no folder password was entered.  See :doc:`untrusted`.
+
 .. option:: folder.rescanIntervalS
 
     The rescan interval, in seconds. Can be set to ``0`` to disable when external
@@ -751,8 +755,9 @@ From the following child elements at least one ``address`` child must exist.
 
     This boolean value marks a particular device as untrusted, which disallows
     ever sharing any unencrypted data with it.  Every folder shared with that
-    device then needs an encryption password set.  Refer to the detailed
-    explanation under :doc:`untrusted`.
+    device then needs an encryption password set, or must already be of the
+    "receive encrypted" type locally.  Refer to the detailed explanation under
+    :doc:`untrusted`.
 
 
 GUI Element
