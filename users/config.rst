@@ -1188,8 +1188,8 @@ The ``options`` element contains all other global configuration options.
 .. option:: options.crashReportingEnabled
 
     Switch to opt out from the :doc:`automatic crash reporting <crashrep>`
-    feature to avoid Syncthing "phoning home" on serious troubles.  Defaults to
-    ``true``, to help the developers troubleshoot.
+    feature. Set ``false`` to keep Syncthing from sending panic logs on serious
+    troubles.  Defaults to ``true``, to help the developers troubleshoot.
 
 .. option:: options.databaseTuning
 
