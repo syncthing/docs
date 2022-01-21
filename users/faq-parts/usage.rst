@@ -164,8 +164,8 @@ session, use this example,
 If only your remote computer is Unix-like,
 you can still access it with ssh from Windows.
 
-Under Windows 10 (64 bit) you can use the same ssh command if you install
-the `Windows Subsystem for Linux <https://docs.microsoft.com/windows/wsl/install-win10>`__.
+Under Windows 10 or later (64-bit only) you can use the same ssh command
+if you install the `Windows Subsystem for Linux <https://docs.microsoft.com/windows/wsl/install>`__.
 
 Another Windows way to run ssh is to install `gow (Gnu On Windows) <https://github.com/bmatzelle/gow>`__. The easiest way to install gow is with the `chocolatey <https://chocolatey.org/>`__ package manager.
 
