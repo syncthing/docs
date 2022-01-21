@@ -63,11 +63,12 @@ The ``.stignore`` file contains a list of file or path patterns. The
 
 .. note::
 
-Escaped characters are not supported on Windows, where ``\`` is the path
-separator. If you still need to match files that have square or curly
-brackets in their names, one possible workaround is to replace them with
-``?``, which will then match any character. For example, you can type
-``?banana?`` to match both ``[banana]`` and ``{banana}``, and so on.
+   Escaped characters are not supported on Windows, where ``\`` is the
+   path separator. If you still need to match files that have square or
+   curly brackets in their names, one possible workaround is to replace
+   them with ``?``, which will then match any character. For example,
+   you can type ``?banana?`` to match both ``[banana]`` and
+   ``{banana}``, and so on.
 
 -  A pattern beginning with ``/`` matches in the root of the folder only.
    ``/foo`` matches ``foo`` but not ``subdir/foo``.
