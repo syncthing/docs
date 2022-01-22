@@ -210,6 +210,11 @@ html_show_copyright = False
 # This is the file name suffix for HTML files (e.g. ".xhtml").
 #html_file_suffix = None
 
+# Include JavaScript files with custom functionality
+html_js_files = [
+    'version_redirect.js',
+]
+
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'Syncthingdoc'
 

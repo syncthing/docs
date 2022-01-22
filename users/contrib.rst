@@ -74,7 +74,7 @@ Cross-platform
 
     $ curl -sS https://webinstall.dev/syncthing | bash
 
-  Windows 10 ::
+  Windows 10 (build 1803) or later ::
 
     > curl.exe -A MS https://webinstall.dev/syncthing | powershell
 

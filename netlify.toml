@@ -1,8 +1,11 @@
 # Build HTML and man pages, put the man pages underneath html/man/ so they
 # get served as well.
 [build]
-  command = "make html && make man && mv _build/man _build/html"
+  command = "./netlify-build.sh"
   publish = "_build/html"
+
+[build.environment]
+  GO_VERSION = "1.17.6"
 
 # PDF artifacts are transparently proxied to the old server
 [[redirects]]

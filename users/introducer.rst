@@ -13,7 +13,7 @@ The introduction process involves the autoconfiguration of device IDs, labels an
 
 If an introducer adds or removes any devices or shares, or changes device-share settings, however, this change will be reflected to devices upon their next connection. Similarly, if an introduced device is no longer present on an introducer, or no longer shares any mutual folders with the device, it will be automatically removed when devices in the cluster next connect to the introducer.
 
-Note that devices which are introduced cannot be removed so long as the introducer device is still marked as such, and if they are unshared from a folder they will be re-added.
+Note that if you manually remove an introduced device or unshare it from a folder, it will be automatically re-added as long as the introducer device is still marked as such.
 
 Introducer status is transferable; that is, an introducers' introducer will become your introducer as well.
 
