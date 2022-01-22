@@ -170,21 +170,21 @@ behavior as mentioned above. I created the following script and saved it as
     chcp 65001
 
     rem We need command extensions for md to create intermediate folders in one go
-    setlocal EnableExtensions
+    setlocal enableextensions
 
     rem Where I want my versions stored
-    set "VERSIONS_PATH=%USERPROFILE%\.trashcan"
+    set "versions_path=%USERPROFILE%\.trashcan"
 
     rem The parameters we get from Syncthing, '~' removes quotes if any
-    set "FOLDER_PATH=%~1"
-    set "FILE_PATH=%~2"
+    set "folder_path=%~1"
+    set "file_path=%~2"
 
     rem First ensure the dir where we need to store the file exists
-    for %%F in ("%VERSIONS_PATH%\%FILE_PATH%") do set "OUTPUT_PATH=%%~dpF"
-    if not exist "%OUTPUT_PATH%" md "%OUTPUT_PATH%" || exit /B
+    for %%f in ("%versions_path%\%file_path%") do set "output_path=%%~dpf"
+    if not exist "%output_path%" md "%output_path%" || exit /b
 
     rem Finally move the file, overwrite existing file if any
-    move /Y "%FOLDER_PATH%\%FILE_PATH%" "%VERSIONS_PATH%\%FILE_PATH%"
+    move /y "%folder_path%\%file_path%" "%versions_path%\%file_path%"
 
 Finally, I set ``"C:\Users\mfrnd\Scripts\onlylatest.bat" "%FOLDER_PATH%"
 "%FILE_PATH%"`` as the command name in Syncthing.
