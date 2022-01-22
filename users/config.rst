@@ -430,8 +430,8 @@ The following child elements may exist:
 
 .. option:: folder.order
 
-    The order in which needed files should be pulled from the cluster.
-    The possibles values are:
+    The order in which needed files should be pulled from the cluster.  It has
+    no effect when the folder type is "send only".  The possibles values are:
 
     ``random`` (default)
         Pull files in random order. This optimizes for balancing resources among
