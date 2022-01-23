@@ -69,6 +69,34 @@ function redirectToVersion(target, available) {
     redirectToPath(newPath);
 }
 
+function setVersionPickerOptions() {
+    getVersions.then(function (available) {
+        var items = [
+            '<option value="">latest</option>'
+        ];
+        $.each(available, function (key, val) {
+            items.push('<option value="' + val + '">' + val + '</option>');
+        });
+        let sel = document.createElement('select');
+        sel.setAttribute('id', 'version-picker');
+        sel.onchange = pickVersion;
+        sel.innerHTML = items.join('');
+        let note = document.createElement('div');
+        note.classList.add('admonition', 'note');
+        note.append('Browsing documentation for version: ');
+        note.append(sel);
+        var doc = document.getElementsByClassName('document')[0];
+        doc.prepend(note);
+    });
+}
+
+function pickVersion() {
+    getVersions.then(function (available) {
+        const targetVersion = document.getElementById('version-picker').value;
+        redirectToVersion(targetVersion, available);
+    });
+}
+
 
 const urlParams = new URLSearchParams(window.location.search);
 const versionParam = urlParams.get('version');
@@ -80,3 +108,5 @@ if (versionParam) {
         redirectToVersion(useVersion, available);
     });
 }
+
+window.addEventListener('DOMContentLoaded', setVersionPickerOptions);
