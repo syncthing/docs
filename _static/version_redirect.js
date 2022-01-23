@@ -1,5 +1,12 @@
 var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
 
+// Override MIME type to avoid "invalid XML" warnings when using $.getJSON()
+$.ajaxSetup({beforeSend: function (xhr) {
+    if (xhr.overrideMimeType) {
+        xhr.overrideMimeType("application/json");
+    }
+}});
+
 const VERSIONS_LIST = "/versions.json";
 
 const getVersions = $.getJSON(VERSIONS_LIST).then(function (data) {
