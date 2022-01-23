@@ -51,18 +51,22 @@ function stripVersionPath(path, versions) {
     return path;
 }
 
-function redirectToPath(newPath) {
+function redirectToPath(newPath, keepHistory) {
     const fragment = window.location.href.indexOf('#');
     if (fragment != -1) {
         newPath += window.location.href.slice(fragment);
     }
 
     if (newPath && newPath != window.location.pathname) {
-        window.location.replace(newPath);
+        if (keepHistory) {
+            window.location.assign(newPath);
+        } else {
+            window.location.replace(newPath);
+        }
     }
 }
 
-function redirectToVersion(target, available) {
+function redirectToVersion(target, available, keepHistory) {
     const tail = stripVersionPath(window.location.pathname, available + [target]);
 
     var newPath = '';
@@ -72,7 +76,7 @@ function redirectToVersion(target, available) {
     if (tail) {
         newPath += tail;
     }
-    redirectToPath(newPath);
+    redirectToPath(newPath, keepHistory);
 }
 
 function setVersionPickerOptions() {
@@ -99,7 +103,7 @@ function setVersionPickerOptions() {
 function pickVersion() {
     getVersions.then(function (available) {
         const targetVersion = document.getElementById('version-picker').value;
-        redirectToVersion(targetVersion, available);
+        redirectToVersion(targetVersion, available, true);
     });
 }
 
@@ -111,7 +115,7 @@ const versionParam = urlParams.get('version');
 if (versionParam) {
     getVersions.then(function (available) {
         const useVersion = findBestVersion(versionParam, available);
-        redirectToVersion(useVersion, available);
+        redirectToVersion(useVersion, available, false);
     });
 }
 
