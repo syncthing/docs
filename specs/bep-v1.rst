@@ -22,7 +22,7 @@ for the last block which may be smaller.
 
 The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
 "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+document are to be interpreted as described in [RFC 2119](https://datatracker.ietf.org/doc/html/rfc2119).
 
 Transport and Authentication
 ----------------------------
@@ -135,7 +135,7 @@ values SHOULD  be simple strings identifying the implementation name, as a
 user would expect to see it, and the version string in the same manner. An
 example client name is "syncthing" and an example client version is "v0.7.2".
 The client version field SHOULD follow the patterns laid out in the `Semantic
-Versioning <http://semver.org/>`__ standard.
+Versioning <https://semver.org/>`__ standard.
 
 Immediately after exchanging Hello messages, the connection MUST be dropped
 if the remote device does not pass authentication.

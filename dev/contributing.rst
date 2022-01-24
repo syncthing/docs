@@ -96,7 +96,7 @@ Go Specific
 ~~~~~~~~~~~
 
 - Follow the conventions laid out in `Effective
-  Go <https://golang.org/doc/effective_go.html>`__ as much as makes
+  Go <https://go.dev/doc/effective_go>`__ as much as makes
   sense. The review guidelines in `Go Code Review Comments
   <https://github.com/golang/go/wiki/CodeReviewComments>`__ should generally
   be followed.
