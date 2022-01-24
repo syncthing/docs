@@ -89,6 +89,7 @@ function setVersionPickerOptions() {
         });
         let sel = document.createElement('select');
         sel.setAttribute('id', 'version-picker');
+        sel.setAttribute('style', 'font: inherit;');
         sel.onchange = pickVersion;
         sel.innerHTML = items.join('');
         let note = document.createElement('div');
