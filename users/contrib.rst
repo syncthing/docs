@@ -104,12 +104,12 @@ ArchLinux
 Docker
 ~~~~~~
 
-- `docker-syncthing <https://docs.linuxserver.io/images/docker-syncthing>`_ from `LinuxServer <https://www.linuxserver.io>`_
+- `docker-syncthing <https://docs.linuxserver.io/images/docker-syncthing>`_ from `LinuxServer <https://www.linuxserver.io>`__
 
 - Dockerfiles for `Syncthing <https://github.com/firecat53/dockerfiles/tree/main/syncthing>`_ and `Syncthing Discovery Server <https://github.com/firecat53/dockerfiles/tree/main/syncthing_discovery>`_.
   Latest binary releases used for both.
 
-- `docker-syncthing <https://github.com/joeybaker/docker-syncthing>`_
+- `docker-syncthing <https://github.com/joeybaker/docker-syncthing>`__
   A fully baked docker container that allows custom config and will keep your
   settings and data past docker image restarts.
 
