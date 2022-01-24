@@ -59,7 +59,7 @@ Trivial:
   A small change or refactor that is obviously correct. These may be pushed
   without review by any member of the core team. Examples:
   `removing dead code <https://github.com/syncthing/syncthing/commits/main>`__,
-  `updating values <https://github.com/syncthing/syncthing/commit/2aa028facb7ccbe48e85c8c444501cc3fb38ef24>`__.
+  :commit:`updating values <2aa028facb7ccbe48e85c8c444501cc3fb38ef24>`.
 
 Minor:
   A new feature, bugfix or refactoring that may need extra eyes on it to weed
