@@ -97,7 +97,7 @@ function setVersionPickerOptions() {
         sel.onchange = pickVersion;
         sel.innerHTML = items.join('');
         let note = document.createElement('div');
-        note.classList.add('admonition', 'note');
+        note.classList.add('admonition', 'hint');
         note.append('Browsing documentation for version: ');
         note.append(sel);
         var doc = document.getElementsByClassName('document')[0];
