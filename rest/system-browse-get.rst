@@ -3,7 +3,7 @@ GET /rest/system/browse
 
 Returns a list of directories matching the path given by the optional parameter
 ``current``. The path can use `patterns as described in Go's filepath package
-<https://golang.org/pkg/path/filepath/#Match>`_. A '*' will always be appended
+<https://pkg.go.dev/path/filepath#Match>`_. A '*' will always be appended
 to the given path (e.g. ``/tmp/`` matches all its subdirectories). If the option
 ``current`` is not given, filesystem root paths are returned.
 

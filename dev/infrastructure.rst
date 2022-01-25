@@ -44,7 +44,7 @@ Relay Pool Server
 Runs the `strelaypoolsrv <https://github.com/syncthing/syncthing/tree/main/cmd/strelaypoolsrv>`__
 daemon to handle dynamic registration and announcement of relays.
 
-- `relays.syncthing.net <http://relays.syncthing.net>`__
+- `relays.syncthing.net <https://relays.syncthing.net>`__
 
 Relay Servers
 -------------
@@ -82,6 +82,6 @@ Monitoring
 
 The infrastructure is monitored and its status is publicly accessible on the following urls:
 
-- `status.syncthing.net <http://status.syncthing.net>`__ (Apex Ping)
+- `status.syncthing.net <https://status.syncthing.net>`__ (Apex Ping)
 - `monitor.syncthing.net <https://monitor.syncthing.net>`__ (Grafana)
 
