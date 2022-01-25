@@ -45,10 +45,10 @@ function stripVersionPath(path, versions) {
     var slash = path.indexOf('/', 1);
     if (slash != -1) {
         if (versions.indexOf(path.slice(1, slash)) != -1) {
-            path = path.slice(slash);
+            return [path.slice(1, slash), path.slice(slash)];
         }
     }
-    return path;
+    return ['', path];
 }
 
 function redirectToPath(newPath, keepHistory) {
@@ -67,7 +67,7 @@ function redirectToPath(newPath, keepHistory) {
 }
 
 function redirectToVersion(target, available, keepHistory) {
-    const tail = stripVersionPath(window.location.pathname, available + [target]);
+    const tail = stripVersionPath(window.location.pathname, available + [target])[1];
 
     var newPath = '';
     if (target) {
@@ -84,8 +84,12 @@ function setVersionPickerOptions() {
         var items = [
             '<option value="">latest</option>'
         ];
+        var current = stripVersionPath(window.location.pathname, available)[0];
         $.each(available, function (key, val) {
-            items.push('<option value="' + val + '">' + val + '</option>');
+            var item = '<option value="' + val + '"';
+            if (val == current) item += ' selected';
+            item += '>' + val + '</option>';
+            items.push(item);
         });
         let sel = document.createElement('select');
         sel.setAttribute('id', 'version-picker');
