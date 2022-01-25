@@ -159,10 +159,6 @@ Synology NAS (DSM)
   supported. SPK's may be older versions, however you can execute a Syncthing
   version upgrade via the web GUI after installation.
 
-- Kastelo maintains `Synology packages <https://docs.kastelo.net/synology/>`__
-  in a custom package source. Packages auto upgrade via the Synology package
-  manager.
-
 QNAP NAS (QTS)
 ~~~~~~~~~~~~~~
 
@@ -206,19 +202,6 @@ REST API Bindings
 - Python: https://github.com/blakev/python-syncthing (https://pypi.org/project/syncthing/)
 - PHP: https://github.com/terzinnorbert/syncthing-rest
 
-Ports
-~~~~~
-
-- Swift: `pulse-swift <https://source.small-tech.org/project/pulse-swift/tree/master>`_
-
-  Currently still in development and is "not yet usable by any standard". Only the Block Exchange Protocol layer and the Connection layer are completed.
-
-- Java: `a-sync <https://github.com/davide-imbriaco/a-sync>`_
-
-  This implements the BEP, discovery and relay protocols providing a command
-  line utility to access a Syncthing network, a service to proxy the relay
-  protocol over http and a client library for the BEP protocol.
-
 Configuration management
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -250,6 +233,7 @@ Older, Possibly Unmaintained
    these and you have revived the project, please update this page
    accordingly.
 
+- `a-sync <https://github.com/davide-imbriaco/a-sync>`_
 - `Syncthing-GTK <https://github.com/kozec/syncthing-gtk>`_
 -  https://github.com/syncthing/syncthing-lite
 -  https://github.com/sieren/QSyncthingTray
