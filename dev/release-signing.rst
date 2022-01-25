@@ -31,7 +31,7 @@ of the binary, computed at the time the release was made and signed by the
 Syncthing Release Management private key. The keys and signature are PEM
 encoded for ease of transmission - the details of the signature and encoding
 handling are in `the signature package
-<https://godoc.org/github.com/syncthing/syncthing/lib/signature>`__ The public
+<https://pkg.go.dev/github.com/syncthing/syncthing/lib/signature>`__ The public
 key is included in the source code and compiled into Syncthing.
 
 When Syncthing performs an automatic upgrade, it verifies the included

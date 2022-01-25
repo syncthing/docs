@@ -97,19 +97,19 @@ Unofficial `RPM repo of Syncthing <https://copr.fedorainfracloud.org/coprs/dafta
 ArchLinux
 ~~~~~~~~~
 
-- Official Community Repository: `syncthing <https://www.archlinux.org/packages/?name=syncthing>`__
+- Official Community Repository: `syncthing <https://archlinux.org/packages/?name=syncthing>`__
 
 - Arch User Repository: `syncthing-discosrv <https://aur.archlinux.org/packages/syncthing-discosrv>`__ and `syncthingtray <https://aur.archlinux.org/packages/syncthingtray>`__
 
 Docker
 ~~~~~~
 
-- `docker-syncthing <https://docs.linuxserver.io/images/docker-syncthing>`_ from `LinuxServer <https://www.linuxserver.io>`_
+- `docker-syncthing <https://docs.linuxserver.io/images/docker-syncthing>`_ from `LinuxServer <https://www.linuxserver.io>`__
 
 - Dockerfiles for `Syncthing <https://github.com/firecat53/dockerfiles/tree/main/syncthing>`_ and `Syncthing Discovery Server <https://github.com/firecat53/dockerfiles/tree/main/syncthing_discovery>`_.
   Latest binary releases used for both.
 
-- `docker-syncthing <https://github.com/joeybaker/docker-syncthing>`_
+- `docker-syncthing <https://github.com/joeybaker/docker-syncthing>`__
   A fully baked docker container that allows custom config and will keep your
   settings and data past docker image restarts.
 
@@ -121,7 +121,7 @@ Docker
   Configurable image for the Raspberry Pi.
 
 - `Syncthing for Home Assistant OS <https://github.com/Poeschl/Hassio-Addons/tree/master/syncthing>`_
-  A docker based addon for `Home Assistant Operating System <https://www.home-assistant.io/installation/#compare-installation-methods/>`_
+  A docker based addon for `Home Assistant Operating System <https://www.home-assistant.io/installation/#compare-installation-methods>`_
 
 Gentoo
 ~~~~~~
@@ -136,7 +136,7 @@ FreshPorts: `syncthing <https://www.freshports.org/net/syncthing>`__
 macOS
 ~~~~~
 
-MacPorts: `syncthing <https://ports.macports.org/port/syncthing/summary>`__ ::
+MacPorts: `syncthing <https://ports.macports.org/port/syncthing/>`__ ::
 
     $ sudo port install syncthing
 
@@ -172,23 +172,23 @@ Package) available for ALL models x86, x86\_64, Arm (all including new models).
 RockStor
 ~~~~~~~~
 
-`Docker container <http://rockstor.com/docs/docker-based-rock-ons/syncthing.html>`_ and `registry entry <https://github.com/rockstor/rockon-registry/blob/master/syncthing.json>`_
+`Docker container <https://rockstor.com/docs/docker-based-rock-ons/syncthing.html>`_ and `registry entry <https://github.com/rockstor/rockon-registry/blob/master/syncthing.json>`_
 
 ClearOS / WikiSuite
 ~~~~~~~~~~~~~~~~~~~~
 
-Syncthing is part of `WikiSuite <http://wikisuite.org/>`_, and thus packaged for `ClearOS <http://wikisuite.org/How-to-install-Syncthing-on-ClearOS>`_.
+Syncthing is part of `WikiSuite <https://wikisuite.org/>`_, and thus packaged for `ClearOS <https://wikisuite.org/How-to-install-Syncthing-on-ClearOS>`_.
 
 Cloudron
 ~~~~~~~~
 
-Syncthing is available as a 1-click install on `Cloudron <https://cloudron.io>`_. For those unaware,
+Syncthing is available as a 1-click install on `Cloudron <https://www.cloudron.io>`_. For those unaware,
 Cloudron makes it easy to run apps on your server and keep them up-to-date and secure.
 
-.. image:: https://cloudron.io/img/button.svg
-   :target: https://cloudron.io/button.html?app=net.syncthing.cloudronapp2
+.. image:: https://www.cloudron.io/img/button.svg
+   :target: https://www.cloudron.io/button.html?app=net.syncthing.cloudronapp2
 
-There is a `demo available <https://my-demo.cloudron.me>`_ (username: cloudron password: cloudron)
+There is a `demo available <https://my.demo.cloudron.io>`_ (username: cloudron password: cloudron)
 
 The Cloudron package is developed `here <https://git.cloudron.io/cloudron/syncthing-app>`_.
 
@@ -203,13 +203,13 @@ Integrations
 REST API Bindings
 ~~~~~~~~~~~~~~~~~
 
-- Python: https://github.com/blakev/python-syncthing (https://pypi.python.org/pypi/syncthing)
+- Python: https://github.com/blakev/python-syncthing (https://pypi.org/project/syncthing/)
 - PHP: https://github.com/terzinnorbert/syncthing-rest
 
 Ports
 ~~~~~
 
-- Swift: `pulse-swift <https://source.ind.ie/project/pulse-swift/tree/master>`_
+- Swift: `pulse-swift <https://source.small-tech.org/project/pulse-swift/tree/master>`_
 
   Currently still in development and is "not yet usable by any standard". Only the Block Exchange Protocol layer and the Connection layer are completed.
 
@@ -255,14 +255,12 @@ Older, Possibly Unmaintained
 -  https://github.com/sieren/QSyncthingTray
 -  https://github.com/akissa/pysyncthing
 -  https://github.com/retgoat/syncthing-ruby
--  https://github.com/sodacode/Windows-Syncthing-Installer
+-  https://github.com/codabrink/Windows-Syncthing-Installer
 -  https://github.com/gutenye/syncthing-kindle
 -  https://github.com/m0ppers/syncthing-bar (OSX 10.10 only)
 -  https://github.com/graboluk/stiko
--  https://github.com/ALinuxNinja/salt-syncthing
 -  https://www.asustor.com/apps/app_detail?id=552
--  https://susestudio.com/a/qkdvwb/syncthing
--  https://source.ind.ie/project/pulse-swift/tree/master
+-  https://source.small-tech.org/project/pulse-swift/tree/master
 -  https://github.com/icaruseffect/syncthing-ubuntu-indicator
 -  https://github.com/bloones/SyncThingWin
 -  https://github.com/thunderbirdtr/syncthing_rpm
@@ -270,5 +268,5 @@ Older, Possibly Unmaintained
 -  https://github.com/cebe/pulse-php-discover
 -  https://github.com/sebw/bitbar-plugins
 -  https://github.com/nhojb/SyncthingBar
--  https://github.com/iss0/SyncthingTray
+-  https://github.com/jastBytes/SyncthingTray
 -  https://github.com/alex2108/syncthing-tray

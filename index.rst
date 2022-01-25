@@ -56,5 +56,5 @@ We thank all the documentation contributors for their hard work:
 .. _GitHub: https://github.com/syncthing/docs
 .. _`issue tracker`: https://github.com/syncthing/syncthing/issues
 .. _`latest version`: https://github.com/syncthing/syncthing/releases/latest
-.. _`Security page`: https://syncthing.net/security.html
+.. _`Security page`: https://syncthing.net/security
 .. _`friendly forum`: https://forum.syncthing.net

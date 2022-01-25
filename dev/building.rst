@@ -11,7 +11,7 @@ Building Syncthing
 
 .. note::
     Syncthing uses Go modules, which is a fairly new development in the Go
-    ecosystem. You can find more information about modules `here <https://blog.golang.org/using-go-modules>`__.
+    ecosystem. You can find more information about modules `here <https://go.dev/blog/using-go-modules>`__.
     If you are not a seasoned Go developer you can just go with the flow as this is the new thing.
 
 Branches and Tags
@@ -32,7 +32,7 @@ Prerequisites
    always using the latest stable version. At the time of writing this is **Go 1.17**.
 -  Git
 -  If you want to build Debian packages FPM is required. See FPM's
-   `installation information <https://fpm.readthedocs.io/en/latest/installing.html>`__.
+   `installation information <https://fpm.readthedocs.io/en/latest/installation.html>`__.
 -  To build Windows executables, installing `goversioninfo
    <https://github.com/josephspurrier/goversioninfo>`__ is recommended
    in order to add file properties and icon to the compiled binaries.
@@ -40,7 +40,7 @@ Prerequisites
 
 If you're not already a Go developer, the easiest way to get going
 is to download the latest version of Go as instructed in
-https://golang.org/doc/install.
+https://go.dev/doc/install.
 
 .. note::
         Because Syncthing uses Go modules you do not need to set or care about "GOPATH".
