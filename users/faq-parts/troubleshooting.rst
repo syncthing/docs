@@ -58,8 +58,8 @@ causes a certain amount of extra CPU usage to calculate the summary data it
 presents. Note however that once things are *in sync* CPU usage should be
 negligible.
 
-To minimize the impact of this, Syncthing attempts to :ref:`lower the
-process priority <set-low-priority>` when starting up.
+To minimize the impact of this, Syncthing attempts to :stconf:opt:`lower the
+process priority <setLowPriority>` when starting up.
 
 To further limit the amount of CPU used when syncing and scanning, set the
 environment variable ``GOMAXPROCS`` to the maximum number of CPU cores
@@ -86,15 +86,15 @@ This protects against most forms of `DNS rebinding attack
 <https://en.wikipedia.org/wiki/DNS_rebinding>`__ against the GUI.
 
 To pass this test, ensure that you are accessing the GUI using an URL that
-begins with `http://localhost`, `http://127.0.0.1` or `http://[::1]`. HTTPS
+begins with ``http://localhost``, ``http://127.0.0.1`` or ``http://[::1]``. HTTPS
 is fine too, of course.
 
 If you are using a proxy in front of Syncthing you may need to disable this
 check, after ensuring that the proxy provides sufficient authentication to
 protect against unauthorized access. Either:
 
-- Make sure the proxy sets a `Host` header containing `localhost`, or
-- Set `insecureSkipHostcheck` in the advanced settings, or
+- Make sure the proxy sets a ``Host`` header containing ``localhost``, or
+- Set :stconf:opt:`gui.insecureSkipHostcheck` in the advanced settings, or
 - Bind the GUI/API to a non-localhost listen port.
 
 In all cases, username/password authentication and HTTPS should be used.

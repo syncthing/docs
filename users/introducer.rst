@@ -1,5 +1,3 @@
-.. _introducer:
-
 Introducer Configuration
 ========================
 

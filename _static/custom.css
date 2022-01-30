@@ -88,3 +88,7 @@ dt {
   font-weight: bold;
 }
 
+/* Extra padding after configuration options in e.g. in users/config. */
+dl.option {
+    margin-bottom: 1em;
+}
