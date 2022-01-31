@@ -3,7 +3,8 @@ GET /rest/system/log
 
 .. versionadded:: 0.12.0
 
-Returns the list of recent log entries.
+Returns the list of recent log entries.  The optional ``since`` parameter limits
+the results to message newer than the given timestamp in :rfc:`3339` format.
 
 .. code-block:: json
 
@@ -15,3 +16,8 @@ Returns the list of recent log entries.
         }
       ]
     }
+
+GET /rest/system/log.txt
+========================
+
+Returns the same information, formatted as a text log instead of a JSON object.
