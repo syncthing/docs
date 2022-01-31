@@ -47,6 +47,23 @@ returns the folder/device for the given ID, ``PUT`` replaces the entire config,
 ``PATCH`` replaces only the given child objects and ``DELETE`` removes the
 folder/device.
 
+/rest/config/defaults/folder, /rest/config/defaults/device
+----------------------------------------------------------
+
+``GET`` returns a template folder / device configuration object with all default
+values, which only needs a unique ID to be applied.  ``PUT`` replaces the
+default config (omitted values are reset to the hard-coded defaults), ``PATCH``
+replaces only the given child objects.
+
+/rest/config/defaults/ignores
+-----------------------------
+
+.. versionadded:: 1.19.0
+
+``GET`` returns an object with a single ``lines`` attribute listing ignore
+patterns to be used by default on folders, as an array of single-line strings.
+``PUT`` replaces the default ignore patterns from an object of the same format.
+
 /rest/config/options, /rest/config/ldap, /rest/config/gui
 ---------------------------------------------------------
 
