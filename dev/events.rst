@@ -7,7 +7,7 @@ Description
 -----------
 
 Syncthing provides a simple long polling interface for exposing events from the
-core utility towards a GUI. To receive events, see :ref:`events-get`.
+core utility towards a GUI. To receive events, see :doc:`/rest/events-get`.
 
 Event Structure
 ---------------

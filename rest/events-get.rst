@@ -1,5 +1,3 @@
-.. _events-get:
-
 GET /rest/events
 ================
 

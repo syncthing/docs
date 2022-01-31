@@ -1,7 +1,5 @@
 .. default-domain:: stconf
 
-.. _config:
-
 Syncthing Configuration
 =======================
 

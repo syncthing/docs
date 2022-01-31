@@ -3,9 +3,9 @@ Config Endpoints
 
 .. versionadded:: 1.12.0
 
-These endpoints facilitate access and modification of the :ref:`configuration
-<config>` in a granular way. Config sent to the endpoints must be in the same
-format as returned by the corresponding GET request. When posting the
+These endpoints facilitate access and modification of the :doc:`configuration
+</users/config>` in a granular way. Config sent to the endpoints must be in the
+same format as returned by the corresponding GET request. When posting the
 configuration succeeds, the posted configuration is immediately applied, except
 for changes that require a restart. Query :ref:`rest-config-insync` to check if
 a restart is required.
