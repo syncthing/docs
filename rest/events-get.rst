@@ -1,7 +1,7 @@
 .. _events-get:
 
 GET /rest/events
-=====================
+================
 
 To receive events, perform a HTTP GET of ``/rest/events``.
 
@@ -26,3 +26,11 @@ To receive only a limited number of events, add the ``limit=<n>`` parameter with
 suitable value for ``n`` and only the *last* ``n`` events will be returned. This
 can be used to catch up with the latest event ID after a disconnection for
 example: ``/rest/events?since=0&limit=1``.
+
+
+GET /rest/events/disk
+=====================
+
+This convenience endpoint provides the same event stream, but pre-filtered to show
+only :doc:`/events/localchangedetected` and :doc:`/events/remotechangedetected`
+event types.  The ``events`` parameter is not used.
