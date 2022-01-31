@@ -103,3 +103,13 @@ Misc Services Endpoints
    :glob:
 
    ../rest/svc-*
+
+Debug Endpoints
+---------------
+
+.. todo:: Document conditions when this stuff is available!
+
+.. toctree::
+   :maxdepth: 1
+
+   /rest/debug/... <../rest/debug.rst>
