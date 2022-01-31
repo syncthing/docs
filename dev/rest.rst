@@ -18,6 +18,17 @@ the configuration file. To use an API key, set the request header
 "X-API-Key: abc123" http://localhost:8384/rest/...`` can be used to invoke
 with ``curl`` (add ``-k`` flag when using HTTPS with a Syncthing generated or self signed certificate).
 
+.. _rest-pagination:
+
+Result Pagination
+-----------------
+
+Some `GET` endpoints take optional ``page`` and ``perpage`` arguments for
+pagination.  No more than ``perpage`` (defaults to 65536 if not given) result
+entries are returned in an array.  To access further entries, passing the
+``page`` parameter will advance in the results by that many pages.  The actually
+used parameters are always returned as attributes in the response object.
+
 System Endpoints
 ----------------
 
