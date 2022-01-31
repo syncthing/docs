@@ -57,6 +57,17 @@ Concerns the mesh network structure.
 
    ../rest/cluster-*
 
+Folder Endpoints
+----------------
+
+Runtime state of the individual shared folders.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   ../rest/folder-*
+
 Database Endpoints
 ------------------
 
