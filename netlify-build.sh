@@ -3,7 +3,7 @@ set -euo pipefail
 
 # Download pre-rendered / old versions of docs.
 mkdir -p _build
-git clone --depth 1 -b rebuild-all-version-history https://github.com/acolomb/syncthing-docs-pre-rendered.git _build/html
+git clone --depth 1 -b rebuild-all-version-history  https://github.com/acolomb/syncthing-docs-pre-rendered.git _build/html
 rm -rf _build/html/.git
 go run _script/lsver.go _build/html > _build/html/versions.json
 
