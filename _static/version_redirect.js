@@ -1,5 +1,6 @@
 var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
 
+// Override MIME type to avoid "invalid XML" warnings when using $.getJSON()
 $.ajaxSetup({beforeSend: function (xhr) {
     if (xhr.overrideMimeType) {
         xhr.overrideMimeType("application/json");
@@ -41,11 +42,14 @@ function findBestVersion(version, available) {
     return bestVersion;
 }
 
-function stripVersionPath(path, versions) {
+function splitVersionPath(path, versions) {
+    // Find end of first path component, disregarding leading slash
     var slash = path.indexOf('/', 1);
     if (slash != -1) {
-        if (versions.indexOf(path.slice(1, slash)) != -1) {
-            return [path.slice(1, slash), path.slice(slash)];
+        var firstComponent = path.slice(1, slash);
+        if (versions.indexOf(firstComponent) != -1) {
+            // Component is a valid known version path, split it off
+            return [firstComponent, path.slice(slash)];
         }
     }
     return ['', path];
@@ -67,7 +71,7 @@ function redirectToPath(newPath, keepHistory) {
 }
 
 function redirectToVersion(target, available, keepHistory) {
-    const tail = stripVersionPath(window.location.pathname, available + [target])[1];
+    const tail = splitVersionPath(window.location.pathname, available + [target])[1];
 
     var newPath = '';
     if (target) {
@@ -84,7 +88,7 @@ function setVersionPickerOptions() {
         var items = [
             '<option value="">latest</option>'
         ];
-        var current = stripVersionPath(window.location.pathname, available)[0];
+        var current = splitVersionPath(window.location.pathname, available)[0];
         $.each(available, function (key, val) {
             var item = '<option value="' + val + '"';
             if (val == current) item += ' selected';
