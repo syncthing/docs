@@ -161,3 +161,10 @@ all files and directories called "foo", ending in a "2" or starting with
   ``some/directory/`` matches the content of the directory, but not the
   directory itself. If you want the pattern to match the directory and its
   content, make sure it does not have a ``/`` at the end of the pattern.
+
+.. versionadded:: 1.19.0
+
+   Default patterns can be configured which will take effect when automatically
+   accepting a folder from a remote device.  The GUI suggests same the patterns
+   when adding a folder manually.  In either case, the ``.stignore`` file is
+   created with these defaults if none is present yet.
