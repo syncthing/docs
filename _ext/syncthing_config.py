@@ -50,6 +50,15 @@ class ConfigOptionRole(XRefRole):
         return title, target
 
 
+def alias_list(argument):
+    """
+    Convert whitespace-separated alias sigs into a list of strings.
+
+    (Directive option conversion function.)
+    """
+    return argument.split()
+
+
 class ConfigOptionDirective(ObjectDescription):
     """Name of a configuration option, usable as an external link target."""
 
@@ -57,6 +66,7 @@ class ConfigOptionDirective(ObjectDescription):
     required_arguments = 1
     option_spec = {
         'mandatory': directives.unchanged,
+        'aliases': alias_list,
     }
 
     def handle_signature(self, sig, signode) -> Tuple[str, str]:
@@ -78,6 +88,10 @@ class ConfigOptionDirective(ObjectDescription):
     def add_target_and_index(self, name, sig, signode):
         anchor = 'config-option-%s' % sig.lower()
         signode['ids'].append(anchor)
+        aliases = ['config-option-%s' % alias.lower()
+                   for alias in self.options.get('aliases', [])]
+        for alias_anchor in aliases:
+            signode['ids'].append(alias_anchor)
         config = self.env.get_domain('stconf')
         config.add_config_option(sig, *name, anchor, location=signode)
 
