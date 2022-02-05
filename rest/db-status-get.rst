@@ -5,7 +5,7 @@ Returns information about the current status of a folder.
 
 Parameters: ``folder``, the ID of a folder.
 
-.. code-block:: bash
+.. code-block:: json
 
     {
       "globalBytes": 0,
