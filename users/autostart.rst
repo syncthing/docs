@@ -303,7 +303,7 @@ manually:
 #. Find the file ``syncthing-start.desktop``: Either from the package you
    downloaded from GitHub in ``etc/linux-desktop/``, in
    ``/usr/share/applications/`` if installed from your package manager
-   or `from our repository <https://github.com/syncthing/syncthing/tree/main/etc/linux-desktop>`.
+   or `from our repository <https://github.com/syncthing/syncthing/tree/main/etc/linux-desktop>`_.
 #. Copy ``syncthing-start.desktop`` to ``~/.config/autostart/``.
 
 For more information relating to ``.desktop`` files e.g. for application menus,
