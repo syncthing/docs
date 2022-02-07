@@ -8,8 +8,6 @@ were changed locally in a receive-only folder.  Thus they differ from the global
 state and could be reverted by pulling from remote devices again, see
 :doc:`db-revert-post`.
 
-.. todo:: Document what the ``version`` attribute means here?
-
 The results can be paginated using the :ref:`common pagination parameters
 <rest-pagination>`.
 
