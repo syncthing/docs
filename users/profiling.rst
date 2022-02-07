@@ -1,5 +1,3 @@
-.. _profiling:
-
 Profiling
 =========
 

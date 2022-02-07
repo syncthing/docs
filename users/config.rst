@@ -770,9 +770,9 @@ GUI Element
     </gui>
 
 
-There must be exactly one ``gui`` element. The GUI configuration is also used
-by the :ref:`rest-api` and the :ref:`event-api`. The following attributes may
-be set on the ``gui`` element:
+There must be exactly one ``gui`` element. The GUI configuration is also used by
+the :doc:`/dev/rest` and the :doc:`/dev/events`. The following attributes may be
+set on the ``gui`` element:
 
 .. option:: gui.enabled
 
@@ -786,7 +786,8 @@ be set on the ``gui`` element:
 
 .. option:: gui.debugging
 
-    This enables :ref:`profiling` and additional debugging endpoints in the :ref:`rest-api`.
+    This enables :doc:`/users/profiling` and additional endpoints in the REST
+    API, see :doc:`/rest/debug`.
 
 The following child elements may be present:
 

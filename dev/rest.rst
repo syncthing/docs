@@ -1,5 +1,3 @@
-.. _rest-api:
-
 REST API
 ========
 
@@ -106,8 +104,6 @@ Misc Services Endpoints
 
 Debug Endpoints
 ---------------
-
-.. todo:: Document conditions when this stuff is available!
 
 .. toctree::
    :maxdepth: 1

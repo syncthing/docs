@@ -1,7 +1,8 @@
 Debug Endpoints
 ================
 
-.. todo:: Document conditions when this stuff is available!
+These endpoints require the :stconf:opt:`gui.debugging` configuration option to
+be enabled and yield an access denied error code otherwise.
 
 
 /rest/debug/peerCompletion
