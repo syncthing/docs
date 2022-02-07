@@ -8,7 +8,7 @@ information for that folder will be erased:
 
 .. code-block:: bash
 
-	curl -X POST -H "X-API-Key: abc123" http://localhost:8384/rest/system/reset?folder=ab1c2-def3g
+        curl -X POST -H "X-API-Key: abc123" http://localhost:8384/rest/system/reset?folder=ab1c2-def3g
 
 **Caution**: See :option:`--reset-database` for ``.stfolder`` creation
 side-effect and caution regarding mountpoints.

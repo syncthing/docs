@@ -14,10 +14,10 @@ The results can be paginated using the :ref:`common pagination parameters
     {
       "folder": "nnhic-sxuae",
       "errors": [
-	{
-	  "path": "noperm.txt",
-	  "error": "hashing: open /path/to/folder/noperm.txt: permission denied"
-	}
+        {
+          "path": "noperm.txt",
+          "error": "hashing: open /path/to/folder/noperm.txt: permission denied"
+        }
       ],
       "page": 1,
       "perpage": 100

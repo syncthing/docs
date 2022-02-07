@@ -240,7 +240,7 @@ Configuration Element
         <ldap></ldap>
         <options></options>
         <remoteIgnoredDevice></remoteIgnoredDevice>
-	<defaults></defaults>
+        <defaults></defaults>
     </configuration>
 
 This is the root element. It has one attribute:
@@ -410,10 +410,10 @@ The following child elements may exist:
     Specifies a versioning configuration.
 
     .. seealso::
-	:doc:`versioning`
+        :doc:`versioning`
 
 .. option:: folder.copiers
-	    folder.hashers
+            folder.hashers
 
     The number of copier and hasher routines to use, or ``0`` for the
     system determined optimums. These are low-level performance options for
@@ -636,7 +636,7 @@ element:
     should copy their list of devices per folder when connecting.
 
     .. seealso::
-	:doc:`introducer`
+        :doc:`introducer`
 
 .. option:: device.skipIntroductionRemovals
 

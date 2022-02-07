@@ -14,16 +14,16 @@ The results can be paginated using the :ref:`common pagination parameters
 
     {
       "files": [
-	{
-	  "flags": "0755",
-	  "sequence": 6,
-	  "modified": "2015-04-20T23:06:12+09:00",
-	  "name": "ls",
-	  "size": 34640,
-	  "version": [
-	    "5157751870738175669:1"
-	  ]
-	}
+        {
+          "flags": "0755",
+          "sequence": 6,
+          "modified": "2015-04-20T23:06:12+09:00",
+          "name": "ls",
+          "size": 34640,
+          "version": [
+            "5157751870738175669:1"
+          ]
+        }
       ],
       "page": 1,
       "perpage": 100

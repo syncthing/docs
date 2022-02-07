@@ -19,13 +19,15 @@ Debug Endpoints
 /rest/debug/cpuprof
 -------------------
 
-.. todo:: No documentation for this endpoint yet!
+Used to capture a profile of what Syncthing is doing on the CPU.  See
+:doc:`/users/profiling`.
 
 
 /rest/debug/heapprof
 --------------------
 
-.. todo:: No documentation for this endpoint yet!
+Used to capture a profile of what Syncthing is doing with the heap memory.  See
+:doc:`/users/profiling`.
 
 
 /rest/debug/support
