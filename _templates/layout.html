@@ -3,6 +3,8 @@
 {%- if edit_on_github_url %}
 <div class="body footer-body" role="footer">
     <a class="reference external" href="{{ edit_on_github_url }}" rel="nofollow">{{ _('Edit this page on GitHub') }}</a>
+    <br />
+    <small>Version: {{ release }}</small>
 </div>
 {%- endif %}
 {{ super() }}
