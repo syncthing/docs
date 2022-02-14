@@ -381,6 +381,7 @@ element:
 The following child elements may exist:
 
 .. option:: folder.device
+    :aliases: folder.devices
 
     These must have the ``id`` attribute and can have an ``introducedBy``
     attribute, identifying the device that introduced us to share this folder
@@ -608,6 +609,7 @@ element:
 
 .. option:: device.id
     :mandatory:
+    :aliases: device.deviceID
 
     The :ref:`device ID <device-ids>`.
 
@@ -658,6 +660,7 @@ From the following child elements at least one ``address`` child must exist.
 
 .. option:: device.address
     :mandatory: At least one must be present.
+    :aliases: device.addresses
 
     Contains an address or host name to use when attempting to connect to this device.
     Entries other than ``dynamic`` need a protocol specific prefix. For the TCP protocol
@@ -707,6 +710,7 @@ From the following child elements at least one ``address`` child must exist.
     True if synchronization with this devices is (temporarily) suspended.
 
 .. option:: device.allowedNetwork
+    :aliases: device.allowedNetworks
 
     If given, this restricts connections to this device to only this network.
     The mechanism is described in detail in a :doc:`separate chapter
@@ -733,6 +737,7 @@ From the following child elements at least one ``address`` child must exist.
     despite the config name looking like kilobits/second.
 
 .. option:: device.ignoredFolder
+    :aliases: device.ignoredFolders
 
     Contains the ID of the folder that should be ignored. This folder will
     always be skipped when advertised from the containing remote device,
@@ -781,6 +786,7 @@ be set on the ``gui`` element:
     If not ``true``, the GUI and API will not be started.
 
 .. option:: gui.tls
+    :aliases: gui.useTLS
 
     If set to ``true``, TLS (HTTPS) will be enforced. Non-HTTPS requests will
     be redirected to HTTPS. When set to ``false``, TLS connections are
@@ -970,11 +976,13 @@ Options Element
 The ``options`` element contains all other global configuration options.
 
 .. option:: options.listenAddress
+    :aliases: options.listenAddresses
 
     The listen address for incoming sync connections. See
     :ref:`listen-addresses` for the allowed syntax.
 
 .. option:: options.globalAnnounceServer
+    :aliases: options.globalAnnounceServers
 
     A URI to a global announce (discovery) server, or the word ``default`` to
     include the default servers. Any number of globalAnnounceServer elements
@@ -1123,6 +1131,7 @@ The ``options`` element contains all other global configuration options.
     The URL from which release information is loaded, for automatic upgrades.
 
 .. option:: options.alwaysLocalNet
+    :aliases: options.alwaysLocalNets
 
     Network that should be considered as local given in CIDR notation.
 
@@ -1138,6 +1147,7 @@ The ``options`` element contains all other global configuration options.
     into account files that have at least this many blocks.
 
 .. option:: options.unackedNotificationID
+    :aliases: options.unackedNotificationIDs
 
     ID of a notification to be displayed in the web GUI. Will be removed once
     the user acknowledged it (e.g. an transition notice on an upgrade).
@@ -1147,6 +1157,7 @@ The ``options`` element contains all other global configuration options.
     Specify a type of service (TOS)/traffic class of outgoing packets.
 
 .. option:: options.stunServer
+    :aliases: options.stunServers
 
     Server to be used for STUN, given as ip:port. The keyword ``default`` gets
     expanded to
@@ -1186,6 +1197,7 @@ The ``options`` element contains all other global configuration options.
     detail in a :doc:`separate chapter </advanced/option-max-concurrency>`.
 
 .. option:: options.crashReportingURL
+    :aliases: options.crURL
 
     Server URL where :doc:`automatic crash reports <crashrep>` will be sent if
     enabled.
@@ -1222,6 +1234,7 @@ The ``options`` element contains all other global configuration options.
     ``false``.
 
 .. option:: options.featureFlag
+    :aliases: options.featureFlags
 
     Feature flags are simple strings that, when added to the configuration, may
     unleash unfinished or still-in-development features to allow early user
