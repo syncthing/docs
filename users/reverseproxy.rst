@@ -24,7 +24,7 @@ GUI hosted on ``localhost:8384``.
 Apache
 ~~~~~~
 
-First of all, execute the following commands to enable the Apache HTTP Proxy
+First of all, execute the following command to enable the Apache HTTP Proxy
 module and the headers module: ``a2enmod proxy_http headers``.
 
 Then, you may add the following to your Apache httpd configuration:
