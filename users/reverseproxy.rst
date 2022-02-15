@@ -25,15 +25,16 @@ Apache
 ~~~~~~
 
 First of all, execute the following command to enable the Apache HTTP Proxy
-module: ``a2enmod proxy_http``.
+module and the headers module: ``a2enmod proxy_http headers``.
 
 Then, you may add the following to your Apache httpd configuration:
 
 .. code-block:: apache
 
-    ProxyPass /syncthing/ http://localhost:8384/
     <Location /syncthing/>
+        ProxyPass http://localhost:8384/
         ProxyPassReverse http://localhost:8384/
+        RequestHeader set "X-Forwarded-Proto" expr=%{REQUEST_SCHEME}
         Require all granted
     </Location>
 
