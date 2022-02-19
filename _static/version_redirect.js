@@ -1,5 +1,12 @@
 var collator = new Intl.Collator(undefined, {numeric: true, sensitivity: 'base'});
 
+// Override MIME type to avoid "invalid XML" warnings when using $.getJSON()
+$.ajaxSetup({beforeSend: function (xhr) {
+    if (xhr.overrideMimeType) {
+        xhr.overrideMimeType("application/json");
+    }
+}});
+
 const VERSIONS_LIST = "/versions.json";
 
 const getVersions = $.getJSON(VERSIONS_LIST).then(function (data) {
@@ -35,29 +42,36 @@ function findBestVersion(version, available) {
     return bestVersion;
 }
 
-function stripVersionPath(path, versions) {
+function splitVersionPath(path, versions) {
+    // Find end of first path component, disregarding leading slash
     var slash = path.indexOf('/', 1);
     if (slash != -1) {
-        if (versions.indexOf(path.slice(1, slash)) != -1) {
-            path = path.slice(slash);
+        var firstComponent = path.slice(1, slash);
+        if (versions.indexOf(firstComponent) != -1) {
+            // Component is a valid known version path, split it off
+            return [firstComponent, path.slice(slash)];
         }
     }
-    return path;
+    return ['', path];
 }
 
-function redirectToPath(newPath) {
+function redirectToPath(newPath, keepHistory) {
     const fragment = window.location.href.indexOf('#');
     if (fragment != -1) {
         newPath += window.location.href.slice(fragment);
     }
 
     if (newPath && newPath != window.location.pathname) {
-        window.location.replace(newPath);
+        if (keepHistory) {
+            window.location.assign(newPath);
+        } else {
+            window.location.replace(newPath);
+        }
     }
 }
 
-function redirectToVersion(target, available) {
-    const tail = stripVersionPath(window.location.pathname, available + [target]);
+function redirectToVersion(target, available, keepHistory) {
+    const tail = splitVersionPath(window.location.pathname, available + [target])[1];
 
     var newPath = '';
     if (target) {
@@ -66,7 +80,40 @@ function redirectToVersion(target, available) {
     if (tail) {
         newPath += tail;
     }
-    redirectToPath(newPath);
+    redirectToPath(newPath, keepHistory);
+}
+
+function setVersionPickerOptions() {
+    getVersions.then(function (available) {
+        var items = [
+            '<option value="">latest</option>'
+        ];
+        var current = splitVersionPath(window.location.pathname, available)[0];
+        $.each(available, function (key, val) {
+            var item = '<option value="' + val + '"';
+            if (val == current) item += ' selected';
+            item += '>' + val + '</option>';
+            items.push(item);
+        });
+        let sel = document.createElement('select');
+        sel.setAttribute('id', 'version-picker');
+        sel.setAttribute('style', 'font: inherit;');
+        sel.onchange = pickVersion;
+        sel.innerHTML = items.join('');
+        let note = document.createElement('div');
+        note.classList.add('admonition', 'hint');
+        note.append('Browsing documentation for version: ');
+        note.append(sel);
+        var doc = document.getElementsByClassName('document')[0];
+        doc.prepend(note);
+    });
+}
+
+function pickVersion() {
+    getVersions.then(function (available) {
+        const targetVersion = document.getElementById('version-picker').value;
+        redirectToVersion(targetVersion, available, true);
+    });
 }
 
 
@@ -77,6 +124,8 @@ const versionParam = urlParams.get('version');
 if (versionParam) {
     getVersions.then(function (available) {
         const useVersion = findBestVersion(versionParam, available);
-        redirectToVersion(useVersion, available);
+        redirectToVersion(useVersion, available, false);
     });
 }
+
+window.addEventListener('DOMContentLoaded', setVersionPickerOptions);
