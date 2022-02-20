@@ -83,7 +83,24 @@ function redirectToVersion(target, available, keepHistory) {
     redirectToPath(newPath, keepHistory);
 }
 
+function createVersionPickerNote() {
+    var sel = document.createElement('select');
+    sel.id = 'version-picker';
+    sel.style.font = 'inherit';
+    var note = document.createElement('div');
+    note.id = 'version-picker-note';
+    note.classList.add('admonition', 'hint');
+    note.style.visibility = 'hidden';
+    note.append('Browsing documentation for version: ');
+    note.append(sel);
+    var doc = document.getElementsByClassName('document')[0];
+    doc.prepend(note);
+
+    return note;
+}
+
 function setVersionPickerOptions() {
+    var note = createVersionPickerNote();
     getVersions.then(function (available) {
         var items = [
             '<option value="">latest</option>'
@@ -95,17 +112,10 @@ function setVersionPickerOptions() {
             item += '>' + val + '</option>';
             items.push(item);
         });
-        let sel = document.createElement('select');
-        sel.setAttribute('id', 'version-picker');
-        sel.setAttribute('style', 'font: inherit;');
+        var sel = document.getElementById('version-picker');
         sel.onchange = pickVersion;
         sel.innerHTML = items.join('');
-        let note = document.createElement('div');
-        note.classList.add('admonition', 'hint');
-        note.append('Browsing documentation for version: ');
-        note.append(sel);
-        var doc = document.getElementsByClassName('document')[0];
-        doc.prepend(note);
+        note.style.visibility = 'visible';
     });
 }
 
