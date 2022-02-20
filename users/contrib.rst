@@ -62,6 +62,15 @@ Linux
 
   Small bash application with minimal dependencies, for a simple colorful representation of the current status.
 
+Command Line Tools
+------------------
+
+- `STC <https://github.com/tenox7/stc>`_
+
+  Syncthing Cli - a simple command line tool for getting status and performing basic operations from
+  the shell / terminal without need of a web browser.
+
+
 Packages and Bundlings
 ----------------------
 
