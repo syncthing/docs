@@ -9,10 +9,10 @@ People all over the world have developed a number of :ref:`useful applications
 notifications and Android support. These are made possible using two APIs:
 
 -  A long polling interface for exposing events from
-   the core utility to an external party. This :ref:`event-api` is useful for being
+   the core utility to an external party. This :doc:`/dev/events` is useful for being
    notified of when changes to files, network connections or sync status occur.
 
--  A :ref:`rest-api` for controlling the operation of Syncthing and directly
+-  A :doc:`/dev/rest` for controlling the operation of Syncthing and directly
    querying for current status.
 
 If this covers what you need to do, there is no need to delve deeper. However,

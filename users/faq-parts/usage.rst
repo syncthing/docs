@@ -52,13 +52,13 @@ locally may be overwritten by those on other devices.
 
 An alternative way is to shut down Syncthing, move the folder on disk (including
 the ``.stfolder`` marker), edit the path directly in ``config.xml`` in the
-configuration folder (see :ref:`config`) and then start Syncthing again.
+configuration folder (see :doc:`/users/config`) and then start Syncthing again.
 
 How do I configure multiple users on a single machine?
 ------------------------------------------------------
 
 Each user should run their own Syncthing instance. Be aware that you might need
-to configure listening ports such that they do not overlap (see :ref:`config`).
+to configure listening ports such that they do not overlap (see :doc:`/users/config`).
 
 Does Syncthing support syncing between folders on the same system?
 ------------------------------------------------------------------

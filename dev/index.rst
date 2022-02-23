@@ -18,3 +18,4 @@ Development
    release-signing
    rest
    events
+   http-services

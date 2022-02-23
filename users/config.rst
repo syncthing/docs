@@ -1,7 +1,5 @@
 .. default-domain:: stconf
 
-.. _config:
-
 Syncthing Configuration
 =======================
 
@@ -242,7 +240,7 @@ Configuration Element
         <ldap></ldap>
         <options></options>
         <remoteIgnoredDevice></remoteIgnoredDevice>
-	<defaults></defaults>
+        <defaults></defaults>
     </configuration>
 
 This is the root element. It has one attribute:
@@ -413,10 +411,10 @@ The following child elements may exist:
     Specifies a versioning configuration.
 
     .. seealso::
-	:doc:`versioning`
+        :doc:`versioning`
 
 .. option:: folder.copiers
-	    folder.hashers
+            folder.hashers
 
     The number of copier and hasher routines to use, or ``0`` for the
     system determined optimums. These are low-level performance options for
@@ -640,7 +638,7 @@ element:
     should copy their list of devices per folder when connecting.
 
     .. seealso::
-	:doc:`introducer`
+        :doc:`introducer`
 
 .. option:: device.skipIntroductionRemovals
 
@@ -777,9 +775,9 @@ GUI Element
     </gui>
 
 
-There must be exactly one ``gui`` element. The GUI configuration is also used
-by the :ref:`rest-api` and the :ref:`event-api`. The following attributes may
-be set on the ``gui`` element:
+There must be exactly one ``gui`` element. The GUI configuration is also used by
+the :doc:`/dev/rest` and the :doc:`/dev/events`. The following attributes may be
+set on the ``gui`` element:
 
 .. option:: gui.enabled
 
@@ -794,7 +792,8 @@ be set on the ``gui`` element:
 
 .. option:: gui.debugging
 
-    This enables :ref:`profiling` and additional debugging endpoints in the :ref:`rest-api`.
+    This enables :doc:`/users/profiling` and additional endpoints in the REST
+    API, see :doc:`/rest/debug`.
 
 The following child elements may be present:
 

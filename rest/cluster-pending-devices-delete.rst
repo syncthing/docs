@@ -3,9 +3,9 @@ DELETE /rest/cluster/pending/devices
 
 .. versionadded:: 1.18.0
 
-Remove records about a pending remote device which tried to connect.
-Valid values for the ``device`` parameter are those from the
-corresponding :doc:`/rest/cluster-pending-devices-get` endpoint.
+Remove records about a pending remote device which tried to connect.  Valid
+values for the ``device`` parameter are those from the corresponding
+:doc:`cluster-pending-devices-get` endpoint.
 
 .. code-block:: bash
 

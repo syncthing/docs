@@ -4,10 +4,10 @@ GET /rest/db/need
 Takes one mandatory parameter, ``folder``, and returns lists of files which are
 needed by this device in order for it to become in sync.
 
-Furthermore takes an optional ``page`` and ``perpage`` arguments for pagination.
-Pagination happens, across the union of all needed files, that is - across all
-3 sections of the response.
-For example, given the current need state is as follows:
+The results can be paginated using the :ref:`common pagination parameters
+<rest-pagination>`.  Pagination happens, across the union of all needed files,
+that is - across all 3 sections of the response.  For example, given the current
+need state is as follows:
 
 1. ``progress`` has 15 items
 2. ``queued`` has 3 items
@@ -20,8 +20,8 @@ section in the response will have 10 items. If you issue a request query with
 2 items. If you issue a query for ``page=3`` and ``perpage=10``, you will only
 have the last 10 items of the ``rest`` section.
 
-In all these calls, ``total`` will be 30 to indicate the total number of
-available items.
+.. note:: Return format changed in version 0.14.43, removing the ``total`` count
+          attribute.
 
 .. code-block:: bash
 
@@ -49,9 +49,8 @@ available items.
           ...
       ],
       "page": 1,
-      "perpage": 100,
-      "total": 2000
+      "perpage": 100
     }
 
-.. note::
-  This is an expensive call, increasing CPU and RAM usage on the device. Use sparingly.
+.. note:: This is an expensive call, increasing CPU and RAM usage on the device.
+          Use sparingly.
