@@ -87,16 +87,18 @@ function createVersionPickerNote() {
     var sel = document.createElement('select');
     sel.id = 'version-picker';
     sel.style.font = 'inherit';
+    var span = document.createElement('span');
+    span.style.visibility = 'hidden';
+    span.append('Browsing documentation for version: ');
+    span.append(sel);
     var note = document.createElement('div');
     note.id = 'version-picker-note';
     note.classList.add('admonition', 'hint');
-    note.style.visibility = 'hidden';
-    note.append('Browsing documentation for version: ');
-    note.append(sel);
+    note.append(span);
     var doc = document.getElementsByClassName('document')[0];
     doc.prepend(note);
 
-    return note;
+    return span;
 }
 
 function setVersionPickerOptions() {
