@@ -94,6 +94,7 @@ function createVersionPickerNote() {
     var note = document.createElement('div');
     note.id = 'version-picker-note';
     note.classList.add('admonition', 'hint');
+    note.style.textAlign = 'center';
     note.append(span);
     var doc = document.getElementsByClassName('document')[0];
     doc.prepend(note);
