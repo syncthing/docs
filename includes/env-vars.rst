@@ -132,3 +132,7 @@ GOGC
     Percentage of heap growth at which to trigger GC. Default is 100. Lower
     numbers keep peak memory usage down, at the price of CPU usage
     (i.e. performance).
+
+LOGGER_DISCARD
+    Hack to completely disable logging, for example when running benchmarks.
+    Set to any nonempty value to use it.
