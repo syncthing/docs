@@ -77,6 +77,13 @@ STDEADLOCKTHRESHOLD
     Used for debugging internal deadlocks; sets debug sensitivity. Use only
     under direction of a developer.
 
+STGUIADDRESS
+    Override GUI listen address.  Equivalent to passing :option:`--gui-address`.
+
+STGUIAPIKEY
+    Override the API key needed to access the GUI / REST API.  Equivalent to
+    passing :option:`--gui-apikey`.
+
 STGUIASSETS
     Directory to load GUI assets from. Overrides compiled in assets. Useful for
     developing webgui, commonly use ``STGUIASSETS=gui bin/syncthing``.
