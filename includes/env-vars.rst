@@ -73,7 +73,7 @@ STDEADLOCKTIMEOUT
     Used for debugging internal deadlocks; sets debug sensitivity. Use only
     under direction of a developer.
 
-STDEADLOCKTHRESHOLD
+STLOCKTHRESHOLD
     Used for debugging internal deadlocks; sets debug sensitivity. Use only
     under direction of a developer.
 
