@@ -346,7 +346,23 @@ page. Note that that page is directed at setting up a proxy for the
 Syncthing web UI. You should do the proper path and port adjustments to proxying
 the discovery server and your particular setup.
 
+Traefik
+""""""
+Docker-Compose, must use -http option when starting server. You do not need to provide the ID parameter when adding the discovery server to the Syncthing client.
+.. code-block:: yaml
 
+    labels:
+      - "traefik.http.middlewares.passtlsclientcert.passtlsclientcert.pem=true"
+      - "traefik.http.routers.sync-https.middlewares=passtlsclientcert"
+      - "traefik.http.services.sync.loadbalancer.passhostheader=true"
+      
+.. code-block:: yaml
+
+    tls:
+      options:
+        default:
+          clientAuth:
+            clientAuthType: RequestClientCert      
 
 See Also
 --------
