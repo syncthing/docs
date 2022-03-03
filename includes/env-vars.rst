@@ -100,13 +100,13 @@ STHEAPPROFILE
 STNODEFAULTFOLDER
     Don't create a default folder when starting for the first time. This
     variable will be ignored anytime after the first run.  Equivalent to the
-    ``--no-default-folder`` flag.
+    :option:`--no-default-folder` flag.
 
 STNORESTART
-    Equivalent to the ``--no-restart`` flag.
+    Equivalent to the :option:`--no-restart` flag.
 
 STNOUPGRADE
-    Disable automatic upgrades.  Equivalent to the ``--no-upgrade`` flag.
+    Disable automatic upgrades.  Equivalent to the :option:`--no-upgrade` flag.
 
 STPROFILER
     Set to a listen address such as "127.0.0.1:9090" to start the profiler with
