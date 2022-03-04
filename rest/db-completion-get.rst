@@ -43,7 +43,8 @@ Example Response
       "needBytes": 9789241,
       "globalItems": 7823,
       "needItems": 412,
-      "needDeletes": 0
+      "needDeletes": 0,
+      "sequence": 12
     }
 
 .. versionadded:: 1.8.0
