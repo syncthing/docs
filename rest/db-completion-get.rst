@@ -38,6 +38,7 @@ Example Response
 .. code-block:: json
 
     {
+      "accepted": true,
       "completion": 99.9937565835,
       "globalBytes": 156793013575,
       "needBytes": 9789241,
@@ -51,3 +52,8 @@ Example Response
   The ability to aggregate multiple folders by leaving out the folder ID.
   Querying data for the local device by leaving out the device ID. Returning
   the ``globalItems`` counter in the response.
+
+.. versionadded:: 1.20.0
+
+  Indication whether the remote device has accepted the folder (shares it with
+  us) as well.  The ``accepted`` field is meaningless for aggregated responses.
