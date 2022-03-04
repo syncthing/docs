@@ -16,6 +16,12 @@ device.
         "data": {
             "completion": 100,
             "device": "I6KAH76-66SLLLB-5PFXSOA-UFJCDZC-YAOMLEK-CP2GB32-BV5RQST-3PSROAU",
-            "folder": "default"
+            "folder": "default",
+            "globalBytes": 17,
+            "globalItems": 4,
+            "needBytes": 0,
+            "needDeletes": 0,
+            "needItems": 0,
+            "sequence": 12
         }
     }
