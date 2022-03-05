@@ -1404,3 +1404,19 @@ If you'd like to sync your home folder in non-send only mode, you may add the
 folder that stores the configuration files to the :ref:`ignore list <ignoring-files>`.
 If you'd also like to backup your configuration files, add another folder in
 send only mode for just the configuration folder.
+
+If you dare to actively sync configuration files in use (implies you really know
+what you're doing), you can add a dedicated folder with the path set to the common
+parent path of the configuration files (usually the home directory). At the same
+time you configure a default-ignore approach for this folder where only explicitly
+stated files and subfolders are synced and everything else is ignored.
+
+Example ``.stignore`` to only sync the global `Git configuration <https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration>`__ file:
+-------
+
+    // define synced files
+    !/.gitconfig
+
+    // exclude everything else
+    *
+    **
