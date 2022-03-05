@@ -56,4 +56,5 @@ Example Response
 .. versionadded:: 1.20.0
 
   Indication whether the remote device has accepted the folder (shares it with
-  us) as well.  The ``accepted`` field is meaningless for aggregated responses.
+  us) as well.  The ``accepted`` field is meaningless for aggregated responses,
+  as well as when the queried remote device is not connected.

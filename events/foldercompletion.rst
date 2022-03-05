@@ -9,7 +9,8 @@ device.
 .. versionadded:: 1.20.0
 
   Indication whether the remote device has accepted the folder (shares it with
-  us) as well.
+  us) as well.  The ``accepted`` field is meaningless when the remote device is
+  not connected.
 
 .. code-block:: json
 
