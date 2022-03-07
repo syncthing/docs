@@ -348,7 +348,9 @@ the discovery server and your particular setup.
 
 Traefik
 """"""
+
 Docker-Compose, must use -http option when starting server. You do not need to provide the ID parameter when adding the discovery server to the Syncthing client.
+
 .. code-block:: yaml
 
     labels:
