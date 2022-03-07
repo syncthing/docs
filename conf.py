@@ -63,7 +63,7 @@ copyright = u'2014-2019, The Syncthing Authors'
 #
 # The full version, including alpha/beta/rc tags.
 try:
-    release = os.popen('git describe --tags --long --always --dirty').read().strip()
+    release = os.popen('git describe --tags --long --always').read().strip()
 except Exception:
     release = 'v1'
 # The short X.Y version.
