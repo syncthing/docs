@@ -3,9 +3,9 @@ Starting Syncthing Automatically
 
 Jump to configuration for your system:
 
-- `Windows <#windows>`__
-- `macOS <#macos>`__
-- `Linux <#linux>`__
+- `Windows`_
+- `macOS`_
+- `Linux`_
 
 
 Windows
@@ -252,7 +252,7 @@ by a sysadmin who knows enough to understand the security implications.
 #. Connect to the Syncthing UI, enable HTTPS, and set a secure username and password.
 
 macOS
---------
+-----
 
 Using `homebrew <https://brew.sh>`__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
