@@ -99,7 +99,7 @@ function createVersionPickerNote() {
     var doc = document.getElementsByClassName('document')[0];
     doc.prepend(note);
 
-    return span;
+    return note;
 }
 
 function setVersionPickerOptions() {
@@ -119,6 +119,9 @@ function setVersionPickerOptions() {
         sel.onchange = pickVersion;
         sel.innerHTML = items.join('');
         note.style.visibility = 'visible';
+        note.childNodes[0].style.visibility = 'visible';
+    }).catch(function (available) {
+        note.style.visibility = 'hidden';
     });
 }
 
