@@ -404,6 +404,13 @@ How to set up a user service
    Otherwise the user service will not start, because by default, systemd checks for user
    services before your home directory has been decrypted.
 
+Automatic start-up of systemd user instances at boot (before login) is possible
+through systemd's "lingering" function, if a system service cannot be used
+instead.  Refer to the `loginctl enable-linger`__ command to allow this for a
+particular user.
+
+__ https://www.freedesktop.org/software/systemd/man/loginctl.html#enable-linger%20USER%E2%80%A6
+
 Checking the service status
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
