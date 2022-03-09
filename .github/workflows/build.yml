@@ -2,6 +2,8 @@ name: Build
 on:
   pull_request:
   push:
+    # branches:
+    #   - main
 
 jobs:
 
@@ -22,9 +24,12 @@ jobs:
       - name: Compress
         run: |
           cd _build
-          tar zcf html.tar.gz html
-          tar zcf man.tar.gz man
-          tar zcf pdf.tar.gz latex/*.pdf
+          tar -zc -C _build -f html.tar.gz html
+          tar -zc -C _build -f man.tar.gz man
+
+          mkdir pdf
+          cp _build/latex/*.pdf pdf
+          tar -zc -f pdf.tar.gz pdf
 
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
