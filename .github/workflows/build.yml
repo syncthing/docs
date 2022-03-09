@@ -1,0 +1,22 @@
+name: Build
+on:
+  pull_request:
+  push:
+
+jobs:
+
+  build-html-man-pdf:
+    runs-on: ubuntu-latest
+    name: Build HTML
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: docker://ghcr.io/kastelo/sphinx-build
+        with:
+          entrypoint: make
+          args:
+            - html
+            - man
+            - latexpdf
