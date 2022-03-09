@@ -1,9 +1,9 @@
-name: Build
+name: Build documentation
 on:
   pull_request:
   push:
-    # branches:
-    #   - main
+    branches:
+      - main
 
 jobs:
 
@@ -21,22 +21,13 @@ jobs:
           entrypoint: make
           args: html man latexpdf
 
-      # - name: Compress
-      #   run: |
-      #     tar -zc -C _build -f html.tar.gz html
-      #     tar -zc -C _build -f man.tar.gz man
-
-      #     mkdir pdf
-      #     cp _build/latex/*.pdf pdf
-      #     tar -zc -f pdf.tar.gz pdf
-
       - name: Archive artifacts (html)
         uses: actions/upload-artifact@v2
         if: github.event_name == 'push'
         with:
           name: html
           path: _build/html
-          retention-days: 1
+          retention-days: 14
 
       - name: Archive artifacts (man)
         uses: actions/upload-artifact@v2
@@ -44,7 +35,7 @@ jobs:
         with:
           name: man
           path: _build/man
-          retention-days: 1
+          retention-days: 14
 
       - name: Archive artifacts (pdf)
         uses: actions/upload-artifact@v2
@@ -52,4 +43,4 @@ jobs:
         with:
           name: pdf
           path: _build/latex/*.pdf
-          retention-days: 1
+          retention-days: 14
