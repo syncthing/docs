@@ -1,0 +1,46 @@
+name: Build documentation
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build-html-man-pdf:
+    runs-on: ubuntu-latest
+    name: Build documentation
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Build
+        uses: docker://ghcr.io/kastelo/sphinx-build
+        with:
+          entrypoint: make
+          args: html man latexpdf
+
+      - name: Archive artifacts (html)
+        uses: actions/upload-artifact@v2
+        if: github.event_name == 'push'
+        with:
+          name: html
+          path: _build/html
+          retention-days: 14
+
+      - name: Archive artifacts (man)
+        uses: actions/upload-artifact@v2
+        if: github.event_name == 'push'
+        with:
+          name: man
+          path: _build/man
+          retention-days: 14
+
+      - name: Archive artifacts (pdf)
+        uses: actions/upload-artifact@v2
+        if: github.event_name == 'push'
+        with:
+          name: pdf
+          path: _build/latex/*.pdf
+          retention-days: 14
