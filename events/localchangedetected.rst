@@ -6,8 +6,8 @@ previous scan.  This does *not* include events that are discovered and copied fr
 other devices (:doc:`remotechangedetected`), only files that were changed on the
 local filesystem.
 
-.. note:: This is not included in the default mask for the
-   :doc:`/rest/events-get` endpoint,but needs to be selected explicitly.
+.. note:: This event is not included in :doc:`/rest/events-get` endpoint without
+   a mask specified, but needs to be selected explicitly.
 
 .. code-block:: json
 

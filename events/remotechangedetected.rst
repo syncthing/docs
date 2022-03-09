@@ -4,8 +4,8 @@ RemoteChangeDetected
 Generated upon scan whenever a file is locally updated due to a remote change.
 Files that are updated locally produce a :doc:`localchangedetected` event.
 
-.. note:: This is not included in the default mask for the
-   :doc:`/rest/events-get` endpoint,but needs to be selected explicitly.
+.. note:: This event is not included in :doc:`/rest/events-get` endpoint without
+   a mask specified, but needs to be selected explicitly.
 
 .. code-block:: json
 
