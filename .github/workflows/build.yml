@@ -16,7 +16,4 @@ jobs:
       - uses: docker://ghcr.io/kastelo/sphinx-build
         with:
           entrypoint: make
-          args:
-            - html
-            - man
-            - latexpdf
+          args: html man latexpdf
