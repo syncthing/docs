@@ -7,13 +7,29 @@ jobs:
 
   build-html-man-pdf:
     runs-on: ubuntu-latest
-    name: Build HTML
+    name: Build documentation
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - uses: docker://ghcr.io/kastelo/sphinx-build
+      - name: Build
+        uses: docker://ghcr.io/kastelo/sphinx-build
         with:
           entrypoint: make
           args: html man latexpdf
+
+      - name: Compress
+        run: |
+          cd _build
+          tar zcf html.tar.gz html
+          tar zcf man.tar.gz man
+          tar zcf pdf.tar.gz latex/*.pdf
+
+      - name: Archive artifacts
+        uses: actions/upload-artifact@v2
+        if: github.event_name == 'push'
+        with:
+          name: documentation
+          path: _build/*.tar.gz
+          retention-days: 14
