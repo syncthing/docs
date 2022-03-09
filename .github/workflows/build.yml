@@ -23,7 +23,6 @@ jobs:
 
       - name: Compress
         run: |
-          cd _build
           tar -zc -C _build -f html.tar.gz html
           tar -zc -C _build -f man.tar.gz man
 
