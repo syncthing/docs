@@ -35,5 +35,5 @@ jobs:
         if: github.event_name == 'push'
         with:
           name: documentation
-          path: _build/*.tar.gz
+          path: "*.tar.gz"
           retention-days: 14
