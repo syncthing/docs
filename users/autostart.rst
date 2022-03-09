@@ -3,9 +3,9 @@ Starting Syncthing Automatically
 
 Jump to configuration for your system:
 
-- `Windows <#windows>`__
-- `macOS <#macos>`__
-- `Linux <#linux>`__
+- `Windows`_
+- `macOS`_
+- `Linux`_
 
 
 Windows
@@ -252,7 +252,7 @@ by a sysadmin who knows enough to understand the security implications.
 #. Connect to the Syncthing UI, enable HTTPS, and set a secure username and password.
 
 macOS
---------
+-----
 
 Using `homebrew <https://brew.sh>`__
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -403,6 +403,13 @@ How to set up a user service
    the change described in `Ubuntu bug 1734290 <https://bugs.launchpad.net/ecryptfs/+bug/1734290>`__.
    Otherwise the user service will not start, because by default, systemd checks for user
    services before your home directory has been decrypted.
+
+Automatic start-up of systemd user instances at boot (before login) is possible
+through systemd's "lingering" function, if a system service cannot be used
+instead.  Refer to the `enable-linger`_ command of ``loginctl`` to allow this
+for a particular user.
+
+.. _enable-linger: https://www.freedesktop.org/software/systemd/man/loginctl.html#enable-linger%20USER%E2%80%A6
 
 Checking the service status
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
