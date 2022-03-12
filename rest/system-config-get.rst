@@ -1,5 +1,5 @@
-GET /rest/system/config
-=======================
+GET /rest/system/config (DEPRECATED)
+====================================
 
 .. deprecated:: v1.12.0
    This endpoint still works as before but is deprecated. Use :ref:`rest-config`
