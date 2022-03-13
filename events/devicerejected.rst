@@ -1,9 +1,9 @@
-DeviceRejected
---------------
+DeviceRejected (DEPRECATED)
+---------------------------
 
 .. deprecated:: v1.13.0
    This event is still emitted for compatibility, but deprecated.  Use
-   the replacement :ref:`pending-devices-changed` event instead.
+   the replacement :doc:`pendingdeviceschanged` event instead.
 
 Emitted when there is a connection from a device we are not configured
 to talk to.

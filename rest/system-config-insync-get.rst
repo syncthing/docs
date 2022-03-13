@@ -1,5 +1,5 @@
-GET /rest/system/config/insync
-==============================
+GET /rest/system/config/insync (DEPRECATED)
+===========================================
 
 .. deprecated:: v1.12.0
    This endpoint still works as before but is deprecated. Use

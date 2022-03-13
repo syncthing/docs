@@ -1,5 +1,5 @@
-GET /rest/folder/pullerrors
-===========================
+GET /rest/folder/pullerrors (DEPRECATED)
+========================================
 
 .. deprecated:: v0.14.53
    This endpoint still works as before but is deprecated.  Use

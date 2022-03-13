@@ -1,8 +1,8 @@
-POST /rest/system/config
-========================
+POST /rest/system/config (DEPRECATED)
+=====================================
 
 .. deprecated:: v1.12.0
-   This endpoint still works as before but is deprecated. Use :ref:`rest-config`
+   This endpoint still works as before but is deprecated.  Use :doc:`config`
    instead.
 
 Post the full contents of the configuration, in the same format as returned by
