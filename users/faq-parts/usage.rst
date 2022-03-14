@@ -268,7 +268,19 @@ This only takes effect after a reboot. To adjust the limit immediately, run::
 How do I reset the GUI password?
 --------------------------------
 
-If you've forgotten/lost the GUI password, you can remove it by deleting the **<user>** and **<password>** XML tags from the **<gui>** block in file ``config.xml``. This should be done while Syncthing is not running. The location of the file depends on the OS and is described in the configuration documentation.
+If you've forgotten / lost the GUI password, you can reset it using the
+:option:`--gui-password` (and possibly :option:`--gui-user`) options to the
+``syncthing generate`` subcommand.  This should be done while Syncthing is not
+running.
+
+1. Stop Syncthing: ``syncthing cli operations shutdown``
+2. ``syncthing generate --gui-password=myNewPassword --gui-user=newUserName``
+3. Restart Syncthing as usual.
+
+*Alternatively, in step 2*, you can manually delete the :stconf:opt:`<user>
+<gui.user>` and :stconf:opt:`<password> <gui.password>` XML tags from the
+``<gui>`` block in file ``config.xml``.  The location of the file depends on the
+OS and is described in the :doc:`configuration documentation </users/config>`.
 
 For example, the two emphasized lines below would be removed from the file.
 
