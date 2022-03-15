@@ -14,8 +14,8 @@ If there was no error in either of these, the respective field is omitted.
       "type": "FolderWatchStateChanged",
       "time": "2022-03-14T12:34:56.890000000+01:00",
       "data": {
-	"folder": "default",
-	"from": "Something bad happened.",
-	"to": "Something worse happened."
+        "folder": "default",
+        "from": "Something bad happened.",
+        "to": "Something worse happened."
       }
     }
