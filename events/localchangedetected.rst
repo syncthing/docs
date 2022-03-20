@@ -1,12 +1,13 @@
-.. _local-change-detected:
-
 LocalChangeDetected
 -------------------
 
 Generated upon scan whenever the local disk has discovered an updated file from the
 previous scan.  This does *not* include events that are discovered and copied from
-other devices (:ref:`remote-change-detected`), only files that were changed on the
+other devices (:doc:`remotechangedetected`), only files that were changed on the
 local filesystem.
+
+.. note:: This event is not included in :doc:`/rest/events-get` endpoint without
+   a mask specified, but needs to be selected explicitly.
 
 .. code-block:: json
 
