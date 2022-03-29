@@ -187,7 +187,8 @@ an option to start the program automatically, and a more polished user
 experience (e.g. by behaving as a "proper" Windows application, rather
 than forcing you to start a Web browser to interact with Syncthing).
 
-.. seealso:: :ref:`Windows GUI Wrappers <contrib-windows>`, :ref:`Cross-platform GUI Wrappers <contrib-all>`.
+.. seealso:: :ref:`Windows GUI Wrappers <contrib-windows>`, :ref:`Cross-platform GUI
+  Wrappers <contrib-all>`, :ref:`Windows Packages <contrib-packages-windows>`.
 
 .. _autostart-windows-service:
 

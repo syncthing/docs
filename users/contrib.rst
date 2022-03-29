@@ -87,6 +87,18 @@ Cross-platform
 
     > curl.exe -A MS https://webinstall.dev/syncthing | powershell
 
+.. _contrib-packages-windows:
+
+Windows
+~~~~~~~
+
+- `Syncthing Windows Setup <https://github.com/Bill-Stewart/SyncthingWindowsSetup>`_
+
+  A lightweight yet full-featured Windows installer built using Inno Setup.  Support both
+  admin and regular user installation, auto-start, firewall integration as well as silent
+  installation.
+
+
 Debian / Ubuntu
 ~~~~~~~~~~~~~~~
 
