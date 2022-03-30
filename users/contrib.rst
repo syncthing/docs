@@ -94,7 +94,7 @@ Windows
 
 - `Syncthing Windows Setup <https://github.com/Bill-Stewart/SyncthingWindowsSetup>`_
 
-  A lightweight yet full-featured Windows installer built using Inno Setup.  Support both
+  A lightweight yet full-featured Windows installer built using Inno Setup.  Supports both
   admin and regular user installation, auto-start, firewall integration as well as silent
   installation.
 
