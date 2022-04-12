@@ -1309,7 +1309,7 @@ Defaults Element
             <untrusted>false</untrusted>
             <remoteGUIPort>0</remoteGUIPort>
         </device>
-	<ignores>
+        <ignores>
             <line>!foo2</line>
             <line>// comment</line>
             <line>(?d).DS_Store</line>
