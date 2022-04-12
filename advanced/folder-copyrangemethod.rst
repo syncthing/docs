@@ -13,6 +13,13 @@ to optimise copies on network filesystems, improve speed of large copies or
 clone the data using copy-on-write functionality if the underlying
 filesystem supports it.
 
+For practical use, one most likely wants to use only the ``standard`` or ``all``
+options. The latter falls back to a standard copy if none of the others work
+(e.g. copying between two device pools where copy-on-write isn't possible).
+Choosing another, specific method means only that method is used, and no
+fallback to standard copying. That's mostly useful for testing or e.g. if you
+want to ensure data is never duplicated.
+
 The following values are accepted:
 
     ``standard`` (default)
