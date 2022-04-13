@@ -15,7 +15,8 @@ show
 
 operations
     Control the overall program operation such as restarting or handling
-    upgrades, as well as triggering some actions on a per-folder basis.
+    upgrades, as well as triggering some actions on a per-folder basis.  Can
+    also configure the default ignore patterns from a plain text ignore file.
 
 errors
     Examine pending error conditions that need attention from the user, or
