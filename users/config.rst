@@ -1347,10 +1347,10 @@ be present in the ``defaults`` element:
     .. versionadded:: 1.19.0
 
     Template for the :ref:`ignore patterns <ignoring-files>` applied to new
-    folders.  These are automatically copied to the ``.stignore`` file when a
-    folder is automatically accepted from a remote device.  The GUI uses them to
-    pre-fill the respective field when adding a new folder as well.  In XML,
-    each pattern line is represented as by a ``<line>`` element.
+    folders.  These are copied to the ``.stignore`` file when a folder is
+    automatically accepted from a remote device.  The GUI uses them to pre-fill
+    the respective field when adding a new folder as well.  In XML, each pattern
+    line is represented as by a ``<line>`` element.
 
 
 .. _listen-addresses:
