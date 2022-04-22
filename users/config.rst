@@ -1343,6 +1343,7 @@ be present in the ``defaults`` element:
     including the appropriate :opt:`folder.device` element underneath.
 
 .. option:: defaults.ignores
+    :aliases: defaults.ignores.lines
 
     .. versionadded:: 1.19.0
 
