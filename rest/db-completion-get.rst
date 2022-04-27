@@ -38,13 +38,13 @@ Example Response
 .. code-block:: json
 
     {
-      "accepted": true,
       "completion": 99.9937565835,
       "globalBytes": 156793013575,
       "needBytes": 9789241,
       "globalItems": 7823,
       "needItems": 412,
-      "needDeletes": 0
+      "needDeletes": 0,
+      "remoteState": "valid"
     }
 
 .. versionadded:: 1.8.0
@@ -56,5 +56,7 @@ Example Response
 .. versionadded:: 1.20.0
 
   Indication whether the remote device has accepted the folder (shares it with
-  us) as well.  The ``accepted`` field is meaningless for aggregated responses,
-  as well as when the queried remote device is not connected.
+  us) as well, and whether it is paused.  The ``remoteState`` field is
+  meaningless for aggregated responses, as well as when the queried remote
+  device is not connected, otherwise it can be either ``valid``, ``paused``,
+  ``notSharing``, or ``unknown``.

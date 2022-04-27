@@ -9,8 +9,9 @@ device.
 .. versionadded:: 1.20.0
 
   Indication whether the remote device has accepted the folder (shares it with
-  us) as well.  The ``accepted`` field is meaningless when the remote device is
-  not connected.
+  us) as well, and whether it is paused.  The ``remoteState`` field is
+  meaningless when the remote device is not connected, otherwise it can be
+  either ``valid``, ``paused``, ``notSharing``, or ``unknown``.
 
 .. code-block:: json
 
@@ -18,11 +19,11 @@ device.
         "id": 84,
         "globalID": 84,
         "type": "FolderCompletion",
-        "time": "2015-04-17T14:14:27.043576583+09:00",
+        "time": "2022-04-27T14:14:27.043576583+09:00",
         "data": {
-            "accepted": true,
             "completion": 100,
             "device": "I6KAH76-66SLLLB-5PFXSOA-UFJCDZC-YAOMLEK-CP2GB32-BV5RQST-3PSROAU",
-            "folder": "default"
+            "folder": "default",
+            "remoteState": "valid"
         }
     }
