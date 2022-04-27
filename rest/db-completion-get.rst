@@ -44,7 +44,8 @@ Example Response
       "globalItems": 7823,
       "needItems": 412,
       "needDeletes": 0,
-      "remoteState": "valid"
+      "remoteState": "valid",
+      "sequence": 12
     }
 
 .. versionadded:: 1.8.0

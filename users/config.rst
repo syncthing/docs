@@ -1309,6 +1309,13 @@ Defaults Element
             <untrusted>false</untrusted>
             <remoteGUIPort>0</remoteGUIPort>
         </device>
+        <ignores>
+            <line>!foo2</line>
+            <line>// comment</line>
+            <line>(?d).DS_Store</line>
+            <line>*2</line>
+            <line>qu*</line>
+        </ignores>
     </defaults>
 
 The ``defaults`` element describes a template for newly added device and folder
@@ -1334,6 +1341,17 @@ be present in the ``defaults`` element:
 
     Even sharing with other remote devices can be done in the template by
     including the appropriate :opt:`folder.device` element underneath.
+
+.. option:: defaults.ignores
+    :aliases: defaults.ignores.lines
+
+    .. versionadded:: 1.19.0
+
+    Template for the :ref:`ignore patterns <ignoring-files>` applied to new
+    folders.  These are copied to the ``.stignore`` file when a folder is
+    automatically accepted from a remote device.  The GUI uses them to pre-fill
+    the respective field when adding a new folder as well.  In XML, each pattern
+    line is represented as by a ``<line>`` element.
 
 
 .. _listen-addresses:
