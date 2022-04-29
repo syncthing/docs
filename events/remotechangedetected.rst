@@ -15,11 +15,16 @@ Files that are updated locally produce a :doc:`localchangedetected` event.
       "data" : {
          "type" : "file",
          "action" : "deleted",
+         "folder": "Dokumente",
+         "folderID" : "Dokumente",
          "path" : "/media/ntfs_data/Dokumente/testfile",
          "label" : "Dokumente",
-         "folderID" : "Dokumente",
          "modifiedBy" : "BPDFDTU"
       },
       "type" : "RemoteChangeDetected",
       "id" : 2
    }
+
+.. deprecated:: v1.1.2
+  The ``folderID`` field is a legacy name kept only for compatibility.  Use the
+  ``folder`` field with identical content instead.
