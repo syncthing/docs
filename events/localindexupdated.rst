@@ -15,5 +15,16 @@ changes during a scan.
         "data": {
             "folder": "default",
             "items": 1000,
+            "filenames": [
+                "foo",
+                "bar",
+                "baz"
+            ],
+            "sequence": 12345,
+            "version": 12345
         }
     }
+
+.. deprecated:: v1.10.0
+  The ``version`` field is a legacy name kept only for compatibility.  Use the
+  ``sequence`` field with identical content instead.
