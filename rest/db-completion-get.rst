@@ -44,6 +44,7 @@ Example Response
       "globalItems": 7823,
       "needItems": 412,
       "needDeletes": 0,
+      "remoteState": "valid",
       "sequence": 12
     }
 
@@ -52,3 +53,11 @@ Example Response
   The ability to aggregate multiple folders by leaving out the folder ID.
   Querying data for the local device by leaving out the device ID. Returning
   the ``globalItems`` counter in the response.
+
+.. versionadded:: 1.20.0
+
+  Indication whether the remote device has accepted the folder (shares it with
+  us) as well, and whether it is paused.  The ``remoteState`` field is
+  meaningless for aggregated responses, ``unknown`` when the remote device is
+  not connected.  Otherwise it can be either ``paused``, ``notSharing``, or
+  ``valid`` if the remote is sharing back.
