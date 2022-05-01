@@ -58,6 +58,6 @@ Example Response
 
   Indication whether the remote device has accepted the folder (shares it with
   us) as well, and whether it is paused.  The ``remoteState`` field is
-  meaningless for aggregated responses, as well as when the queried remote
-  device is not connected, otherwise it can be either ``valid``, ``paused``,
-  ``notSharing``, or ``unknown``.
+  meaningless for aggregated responses, ``unknown`` when the remote device is
+  not connected.  Otherwise it can be either ``paused``, ``notSharing``, or
+  ``valid`` if the remote is sharing back.

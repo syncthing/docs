@@ -10,8 +10,8 @@ device.
 
   Indication whether the remote device has accepted the folder (shares it with
   us) as well, and whether it is paused.  The ``remoteState`` field is
-  meaningless when the remote device is not connected, otherwise it can be
-  either ``valid``, ``paused``, ``notSharing``, or ``unknown``.
+  ``unknown`` when the remote device is not connected.  Otherwise it can be
+  either ``paused``, ``notSharing``, or ``valid`` if the remote is sharing back.
 
 .. code-block:: json
 
