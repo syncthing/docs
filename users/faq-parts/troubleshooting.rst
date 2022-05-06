@@ -7,7 +7,9 @@ Where are the Syncthing logs?
 Syncthing logs to stdout by default. On Windows Syncthing by default also
 creates ``syncthing.log`` in Syncthing's home directory (run ``syncthing
 --paths`` to see where that is). The command line option ``--logfile`` can be
-used to specify a user-defined logfile.
+used to specify a user-defined logfile.  If you only have access to a running
+instance's GUI, check under the `Actions` - `About` menu item to see the used
+paths.
 
 If you're running a process manager like systemd, check there. If you're
 using a GUI wrapper integration, it may keep the logs for you.
@@ -103,13 +105,12 @@ My Syncthing database is corrupt
 --------------------------------
 
 This is almost always a result of bad RAM, storage device or other hardware.
-When the index database is found to be corrupt Syncthing cannot operate and
-will note this in the logs and exit. To overcome this delete the `database
-folder <https://docs.syncthing.net/users/config.html#description>`__ inside
-Syncthing's home directory and re-start Syncthing. It will then need to
-perform a full re-hashing of all shared folders. You should check your
-system in case the underlying cause is indeed faulty hardware which may put
-the system at risk of further data loss.
+When the index database is found to be corrupt Syncthing cannot operate and will
+note this in the logs and exit. To overcome this delete the :ref:`database
+folder <config-locations>` inside Syncthing's data directory and re-start
+Syncthing. It will then need to perform a full re-hashing of all shared
+folders. You should check your system in case the underlying cause is indeed
+faulty hardware which may put the system at risk of further data loss.
 
 
 Why do I see Syncthing twice in task manager?

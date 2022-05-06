@@ -13,6 +13,8 @@ Synopsis
     %LOCALAPPDATA%\Syncthing
 
 
+.. _config-locations:
+
 Description
 -----------
 
