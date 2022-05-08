@@ -18,9 +18,14 @@ local filesystem.
     "type": "LocalChangeDetected",
     "data": {
       "action": "deleted",
+      "folder": "vitwy-zjxqt",
       "folderID": "vitwy-zjxqt",
       "label": "TestSync",
       "path": "C:\\Users\\Nate\\Sync\\testfolder\\test file.rtf",
       "type": "file"
     }
   }
+
+.. deprecated:: v1.1.2
+  The ``folderID`` field is a legacy name kept only for compatibility.  Use the
+  ``folder`` field with identical content instead.
