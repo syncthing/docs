@@ -80,7 +80,7 @@ messages from the relay, which implies that some other device is trying to
 connect with you. SessionInvitation message contains the unique session key
 which then can be used to establish a connection in session mode.
 
-If the client fails to send a JoinRelayRequest message within the first ping
+If the client fails to send a JoinSessionRequest message within the first ping
 interval, the connection is terminated.
 If the client fails to send a message (even if it's a ping message) every minute
 (by default), the connection is terminated.
