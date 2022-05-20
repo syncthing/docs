@@ -17,10 +17,10 @@ Description
 
 If some files should not be synchronized to (or from) other devices, a file called
 ``.stignore`` can be created containing file patterns to ignore. The
-``.stignore`` file must be placed in the root of the folder. The
+``.stignore`` file must be placed in the root of the synced folder (see :ref:`Folder concepts <getting-started>`). The
 ``.stignore`` file itself will never be synced to other devices, although it can
 ``#include`` files that *are* synchronized between devices. All patterns are
-relative to the folder root.
+relative to the synced folder root.
 The contents of the ``.stignore`` file must be UTF-8 encoded.
 
 .. note::
@@ -70,14 +70,14 @@ The ``.stignore`` file contains a list of file or path patterns. The
    you can type ``?banana?`` to match both ``[banana]`` and
    ``{banana}``, and so on.
 
--  A pattern beginning with ``/`` matches in the root of the folder only.
+-  A pattern beginning with ``/`` matches in the root of the synced folder only.
    ``/foo`` matches ``foo`` but not ``subdir/foo``.
 
 -  A pattern beginning with ``#include`` results in loading patterns
    from the named file. It is an error for a file to not exist or be
    included more than once. Note that while this can be used to include
    patterns from a file in a subdirectory, the patterns themselves are
-   still relative to the folder *root*. Example:
+   still relative to the synced folder *root*. Example:
    ``#include more-patterns.txt``.
 
 -  A pattern beginning with a ``!`` prefix negates the pattern: matching files
@@ -115,9 +115,10 @@ The ``.stignore`` file contains a list of file or path patterns. The
 Example
 -------
 
-Given a directory layout::
+Given a synced folder directory layout::
 
     .DS_Store
+    .stignore
     foo
     foofoo
     bar/
