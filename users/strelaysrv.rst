@@ -168,7 +168,7 @@ there are a couple of approaches available to you.
 One option is to run the relay on port 22067, and use an ``iptables`` rule
 to forward traffic from port 443 to port 22067, for example::
 
-    iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 22067
+    iptables -t nat -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 22067
 
 Or, if you're using ``ufw``, add the following to ``/etc/ufw/before.rules``::
 
@@ -176,7 +176,7 @@ Or, if you're using ``ufw``, add the following to ``/etc/ufw/before.rules``::
     :PREROUTING ACCEPT [0:0]
     :POSTROUTING ACCEPT [0:0]
 
-    -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 22067
+    -A PREROUTING -p tcp --dport 443 -j REDIRECT --to-port 22067
 
     COMMIT
 
