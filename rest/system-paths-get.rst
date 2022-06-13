@@ -1,6 +1,8 @@
 GET /rest/system/paths
 ======================
 
+.. versionadded:: 1.21.0
+
 Returns the path locations used internally for storing configuration, database,
 and others.
 
