@@ -81,21 +81,6 @@ Returns information about current system status and resource usage. The CPU perc
       },
       "myID": "P56IOI7-MZJNU2Y-IQGDREY-DM2MGTI-MGL3BXN-PQ6W5BM-TBBZ4TJ-XZWICQ2",
       "pathSeparator": "/",
-      "paths": {
-        "baseDir-config": "/home/user/.config/syncthing",
-	"baseDir-data": "/home/user/.local/share/syncthing",
-	"baseDir-userHome": "/home/user",
-	"certFile": "/home/user/.config/syncthing/cert.pem",
-	"config": "/home/user/.config/syncthing/config.xml",
-	"csrfTokens": "/home/user/.config/syncthing/csrftokens.txt",
-	"database": "/home/user/.local/share/syncthing/index-v0.14.0.db",
-	"defFolder": "/home/user/Sync",
-	"guiAssets": "/home/user/src/syncthing/gui",
-	"httpsCertFile": "/home/user/.config/syncthing/https-cert.pem",
-	"httpsKeyFile": "/home/user/.config/syncthing/https-key.pem",
-	"keyFile": "/home/user/.config/syncthing/key.pem",
-	"logFile": "-"
-      },
       "startTime": "2016-06-06T19:41:43.039284753+02:00",
       "sys": 42092792,
       "themes": [
@@ -122,7 +107,3 @@ Returns information about current system status and resource usage. The CPU perc
   for the ``error`` attribute means the method is running successfully.  This
   effectively deprecates the ``discoveryMethods`` attribute as well, which now
   always matches the number of entries in ``discoveryStatus``.
-
-.. versionadded:: 1.21.0
-
-  The ``paths`` dictionary mirrors the :doc:`system-paths-get` response.
