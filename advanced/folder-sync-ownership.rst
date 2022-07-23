@@ -31,7 +31,7 @@ with elevated permissions to enable ownership sync:
 
 - As root, in a Docker container, with the synced data mounted as a
   volume.
-- As a normal user, with extra capabilities granted the executable.
+- As a normal user, with extra capabilities granted to the executable.
 
 To grant extra capabilities, the following steps must be taken:
 
