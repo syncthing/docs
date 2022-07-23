@@ -16,7 +16,7 @@ data but pass it on unmodified, and vice versa.
 POSIX implementation
 --------------------
 
-Syncthing records both the numberical UID and GID for a file and the
+Syncthing records both the numerical UID and GID for a file and the
 corresponding user and group names, when they are known. When applying
 ownership Syncthing will first attempt to look up a local user or group with
 the given name, and if that fails it will fall back to the numerical UID and
