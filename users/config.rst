@@ -45,7 +45,7 @@ located:
     site request forgery).
 
 The database is stored either in the same directory as the config (usually the
-default), but may also be located in one of the following directories (Unix-like 
+default), but may also be located in one of the following directories (Unix-like
 platforms only):
 
 * If a database exists in the old default location, that location is
@@ -110,6 +110,7 @@ The following shows an example of a default configuration file (IDs will differ)
             <copyRangeMethod>standard</copyRangeMethod>
             <caseSensitiveFS>false</caseSensitiveFS>
             <junctionsAsDirs>false</junctionsAsDirs>
+            <syncOwnership>false</syncOwnership>
         </folder>
         <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
@@ -213,6 +214,7 @@ The following shows an example of a default configuration file (IDs will differ)
                 <copyRangeMethod>standard</copyRangeMethod>
                 <caseSensitiveFS>false</caseSensitiveFS>
                 <junctionsAsDirs>false</junctionsAsDirs>
+                <syncOwnership>false</syncOwnership>
             </folder>
             <device id="" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
                 <address>dynamic</address>
@@ -297,6 +299,7 @@ Folder Element
         <copyRangeMethod>standard</copyRangeMethod>
         <caseSensitiveFS>false</caseSensitiveFS>
         <junctionsAsDirs>false</junctionsAsDirs>
+        <syncOwnership>false</syncOwnership>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -570,6 +573,11 @@ The following child elements may exist:
     NTFS directory junctions are treated as ordinary directories, if this is set
     to ``true``.
 
+.. option:: folder.syncOwnership
+
+    File and directory ownership is synced when this is set to ``true``. See
+    :ref:`folder-sync-ownership` for more information.
+
 
 Device Element
 --------------
@@ -818,7 +826,7 @@ The following child elements may be present:
 
 .. option:: gui.unixSocketPermissions
 
-    When ``address`` is set to a UNIX socket location, set this to an octal value 
+    When ``address`` is set to a UNIX socket location, set this to an octal value
     to override the default permissions of the socket.
 
 .. option:: gui.user
@@ -1359,8 +1367,8 @@ be present in the ``defaults`` element:
 Listen Addresses
 ^^^^^^^^^^^^^^^^
 
-The following address types are accepted in sync protocol listen addresses. 
-If you want Syncthing to listen on multiple addresses, you can either: add 
+The following address types are accepted in sync protocol listen addresses.
+If you want Syncthing to listen on multiple addresses, you can either: add
 multiple ``<listenAddress>`` tags in the configuration file or enter several
 addresses separated by commas in the GUI.
 

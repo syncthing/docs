@@ -1,10 +1,12 @@
+.. _folder-sync-ownership:
+
 syncOwnership
 =============
 
 When enabled, Syncthing attempts to also synchronise ownership between
 devices. Ownership is divided into two kinds:
 
-- "POSIX" ownership, which is the Unix style UID and GID, and
+- "Unix" ownership, which is the Unix style UID and GID, and
 - "Windows" ownership, which the Windows file ownership concept.
 
 The two are not mixed -- that is, ownership information is not synchronised
@@ -13,8 +15,8 @@ Windows-to-Windows. Nonetheless Syncthing attempts to leave unknown
 ownership data intact: POSIX systems will not overwrite Windows ownership
 data but pass it on unmodified, and vice versa.
 
-POSIX implementation
---------------------
+Unix implementation
+-------------------
 
 Syncthing records both the numerical UID and GID for a file and the
 corresponding user and group names, when they are known. When applying
@@ -57,8 +59,3 @@ Windows implementation
 Syncthing records the account name of the owner, and whether it is a group
 or user. On the receiving side a user or group with the corresponding name
 is looked up and set as the owner.
-
-Elevated permissions
-~~~~~~~~~~~~~~~~~~~~
-
-Probably required?
