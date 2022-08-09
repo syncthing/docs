@@ -3,6 +3,8 @@
 syncOwnership
 =============
 
+.. versionadded:: 1.21.0
+
 When enabled, Syncthing attempts to also synchronise ownership between
 devices. Ownership is divided into two kinds:
 
