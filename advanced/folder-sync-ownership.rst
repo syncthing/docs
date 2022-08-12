@@ -1,5 +1,3 @@
-.. _folder-sync-ownership:
-
 syncOwnership
 =============
 
@@ -16,6 +14,10 @@ between POSIX and Windows systems, only POSIX-to-POSIX and
 Windows-to-Windows. Nonetheless Syncthing attempts to leave unknown
 ownership data intact: POSIX systems will not overwrite Windows ownership
 data but pass it on unmodified, and vice versa.
+
+.. note::
+  In order for there to be ownership information to apply, the peer device
+  must have either ``syncOwnership`` or :doc:`folder-scan-ownership` enabled.
 
 Unix implementation
 -------------------
@@ -61,3 +63,8 @@ Windows implementation
 Syncthing records the account name of the owner, and whether it is a group
 or user. On the receiving side a user or group with the corresponding name
 is looked up and set as the owner.
+
+On Windows, syncing ownership has a fairly significant performance impact on
+scan times.
+
+.. seealso:: :doc:`folder-scan-ownership`
