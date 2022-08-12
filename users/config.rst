@@ -579,12 +579,12 @@ The following child elements may exist:
 .. option:: folder.syncOwnership
 
     File and directory ownership is synced when this is set to ``true``. See
-    :ref:`folder-sync-ownership` for more information.
+    :doc:`/advanced/folder-sync-ownership` for more information.
 
 .. option:: folder.scanOwnership
 
     File and directory ownership information is scanned when this is set to
-    ``true``. See :ref:`folder-scan-ownership` for more information.
+    ``true``. See :doc:`/advanced/folder-scan-ownership` for more information.
 
 
 Device Element

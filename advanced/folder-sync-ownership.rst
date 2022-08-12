@@ -1,5 +1,3 @@
-.. _folder-sync-ownership:
-
 syncOwnership
 =============
 
@@ -19,7 +17,7 @@ data but pass it on unmodified, and vice versa.
 
 .. note::
   In order for there to be ownership information to apply, the peer device
-  must have either ``syncOwnership`` or :ref:`folder-scan-ownership` enabled.
+  must have either ``syncOwnership`` or :doc:`folder-scan-ownership` enabled.
 
 Unix implementation
 -------------------
@@ -66,4 +64,7 @@ Syncthing records the account name of the owner, and whether it is a group
 or user. On the receiving side a user or group with the corresponding name
 is looked up and set as the owner.
 
-.. seealso:: :ref:`folder-scan-ownership`
+On Windows, syncing ownership has a fairly significant performance impact on
+scan times.
+
+.. seealso:: :doc:`folder-scan-ownership`

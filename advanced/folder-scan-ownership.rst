@@ -1,5 +1,3 @@
-.. _folder-scan-ownership:
-
 scanOwnership
 =============
 
@@ -7,6 +5,9 @@ scanOwnership
 
 When enabled, Syncthing will record ownership for local files when they are
 scanned and send this information to peer devices. Peer devices configured
-to :ref:`sync ownership <folder-sync-ownership>` will use this information.
+to :doc:`sync ownership <folder-sync-ownership>` will use this information.
 
-.. seealso:: :ref:`folder-sync-ownership`
+On Windows, scanning ownership information has a fairly significant
+performance impact on scan times.
+
+.. seealso:: :doc:`folder-sync-ownership`
