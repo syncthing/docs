@@ -111,6 +111,7 @@ The following shows an example of a default configuration file (IDs will differ)
             <caseSensitiveFS>false</caseSensitiveFS>
             <junctionsAsDirs>false</junctionsAsDirs>
             <syncOwnership>false</syncOwnership>
+            <scanOwnership>false</scanOwnership>
         </folder>
         <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
@@ -215,6 +216,7 @@ The following shows an example of a default configuration file (IDs will differ)
                 <caseSensitiveFS>false</caseSensitiveFS>
                 <junctionsAsDirs>false</junctionsAsDirs>
                 <syncOwnership>false</syncOwnership>
+                <scanOwnership>false</scanOwnership>
             </folder>
             <device id="" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
                 <address>dynamic</address>
@@ -300,6 +302,7 @@ Folder Element
         <caseSensitiveFS>false</caseSensitiveFS>
         <junctionsAsDirs>false</junctionsAsDirs>
         <syncOwnership>false</syncOwnership>
+        <scanOwnership>false</scanOwnership>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -577,6 +580,11 @@ The following child elements may exist:
 
     File and directory ownership is synced when this is set to ``true``. See
     :ref:`folder-sync-ownership` for more information.
+
+.. option:: folder.scanOwnership
+
+    File and directory ownership information is scanned when this is set to
+    ``true``. See :ref:`folder-scan-ownership` for more information.
 
 
 Device Element
