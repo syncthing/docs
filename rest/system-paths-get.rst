@@ -9,6 +9,7 @@ and others.
 .. code-block:: json
 
     {
+      "auditLog": "/home/user/.local/share/syncthing/audit-${timestamp}.log",
       "baseDir-config": "/home/user/.config/syncthing",
       "baseDir-data": "/home/user/.local/share/syncthing",
       "baseDir-userHome": "/home/user",
@@ -21,5 +22,6 @@ and others.
       "httpsCertFile": "/home/user/.config/syncthing/https-cert.pem",
       "httpsKeyFile": "/home/user/.config/syncthing/https-key.pem",
       "keyFile": "/home/user/.config/syncthing/key.pem",
-      "logFile": "-"
+      "logFile": "-",
+      "panicLog": "/home/user/.local/share/syncthing/panic-${timestamp}.log"
     }
