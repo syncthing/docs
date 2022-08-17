@@ -14,34 +14,33 @@ defaults to "no file versioning", i.e. no old copies of files are kept.
     Bob. If Alice changes a file locally on her own computer Syncthing will
     not and can not archive the old version. 
     
-    Consider a scenario to understand some more about versioning. 
-    Say we have 3 devices `D1`,` D2`, and `D3` syncing a file F1. All 3 
-    devices know of each other. The initial version of F1 synced with all 3 
-    devices `F1-0`. Say we are using simple file versioning which stores a 
-    predetermined number of past versions of a file inside a `.stversions`
-    folder.  `D1` makes successive changes to `F1` resulting in versions 
-    `F1-D1-1`, `F1-D1-2`, `F1-D1-3`. While `D1` is making changes to the file
-    D2 is awake and at each change it would sync the files new version to 
-    make it "primary" and save the most recent version it knew of according
-    to the versioning scheme, which for this example is simple file versioning.
-    So after first change, `D2` would have `F1-D1-1` as the "primary"
-    file and `F1-0` as the old version in `.stversions`. After second change `D2`
-    would have `F1-D1-2` as the "primary" file , and `F1-0`, and `F1-D1-1` as old 
-    versions in `.stversions`. Similarly after third change `F1-D1-3` would be the 
-    "primary" version on `D2`, and `F1-0`, `F1-D1-1`, and `F1-D1-2` would be the 
-    old versions in `.stversions`. However, while `D2` stores all the versions, 
-    `D1` actually only knows about a single version `F1-D1-3` and the `.stversions`
-    directory on `D1` would be empty. Say `D3` comes online after editing is over. 
-    Before coming online `D3` had the `F1-0` as the primary version. It receives 
-    the updated file from `D1` which is `F1-D1-3`. So it would set `F1-D1-3` as the "primary"
-    and put `F1-0` in `.stversions`. Note that `D3` would NOT know about `F1-D1-1`
-    and `F1-D1-2` under any circumstances. Yes, `D3` knows about `D2`, and yes
-    `D2` has all 4 version of the file, but `D3` would only know of a single old version 
-    besides the "primary version". And `D1` would only ever know of the "primary" version
-    without knowing about any past versions, after all is said and done. 
+    Consider a more detailed scenario to understand some nuances of versioning.
+    Sat Putin, Xinping and Biden are working on a treaty and use Syncthing to
+    keep the changes in synchronization.  Their devices use simple file versioning
+    which stores a  predetermined number of past versions of a file inside a 
+    `.stversions`  folder.
     
-
-.. .. stconf:option:: folder.versioning
+    The first version of the treaty is version 1 and synced to all devices. 
+        
+    Say  Xi Jinping wants to make some changes to the treaty. He does so and saves it.
+    Thus this becomes version 2 of the treaty. 
+    Upon detecting a change in the filesystem copy of treaty, Syncthing decides 
+    to sync it with all connected devices. Biden happens to be sleeping so the sync
+    to Biden's device would fail but Putin's device would see version 2 and save it
+    as the "primary version". In doing so, it would move version 1 to `.stversions` folder.
+    Do note that Syncthing doesn't save versions changed locally so Jinping's `.stversions` 
+    is empty. 
+    
+    Say Jinping makes another change to make a version 3 of the treaty. This again gets
+    synced to Putin's computer leaving him with version 3 as the "primary version" and 
+    version 1 and version 2 in this `.stversions` folder. Again, Jinping's computer only
+    has version 3 and nothing in `.stversions`. Syncing to Biden's computer fails. 
+    After a while, Biden gets up and connects his device. Syncthing tries to bring his
+    files up to date and fetches him the latest version, which is version 3 of the treaty.
+    Since Biden had version 1 previously on his device, that gets moved to `.stversions`. 
+    Notice that Biden's computer doesn't have version 2 despite Putin's having it. 
+    
+    .. .. stconf:option:: folder.versioning
 
     .. todo:: Describe element attributes!
     .. string              type               = 1[(ext.xml) = "type,attr"];
