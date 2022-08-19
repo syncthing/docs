@@ -115,7 +115,7 @@ The ``.stignore`` file contains a list of file or path patterns. The
 Example
 -------
 
-Given a synced folder directory layout::
+Given a directory layout starting at the synced folder's root::
 
     .DS_Store
     .stignore
