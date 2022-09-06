@@ -50,6 +50,10 @@ macOS
 Linux
 ~~~~~
 
+- `SyncThingy <https://github.com/zocker-160/SyncThingy>`_
+
+  Simple tray incidator written in C++ targeted at Flatpak users.
+
 - `Syncthing Icon <https://extensions.gnome.org/extension/989/syncthing-icon/>`_
 
   A GNOME Shell extension displaying a Syncthing status icon in the top bar.
