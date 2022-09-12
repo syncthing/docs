@@ -57,6 +57,10 @@ Example commands of setting Syncthing up in this manner::
 .. note:: Note that automated upgrades cannot be used with Syncthing elevated
    in this manner as any automated upgrade would undo the capabilities granted.
 
+When using systemd to start the service automatically, the capabilities can be
+set in the unit file instead of touching the executable, see
+:ref:`autostart-systemd-permissions`.
+
 Windows implementation
 ----------------------
 
