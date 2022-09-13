@@ -439,6 +439,8 @@ To see the logs for the user service::
 
     journalctl -e --user-unit=syncthing.service
 
+.. _autostart-systemd-permissions:
+
 Permissions
 ^^^^^^^^^^^
 
@@ -446,6 +448,15 @@ If you enabled the ``Ignore Permissions`` option in the Syncthing client's
 folder settings, then you will also need to add the line ``UMask=0002`` (or any
 other `umask setting <https://www.tech-faq.com/umask.html>`_ you like) in the
 ``[Service]`` section of the ``syncthing@.service`` file.
+
+For the :doc:`/advanced/folder-sync-ownership` option to work, you can
+grant extra capabilities to the service via the systemd unit file.
+Add the following snippet to the service file (commented out in the
+provided template).  To ensure smooth upgrades, keeping it in an
+override file using ``systemd edit ...`` is advised::
+
+    [Service]
+    AmbientCapabilities=CAP_CHOWN CAP_FOWNER
 
 Debugging
 ^^^^^^^^^
