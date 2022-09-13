@@ -15,30 +15,31 @@ defaults to "no file versioning", i.e. no old copies of files are kept.
     not and can not archive the old version. 
     
     Consider a more detailed scenario to understand some nuances of versioning.
-    Sat Putin, Xinping and Biden are working on a treaty and use Syncthing to
-    keep the changes in synchronization.  Their devices use simple file versioning
+    Say Adam, Bob, Charles are planning a trip and using Syncthing to keep their 
+    trip plan in synchronization. Their devices use simple file versining
     which stores a  predetermined number of past versions of a file inside a 
-    `.stversions`  folder.
+    `.stversions` folder.
     
-    The first version of the treaty is version 1 and synced to all devices. 
+    The first version of the trip plan is version 1 and synced to all devices. 
         
-    Say  Xi Jinping wants to make some changes to the treaty. He does so and saves it.
-    Thus this becomes version 2 of the treaty. 
-    Upon detecting a change in the filesystem copy of treaty, Syncthing decides 
-    to sync it with all connected devices. Biden happens to be sleeping so the sync
-    to Biden's device would fail but Putin's device would see version 2 and save it
+    Say Adam to make some changes to the trip plan. He does so and saves it.
+    Thus this becomes version 2 of the trip plan. 
+    Upon detecting a change in the filesystem's copy of trip plan, Syncthing decides 
+    to sync it with all connected devices. Bob happens to be sleeping so the sync
+    to Bob's device would fail but Charles's device would see version 2 and save it
     as the "primary version". In doing so, it would move version 1 to `.stversions` folder.
-    Do note that Syncthing doesn't save versions changed locally so Jinping's `.stversions` 
+    Do note that Syncthing doesn't save versions changed locally so Adam's `.stversions` 
     is empty. 
     
-    Say Jinping makes another change to make a version 3 of the treaty. This again gets
-    synced to Putin's computer leaving him with version 3 as the "primary version" and 
-    version 1 and version 2 in this `.stversions` folder. Again, Jinping's computer only
-    has version 3 and nothing in `.stversions`. Syncing to Biden's computer fails. 
-    After a while, Biden gets up and connects his device. Syncthing tries to bring his
+    Say Adam makes another change to make a version 3 of the treaty. This again gets
+    synced to Charles's computer leaving him with version 3 as the "primary version" and 
+    version 1 and version 2 in this `.stversions` folder. Again, Adam's computer only
+    has version 3 and nothing in `.stversions`. Syncing to Bob's computer fails again
+    since he's sleeping. After a while, Bob gets up and connects his device.
+    Syncthing tries to bring his
     files up to date and fetches him the latest version, which is version 3 of the treaty.
-    Since Biden had version 1 previously on his device, that gets moved to `.stversions`. 
-    Notice that Biden's computer doesn't have version 2 despite Putin's having it. 
+    Since Bob had version 1 previously on his device, that gets moved to `.stversions`. 
+    Notice that Bob's `.stversions` doesn't have version 2 despite Charles's having it. 
     
     .. .. stconf:option:: folder.versioning
 
@@ -275,3 +276,4 @@ The only caveat that you should be aware of is that if your Syncthing
 folder is located on a portable storage, such as a USB stick, or if you
 have the Recycle Bin disabled, then the script will end up deleting all
 files permanently.
+
