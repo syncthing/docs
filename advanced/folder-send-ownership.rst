@@ -1,7 +1,7 @@
-scanOwnership
+sendOwnership
 =============
 
-.. versionadded:: 1.21.0
+.. versionadded:: 1.22.0
 
 When enabled, Syncthing will record ownership for local files when they are
 scanned and send this information to peer devices. Peer devices configured

@@ -17,7 +17,7 @@ data but pass it on unmodified, and vice versa.
 
 .. note::
   In order for there to be ownership information to apply, the peer device
-  must have either ``syncOwnership`` or :doc:`folder-scan-ownership` enabled.
+  must have either ``syncOwnership`` or :doc:`folder-send-ownership` enabled.
 
 Unix implementation
 -------------------
@@ -71,4 +71,4 @@ is looked up and set as the owner.
 On Windows, syncing ownership has a fairly significant performance impact on
 scan times.
 
-.. seealso:: :doc:`folder-scan-ownership`
+.. seealso:: :doc:`folder-send-ownership`
