@@ -65,6 +65,10 @@ Linux
 - `syncthing-quick-status <https://github.com/serl/syncthing-quick-status>`_
 
   Small bash application with minimal dependencies, for a simple colorful representation of the current status.
+  
+- `syncthing-quick-status <https://github.com/abdeoliveira/syncthing-tray-gtk3>`_
+
+  Yet another Syncthing tray icon indicator written in Ruby.
 
 Command Line Tools
 ------------------
