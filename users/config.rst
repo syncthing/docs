@@ -310,7 +310,7 @@ Folder Element
         <syncOwnership>false</syncOwnership>
         <scanOwnership>false</scanOwnership>
         <syncXattrs>false</syncXattrs>
-        <scanXattrs>false</scanXattrs>
+        <sendXattrs>false</sendXattrs>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
