@@ -3,7 +3,7 @@ syncXattrs
 
 .. versionadded:: 1.22.0
 
-When enabled, Syncthing attempts to also synchronise filesystem extended
+When enabled, Syncthing attempts to also synchronize filesystem extended
 attributes between devices.
 
 Extended attributes are recorded and synced on a per-operating system basis.
