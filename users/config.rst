@@ -222,7 +222,7 @@ The following shows an example of a default configuration file (IDs will differ)
                 <syncOwnership>false</syncOwnership>
                 <scanOwnership>false</scanOwnership>
                 <syncXattrs>false</syncXattrs>
-                <scanXattrs>false</scanXattrs>
+                <sendXattrs>false</sendXattrs>
             </folder>
             <device id="" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
                 <address>dynamic</address>
