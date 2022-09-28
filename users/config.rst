@@ -115,7 +115,7 @@ The following shows an example of a default configuration file (IDs will differ)
             <syncOwnership>false</syncOwnership>
             <scanOwnership>false</scanOwnership>
             <syncXattrs>false</syncXattrs>
-            <scanXattrs>false</scanXattrs>
+            <sendXattrs>false</sendXattrs>
         </folder>
         <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
