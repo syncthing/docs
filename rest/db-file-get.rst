@@ -2,9 +2,11 @@ GET /rest/db/file
 =================
 
 Returns most data available about a given file, including version and
-availability. Takes ``folder`` and ``file`` parameters.
+availability. Takes ``folder`` and ``file`` parameters. ``local`` and
+``global`` refer to the current file on disk and the globally newest file,
+respectively.
 
-.. code-block:: json
+.. code-block::
 
     {
       "availability": [
@@ -13,43 +15,65 @@ availability. Takes ``folder`` and ``file`` parameters.
           "fromTemporary": false
         }
       ],
-      "global": {
+      "global": { /* a file entry */ },
+      "local": { /* a file entry */ }
+    }
+
+A file entry looks like this::
+
+    {
+      {
         "deleted": false,
         "ignored": false,
+        "inodeChange": "1970-01-01T01:00:00+01:00",
         "invalid": false,
         "localFlags": 0,
-        "modified": "2018-08-18T12:21:13.836784059+02:00",
-        "modifiedBy": "SYNO4VL",
+        "modified": "2022-09-28T08:07:19.979723+02:00",
+        "modifiedBy": "523ITIE",
         "mustRescan": false,
-        "name": "testfile",
+        "name": "img",
         "noPermissions": false,
-        "numBlocks": 1,
+        "numBlocks": 0,
         "permissions": "0755",
-        "sequence": 107499,
-        "size": 1234,
-        "type": 0,
+        "platform": { /* platform specific data */ },
+        "sequence": 914,
+        "size": 128,
+        "type": "FILE_INFO_TYPE_DIRECTORY",
         "version": [
-          "SYNO4VL:1"
+          "523ITIE:1664345275"
         ]
       },
-      "local": {
-        "deleted": false,
-        "ignored": false,
-        "invalid": false,
-        "localFlags": 0,
-        "modified": "2018-08-18T12:21:13.836784059+02:00",
-        "modifiedBy": "SYNO4VL",
-        "mustRescan": false,
-        "name": "testfile",
-        "noPermissions": false,
-        "numBlocks": 1,
-        "permissions": "0755",
-        "sequence": 111038,
-        "size": 1234,
-        "type": 0,
-        "version": [
-          "SYNO4VL:1"
-        ]
+      "mtime": {
+        "err": null,
+        "value": {
+          "real": "0001-01-01T00:00:00Z",
+          "virtual": "0001-01-01T00:00:00Z"
+        }
       }
     }
 
+Platform specific data may be ownership, extended attributes, etc. and is
+divided into entries per operating system / platform. An example platform
+entry containing ownership information for Unix systems and an extended
+attribute for macOS ("darwin") looks as follows::
+
+    {
+      "darwin": {
+        "xattrs": [
+          {
+            "name": "net.kastelo.xattrtest",
+            "value": "aGVsbG8="
+          }
+        ]
+      },
+      "freebsd": null,
+      "linux": null,
+      "netbsd": null,
+      "unix": {
+        "gid": 20,
+        "groupName": "staff",
+        "ownerName": "jb",
+        "uid": 501
+      },
+      "windows": null
+    }
