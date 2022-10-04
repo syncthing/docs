@@ -79,7 +79,7 @@ The following shows an example of a default configuration file (IDs will differ)
 
 .. code-block:: xml
 
-    <configuration version="35">
+    <configuration version="37">
         <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
             <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" introducedBy="">
@@ -114,6 +114,8 @@ The following shows an example of a default configuration file (IDs will differ)
             <junctionsAsDirs>false</junctionsAsDirs>
             <syncOwnership>false</syncOwnership>
             <sendOwnership>false</sendOwnership>
+            <syncXattrs>false</syncXattrs>
+            <sendXattrs>false</sendXattrs>
         </folder>
         <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
@@ -219,6 +221,8 @@ The following shows an example of a default configuration file (IDs will differ)
                 <junctionsAsDirs>false</junctionsAsDirs>
                 <syncOwnership>false</syncOwnership>
                 <sendOwnership>false</sendOwnership>
+                <syncXattrs>false</syncXattrs>
+                <sendXattrs>false</sendXattrs>
             </folder>
             <device id="" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
                 <address>dynamic</address>
@@ -239,7 +243,7 @@ Configuration Element
 
 .. code-block:: xml
 
-    <configuration version="35">
+    <configuration version="37">
         <folder></folder>
         <device></device>
         <gui></gui>
@@ -305,6 +309,8 @@ Folder Element
         <junctionsAsDirs>false</junctionsAsDirs>
         <syncOwnership>false</syncOwnership>
         <sendOwnership>false</sendOwnership>
+        <syncXattrs>false</syncXattrs>
+        <sendXattrs>false</sendXattrs>
     </folder>
 
 One or more ``folder`` elements must be present in the file. Each element
@@ -587,6 +593,17 @@ The following child elements may exist:
 
     File and directory ownership information is scanned when this is set to
     ``true``. See :doc:`/advanced/folder-send-ownership` for more information.
+
+.. option:: folder.syncXattrs
+
+    File and directory extended attributes are synced when this is set to
+    ``true``. See :doc:`/advanced/folder-sync-xattrs` for more information.
+
+.. option:: folder.sendXattrs
+
+    File and directory extended attributes are scanned and sent to other
+    devices when this is set to ``true``. See
+    :doc:`/advanced/folder-send-xattrs` for more information.
 
 
 Device Element

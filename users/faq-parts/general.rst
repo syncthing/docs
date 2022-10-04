@@ -32,17 +32,19 @@ The following may be synchronized or not, depending:
 -  File permissions (when supported by file system; on Windows only the
    read only bit is synchronized)
 -  Symbolic links (synced, except on Windows, but never followed)
+-  File or directory owners and groups (when enabled)
+-  Extended attributes (when enabled)
+-  POSIX or NFS ACLs (as part of extended attributes)
 
 The following are *not* synchronized;
 
--  File or directory owners and Groups (not preserved)
 -  Directory modification times (not preserved)
 -  Hard links (followed, not preserved)
 -  Windows junctions (synced as ordinary directories; require enabling in
    :stconf:opt:`the configuration <folder.junctionsAsDirs>` on a per-folder
    basis)
--  Extended attributes, resource forks (not preserved)
--  Windows, POSIX or NFS ACLs (not preserved)
+-  Resource forks (not preserved)
+-  Windows ACLs (not preserved)
 -  Devices, FIFOs, and other specials (ignored)
 -  Sparse file sparseness (will become sparse, when supported by the OS & filesystem)
 
