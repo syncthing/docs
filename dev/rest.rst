@@ -120,6 +120,5 @@ Calls that do not require authentication
 
 .. toctree::
    :maxdepth: 1
-   :glob:
 
    /rest/noauth/... <../rest/noauth.rst>
