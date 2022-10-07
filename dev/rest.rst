@@ -16,6 +16,9 @@ the configuration file. To use an API key, set the request header
 "X-API-Key: abc123" http://localhost:8384/rest/...`` can be used to invoke
 with ``curl`` (add ``-k`` flag when using HTTPS with a Syncthing generated or self signed certificate).
 
+One exception to this requirement is ``/rest/noauth``, you do not need an API
+key to use those endpoints.
+
 .. _rest-pagination:
 
 Result Pagination
@@ -109,3 +112,14 @@ Debug Endpoints
    :maxdepth: 1
 
    /rest/debug/... <../rest/debug.rst>
+
+Noauth Endpoints
+----------------
+
+Calls that do not require authentication
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   /rest/noauth/... <../rest/noauth.rst>
