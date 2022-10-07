@@ -116,7 +116,7 @@ Debug Endpoints
 Noauth Endpoints
 ----------------
 
-Calls that do not require authentication
+Calls that do not require authentication.
 
 .. toctree::
    :maxdepth: 1
