@@ -124,4 +124,4 @@ Calls that do not require authentication.
    :maxdepth: 1
    :glob:
 
-   ../rest/noauth/-*
+   ../rest/noauth-*
