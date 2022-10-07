@@ -17,7 +17,9 @@ the configuration file. To use an API key, set the request header
 with ``curl`` (add ``-k`` flag when using HTTPS with a Syncthing generated or self signed certificate).
 
 One exception to this requirement is ``/rest/noauth``, you do not need an API
-key to use those endpoints.
+key to use those endpoints. This way third-party devices and services can do
+simple calls that don't expose sensitive information without having to expose
+your API key.
 
 .. _rest-pagination:
 
@@ -120,5 +122,6 @@ Calls that do not require authentication.
 
 .. toctree::
    :maxdepth: 1
+   :glob:
 
-   /rest/noauth/... <../rest/noauth.rst>
+   ../rest/noauth/-*
