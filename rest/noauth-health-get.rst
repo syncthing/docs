@@ -1,5 +1,5 @@
 GET /rest/noauth/health
------------------------
+=======================
 
 Returns a ``{"status": "OK"}`` object.
 
