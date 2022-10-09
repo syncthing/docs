@@ -156,4 +156,4 @@ normally hidden. If the temporary file name would be too long due to the additio
     considered Syncthing namespace, meaning that any files whose names
     start with them will automatically be ignored and excluded from
     synchronisation by Syncthing. Please avoid using these prefixes in
-    your filenames if you want those files to be synchronized.
+    your filenames.
