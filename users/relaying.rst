@@ -39,7 +39,7 @@ knows your IP and device ID. In that respect it is similar to a discovery
 server. The relay operator can see the amount of traffic flowing between
 devices.
 
-Running Your Own Relay
+Runnincrdocs/users/relaying.rstg Your Own Relay
 ----------------------
 
 See :ref:`strelaysrv`.
