@@ -146,7 +146,7 @@ procedure for your operating system.
 Client configuration
 ~~~~~~~~~~~~~~~~~~~~
 
-Syncthing can be configured to use specific relay servers (exclusively from the public pool) by adding the required servers to the Sync Protocol Listen Address field, under Actions and Settings. The format is as follows::
+Syncthing can be configured to use specific relay servers (in addition to public pool) by adding the required servers to the Sync Protocol Listen Address field, under Actions and Settings. The format is as follows::
 
   relay://<host name|IP>[:port]/?id=<relay device ID>
 
