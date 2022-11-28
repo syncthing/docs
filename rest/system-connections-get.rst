@@ -2,7 +2,7 @@ GET /rest/system/connections
 ============================
 
 
-.. note:: Return format changed in versions 0.13.0 and 1.19.0.
+.. note:: Return format changed in versions 0.13.0, 1.19.0 and 1.23.0.
 
 
 Returns the list of configured devices and some metadata associated
