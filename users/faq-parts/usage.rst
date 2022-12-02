@@ -269,13 +269,13 @@ How do I reset the GUI password?
 --------------------------------
 
 If you've forgotten / lost the GUI password, you can reset it using the
-:option:`--gui-password` (and possibly :option:`--gui-user`) options to the
-``syncthing generate`` subcommand.  This should be done while Syncthing is not
+:option:`syncthing cli config gui password` (and possibly :option:`syncthing cli config gui user`) subcommands.  This should be done while Syncthing is not
 running.
 
 1. Stop Syncthing: ``syncthing cli operations shutdown``
-2. ``syncthing generate --gui-password=myNewPassword --gui-user=newUserName``
-3. Restart Syncthing as usual.
+2. ``syncthing cli config gui user set newUserName``
+3. ``syncthing cli config gui password set myNewPassword``
+4. Restart Syncthing as usual.
 
 *Alternatively, in step 2*, you can manually delete the :stconf:opt:`<user>
 <gui.user>` and :stconf:opt:`<password> <gui.password>` XML tags from the
