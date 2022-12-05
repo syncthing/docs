@@ -269,7 +269,8 @@ How do I reset the GUI password?
 --------------------------------
 
 If you've forgotten / lost the GUI password, you can reset it using the
-:option:`syncthing cli config gui password` (and possibly :option:`syncthing cli config gui user`) subcommands.  
+``syncthing cli config gui password`` (and possibly ``syncthing cli 
+config gui user``) subcommands.  
 
 1. ``syncthing cli config gui user set newUserName``
 2. ``syncthing cli config gui password set myNewPassword``
