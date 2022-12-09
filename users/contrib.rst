@@ -177,7 +177,7 @@ Official ports: `syncthing <https://cvsweb.openbsd.org/cgi-bin/cvsweb/ports/net/
 OpenSUSE
 ~~~~~~~~
 
-Official packages: `syncthing <https://software.opensuse.org/package/syncthing>`__ and `syncthingtray <https://software.opensuse.org/package/syncthingtray>`__
+Official packages: `syncthing <https://software.opensuse.org/package/syncthing>`__ and `qsyncthingtray <https://software.opensuse.org/package/qsyncthingtray>`__
 
 Synology NAS (DSM)
 ~~~~~~~~~~~~~~~~~~
