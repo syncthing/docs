@@ -94,7 +94,7 @@ The ``.stignore`` file contains a list of file or path patterns. The
    they are preventing directory deletion. This prefix should be used by any OS
    generated files which you are happy to be removed.
 
--  A line beginning with ``//`` is a comment and has no effect.
+-  A line beginning with ``//`` is a comment and has no effect. Putting it in the middle of the line (e.g. `file // comment`) will have it literally ignore a file named `file // comment`, which is a valid path in Unix
 
 .. note::
 
