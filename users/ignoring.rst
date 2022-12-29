@@ -94,7 +94,9 @@ The ``.stignore`` file contains a list of file or path patterns. The
    they are preventing directory deletion. This prefix should be used by any OS
    generated files which you are happy to be removed.
 
--  A line beginning with ``//`` is a comment and has no effect.
+-  A line beginning with ``//`` is a comment and has no effect. The same double 
+   slashes in any other place are interpreted literally, e.g. trying to do
+   ``file // comment`` will make Syncthing look for a file called ``file // comment``.
 
 .. note::
 
