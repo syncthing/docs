@@ -84,11 +84,10 @@ Command Line Tools
 
 - `syncthing-map <https://github.com/wsw70/syncthing-map>`_
 
-  A utility to map Syncthing devices and shared folders.  Generates a
-  visual representation of the relationships between several devices
-  and their respective folders, including special folder types
-  (send-only, receive-only).  Requires each device's XML configuration
-  file as input.
+  A cross-platform utility to map Syncthing devices and shared folders.
+  Generates a visual representation of the relationships between several devices
+  and their respective folders, including special folder types (send-only,
+  receive-only).  Requires each device's XML configuration file as input.
 
 
 Packages and Bundlings
