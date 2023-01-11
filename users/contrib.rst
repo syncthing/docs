@@ -78,6 +78,17 @@ Command Line Tools
   Syncthing Cli - a simple command line tool for getting status and performing basic operations from
   the shell / terminal without need of a web browser.
 
+- `syncthing-graph <https://gitlab.com/andrea-trentini/syncthing-graph>`_
+
+  Very simple graph (dot format) generator for Syncthing ``config.xml``.
+
+- `syncthing-map <https://github.com/wsw70/syncthing-map>`_
+
+  A cross-platform utility to map Syncthing devices and shared folders.
+  Generates a visual representation of the relationships between several devices
+  and their respective folders, including special folder types (send-only,
+  receive-only).  Requires each device's XML configuration file as input.
+
 
 Packages and Bundlings
 ----------------------
