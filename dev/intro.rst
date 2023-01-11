@@ -147,11 +147,8 @@ script/
    genassets/
       Generates asset files that are compiled into ``syncthing`` as part of the build process (build utility).
 
-   transifexdl/
-      Downloads translations from Transifex (build utility).
-
    translate/
-      Generates translation source for Transifex based on the HTML source (build utility).
+      Generates translation source based on the HTML source (build utility).
 
 test/
    The integration test suite.
