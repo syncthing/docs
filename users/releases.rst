@@ -164,3 +164,14 @@ are on the candidate channel, your Syncthing will "upgrade" from
 .. [1] SemVer-*like* because semver is absolutist about what constitutes an
        API change, in a way that isn't super helpful to the average user of a
        program like Syncthing.
+
+Historical Releases
+-------------------
+
+This table lists the historically released versions of Syncthing, which Go
+version they were built with, and which date they were released.
+
+.. csv-table:: Syncthing Releases
+   :file: releases.csv
+   :header-rows: 1
+   :align: left
