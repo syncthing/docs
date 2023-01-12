@@ -25,6 +25,7 @@ Usage
 
    ignoring
    versioning
+   versions
 
    stdiscosrv
    strelaysrv
