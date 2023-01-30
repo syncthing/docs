@@ -5,14 +5,14 @@ Untrusted (Encrypted) Devices
 =============================
 
 It is possible to set a password on a folder when it's shared with another
-device. Data sent will be encrypted by this password, and data received will
-be decrypted by the same password.
+device. Data sent will be encrypted at rest by this password, and data
+received will be decrypted by the same password.
 
 .. note::
 
     The data is encrypted using both the password and the folder ID. You
     shouldn't ever need the folder ID as it's stored in the folder marker,
-    however to be on the safe side make sure you store both securely and
+    however to be on the safe side, make sure you store both securely and
     reliably.
 
 As an example, lets assume a *trusted* device ``T1``, maybe your laptop. You
