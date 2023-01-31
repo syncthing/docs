@@ -7,8 +7,6 @@ What if there is a conflict?
 .. seealso::
     :ref:`conflict-handling`
 
-.. _marker-faq:
-
 How do I sync files when only one of my devices is online?
 ----------------------------------------------------------
 Syncthing is a peer-to-peer system. Given two devices, both of them need to
@@ -19,10 +17,11 @@ other has entered sleep mode, then suspend the first laptop and resume the
 second.
 
 The solution is to sync with a device that's always online, such as a cloud
-server on which you can install Syncthing. Any Linux VPS will do. As a best
-practice, you may want to have the folder encrypted on that device (see
-:doc:`/users/untrusted`).
+server on which you can install Syncthing. Any virtual private server will do.
+You may want to have the folder encrypted on that device (see :doc:`/users/untrusted`),
+but beware that the feature is in beta.
 
+.. _marker-faq:
 
 How do I serve a folder from a read only filesystem?
 ----------------------------------------------------
