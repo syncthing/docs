@@ -1,7 +1,7 @@
-xattrFilter
-==========
+Extended Attributes Filter
+==========================
 
-The extended attribute filter is used to manage which attributes should
+The extended attributes filter is used to manage which attributes should
 be synced or sent and which ones should not be.
 
 Default Behaviour
