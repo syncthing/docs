@@ -2,7 +2,14 @@ xattrFilter
 ===========
 
 The extended attributes filter is used to manage which attributes should
-be synced or sent and which ones should not be.
+be synced and which ones should not be.
+
+When the filter shows
+---------------------
+
+The ability to manipulate the extended attributes filter in the advanced
+panel of a folder configuration only appears after enabling the 
+``Sync Extended Attributes`` option.
 
 Default Behaviour
 -----------------
