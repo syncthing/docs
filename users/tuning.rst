@@ -135,24 +135,22 @@ Tuning for Low Resources
 You have limited resources and want Syncthing to use as few as possible. You
 care less about performance.
 
-- General Options:
+General options:
 
-    - :option:`progressUpdateIntervalS`: Set to -1 to disable progress updates. Progress updates aren't absolutely essential and consume some amount of CPU and memory.
-    - :option:`maxFolderConcurrency`
-    - :option:`databaseTuning`
-    - :option:`maxConcurrentIncomingRequestKiB`
+- :opt:`progressUpdateIntervalS`
+    Set to -1 to disable progress updates. Progress updates aren't
+    absolutely essential and consume some amount of CPU and memory.
+
+- :opt:`maxFolderConcurrency`
+- :opt:`databaseTuning`
+- :opt:`maxConcurrentIncomingRequestKiB`
 
 - Folders:
 
-    - :option:`fsWatcherEnabled`
-    - :option:`copiers, hashers`
-    - :option:`pullerMaxPendingKiB`
-    - :option:`order`
-    - :option:`scanProgressIntervalS`
-    - :option:`weakHashThresholdPct`
-    - :option:`maxConcurrentWrites`
-    - :option:`disableFsync`
-    - :option:`blockPullOrder`
-    - :option:`copyRangeMethod`
-    - :option:`caseSensitiveFS`
-    - :option:`syncOwnership/syncXattrs, sendOwnership/sendXattrs`
+- :opt:`fsWatcherEnabled`
+- :opt:`copiers`, :opt:`hashers`
+- :opt:`pullerMaxPendingKiB`
+- :opt:`scanProgressIntervalS`
+- :opt:`weakHashThresholdPct`
+- :opt:`maxConcurrentWrites`
+- :opt:`caseSensitiveFS`
