@@ -108,7 +108,7 @@ These options are folder specific and should be set on each folder:
 - :opt:`copyRangeMethod`
     If your underlying filesystem supports it, you may see a performance
     increase by enabling a copy-on-write method, as it reduces the amount od
-    data actually copied on disk whn syncing files.
+    data actually copied on disk when syncing files.
 
 - :opt:`caseSensitiveFS`
     If your underlying filesystem is case sensitive, you may see a
