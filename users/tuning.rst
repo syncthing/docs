@@ -32,7 +32,7 @@ First some general options:
     then syncing many folders concurrently may be beneficial.
 
 - :opt:`databaseTuning`
-    Set to `large`. Regardless of the size of the actual database, this
+    Set to ``large``. Regardless of the size of the actual database, this
     increases a number of buffers and settings to optimize for higher
     throughput.
 
@@ -127,7 +127,8 @@ Other things:
   control the garbage collector. For large setups, setting ``GOMEMLIMIT`` to
   the desired max amount of memory Syncthing should use can improve
   performance. The reason is that this reduces garbage collector frequency
-  during lower memory usage.
+  during lower memory usage. Read more in the `Go
+  GC guide <https://golang.org/doc/gc-guide>`__.
 
 Tuning for Low Resources
 ------------------------
@@ -142,15 +143,50 @@ General options:
     absolutely essential and consume some amount of CPU and memory.
 
 - :opt:`maxFolderConcurrency`
-- :opt:`databaseTuning`
-- :opt:`maxConcurrentIncomingRequestKiB`
+    Set to 1 to sync folders sequentially, reducing the peak memory usage.
 
-- Folders:
+- :opt:`databaseTuning`
+    Set to ``small``. Regardless of the size of the actual database size,
+    this reduces the size of a number of buffers to optimize for reduced
+    memory usage.
+
+- :opt:`maxConcurrentIncomingRequestKiB`
+    Set to 32 MiB to reduce the amount of memory used for buffering
+    responses to incoming requests.
+
+Folders options:
 
 - :opt:`fsWatcherEnabled`
+    If possible, using the filesystem notifications is more efficient than
+    doing full periodic scans.
+
 - :opt:`copiers`, :opt:`hashers`
+    Set to 1 to reduce the amount of concurrency when syncing and hashing a
+    folder, reducing peak memory usage.
+
 - :opt:`pullerMaxPendingKiB`
+    Set to 16 MiB to reduce the amount of memory used for buffering
+    while syncing.
+
 - :opt:`scanProgressIntervalS`
+    Set to -1 to disable scan progress updates. Keeping track of scan progress
+    uses memory and CPU.
+
 - :opt:`weakHashThresholdPct`
-- :opt:`maxConcurrentWrites`
+    Set to 101% to disable use of weak hashes. Using weak hashes has a
+    memory cost.
+
 - :opt:`caseSensitiveFS`
+    If your underlying filesystem is case sensitive, set this to skip a
+    number of checks which have a memory cost due to caching. These checks
+    are required for case insensitive filesystems, and disabling them can
+    cause data loss if your underlying filesystem is *not* in fact case
+    sensitive.
+
+Other things:
+
+- ``GOMEMLIMIT`` and ``GOGC``: These environment variables can be used to
+  control the garbage collector. For small setups, setting ``GOMEMLIMIT`` to
+  the desired max amount of memory Syncthing should use can make the garbage
+  collector adhere more closely to the desired limit. Read more in the `Go
+  GC guide <https://golang.org/doc/gc-guide>`__.
