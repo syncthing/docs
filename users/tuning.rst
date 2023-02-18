@@ -176,6 +176,10 @@ Folders options:
     Set to 101% to disable use of weak hashes. Using weak hashes has a
     memory cost.
 
+- :opt:`copyRangeMethod`
+    If your underlying filesystem supports it, using copyrange is more
+    efficient than having Syncthing do the data copying.
+
 - :opt:`caseSensitiveFS`
     If your underlying filesystem is case sensitive, set this to skip a
     number of checks which have a memory cost due to caching. These checks
