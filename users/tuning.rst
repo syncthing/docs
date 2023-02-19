@@ -189,8 +189,15 @@ Folders options:
 
 Other things:
 
-- ``GOMEMLIMIT`` and ``GOGC``: These environment variables can be used to
-  control the garbage collector. For small setups, setting ``GOMEMLIMIT`` to
-  the desired max amount of memory Syncthing should use can make the garbage
-  collector adhere more closely to the desired limit. Read more in the `Go
-  GC guide <https://golang.org/doc/gc-guide>`__.
+- ``GOMEMLIMIT`` and ``GOGC``
+    These environment variables can be used to control the garbage
+    collector. For small setups, setting ``GOMEMLIMIT`` to the desired max
+    amount of memory Syncthing should use can make the garbage collector
+    adhere more closely to the desired limit. Read more in the `Go GC guide
+    <https://golang.org/doc/gc-guide>`__.
+
+- ``GOMAXPROCS``
+    This environment variable can be used to control the maximum number
+    number concurrently running threads Syncthing uses. Setting it to 1 (or
+    any number lower than your actual number of cores) will reduce the
+    amount of CPU used by Syncthing at any given moment.
