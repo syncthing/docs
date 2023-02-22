@@ -154,6 +154,6 @@ If you see outgoing connections to odd and unexpected addresses these are
 most likely connections to :ref:`relay servers <Relaying>`. Relay servers
 are run by volunteers all over the world. They usually listen on ports 443 or
 22067, though this is controlled by the user running it. You can compare the
-address you are concernced about with `the current list of active relays
+address you are concerned about with `the current list of active relays
 <https://relays.syncthing.net>`__. Relays do not and can not see the data
 transmitted via them.
