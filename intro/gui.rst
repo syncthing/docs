@@ -86,7 +86,7 @@ Use the Syncthing Web interface. Click the "Add Folder" button which
 will bring up a dialogue with the following options:
 
 Folder Label
-	should be set to something descriptive. This label will initially be
+	should be set to something descriptive. This label will initially
 	be shared with remote devices, but can be changed on each device, as
 	desired.
 
