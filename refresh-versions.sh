@@ -1,3 +1,4 @@
 #!/bin/sh
 
-go run ./_script/histver -file ./users/releases.csv
+pushd _script
+go run ./histver -file ../users/releases.csv
