@@ -32,6 +32,8 @@ The following may be synchronized or not, depending:
 -  File permissions (when supported by file system; on Windows only the
    read only bit is synchronized)
 -  Symbolic links (synced, except on Windows, but never followed)
+   - Because a symbolic link is never followed, the synced link will
+     be broken unless the link's target is also synced
 -  File or directory owners and groups (when enabled)
 -  Extended attributes (when enabled)
 -  POSIX or NFS ACLs (as part of extended attributes)
@@ -40,6 +42,10 @@ The following are *not* synchronized;
 
 -  Directory modification times (not preserved)
 -  Hard links (followed, not preserved)
+   - Following the link means that the linked file *is* synced, just as if it
+     were a regular file at that path.  What isn't synced is the status as a 
+     link; for example, syncing two hardlinks to the same file will result in 
+     two independent copies of that file (without any hard links). 
 -  Windows junctions (synced as ordinary directories; require enabling in
    :stconf:opt:`the configuration <folder.junctionsAsDirs>` on a per-folder
    basis)
