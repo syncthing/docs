@@ -14,6 +14,7 @@ Usage
    introducer
    guilisten
    ldap
+   tuning
 
    syncing
    untrusted
