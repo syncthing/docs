@@ -32,8 +32,6 @@ The following may be synchronized or not, depending:
 -  File permissions (when supported by file system; on Windows only the
    read only bit is synchronized)
 -  Symbolic links (synced, except on Windows, but never followed)
-   - Because a symbolic link is never followed, the synced link will
-     be broken unless the link's target is also synced
 -  File or directory owners and groups (when enabled)
 -  Extended attributes (when enabled)
 -  POSIX or NFS ACLs (as part of extended attributes)
@@ -42,10 +40,6 @@ The following are *not* synchronized;
 
 -  Directory modification times (not preserved)
 -  Hard links (followed, not preserved)
-   - Following the link means that the linked file *is* synced, just as if it
-     were a regular file at that path.  What isn't synced is the status as a 
-     link; for example, syncing two hardlinks to the same file will result in 
-     two independent copies of that file (without any hard links). 
 -  Windows junctions (synced as ordinary directories; require enabling in
    :stconf:opt:`the configuration <folder.junctionsAsDirs>` on a per-folder
    basis)
@@ -53,6 +47,37 @@ The following are *not* synchronized;
 -  Windows ACLs (not preserved)
 -  Devices, FIFOs, and other specials (ignored)
 -  Sparse file sparseness (will become sparse, when supported by the OS & filesystem)
+
+What does syncing mean for links?
+---------------------------------
+
+As mentioned above, `symbolic links
+<https://en.wikipedia.org/wiki/Symbolic_link>`__ are synced but not followed
+(except on Windows, where they're not synced). To see what this means, consider
+the situation where you have a symbolic link at ``./Sync/symlink`` that points
+to ``../some-file.txt``.  If Syncthing syncs the ``./Sync`` directory, then it
+will sync ``./Sync/symlink`` *as a link* – that is, Syncthing will replicate the
+link on every synced device. But, because ``../some-file.txt`` isn't part of the
+synced directory, Syncthing won't sync ``some-file.txt`` (that's what "not
+followed" means).  Thus, the ``./Sync/symlink`` file will point to whatever
+(non-synced) file is at ``../some-file.txt`` on any particular device.  If no
+such file exists, ``./Sync/symlink`` will be a broken symlink.
+
+The situation for `hard links <https://en.wikipedia.org/wiki/Hard_link>`__ is
+nearly reversed: Syncthing does not sync hard links but *does* sync the
+underlying file (which is implied by the nature of hard links, which effectively
+are the file).  For example, if you have a hard link at ``./Sync/hardlink`` that
+points to a file at ``../some-file.txt``, then a sync of the ``./Sync``
+directory will replicate the contents of ``../some-file.txt`` to
+`./Sync/hardlink` on every device.  But it will *not* sync the fact that
+``./Sync/hardlink`` was a link on the original device – on other devices,
+``./Sync/hardlink`` will be completely independent from ``../some-file.txt`` (if
+that file exists).
+
+All of this results in a general rule of thumb: if Syncthing is syncing both a
+link and its target, it's better to use a symbolic link.  However, if the link
+points to a file that is *not* in a synced directory and you want to sync the
+contents of that file, you should use a hard link instead.
 
 Is synchronization fast?
 ------------------------
