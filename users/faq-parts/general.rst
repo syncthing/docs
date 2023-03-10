@@ -47,6 +47,8 @@ The following are *not* synchronized;
 -  Windows ACLs (not preserved)
 -  Devices, FIFOs, and other specials (ignored)
 -  Sparse file sparseness (will become sparse, when supported by the OS & filesystem)
+-  Syncthing internal files and folders (e.g. ``.stfolder``, ``.stignore``,
+   ``.stversions``, :ref:`temporary files <temporary-files>`, etc.)
 
 Is synchronization fast?
 ------------------------

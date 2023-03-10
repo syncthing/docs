@@ -149,3 +149,11 @@ The temporary files are named ``.syncthing.original-filename.ext.tmp`` or,
 on Windows, ``~syncthing~original-filename.ext.tmp`` where
 ``original-filename.ext`` is the destination filename. The temporary file is
 normally hidden. If the temporary file name would be too long due to the addition of the prefix and extra extension, the temporary files are named ``.syncthing.<hash>.tmp`` or, on Windows, ``~syncthing~<hash>.tmp`` where ``<hash>`` is a SHA-256 hash of the original filename.
+
+.. note::
+
+    Note that the two prefixes ``.syncthing.`` and ``~syncthing~`` are
+    considered Syncthing namespace, meaning that any files whose names
+    start with them will automatically be ignored and excluded from
+    synchronisation by Syncthing. Please avoid using these prefixes in
+    your filenames.
