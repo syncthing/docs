@@ -21,7 +21,7 @@ local filesystem.
       "folder": "vitwy-zjxqt",
       "folderID": "vitwy-zjxqt",
       "label": "TestSync",
-      "path": "C:\\Users\\Nate\\Sync\\testfolder\\test file.rtf",
+      "path": "test file.rtf",
       "type": "file"
     }
   }

@@ -17,7 +17,7 @@ Files that are updated locally produce a :doc:`localchangedetected` event.
          "action" : "deleted",
          "folder": "Dokumente",
          "folderID" : "Dokumente",
-         "path" : "/media/ntfs_data/Dokumente/testfile",
+         "path" : "testfile",
          "label" : "Dokumente",
          "modifiedBy" : "BPDFDTU"
       },
