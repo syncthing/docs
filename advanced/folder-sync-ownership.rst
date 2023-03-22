@@ -46,7 +46,7 @@ To grant extra capabilities, the following steps must be taken:
   CHOWN capability is required to be able to change ownership on the file.
   However, once that has been done Syncthing may no longer have permission
   to act on the file in other ways while running as anonymous user. The
-  FOWNER capability ovverrides this.
+  FOWNER capability overrides this.
 
 Example commands of setting Syncthing up in this manner::
 
