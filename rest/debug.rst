@@ -8,7 +8,7 @@ be enabled and yield an access denied error code otherwise.
 GET /rest/debug/peerCompletion
 ------------------------------
 
-Summarizes the completion precentage for each remote device.  Returns an object
+Summarizes the completion percentage for each remote device.  Returns an object
 with device IDs as keys and an integer percentage as values.
 
 
