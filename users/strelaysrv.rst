@@ -9,10 +9,10 @@ Synopsis
 ::
 
     strelaysrv [-debug] [-ext-address=<address>] [-global-rate=<bytes/s>] [-keys=<dir>] [-listen=<listen addr>]
-               [-message-timeout=<duration>] [-nat] [-nat-lease=<duration> [-nat-renewal=<duration>]
+               [-message-timeout=<duration>] [-nat] [-nat-lease=<duration>] [-nat-renewal=<duration>]
                [-nat-timeout=<duration>] [-network-timeout=<duration>] [-per-session-rate=<bytes/s>]
-               [-ping-interval=<duration>] [-pools=<pool addresses>] [-protocol=<string>] [-provided-by=<string>]
-               [-status-srv=<listen addr>]
+               [-ping-interval=<duration>] [-pools=<pool addresses>] [-pprof] [-protocol=<string>]
+               [-provided-by=<string>] [-status-srv=<listen addr>] [-token=<string>] [-version]
 
 Description
 -----------
@@ -89,6 +89,10 @@ Options
     "https://relays.syncthing.net/endpoint"). Blank to disable announcement to
     a pool, thereby remaining a private relay.
 
+.. cmdoption:: -pprof
+
+    Enable the built in profiling on the status server
+
 .. cmdoption:: -protocol=<string>
 
     Protocol used for listening. 'tcp' for IPv4 and IPv6, 'tcp4' for IPv4, 'tcp6' for IPv6 (default "tcp").
@@ -101,6 +105,14 @@ Options
 
     Listen address for status service (blank to disable) (default ":22070").
     Status service is used by the relay pool server UI for displaying stats (data transferred, number of clients, etc.)
+
+.. cmdoption:: -token=<string>
+    
+    Token to restrict access to the relay (optional). Disables joining any pools.
+
+.. cmdoption:: -version
+    
+    Show version
 
 Installing
 ~~~~~~~~~~
@@ -204,6 +216,20 @@ Runtime ``iptables`` rules to allow access to the default ports::
     iptables -I INPUT -p tcp --dport 22070 -j ACCEPT
     
 Please consult Linux distribution documentation to persist firewall rules.
+
+Access control for private relays
+---------------------------------
+
+.. versionadded:: 1.22.1
+
+Private relays can be configured to only accept connections from peers in possession of a shared secret.
+To configure this use the ``-token`` option:
+
+$ strelaysrv -token=mySecretToken
+
+Then configure your Syncthing devices to send the token when joining the relay::
+
+  relay://<host name|IP>[:port]/?id=<relay device ID>&token=mySecretToken
 
 See Also
 --------
