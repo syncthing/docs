@@ -157,3 +157,38 @@ are run by volunteers all over the world. They usually listen on ports 443 or
 address you are concerned about with `the current list of active relays
 <https://relays.syncthing.net>`__. Relays do not and can not see the data
 transmitted via them.
+
+I am seeing the error message "folder marker missing". What do I do?
+--------------------------------------------------------------------
+
+Syncthing uses a specific marker usually called ``.stfolder`` to determine whether
+a folder is healthy. This is a safety check to ensure that your folder is properly
+readable and present on disk. For example, if you remove a USB drive from your computer
+or unmount a filesystem, then syncthing must know whether you have really deleted **all** of
+your files. Therefore, syncthing always checks that the ``.stfolder`` is present.
+
+When this error appears, syncthing assumes that the folder has encountered some type of error
+and will stop syncing it until the ``.stfolder`` reappears. Once that happens, all changes made 
+to the folder locally will be synced (i.e. missing files will be considered deletions).
+
+- If you get this error message, check the folder in question on your storage. If you have 
+  unmounted the folder (or a parent of it), you must remount it for syncthing to resume syncing
+  this folder. 
+
+- If you have moved the folder, you must either move it back to its original location, or remove the
+  folder from within the syncthing UI and re-add it at its new location.
+
+- If the folder is present on disk, with all of its children files and directories, but the ``.stfolder``
+  is still missing: 
+
+  It is possible that a file cleaning software has removed the ``.stfolder``. Some software
+  removes empty folders, and the ``.stfolder`` is often empty. This happens particularly often on Android.
+  To remediate, recreate the ``.stfolder`` and add a dummy file in it, or add an exception to your
+  cleaning software.
+
+If you are still unsure what has happened, you can remove the folder from within the syncthing UI and re-add it
+at the same location. This causes syncthing to attempt an automatic re-creation of the ``.stfolder``. Next,
+it will also reset the database state of this folder. It will be considered a "new" folder, meaning that its files
+will be merged with files from remote devices.
+
+Also see the :ref:`marker FAQ <marker-faq>` for more information about the folder marker.
