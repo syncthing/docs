@@ -114,9 +114,9 @@ todo_include_todos = True
 
 # Configure external links.
 extlinks = {
-    'issue': ('https://github.com/syncthing/syncthing/issues/%s', 'issue #'),
-    'user': ('https://github.com/%s', '@'),
-    'commit': ('https://github.com/syncthing/syncthing/commit/%s', ''),
+    'issue': ('https://github.com/syncthing/syncthing/issues/%s', 'issue #%s'),
+    'user': ('https://github.com/%s', '@%s'),
+    'commit': ('https://github.com/syncthing/syncthing/commit/%s', None),
 }
 
 # -- Options for HTML output ----------------------------------------------
