@@ -9,6 +9,9 @@ The introducer feature lets a device automatically add new devices. When two dev
   
   Remote device R also shares "Videos" with device C, but not with our local L. Device C will not be added to L as it is not connected to any folders that L and R share.
 
+To mark a remote device as an introducer, start editing it in the Web GUI and
+check the option under the "Sharing" tab.
+
 The introduction process involves the autoconfiguration of device IDs, labels and configured address settings, but no other device-specific settings. For each offered device autoconfiguration is only applied once and is done so when a device connects to an introducer; a restart, after configuring a remote device to introduce, will force this. Once autoconfigured, device-specific settings will currently not receive any updates from an introducer.
 
 If an introducer adds or removes any devices or shares, or changes device-share settings, however, this change will be reflected to devices upon their next connection. Similarly, if an introduced device is no longer present on an introducer, or no longer shares any mutual folders with the device, it will be automatically removed when devices in the cluster next connect to the introducer.
