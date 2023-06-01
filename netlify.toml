@@ -5,7 +5,7 @@
   publish = "_build/html"
 
 [build.environment]
-  GO_VERSION = "1.18"
+  GO_VERSION = "1.20"
 
 # PDF artifacts are transparently proxied to the old server
 [[redirects]]
