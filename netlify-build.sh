@@ -6,7 +6,7 @@ git fetch --tags https://github.com/syncthing/docs.git
 
 # Download pre-rendered / old versions of docs.
 mkdir -p _build
-curl https://rclone.org/install.sh | sudo bash
+curl https://rclone.org/install.sh | bash
 rclone sync spaces:syncthing-docs-rendered/ _build/html/
 go run _script/lsver.go _build/html > _build/html/versions.json
 
