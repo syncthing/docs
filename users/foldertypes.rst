@@ -52,7 +52,7 @@ modifications are expected or allowed.
 
 Much like a send-receive folder, any local modifications are preserved and
 do not cause the folder to become "out of sync". The device will however
-look out of sync on *other* devices, as it does no longer have the
+look out of sync on *other* devices, as it no longer has the
 latest/expected version of the modified file.
 
 When local changes have been detected Syncthing will show a red "Revert Local
