@@ -288,16 +288,16 @@ the folder.
 The **label** field contains the folder label, the human readable name of
 the folder.
 
-The **read only** field is set for folders that the device will accept no
+The **read_only** field is set for folders that the device will accept no
 updates from the network for.
 
-The **ignore permissions** field is set for folders that the device will not
+The **ignore_permissions** field is set for folders that the device will not
 accept or announce file permissions for.
 
-The **ignore delete** field is set for folders that the device will ignore
+The **ignore_delete** field is set for folders that the device will ignore
 deletes for.
 
-The **disable temp indexes** field is set for folders that will not dispatch
+The **disable_temp_indexes** field is set for folders that will not dispatch
 and do not wish to receive progress updates about partially downloaded files
 via Download Progress messages.
 
@@ -326,23 +326,23 @@ device and folder. The following values are valid:
 :1: Compression disabled. No compression is used on any message.
 :2: Compress always. Metadata messages as well as Response messages are compressed.
 
-The **cert name** field indicates the expected certificate name for this
+The **cert_name** field indicates the expected certificate name for this
 device. It is commonly blank, indicating to use the implementation default.
 
-The **max sequence** field contains the highest sequence number of the files
+The **max_sequence** field contains the highest sequence number of the files
 in the index. See :ref:`deltaidx` for the usage of this field.
 
 The **introducer** field is set for devices that are trusted as cluster
 introducers.
 
-The **index id** field contains the unique identifier for the current set of
+The **index_id** field contains the unique identifier for the current set of
 index data. See :ref:`deltaidx` for the usage of this field.
 
-The **skip introduction removals** field signifies if the remote device has
+The **skip_introduction_removals** field signifies if the remote device has
 opted to ignore introduction removals for the given device. This setting is
 copied across as we are being introduced to a new device.
 
-The **enc pw token** field contains a token derived from the password, that is
+The **encryption_password_token** field contains a token derived from the password, that is
 used to encrypt data sent to this device. If the device is the same as the
 device sending the message, it signifies that the device itself has encrypted
 data that was encrypted with the given token. It is empty or missing if there is
@@ -465,7 +465,7 @@ The **invalid** field is set when the file is invalid and unavailable for
 synchronization. A peer MAY set this bit to indicate that it can temporarily
 not serve data for the file.
 
-The **no permissions** field is set when there is no permission information
+The **no_permissions** field is set when there is no permission information
 for the file. This is the case when it originates on a file system which
 does not support permissions. Changes to only permission bits SHOULD be
 disregarded on files with this bit set. The permissions bits MUST be set to
@@ -534,7 +534,7 @@ the other device SHOULD ensure that the transmitted block matches the
 requested hash. The other device MAY reuse a block from a different file and
 offset having the same size and hash, if one exists.
 
-The **from temporary** field is set to indicate that the read should be
+The **from_temporary** field is set to indicate that the read should be
 performed from the temporary file (converting name to it's temporary form)
 and falling back to the non temporary file if any error occurs. Knowledge of
 contents of temporary files comes from DownloadProgress messages.
@@ -627,7 +627,7 @@ The **updates** field is a list of progress update messages.
 Fields (FileDownloadProgressUpdate Message)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The **update type** indicates whether the update is of type **append (0)**
+The **update_type** indicates whether the update is of type **append (0)**
 (new blocks are available) or **forget (1)** (the file transfer has
 completed or failed).
 
@@ -637,7 +637,7 @@ this update is being sent.
 The **version** message defines the version of the file for which this
 update is being sent.
 
-The **block indexes** field is a list of positive integers, where each
+The **block_indexes** field is a list of positive integers, where each
 integer represents the index of the block in the FileInfo message Blocks
 array that has become available for download.
 
