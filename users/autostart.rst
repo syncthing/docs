@@ -379,8 +379,8 @@ How to set up a system service
    From git location mentioned above copy the ``Syncthing/etc/linux-systemd/system/syncthing@.service`` file into the
    `load path of the system instance
    <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
-#. Rename the service (unit) file to add the Syncthing user between the ``@`` and ``.service`` suffix (the unit `instance name`_).
-   Replace "Path" with the file's path, "myuser" with the user name::
+#. Rename the service (unit) file to add the Syncthing user (unit `instance name`_) between the ``@`` and ``.service`` suffix.
+   Replace "Path" with this file's path, "myuser" with the user name::
     
     mv Path/syncthing@.service Path/syncthing@myuser.service
 #. Enable and start the service (*replace "myuser" with the user name*)::
