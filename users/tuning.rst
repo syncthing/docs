@@ -12,8 +12,9 @@ will need to experiment to find the best settings for your particular setup.
 Tuning for High Performance
 ------------------------------------------------
 
-You have resources to spare and want to optimize for performance.
-First some general options:
+You have resources to spare and want to optimize for performance. To begin
+with, make sure you are running a 64 bit build and that the index database
+is on an SSD. First some general options:
 
 - :opt:`progressUpdateIntervalS`
     Set to -1 to disable progress updates. Time spent on progress
