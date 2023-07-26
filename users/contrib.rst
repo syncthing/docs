@@ -139,7 +139,7 @@ ArchLinux
 
 - Official Community Repository: `syncthing <https://archlinux.org/packages/?name=syncthing>`__
 
-- Arch User Repository: `syncthing-discosrv <https://aur.archlinux.org/packages/syncthing-discosrv>`__ and `syncthingtray <https://aur.archlinux.org/packages/syncthingtray>`__
+- Arch User Repository: `syncthingtray <https://aur.archlinux.org/packages/syncthingtray>`__
 
 Docker
 ~~~~~~
