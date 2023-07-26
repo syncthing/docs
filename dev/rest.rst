@@ -12,9 +12,12 @@ API Key
 To use the REST API an API key must be set and used. The API key can be
 generated in the GUI, or set in the ``configuration/gui/apikey`` element in
 the configuration file. To use an API key, set the request header
-``X-API-Key`` to the API key value. For example, ``curl -X POST -H
-"X-API-Key: abc123" http://localhost:8384/rest/...`` can be used to invoke
-with ``curl`` (add ``-k`` flag when using HTTPS with a Syncthing generated or self signed certificate).
+``X-API-Key`` to the API key value, or set it as a ``Bearer`` token in the
+``Authorization`` header. For example, ``curl -X POST -H "X-API-Key: abc123"
+http://localhost:8384/rest/...`` or ``curl -X POST -H "Authorization: Bearer
+abc123" http://localhost:8384/rest/...`` can be used to invoke with ``curl``
+(add ``-k`` flag when using HTTPS with a Syncthing generated or self signed
+certificate).
 
 One exception to this requirement is ``/rest/noauth``, you do not need an API
 key to use those endpoints. This way third-party devices and services can do
