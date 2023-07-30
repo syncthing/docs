@@ -1145,7 +1145,9 @@ The ``options`` element contains all other global configuration options.
 .. option:: options.progressUpdateIntervalS
 
     How often in seconds the progress of ongoing downloads is made available to
-    the GUI.
+    the GUI. Set to ``-1`` to disable. Note that when disabled, the detailed
+    sync progress for Out of Sync Items which shows how much of each file has
+    been reused, copied, and downloaded will not work.
 
 .. option:: options.limitBandwidthInLan
 
