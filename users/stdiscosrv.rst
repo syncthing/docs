@@ -340,6 +340,28 @@ configuration:
 
     RemoteIPHeader X-Forwarded-For
 
+Caddy
+""""""
+The following lines must be added to the Caddyfile:
+
+.. code-block:: caddyfile
+
+    discovery.example.com {
+      reverse_proxy 192.0.2.1:8443 {
+        header_up X-Forwarded-For {http.request.remote.host}
+        header_up X-Client-Port {http.request.remote.port}
+        header_up X-Tls-Client-Cert-Der-Base64 {http.request.tls.client.certificate_der_base64}
+      }
+
+      tls {
+        client_auth {
+          mode request
+        }
+      }
+  }
+
+.. code-block:: caddyfile
+
 For more details, see also the recommendations in the
 `Reverse Proxy Setup <https://docs.syncthing.net/users/reverseproxy.html>`__
 page. Note that that page is directed at setting up a proxy for the
