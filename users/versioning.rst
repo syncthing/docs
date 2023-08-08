@@ -23,6 +23,14 @@ defaults to "no file versioning", i.e. no old copies of files are kept.
     .. string              fs_path            = 4 [(ext.goname) = "FSPath"];
     .. fs.FilesystemType   fs_type            = 5 [(ext.goname) = "FSType"];
 
+The applicable configuration options for each versioning strategy are described
+below.  For most of them it's possible to specify where the versions are stored,
+with the default being the ``.stversions`` folder inside the shared folder path.
+If you set a custom version path, please ensure that it's on the same partition
+or filesystem as the regular folder path, as moving files there may otherwise
+fail.  You can use an absolute path or a relative path.  Relative paths are
+interpreted relative to the respective synced folder path.
+
 Trash Can File Versioning
 -------------------------
 
@@ -51,18 +59,10 @@ the other devices sharing the same folder.
 Staggered File Versioning
 -------------------------
 
-With "Staggered File Versioning" files are also moved to a different folder
-when replaced or deleted on a remote device (just like "Simple File
-Versioning"), however, versions are automatically deleted if they are older
-than the maximum age or exceed the number of files allowed in an interval.
-
-With this versioning method it's possible to specify where the versions are
-stored, with the default being the ``.stversions`` folder inside the normal
-folder path. If you set a custom version path, please ensure that it's on the
-same partition or filesystem as the regular folder path, as moving files there
-may otherwise fail. You can use an absolute path (this is recommended) or a
-relative path. Relative paths are interpreted relative to Syncthing's current
-or startup directory.
+With "Staggered File Versioning" files are also moved to the ``.stversions``
+folder when replaced or deleted on a remote device (just like "Simple File
+Versioning"), however, versions are automatically deleted if they are older than
+the maximum age or exceed the number of files allowed in an interval.
 
 The following intervals are used and they each have a maximum number of files
 that will be kept for each.
