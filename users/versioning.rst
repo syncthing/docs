@@ -53,7 +53,7 @@ With "Simple File Versioning" files are moved to the ``.stversions`` folder
 option also takes a value in an input titled "Keep Versions" which tells
 Syncthing how many old versions of the file it should keep. For example, if
 you set this value to 5, if a file is replaced 5 times on a remote device, you
-will see 5 time-stamped versions on that file in the ".stversions" folder on
+will see 5 time-stamped versions on that file in the ``.stversions`` folder on
 the other devices sharing the same folder.
 
 Staggered File Versioning
@@ -78,7 +78,7 @@ Until Maximum Age
     Until maximum age, the oldest version in every week is kept.
 Maximum Age
     The maximum time to keep a version in days. For example, to keep replaced or
-    deleted files in the ".stversions" folder for an entire year, use 365. If
+    deleted files in the ``.stversions`` folder for an entire year, use 365. If
     only for 10 days, use 10.
     **Note: Set to 0 to keep versions forever.**
 
