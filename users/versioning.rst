@@ -31,22 +31,24 @@ is deleted or replaced due to a change on a remote device, it is moved to
 the trash can in the ``.stversions`` folder. If a file with the same name was
 already in the trash can it is replaced.
 
-A configuration option is available to clean the trash can from files older
-than a specified number of days. If this is set to a positive number of days,
-files will be removed when they have been in the trash can that long. Setting
-this to zero prevents any files from being removed from the trash can
-automatically.
+A :opt:`configuration option <folder.versioning.params.cleanoutDays>` is
+available to clean the trash can from files older than a specified number of
+days.  If this is set to a positive number of days, files will be removed when
+they have been in the trash can that long.  Setting this to zero prevents any
+files from being removed from the trash can automatically.
 
 Simple File Versioning
 ----------------------
 
 With "Simple File Versioning" files are moved to the ``.stversions`` folder when
-replaced or deleted on a remote device.  This option also takes a value in an
-input titled "Keep Versions" which tells Syncthing how many old versions of the
-file it should keep.  For example, if you set this value to 5, if a file is
-replaced 5 times on a remote device, you will see 5 time-stamped versions on
-that file in the ``.stversions`` folder on the other devices sharing the same
-folder.
+replaced or deleted on a remote device.  In addition to the
+:opt:`~folder.versioning.params.cleanoutDays` option, this strategy also takes a
+value in an input titled "Keep Versions" which tells Syncthing how many old
+versions of the file it should :opt:`~folder.versioning.params.keep`.  For
+example, if you set this value to 5, if a file is replaced 5 times on a remote
+device, you will see 5 time-stamped versions on that file in the ``.stversions``
+folder on the other devices sharing the same folder.
+
 
 Staggered File Versioning
 -------------------------
@@ -71,7 +73,8 @@ Until Maximum Age
 Maximum Age
     The maximum time to keep a version in days. For example, to keep replaced or
     deleted files in the ``.stversions`` folder for an entire year, use 365. If
-    only for 10 days, use 10.
+    only for 10 days, use 10.  Corresponds to the
+    :opt:`~folder.versioning.params.maxAge` option.
     **Note: Set to 0 to keep versions forever.**
 
 This means that there is only one version in each interval and as files age they
@@ -87,11 +90,11 @@ External File Versioning
 ------------------------
 
 This versioning strategy delegates the decision on what to do to an
-external command (e.g. a program or a command line script). Just prior
-to a file being replaced, the command will be executed. The file needs
-to be removed from the folder in the process, or otherwise Syncthing
-will report an error. The command can use the following templated
-arguments:
+:opt:`external command <folder.versioning.params.command>` (e.g. a program or a
+command line script).  Just prior to a file being replaced, the command will be
+executed.  The file needs to be removed from the folder in the process, or
+otherwise Syncthing will report an error.  The command can use the following
+templated arguments:
 
 ..
     This to be added when actually relevant.
