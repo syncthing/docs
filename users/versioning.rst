@@ -1,3 +1,5 @@
+.. default-domain:: stconf
+
 File Versioning
 ===============
 
@@ -14,14 +16,12 @@ defaults to "no file versioning", i.e. no old copies of files are kept.
     Bob. If Alice changes a file locally on her own computer Syncthing will
     not and can not archive the old version.
 
-.. .. stconf:option:: folder.versioning
-
-    .. todo:: Describe element attributes!
-    .. string              type               = 1[(ext.xml) = "type,attr"];
-    .. map<string, string> parameters         = 2 [(ext.goname) = "Params", (ext.json) = "params"];
-    .. int32               cleanup_interval_s = 3 [(ext.default) = "3600"];
-    .. string              fs_path            = 4 [(ext.goname) = "FSPath"];
-    .. fs.FilesystemType   fs_type            = 5 [(ext.goname) = "FSType"];
+The applicable configuration options for each versioning strategy are described
+below.  For most of them it's possible to specify where the versions are stored,
+with the default being the ``.stversions`` folder inside the shared folder path.
+If you set a custom version path, please ensure that it's on the same partition
+or filesystem as the regular folder path, as moving files there may otherwise
+fail.
 
 Trash Can File Versioning
 -------------------------
@@ -31,38 +31,32 @@ is deleted or replaced due to a change on a remote device, it is moved to
 the trash can in the ``.stversions`` folder. If a file with the same name was
 already in the trash can it is replaced.
 
-A configuration option is available to clean the trash can from files older
-than a specified number of days. If this is set to a positive number of days,
-files will be removed when they have been in the trash can that long. Setting
-this to zero prevents any files from being removed from the trash can
-automatically.
+A :opt:`configuration option <folder.versioning.params.cleanoutDays>` is
+available to clean the trash can from files older than a specified number of
+days.  If this is set to a positive number of days, files will be removed when
+they have been in the trash can that long.  Setting this to zero prevents any
+files from being removed from the trash can automatically.
 
 Simple File Versioning
 ----------------------
 
-With "Simple File Versioning" files are moved to the ``.stversions`` folder
-(inside your shared folder) when replaced or deleted on a remote device. This
-option also takes a value in an input titled "Keep Versions" which tells
-Syncthing how many old versions of the file it should keep. For example, if
-you set this value to 5, if a file is replaced 5 times on a remote device, you
-will see 5 time-stamped versions on that file in the ".stversions" folder on
-the other devices sharing the same folder.
+With "Simple File Versioning" files are moved to the ``.stversions`` folder when
+replaced or deleted on a remote device.  In addition to the
+:opt:`~folder.versioning.params.cleanoutDays` option, this strategy also takes a
+value in an input titled "Keep Versions" which tells Syncthing how many old
+versions of the file it should :opt:`~folder.versioning.params.keep`.  For
+example, if you set this value to 5, if a file is replaced 5 times on a remote
+device, you will see 5 time-stamped versions on that file in the ``.stversions``
+folder on the other devices sharing the same folder.
+
 
 Staggered File Versioning
 -------------------------
 
-With "Staggered File Versioning" files are also moved to a different folder
-when replaced or deleted on a remote device (just like "Simple File
-Versioning"), however, versions are automatically deleted if they are older
-than the maximum age or exceed the number of files allowed in an interval.
-
-With this versioning method it's possible to specify where the versions are
-stored, with the default being the ``.stversions`` folder inside the normal
-folder path. If you set a custom version path, please ensure that it's on the
-same partition or filesystem as the regular folder path, as moving files there
-may otherwise fail. You can use an absolute path (this is recommended) or a
-relative path. Relative paths are interpreted relative to Syncthing's current
-or startup directory.
+With "Staggered File Versioning" files are also moved to the ``.stversions``
+folder when replaced or deleted on a remote device (just like "Simple File
+Versioning"), however, versions are automatically deleted if they are older than
+the maximum age or exceed the number of files allowed in an interval.
 
 The following intervals are used and they each have a maximum number of files
 that will be kept for each.
@@ -78,8 +72,9 @@ Until Maximum Age
     Until maximum age, the oldest version in every week is kept.
 Maximum Age
     The maximum time to keep a version in days. For example, to keep replaced or
-    deleted files in the ".stversions" folder for an entire year, use 365. If
-    only for 10 days, use 10.
+    deleted files in the ``.stversions`` folder for an entire year, use 365. If
+    only for 10 days, use 10.  Corresponds to the
+    :opt:`~folder.versioning.params.maxAge` option.
     **Note: Set to 0 to keep versions forever.**
 
 This means that there is only one version in each interval and as files age they
@@ -94,12 +89,12 @@ that shows which versions are deleted for a specific run.
 External File Versioning
 ------------------------
 
-This versioning method delegates the decision on what to do to an
-external command (e.g. a program or a command line script). Just prior
-to a file being replaced, the command will be executed. The file needs
-to be removed from the folder in the process, or otherwise Syncthing
-will report an error. The command can use the following templated
-arguments:
+This versioning strategy delegates the decision on what to do to an
+:opt:`external command <folder.versioning.params.command>` (e.g. a program or a
+command line script).  Just prior to a file being replaced, the command will be
+executed.  The file needs to be removed from the folder in the process, or
+otherwise Syncthing will report an error.  The command can use the following
+templated arguments:
 
 ..
     This to be added when actually relevant.
@@ -249,3 +244,82 @@ The only caveat that you should be aware of is that if your Syncthing
 folder is located on a portable storage, such as a USB stick, or if you
 have the Recycle Bin disabled, then the script will end up deleting all
 files permanently.
+
+Configuration Parameter Reference
+---------------------------------
+
+The versioning settings are grouped into their own section of each folder in the
+:opt:`configuration file <folder.versioning>`.  The following shows an
+example of such a section in the XML:
+
+.. code-block:: xml
+
+    <folder id="...">
+        <versioning type="simple">
+            <cleanupIntervalS>3600</cleanupIntervalS>
+            <fsPath></fsPath>
+            <fsType>basic</fsType>
+            <param key="cleanoutDays" val="0"></param>
+            <param key="keep" val="5"></param>
+        </versioning>
+    </folder>
+
+.. option:: folder.versioning.type
+
+    Selects one of the versioning strategies: ``trashcan``, ``simple``,
+    ``staggered``, ``external`` or leave empty to disable versioning completely.
+
+.. option:: folder.versioning.fsPath
+
+    Overrides the path where old versions of files are stored and defaults to
+    ``.stversions`` if left empty.  An absolute or relative path can be
+    specified.  The latter is interpreted relative to the shared folder path, if
+    the :opt:`~folder.versioning.fsType` is configured as ``basic``.  Ignored
+    for the ``external`` versioning strategy.
+
+    This option used to be stored under the keys ``fsPath`` or ``versionsPath``
+    in the :opt:`~folder.versioning.params` element.
+
+.. option:: folder.versioning.fsType
+
+    The internal file system implementation used to access this versions folder.
+    Only applies if :opt:`~folder.versioning.fsPath` is also set non-empty,
+    otherwise the :opt:`~folder.filesystemType` from the folder element is used
+    instead.  Refer to that option description for possible values.  Ignored for
+    the ``external`` versioning strategy.
+
+    This option used to be stored under the key ``fsType`` in the
+    :opt:`~folder.versioning.params` element.
+
+.. option:: folder.versioning.cleanupIntervalS
+
+    The interval, in seconds, for running cleanup in the versions folder.  Zero
+    to disable periodic cleaning.  Limited to one year (31536000 seconds).
+    Ignored for the ``external`` versioning strategy.
+
+    This option used to be stored under the key ``cleanInterval`` in the
+    :opt:`~folder.versioning.params` element.
+
+.. option:: folder.versioning.params
+
+    Each versioning strategy can have configuration parameters specific to its
+    implementation under this element.
+
+.. option:: folder.versioning.params.cleanoutDays
+
+    The number of days to keep files in the versions folder.  Zero means to keep
+    forever.  Older elements encountered during cleanup are removed.
+
+.. option:: folder.versioning.params.keep
+
+    The number of old versions to keep, per file.
+
+.. option:: folder.versioning.params.maxAge
+
+    The maximum time to keep a version, in seconds.  Zero means to keep forever.
+
+.. option:: folder.versioning.params.command
+
+    External command to execute for storing a file version about to be replaced
+    or deleted.  If the path to the application contains spaces, it should be
+    quoted.
