@@ -157,7 +157,6 @@ The following shows an example of a default configuration file (IDs will differ)
             <urURL>https://data.syncthing.net/newdata</urURL>
             <urPostInsecurely>false</urPostInsecurely>
             <urInitialDelayS>1800</urInitialDelayS>
-            <restartOnWakeup>true</restartOnWakeup>
             <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
             <upgradeToPreReleases>false</upgradeToPreReleases>
             <keepTemporariesH>24</keepTemporariesH>
@@ -978,7 +977,6 @@ Options Element
         <urURL>https://data.syncthing.net/newdata</urURL>
         <urPostInsecurely>false</urPostInsecurely>
         <urInitialDelayS>1800</urInitialDelayS>
-        <restartOnWakeup>true</restartOnWakeup>
         <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
         <upgradeToPreReleases>false</upgradeToPreReleases>
         <keepTemporariesH>24</keepTemporariesH>
@@ -1115,11 +1113,6 @@ The ``options`` element contains all other global configuration options.
 
     The time to wait from startup for the first usage report to be sent. Allows
     the system to stabilize before reporting statistics.
-
-.. option:: options.restartOnWakeup
-
-    Whether to perform a restart of Syncthing when it is detected that we are
-    waking from sleep mode (i.e. an unfolding laptop).
 
 .. option:: options.autoUpgradeIntervalH
 
