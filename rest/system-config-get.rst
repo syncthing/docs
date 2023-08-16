@@ -144,7 +144,6 @@ Returns the current configuration.
 	"urURL": "https://data.syncthing.net/newdata",
 	"urPostInsecurely": false,
 	"urInitialDelayS": 1800,
-	"restartOnWakeup": true,
 	"autoUpgradeIntervalH": 12,
 	"upgradeToPreReleases": false,
 	"keepTemporariesH": 24,
