@@ -1,4 +1,4 @@
-Prometheus-style metrics
+Prometheus-Style Metrics
 ========================
 
 Syncthing provides an endpoint for Prometheus-style metrics. Metrics are
