@@ -36,7 +36,7 @@ Response
       "local": { /* a file entry */ }
     }
 
-``local`` and ``global`` refer to the current file on disk and the globally newest file, respectively.
+``local`` and ``global`` refer to the current file on the local device and the globally newest file, respectively.
 
 A file entry looks like this::
 
