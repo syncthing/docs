@@ -7,7 +7,7 @@ availability.
 Request
 -------
 
-The call requires parameters for `folder` and `file` in the querystring:
+The call requires parameters for `folder` and `file` in the query string:
 
 - `folder` is the folder code which you can find in the synthing UI, e.g. `5camp-slpa8`
 
