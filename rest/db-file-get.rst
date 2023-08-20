@@ -11,7 +11,7 @@ The call requires parameters for `folder` and `file` in the query string:
 
 - `folder` is the folder ID which you can find in the Synthing Web GUI, e.g. `5camp-slpa8`
 
-- `file` is the full path to the file you are interested in. The path and filename must be correctly url-encoded.
+- `file` is the full path starting from the folder root to the file you are interested in. The path and filename must be correctly URL-encoded.
 
 
 Example Request
