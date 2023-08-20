@@ -17,7 +17,7 @@ The call requires parameters for `folder` and `file` in the query string:
 Example Request
 ^^^^^^^^^^^^^^^
 
-  curl --silent --get --header "X-API-KEY: YOUR_API_TOKEN" "http://localhost:8080/rest/db/file?folder=YOUR_FOLDER_ID" --data-urlencode "file=path/to/file.pdf"
+  curl --silent --get --header "X-API-KEY: YOUR_API_TOKEN" "http://localhost:8384/rest/db/file?folder=YOUR_FOLDER_ID" --data-urlencode "file=path/to/file.pdf"
 
 Response
 --------
