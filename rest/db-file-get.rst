@@ -9,7 +9,7 @@ Request
 
 The call requires parameters for `folder` and `file` in the query string:
 
-- `folder` is the folder code which you can find in the synthing UI, e.g. `5camp-slpa8`
+- `folder` is the folder ID which you can find in the Synthing Web GUI, e.g. `5camp-slpa8`
 
 - `file` is the full path to the file you are interested in. The path and filename must be correctly url-encoded.
 
