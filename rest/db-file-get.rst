@@ -1,10 +1,27 @@
 GET /rest/db/file
 =================
 
-Returns most data available about a given file, including version and
-availability. Takes ``folder`` and ``file`` parameters. ``local`` and
-``global`` refer to the current file on disk and the globally newest file,
-respectively.
+Returns data about a given file, including version and
+availability.
+
+Request
+-------
+
+The call requires parameters for `folder` and `file` in the querystring:
+
+- `folder` is the folder code which you can find in the synthing UI, e.g. `5camp-slpa8`
+
+- `file` is the full path to the file you are interested in. The path and filename must be correctly url-encoded.
+
+
+Example Request
+^^^^^^^^^^^^^^^
+
+  curl --silent --get --header "X-API-KEY: YOUR_API_TOKEN" "http://localhost:8080/rest/db/file?folder=YOUR_FOLDER_ID" --data-urlencode "file=path/to/file.pdf"
+
+Response
+--------
+
 
 .. code-block::
 
@@ -18,6 +35,8 @@ respectively.
       "global": { /* a file entry */ },
       "local": { /* a file entry */ }
     }
+
+``local`` and ``global`` refer to the current file on disk and the globally newest file, respectively.
 
 A file entry looks like this::
 
