@@ -1,29 +1,31 @@
 GET /rest/db/file
 =================
 
-Returns data about a given file, including version and
-availability.
+Returns data about a given file, including version and availability.
 
 Request
 -------
 
 The call requires parameters for `folder` and `file` in the query string:
 
-- `folder` is the folder ID which you can find in the Syncthing Web GUI, e.g. `5camp-slpa8`
+- `folder` is the folder ID which you can find in the Syncthing Web GUI,
+  e.g. `5camp-slpa8`.
 
-- `file` is the relative path of the file starting from the folder root to the file you are interested in. The path and filename must be correctly URL-encoded.
-
+- `file` is the relative path of the file starting from the folder root to the
+  file you are interested in.  The path and filename must be correctly
+  URL-encoded.
 
 Example Request
 ^^^^^^^^^^^^^^^
 
-  curl --silent --get --header "X-API-KEY: YOUR_API_TOKEN" "http://localhost:8384/rest/db/file?folder=YOUR_FOLDER_ID" --data-urlencode "file=path/to/file.pdf"
+.. code-block:: bash
+
+    curl --silent --get --header "X-API-KEY: YOUR_API_TOKEN" "http://localhost:8384/rest/db/file?folder=YOUR_FOLDER_ID" --data-urlencode "file=path/to/file.pdf"
 
 Response
 --------
 
-
-.. code-block::
+.. code-block:: json
 
     {
       "availability": [
@@ -36,9 +38,10 @@ Response
       "local": { /* a file entry */ }
     }
 
-``local`` and ``global`` refer to the current file on the local device and the globally newest file, respectively.
+``local`` and ``global`` refer to the current file on the local device and the
+globally newest file, respectively.  A file entry looks like this:
 
-A file entry looks like this::
+.. code-block:: json
 
     {
       {
@@ -72,9 +75,11 @@ A file entry looks like this::
     }
 
 Platform specific data may be ownership, extended attributes, etc. and is
-divided into entries per operating system / platform. An example platform
-entry containing ownership information for Unix systems and an extended
-attribute for macOS ("darwin") looks as follows::
+divided into entries per operating system / platform.  An example platform entry
+containing ownership information for Unix systems and an extended attribute for
+macOS ("darwin") looks as follows:
+
+.. code-block:: json
 
     {
       "darwin": {
