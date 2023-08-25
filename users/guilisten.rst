@@ -16,6 +16,9 @@ also set a username and a strong password for authentication and check the
 option to use HTTPS. You are otherwise, potentially, opening up your
 Syncthing installation for the world.
 
+Those are the only two options available, for restricting GUI to only LAN
+another alternative is required (Firewall).
+
 Port Numbers
 ------------
 
