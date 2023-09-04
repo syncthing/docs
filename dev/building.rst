@@ -9,11 +9,6 @@ Building Syncthing
     of it. For all other purposes we recommend using the official binary
     releases instead.
 
-.. note::
-    Syncthing uses Go modules, which is a fairly new development in the Go
-    ecosystem. You can find more information about modules `here <https://go.dev/blog/using-go-modules>`__.
-    If you are not a seasoned Go developer you can just go with the flow as this is the new thing.
-
 Branches and Tags
 -----------------
 
@@ -28,8 +23,8 @@ may be unstable and unsuitable for general consumption.
 Prerequisites
 -------------
 
--  The latest stable version of Go. Earlier releases may work, but we recommend
-   always using the latest stable version. At the time of writing this is **Go 1.18**.
+-  The latest stable version of Go. The previous stable version should also
+   work; older versions will likely not work.
 -  Git
 -  If you want to build Debian packages FPM is required. See FPM's
    `installation information <https://fpm.readthedocs.io/en/latest/installation.html>`__.
