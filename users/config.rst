@@ -797,6 +797,11 @@ From the following child elements at least one ``address`` child must exist.
     "receive encrypted" type locally.  Refer to the detailed explanation under
     :doc:`untrusted`.
 
+.. option:: device.numConnections
+
+    The number of connections to this device. See
+    :doc:`/advanced/device-numconnections` for more information.
+
 
 GUI Element
 -----------
