@@ -621,6 +621,7 @@ Device Element
         <maxRequestKiB>0</maxRequestKiB>
         <untrusted>false</untrusted>
         <remoteGUIPort>0</remoteGUIPort>
+        <numConnections>0</numConnections>
     </device>
     <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="true" skipIntroductionRemovals="false" introducedBy="">
         <address>tcp://192.0.2.1:22001</address>
@@ -632,6 +633,7 @@ Device Element
         <maxRequestKiB>65536</maxRequestKiB>
         <untrusted>false</untrusted>
         <remoteGUIPort>8384</remoteGUIPort>
+        <numConnections>0</numConnections>
     </device>
 
 One or more ``device`` elements must be present in the file. Each element
@@ -1348,6 +1350,7 @@ Defaults Element
             <maxRequestKiB>0</maxRequestKiB>
             <untrusted>false</untrusted>
             <remoteGUIPort>0</remoteGUIPort>
+            <numConnections>0</numConnections>
         </device>
         <ignores>
             <line>!foo2</line>
