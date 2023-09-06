@@ -121,6 +121,12 @@ These options are folder specific and should be set on each folder:
     Use these if they are required for your use case, but keep in mind they
     have a fairly high performance cost.
 
+For devices, consider the following:
+
+- :opt:`numConnections`
+    Set at or above the number of CPU cores available. This allows maximum
+    concurrency for TLS connections and may improve performance.
+
 Other things:
 
 - ``GOMEMLIMIT`` and ``GOGC``: These environment variables can be used to
@@ -186,6 +192,12 @@ Folders options:
     are required for case insensitive filesystems, and disabling them can
     cause data loss if your underlying filesystem is *not* in fact case
     sensitive.
+
+Device options:
+
+- :opt:`numConnections`
+    Set to 1 to reduce the amount of overhead per device, as each connection
+    has a memory and CPU cost.
 
 Other things:
 
