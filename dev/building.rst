@@ -24,7 +24,8 @@ Prerequisites
 -------------
 
 -  The latest stable version of Go. The previous stable version should also
-   work; older versions will likely not work.
+   work; older versions will likely not work. This largely follows Go's
+   `Release Policy <https://go.dev/doc/devel/release#policy>`__.
 -  Git
 -  If you want to build Debian packages FPM is required. See FPM's
    `installation information <https://fpm.readthedocs.io/en/latest/installation.html>`__.
