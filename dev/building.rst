@@ -51,9 +51,6 @@ Building (Unix)
 
 .. code-block:: bash
 
-    # This should output "go version go1.18" or higher.
-    $ go version
-
     # Pick a place for your Syncthing source.
     $ mkdir -p ~/dev
     $ cd ~/dev
@@ -78,9 +75,6 @@ Building (Windows)
 - Run the commands below.
 
 .. code-block:: batch
-
-    # This should output "go version go1.18" or higher.
-    > go version
 
     # Pick a place for your Syncthing source.
     > md "%USERPROFILE%\dev"
