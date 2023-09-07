@@ -144,6 +144,10 @@ func getReleaseVersionZip(bs []byte) (*tableRow, error) {
 		return nil, err
 	}
 	for _, f := range zr.File {
+		if strings.Contains(path.Dir(f.Name), "/") {
+			// Skip files not at top level
+			continue
+		}
 		if path.Base(f.Name) != "syncthing" {
 			continue
 		}
