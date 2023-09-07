@@ -620,6 +620,7 @@ Device Element
         <maxRequestKiB>0</maxRequestKiB>
         <untrusted>false</untrusted>
         <remoteGUIPort>0</remoteGUIPort>
+        <numConnections>0</numConnections>
     </device>
     <device id="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR" name="syno local" compression="metadata" introducer="true" skipIntroductionRemovals="false" introducedBy="">
         <address>tcp://192.0.2.1:22001</address>
@@ -631,6 +632,7 @@ Device Element
         <maxRequestKiB>65536</maxRequestKiB>
         <untrusted>false</untrusted>
         <remoteGUIPort>8384</remoteGUIPort>
+        <numConnections>0</numConnections>
     </device>
 
 One or more ``device`` elements must be present in the file. Each element
@@ -795,6 +797,11 @@ From the following child elements at least one ``address`` child must exist.
     device then needs an encryption password set, or must already be of the
     "receive encrypted" type locally.  Refer to the detailed explanation under
     :doc:`untrusted`.
+
+.. option:: device.numConnections
+
+    The number of connections to this device. See
+    :doc:`/advanced/device-numconnections` for more information.
 
 
 GUI Element
@@ -1338,6 +1345,7 @@ Defaults Element
             <maxRequestKiB>0</maxRequestKiB>
             <untrusted>false</untrusted>
             <remoteGUIPort>0</remoteGUIPort>
+            <numConnections>0</numConnections>
         </device>
         <ignores>
             <line>!foo2</line>
