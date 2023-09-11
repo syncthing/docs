@@ -79,7 +79,7 @@ Building (Windows)
 
     # Pick a place for your Syncthing source.
     > md "%USERPROFILE%\dev"
-    > cd "%USERPROFILE%\dev"
+    > cd /D "%USERPROFILE%\dev"
 
     # Grab the code.
     > git clone https://github.com/syncthing/syncthing.git
