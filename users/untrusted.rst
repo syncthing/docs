@@ -15,7 +15,7 @@ be decrypted by the same password.
     however to be on the safe side make sure you store both securely and
     reliably.
 
-As an example, lets assume a *trusted* device ``T1``, maybe your laptop. You
+As an example, let's assume a *trusted* device ``T1``, maybe your laptop. You
 have sensitive documents here but they are in cleartext from Syncthing's
 point of view (perhaps protected by full disk encryption). There is also an
 *untrusted* device ``U1``, perhaps a cloud server, where we want to sync
