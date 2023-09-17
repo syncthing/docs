@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Build
-        uses: docker://ghcr.io/kastelo/sphinx-build
+        uses: docker://docker.io/sphinxdoc/sphinx-latexpdf:latest
         with:
           entrypoint: make
           args: html man latexpdf
