@@ -62,12 +62,19 @@ copyright = u'2014-2019, The Syncthing Authors'
 # built documents.
 #
 # The full version, including alpha/beta/rc tags.
+
+release = 'v1'
 try:
+    release = open('RELEASE', 'r').read().strip()
+except FileNotFoundError:
     release = os.popen('git describe --tags --long --always').read().strip()
+
+_git_tag = ''
+try:
+    _git_tag = open('TAG', 'r').read().strip()
+except FileNotFoundError:
     _git_tag = os.popen('git describe --tags --exact-match').read().strip()
-except Exception:
-    release = 'v1'
-    _git_tag = ''
+
 # The short X.Y version.
 version = release.partition('-')[0]
 

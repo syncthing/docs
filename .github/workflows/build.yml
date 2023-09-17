@@ -17,8 +17,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set release/tag
+        run: |
+          git describe --tags --long --always > RELEASE || true
+          git describe --tags --exact-match > TAG || true
+
       - name: Build
-        uses: docker://ghcr.io/kastelo/sphinx-build
+        uses: docker://docker.io/sphinxdoc/sphinx-latexpdf:latest
         with:
           entrypoint: make
           args: html man latexpdf
