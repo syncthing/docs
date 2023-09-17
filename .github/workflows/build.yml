@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
     branches:
-      - main
+      - '*'
     tags:
       - v*
 
@@ -51,3 +51,46 @@ jobs:
           name: pdf
           path: _build/latex/*.pdf
           retention-days: 14
+
+  publish:
+    runs-on: ubuntu-latest
+    name: Publish to GitHub pages
+    needs: build-html-man-pdf
+    environment: github-pages
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+
+      - uses: actions/checkout@v2
+
+      - name: Prepare site (pre-rendered)
+        run: |
+          git clone --depth 1 https://github.com/syncthing/docs-pre-rendered.git _site
+          rm -rf _site/.git
+          go run _script/lsver.go _site > _site/versions.json
+
+      - name: Prepare site (html)
+        uses: actions/download-artifact@v2
+        with:
+          name: html
+          path: _site
+
+      - name: Prepare site (man)
+        uses: actions/download-artifact@v2
+        with:
+          name: man
+          path: _site/man
+
+      - name: Prepare site (pdf)
+        uses: actions/download-artifact@v2
+        with:
+          name: man
+          path: _site/man
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v2
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
