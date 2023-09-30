@@ -16,6 +16,9 @@ also set a username and a strong password for authentication and check the
 option to use HTTPS. You are otherwise, potentially, opening up your
 Syncthing installation for the world.
 
+Unix sockets are supported by specifying an absolute path
+(``/run/syncthing/syncthing.socket``).
+
 Port Numbers
 ------------
 
