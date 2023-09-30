@@ -80,6 +80,9 @@ The ``.stignore`` file contains a list of file or path patterns. The
    still relative to the synced folder *root*. Example:
    ``#include more-patterns.txt``.
 
+   Any ``#include`` directives inside a file loaded by ``#include`` require paths specified relative 
+   to the directory containing the loaded file, rather than the synchronised root directory.
+
 -  A pattern beginning with a ``!`` prefix negates the pattern: matching files
    are *included* (that is, *not* ignored). This can be used to override
    more general patterns that follow.
