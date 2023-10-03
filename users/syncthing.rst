@@ -88,7 +88,11 @@ Options
 .. cmdoption:: --gui-address=<address>
 
     Override GUI listen address. Set this to an address (``0.0.0.0:8384``)
-    or file path (``/var/run/st.sock``, for UNIX sockets).
+    or a URL (``http://0.0.0.0:8384``). Supported schemes are ``http`` for
+    plain HTTP, ``https`` for HTTP over TLS, ``unix`` for plain Unix sockets
+    or ``unixs`` for TLS over Unix sockets. A Unix socket could look like this:
+    ``unix:///run/syncthing/syncthing.socket`` (notice the three slashes: two
+    as part of the URL structure, one to specify an absolute path).
 
 .. cmdoption:: --gui-apikey=<string>
 
