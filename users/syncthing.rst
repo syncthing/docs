@@ -101,9 +101,10 @@ Options
 .. cmdoption:: --gui-password=<password|->
 
     Specify new GUI authentication password, to update the config file.  Read
-    from the standard input stream if only a single dash (``-``) is given.  The
-    password is hashed before writing to the config file.  As a special case,
-    giving the existing password hash as password will leave it untouched.
+    from the standard input stream if only a single dash (``-``) is given.  A
+    plaintext password is hashed before writing to the config file, but an
+    already bcrypt-hashed input is stored verbatim.  As a special case, giving
+    the existing password hash as password will leave it untouched.
 
 .. cmdoption:: --gui-user=<username>
 

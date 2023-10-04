@@ -69,3 +69,8 @@ patterns to be used by default on folders, as an array of single-line strings.
 
 ``GET`` returns the respective object, ``PUT`` replaces the entire object and
 ``PATCH`` replaces only the given child objects.
+
+.. note::
+   The :stconf:opt:`gui.password` configuration option has special handling to
+   accept already hashed passwords.  Any valid bcrypt hash is stored verbatim,
+   while a plaintext password is first hashed.
