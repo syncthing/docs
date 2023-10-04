@@ -140,8 +140,9 @@ to
     <gui enabled="true" tls="false">
       <address>0.0.0.0:8384</address>
 
-Then the GUI is accessible from everywhere. You should set a password and
-enable HTTPS with this configuration. You can do this from inside the GUI.
+Then the GUI is accessible from everywhere.  There is no filtering based on
+e.g. source address (use a firewall for that).  You should set a password and
+enable HTTPS with this configuration.  You can do this from inside the GUI.
 
 If both your computers are Unix-like (Linux, Mac, etc.) you can also leave the
 GUI settings at default and use an ssh port forward to access it. For
