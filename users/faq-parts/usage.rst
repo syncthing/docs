@@ -122,11 +122,10 @@ character is used as a path separator.
 How do I access the web GUI from another computer?
 --------------------------------------------------
 
-The default listening address is 127.0.0.1:8384, so you can only access the
-GUI from the same machine. This is for security reasons. To access the web 
-GUI from another computer, change the ``GUI listen address`` through the web
-UI from ``127.0.0.1:8384`` to
-``0.0.0.0:8384`` or change the config.xml:
+The default listening address is 127.0.0.1:8384, so you can only access the GUI
+from the same machine.  This is for security reasons.  To access it from another
+computer, change the ``GUI listen address`` option in the web GUI from
+``127.0.0.1:8384`` to ``0.0.0.0:8384``, or change the ``config.xml``:
 
 .. code-block:: xml
 
@@ -137,7 +136,7 @@ to
 
 .. code-block:: xml
 
-    <gui enabled="true" tls="false">
+    <gui enabled="true" tls="true">
       <address>0.0.0.0:8384</address>
 
 Then the GUI is accessible from everywhere.  There is no filtering based on
@@ -145,31 +144,25 @@ e.g. source address (use a firewall for that).  You should set a password and
 enable HTTPS with this configuration.  You can do this from inside the GUI.
 
 If both your computers are Unix-like (Linux, Mac, etc.) you can also leave the
-GUI settings at default and use an ssh port forward to access it. For
-example,
+GUI settings at default and use an SSH port forward to access it.  For example,
 
 .. code-block:: bash
 
     $ ssh -L 9090:127.0.0.1:8384 user@othercomputer.example.com
 
-will log you into othercomputer.example.com, and present the *remote*
+will log you into ``othercomputer.example.com``, and present the *remote*
 Syncthing GUI on http://localhost:9090 on your *local* computer.
 
-If you only want to access the remote gui and don't want the terminal
-session, use this example,
+If you only want to access the remote GUI and don't want the terminal session,
+use this example:
 
 .. code-block:: bash
 
     $ ssh -N -L 9090:127.0.0.1:8384 user@othercomputer.example.com
 
-If only your remote computer is Unix-like,
-you can still access it with ssh from Windows.
-
-Under Windows 10 or later (64-bit only) you can use the same ssh command
-if you install the `Windows Subsystem for Linux <https://docs.microsoft.com/windows/wsl/install>`__.
-
-Another Windows way to run ssh is to install `gow (Gnu On Windows) <https://github.com/bmatzelle/gow>`__. The easiest way to install gow is with the `chocolatey <https://chocolatey.org/>`__ package manager.
-
+If only your remote computer is Unix-like, you can still access it with SSH from
+Windows.  Under Windows 10 or later you can use the same ``ssh`` command if you
+`install the OpenSSH Client <https://learn.microsoft.com/windows-server/administration/openssh/openssh_install_firstuse>`__.
 
 I don't like the GUI or the theme. Can it be changed?
 -----------------------------------------------------
