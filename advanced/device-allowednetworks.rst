@@ -1,9 +1,9 @@
-.. _allowed-networks:
+.. _allowed-network:
 
-allowedNetworks
-===============
+allowedNetwork
+==============
 
-``allowedNetworks`` is an advanced device setting that affects connection
+``allowedNetwork`` is an advanced device setting that affects connection
 handling. The default is for this setting to be empty, indicating that there
 is no restriction on the allowed networks for a device.
 
