@@ -15,10 +15,15 @@ presently on.
 Given a list of:
 ``
 <device ...>
+
   <allowedNetwork>192.168.0.0/16</allowedNetwork>
+
   <allowedNetwork>172.16.0.0/12</allowedNetwork>
+
   <allowedNetwork>2001:db8::/32</allowedNetwork>
+
 </device>
+``
 
 Syncthing will:
 
