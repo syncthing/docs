@@ -13,13 +13,11 @@ address of the *remote* device, not the network that the local device is
 presently on.
 
 Given a list of:
-```
-<device ...>
+```<device ...>
   <allowedNetwork>192.168.0.0/16</allowedNetwork>
   <allowedNetwork>172.16.0.0/12</allowedNetwork>
   <allowedNetwork>2001:db8::/32</allowedNetwork>
-</device>
-```
+</device>```
 
 Syncthing will:
 
