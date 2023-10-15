@@ -4,15 +4,23 @@ allowedNetwork
 ==============
 
 ``allowedNetwork`` is an advanced device setting that affects connection
-handling. The default is for this setting to be empty, indicating that there
-is no restriction on the allowed networks for a device.
+handling. The default is for this setting is the XML node is not present,
+indicating that there is no restriction on the allowed networks for a device.
 
-By setting this to a comma separated list of networks, connections to the
+By setting this to a list of networks, connections to the
 given device will be limited to those networks. The networks refer to the
 address of the *remote* device, not the network that the local device is
 presently on.
 
-Given a value of ``192.168.0.0/16, 172.16.0.0/12, 2001:db8::/32`` Syncthing will:
+Given a list of:
+``
+<device ...>
+  <allowedNetwork>192.168.0.0/16</allowedNetwork>
+  <allowedNetwork>172.16.0.0/12</allowedNetwork>
+  <allowedNetwork>2001:db8::/32</allowedNetwork>
+</device>
+
+Syncthing will:
 
  - Allow connections from the device from addresses in the specified
    networks.
