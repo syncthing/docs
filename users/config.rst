@@ -8,6 +8,7 @@ Synopsis
 
 ::
 
+    $XDG_STATE_HOME/syncthing
     $HOME/.local/state/syncthing
     $HOME/Library/Application Support/Syncthing
     %LOCALAPPDATA%\Syncthing
