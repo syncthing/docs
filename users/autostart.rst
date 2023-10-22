@@ -319,7 +319,7 @@ Go to ``/etc/supervisor/conf.d/`` and create a new file named ``syncthing.conf``
     autorestart = True
     directory = /home/<USERNAME>/
     user = <USERNAME>
-    command = /usr/bin/syncthing --no-browser --home="/home/<USERNAME>/.config/syncthing"
+    command = /usr/bin/syncthing --no-browser
     environment = STNORESTART="1", HOME="/home/<USERNAME>"
 
 Reload Supervisord::

@@ -8,7 +8,7 @@ Synopsis
 
 ::
 
-    $HOME/.config/syncthing
+    $HOME/.local/state/syncthing
     $HOME/Library/Application Support/Syncthing
     %LOCALAPPDATA%\Syncthing
 
@@ -25,11 +25,12 @@ Description
 
 Syncthing uses a single directory to store configuration and crypto keys.
 Syncthing also has a database, which is often stored in this directory too.
-The config location defaults to ``$HOME/.config/syncthing``
-(Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac),
-or ``%LOCALAPPDATA%\Syncthing`` (Windows). It can be changed at runtime
-using the ``--config`` flag. In this directory the following files are
-located:
+The config location defaults to ``$XDG_STATE_HOME/syncthing`` or
+``$HOME/.local/state/syncthing`` (Unix-like), ``$HOME/Library/Application
+Support/Syncthing`` (Mac), or ``%LOCALAPPDATA%\Syncthing`` (Windows). It can
+be changed at runtime using the ``--config`` or ``--home`` flags or the
+corresponding environment varibles (``$STCONFDIR`` or ``STHOMEDIR``). The
+following files are located in this directory:
 
 :file:`config.xml`
     The configuration file, in XML format.
@@ -48,22 +49,27 @@ located:
 
 The database is stored either in the same directory as the config (usually the
 default), but may also be located in one of the following directories (Unix-like
-platforms only):
+platforms only) for legacy reasons:
 
-* If a database exists in the old default location, that location is
-  still used.
-* If ``$XDG_DATA_HOME`` is set, use ``$XDG_DATA_HOME/syncthing``.
-* If ``~/.local/share/syncthing`` exists, use that location.
-* Use the old default location (same as config).
+* ``$XDG_DATA_HOME/syncthing``
+* ``~/.local/share/syncthing``
+* Any location specified by the ``--data`` or ``--home`` flags or the
+  corresponding environment varibles (``$STDATADIR`` or ``STHOMEDIR``).
 
-The location of the database can be changed using the ``--data`` flag. The
-``--home`` flag sets both config and database locations at the same time.
-The database contains the following files:
+The database directory contains the following files, among others:
 
 :file:`index-{*}.db`
     A directory holding the database with metadata and hashes of the files
     currently on disk and available from peers.
 
+:file:`syncthing.log`
+    Log output, on some systems.
+
+:file:`audit-{*}.log`
+    Audit log data, when enabled.
+
+:file:`panic-{*}.log`
+    Crash log data, when required.
 
 Config File Format
 ------------------

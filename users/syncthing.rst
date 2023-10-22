@@ -118,7 +118,8 @@ Options
 .. cmdoption:: --home=<dir>
 
     Set common configuration and data directory. The default configuration
-    directory is ``$HOME/.config/syncthing`` (Unix-like),
+    directory is  ``$XDG_STATE_HOME/syncthing`` or
+    ``$HOME/.local/state/syncthing`` (Unix-like),
     ``$HOME/Library/Application Support/Syncthing`` (Mac) and
     ``%LOCALAPPDATA%\Syncthing`` (Windows).
 
