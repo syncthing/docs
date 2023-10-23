@@ -26,7 +26,7 @@ Description
 
 Syncthing uses a single directory to store configuration and crypto keys.
 Syncthing also has a database, which is often stored in this directory too.
-The config location defaults to ``$XDG_STATE_HOME/syncthing`` or
+The location defaults to ``$XDG_STATE_HOME/syncthing`` or
 ``$HOME/.local/state/syncthing`` (Unix-like), ``$HOME/Library/Application
 Support/Syncthing`` (Mac), or ``%LOCALAPPDATA%\Syncthing`` (Windows). It can
 be changed at runtime using the ``--config`` or ``--home`` flags or the
