@@ -127,7 +127,7 @@ How can I view the history of changes?
 The web GUI contains a ``Recent Changes`` button under the device list which
 displays changes since the last (re)start of Syncthing. With the ``--audit``
 option you can enable a persistent, detailed log of changes and most
-activities, which contains a ``JSON`` formatted  sequence of events in the
+activities, which contains a JSON-formatted sequence of events in the
 ``~/.local/state/syncthing/audit-_date_-_time_.log`` file.
 
 Does the audit log contain every change?
