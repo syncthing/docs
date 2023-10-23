@@ -19,7 +19,7 @@ Synopsis
 Description
 -----------
 
-.. versionchanged:: 1.26.0
+.. versionchanged:: 1.27.0
 
     The default location of the configuration and database directory on
     Unix-like systems was changed to ``$XDG_STATE_HOME/syncthing`` or
