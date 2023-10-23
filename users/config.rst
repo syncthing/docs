@@ -19,13 +19,26 @@ Synopsis
 Description
 -----------
 
+.. versionadded:: 1.26.0
+
+    The default location of the configuration and database directory on
+    Unix-like systems was changed to ``$XDG_STATE_HOME/syncthing`` or
+    ``$HOME/.local/state/syncthing``. Previously the default config location
+    was ``$XDG_CONFIG_HOME/syncthing`` or ``$HOME/.config/syncthing``. The
+    database directory was previously ``$HOME/.config/syncthing`` or, if the
+    environment variable was set, ``$XDG_DATA_HOME/syncthing``. Existing
+    installations may still use these directories instead of the newer
+    defaults.
+
 .. versionadded:: 1.5.0
 
     Database and config can now be set separately. Previously the database was
     always located in the same directory as the config.
 
 Syncthing uses a single directory to store configuration and crypto keys.
-Syncthing also has a database, which is often stored in this directory too.
+Syncthing also keeps an index database with file metadata which is by
+default stored in the same directory, though this can be overridden.
+
 The location defaults to ``$XDG_STATE_HOME/syncthing`` or
 ``$HOME/.local/state/syncthing`` (Unix-like), ``$HOME/Library/Application
 Support/Syncthing`` (Mac), or ``%LOCALAPPDATA%\Syncthing`` (Windows). It can
@@ -44,18 +57,9 @@ following files are located in this directory:
     The certificate and key for HTTPS GUI connections. These may be replaced
     with a custom certificate for HTTPS as desired.
 
-:file:`csrftokens.txt`
-    A list of recently issued CSRF tokens (for protection against browser cross
-    site request forgery).
-
-The database is stored either in the same directory as the config (usually the
-default), but may also be located in one of the following directories (Unix-like
-platforms only) for legacy reasons:
-
-* ``$XDG_DATA_HOME/syncthing``
-* ``~/.local/share/syncthing``
-* Any location specified by the ``--data`` or ``--home`` flags or the
-  corresponding environment varibles (``$STDATADIR`` or ``STHOMEDIR``).
+The database is by default stored in the same directory as the config, but
+the location may be overridden by the ``--data`` or ``--home`` flags or the
+corresponding environment varibles (``$STDATADIR`` or ``STHOMEDIR``).
 
 The database directory contains the following files, among others:
 
@@ -71,6 +75,7 @@ The database directory contains the following files, among others:
 
 :file:`panic-{*}.log`
     Crash log data, when required.
+
 
 Config File Format
 ------------------
