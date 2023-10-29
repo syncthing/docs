@@ -16,11 +16,12 @@ Description
 -----------
 
 If some files should not be synchronized to (or from) other devices, a file called
-``.stignore`` can be created containing file patterns to ignore. The
-``.stignore`` file must be placed in the root of the synced folder. The
-``.stignore`` file itself will never be synced to other devices, although it can
-``#include`` files that *are* synchronized between devices. All patterns are
-relative to the synced folder root.
+``.stignore`` can be created containing file patterns to ignore.
+The ``.stignore`` file must be placed in the root of the synced folder
+(files in other localtions are not applied).
+The ``.stignore`` file itself will never be synced to other devices,
+although it can ``#include`` files that *are* synchronized between devices.
+All patterns are relative to the synced folder root.
 The contents of the ``.stignore`` file must be UTF-8 encoded.
 
 .. note::
