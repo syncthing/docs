@@ -905,6 +905,25 @@ The following child elements may be present:
     ``ldap``
         LDAP authentication. Requires ldap top level config section to be present.
 
+.. option:: gui.sendBasicAuthPrompt
+
+    .. versionadded:: 1.26.0
+
+    Prior to version 1.26.0 the GUI used HTTP Basic Authorization for login, but
+    starting in version 1.26.0 it uses an HTML form by default. Basic
+    Authorization is still supported when the ``Authorization`` request header
+    is present in a request, but some browsers don't send the header unless
+    prompted by a 401 response.
+
+    When this setting is enabled, the GUI will respond to unauthenticated
+    requests with a 401 response prompting for Basic Authorization, so that
+    ``https://user:pass@localhost`` style URLs continue to work in standard
+    browsers. Other clients that always send the ``Authorization`` request
+    header do not need this setting.
+
+    When this setting is disabled, the GUI will not send 401 responses so users
+    won't see browser popups prompting for username and password.
+
 
 LDAP Element
 ------------
