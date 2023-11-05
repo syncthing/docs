@@ -901,6 +901,8 @@ The following child elements may be present:
 
 .. option:: gui.sendBasicAuthPrompt
 
+    .. versionadded:: 1.26.0
+
     Prior to version 1.26.0 the GUI used HTTP Basic Authorization for login, but
     starting in version 1.26.0 it uses an HTML form by default. Basic
     Authorization is still supported when the ``Authorization`` request header
