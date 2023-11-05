@@ -901,10 +901,11 @@ The following child elements may be present:
 
 .. option:: gui.sendBasicAuthPrompt
 
-    The GUI previously used HTTP Basic Authorization for login, but now uses an
-    HTML form by default. Basic Authorization is still supported when the
-    ``Authorization`` request header is present in a request, but some browsers
-    don't send the header unless prompted by a 401 response.
+    Prior to version 1.26.0 the GUI used HTTP Basic Authorization for login, but
+    starting in version 1.26.0 it uses an HTML form by default. Basic
+    Authorization is still supported when the ``Authorization`` request header
+    is present in a request, but some browsers don't send the header unless
+    prompted by a 401 response.
 
     When this setting is enabled, the GUI will respond to unauthenticated
     requests with a 401 response prompting for Basic Authorization, so that
