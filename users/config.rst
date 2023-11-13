@@ -8,7 +8,8 @@ Synopsis
 
 ::
 
-    $HOME/.config/syncthing
+    $XDG_STATE_HOME/syncthing
+    $HOME/.local/state/syncthing
     $HOME/Library/Application Support/Syncthing
     %LOCALAPPDATA%\Syncthing
 
@@ -18,18 +19,32 @@ Synopsis
 Description
 -----------
 
+.. versionchanged:: 1.27.0
+
+    The default location of the configuration and database directory on
+    Unix-like systems was changed to ``$XDG_STATE_HOME/syncthing`` or
+    ``$HOME/.local/state/syncthing``. Previously the default config location
+    was ``$XDG_CONFIG_HOME/syncthing`` or ``$HOME/.config/syncthing``. The
+    database directory was previously ``$HOME/.config/syncthing`` or, if the
+    environment variable was set, ``$XDG_DATA_HOME/syncthing``. Existing
+    installations may still use these directories instead of the newer
+    defaults.
+
 .. versionadded:: 1.5.0
 
     Database and config can now be set separately. Previously the database was
     always located in the same directory as the config.
 
 Syncthing uses a single directory to store configuration and crypto keys.
-Syncthing also has a database, which is often stored in this directory too.
-The config location defaults to ``$HOME/.config/syncthing``
-(Unix-like), ``$HOME/Library/Application Support/Syncthing`` (Mac),
-or ``%LOCALAPPDATA%\Syncthing`` (Windows). It can be changed at runtime
-using the ``--config`` flag. In this directory the following files are
-located:
+Syncthing also keeps an index database with file metadata which is by
+default stored in the same directory, though this can be overridden.
+
+The location defaults to ``$XDG_STATE_HOME/syncthing`` or
+``$HOME/.local/state/syncthing`` (Unix-like), ``$HOME/Library/Application
+Support/Syncthing`` (Mac), or ``%LOCALAPPDATA%\Syncthing`` (Windows). It can
+be changed at runtime using the ``--config`` or ``--home`` flags or the
+corresponding environment varibles (``$STCONFDIR`` or ``STHOMEDIR``). The
+following files are located in this directory:
 
 :file:`config.xml`
     The configuration file, in XML format.
@@ -42,27 +57,24 @@ located:
     The certificate and key for HTTPS GUI connections. These may be replaced
     with a custom certificate for HTTPS as desired.
 
-:file:`csrftokens.txt`
-    A list of recently issued CSRF tokens (for protection against browser cross
-    site request forgery).
+The database is by default stored in the same directory as the config, but
+the location may be overridden by the ``--data`` or ``--home`` flags or the
+corresponding environment varibles (``$STDATADIR`` or ``STHOMEDIR``).
 
-The database is stored either in the same directory as the config (usually the
-default), but may also be located in one of the following directories (Unix-like
-platforms only):
-
-* If a database exists in the old default location, that location is
-  still used.
-* If ``$XDG_DATA_HOME`` is set, use ``$XDG_DATA_HOME/syncthing``.
-* If ``~/.local/share/syncthing`` exists, use that location.
-* Use the old default location (same as config).
-
-The location of the database can be changed using the ``--data`` flag. The
-``--home`` flag sets both config and database locations at the same time.
-The database contains the following files:
+The database directory contains the following files, among others:
 
 :file:`index-{*}.db`
     A directory holding the database with metadata and hashes of the files
     currently on disk and available from peers.
+
+:file:`syncthing.log`
+    Log output, on some systems.
+
+:file:`audit-{*}.log`
+    Audit log data, when enabled.
+
+:file:`panic-{*}.log`
+    Crash log data, when required.
 
 
 Config File Format
