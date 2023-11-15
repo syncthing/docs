@@ -82,6 +82,6 @@ Monitoring
 
 The infrastructure is monitored and its status is publicly accessible on the following urls:
 
-- `status.syncthing.net <https://status.syncthing.net>`__ (Apex Ping)
+- `status.syncthing.net <https://status.syncthing.net>`__ (updown.io service)
 - `monitor.syncthing.net <https://monitor.syncthing.net>`__ (Grafana)
 
