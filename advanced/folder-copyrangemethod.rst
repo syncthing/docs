@@ -28,7 +28,7 @@ The following values are accepted:
         data. Introduced in Linux 4.5 and tested on XFS and BTRFS. Some
         network filesystems might use this to perform server-side copies.
 
-        | *Tested on: BTRFS, XFS, EXT4*
+        | *Tested on: BTRFS, EXT4, XFS, ZFS*
         | *Available on: Linux*
 
     ``ioctl``
