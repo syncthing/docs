@@ -5,9 +5,6 @@ copyRangeMethod
 
 .. versionadded:: 1.8.0
 
-.. warning::
-    This is an experimental feature.
-
 Provides a choice of method for copying data between files. This can be used
 to optimise copies on network filesystems, improve speed of large copies or
 clone the data using copy-on-write functionality if the underlying
