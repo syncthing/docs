@@ -1,6 +1,5 @@
 #!/bin/sh
 set -euo pipefail
-set -x
 
 go install github.com/calmh/git-contributors@latest
 git-contributors --read-authors=AUTHORS --authors > authors-new
