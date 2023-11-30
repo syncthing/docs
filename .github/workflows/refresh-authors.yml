@@ -1,0 +1,34 @@
+name: Refresh author list
+on:
+  workflow_dispatch:
+  schedule:
+    # Thursday mornings
+    - cron:  '42 7 * * 4'
+
+permissions:
+  contents: write
+
+jobs:
+
+  refresh-versions:
+    runs-on: ubuntu-latest
+    name: Refresh authors
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v3
+        with:
+          go-version: 'stable'
+
+      - name: Run refresh script
+        run: |
+          set -euo pipefail
+          go install github.com/calmh/git-contributors@latest
+          bash refresh-authors.sh
+          if [ -z "$(git status --porcelain)" ]; then exit 0; fi
+          git config --global user.name 'Syncthing Release Automation'
+          git config --global user.email 'release@syncthing.net'
+          git commit -am 'Update author list'
+          git push
