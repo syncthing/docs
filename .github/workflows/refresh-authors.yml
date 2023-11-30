@@ -4,6 +4,7 @@ on:
   schedule:
     # Thursday mornings
     - cron:  '42 7 * * 4'
+  push:
 
 permissions:
   contents: write
