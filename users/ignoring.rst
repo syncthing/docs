@@ -16,14 +16,12 @@ Description
 -----------
 
 If some files should not be synchronized to (or from) other devices, a file called
-If some files should not be synchronized to (or from) other devices, a file called
 ``.stignore`` can be created containing file patterns to ignore.  The ``.stignore``
 file must be placed in the root of the synced folder (files in other locations are
 not applied).  The ``.stignore`` file itself will never be synced to other devices,
 although it can ``#include`` files that *are* synchronized between devices.  All
 patterns are relative to the synced folder root.  The contents of the ``.stignore``
 file must be UTF-8 encoded.
-The contents of the ``.stignore`` file must be UTF-8 encoded.
 
 .. note::
 
@@ -82,8 +80,9 @@ The ``.stignore`` file contains a list of file or path patterns. The
    still relative to the synced folder *root*. Example:
    ``#include more-patterns.txt``.
 
-   Any ``#include`` directives inside a file loaded by ``#include`` require paths specified relative 
-   to the directory containing the loaded file, rather than the synchronised root directory.
+   Any ``#include`` directives inside a file loaded by ``#include`` require paths
+   specified relative to the directory containing the loaded file, rather than the
+   synchronised root directory.
 
 -  A pattern beginning with a ``!`` prefix negates the pattern: matching files
    are *included* (that is, *not* ignored). This can be used to override
@@ -99,7 +98,7 @@ The ``.stignore`` file contains a list of file or path patterns. The
    they are preventing directory deletion. This prefix should be used by any OS
    generated files which you are happy to be removed.
 
--  A line beginning with ``//`` is a comment and has no effect. The same double 
+-  A line beginning with ``//`` is a comment and has no effect. The same double
    slashes in any other place are interpreted literally, e.g. trying to do
    ``file // comment`` will make Syncthing look for a file called ``file // comment``.
 
