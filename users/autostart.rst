@@ -376,7 +376,7 @@ How to set up a system service
 
 #. Create the user who should run the service, or choose an existing one.
 #. (Skip if your distribution package already installs these files, see above.)
-   From `git location <https://github.com/syncthing/syncthing>`__ copy the ``Syncthing/etc/linux-systemd/system/syncthing@.service`` file into the
+   From `git location <https://github.com/syncthing/syncthing/raw/main/etc/linux-systemd/system/>`__ copy the ``syncthing@.service`` file into the
    `load path of the system instance
    <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
 #. Enable and start the service. Replace "myuser" with the actual Syncthing
@@ -391,7 +391,7 @@ How to set up a user service
 #. Create the user who should run the service, or choose an existing
    one. *Probably this will be your own user account.*
 #. (Skip if your distribution package already installs these files, see above.)
-   From `git location <https://github.com/syncthing/syncthing>`__ copy the ``Syncthing/etc/linux-systemd/user/syncthing.service`` file into the `load path
+   From `git location <https://github.com/syncthing/syncthing/raw/main/etc/linux-systemd/user/>`__ copy the ``syncthing.service`` file into the `load path
    of the user instance
    <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
    To do this without root privileges you can just use this folder under your
