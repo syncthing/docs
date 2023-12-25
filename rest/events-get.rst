@@ -22,6 +22,11 @@ waits for new events to happen before returning. By default it times out after
 60 seconds returning an empty array. The time out duration can be customized
 with the optional parameter ``timeout=<seconds>``.
 
+.. warning::
+   Using ``since`` with a future event ID, an event ID larger than the latest
+   known one, causes server to wait until the difference between the latest
+   and requested/future is filled with a higher possibly of timeout.
+
 To receive only a limited number of events, add the ``limit=<n>`` parameter with a
 suitable value for ``n`` and only the *last* ``n`` events will be returned. This
 can be used to catch up with the latest event ID after a disconnection for
