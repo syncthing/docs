@@ -72,19 +72,19 @@ jobs:
           go run _script/lsver.go _site > _site/versions.json
 
       - name: Prepare site (html)
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: html
           path: _site
 
       - name: Prepare site (man)
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: man
           path: _site/man
 
       - name: Prepare site (pdf)
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: man
           path: _site/man
