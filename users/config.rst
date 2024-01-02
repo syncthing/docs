@@ -43,7 +43,7 @@ The location defaults to ``$XDG_STATE_HOME/syncthing`` or
 ``$HOME/.local/state/syncthing`` (Unix-like), ``$HOME/Library/Application
 Support/Syncthing`` (Mac), or ``%LOCALAPPDATA%\Syncthing`` (Windows). It can
 be changed at runtime using the ``--config`` or ``--home`` flags or the
-corresponding environment varibles (``$STCONFDIR`` or ``STHOMEDIR``). The
+corresponding environment variables (``$STCONFDIR`` or ``STHOMEDIR``). The
 following files are located in this directory:
 
 :file:`config.xml`
