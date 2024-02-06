@@ -6,6 +6,9 @@ on:
       - '*'
     tags:
       - v*
+  workflow_dispatch:
+  schedule:
+    - cron: '25 7 * * 0'
 
 jobs:
 
