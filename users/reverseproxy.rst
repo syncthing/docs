@@ -82,6 +82,21 @@ Caddy v2
         }
     }
 
+HAProxy
+~~~~~~~
+
+.. code-block:: none
+
+    frontend syncthing-in
+        bind :80
+        bind :443 ssl crt /etc/ssl/ssl-certs.pem
+        http-request redirect scheme https unless { ssl_fc }
+        http-request set-header Host localhost
+        default_backend syncthing-service
+
+    backend syncthing-service
+        server syncthing 127.0.0.1:8384
+
 
 Folder Configuration
 --------------------
