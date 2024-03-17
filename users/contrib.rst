@@ -69,6 +69,10 @@ Linux
 - `syncthing-tray-gtk3 <https://github.com/abdeoliveira/syncthing-tray-gtk3>`_
 
   Yet another Syncthing tray icon indicator written in Ruby.
+  
+- `steamdeck-decky-syncthing  <https://github.com/theCapypara/steamdeck-decky-syncthing>`_
+
+  A Steam Deck (Decky Loader) plugin for controlling Syncthing from the Steam Big Picture / Steam Deck UI.
 
 Command Line Tools
 ------------------
