@@ -176,7 +176,7 @@ user account in Windows. No console or browser window will pop-up, but
 you can still access the interface by opening http://localhost:8384 in
 a Web browser.
 
-Using newer versions of Windows, the flag "--no-console" is reported to be not working
+When using Windows 10 or newer with Windows Terminal set as the default shell, the flag ``--no-console`` is reported to be not working
 correctly. An easy workaround is to use ``stctl.exe --start`` instead of 
 ``syncthing.exe --no-console --no-browser``.
 
