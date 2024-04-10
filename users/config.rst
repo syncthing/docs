@@ -1221,7 +1221,10 @@ The ``options`` element contains all other global configuration options.
 
 .. option:: options.trafficClass
 
-    Specify a type of service (TOS)/traffic class of outgoing packets.
+    Specify an IPv4 type of service (TOS)/IPv6 traffic class for outgoing
+    packets. To specify a differentiated services code point (DSCP) the value
+    must be bit shifted to the left by two to take the two least significant
+    ECN bits into account.
 
 .. option:: options.stunServer
     :aliases: options.stunServers
