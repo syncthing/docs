@@ -132,6 +132,15 @@ man/
 script/
    Various utility scripts for auto generating stuff and so on.
 
+  genassets/
+      Generates asset files that are compiled into ``syncthing`` as part of the build process (build utility).
+
+  transifexdl/
+      Downloads translations from Transifex (build utility).
+
+   translate/
+      Generates translation source for Transifex based on the HTML source (build utility).
+
 test/
    The integration test suite.
 
