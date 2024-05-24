@@ -86,7 +86,7 @@ func (c *metricCollector) Visit(n ast.Node) bool {
 				}
 
 				// The call should be a selector expression
-				// (package.Identifer).
+				// (package.Identifier).
 				sel, ok := call.Fun.(*ast.SelectorExpr)
 				if !ok {
 					continue
