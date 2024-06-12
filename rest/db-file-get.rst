@@ -1,12 +1,31 @@
 GET /rest/db/file
 =================
 
-Returns most data available about a given file, including version and
-availability. Takes ``folder`` and ``file`` parameters. ``local`` and
-``global`` refer to the current file on disk and the globally newest file,
-respectively.
+Returns data about a given file, including version and availability.
 
-.. code-block::
+Request
+-------
+
+The call requires parameters for `folder` and `file` in the query string:
+
+- `folder` is the folder ID which you can find in the Syncthing Web GUI,
+  e.g. `5camp-slpa8`.
+
+- `file` is the relative path of the file starting from the folder root to the
+  file you are interested in.  The path and filename must be correctly
+  URL-encoded.
+
+Example Request
+^^^^^^^^^^^^^^^
+
+.. code-block:: bash
+
+    curl --silent --get --header "X-API-KEY: YOUR_API_TOKEN" "http://localhost:8384/rest/db/file?folder=YOUR_FOLDER_ID" --data-urlencode "file=path/to/file.pdf"
+
+Response
+--------
+
+.. code-block:: json
 
     {
       "availability": [
@@ -19,7 +38,10 @@ respectively.
       "local": { /* a file entry */ }
     }
 
-A file entry looks like this::
+``local`` and ``global`` refer to the current file on the local device and the
+globally newest file, respectively.  A file entry looks like this:
+
+.. code-block:: json
 
     {
       {
@@ -53,9 +75,11 @@ A file entry looks like this::
     }
 
 Platform specific data may be ownership, extended attributes, etc. and is
-divided into entries per operating system / platform. An example platform
-entry containing ownership information for Unix systems and an extended
-attribute for macOS ("darwin") looks as follows::
+divided into entries per operating system / platform.  An example platform entry
+containing ownership information for Unix systems and an extended attribute for
+macOS ("darwin") looks as follows:
+
+.. code-block:: json
 
     {
       "darwin": {
