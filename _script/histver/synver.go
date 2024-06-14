@@ -37,7 +37,7 @@ func main() {
 	var table []*tableRow
 	fd, err := os.Open(*versionsFile)
 	if os.IsNotExist(err) {
-		// File doesn't exist yet. That's allright.
+		// File doesn't exist yet. That's all right.
 	} else if err != nil {
 		log.Fatalln("Reading existing versions:", err)
 	} else {

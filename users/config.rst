@@ -59,7 +59,7 @@ following files are located in this directory:
 
 The database is by default stored in the same directory as the config, but
 the location may be overridden by the ``--data`` or ``--home`` flags or the
-corresponding environment varibles (``$STDATADIR`` or ``STHOMEDIR``).
+corresponding environment variables (``$STDATADIR`` or ``STHOMEDIR``).
 
 The database directory contains the following files, among others:
 
