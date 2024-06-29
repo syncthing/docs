@@ -48,8 +48,12 @@ Waiting to Clean
 
 Cleaning Versions
 	while removing obsolete files from the .stversions folder.
+
 Local Additions
-	Indicates receive-only folders with items present which were added or modified locally, thus not synced to remote machines. The red button "Revert Local Changes" will revert and delete all local changes to the state advertised by remote devices.
+	when locally added or modified items are present in a receive-only
+	folder, thus not synced to remote machines.  The red button "Revert
+	Local Changes" will revert and delete all local changes to the state
+	advertised by remote devices.
 
 Among the folder details, you can see the current "Global State" and
 "Local State" summaries, as well as the amount of "Out of Sync" data if
