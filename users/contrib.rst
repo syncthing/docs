@@ -15,7 +15,7 @@ GUI Wrappers
 Cross-platform
 ~~~~~~~~~~~~~~
 
-- `syncthingtray <https://github.com/Martchus/syncthingtray>`__
+- `Syncthing Tray <https://martchus.github.io/syncthingtray>`__
 
 Android
 ~~~~~~~
