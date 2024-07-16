@@ -21,7 +21,7 @@ Prerequisites
 Release Procedure
 -----------------
 
-The procedure differs sligthly depending on whether we're doing a release candidate or a stable release. Candidate releases require work to prepare the changelog, which will just be reused for the stable release. The stable release on the other hand requires a slightly different release process and is announced more widely.
+The procedure differs slightly depending on whether we're doing a release candidate or a stable release. Candidate releases require work to prepare the changelog, which will just be reused for the stable release. The stable release on the other hand requires a slightly different release process and is announced more widely.
 
 Release Candidates - Write a Change Log
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

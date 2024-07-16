@@ -40,7 +40,7 @@ the matching pattern and the text-field is the pattern to be matched. Adding
 a rule while already having a wild-card (*) added will result in the new rule
 being added as second-last item. When saving the configuration, empty rules
 will be removed. Closing the window without pressing save will cause your
-made changes to be resetted.
+made changes to be reset.
 
 Be aware that the rules aren't being validated on correctness beyond the point
 of cleaning out empty rules.
