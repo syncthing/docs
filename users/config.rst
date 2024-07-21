@@ -144,6 +144,9 @@ The following shows an example of a default configuration file (IDs will differ)
             <address>127.0.0.1:8384</address>
             <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
             <theme>default</theme>
+            <webauthnUserId>4_KyxKWr6x2KvB3GGHYLkjmn1M6xTip5ITZQUgaUzJW5e023M0j4NBOkgR-4aQarM7RRCv7TGkmOD53kQBPhLQ==</webauthnUserId>
+            <webauthnRpId>localhost</webauthnRpId>
+            <webauthnOrigin>https://localhost:8384</webauthnOrigin>
         </gui>
         <ldap></ldap>
         <options>
@@ -842,6 +845,8 @@ set on the ``gui`` element:
 
     If not ``true``, the GUI and API will not be started.
 
+.. _gui-tls:
+
 .. option:: gui.tls
     :aliases: gui.useTLS
 
@@ -941,6 +946,43 @@ The following child elements may be present:
 
     When this setting is disabled, the GUI will not send 401 responses so users
     won't see browser popups prompting for username and password.
+
+
+.. option:: gui.webauthnUserId
+
+    .. versionadded:: TODO 1.28.0
+
+    The base64url-encoded `user handle <https://www.w3.org/TR/webauthn/#user-handle>`_
+    to use when registering WebAuthn credentials (passkeys).
+    This is automatically set and should usually never need to be changed.
+    Authenticators may use this to overwrite existing credentials
+    with the same combination of user handle and RP ID when creating a new credential.
+
+.. option:: gui.webauthnRpId
+
+    .. versionadded:: TODO 1.28.0
+
+    The `RP ID <https://www.w3.org/TR/webauthn/#rp-id>`_
+    to use for WebAuthn (passkey) registration and authentication.
+    If not set, this defaults to ``localhost``.
+
+    The RP ID is a domain name and must be the same as or a parent domain of the
+    domain where the Syncthing GUI is hosted. The RP ID cannot be a raw IP address.
+
+    When you register a new WebAuthn credential (passkey), it gets tied to this RP ID.
+    If you change the RP ID, any existing keys tied to the previous RP ID will stop working.
+
+.. option:: gui.webauthnOrigin
+
+    .. versionadded:: TODO 1.28.0
+
+    The scheme, host and port of the address where WebAuthn logins will take place.
+    If not set, this defaults to ``https://localhost:8384``.
+    WebAuthn registration and login will only work if the GUI is hosted at exactly this host address
+    (excluding the path, query string and hash fragment).
+
+    In general, this should be set to ``https://<webauthnRpId>:<address port>``,
+    omitting the port if it is ``443``.
 
 
 LDAP Element
