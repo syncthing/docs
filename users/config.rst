@@ -954,7 +954,7 @@ The following child elements may be present:
 
     The base64url-encoded `user handle <https://www.w3.org/TR/webauthn/#user-handle>`_
     to use when registering WebAuthn credentials (passkeys).
-    This is automatically set and should usually never need to be changed.
+    This is automatically set and should usually not need to be changed.
     Authenticators may use this to overwrite existing credentials
     with the same combination of user handle and RP ID when creating a new credential.
 
@@ -966,7 +966,7 @@ The following child elements may be present:
     to use for WebAuthn (passkey) registration and authentication.
     If not set, this defaults to ``localhost``.
 
-    The RP ID is a domain name and must be the same as or a parent domain of the
+    The RP ID is a domain name and must be the same as, or a parent domain of, the
     domain where the Syncthing GUI is hosted. The RP ID cannot be a raw IP address.
 
     When you register a new WebAuthn credential (passkey), it gets tied to this RP ID.

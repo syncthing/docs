@@ -5,7 +5,14 @@ Syncthing can be configured to allow GUI authentication using `WebAuthn <https:/
 as an alternative to a password.
 
 To enable WebAuthn, the GUI must use HTTPS (see config :ref:`gui.tls <gui-tls>`)
-and must be served at exactly the address ``https://localhost:8384``.
+and must be served at exactly the address ``https://localhost:8384``,
+unless configured otherwise as described in :ref:`webauthn-custom-gui-address`.
+
+
+.. _webauthn-custom-gui-address:
+
+Customizing the GUI address
+---------------------------
 
 The GUI address can be customized via the advanced GUI settings
 :stconf:opt:`gui.webauthnRpId` and :stconf:opt:`gui.webauthnOrigin`.
