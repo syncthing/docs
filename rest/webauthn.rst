@@ -263,14 +263,7 @@ Items in the ``credentials`` field of the `WebAuthn state <rest-webauthn-state_>
   something you have (the credential private key)
   combined with something you know (a PIN) or something you are (a biometric).
 
-  This can be enabled or disabled in the settings GUI.
-
-  .. note::
-
-    The PIN or biometric is not sent to the server -
-    Syncthing does **not** collect or store biometric information.
-    Instead, the PIN or biometric is only verified locally by your authenticator
-    (for example, a USB security key or a smartphone) before unlocking the passkey for login.
+  This can be enabled or disabled in the settings GUI, see :ref:`webauthn-require2fa`.
 
 - ``transports``
 
