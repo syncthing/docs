@@ -6,7 +6,7 @@ POST /rest/webauthn/register-start
 .. versionadded:: TODO 1.28.0
 
 ``POST .../register-start`` begins a WebAuthn registration ceremony
-and ``POST .../register-finish`` finshes it,
+and ``POST .../register-finish`` finishes it,
 adding the newly created credential to a list of pending credentials.
 Pending credentials may be persisted
 by including them in a request to ``POST /rest/webauthn/state``.
