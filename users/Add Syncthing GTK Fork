@@ -20,10 +20,6 @@ Cross-platform
 Android
 ~~~~~~~
 
-- `Syncthing GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_
-
-  GUI and notification area icon for Syncthing.
-
 - `syncthing-android <https://github.com/syncthing/syncthing-android>`_
 
   A wrapper app for the Syncthing binary.
@@ -53,6 +49,10 @@ macOS
 
 Linux
 ~~~~~
+
+- `Syncthing GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_
+
+  GUI and notification area icon for Syncthing.
 
 - `SyncThingy <https://github.com/zocker-160/SyncThingy>`_
 
