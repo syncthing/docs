@@ -50,10 +50,6 @@ macOS
 Linux
 ~~~~~
 
-- `Syncthing GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_
-
-  GUI and notification area icon for Syncthing.
-
 - `SyncThingy <https://github.com/zocker-160/SyncThingy>`_
 
   Simple tray incidator written in C++ targeted at Flatpak users.
@@ -277,7 +273,7 @@ Older, Possibly Unmaintained
    accordingly.
 
 - `a-sync <https://github.com/davide-imbriaco/a-sync>`_
-- `Syncthing-GTK <https://github.com/kozec/syncthing-gtk>`_
+- `Syncthing GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_
 -  https://github.com/syncthing/syncthing-lite
 -  https://github.com/sieren/QSyncthingTray
 -  https://github.com/akissa/pysyncthing
