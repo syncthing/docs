@@ -88,11 +88,6 @@ STGUIASSETS
     Directory to load GUI assets from. Overrides compiled in assets. Useful for
     developing webgui, commonly use ``STGUIASSETS=gui bin/syncthing``.
 
-STHASHING
-    Specify which hashing package to use. Defaults to automatic based on
-    performance. Specify "minio" (compatibility) or "standard" for the default
-    Go implementation.
-
 STHEAPPROFILE
     Write heap profiles to ``heap-$pid-$timestamp.pprof`` each time heap usage
     increases.
