@@ -85,3 +85,8 @@ and ``webauthnOrigin`` to the full address including scheme and port (except the
 For example, if you serve the GUI at the address ``https://syncthing.mydomain.org:8443/syncthing/gui``,
 set ``webauthnRpId`` to one of ``mydomain.org`` or ``syncthing.mydomain.org``
 and set ``webauthnOrigin`` to ``https://syncthing.mydomain.org:8443``.
+
+For hostnames other than ``localhost`` you will also need an HTTPS certificate your browser considers valid.
+For guidance on how to create or obtain one, see for example
+`OpenSSL Cookbook <https://www.feistyduck.com/library/openssl-cookbook/online/>`_
+or `Let's Encrypt <https://letsencrypt.org/getting-started/>`_.
