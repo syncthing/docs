@@ -10,25 +10,24 @@ and must be served at exactly the address ``https://localhost:8384``,
 unless configured otherwise as described in :ref:`webauthn-custom-gui-address`.
 
 WebAuthn authentication will be enabled if you have at least one `credential`, also called a `passkey`, registered.
-A credential is a public-private key pair stored either on an external security key,
-or a `platform credential` stored on your computer or phone.
+A credential is a public-private key pair that is stored on an `authenticator`,
+which could be an external security key, a smartphone, or built into your computer.
 Some platforms might sync platform credentials between devices signed into the same cloud account.
 
 Use the settings GUI to register a new credential.
 
 .. note::
    We use the term "passkey" more inclusively here than usual.
-   For technical reasons, the term "passkey" usually means
-   a credential that consumes storage space on the authenticator device.
-   Some external security keys have limited storage capacity
-   and therefore also have a limited capacity for storing passkeys.
+   A "passkey" is a credential that enables "username-less login",
+   which identifies the user automatically without needing them to enter a username first.
+   For technical reasons, this is incompatible with a cryptographic trick commonly used by external security keys
+   to support an unlimited number of credentials without consuming storage space.
+   Therefore, a "passkey" generally must consume storage space on the authenticator.
 
-   However, because Syncthing has only a single user account per installation,
-   we can enable the same use cases as passkeys
-   but with credentials that do not need to consume storage space.
+   However, because a Syncthing instance has only a single user account,
+   we can enable "username-less login" without preventing the unlimited storage trick.
    We therefore sometimes refer to WebAuthn credentials in Syncthing as "passkeys",
-   because they enable most of the same UI flows as passkeys,
-   even though they do not consume storage space on external security keys like passkeys usually do.
+   even though they do not consume storage space on external security keys like passkeys generally do.
 
 
 .. _webauthn-require2fa:
@@ -45,7 +44,8 @@ For example:
 
 - If the credential is stored on a smartphone,
   the phone may prompt for screen unlock to authenticate you to the phone before unlocking the passkey.
-  This could be a PIN, swipe pattern, fingerprint or face recognition, according to the phone's settings.
+  This could be a PIN, swipe pattern, fingerprint, face recognition
+  or something else, according to the phone's settings.
 
   Smartphones typically always require 2FA,
   so this setting may not make a noticeable difference for smartphone-based credentials.
