@@ -65,8 +65,8 @@ Syncing
 Syncthing keeps track of several versions of each file - the version that it
 currently has on disk, called the *local* version, the versions announced by
 all other connected devices, and the "best" (usually the most recent)
-version of the file. This version is called the *global* version and is the
-one that each device strives to be up to date with.
+version of the file. The most recent version is called the *global* version which is the
+version that each device strives to be up to date with.
 
 This information is kept in the *index database*, which is stored in the
 configuration directory and called ``index-vx.y.z.db`` (for some version
