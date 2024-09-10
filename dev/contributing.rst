@@ -109,7 +109,7 @@ Go Specific
 Commits
 -------
 
-- Commits messages (and pull request titles) should follow the [conventional
+- Commit messages (and pull request titles) should follow the [conventional
   commits](https://www.conventionalcommits.org/en/v1.0.0/) specification and
   be in lower case.
 
