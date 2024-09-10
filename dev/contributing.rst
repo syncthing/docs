@@ -119,7 +119,7 @@ Commits
   ``lib/`` or ``cmd/`` in the package path. If the commit doesn't affect a
   specific component, such as for changes to the build system or
   documentation, the scope should be omitted. The same goes for changes
-  that affect many components which would be cumbesome to list.
+  that affect many components which would be cumbersome to list.
 
 - Commits that resolve an existing issue must include the issue number
   as ``(fixes #123)`` at the end of the commit message subject. A correctly
