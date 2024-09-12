@@ -109,16 +109,23 @@ Go Specific
 Commits
 -------
 
-- The commit message subject should be a single short sentence
-  describing the change, starting with a capital letter but without
-  ending punctuation, and prefixed with the package name most affected
-  by the change.
+- Commit messages (and pull request titles) should follow the [conventional
+  commits](https://www.conventionalcommits.org/en/v1.0.0/) specification and
+  be in lower case.
+
+- We use a scope description in the commit message subject. This is the
+  component of Syncthing that the commit affects. For example, ``gui``,
+  ``protocol``, ``scanner``, ``upnp``, etc -- typically, the part after
+  ``lib/`` or ``cmd/`` in the package path. If the commit doesn't affect a
+  specific component, such as for changes to the build system or
+  documentation, the scope should be omitted. The same goes for changes
+  that affect many components which would be cumbersome to list.
 
 - Commits that resolve an existing issue must include the issue number
   as ``(fixes #123)`` at the end of the commit message subject. A correctly
   formatted commit message looks like this::
 
-    lib/dialer: Add env var to disable proxy fallback (fixes #3006)
+    feat(dialer): add env var to disable proxy fallback (fixes #3006)
 
 - If the commit message subject doesn't say it all, one or more paragraphs of
   describing text should be added to the commit message. This should explain
@@ -127,11 +134,12 @@ Commits
 - When drafting a pull request, please feel free to add commits with
   corrections and merge from ``main`` when necessary. This provides a clear time
   line with changes and simplifies review. Do not, in general, rebase your
-  commits.
+  commits, as this makes review harder.
 
 - Pull requests are merged to ``main`` using squash merge. The "stream of
   consciousness" set of commits described in the previous point will be reduced
-  to a single commit at merge time.
+  to a single commit at merge time. The pull request title and description will
+  be used as the commit message.
 
 Tests
 -----
