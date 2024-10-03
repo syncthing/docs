@@ -453,7 +453,7 @@ For the :doc:`/advanced/folder-sync-ownership` option to work, you can
 grant extra capabilities to the service via the systemd unit file.
 Add the following snippet to the service file (commented out in the
 provided template).  To ensure smooth upgrades, keeping it in an
-override file using ``systemd edit ...`` is advised::
+override file using ``systemctl edit ...`` is advised::
 
     [Service]
     AmbientCapabilities=CAP_CHOWN CAP_FOWNER
