@@ -9,6 +9,12 @@ Building Syncthing
     of it. For all other purposes we recommend using the official binary
     releases instead.
 
+    If you still prefer to build Syncthing from source for your own use, be
+    aware that there is an built-in automatic upgrade mechanism that will
+    overwrite your built binary with a downloaded version. To avoid this, you
+    can use the --no-upgrade build flag (see below), but you will be
+    responsible for your own upgrades.
+
 Branches and Tags
 -----------------
 
