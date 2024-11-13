@@ -54,20 +54,32 @@ bin/
 cmd/
    Commands either built as end products or used by the build process itself.
 
-   stcompdirs/
-      Compares two directories (debugging utility).
+   stdiscosrv/
+      Global discovery server for the Syncthing project.
 
-   stevents/
-      Displays event trace from a remote ``syncthing`` using the API (debugging utility).
-
-   stfileinfo/
-      Shows information about a file, in the same manner ``syncthing`` would see it (debugging utility).
-
-   stfinddevice/
-      Looks up a device on a global discovery server (debugging utility).
+   strelaysrv/
+      Relay server for the Syncthing project.
 
    syncthing/
       Synchronizes files between devices...
+
+   dev/
+      Development related utilities.
+
+      stcompdirs/
+         Compares two directories (debugging utility).
+
+      stevents/
+         Displays event trace from a remote ``syncthing`` using the API (debugging utility).
+
+      stfileinfo/
+         Shows information about a file, in the same manner ``syncthing`` would see it (debugging utility).
+
+      stfinddevice/
+         Looks up a device on a global discovery server (debugging utility).
+
+   infra/
+      Infrastructure related utilities.
 
 etc/
    Startup scripts and integration files. Included as-is in the release packages.
