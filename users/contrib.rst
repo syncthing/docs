@@ -15,7 +15,7 @@ GUI Wrappers
 Cross-platform
 ~~~~~~~~~~~~~~
 
-- `syncthingtray <https://github.com/Martchus/syncthingtray>`__
+- `Syncthing Tray <https://martchus.github.io/syncthingtray>`__
 
 Android
 ~~~~~~~
@@ -273,7 +273,7 @@ Older, Possibly Unmaintained
    accordingly.
 
 - `a-sync <https://github.com/davide-imbriaco/a-sync>`_
-- `Syncthing-GTK <https://github.com/kozec/syncthing-gtk>`_
+- `Syncthing-GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_ (Fork from `Kozec <https://github.com/kozec/syncthing-gtk>`_)
 -  https://github.com/syncthing/syncthing-lite
 -  https://github.com/sieren/QSyncthingTray
 -  https://github.com/akissa/pysyncthing
