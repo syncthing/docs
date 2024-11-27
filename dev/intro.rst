@@ -144,10 +144,10 @@ man/
 script/
    Various utility scripts for auto generating stuff and so on.
 
-  genassets/
+   genassets/
       Generates asset files that are compiled into ``syncthing`` as part of the build process (build utility).
 
-  transifexdl/
+   transifexdl/
       Downloads translations from Transifex (build utility).
 
    translate/
