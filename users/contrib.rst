@@ -50,29 +50,36 @@ macOS
 Linux
 ~~~~~
 
-- `SyncThingy <https://github.com/zocker-160/SyncThingy>`_
-
-  Simple tray incidator written in C++ targeted at Flatpak users.
+GNOME Shell extensions
+^^^^^^^^^^^^^^^^^^^^^^
 
 - `Syncthing Icon <https://extensions.gnome.org/extension/989/syncthing-icon/>`_
 
-  A GNOME Shell extension displaying a Syncthing status icon in the top bar.
+  A Syncthing status icon in the top bar.
 
 - `Syncthing Indicator <https://extensions.gnome.org/extension/1070/syncthing-indicator/>`_
 
-  A GNOME Shell indicator for starting, monitoring and controlling the Syncthing daemon using systemd.
+  A Syncthing indicator for starting, monitoring and controlling the Syncthing daemon using systemd.
+
+- `Syncthing Toggle <https://extensions.gnome.org/extension/7180/syncthing-toggle/>`_
+
+  A GNOME quick setting for turning on and off the Syncthing systemd service and opening the Web GUI.
+
+Other
+^^^^^
+
+- `SyncThingy <https://github.com/zocker-160/SyncThingy>`_
+
+  Simple tray indicator written in C++ targeted at Flatpak users.
 
 - `syncthing-quick-status <https://github.com/serl/syncthing-quick-status>`_
 
   Small bash application with minimal dependencies, for a simple colorful representation of the current status.
   
-- `syncthing-tray-gtk3 <https://github.com/abdeoliveira/syncthing-tray-gtk3>`_
-
-  Yet another Syncthing tray icon indicator written in Ruby.
-  
 - `steamdeck-decky-syncthing  <https://github.com/theCapypara/steamdeck-decky-syncthing>`_
 
   A Steam Deck (Decky Loader) plugin for controlling Syncthing from the Steam Big Picture / Steam Deck UI.
+
 
 Command Line Tools
 ------------------
@@ -273,6 +280,7 @@ Older, Possibly Unmaintained
    accordingly.
 
 - `a-sync <https://github.com/davide-imbriaco/a-sync>`_
+- `syncthing-tray-gtk3 <https://github.com/abdeoliveira/syncthing-tray-gtk3>`_ (Archived as of 2023-12-29)
 - `Syncthing-GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_ (Fork from `Kozec <https://github.com/kozec/syncthing-gtk>`_)
 -  https://github.com/syncthing/syncthing-lite
 -  https://github.com/sieren/QSyncthingTray
