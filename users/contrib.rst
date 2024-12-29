@@ -247,6 +247,10 @@ Configuration management
 - `puppet-syncthing <https://github.com/whefter/puppet-syncthing>`_
 - `ansible-syncthing <https://github.com/le9i0nx/ansible-syncthing>`_
 - Command line interface: `syncthingmanager <https://github.com/classicsc/syncthingmanager>`_
+- `syncthing-configd <https://github.com/kastelo/syncthing-configd>`_
+
+  A daemon that automatically manages certain aspects of the Syncthing configuration, such
+  as automatically accepting or removing devices / folders based on patterns.
 
 Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~
