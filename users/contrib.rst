@@ -47,23 +47,20 @@ macOS
   syncthing-macos is a native macOS Syncthing tray application bundle.
   It hosts and wraps Syncthing, making it behave more like a native macOS application and less like a command-line utility with a web browser interface.
 
-Linux – GNOME Shell extensions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Linux
+~~~~~
 
 - `Syncthing Icon <https://extensions.gnome.org/extension/989/syncthing-icon/>`_
 
-  A Syncthing status icon in the top bar.
+  GNOME Shell extension: A Syncthing status icon in the top bar.
 
 - `Syncthing Indicator <https://extensions.gnome.org/extension/1070/syncthing-indicator/>`_
 
-  A Syncthing indicator for starting, monitoring and controlling the Syncthing daemon using systemd.
+  GNOME Shell extension: A Syncthing indicator for starting, monitoring and controlling the Syncthing daemon using systemd.
 
 - `Syncthing Toggle <https://extensions.gnome.org/extension/7180/syncthing-toggle/>`_
 
-  A GNOME quick setting for turning on and off the Syncthing systemd service and opening the Web GUI.
-
-Linux – Generic
-~~~~~~~~~~~~~~~
+  GNOME Shell extension: A quick setting for turning on and off the Syncthing systemd service and opening the Web GUI.
 
 - `SyncThingy <https://github.com/zocker-160/SyncThingy>`_
 
