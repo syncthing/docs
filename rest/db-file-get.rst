@@ -6,12 +6,12 @@ Returns data about a given file, including version and availability.
 Request
 -------
 
-The call requires parameters for `folder` and `file` in the query string:
+The call requires parameters for ``folder`` and ``file`` in the query string:
 
-- `folder` is the folder ID which you can find in the Syncthing Web GUI,
-  e.g. `5camp-slpa8`.
+- ``folder`` is the folder ID which you can find in the Syncthing Web GUI,
+  e.g. ``5camp-slpa8``.
 
-- `file` is the relative path of the file starting from the folder root to the
+- ``file`` is the relative path of the file starting from the folder root to the
   file you are interested in.  The path and filename must be correctly
   URL-encoded.
 
