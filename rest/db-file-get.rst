@@ -35,7 +35,13 @@ Response
         }
       ],
       "global": { /* a file entry */ },
-      "local": { /* a file entry */ }
+      "local": { /* a file entry */ },
+      "mtime": {
+        "err": null,
+        "value": {
+          "real": "0001-01-01T00:00:00Z",
+          "virtual": "0001-01-01T00:00:00Z"
+      }
     }
 
 ``local`` and ``global`` refer to the current file on the local device and the
@@ -64,13 +70,6 @@ globally newest file, respectively.  A file entry looks like this:
         "version": [
           "523ITIE:1664345275"
         ]
-      },
-      "mtime": {
-        "err": null,
-        "value": {
-          "real": "0001-01-01T00:00:00Z",
-          "virtual": "0001-01-01T00:00:00Z"
-        }
       }
     }
 
