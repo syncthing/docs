@@ -1,7 +1,7 @@
 GET /rest/db/file
 =================
 
-Returns data about a given file, including version and availability.
+Returns most data about a given file, including version and availability.
 
 Request
 -------
