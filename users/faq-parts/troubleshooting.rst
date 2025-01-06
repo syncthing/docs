@@ -127,8 +127,8 @@ How can I view the history of changes?
 The web GUI contains a ``Recent Changes`` button under the device list which
 displays changes since the last (re)start of Syncthing. With the ``--audit``
 option you can enable a persistent, detailed log of changes and most
-activities, which contains a ``JSON`` formatted  sequence of events in the
-``~/.config/syncthing/audit-_date_-_time_.log`` file.
+activities, which contains a JSON-formatted sequence of events in the
+``~/.local/state/syncthing/audit-_date_-_time_.log`` file.
 
 Does the audit log contain every change?
 ----------------------------------------
@@ -168,18 +168,18 @@ or unmount a filesystem, then syncthing must know whether you have really delete
 your files. Therefore, syncthing always checks that the ``.stfolder`` is present.
 
 When this error appears, syncthing assumes that the folder has encountered some type of error
-and will stop syncing it until the ``.stfolder`` reappears. Once that happens, all changes made 
+and will stop syncing it until the ``.stfolder`` reappears. Once that happens, all changes made
 to the folder locally will be synced (i.e. missing files will be considered deletions).
 
-- If you get this error message, check the folder in question on your storage. If you have 
+- If you get this error message, check the folder in question on your storage. If you have
   unmounted the folder (or a parent of it), you must remount it for syncthing to resume syncing
-  this folder. 
+  this folder.
 
 - If you have moved the folder, you must either move it back to its original location, or remove the
   folder from within the syncthing UI and re-add it at its new location.
 
 - If the folder is present on disk, with all of its children files and directories, but the ``.stfolder``
-  is still missing: 
+  is still missing:
 
   It is possible that a file cleaning software has removed the ``.stfolder``. Some software
   removes empty folders, and the ``.stfolder`` is often empty. This happens particularly often on Android.

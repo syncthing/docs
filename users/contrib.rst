@@ -15,7 +15,7 @@ GUI Wrappers
 Cross-platform
 ~~~~~~~~~~~~~~
 
-- `syncthingtray <https://github.com/Martchus/syncthingtray>`__
+- `Syncthing Tray <https://martchus.github.io/syncthingtray>`__
 
 Android
 ~~~~~~~
@@ -50,25 +50,30 @@ macOS
 Linux
 ~~~~~
 
-- `SyncThingy <https://github.com/zocker-160/SyncThingy>`_
-
-  Simple tray incidator written in C++ targeted at Flatpak users.
-
 - `Syncthing Icon <https://extensions.gnome.org/extension/989/syncthing-icon/>`_
 
-  A GNOME Shell extension displaying a Syncthing status icon in the top bar.
+  GNOME Shell extension: A Syncthing status icon in the top bar.
 
 - `Syncthing Indicator <https://extensions.gnome.org/extension/1070/syncthing-indicator/>`_
 
-  A GNOME Shell indicator for starting, monitoring and controlling the Syncthing daemon using systemd.
+  GNOME Shell extension: A Syncthing indicator for starting, monitoring and controlling the Syncthing daemon using systemd.
+
+- `Syncthing Toggle <https://extensions.gnome.org/extension/7180/syncthing-toggle/>`_
+
+  GNOME Shell extension: A quick setting for turning on and off the Syncthing systemd service and opening the Web GUI.
+
+- `SyncThingy <https://github.com/zocker-160/SyncThingy>`_
+
+  Simple tray indicator written in C++ targeted at Flatpak users.
 
 - `syncthing-quick-status <https://github.com/serl/syncthing-quick-status>`_
 
   Small bash application with minimal dependencies, for a simple colorful representation of the current status.
   
-- `syncthing-tray-gtk3 <https://github.com/abdeoliveira/syncthing-tray-gtk3>`_
+- `steamdeck-decky-syncthing  <https://github.com/theCapypara/steamdeck-decky-syncthing>`_
 
-  Yet another Syncthing tray icon indicator written in Ruby.
+  A Steam Deck (Decky Loader) plugin for controlling Syncthing from the Steam Big Picture / Steam Deck UI.
+
 
 Command Line Tools
 ------------------
@@ -243,6 +248,10 @@ Configuration management
 - `puppet-syncthing <https://github.com/whefter/puppet-syncthing>`_
 - `ansible-syncthing <https://github.com/le9i0nx/ansible-syncthing>`_
 - Command line interface: `syncthingmanager <https://github.com/classicsc/syncthingmanager>`_
+- `syncthing-configd <https://github.com/kastelo/syncthing-configd>`_
+
+  A daemon that automatically manages certain aspects of the Syncthing configuration, such
+  as automatically accepting or removing devices / folders based on patterns.
 
 Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -269,7 +278,8 @@ Older, Possibly Unmaintained
    accordingly.
 
 - `a-sync <https://github.com/davide-imbriaco/a-sync>`_
-- `Syncthing-GTK <https://github.com/kozec/syncthing-gtk>`_
+- `syncthing-tray-gtk3 <https://github.com/abdeoliveira/syncthing-tray-gtk3>`_ (Archived as of 2023-12-29)
+- `Syncthing-GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_ (Fork from `Kozec <https://github.com/kozec/syncthing-gtk>`_)
 -  https://github.com/syncthing/syncthing-lite
 -  https://github.com/sieren/QSyncthingTray
 -  https://github.com/akissa/pysyncthing

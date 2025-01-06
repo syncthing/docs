@@ -1,16 +1,15 @@
-name: Refresh version list
+name: Refresh author list
 on:
   workflow_dispatch:
   schedule:
-    # Wednesday mornings
-    - cron:  '42 7 * * 3'
-
+    # Thursday mornings
+    - cron:  '42 7 * * 4'
 
 jobs:
 
   refresh-versions:
     runs-on: ubuntu-latest
-    name: Refresh versions
+    name: Refresh authors
     steps:
       - uses: actions/checkout@v4
         with:
@@ -24,9 +23,9 @@ jobs:
       - name: Run refresh script
         run: |
           set -euo pipefail
-          bash refresh-versions.sh
+          bash refresh-authors.sh
           if [ -z "$(git status --porcelain)" ]; then exit 0; fi
           git config --global user.name 'Syncthing Release Automation'
           git config --global user.email 'release@syncthing.net'
-          git commit -am 'Update version list'
+          git commit -am 'Update author list'
           git push

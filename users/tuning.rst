@@ -40,7 +40,7 @@ is on an SSD. First some general options:
 - :opt:`maxConcurrentIncomingRequestKiB`
     This sets the maximum amount of data being processed (loaded from
     disk and transmitted over the network) concurrently at any given
-    time. This is a global limited, not per folder. If you have a lot of
+    time. This is a global limiter, not per folder. If you have a lot of
     folders and/or a lot of devices and memory to spare you may want to
     increase this value. The default is 256 MiB, consider values of 1024
     MiB or more.
@@ -108,7 +108,7 @@ These options are folder specific and should be set on each folder:
 
 - :opt:`copyRangeMethod`
     If your underlying filesystem supports it, you may see a performance
-    increase by enabling a copy-on-write method, as it reduces the amount od
+    increase by enabling a copy-on-write method, as it reduces the amount of
     data actually copied on disk when syncing files.
 
 - :opt:`caseSensitiveFS`
@@ -121,6 +121,12 @@ These options are folder specific and should be set on each folder:
 - :opt:`syncOwnership`/:opt:`syncXattrs`, :opt:`sendOwnership`/:opt:`sendXattrs`
     Use these if they are required for your use case, but keep in mind they
     have a fairly high performance cost.
+
+For devices, consider the following:
+
+- :opt:`numConnections`
+    Set at or above the number of CPU cores available. This allows maximum
+    concurrency for TLS connections and may improve performance.
 
 Other things:
 
@@ -187,6 +193,12 @@ Folders options:
     are required for case insensitive filesystems, and disabling them can
     cause data loss if your underlying filesystem is *not* in fact case
     sensitive.
+
+Device options:
+
+- :opt:`numConnections`
+    Set to 1 to reduce the amount of overhead per device, as each connection
+    has a memory and CPU cost.
 
 Other things:
 

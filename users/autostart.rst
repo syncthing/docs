@@ -319,7 +319,7 @@ Go to ``/etc/supervisor/conf.d/`` and create a new file named ``syncthing.conf``
     autorestart = True
     directory = /home/<USERNAME>/
     user = <USERNAME>
-    command = /usr/bin/syncthing --no-browser --home="/home/<USERNAME>/.config/syncthing"
+    command = /usr/bin/syncthing --no-browser
     environment = STNORESTART="1", HOME="/home/<USERNAME>"
 
 Reload Supervisord::
@@ -376,7 +376,7 @@ How to set up a system service
 
 #. Create the user who should run the service, or choose an existing one.
 #. (Skip if your distribution package already installs these files, see above.)
-   From git location mentioned above copy the ``Syncthing/etc/linux-systemd/system/syncthing@.service`` file into the
+   From `git location <https://github.com/syncthing/syncthing/raw/main/etc/linux-systemd/system/>`__ copy the ``syncthing@.service`` file into the
    `load path of the system instance
    <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
 #. Enable and start the service. Replace "myuser" with the actual Syncthing
@@ -391,7 +391,7 @@ How to set up a user service
 #. Create the user who should run the service, or choose an existing
    one. *Probably this will be your own user account.*
 #. (Skip if your distribution package already installs these files, see above.)
-   Copy the ``Syncthing/etc/linux-systemd/user/syncthing.service`` file into the `load path
+   From `git location <https://github.com/syncthing/syncthing/raw/main/etc/linux-systemd/user/>`__ copy the ``syncthing.service`` file into the `load path
    of the user instance
    <https://www.freedesktop.org/software/systemd/man/systemd.unit.html#Unit%20File%20Load%20Path>`__.
    To do this without root privileges you can just use this folder under your
@@ -453,7 +453,7 @@ For the :doc:`/advanced/folder-sync-ownership` option to work, you can
 grant extra capabilities to the service via the systemd unit file.
 Add the following snippet to the service file (commented out in the
 provided template).  To ensure smooth upgrades, keeping it in an
-override file using ``systemd edit ...`` is advised::
+override file using ``systemctl edit ...`` is advised::
 
     [Service]
     AmbientCapabilities=CAP_CHOWN CAP_FOWNER

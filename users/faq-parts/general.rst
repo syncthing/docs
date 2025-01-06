@@ -94,8 +94,15 @@ There are no plans by the current Syncthing team to officially support iOS in th
 iOS has significant restrictions on background processing that make it very hard to
 run Syncthing reliably and integrate it into the system.
 
-However, there is a commercial packaging of Syncthing for iOS that attempts to work within these limitations. [#mobiussync]_
+However, there is an open source app for iOS, incorporating Syncthing, that attempts to work within 
+these limitations. It provides a native UI and features for selective synchronization as well as
+on-demand access to files. Most Syncthing features are available, but the native UI is simplified 
+compared to the official client. [#synctrain]_
 
+There is also a commercial packaging of Syncthing. It provides access to all Syncthing functionalities 
+through the original UI. [#mobiussync]_
+
+.. [#synctrain] https://github.com/pixelspark/sushitrain
 .. [#mobiussync] https://www.mobiussync.com
 
 Should I keep my device IDs secret?

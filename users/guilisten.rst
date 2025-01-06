@@ -16,6 +16,16 @@ also set a username and a strong password for authentication and check the
 option to use HTTPS. You are otherwise, potentially, opening up your
 Syncthing installation for the world.
 
+Note that specifying your computer's LAN address (e.g. ``192.168.0.123:8384``)
+will **NOT** restrict access to only devices on your local network!  Connections
+with that address *as destination* will then be accepted, regardless of their
+origin.  Proper network configuration and security (especially a firewall) is
+required to enforce such filtering, as it cannot be done reliably by Syncthing
+itself.
+
+Unix sockets are supported by specifying an absolute path
+(``/run/syncthing/syncthing.socket``).
+
 Port Numbers
 ------------
 

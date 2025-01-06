@@ -41,13 +41,13 @@ acceptable.
 Team Membership
 ---------------
 
-Contributing useful commits via pull requests will at some point get you
-invited to the Syncthing core team. This team gives you push
-access to most repositories, subject to the guidelines below.
+Contributing useful changes via pull requests will at some point get you
+invited to the ``contributors`` team -- typically, after having contributed
+five or more nontrivial changes during the last year. This team gives you
+push access to most repositories, subject to the guidelines below.
 
-The Syncthing maintainers team has the same access
-permissions, the added responsibility of reviewing major changes, and the
-ability to invite members into the core team.
+The ``maintainers`` team is for long standing contributors with the added
+responsibility of reviewing major changes.
 
 Code Review
 -----------
@@ -57,7 +57,7 @@ different requirements on review.
 
 Trivial:
   A small change or refactor that is obviously correct. These may be pushed
-  without review by any member of the core team. Examples:
+  without review by any member of the ``maintainers`` team. Examples:
   `removing dead code <https://github.com/syncthing/syncthing/commits/main>`__,
   :commit:`updating values <2aa028facb7ccbe48e85c8c444501cc3fb38ef24>`.
 
@@ -65,20 +65,20 @@ Minor:
   A new feature, bugfix or refactoring that may need extra eyes on it to weed
   out mistakes, but is architecturally simple or at least uncontroversial.
   Minor changes must go through a pull request and can be merged on approval
-  by any other developer on the core or maintainers team. Tests must pass.
+  by any other developer on the ``contributors`` or ``maintainers`` team.
   Examples: `adding caching <https://github.com/syncthing/syncthing/pull/2432/files>`__,
   `fixing a small bug <https://github.com/syncthing/syncthing/pull/2406/files>`__.
 
 Major:
   A complex new feature or bugfix, a large refactoring, or a change to the
   underlying architecture of things. A major change must be reviewed by a
-  member of the *maintainers* team. Tests must pass.
+  member of the ``maintainers`` team.
 
-The categorization is inherently subjective; we recommend erring on the side
-of caution - if you are not sure whether a change is *trivial* or merely
-*minor*, it's probably minor.
-
-First time contributions from new developers are always major.
+Infrastructure:
+  Changes to the build system, release process, or other infrastructure
+  components. Iteration may sometimes happen on branches in the main repo,
+  to test interactions with GitHub Actions, etc. These should be reviewed by
+  a member of the ``maintainers`` team.
 
 Coding Style
 ------------
@@ -87,7 +87,7 @@ General
 ~~~~~~~
 
 - All text files use Unix line endings. The git settings already present in
-  the repository attempts to enforce this.
+  the repository attempt to enforce this.
 
 - When making changes, follow the brace and parenthesis style of the
   surrounding code.
@@ -109,16 +109,23 @@ Go Specific
 Commits
 -------
 
-- The commit message subject should be a single short sentence
-  describing the change, starting with a capital letter but without
-  ending punctuation, and prefixed with the package name most affected
-  by the change.
+- Commit messages (and pull request titles) should follow the [conventional
+  commits](https://www.conventionalcommits.org/en/v1.0.0/) specification and
+  be in lower case.
+
+- We use a scope description in the commit message subject. This is the
+  component of Syncthing that the commit affects. For example, ``gui``,
+  ``protocol``, ``scanner``, ``upnp``, etc -- typically, the part after
+  ``lib/`` or ``cmd/`` in the package path. If the commit doesn't affect a
+  specific component, such as for changes to the build system or
+  documentation, the scope should be omitted. The same goes for changes
+  that affect many components which would be cumbersome to list.
 
 - Commits that resolve an existing issue must include the issue number
   as ``(fixes #123)`` at the end of the commit message subject. A correctly
   formatted commit message looks like this::
 
-    lib/dialer: Add env var to disable proxy fallback (fixes #3006)
+    feat(dialer): add env var to disable proxy fallback (fixes #3006)
 
 - If the commit message subject doesn't say it all, one or more paragraphs of
   describing text should be added to the commit message. This should explain
@@ -127,11 +134,12 @@ Commits
 - When drafting a pull request, please feel free to add commits with
   corrections and merge from ``main`` when necessary. This provides a clear time
   line with changes and simplifies review. Do not, in general, rebase your
-  commits.
+  commits, as this makes review harder.
 
 - Pull requests are merged to ``main`` using squash merge. The "stream of
   consciousness" set of commits described in the previous point will be reduced
-  to a single commit at merge time.
+  to a single commit at merge time. The pull request title and description will
+  be used as the commit message.
 
 Tests
 -----
@@ -151,9 +159,6 @@ includes:
 - That the output from ``go lint`` and ``go vet`` is clean. (This checks for a
   number of potential problems the compiler doesn't catch.)
 
-If the pull request is invasive or scary looking, the full integration test
-suite can be run as well.
-
 Branches
 --------
 
@@ -165,9 +170,15 @@ Branches
   minor releases. Should only contain fixes cherry picked from ``main``.
   Don't base any work on them.
 
-- Other branches are probably topic branches and may be subject to
-  rebasing. Don't base any work on them unless you specifically know
-  otherwise.
+- ``infrastructure`` is a specific branch from which builds for the
+  infrastructure components (usage reporting server, crash reporting server,
+  relay pool server, etc) are sometimes made. It may be ahead of ``main``.
+  Do not base any work on it.
+
+- Other branches are probably topic branches and may be subject to rebasing.
+  Don't base any work on them unless you specifically know otherwise.
+  Generally, avoid creating branches on the main repo, preferring instead to
+  have topic branches on your own fork.
 
 Tags
 ----
@@ -182,4 +193,3 @@ All contributions are made under the same MPLv2 license as the rest of the
 project, except documentation, user interface text and translation strings
 which are licensed under the Creative Commons Attribution 4.0 International
 License. You retain the copyright to code you have written.
-

@@ -88,7 +88,11 @@ Options
 .. cmdoption:: --gui-address=<address>
 
     Override GUI listen address. Set this to an address (``0.0.0.0:8384``)
-    or file path (``/var/run/st.sock``, for UNIX sockets).
+    or a URL (``http://0.0.0.0:8384``). Supported schemes are ``http`` for
+    plain HTTP, ``https`` for HTTP over TLS, ``unix`` for plain Unix sockets
+    or ``unixs`` for TLS over Unix sockets. A Unix socket could look like this:
+    ``unix:///run/syncthing/syncthing.socket`` (notice the three slashes: two
+    as part of the URL structure, one to specify an absolute path).
 
 .. cmdoption:: --gui-apikey=<string>
 
@@ -97,9 +101,10 @@ Options
 .. cmdoption:: --gui-password=<password|->
 
     Specify new GUI authentication password, to update the config file.  Read
-    from the standard input stream if only a single dash (``-``) is given.  The
-    password is hashed before writing to the config file.  As a special case,
-    giving the existing password hash as password will leave it untouched.
+    from the standard input stream if only a single dash (``-``) is given.  A
+    plaintext password is hashed before writing to the config file, but an
+    already bcrypt-hashed input is stored verbatim.  As a special case, giving
+    the existing password hash as password will leave it untouched.
 
 .. cmdoption:: --gui-user=<username>
 
@@ -113,7 +118,8 @@ Options
 .. cmdoption:: --home=<dir>
 
     Set common configuration and data directory. The default configuration
-    directory is ``$HOME/.config/syncthing`` (Unix-like),
+    directory is ``$XDG_STATE_HOME/syncthing`` or
+    ``$HOME/.local/state/syncthing`` (Unix-like),
     ``$HOME/Library/Application Support/Syncthing`` (Mac) and
     ``%LOCALAPPDATA%\Syncthing`` (Windows).
 

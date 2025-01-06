@@ -37,7 +37,7 @@ func main() {
 	var table []*tableRow
 	fd, err := os.Open(*versionsFile)
 	if os.IsNotExist(err) {
-		// File doesn't exist yet. That's allright.
+		// File doesn't exist yet. That's alright.
 	} else if err != nil {
 		log.Fatalln("Reading existing versions:", err)
 	} else {
@@ -144,6 +144,10 @@ func getReleaseVersionZip(bs []byte) (*tableRow, error) {
 		return nil, err
 	}
 	for _, f := range zr.File {
+		if strings.Contains(path.Dir(f.Name), "/") {
+			// Skip files not at top level
+			continue
+		}
 		if path.Base(f.Name) != "syncthing" {
 			continue
 		}

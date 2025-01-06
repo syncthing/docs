@@ -2,3 +2,5 @@ _build/
 _deployed
 _deployed.old
 _syncthing
+/RELEASE
+/TAG
