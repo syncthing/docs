@@ -50,27 +50,25 @@ globally newest file, respectively.  A file entry looks like this:
 .. code-block:: json
 
     {
-      {
-        "deleted": false,
-        "ignored": false,
-        "inodeChange": "1970-01-01T01:00:00+01:00",
-        "invalid": false,
-        "localFlags": 0,
-        "modified": "2022-09-28T08:07:19.979723+02:00",
-        "modifiedBy": "523ITIE",
-        "mustRescan": false,
-        "name": "img",
-        "noPermissions": false,
-        "numBlocks": 0,
-        "permissions": "0755",
-        "platform": { /* platform specific data */ },
-        "sequence": 914,
-        "size": 128,
-        "type": "FILE_INFO_TYPE_DIRECTORY",
-        "version": [
-          "523ITIE:1664345275"
-        ]
-      }
+      "deleted": false,
+      "ignored": false,
+      "inodeChange": "1970-01-01T01:00:00+01:00",
+      "invalid": false,
+      "localFlags": 0,
+      "modified": "2022-09-28T08:07:19.979723+02:00",
+      "modifiedBy": "523ITIE",
+      "mustRescan": false,
+      "name": "img",
+      "noPermissions": false,
+      "numBlocks": 0,
+      "permissions": "0755",
+      "platform": { /* platform specific data */ },
+      "sequence": 914,
+      "size": 128,
+      "type": "FILE_INFO_TYPE_DIRECTORY",
+      "version": [
+	"523ITIE:1664345275"
+      ]
     }
 
 Platform specific data may be ownership, extended attributes, etc. and is
