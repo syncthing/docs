@@ -10,9 +10,9 @@ Building Syncthing
     releases instead.
 
     If you still prefer to build Syncthing from source for your own use, be
-    aware that there is an built-in automatic upgrade mechanism that will
+    aware that there is a built-in automatic upgrade mechanism that will
     overwrite your built binary with a downloaded version. To avoid this, you
-    can use the --no-upgrade build flag (see below), but you will be
+    can use the ``--no-upgrade`` build flag (see below), but you will be
     responsible for your own upgrades.
 
 Branches and Tags
