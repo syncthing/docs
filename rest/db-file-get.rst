@@ -20,7 +20,7 @@ Example Request
 
 .. code-block:: bash
 
-    curl --silent --get --header "X-API-KEY: YOUR_API_TOKEN" "http://localhost:8384/rest/db/file?folder=YOUR_FOLDER_ID" --data-urlencode "file=path/to/file.pdf"
+    $ curl -s -H X-API-KEY:... "http://localhost:8384/rest/db/file?folder=YOUR_FOLDER_ID" --url-query "file=path/to/file.pdf"
 
 Response
 --------
