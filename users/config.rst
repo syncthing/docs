@@ -757,6 +757,8 @@ From the following child elements at least one ``address`` child must exist.
             <address>dynamic</address>
         </device>
 
+    In the GUI, multiple values are separated by commas.
+
 .. option:: device.paused
 
     True if synchronization with this devices is (temporarily) suspended.
@@ -766,7 +768,9 @@ From the following child elements at least one ``address`` child must exist.
 
     If given, this restricts connections to this device to only this network.
     The mechanism is described in detail in a :doc:`separate chapter
-    </advanced/device-allowednetworks>`).
+    </advanced/device-allowednetworks>`).  To configure multiple networks, you
+    can either: repeat ``<allowedNetwork>`` tags in the configuration file or
+    enter several networks separated by commas in the GUI.
 
 .. option:: device.autoAcceptFolders
 
@@ -794,6 +798,8 @@ From the following child elements at least one ``address`` child must exist.
     Contains the ID of the folder that should be ignored. This folder will
     always be skipped when advertised from the containing remote device,
     i.e. this will be logged, but there will be no dialog shown in the web GUI.
+    Multiple ignored folders are represented by repeated ``<ignoredFolder>``
+    tags in the configuration file.
 
 .. option:: device.maxRequestKiB
 
@@ -1055,7 +1061,10 @@ The ``options`` element contains all other global configuration options.
     :aliases: options.listenAddresses
 
     The listen address for incoming sync connections. See
-    :ref:`listen-addresses` for the allowed syntax.
+    :ref:`listen-addresses` for the allowed syntax.  To configure multiple
+    addresses, you can either: repeat ``<listenAddress>`` tags in the
+    configuration file or enter several addresses separated by commas in the
+    GUI.
 
 .. option:: options.globalAnnounceServer
     :aliases: options.globalAnnounceServers
@@ -1066,7 +1075,10 @@ The ``options`` element contains all other global configuration options.
     HTTPS URL. A number of options may be added as query options to the URL:
     ``insecure`` to prevent certificate validation (required for HTTP URLs)
     and ``id=<device ID>`` to perform certificate pinning. The device ID to
-    use is printed by the discovery server on startup.
+    use is printed by the discovery server on startup.  To configure multiple
+    servers, you can either: repeat ``<globalAnnounceServer>`` tags in the
+    configuration file or enter several servers separated by commas in the
+    GUI.
 
 .. option:: options.globalAnnounceEnabled
 
@@ -1206,7 +1218,10 @@ The ``options`` element contains all other global configuration options.
 .. option:: options.alwaysLocalNet
     :aliases: options.alwaysLocalNets
 
-    Network that should be considered as local given in CIDR notation.
+    Network that should be considered as local given in CIDR notation.  To
+    configure multiple networks, you can either: repeat ``<alwaysLocalNet>``
+    tags in the configuration file or enter several networks separated by
+    commas in the GUI.
 
 .. option:: options.overwriteRemoteDeviceNamesOnConnect
 
@@ -1223,7 +1238,9 @@ The ``options`` element contains all other global configuration options.
     :aliases: options.unackedNotificationIDs
 
     ID of a notification to be displayed in the web GUI. Will be removed once
-    the user acknowledged it (e.g. an transition notice on an upgrade).
+    the user acknowledged it (e.g. a transition notice on an upgrade).  Multiple
+    IDs are represented by repeated ``<unackedNotificationID>`` tags in the
+    configuration file.
 
 .. option:: options.trafficClass
 
@@ -1245,6 +1262,10 @@ The ``options`` element contains all other global configuration options.
     ``stun.sipgate.net:3478``, ``stun.voip.aebc.com:3478``,
     ``stun.voiparound.com:3478``, ``stun.voipbuster.com:3478``,
     ``stun.voipstunt.com:3478`` and ``stun.xten.com:3478`` (this is the default).
+
+    To configure multiple servers, you can either: repeat ``<stunServer>`` tags
+    in the configuration file or enter several servers separated by commas in
+    the GUI.
 
 .. option:: options.stunKeepaliveStartS
 
@@ -1316,7 +1337,9 @@ The ``options`` element contains all other global configuration options.
     Feature flags are simple strings that, when added to the configuration, may
     unleash unfinished or still-in-development features to allow early user
     testing.  Any supported value will be separately announced with the feature,
-    so that regular users do not enable it by accident.
+    so that regular users do not enable it by accident.  To configure multiple
+    flags, you can either: repeat ``<featureFlag>`` tags in the configuration
+    file or enter several flags separated by commas in the GUI.
 
 .. option:: options.connectionLimitEnough
 
@@ -1439,9 +1462,9 @@ Listen Addresses
 ^^^^^^^^^^^^^^^^
 
 The following address types are accepted in sync protocol listen addresses.
-If you want Syncthing to listen on multiple addresses, you can either: add
-multiple ``<listenAddress>`` tags in the configuration file or enter several
-addresses separated by commas in the GUI.
+If you want Syncthing to listen on multiple addresses, you can either: repeat
+``<listenAddress>`` tags in the configuration file or enter several addresses
+separated by commas in the GUI.
 
 Default listen addresses (``default``)
     This is equivalent to ``tcp://0.0.0.0:22000``, ``quic://0.0.0.0:22000``
