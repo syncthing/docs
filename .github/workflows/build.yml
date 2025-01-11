@@ -78,8 +78,8 @@ jobs:
       - name: Prepare site (pdf)
         uses: actions/download-artifact@v4
         with:
-          name: man
-          path: _site/man
+          name: pdf
+          path: _site/pdf
 
       - name: Upload rendered site
         uses: docker://docker.io/rclone/rclone:latest
@@ -128,8 +128,8 @@ jobs:
       - name: Prepare site (pdf)
         uses: actions/download-artifact@v4
         with:
-          name: man
-          path: _site/man
+          name: pdf
+          path: _site/pdf
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
