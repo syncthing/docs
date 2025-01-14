@@ -207,8 +207,9 @@ Synology NAS (DSM)
 QNAP NAS (QTS)
 ~~~~~~~~~~~~~~
 
-`Syncthing QPKG <https://qnapclub.eu/en/qpkg/692>`__ (Qnap
-Package) available for ALL models x86, x86\_64, Arm (all including new models).
+`Syncthing QPKG <https://www.myqnap.org/product/syncthing/>`__ (Qnap Package).
+`Syncthing QPKG as root (This version "run as root (admin)" for people who don’t know how to configure their space and for very old devices) <https://www.myqnap.org/product/syncthing-run-as-root/>`__ (Qnap Package).
+`available for ALL models x86, x86\_64, Arm (all including new models)
 
 RockStor
 ~~~~~~~~
