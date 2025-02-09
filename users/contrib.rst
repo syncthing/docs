@@ -25,6 +25,15 @@ Android
   An alternative wrapper app for the Syncthing binary with extended
   functionality.
 
+.. _contrib-windows:
+
+Windows
+~~~~~~~
+
+We currently don't have any actively updated Windows-specific GUI wrappers here.
+
+.. seealso:: :ref:`Cross-platform GUI Wrappers <contrib-all>`.
+
 macOS
 ~~~~~
 
