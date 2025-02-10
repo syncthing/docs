@@ -22,8 +22,7 @@ Android
 
 - `Syncthing-Fork <https://github.com/catfriend1/syncthing-android>`_
 
-  An alternative wrapper app for the Syncthing binary with extended
-  functionality.
+  An Android app for the Syncthing binary with extended functionality.
 
 .. _contrib-windows:
 
