@@ -20,14 +20,9 @@ Cross-platform
 Android
 ~~~~~~~
 
-- `syncthing-android <https://github.com/syncthing/syncthing-android>`_
-
-  A wrapper app for the Syncthing binary.
-
 - `Syncthing-Fork <https://github.com/catfriend1/syncthing-android>`_
 
-  An alternative wrapper app for the Syncthing binary with extended
-  functionality.
+  An Android app for the Syncthing binary with extended functionality.
 
 .. _contrib-windows:
 
@@ -278,6 +273,7 @@ Older, Possibly Unmaintained
    these and you have revived the project, please update this page
    accordingly.
 
+- `syncthing-android <https://github.com/syncthing/syncthing-android>`_ (Archived as of 2024-12-03)
 - `a-sync <https://github.com/davide-imbriaco/a-sync>`_
 - `syncthing-tray-gtk3 <https://github.com/abdeoliveira/syncthing-tray-gtk3>`_ (Archived as of 2023-12-29)
 - `Syncthing-GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_ (Fork from `Kozec <https://github.com/kozec/syncthing-gtk>`_)
