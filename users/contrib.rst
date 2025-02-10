@@ -29,10 +29,9 @@ Android
 Windows
 ~~~~~~~
 
-- `SyncTrayzor <https://github.com/canton7/SyncTrayzor>`_
+We currently don't have any actively updated Windows-specific GUI wrappers here.
 
-  Windows host for Syncthing.  Installer, auto-start, built-in browser, tray
-  icon, and more.
+.. seealso:: :ref:`Cross-platform GUI Wrappers <contrib-all>`.
 
 macOS
 ~~~~~
@@ -273,7 +272,8 @@ Older, Possibly Unmaintained
    these and you have revived the project, please update this page
    accordingly.
 
-- `syncthing-android <https://github.com/syncthing/syncthing-android>`_ (Archived as of 2024-12-03)
+- `syncthing-android <https://github.com/syncthing/syncthing-android>`_ (Archived on 2024-12-03)
+- `SyncTrayzor <https://github.com/canton7/SyncTrayzor>`_
 - `a-sync <https://github.com/davide-imbriaco/a-sync>`_
 - `syncthing-tray-gtk3 <https://github.com/abdeoliveira/syncthing-tray-gtk3>`_ (Archived as of 2023-12-29)
 - `Syncthing-GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_ (Fork from `Kozec <https://github.com/kozec/syncthing-gtk>`_)
