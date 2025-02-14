@@ -187,6 +187,6 @@ all files and directories called "foo", ending in a "2" or starting with
 .. versionadded:: 1.19.0
 
    Default patterns can be configured which will take effect when automatically
-   accepting a folder from a remote device.  The GUI suggests same the patterns
+   accepting a folder from a remote device.  The GUI suggests the same patterns
    when adding a folder manually.  In either case, the ``.stignore`` file is
    created with these defaults if none is present yet.
