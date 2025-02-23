@@ -58,6 +58,10 @@ becomes available.
         T2 -> U1 [label="Encrypted by T2"]
     }
 
+In the above scenarios, if the untrusted device U1 deletes a local copy of a
+file, this is not replicated into any of the others hosts. An untrusted host
+cannot remotely trigger a deletion of data present in other hosts.
+
 Similarly, it's fine to add "normal mode" synchronization between untrusted devices.
 
 .. graphviz::
