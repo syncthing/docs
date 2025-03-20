@@ -171,7 +171,6 @@ Returns the current configuration.
 	"stunServers": [
 	  "default"
 	],
-	"databaseTuning": "auto",
 	"maxConcurrentIncomingRequestKiB": 0,
 	"announceLANAddresses": true,
 	"sendFullIndexOnUpgrade": false,

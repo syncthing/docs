@@ -64,8 +64,8 @@ corresponding environment variables (``$STDATADIR`` or ``STHOMEDIR``).
 The database directory contains the following files, among others:
 
 :file:`index-{*}.db`
-    A directory holding the database with metadata and hashes of the files
-    currently on disk and available from peers.
+    The database with metadata and hashes of the files currently on disk and
+    available from peers.
 
 :file:`syncthing.log`
     Log output, on some systems.
@@ -188,7 +188,6 @@ The following shows an example of a default configuration file (IDs will differ)
             <stunKeepaliveStartS>180</stunKeepaliveStartS>
             <stunKeepaliveMinS>20</stunKeepaliveMinS>
             <stunServer>default</stunServer>
-            <databaseTuning>auto</databaseTuning>
             <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
             <announceLANAddresses>true</announceLANAddresses>
             <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
@@ -1046,7 +1045,6 @@ Options Element
         <stunKeepaliveStartS>180</stunKeepaliveStartS>
         <stunKeepaliveMinS>20</stunKeepaliveMinS>
         <stunServer>default</stunServer>
-        <databaseTuning>auto</databaseTuning>
         <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
         <announceLANAddresses>true</announceLANAddresses>
         <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
@@ -1305,13 +1303,6 @@ The ``options`` element contains all other global configuration options.
     Switch to opt out from the :doc:`automatic crash reporting <crashrep>`
     feature. Set ``false`` to keep Syncthing from sending panic logs on serious
     troubles.  Defaults to ``true``, to help the developers troubleshoot.
-
-.. option:: options.databaseTuning
-
-    Controls how Syncthing uses the backend key-value database that stores the
-    index data and other persistent data it needs.  The available options and
-    implications are explained in a :doc:`separate chapter
-    </advanced/option-database-tuning>`.
 
 .. option:: options.maxConcurrentIncomingRequestKiB
 

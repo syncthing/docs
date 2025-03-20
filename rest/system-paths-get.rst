@@ -16,7 +16,7 @@ and others.
       "certFile": "/home/user/.config/syncthing/cert.pem",
       "config": "/home/user/.config/syncthing/config.xml",
       "csrfTokens": "/home/user/.config/syncthing/csrftokens.txt",
-      "database": "/home/user/.local/share/syncthing/index-v0.14.0.db",
+      "database": "/home/user/.local/share/syncthing/index-v2.db",
       "defFolder": "/home/user/Sync",
       "guiAssets": "/home/user/src/syncthing/gui",
       "httpsCertFile": "/home/user/.config/syncthing/https-cert.pem",

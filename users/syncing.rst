@@ -69,8 +69,8 @@ version of the file. This version is called the *global* version and is the
 one that each device strives to be up to date with.
 
 This information is kept in the *index database*, which is stored in the
-configuration directory and called ``index-vx.y.z.db`` (for some version
-x.y.z which may not be exactly the version of Syncthing you're running).
+configuration or data directory and called ``index-*.db``, with some version
+number in place of the asterisk.
 
 When new index data is received from other devices Syncthing recalculates
 which version for each file should be the global version, and compares this

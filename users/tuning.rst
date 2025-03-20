@@ -32,11 +32,6 @@ is on an SSD. First some general options:
     performance. If the underlying storage is a large array of disk,
     then syncing many folders concurrently may be beneficial.
 
-- :opt:`databaseTuning`
-    Set to ``large``. Regardless of the size of the actual database, this
-    increases a number of buffers and settings to optimize for higher
-    throughput.
-
 - :opt:`maxConcurrentIncomingRequestKiB`
     This sets the maximum amount of data being processed (loaded from
     disk and transmitted over the network) concurrently at any given
@@ -151,11 +146,6 @@ General options:
 
 - :opt:`maxFolderConcurrency`
     Set to 1 to sync folders sequentially, reducing the peak memory usage.
-
-- :opt:`databaseTuning`
-    Set to ``small``. Regardless of the size of the actual database size,
-    this reduces the size of a number of buffers to optimize for reduced
-    memory usage.
 
 - :opt:`maxConcurrentIncomingRequestKiB`
     Set to 32 MiB to reduce the amount of memory used for buffering
