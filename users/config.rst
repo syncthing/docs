@@ -1256,8 +1256,9 @@ The ``options`` element contains all other global configuration options.
     expanded to
     ``stun.counterpath.com:3478``,
     ``stun.counterpath.net:3478``, ``stun.ekiga.net:3478``,
+    ``stun.hitv.com:3478``,
     ``stun.internetcalls.com:3478``, ``stun.miwifi.com:3478``,
-    ``stun.schlund.de:3478``, ``stun.voip.aebc.com:3478``,
+    ``stun.schlund.de:3478``, ``stun.sipgate.net:3478``, ``stun.voip.aebc.com:3478``,
     ``stun.voipbuster.com:3478``,
     ``stun.voipstunt.com:3478`` and ``stun.xten.com:3478`` (this is the default).
 
