@@ -1270,7 +1270,7 @@ The ``options`` element contains all other global configuration options.
 .. option:: options.stunKeepaliveStartS
 
     Interval in seconds between contacting a STUN server to maintain NAT
-    mapping. Default is ``24`` and you can set it to ``0`` to disable contacting
+    mapping. Default is ``180`` and you can set it to ``0`` to disable contacting
     STUN servers.  The interval is automatically reduced if needed, down to a
     minimum of :opt:`stunKeepaliveMinS`.
 
