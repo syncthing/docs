@@ -1253,15 +1253,7 @@ The ``options`` element contains all other global configuration options.
     :aliases: options.stunServers
 
     Server to be used for STUN, given as ip:port. The keyword ``default`` gets
-    expanded to
-    ``stun.callwithus.com:3478``, ``stun.counterpath.com:3478``,
-    ``stun.counterpath.net:3478``, ``stun.ekiga.net:3478``,
-    ``stun.hitv.com:3478``, ``stun.ideasip.com:3478``,
-    ``stun.internetcalls.com:3478``, ``stun.miwifi.com:3478``,
-    ``stun.schlund.de:3478``,``stun.sipgate.net:10000``,
-    ``stun.sipgate.net:3478``, ``stun.voip.aebc.com:3478``,
-    ``stun.voiparound.com:3478``, ``stun.voipbuster.com:3478``,
-    ``stun.voipstunt.com:3478`` and ``stun.xten.com:3478`` (this is the default).
+    expanded to a set of public STUN servers.
 
     To configure multiple servers, you can either: repeat ``<stunServer>`` tags
     in the configuration file or enter several servers separated by commas in

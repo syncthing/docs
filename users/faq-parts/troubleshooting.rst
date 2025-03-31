@@ -20,10 +20,12 @@ Why is the sync so slow?
 When troubleshooting a slow sync, there are a number of things to check.
 
 First of all, verify that you are not connected via a relay. In the "Remote
-Devices" list on the right side of the GUI, double check that you see
-"Address: <some address>" and *not* "Relay: <some address>".
+Devices" list on the right side of the GUI, double check that the Connection
+Type does *not* start with "Relay".
 
-.. image:: address.png
+Here is an example of a device connected via a relay:
+
+.. image:: relay.png
 
 If you are connected via a relay, this is because a direct connection could
 not be established. Double check and follow the suggestions in
