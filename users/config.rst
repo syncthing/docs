@@ -1253,8 +1253,10 @@ The ``options`` element contains all other global configuration options.
 .. option:: options.stunServer
     :aliases: options.stunServers
 
-    Server to be used for STUN, given as ip:port. The keyword ``default`` gets
-    expanded to a set of public STUN servers.
+    Server to use for STUN, given as ip:port. The keyword ``default`` gets
+    expanded to a set of public STUN servers, with preference given to those
+    hosted by the Syncthing project. The latter are dynamically resolved via
+    the SRV record ``_stun._udp.syncthing.net``
 
     To configure multiple servers, you can either: repeat ``<stunServer>`` tags
     in the configuration file or enter several servers separated by commas in
