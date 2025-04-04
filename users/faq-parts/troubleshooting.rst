@@ -74,7 +74,7 @@ system's CPU power.
 Why is the setup more complicated than BitTorrent/Resilio Sync?
 ---------------------------------------------------------------
 
-Security over convenience. In Syncthing you have to setup both sides to
+Security over convenience. In Syncthing you have to set up both sides to
 connect two devices. An attacker can't do much with a stolen device ID, because
 you have to add the device on the other side too. You have better control
 where your files are transferred.
