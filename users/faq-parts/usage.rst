@@ -241,7 +241,7 @@ You are probably reading this because you encountered the following error with
 the filesystem watcher on linux:
 
     Failed to start filesystem watcher for folder yourLabel (yourID): failed to
-    setup inotify handler. Please increase inotify limits, see https://docs.syncthing.net/users/faq.html#inotify-limits
+    set up inotify handler. Please increase inotify limits, see https://docs.syncthing.net/users/faq.html#inotify-limits
 
 Linux typically restricts the number of watches per user (usually 8192). If
 you have many directories, you will need to adjust that number.
