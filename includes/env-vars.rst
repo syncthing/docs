@@ -8,8 +8,6 @@ STTRACE
     Main and operational facilities:
         config
             Configuration loading and saving.
-        db
-            The database layer.
         main
             Main package.
         model
@@ -51,6 +49,8 @@ STTRACE
            REST API.
         sha256
             SHA256 hashing package (this facility currently unused).
+        sqlite
+            The SQLite database
         stats
             Persistent device and folder statistics.
         sync
@@ -113,14 +113,8 @@ STPERFSTATS
     Write running performance statistics to ``perf-$pid.csv``. Not supported on
     Windows.
 
-STRECHECKDBEVERY
-    Time before folder statistics (file, dir, ... counts) are recalculated from
-    scratch. The given duration must be parseable by Go's ``time.ParseDuration``. If
-    missing or not parseable, the default value of 1 month is used. To force
-    recalculation on every startup, set it to ``1s``.
-
-STGCINDIRECTEVERY
-    Sets the time interval in between database garbage collection runs.  The
+STDBMAINTINTERVAL
+    Sets the time interval in between database maintenance runs.  The
     given duration must be parseable by Go's ``time.ParseDuration``.
 
 GOMAXPROCS
