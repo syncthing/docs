@@ -948,6 +948,9 @@ The following child elements may be present:
     When this setting is disabled, the GUI will not send 401 responses so users
     won't see browser popups prompting for username and password.
 
+.. option:: gui.promMetricsNoAuth
+
+    If true, this allows access to the '/metrics' without authentication.
 
 LDAP Element
 ------------
