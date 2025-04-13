@@ -941,14 +941,14 @@ The following child elements may be present:
 
     When this setting is enabled, the GUI will respond to unauthenticated
     requests with a 401 response prompting for Basic Authorization, so that
-    ``https://user:pass@localhost`` style URLs continue to work in standard
+    ``https://user`:pass@localhost`` style URLs continue to work in standard
     browsers. Other clients that always send the ``Authorization`` request
     header do not need this setting.
 
     When this setting is disabled, the GUI will not send 401 responses so users
     won't see browser popups prompting for username and password.
 
-.. option:: gui.promMetricsNoAuth
+.. option:: gui.metricsWithoutAuth
 
     If true, this allows access to the '/metrics' without authentication.
 
