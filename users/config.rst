@@ -941,7 +941,7 @@ The following child elements may be present:
 
     When this setting is enabled, the GUI will respond to unauthenticated
     requests with a 401 response prompting for Basic Authorization, so that
-    ``https://user`:pass@localhost`` style URLs continue to work in standard
+    ``https://user:pass@localhost`` style URLs continue to work in standard
     browsers. Other clients that always send the ``Authorization`` request
     header do not need this setting.
 
