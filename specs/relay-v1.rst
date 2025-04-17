@@ -137,8 +137,11 @@ relayed between the two devices in the session directly.
 Example Exchange
 ^^^^^^^^^^^^^^^^
 
-Client A - Permanent protocol mode
-Client B - Temporary protocol mode
+Client A is the first to join the session.
+
+Client B is the second to join the session.
+
+Both are in session mode.
 
 ===  =======================  ====================== =====================
  #         Client (A)                 Relay                Client (B)
