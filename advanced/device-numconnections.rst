@@ -61,4 +61,8 @@ default, TCP has better priority than QUIC, so establishing a TCP connection
 will cause existing QUIC connections to be closed. Connection priorities can
 be configured.
 
-Multiple connections cannot be established over relays.
+When connected via a relay, only one connection is normally established.
+However, with some lucky timing, e.g. when attempting to reconnect after losing
+a connection, it is also possible to establish one relay connection in each
+direction, if the two devices are listening on different relays. In such a case,
+the GUI will show `1 + 1` connections.
