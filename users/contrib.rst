@@ -251,7 +251,9 @@ Configuration management
 Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- `munin-syncthing <https://gitlab.com/daftaupe/munin-syncthing>`_
+- `sm² <https://github.com/nware-lab/sm2>`_
+
+  A docker container made to "Monitor multiple syncthing instances while using as little diskspace & memory while doing it." 
 
 Resolving conflicts
 ~~~~~~~~~~~~~~~~~~~
@@ -296,3 +298,4 @@ Older, Possibly Unmaintained
 -  https://github.com/nhojb/SyncthingBar
 -  https://github.com/jastBytes/SyncthingTray
 -  https://github.com/alex2108/syncthing-tray
+- `munin-syncthing <https://gitlab.com/daftaupe/munin-syncthing>`_
