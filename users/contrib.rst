@@ -251,7 +251,7 @@ Configuration management
 Monitoring
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-- `sm² <https://github.com/nware-lab/sm2>`_
+- `sm² (Syncthing Multi Server Monitor) <https://github.com/nware-lab/sm2>`_
 
   A Docker container made to "monitor multiple Syncthing instances while using
   as little diskspace & memory while doing it."
