@@ -196,7 +196,7 @@ will be merged with files from remote devices.
 Also see the :ref:`marker FAQ <marker-faq>` for more information about the folder marker.
 
 Why do my Windows computers always connect through a relay?
---------------------------------------------------------------
+-----------------------------------------------------------
 
 When connecting to a new network, Windows by default sets its profile to
 "Public". While being more secure, this setting also prevents applications like
