@@ -214,3 +214,35 @@ Other things:
     number concurrently running threads Syncthing uses. Setting it to 1 (or
     any number lower than your actual number of cores) will reduce the
     amount of CPU used by Syncthing at any given moment.
+
+Tuning for LAN-only
+-------------------
+
+You are paranoid about security and/or privacy, and want to keep Syncthing's
+communication constrained to your local network only.
+
+For restricting sync traffic to only LAN:
+
+- :opt:`relaysEnabled`
+    Set to false to disable relaying sync traffic through servers other than
+    your sync partners. When relays are used, those that you connect to can
+    see your encrypted data, device ID, and public IP address.
+
+- :opt:`natEnabled`
+    Set to false to disable opening up UPnP and NAT-PMP port mappings and
+    pinholes, and to disable hole punching. This reduces the ability for sync
+    partners to connect on the Internet.
+
+For restricting other things to only LAN:
+
+- :opt:`globalAnnounceEnabled`
+    Set to false to disable use of Global Discovery servers, which know your
+    device ID and public IP address when being used. The discovery servers are
+    used by your sync partners to discover your IP address from your device ID.
+
+    .. note::
+        Note that on Android, local discovery is known to usually not work, so
+        either global discovery or hardcoding IP addresses is often required.
+
+If it's not obvious, do *not* hardcode non-LAN IP addresses,
+if you want to keep LAN-only.
