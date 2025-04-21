@@ -194,7 +194,6 @@ The following shows an example of a default configuration file (IDs will differ)
             <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
             <connectionLimitEnough>0</connectionLimitEnough>
             <connectionLimitMax>0</connectionLimitMax>
-            <insecureAllowOldTLSVersions>false</insecureAllowOldTLSVersions>
         </options>
         <remoteIgnoredDevice time="2022-01-09T20:02:01Z" id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="bugger" address="192.168.0.20:22000"></remoteIgnoredDevice>
         <defaults>
@@ -1055,7 +1054,6 @@ Options Element
         <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
         <connectionLimitEnough>0</connectionLimitEnough>
         <connectionLimitMax>0</connectionLimitMax>
-        <insecureAllowOldTLSVersions>false</insecureAllowOldTLSVersions>
     </options>
 
 The ``options`` element contains all other global configuration options.
@@ -1349,12 +1347,6 @@ The ``options`` element contains all other global configuration options.
     no limit.  Affects incoming connections and prevents attempting outgoing
     connections.  The mechanism is described in detail in a :doc:`separate
     chapter </advanced/option-connection-limits>`.
-
-.. option:: options.insecureAllowOldTLSVersions
-
-    Only for compatibility with old versions of Syncthing on remote devices, as
-    detailed in :doc:`/advanced/option-insecure-allow-old-tls-versions`.
-
 
 Defaults Element
 ----------------
