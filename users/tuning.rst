@@ -226,7 +226,8 @@ For restricting sync traffic to only LAN:
 - :opt:`relaysEnabled`
     Set to false to disable relaying sync traffic through servers other than
     your sync partners. When relays are used, those that you connect to can
-    see your encrypted data, device ID, and public IP address.
+    see your device ID and public IP address, but not the synchronized data,
+    as that is encrypted.
 
 - :opt:`natEnabled`
     Set to false to disable opening up UPnP and NAT-PMP port mappings and
