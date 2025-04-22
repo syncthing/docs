@@ -194,3 +194,13 @@ it will also reset the database state of this folder. It will be considered a "n
 will be merged with files from remote devices.
 
 Also see the :ref:`marker FAQ <marker-faq>` for more information about the folder marker.
+
+Why do my Windows computers always connect through a relay?
+-----------------------------------------------------------
+
+When connecting to a new network, Windows by default sets its profile to
+"Public". While being more secure, this setting commonly prevents applications
+like Syncthing from being able to establish direct connections with the device
+in question, forcing it to connect through a relay. If you would rather connect
+your devices directly, please follow `the official Microsoft instructions on how
+to change the network profile to "Private" <https://support.microsoft.com/windows/essential-network-settings-and-tasks-in-windows-f21a9bbc-c582-55cd-35e0-73431160a1b9#bkmk_network_profile>`__.
