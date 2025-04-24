@@ -149,6 +149,8 @@ Syncthing decides which neighbour has the latest state, or if the states conflic
 it initiates the conflict resolution procedure, which in the end results in a consistent
 up-to-date state with all the neighbours.
 
+.. _unknown-suspicious-address:
+
 Why does Syncthing connect to this unknown/suspicious address?
 --------------------------------------------------------------
 
