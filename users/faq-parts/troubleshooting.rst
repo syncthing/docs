@@ -8,8 +8,7 @@ Syncthing logs to stdout by default. On Windows Syncthing by default also
 creates ``syncthing.log`` in Syncthing's home directory (run ``syncthing
 --paths`` to see where that is). The command line option ``--logfile`` can be
 used to specify a user-defined logfile.  If you only have access to a running
-instance's GUI, check under the `Actions` - `About` menu item to see the used
-paths.
+instance's GUI, click the `Help` -> `About` menu item, then the `Paths` tab.
 
 If you're running a process manager like systemd, check there. If you're
 using a GUI wrapper integration, it may keep the logs for you.
