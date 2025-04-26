@@ -214,3 +214,62 @@ Other things:
     number concurrently running threads Syncthing uses. Setting it to 1 (or
     any number lower than your actual number of cores) will reduce the
     amount of CPU used by Syncthing at any given moment.
+
+Tuning for LAN-only
+-------------------
+
+You are paranoid about security and/or privacy, and want to keep Syncthing's
+communication constrained to your local network only.
+
+For restricting sync traffic to only LAN:
+
+- :opt:`relaysEnabled`
+    Set to false to disable relaying sync traffic through servers other than
+    your sync partners. When relays are used, those that you connect to can
+    see your device ID and public IP address, but not the synchronized data,
+    as that is encrypted.
+
+    .. seealso:: :ref:`unknown-suspicious-address`
+
+- :opt:`natEnabled`
+    Set to false to disable opening up UPnP and NAT-PMP port mappings and
+    pinholes, and to disable hole punching. This reduces the ability for sync
+    partners to connect on the Internet.
+
+For restricting other things to only LAN:
+
+- :opt:`globalAnnounceEnabled`
+    Set to false to disable use of Global Discovery servers, which know your
+    device ID and public IP address when being used. The discovery servers are
+    used by your sync partners to discover your IP address from your device ID.
+
+    .. note::
+        On Android, local discovery is known to usually not work, so either
+        global discovery or hardcoding IP addresses is often required.
+
+- :opt:`urAccepted`
+    Set to -1 to disable usage reporting.
+    When usage reporting is enabled, usage reporting servers can know your
+    public IP address, :opt:`urUniqueID`, and (obviously) the contents of the
+    usage report (which depend on the version you chose).
+
+- :opt:`crashReportingEnabled`
+    Set to false to disable automatic crash reporting. Crash reporting servers
+    can know your public IP address, the version of Syncthing that crashed, and
+    the username and hostname of the machine that Syncthing was built on.
+
+    .. seealso:: :doc:`crashrep`
+
+- :opt:`autoUpgradeIntervalH`
+    Set to 0 to disable automatic upgrades. Syncthing will still automatically
+    contact the Internet to check for upgrades when you open up the Web GUI,
+    so it knows when to show the upgrade button, unless you follow the
+    procedure for :opt:`releasesURL`.
+
+- :opt:`releasesURL`
+    Unset (set to blank) to disable upgrade checks.
+    With upgrade checks disabled, to upgrade Syncthing, you have to manually
+    replace the executable and restart Syncthing.
+
+If it's not obvious, do *not* hardcode non-LAN IP addresses,
+if you want to keep LAN-only.
