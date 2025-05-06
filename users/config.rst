@@ -194,7 +194,6 @@ The following shows an example of a default configuration file (IDs will differ)
             <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
             <connectionLimitEnough>0</connectionLimitEnough>
             <connectionLimitMax>0</connectionLimitMax>
-            <insecureAllowOldTLSVersions>false</insecureAllowOldTLSVersions>
         </options>
         <remoteIgnoredDevice time="2022-01-09T20:02:01Z" id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="bugger" address="192.168.0.20:22000"></remoteIgnoredDevice>
         <defaults>
@@ -948,6 +947,9 @@ The following child elements may be present:
     When this setting is disabled, the GUI will not send 401 responses so users
     won't see browser popups prompting for username and password.
 
+.. option:: gui.metricsWithoutAuth
+
+    If true, this allows access to the '/metrics' without authentication.
 
 LDAP Element
 ------------
@@ -1052,7 +1054,6 @@ Options Element
         <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
         <connectionLimitEnough>0</connectionLimitEnough>
         <connectionLimitMax>0</connectionLimitMax>
-        <insecureAllowOldTLSVersions>false</insecureAllowOldTLSVersions>
     </options>
 
 The ``options`` element contains all other global configuration options.
@@ -1252,8 +1253,9 @@ The ``options`` element contains all other global configuration options.
 .. option:: options.stunServer
     :aliases: options.stunServers
 
-    Server to be used for STUN, given as ip:port. The keyword ``default`` gets
-    expanded to a set of public STUN servers.
+    Server to use for STUN, given as ip:port. The keyword ``default`` gets
+    expanded to a set of public STUN servers, with preference given to those
+    hosted by the Syncthing project.
 
     To configure multiple servers, you can either: repeat ``<stunServer>`` tags
     in the configuration file or enter several servers separated by commas in
@@ -1346,12 +1348,6 @@ The ``options`` element contains all other global configuration options.
     no limit.  Affects incoming connections and prevents attempting outgoing
     connections.  The mechanism is described in detail in a :doc:`separate
     chapter </advanced/option-connection-limits>`.
-
-.. option:: options.insecureAllowOldTLSVersions
-
-    Only for compatibility with old versions of Syncthing on remote devices, as
-    detailed in :doc:`/advanced/option-insecure-allow-old-tls-versions`.
-
 
 Defaults Element
 ----------------
