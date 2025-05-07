@@ -34,8 +34,27 @@ start Syncthing automatically either at user log on, or at system
 startup. In both cases, Syncthing will open and stay invisible in
 background.
 
+It's possible to run Windows Task Scheduler CLI API with a command such as 
+``schtasks /create /sc ONLOGON /tn Syncthing /tr "<program-path> [--no-console --no-browser]"``.
+The operation requires elevated privileges. Preventing the pop-up console that hides after
+some delay is possible wrapping the executable with a ``.vbs or .ps1``.
+
+vbs::
+
+   Dim objShell
+   Set objShell = CreateObject("WScript.Shell")
+   objShell.Run "path to syncthing.exe", 0, False
+   Set objShell = Nothing
+
+ps1::
+
+   Start-Process "path to syncthing.exe" -WindowStyle Hidden
+
 For technical information about Task Scheduler visit
-https://docs.microsoft.com/windows/win32/taskschd.
+https://docs.microsoft.com/windows/win32/taskschd
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks
+
+Or follow the Graphical tutorial below:
 
 #. Start the Task Scheduler either by going to ``Start Menu > Windows
    Administrative Tools`` and clicking on ``Task Scheduler``, or by
