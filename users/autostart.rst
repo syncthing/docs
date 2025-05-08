@@ -35,7 +35,7 @@ startup. In both cases, Syncthing will open and stay invisible in
 background.
 
 For technical information about Task Scheduler visit
-https://docs.microsoft.com/windows/win32/taskschd
+https://docs.microsoft.com/windows/win32/taskschd.
 
 #. Start the Task Scheduler either by going to ``Start Menu > Windows
    Administrative Tools`` and clicking on ``Task Scheduler``, or by
