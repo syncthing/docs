@@ -34,27 +34,8 @@ start Syncthing automatically either at user log on, or at system
 startup. In both cases, Syncthing will open and stay invisible in
 background.
 
-It's possible to run Windows Task Scheduler CLI API with a command such as 
-``schtasks /create /sc ONLOGON /tn Syncthing /tr "<program-path> [--no-console --no-browser]"``.
-The operation requires elevated privileges. Preventing the pop-up console that hides after
-some delay is possible wrapping the executable with a ``.vbs or .ps1``.
-
-vbs::
-
-   Dim objShell
-   Set objShell = CreateObject("WScript.Shell")
-   objShell.Run "path to syncthing.exe", 0, False
-   Set objShell = Nothing
-
-ps1::
-
-   Start-Process "path to syncthing.exe" -WindowStyle Hidden
-
 For technical information about Task Scheduler visit
 https://docs.microsoft.com/windows/win32/taskschd
-https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks
-
-Or follow the Graphical tutorial below:
 
 #. Start the Task Scheduler either by going to ``Start Menu > Windows
    Administrative Tools`` and clicking on ``Task Scheduler``, or by
@@ -270,6 +251,26 @@ by a sysadmin who knows enough to understand the security implications.
    -  ``nssm set syncthing AppExit 4 Restart``
 #. Start the service via ``sc start syncthing`` in the Command Prompt.
 #. Connect to the Syncthing UI, enable HTTPS, and set a secure username and password.
+
+For Hard Users
+^^^^^^^^^^^^^^
+
+It's possible to run Windows Task Scheduler CLI API with a command such as 
+``schtasks /create /sc ONLOGON /tn Syncthing /tr "<program-path> [--no-console --no-browser]"``.
+The operation requires elevated privileges. Preventing the pop-up console that hides after
+some delay is possible wrapping the executable with a ``PowerShell`` script.
+
+``script.ps1``::
+
+   Start-Process "<path to syncthing>.exe" -WindowStyle Hidden
+
+Then run as admin::
+
+   schtasks /create /sc ONLOGON /tn Syncthing /tr "powershell <path to script>.ps1"
+
+
+For more information, please read official docs for Command Line Interface API:
+https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks
 
 macOS
 -----
