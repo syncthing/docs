@@ -45,7 +45,7 @@ Once done the profiling will result in a download called something like
 keep and send in, without modifying the file name as it tells us information
 necessary to interpret it.
 
-Repeat the process twice and keep both files.
+Perform the process twice and keep both files.
 
 Capture a heap profile
 ----------------------
@@ -65,4 +65,4 @@ The profiling will result in a download called something like
 keep and send in, without modifying the file name as it tells us information
 necessary to interpret it.
 
-Repeat the process twice and keep both files.
+Perform the process twice and keep both files.
