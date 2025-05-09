@@ -36,6 +36,13 @@ The following may be synchronized or not, depending:
 -  Extended attributes (when enabled)
 -  POSIX or NFS ACLs (as part of extended attributes)
 
+.. note::
+
+    Note that what can be synced often depends on the operating system, file
+    system, and possibly other factors. For example, even though Syncthing may
+    try to synchronise symbolic links on Android, this will not succeed, as the
+    OS does not support them on the user storage.
+
 The following are *not* synchronized;
 
 -  Directory modification times (not preserved)
