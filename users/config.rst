@@ -1354,16 +1354,12 @@ The ``options`` element contains all other global configuration options.
     When ``true``, analogous to :option:`--audit` being set.
     Defaults to ``false``.
 
-    Requires Syncthing to be restarted to take effect.
-
     When either this option, or :option:`--audit` (or both) are enabled,
     auditing is enabled.
 
 .. option:: options.auditFile
 
     Analogous to :option:`--auditfile`. Defaults to being unset.
-
-    Requires Syncthing to be restarted to take effect.
 
     For compatibility reasons, if both this option and :option:`--auditfile`
     are set, :option:`--auditfile` takes priority.
