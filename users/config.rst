@@ -503,8 +503,8 @@ The following child elements may exist:
 .. option:: folder.maxConflicts
 
     The maximum number of conflict copies to keep around for any given file.
-    The default, ``-1``, means an unlimited number. Setting this to ``0`` disables
-    conflict copies altogether.
+    The default is ``10``. ``-1``, means an unlimited number.
+    Setting this to ``0`` disables conflict copies altogether.
 
 .. option:: folder.disableSparseFiles
 
