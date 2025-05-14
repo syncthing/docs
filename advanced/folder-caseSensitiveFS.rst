@@ -11,8 +11,9 @@ handling.
 With ``caseSensitiveFS`` set to  ``false`` (the default setting)
 Syncthing's case sensitivity safety checks are enabled. 
 Syncthing will then attempt to detect and prevent case-only file
-name collisions that can occur on case insensitive systems such as Windows
-and macOS, or other systems with case insensitive file systems.
+name collisions that can occur on case insensitive operating systems such as
+Windows, macOS, iOS, and Android, or other systems with case insensitive file
+systems.
 
 When set to ``true`` the extra safety checks for case insensitive
 filesystems are disabled. This will provide a small improvement in
