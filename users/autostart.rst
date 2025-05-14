@@ -252,8 +252,8 @@ by a sysadmin who knows enough to understand the security implications.
 #. Start the service via ``sc start syncthing`` in the Command Prompt.
 #. Connect to the Syncthing UI, enable HTTPS, and set a secure username and password.
 
-For Hard Users
-^^^^^^^^^^^^^^
+For Advanced Users
+^^^^^^^^^^^^^^^^^^
 
 It's possible to run Windows Task Scheduler CLI API with a command such as 
 ``schtasks /create /sc ONLOGON /tn Syncthing /tr "<program-path> [--no-console --no-browser]"``.
