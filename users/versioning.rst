@@ -39,7 +39,7 @@ files from being removed from the trash can automatically.
 
 Another :opt:`configuration option <option:: folder.versioning.params.archiveDeletedOnly>` 
 is available to archive only the deleted files, as opposed to normal trash can versioning
-which archives all modified, renamed and deleted file. This is a light weight
+which archives all modified, renamed and deleted files. This is a lightweight
 option to protect against accidental deletions, while using significantly 
 less disk space than full versioning.
 
