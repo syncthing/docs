@@ -319,7 +319,7 @@ example of such a section in the XML:
 .. option:: folder.versioning.params.archiveDeletedOnly
 
     When this option is enabled it archives only deleted files. 
-    Modified or Renamed files are not archieved and hence, deleted permanently. 
+    Modified or renamed files are not archived, and hence, deleted normally. 
 
 .. option:: folder.versioning.params.keep
 
