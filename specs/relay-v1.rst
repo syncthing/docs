@@ -89,8 +89,9 @@ Temporary protocol submode
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A temporary protocol submode begins with ConnectRequest message, to which the
-relay responds with either ResponseNotFound if the device the client it is after
-is not available, or with a SessionInvitation, which contains the unique session
+relay responds with ResponseNotFound if the device the client it is after
+is not available, with a RelayFull if the relay has reached its limits,
+or with a SessionInvitation, which contains the unique session
 key which then can be used to establish a connection in session mode.
 
 The connection is terminated immediately after that.
@@ -125,11 +126,13 @@ Session mode
 The first and only message the client sends in the session mode is the
 JoinSessionRequest message which contains the session key identifying which
 session you are trying to join. The relay responds with one of the following
-Response messages:
+messages:
 
 1. ResponseNotFound - Session key is invalid
 2. ResponseAlreadyConnected - Session is full (both sides already connected)
 3. ResponseSuccess - You have successfully joined the session
+4. RelayFull - Relay limits are too strict for you to be able to join the session.
+The relay immediately terminates the connection after sending this.
 
 After the successful response, all the bytes written and received will be
 relayed between the two devices in the session directly.
@@ -137,8 +140,11 @@ relayed between the two devices in the session directly.
 Example Exchange
 ^^^^^^^^^^^^^^^^
 
-Client A - Permanent protocol mode
-Client B - Temporary protocol mode
+Client A is the first to join the session.
+
+Client B is the second to join the session.
+
+Both are in session mode.
 
 ===  =======================  ====================== =====================
  #         Client (A)                 Relay                Client (B)
@@ -371,6 +377,19 @@ SessionInvitation message (Type = 6)
 	connection this client should assume it's getting. The value is inverted in
 	the invitation which is sent to the other device, so that there is always
 	one client socket, and one server socket.
+
+RelayFull message (Type = 7)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+::
+
+	 0                   1                   2                   3
+	 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+	+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+	struct RelayFull {
+	}
 
 How Syncthing uses relays, and general security
 -----------------------------------------------

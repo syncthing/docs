@@ -193,7 +193,6 @@ The following shows an example of a default configuration file (IDs will differ)
             <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
             <connectionLimitEnough>0</connectionLimitEnough>
             <connectionLimitMax>0</connectionLimitMax>
-            <insecureAllowOldTLSVersions>false</insecureAllowOldTLSVersions>
         </options>
         <remoteIgnoredDevice time="2022-01-09T20:02:01Z" id="5SYI2FS-LW6YAXI-JJDYETS-NDBBPIO-256MWBO-XDPXWVG-24QPUM4-PDW4UQU" name="bugger" address="192.168.0.20:22000"></remoteIgnoredDevice>
         <defaults>
@@ -503,8 +502,8 @@ The following child elements may exist:
 .. option:: folder.maxConflicts
 
     The maximum number of conflict copies to keep around for any given file.
-    The default, ``-1``, means an unlimited number. Setting this to ``0`` disables
-    conflict copies altogether.
+    The default is ``10``. ``-1``, means an unlimited number.
+    Setting this to ``0`` disables conflict copies altogether.
 
 .. option:: folder.disableSparseFiles
 
@@ -947,6 +946,9 @@ The following child elements may be present:
     When this setting is disabled, the GUI will not send 401 responses so users
     won't see browser popups prompting for username and password.
 
+.. option:: gui.metricsWithoutAuth
+
+    If true, this allows access to the '/metrics' without authentication.
 
 LDAP Element
 ------------
@@ -1050,7 +1052,6 @@ Options Element
         <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
         <connectionLimitEnough>0</connectionLimitEnough>
         <connectionLimitMax>0</connectionLimitMax>
-        <insecureAllowOldTLSVersions>false</insecureAllowOldTLSVersions>
     </options>
 
 The ``options`` element contains all other global configuration options.
@@ -1250,16 +1251,9 @@ The ``options`` element contains all other global configuration options.
 .. option:: options.stunServer
     :aliases: options.stunServers
 
-    Server to be used for STUN, given as ip:port. The keyword ``default`` gets
-    expanded to
-    ``stun.callwithus.com:3478``, ``stun.counterpath.com:3478``,
-    ``stun.counterpath.net:3478``, ``stun.ekiga.net:3478``,
-    ``stun.hitv.com:3478``, ``stun.ideasip.com:3478``,
-    ``stun.internetcalls.com:3478``, ``stun.miwifi.com:3478``,
-    ``stun.schlund.de:3478``,``stun.sipgate.net:10000``,
-    ``stun.sipgate.net:3478``, ``stun.voip.aebc.com:3478``,
-    ``stun.voiparound.com:3478``, ``stun.voipbuster.com:3478``,
-    ``stun.voipstunt.com:3478`` and ``stun.xten.com:3478`` (this is the default).
+    Server to use for STUN, given as ip:port. The keyword ``default`` gets
+    expanded to a set of public STUN servers, with preference given to those
+    hosted by the Syncthing project.
 
     To configure multiple servers, you can either: repeat ``<stunServer>`` tags
     in the configuration file or enter several servers separated by commas in
@@ -1268,7 +1262,7 @@ The ``options`` element contains all other global configuration options.
 .. option:: options.stunKeepaliveStartS
 
     Interval in seconds between contacting a STUN server to maintain NAT
-    mapping. Default is ``24`` and you can set it to ``0`` to disable contacting
+    mapping. Default is ``180`` and you can set it to ``0`` to disable contacting
     STUN servers.  The interval is automatically reduced if needed, down to a
     minimum of :opt:`stunKeepaliveMinS`.
 
@@ -1346,11 +1340,20 @@ The ``options`` element contains all other global configuration options.
     connections.  The mechanism is described in detail in a :doc:`separate
     chapter </advanced/option-connection-limits>`.
 
-.. option:: options.insecureAllowOldTLSVersions
+.. option:: options.auditEnabled
 
-    Only for compatibility with old versions of Syncthing on remote devices, as
-    detailed in :doc:`/advanced/option-insecure-allow-old-tls-versions`.
+    When ``true``, analogous to :option:`--audit` being set.
+    Defaults to ``false``.
 
+    When either this option, or :option:`--audit` (or both) are enabled,
+    auditing is enabled.
+
+.. option:: options.auditFile
+
+    Analogous to :option:`--auditfile`. Defaults to being unset.
+
+    For compatibility reasons, if both this option and :option:`--auditfile`
+    are set, :option:`--auditfile` takes priority.
 
 Defaults Element
 ----------------
