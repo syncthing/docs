@@ -221,8 +221,9 @@ Cluster Config
 This informational message provides information about the cluster
 configuration as it pertains to the current connection. A Cluster Config
 message MUST be the first post authentication message sent on a BEP
-connection. Additional Cluster Config messages MUST NOT be sent after the
-initial exchange.
+connection. Additional Cluster Config messages MAY be sent after the initial
+exchange to change the connection in place with the update configuration. If an
+implementation does not support that, it SHOULD close the connection.
 
 Protocol Buffer Schema
 ~~~~~~~~~~~~~~~~~~~~~~
