@@ -63,7 +63,7 @@ corresponding environment variables (``$STDATADIR`` or ``STHOMEDIR``).
 
 The database directory contains the following files, among others:
 
-:file:`index-{*}.db`
+:file:`index-{*}`
     The database with metadata and hashes of the files currently on disk and
     available from peers.
 
