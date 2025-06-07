@@ -401,9 +401,9 @@ Protocol Buffer Schema
     }
 
     message BlockInfo {
-        int64 offset     = 1;
-        int32 size       = 2;
-        bytes hash       = 3;
+        int64 offset = 1;
+        int32 size   = 2;
+        bytes hash   = 3;
         reserved 4;
     }
 
