@@ -511,6 +511,8 @@ Protocol Buffer Schema
         int32  size           = 5;
         bytes  hash           = 6;
         bool   from_temporary = 7;
+        int32 block_no        = 9;
+        reserved 8;
     }
 
 Fields
