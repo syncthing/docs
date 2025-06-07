@@ -71,13 +71,6 @@ These options are folder specific and should be set on each folder:
     is effort that could be spent on something more productive. If you don't
     need to see scan progress, set this to -1 to disable it.
 
-- :opt:`weakHashThresholdPct`
-    Syncthing will by default look for rolling (weak) hash matches to detect
-    data shifted in a file if a lot of data has changed in the file. If your
-    use case doesn't cause data to shift in a file, and if the files are
-    large (movies, VM images, ...) it is unnecessary to spend time checking
-    weak hashes. Set the threshold to 101% to disable use of weak hashes.
-
 - :opt:`maxConcurrentWrites`
     Synchting limits the number of outstanding write system calls at any
     given time to avoid overloading the I/O system. If you increased
@@ -168,10 +161,6 @@ Folders options:
 - :opt:`scanProgressIntervalS`
     Set to -1 to disable scan progress updates. Keeping track of scan progress
     uses memory and CPU.
-
-- :opt:`weakHashThresholdPct`
-    Set to 101% to disable use of weak hashes. Using weak hashes has a
-    memory cost.
 
 - :opt:`copyRangeMethod`
     If your underlying filesystem supports it, using copyrange is more

@@ -404,7 +404,7 @@ Protocol Buffer Schema
         int64 offset     = 1;
         int32 size       = 2;
         bytes hash       = 3;
-        uint32 weak_hash = 4;
+        reserved 4;
     }
 
     message Vector {

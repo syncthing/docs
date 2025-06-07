@@ -114,7 +114,6 @@ The following shows an example of a default configuration file (IDs will differ)
             <disableSparseFiles>false</disableSparseFiles>
             <disableTempIndexes>false</disableTempIndexes>
             <paused>false</paused>
-            <weakHashThresholdPct>25</weakHashThresholdPct>
             <markerName>.stfolder</markerName>
             <copyOwnershipFromParent>false</copyOwnershipFromParent>
             <modTimeWindowS>0</modTimeWindowS>
@@ -218,7 +217,6 @@ The following shows an example of a default configuration file (IDs will differ)
                 <disableSparseFiles>false</disableSparseFiles>
                 <disableTempIndexes>false</disableTempIndexes>
                 <paused>false</paused>
-                <weakHashThresholdPct>25</weakHashThresholdPct>
                 <markerName>.stfolder</markerName>
                 <copyOwnershipFromParent>false</copyOwnershipFromParent>
                 <modTimeWindowS>0</modTimeWindowS>
@@ -306,7 +304,6 @@ Folder Element
         <disableSparseFiles>false</disableSparseFiles>
         <disableTempIndexes>false</disableTempIndexes>
         <paused>false</paused>
-        <weakHashThresholdPct>25</weakHashThresholdPct>
         <markerName>.stfolder</markerName>
         <copyOwnershipFromParent>false</copyOwnershipFromParent>
         <modTimeWindowS>0</modTimeWindowS>
@@ -522,11 +519,6 @@ The following child elements may exist:
 .. option:: folder.paused
 
     True if this folder is (temporarily) suspended.
-
-.. option:: folder.weakHashThresholdPct
-
-    Use weak hash if more than the given percentage of the file has changed. Set
-    to ``-1`` to always use weak hash. Default is ``25``.
 
 .. option:: folder.markerName
 
@@ -1383,7 +1375,6 @@ Defaults Element
             <disableSparseFiles>false</disableSparseFiles>
             <disableTempIndexes>false</disableTempIndexes>
             <paused>false</paused>
-            <weakHashThresholdPct>25</weakHashThresholdPct>
             <markerName>.stfolder</markerName>
             <copyOwnershipFromParent>false</copyOwnershipFromParent>
             <modTimeWindowS>0</modTimeWindowS>
