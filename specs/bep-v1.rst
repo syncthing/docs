@@ -401,10 +401,10 @@ Protocol Buffer Schema
     }
 
     message BlockInfo {
-        int64 offset     = 1;
-        int32 size       = 2;
-        bytes hash       = 3;
-        uint32 weak_hash = 4;
+        int64 offset = 1;
+        int32 size   = 2;
+        bytes hash   = 3;
+        reserved 4;
     }
 
     message Vector {
@@ -511,6 +511,8 @@ Protocol Buffer Schema
         int32  size           = 5;
         bytes  hash           = 6;
         bool   from_temporary = 7;
+        int32 block_no        = 9;
+        reserved 8;
     }
 
 Fields
