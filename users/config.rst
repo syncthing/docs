@@ -531,8 +531,9 @@ The following child elements may exist:
 
 .. option:: folder.markerName
 
-    Name of a directory or file in the folder root to be used as
-    :ref:`marker-faq`. Default is ``.stfolder``.
+    Name of a directory or file in the folder root to be used as a marker - see
+    :ref:`marker FAQ <marker-faq>` for its purpose.
+    A marker directory is only created by Syncthing for the default ``.stfolder``, not otherwise.
 
 .. option:: folder.copyOwnershipFromParent
 
