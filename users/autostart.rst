@@ -176,6 +176,24 @@ user account in Windows. No console or browser window will pop-up, but
 you can still access the interface by opening http://localhost:8384 in
 a Web browser.
 
+.. note::
+
+   **Running Syncthing Without a Console Window Using conhost.exe**
+
+   If you notice a console window appearing when Syncthing starts, you can use the Windows ``conhost.exe`` utility to run Syncthing in the background without a visible console window.
+
+   When configuring the Task Scheduler action, set the "Program/script:" field to:
+
+      ``C:\Windows\System32\conhost.exe``
+
+   and the "Add arguments (optional):" field to:
+
+      ``"C:\Syncthing\syncthing.exe" --no-console --no-browser``
+
+   Adjust the path to ``syncthing.exe`` if you installed it elsewhere.
+
+   For more details, see the community discussion at https://github.com/syncthing/syncthing/issues/8046.
+
 .. _autostart-windows-tools:
 
 Install and run using third-party tools
