@@ -41,6 +41,19 @@ macOS
   syncthing-macos is a native macOS Syncthing tray application bundle.
   It hosts and wraps Syncthing, making it behave more like a native macOS application and less like a command-line utility with a web browser interface.
 
+- `Synctrain <https://github.com/pixelspark/sushitrain>`_
+
+  Synctrain is an open source, native app for iOS, iPadOS and macOS that combines Syncthing with a file-centered UI. 
+  It can be installed from the `App Store <https://apps.apple.com/app/synctrain/id6553985316>`_.
+
+iOS
+~~~
+
+- `Synctrain <https://github.com/pixelspark/sushitrain>`_
+
+  Synctrain is an open source, native app for iOS, iPadOS and macOS that combines Syncthing with a file-centered UI. 
+  It can be installed from the `App Store <https://apps.apple.com/app/synctrain/id6553985316>`_.
+
 Linux
 ~~~~~
 
