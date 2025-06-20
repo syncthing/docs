@@ -43,7 +43,7 @@ macOS / iOS
 
 - `Synctrain <https://github.com/pixelspark/sushitrain>`_
 
-  Synctrain is an open source, native app for iOS, iPadOS and macOS that combines Syncthing with a file-centered UI. 
+  Synctrain is an open source, native app for iOS, iPadOS and macOS that combines Syncthing with a file-centered UI with focus on selective and on-demand file synchronization.
   It can be installed from the `App Store <https://apps.apple.com/app/synctrain/id6553985316>`_.
 
 Linux
