@@ -136,7 +136,7 @@ Unofficial `RPM repo of Syncthing <https://copr.fedorainfracloud.org/coprs/dafta
 ArchLinux
 ~~~~~~~~~
 
-- Official Community Repository: `syncthing <https://archlinux.org/packages/?name=syncthing>`__
+- Official Extra Repository: `syncthing <https://archlinux.org/packages/?name=syncthing>`__
 
 - Arch User Repository: `syncthingtray <https://aur.archlinux.org/packages/syncthingtray>`__
 
