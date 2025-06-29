@@ -235,13 +235,11 @@ Protocol Buffer Schema
     }
 
     message Folder {
-        string id                   = 1;
-        string label                = 2;
-        bool   read_only            = 3;
-        bool   ignore_permissions   = 4;
-        bool   ignore_delete        = 5;
-        bool   disable_temp_indexes = 6;
-        bool   paused               = 7;
+        string id                    = 1;
+        string label                 = 2;
+        FolderType type              = 3;
+        FolderStopReason stop_reason = 7;
+        reserved 4 to 6;
 
         repeated Device devices = 16;
     }
@@ -265,6 +263,18 @@ Protocol Buffer Schema
         ALWAYS   = 2;
     }
 
+    enum FolderType {
+        FOLDER_TYPE_SEND_RECEIVE      = 0;
+        FOLDER_TYPE_SEND_ONLY         = 1;
+        FOLDER_TYPE_RECEIVE_ONLY      = 2;
+        FOLDER_TYPE_RECEIVE_ENCRYPTED = 3;
+    }
+
+    enum FolderStopReason {
+        FOLDER_STOP_REASON_RUNNING = 0;
+        FOLDER_STOP_REASON_PAUSED  = 1;
+    }
+
 Fields (Cluster Config Message)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -284,20 +294,12 @@ the folder.
 The **label** field contains the folder label, the human readable name of
 the folder.
 
-The **read_only** field is set for folders that the device will accept no
-updates from the network for.
+The **folder_type** field contains the type of the folder as defined by the
+FolderType enumeration.
 
-The **ignore_permissions** field is set for folders that the device will not
-accept or announce file permissions for.
-
-The **ignore_delete** field is set for folders that the device will ignore
-deletes for.
-
-The **disable_temp_indexes** field is set for folders that will not dispatch
-and do not wish to receive progress updates about partially downloaded files
-via Download Progress messages.
-
-The **paused** field is set for folders that are currently paused.
+The **stop_reason** field is set for folders that are currently stopped for
+any reason. The zero means that the folder is not stopped; further reasons
+are defined by the FolderStopReason enumeration.
 
 The **devices** field is a list of devices participating in sharing this
 folder.
