@@ -112,7 +112,6 @@ The following shows an example of a default configuration file (IDs will differ)
             <pullerPauseS>0</pullerPauseS>
             <maxConflicts>-1</maxConflicts>
             <disableSparseFiles>false</disableSparseFiles>
-            <disableTempIndexes>false</disableTempIndexes>
             <paused>false</paused>
             <markerName>.stfolder</markerName>
             <copyOwnershipFromParent>false</copyOwnershipFromParent>
@@ -215,7 +214,6 @@ The following shows an example of a default configuration file (IDs will differ)
                 <pullerPauseS>0</pullerPauseS>
                 <maxConflicts>10</maxConflicts>
                 <disableSparseFiles>false</disableSparseFiles>
-                <disableTempIndexes>false</disableTempIndexes>
                 <paused>false</paused>
                 <markerName>.stfolder</markerName>
                 <copyOwnershipFromParent>false</copyOwnershipFromParent>
@@ -302,7 +300,6 @@ Folder Element
         <pullerPauseS>0</pullerPauseS>
         <maxConflicts>-1</maxConflicts>
         <disableSparseFiles>false</disableSparseFiles>
-        <disableTempIndexes>false</disableTempIndexes>
         <paused>false</paused>
         <markerName>.stfolder</markerName>
         <copyOwnershipFromParent>false</copyOwnershipFromParent>
@@ -507,14 +504,6 @@ The following child elements may exist:
     By default, blocks containing all zeros are not written, causing files
     to be sparse on filesystems that support this feature. When set to ``true``,
     sparse files will not be created.
-
-.. option:: folder.disableTempIndexes
-
-    By default, devices exchange information about blocks available in
-    transfers that are still in progress, which allows other devices to
-    download parts of files that are not yet fully downloaded on your own
-    device, essentially making transfers more torrent like. When set to
-    ``true``, such information is not exchanged for this folder.
 
 .. option:: folder.paused
 
@@ -1374,7 +1363,6 @@ Defaults Element
             <pullerPauseS>0</pullerPauseS>
             <maxConflicts>10</maxConflicts>
             <disableSparseFiles>false</disableSparseFiles>
-            <disableTempIndexes>false</disableTempIndexes>
             <paused>false</paused>
             <markerName>.stfolder</markerName>
             <copyOwnershipFromParent>false</copyOwnershipFromParent>
