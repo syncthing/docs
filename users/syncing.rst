@@ -91,8 +91,8 @@ The file with the older modification time will be marked as the conflicting file
 and thus be renamed.  If the modification times are equal, the file originating
 from the device which has the larger value of the first 63 bits for its device
 ID will be marked as the conflicting file.  If the conflict is between a
-modification and a deletion of the file, the modified file always wins and is
-resurrected without renaming on the device where it was deleted.
+modification and a deletion of the file, and the deletion wins the conflict
+resolution, the file is renamed to a conflict copy as above.
 
 Beware that the ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>``
 files are treated as normal files after they are created, so they are propagated
