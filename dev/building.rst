@@ -32,7 +32,10 @@ Prerequisites
 -  The latest stable version of Go. The previous stable version should also
    work; older versions will likely not work. This largely follows Go's
    `Release Policy <https://go.dev/doc/devel/release#policy>`__.
--  Git
+-  Usually, a C compiler. Syncthing uses SQLite for storing data and the
+   most common implementation is written in C.
+-  Git, unless you're building from a downloaded source tarball that includes
+   a ``RELEASE`` marker with the version information.
 -  If you want to build Debian packages FPM is required. See FPM's
    `installation information <https://fpm.readthedocs.io/en/latest/installation.html>`__.
 -  To build Windows executables, installing `goversioninfo
@@ -43,11 +46,6 @@ Prerequisites
 If you're not already a Go developer, the easiest way to get going
 is to download the latest version of Go as instructed in
 https://go.dev/doc/install.
-
-.. note::
-        Because Syncthing uses Go modules you do not need to set or care about "GOPATH".
-        However, the GOPATH still defaults to ``~/go`` and you'd be best to *not*
-        put your Syncthing source in there, for now.
 
 Building (Unix)
 ---------------
@@ -109,7 +107,13 @@ The following ``build.go`` subcommands and options exist.
 ``go run build.go build``
   Builds just the named target, or ``syncthing`` by default, to the current
   directory. Use this when cross compiling, with parameters for what to cross
-  compile to: ``go run build.go --goos linux --goarch 386 build``.
+  compile to: ``go run build.go --goos linux --goarch 386 build``. When
+  cross compiling you need to have a C compiler for the target platform, and
+  you need to let Go know how to invoke it. The ``--cc`` flag to build.go
+  controls this, together with the environment variable ``CGO_ENABLED=1``.
+  For example, to cross build from Linux to Windows using Zig as the C
+  compiler, ``go run build.go -goos windows -goarch amd64 -cc "zig cc
+  -target x86_64-windows" build``.
 
 ``go run build.go test``
   Runs the tests.
@@ -120,11 +124,13 @@ The following ``build.go`` subcommands and options exist.
 
 ``go run build.go tar``
   Creates a Syncthing tar.gz dist file in the current directory. Assumes a
-  Unixy build.
+  Unixy build. Otherwise same considerations and parameters as for the
+  ``build`` subcommand.
 
 ``go run build.go zip``
   Creates a Syncthing zip dist file in the current directory. Assumes a
-  Windows build.
+  Windows build. Otherwise same considerations and parameters as for the
+  ``build`` subcommand.
 
 The options ``--no-upgrade``, ``--goos`` and ``--goarch`` can be given to
 influence ``build``, ``tar`` and ``zip``. Examples:
