@@ -12,7 +12,7 @@ Synopsis
     syncthing [serve]
               [--audit] [--auditfile=<file|-|-->] [--browser-only] [--device-id]
               [--generate=<dir>] [--gui-address=<address>] [--gui-apikey=<key>]
-              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--home=<dir> | --config=<dir> --data=<dir>] [--temp=<temp>]
               [--logfile=<filename>] [--logflags=<flags>]
               [--log-max-old-files=<num>] [--log-max-size=<num>]
               [--no-browser] [--no-console] [--no-restart] [--paths] [--paused]
@@ -132,6 +132,13 @@ Options
 
     Set data (e.g. database) directory. Alternative to ``--home`` and must be used
     together with ``--config``.
+
+.. cmdoption:: --temp=<temp>
+
+    Set directory to store temporary files. Temporary file names are hashed to
+    prevent collisions in the event two files with the same name are being
+    synced across different folders. Must be on the same filesystem as the
+    destination folder.
 
 .. cmdoption:: --logfile=<filename>
 
