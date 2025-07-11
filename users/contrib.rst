@@ -138,12 +138,12 @@ For Fedora Syncthing is now in the official repo : https://src.fedoraproject.org
 
 Unofficial `RPM repo of Syncthing <https://copr.fedorainfracloud.org/coprs/daftaupe/syncthing/>`_ (`sources <https://gitlab.com/daftaupe/syncthing-rpm>`_)
 
-ArchLinux
+Arch Linux
 ~~~~~~~~~
 
 - Official Extra Repository: `syncthing <https://archlinux.org/packages/?name=syncthing>`__
 
-- Arch User Repository: `syncthingtray <https://aur.archlinux.org/packages/syncthingtray>`__
+- Arch User Repository: `syncthingtray-qt6 <https://aur.archlinux.org/packages/syncthingtray-qt6>`__
 
 Docker
 ~~~~~~
