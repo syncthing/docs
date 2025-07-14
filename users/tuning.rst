@@ -32,11 +32,6 @@ is on an SSD. First some general options:
     performance. If the underlying storage is a large array of disk,
     then syncing many folders concurrently may be beneficial.
 
-- :opt:`databaseTuning`
-    Set to ``large``. Regardless of the size of the actual database, this
-    increases a number of buffers and settings to optimize for higher
-    throughput.
-
 - :opt:`maxConcurrentIncomingRequestKiB`
     This sets the maximum amount of data being processed (loaded from
     disk and transmitted over the network) concurrently at any given
@@ -75,13 +70,6 @@ These options are folder specific and should be set on each folder:
     Providing the GUI with scan progress updates is not very expensive, but
     is effort that could be spent on something more productive. If you don't
     need to see scan progress, set this to -1 to disable it.
-
-- :opt:`weakHashThresholdPct`
-    Syncthing will by default look for rolling (weak) hash matches to detect
-    data shifted in a file if a lot of data has changed in the file. If your
-    use case doesn't cause data to shift in a file, and if the files are
-    large (movies, VM images, ...) it is unnecessary to spend time checking
-    weak hashes. Set the threshold to 101% to disable use of weak hashes.
 
 - :opt:`maxConcurrentWrites`
     Synchting limits the number of outstanding write system calls at any
@@ -152,11 +140,6 @@ General options:
 - :opt:`maxFolderConcurrency`
     Set to 1 to sync folders sequentially, reducing the peak memory usage.
 
-- :opt:`databaseTuning`
-    Set to ``small``. Regardless of the size of the actual database size,
-    this reduces the size of a number of buffers to optimize for reduced
-    memory usage.
-
 - :opt:`maxConcurrentIncomingRequestKiB`
     Set to 32 MiB to reduce the amount of memory used for buffering
     responses to incoming requests.
@@ -178,10 +161,6 @@ Folders options:
 - :opt:`scanProgressIntervalS`
     Set to -1 to disable scan progress updates. Keeping track of scan progress
     uses memory and CPU.
-
-- :opt:`weakHashThresholdPct`
-    Set to 101% to disable use of weak hashes. Using weak hashes has a
-    memory cost.
 
 - :opt:`copyRangeMethod`
     If your underlying filesystem supports it, using copyrange is more
