@@ -503,8 +503,8 @@ The following child elements may exist:
 .. option:: folder.maxConflicts
 
     The maximum number of conflict copies to keep around for any given file.
-    The default, ``-1``, means an unlimited number. Setting this to ``0`` disables
-    conflict copies altogether.
+    The default is ``10``. ``-1``, means an unlimited number.
+    Setting this to ``0`` disables conflict copies altogether.
 
 .. option:: folder.disableSparseFiles
 
@@ -531,8 +531,9 @@ The following child elements may exist:
 
 .. option:: folder.markerName
 
-    Name of a directory or file in the folder root to be used as
-    :ref:`marker-faq`. Default is ``.stfolder``.
+    Name of a directory or file in the folder root to be used as a marker - see
+    :ref:`marker FAQ <marker-faq>` for its purpose.
+    A marker directory is only created by Syncthing for the default ``.stfolder``, not otherwise.
 
 .. option:: folder.copyOwnershipFromParent
 
@@ -1348,6 +1349,21 @@ The ``options`` element contains all other global configuration options.
     no limit.  Affects incoming connections and prevents attempting outgoing
     connections.  The mechanism is described in detail in a :doc:`separate
     chapter </advanced/option-connection-limits>`.
+
+.. option:: options.auditEnabled
+
+    When ``true``, analogous to :option:`--audit` being set.
+    Defaults to ``false``.
+
+    When either this option, or :option:`--audit` (or both) are enabled,
+    auditing is enabled.
+
+.. option:: options.auditFile
+
+    Analogous to :option:`--auditfile`. Defaults to being unset.
+
+    For compatibility reasons, if both this option and :option:`--auditfile`
+    are set, :option:`--auditfile` takes priority.
 
 Defaults Element
 ----------------
