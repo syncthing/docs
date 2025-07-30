@@ -502,7 +502,7 @@ The following child elements may exist:
 .. option:: folder.scanProgressFileLimit
 
     Disable emission of scan progress information if more than the specified number of files 
-    are encountered during the scan, useful to avoid OOMs while buffering the entire file list
+    are encountered during the scan, useful to avoid running out of memory while buffering the entire file list
     in RAM for truly large folders. 
     Setting to ``0`` will cause Syncthing to use the default value of ``2048``.  
 
