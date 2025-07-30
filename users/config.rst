@@ -496,7 +496,7 @@ The following child elements may exist:
     will cause Syncthing to use the default value of two. Setting a negative value will disable
     scan progress information. 
     Enabling scan progress information will buffer the entire file list in RAM (using approximately 512 bytes per file): 
-    this can cause high memory usage and GC thrashing on large folders, greatly slowing down scans,
+    this can cause high memory usage and :abbr:`GC (garbage collection)` thrashing on large folders, greatly slowing down scans,
     so it is recommended to disable this for truly large folders.
 
 .. option:: folder.scanProgressFileLimit
