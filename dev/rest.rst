@@ -118,6 +118,15 @@ Debug Endpoints
 
    /rest/debug/... <../rest/debug.rst>
 
+WebAuthn Endpoints
+----------------
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   ../rest/webauthn*
+
 Noauth Endpoints
 ----------------
 
