@@ -63,9 +63,9 @@ corresponding environment variables (``$STDATADIR`` or ``STHOMEDIR``).
 
 The database directory contains the following files, among others:
 
-:file:`index-{*}.db`
-    A directory holding the database with metadata and hashes of the files
-    currently on disk and available from peers.
+:file:`index-{*}`
+    The database with metadata and hashes of the files currently on disk and
+    available from peers.
 
 :file:`syncthing.log`
     Log output, on some systems.
@@ -112,9 +112,7 @@ The following shows an example of a default configuration file (IDs will differ)
             <pullerPauseS>0</pullerPauseS>
             <maxConflicts>-1</maxConflicts>
             <disableSparseFiles>false</disableSparseFiles>
-            <disableTempIndexes>false</disableTempIndexes>
             <paused>false</paused>
-            <weakHashThresholdPct>25</weakHashThresholdPct>
             <markerName>.stfolder</markerName>
             <copyOwnershipFromParent>false</copyOwnershipFromParent>
             <modTimeWindowS>0</modTimeWindowS>
@@ -188,7 +186,6 @@ The following shows an example of a default configuration file (IDs will differ)
             <stunKeepaliveStartS>180</stunKeepaliveStartS>
             <stunKeepaliveMinS>20</stunKeepaliveMinS>
             <stunServer>default</stunServer>
-            <databaseTuning>auto</databaseTuning>
             <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
             <announceLANAddresses>true</announceLANAddresses>
             <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
@@ -217,9 +214,7 @@ The following shows an example of a default configuration file (IDs will differ)
                 <pullerPauseS>0</pullerPauseS>
                 <maxConflicts>10</maxConflicts>
                 <disableSparseFiles>false</disableSparseFiles>
-                <disableTempIndexes>false</disableTempIndexes>
                 <paused>false</paused>
-                <weakHashThresholdPct>25</weakHashThresholdPct>
                 <markerName>.stfolder</markerName>
                 <copyOwnershipFromParent>false</copyOwnershipFromParent>
                 <modTimeWindowS>0</modTimeWindowS>
@@ -305,9 +300,7 @@ Folder Element
         <pullerPauseS>0</pullerPauseS>
         <maxConflicts>-1</maxConflicts>
         <disableSparseFiles>false</disableSparseFiles>
-        <disableTempIndexes>false</disableTempIndexes>
         <paused>false</paused>
-        <weakHashThresholdPct>25</weakHashThresholdPct>
         <markerName>.stfolder</markerName>
         <copyOwnershipFromParent>false</copyOwnershipFromParent>
         <modTimeWindowS>0</modTimeWindowS>
@@ -513,22 +506,9 @@ The following child elements may exist:
     to be sparse on filesystems that support this feature. When set to ``true``,
     sparse files will not be created.
 
-.. option:: folder.disableTempIndexes
-
-    By default, devices exchange information about blocks available in
-    transfers that are still in progress, which allows other devices to
-    download parts of files that are not yet fully downloaded on your own
-    device, essentially making transfers more torrent like. When set to
-    ``true``, such information is not exchanged for this folder.
-
 .. option:: folder.paused
 
     True if this folder is (temporarily) suspended.
-
-.. option:: folder.weakHashThresholdPct
-
-    Use weak hash if more than the given percentage of the file has changed. Set
-    to ``-1`` to always use weak hash. Default is ``25``.
 
 .. option:: folder.markerName
 
@@ -1050,7 +1030,6 @@ Options Element
         <stunKeepaliveStartS>180</stunKeepaliveStartS>
         <stunKeepaliveMinS>20</stunKeepaliveMinS>
         <stunServer>default</stunServer>
-        <databaseTuning>auto</databaseTuning>
         <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
         <announceLANAddresses>true</announceLANAddresses>
         <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
@@ -1302,13 +1281,6 @@ The ``options`` element contains all other global configuration options.
     feature. Set ``false`` to keep Syncthing from sending panic logs on serious
     troubles.  Defaults to ``true``, to help the developers troubleshoot.
 
-.. option:: options.databaseTuning
-
-    Controls how Syncthing uses the backend key-value database that stores the
-    index data and other persistent data it needs.  The available options and
-    implications are explained in a :doc:`separate chapter
-    </advanced/option-database-tuning>`.
-
 .. option:: options.maxConcurrentIncomingRequestKiB
 
     This limits how many bytes we have "in the air" in the form of response data
@@ -1392,9 +1364,7 @@ Defaults Element
             <pullerPauseS>0</pullerPauseS>
             <maxConflicts>10</maxConflicts>
             <disableSparseFiles>false</disableSparseFiles>
-            <disableTempIndexes>false</disableTempIndexes>
             <paused>false</paused>
-            <weakHashThresholdPct>25</weakHashThresholdPct>
             <markerName>.stfolder</markerName>
             <copyOwnershipFromParent>false</copyOwnershipFromParent>
             <modTimeWindowS>0</modTimeWindowS>

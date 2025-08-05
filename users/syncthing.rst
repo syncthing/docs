@@ -10,33 +10,60 @@ Synopsis
 ::
 
     syncthing [serve]
-              [--audit] [--auditfile=<file|-|-->] [--browser-only] [--device-id]
-              [--generate=<dir>] [--gui-address=<address>] [--gui-apikey=<key>]
               [--home=<dir> | --config=<dir> --data=<dir>]
+              [--allow-newer-config] [--audit] [--auditfile=<file|-|-->]
+              [--db-maintenance-interval=<interval>]
+              [--db-delete-retention-interval=<interval>]
+              [--gui-address=<address>] [--gui-apikey=<key>]
               [--logfile=<filename>] [--logflags=<flags>]
               [--log-max-old-files=<num>] [--log-max-size=<num>]
-              [--no-browser] [--no-console] [--no-restart] [--paths] [--paused]
-              [--no-default-folder] [--skip-port-probing]
-              [--reset-database] [--reset-deltas] [--unpaused] [--allow-newer-config]
-              [--upgrade] [--no-upgrade] [--upgrade-check] [--upgrade-to=<url>]
+              [--no-browser] [--no-console]
+              [--no-port-probing] [--no-restart] [--no-upgrade]
+              [--paused] [--unpaused]
               [--verbose] [--version] [--help] [--debug-*]
-
-    syncthing generate
-              [--home=<dir> | --config=<dir>]
-              [--gui-user=<username>] [--gui-password=<password|->]
-              [--no-default-folder] [--skip-port-probing] [--no-console]
-              [--help]
-
-    syncthing decrypt (--to=<dir> | --verify-only)
-              [--password=<pw>] [--folder-id=<id>] [--token-path=<file>]
-              [--continue] [--verbose] [--version] [--help]
-              <path>
 
     syncthing cli
               [--home=<dir> | --config=<dir> --data=<dir>]
               [--gui-address=<address>] [--gui-apikey=<key>]
               [--help]
               <command> [command options...] [arguments...]
+
+    syncthing browser
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--help]
+
+    syncthing decrypt (--to=<dir> | --verify-only)
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--password=<pw>] [--folder-id=<id>] [--token-path=<file>]
+              [--continue] [--verbose] [--help]
+              <path>
+
+    syncthing device-id
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--help]
+
+    syncthing generate
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--gui-user=<username>] [--gui-password=<password|->]
+              [--no-port-probing]
+              [--help]
+
+    syncthing paths
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--help]
+
+    syncthing upgrade
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--check-only] [--from=<url>]
+              [--help]
+
+    syncthing version
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--help]
+
+    syncthing debug <command>
+              [--home=<dir> | --config=<dir> --data=<dir>]
+              [--help]
 
 Description
 -----------
@@ -56,8 +83,34 @@ other apps like graphical system integration helpers can use as well, for
 greatest flexibility. A link to reach the GUI and API is printed among the first
 few log messages.
 
-Options
--------
+Common options
+--------------
+
+.. cmdoption:: --home=<dir>, -H <dir>
+
+    Set common configuration and data directory. The default configuration
+    directory is ``$XDG_STATE_HOME/syncthing`` or
+    ``$HOME/.local/state/syncthing`` (Unix-like),
+    ``$HOME/Library/Application Support/Syncthing`` (Mac) and
+    ``%LOCALAPPDATA%\Syncthing`` (Windows).
+
+.. cmdoption:: --config=<dir>, -C <dir>
+
+    Set configuration directory. Alternative to ``--home`` and must be used
+    together with ``--data``.
+
+.. cmdoption:: --data=<dir>, -D <dir>
+
+    Set data (e.g. database) directory. Alternative to ``--home`` and must be used
+    together with ``--config``.
+
+.. cmdoption:: --help, -h
+
+    Show help text about command line usage.  Context-sensitive depending on the
+    given subcommand.
+
+Serve options
+-------------
 
 .. cmdoption:: --allow-newer-config
 
@@ -73,17 +126,15 @@ Options
     Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for
     audit events, rather than the timestamped default file name.
 
-.. cmdoption:: --browser-only
+.. cmdoption:: --db-maintenance-interval=<interval>
 
-   Open the web UI in a browser for an already running Syncthing instance.
+    Database maintenance interval -- internal database maintenance routines
+    run this often.
 
-.. cmdoption:: --device-id
+.. cmdoption:: --db-delete-retention-interval=<interval>
 
-   Print device ID to command line.
-
-.. cmdoption:: --generate=<dir>
-
-    Generate key and config in specified dir, then exit.
+    Database deleted item retention interval -- deleted items are forgotten
+    from the database after this interval.
 
 .. cmdoption:: --gui-address=<address>
 
@@ -97,41 +148,6 @@ Options
 .. cmdoption:: --gui-apikey=<string>
 
     Override the API key needed to access the GUI / REST API.
-
-.. cmdoption:: --gui-password=<password|->
-
-    Specify new GUI authentication password, to update the config file.  Read
-    from the standard input stream if only a single dash (``-``) is given.  A
-    plaintext password is hashed before writing to the config file, but an
-    already bcrypt-hashed input is stored verbatim.  As a special case, giving
-    the existing password hash as password will leave it untouched.
-
-.. cmdoption:: --gui-user=<username>
-
-    Specify new GUI authentication user name, to update the config file.
-
-.. cmdoption:: --help, -h
-
-    Show help text about command line usage.  Context-sensitive depending on the
-    given subcommand.
-
-.. cmdoption:: --home=<dir>
-
-    Set common configuration and data directory. The default configuration
-    directory is ``$XDG_STATE_HOME/syncthing`` or
-    ``$HOME/.local/state/syncthing`` (Unix-like),
-    ``$HOME/Library/Application Support/Syncthing`` (Mac) and
-    ``%LOCALAPPDATA%\Syncthing`` (Windows).
-
-.. cmdoption:: --config=<dir>
-
-    Set configuration directory. Alternative to ``--home`` and must be used
-    together with ``--data``.
-
-.. cmdoption:: --data=<dir>
-
-    Set data (e.g. database) directory. Alternative to ``--home`` and must be used
-    together with ``--config``.
 
 .. cmdoption:: --logfile=<filename>
 
@@ -170,10 +186,10 @@ Options
 
     Hide the console window. (On Windows only)
 
-.. cmdoption:: --no-default-folder
+.. cmdoption:: --no-port-probing
 
-    Don't create a default folder when generating an initial configuration /
-    starting for the first time.
+    Don't try to find unused random ports for the GUI and listen address when
+    generating an initial configuration / starting for the first time.
 
 .. cmdoption:: --no-restart
 
@@ -185,31 +201,9 @@ Options
     Disable automatic upgrades.  Equivalent to the ``STNOUPGRADE`` environment
     variable, see below.
 
-.. cmdoption:: --paths
-
-    Print the paths used for configuration, keys, database, GUI overrides,
-    default sync folder and the log file.
-
 .. cmdoption:: --paused
 
     Start with all devices and folders paused.
-
-.. cmdoption:: --reset-database
-
-    Reset the database, forcing a full rescan and resync. Create `.stfolder`
-    folders in each sync folder if they do not already exist. **Caution**:
-    Ensure that all sync folders which are mountpoints are already mounted.
-    Inconsistent versions may result if the mountpoint is later mounted and
-    contains older versions.
-
-.. cmdoption:: --reset-deltas
-
-    Reset delta index IDs, forcing a full index exchange.
-
-.. cmdoption:: --skip-port-probing
-
-    Don't try to find unused random ports for the GUI and listen address when
-    generating an initial configuration / starting for the first time.
 
 .. cmdoption:: --unpaused
 
@@ -219,21 +213,12 @@ Options
 
     Perform upgrade.
 
-.. cmdoption:: --upgrade-check
-
-    Check for available upgrade.
-
-.. cmdoption:: --upgrade-to=<url>
-
-    Force upgrade directly from specified URL.
-
 .. cmdoption:: --verbose
 
     Print verbose log output.
 
-.. cmdoption:: --version
-
-    Show version.
+Decrypt options
+---------------
 
 .. cmdoption:: --to=<dir>
 
@@ -260,6 +245,33 @@ Options
 .. cmdoption:: --continue
 
     Continue processing next file in case of error, instead of aborting.
+
+Generate options
+----------------
+
+.. cmdoption:: --gui-password=<password|->
+
+    Specify new GUI authentication password, to update the config file.  Read
+    from the standard input stream if only a single dash (``-``) is given.  A
+    plaintext password is hashed before writing to the config file, but an
+    already bcrypt-hashed input is stored verbatim.  As a special case, giving
+    the existing password hash as password will leave it untouched.
+
+.. cmdoption:: --gui-user=<username>
+
+    Specify new GUI authentication user name, to update the config file.
+
+Upgrade options
+---------------
+
+.. cmdoption:: --check-only
+
+    Do not upgrade, only indicate whether an upgrade is available.
+
+.. cmdoption:: --from=<url>
+
+    Upgrade to the Syncthing version available from loading the package at
+    the given URL.
 
 Exit Codes
 ----------

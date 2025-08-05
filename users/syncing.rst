@@ -69,8 +69,8 @@ version of the file. This version is called the *global* version and is the
 one that each device strives to be up to date with.
 
 This information is kept in the *index database*, which is stored in the
-configuration directory and called ``index-vx.y.z.db`` (for some version
-x.y.z which may not be exactly the version of Syncthing you're running).
+configuration or data directory and called ``index-*``, with some version
+number in place of the asterisk.
 
 When new index data is received from other devices Syncthing recalculates
 which version for each file should be the global version, and compares this
@@ -91,8 +91,8 @@ The file with the older modification time will be marked as the conflicting file
 and thus be renamed.  If the modification times are equal, the file originating
 from the device which has the larger value of the first 63 bits for its device
 ID will be marked as the conflicting file.  If the conflict is between a
-modification and a deletion of the file, the modified file always wins and is
-resurrected without renaming on the device where it was deleted.
+modification and a deletion of the file, and the deletion wins the conflict
+resolution, the file is renamed to a conflict copy as above.
 
 Beware that the ``<filename>.sync-conflict-<date>-<time>-<modifiedBy>.<ext>``
 files are treated as normal files after they are created, so they are propagated
