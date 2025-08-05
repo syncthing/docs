@@ -493,7 +493,8 @@ The following child elements may exist:
 .. option:: folder.scanProgressIntervalS
 
     The interval in seconds with which scan progress information is sent to the GUI. Setting to ``0``
-    will cause Syncthing to use the default value of two.
+    will cause Syncthing to use the default value of two. If you don't
+    need to see scan progress, set this to ``-1`` to disable it.
 
 .. option:: folder.pullerPauseS
 
