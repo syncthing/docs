@@ -204,3 +204,10 @@ all files and directories called "foo", ending in a "2" or starting with
    accepting a folder from a remote device.  The GUI suggests the same patterns
    when adding a folder manually.  In either case, the ``.stignore`` file is
    created with these defaults if none is present yet.
+
+.. versionadded:: 2.0.0
+
+   Windows users can now use the pipe character (``|``) to escape 
+   metacharacters in the ``.stignore`` file.  Additionally, adding 
+   ``#escape=X`` to the top of the file, allows users to define ``X `` 
+   as the escape character for that particular file.
