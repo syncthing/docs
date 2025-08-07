@@ -63,12 +63,26 @@ The ``.stignore`` file contains a list of file or path patterns. The
 
    .. note::
 
-      Escaped characters are not supported on Windows, where ``\`` is the
-      path separator. If you still need to match files that have square or
-      curly brackets in their names, one possible workaround is to replace
-      them with ``?``, which will then match any character. For example,
-      you can type ``?banana?`` to match both ``[banana]`` and
-      ``{banana}``, and so on.
+      On Windows, ``\`` is the path separator, so use ``|`` to escape special
+      characters. For example, ``|{banana|}`` matches
+      ``{banana}``.
+
+      To use ``\`` to escape special characters (and use ``/`` as the path separator),
+      insert a ``#escape=\`` at the top of the file. Here's a short example:
+
+         | ``#escape=\``
+         | ``/foo``
+         | ``/path/bar/\{banana\}``
+         | ``/path/baz\[2\]/ex\[3\].txt``
+
+      ``#escape=\`` must be placed at the top of the file, before any patterns,
+      but leading comments, and blank lines are OK.
+
+      Any files included using ``#include`` (see below) will each need their
+      own ``#escape=\``.
+
+      Using ``#escape=\`` allows the same file to be synced and used on any
+      operating system.
 
 -  A pattern beginning with ``/`` matches in the root of the synced folder only.
    ``/foo`` matches ``foo`` but not ``subdir/foo``.
@@ -190,3 +204,10 @@ all files and directories called "foo", ending in a "2" or starting with
    accepting a folder from a remote device.  The GUI suggests the same patterns
    when adding a folder manually.  In either case, the ``.stignore`` file is
    created with these defaults if none is present yet.
+
+.. versionadded:: 2.0.0
+
+   Windows users can now use the pipe character (``|``) to escape 
+   metacharacters in the ``.stignore`` file.  Additionally, adding 
+   ``#escape=X`` to the top of the file, allows users to define ``X`` 
+   as the escape character for that particular file.

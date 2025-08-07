@@ -116,7 +116,7 @@ files ``qax``, ``qbx`` and ``qcx``.
 To match an actual file *called* ``q[abc]x`` the pattern needs to "escape"
 the brackets, like so: ``q\[abc\]x``.
 
-On Windows, escaping special characters is not supported as the ``\``
+On Windows, use the ``|`` character to escape the brackets (``q|[abc|]x``), as the ``\``
 character is used as a path separator.
 
 How do I access the web GUI from another computer?
