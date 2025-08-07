@@ -209,5 +209,5 @@ all files and directories called "foo", ending in a "2" or starting with
 
    Windows users can now use the pipe character (``|``) to escape 
    metacharacters in the ``.stignore`` file.  Additionally, adding 
-   ``#escape=X`` to the top of the file, allows users to define ``X `` 
+   ``#escape=X`` to the top of the file, allows users to define ``X`` 
    as the escape character for that particular file.
