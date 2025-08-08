@@ -12,7 +12,7 @@ Under Unix (including Mac) the easiest way to run Syncthing with an
 environment variable set is to prepend the variable to the command line.
 I.e:
 
-``$ STTRACE=model,syncthing``
+``$ STTRACE=model syncthing``
 
 On windows, it needs to be set prior to running Syncthing.
 
