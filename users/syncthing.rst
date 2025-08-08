@@ -15,7 +15,7 @@ Synopsis
               [--db-maintenance-interval=<interval>]
               [--db-delete-retention-interval=<interval>]
               [--gui-address=<address>] [--gui-apikey=<key>]
-              [--logfile=<filename>] [--logflags=<flags>]
+              [--log-level=<level>] [--log-file=<filename>]
               [--log-max-old-files=<num>] [--log-max-size=<num>]
               [--no-browser] [--no-console]
               [--no-port-probing] [--no-restart] [--no-upgrade]
@@ -149,25 +149,15 @@ Serve options
 
     Override the API key needed to access the GUI / REST API.
 
-.. cmdoption:: --logfile=<filename>
+.. cmdoption:: --log-level=<level>
+
+    Set the log level for all packages. Valid levels are DEBUG, INFO, WARN,
+    and ERROR.
+
+.. cmdoption:: --log-file=<filename>
 
     Set destination filename for logging (use ``"-"`` for stdout, which is the
     default option).
-
-.. cmdoption:: --logflags=<flags>
-
-    Select information in log line prefix. The ``--logflags`` value is a sum of
-    the following:
-
-    -  1: Date
-    -  2: Time
-    -  4: Microsecond time
-    -  8: Long filename
-    - 16: Short filename
-
-    To prefix each log line with date and time, set ``--logflags=3`` (1 + 2 from
-    above). The value 0 is used to disable all of the above. The default is to
-    show time only (2).
 
 .. cmdoption:: --log-max-old-files=<num>
 

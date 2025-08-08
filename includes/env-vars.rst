@@ -1,67 +1,37 @@
 STTRACE
-    Used to increase the debugging verbosity in specific or all facilities,
-    generally mapping to a Go package. Enabling any of these also enables
-    microsecond timestamps, file names plus line numbers. Enter a
-    comma-separated string of facilities to trace. ``syncthing --help`` always
-    outputs an up-to-date list. The valid facility strings are:
+    Used to increase the debugging verbosity in specific facilities,
+    generally mapping to a Go package. Enter a comma-separated string of
+    facilities to trace: ``api,beacon``. Optionally, a log level can be
+    given per facility to specify something other than DEBUG:
+    ``api:WARN,beacon:ERR``, potentially overriding a global ``--log-level``
+    adjustment.
 
-    Main and operational facilities:
-        config
-            Configuration loading and saving.
-        main
-            Main package.
-        model
-            The root hub; the largest chunk of the system. File pulling, index
-            transmission and requests for chunks.
-        scanner
-            File change detection and hashing.
-        versioner
-            File versioning.
+     The valid facility strings are listed below; additionally, ``syncthing
+     serve --help`` always outputs the most up-to-date list.
 
-    Networking facilities:
-        beacon
-            Multicast and broadcast UDP discovery packets: Selected interfaces
-            and addresses.
-        connections
-            Connection handling.
-        dialer
-            Dialing connections.
-        discover
-            Remote device discovery requests, replies and registration of
-            devices.
-        nat
-            NAT discovery and port mapping.
-        pmp
-            NAT-PMP discovery and port mapping.
-        protocol
-            The BEP protocol.
-        relay
-            Relay interaction (``strelaysrv``).
-        upnp
-            UPnP discovery and port mapping.
-
-    Other facilities:
-        fs
-            Filesystem access.
-        events
-            Event generation and logging.
-        http
-           REST API.
-        sha256
-            SHA256 hashing package (this facility currently unused).
-        sqlite
-            The SQLite database
-        stats
-            Persistent device and folder statistics.
-        sync
-            Mutexes. Used for debugging race conditions and deadlocks.
-        upgrade
-            Binary upgrades.
-        walkfs
-            Filesystem access while walking.
-
-        all
-            All of the above.
+        api             - REST API
+        beacon          - Multicast and broadcast discovery
+        config          - Configuration loading and saving
+        connections     - Connection handling
+        db/sqlite       - SQLite database
+        dialer          - Dialing connections
+        discover        - Remote device discovery
+        events          - Event generation and logging
+        fs              - Filesystem access
+        main            - Main package
+        model           - The root hub
+        nat             - NAT discovery and port mapping
+        pmp             - NAT-PMP discovery and port mapping
+        protocol        - The BEP protocol
+        relay/client    - Relay client
+        scanner         - File change detection and hashing
+        stun            - STUN functionality
+        syncthing       - Main run facility
+        upgrade         - Binary upgrades
+        upnp            - UPnP discovery and port mapping
+        ur              - Usage reporting
+        versioner       - File versioning
+        watchaggregator - Filesystem event watcher
 
 STLOCKTHRESHOLD
     Used for debugging internal deadlocks; sets debug sensitivity. Use only
