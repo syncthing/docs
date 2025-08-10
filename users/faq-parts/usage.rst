@@ -281,7 +281,7 @@ For example, the two emphasized lines below would be removed from the file.
 .. code-block:: text
     :emphasize-lines: 3,4
 
-    <gui enabled="true" tls="false" debugging="false">
+    <gui enabled="true" tls="false">
        <address>127.0.0.1:8384</address>
        <user>syncguy</user>
        <password>$2a$10$s9wWHOQe...Cq7GPye69</password>
