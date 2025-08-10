@@ -103,7 +103,6 @@ Returns the current configuration.
         "apiKey": "k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1",
         "insecureAdminAccess": false,
         "theme": "default",
-        "debugging": false,
         "insecureSkipHostcheck": false,
         "insecureAllowFrameLoading": false
       },

@@ -138,7 +138,7 @@ The following shows an example of a default configuration file (IDs will differ)
             <untrusted>false</untrusted>
             <remoteGUIPort>0</remoteGUIPort>
         </device>
-        <gui enabled="true" tls="false" debugging="false">
+        <gui enabled="true" tls="false">
             <address>127.0.0.1:8384</address>
             <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
             <theme>default</theme>
@@ -814,7 +814,7 @@ GUI Element
 
 .. code-block:: xml
 
-    <gui enabled="true" tls="false" debugging="false">
+    <gui enabled="true" tls="false">
         <address>127.0.0.1:8384</address>
         <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
         <theme>default</theme>
@@ -835,11 +835,6 @@ set on the ``gui`` element:
     If set to ``true``, TLS (HTTPS) will be enforced. Non-HTTPS requests will
     be redirected to HTTPS. When set to ``false``, TLS connections are
     still possible but not required.
-
-.. option:: gui.debugging
-
-    This enables :doc:`/users/profiling` and additional endpoints in the REST
-    API, see :doc:`/rest/debug`.
 
 The following child elements may be present:
 
