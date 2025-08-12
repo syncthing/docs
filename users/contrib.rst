@@ -29,9 +29,7 @@ Android
 Windows
 ~~~~~~~
 
-We currently don't have any actively updated Windows-specific GUI wrappers here.
-
-.. seealso:: :ref:`Cross-platform GUI Wrappers <contrib-all>`.
+- `SyncTrayzor <https://github.com/GermanCoding/SyncTrayzor>`_ (GermanCoding fork of SyncTrayzor, updated for Syncthing v2)
 
 macOS / iOS
 ~~~~~~~~~~~
@@ -281,7 +279,7 @@ Older, Possibly Unmaintained
    accordingly.
 
 - `syncthing-android <https://github.com/syncthing/syncthing-android>`_ (Archived on 2024-12-03)
-- `SyncTrayzor <https://github.com/canton7/SyncTrayzor>`_
+- `SyncTrayzor <https://github.com/canton7/SyncTrayzor>`_ (Original version by Antony Male - archived on 2025-04-03)
 - `a-sync <https://github.com/davide-imbriaco/a-sync>`_
 - `syncthing-tray-gtk3 <https://github.com/abdeoliveira/syncthing-tray-gtk3>`_ (Archived as of 2023-12-29)
 - `Syncthing-GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_ (Fork from `Kozec <https://github.com/kozec/syncthing-gtk>`_)
