@@ -29,7 +29,7 @@ Android
 Windows
 ~~~~~~~
 
-- `SyncTrayzor <https://github.com/GermanCoding/SyncTrayzor>`_ (GermanCoding fork of SyncTrayzor, updated for Syncthing v2)
+- `SyncTrayzor v2 <https://github.com/GermanCoding/SyncTrayzor>`_ (GermanCoding's fork of SyncTrayzor, updated for Syncthing v2)
 
 macOS / iOS
 ~~~~~~~~~~~
