@@ -1,10 +1,18 @@
 .. default-domain:: stconf
 
+
 Syncthing Configuration
 =======================
 
-Synopsis
+Overview
 --------
+
+This page covers how to configure Syncthing for file synchronization, including device setup, folder configuration, connection settings, and various configuration methods through the web GUI, command-line, or direct file editing.
+
+Configuration File Locations
+---------------------------
+
+The default configuration and database directory locations are:
 
 ::
 
