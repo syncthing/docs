@@ -15,19 +15,6 @@ have caused most memory to be allocated.
 Neither of the profiles contain any private data about your setup - only
 what parts of the program are using resources.
 
-Enable Debugging
-----------------
-
-Debugging must be enabled to be able to capture profiles. To enable
-debugging, open the advanced settings:
-
-.. image:: advanced-settings.png
-
-Enable the "debugging" setting under "GUI", and then scroll down and **Save**.
-No restart is necessary.
-
-.. image:: gui-debugging.png
-
 Capture a CPU profile
 ---------------------
 

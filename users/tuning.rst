@@ -29,21 +29,16 @@ is on an SSD. First some general options:
     concurrently, taking into account the inherent concurrency of the
     underlying storage system. If two folders are on the same underlying
     spinning disk, syncing them concurrently will be a strict loss of
-    performance. If the underlying storage is a large array of disk,
+    performance. If the underlying storage is a large array of disks,
     then syncing many folders concurrently may be beneficial.
-
-- :opt:`databaseTuning`
-    Set to ``large``. Regardless of the size of the actual database, this
-    increases a number of buffers and settings to optimize for higher
-    throughput.
 
 - :opt:`maxConcurrentIncomingRequestKiB`
     This sets the maximum amount of data being processed (loaded from
     disk and transmitted over the network) concurrently at any given
     time. This is a global limiter, not per folder. If you have a lot of
     folders and/or a lot of devices and memory to spare you may want to
-    increase this value. The default is 256 MiB, consider values of 1024
-    MiB or more.
+    increase this value. The default is 262144 KiB (256 MiB), consider values
+    of 1048576 KiB (1024 MiB) or more.
 
 These options are folder specific and should be set on each folder:
 
@@ -69,26 +64,19 @@ These options are folder specific and should be set on each folder:
 - :opt:`pullerMaxPendingKiB`
     The maximum amount of data to have outstanding requests for at any given
     time. Higher values may improve performance, especially if the network
-    or I/O latency is high. The default is 32 MiB.
+    or I/O latency is high. The default is 32768 KiB (32 MiB).
 
 - :opt:`scanProgressIntervalS`
     Providing the GUI with scan progress updates is not very expensive, but
     is effort that could be spent on something more productive. If you don't
     need to see scan progress, set this to -1 to disable it.
 
-- :opt:`weakHashThresholdPct`
-    Syncthing will by default look for rolling (weak) hash matches to detect
-    data shifted in a file if a lot of data has changed in the file. If your
-    use case doesn't cause data to shift in a file, and if the files are
-    large (movies, VM images, ...) it is unnecessary to spend time checking
-    weak hashes. Set the threshold to 101% to disable use of weak hashes.
-
 - :opt:`maxConcurrentWrites`
     Synchting limits the number of outstanding write system calls at any
     given time to avoid overloading the I/O system. If you increased
     copiers, outstanding network requests, or other settings that increase
     the number of concurrent writes, you may need to increase this value.
-    The default is 2.
+    The default is 16.
 
 - :opt:`disableFsync`
     Syncthing calls ``fsync()`` on files and directories after syncing them
@@ -152,14 +140,9 @@ General options:
 - :opt:`maxFolderConcurrency`
     Set to 1 to sync folders sequentially, reducing the peak memory usage.
 
-- :opt:`databaseTuning`
-    Set to ``small``. Regardless of the size of the actual database size,
-    this reduces the size of a number of buffers to optimize for reduced
-    memory usage.
-
 - :opt:`maxConcurrentIncomingRequestKiB`
-    Set to 32 MiB to reduce the amount of memory used for buffering
-    responses to incoming requests.
+    Set to 32768 KiB (32 MiB) to reduce the amount of memory used for
+    buffering responses to incoming requests.
 
 Folders options:
 
@@ -172,16 +155,12 @@ Folders options:
     folder, reducing peak memory usage.
 
 - :opt:`pullerMaxPendingKiB`
-    Set to 16 MiB to reduce the amount of memory used for buffering
-    while syncing.
+    Set to 16384 KiB (16 MiB) to reduce the amount of memory used for
+    buffering while syncing.
 
 - :opt:`scanProgressIntervalS`
     Set to -1 to disable scan progress updates. Keeping track of scan progress
     uses memory and CPU.
-
-- :opt:`weakHashThresholdPct`
-    Set to 101% to disable use of weak hashes. Using weak hashes has a
-    memory cost.
 
 - :opt:`copyRangeMethod`
     If your underlying filesystem supports it, using copyrange is more

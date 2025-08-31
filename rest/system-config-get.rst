@@ -50,9 +50,7 @@ Returns the current configuration.
           "pullerPauseS": 0,
           "maxConflicts": -1,
           "disableSparseFiles": false,
-          "disableTempIndexes": false,
           "paused": false,
-          "weakHashThresholdPct": 25,
           "markerName": ".stfolder",
           "copyOwnershipFromParent": false,
           "modTimeWindowS": 0,
@@ -105,7 +103,6 @@ Returns the current configuration.
         "apiKey": "k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1",
         "insecureAdminAccess": false,
         "theme": "default",
-        "debugging": false,
         "insecureSkipHostcheck": false,
         "insecureAllowFrameLoading": false
       },
@@ -171,7 +168,6 @@ Returns the current configuration.
         "stunServers": [
           "default"
         ],
-        "databaseTuning": "auto",
         "maxConcurrentIncomingRequestKiB": 0,
         "announceLANAddresses": true,
         "sendFullIndexOnUpgrade": false,
@@ -226,9 +222,7 @@ Returns the current configuration.
           "pullerPauseS": 0,
           "maxConflicts": 10,
           "disableSparseFiles": false,
-          "disableTempIndexes": false,
           "paused": false,
-          "weakHashThresholdPct": 25,
           "markerName": ".stfolder",
           "copyOwnershipFromParent": false,
           "modTimeWindowS": 0,

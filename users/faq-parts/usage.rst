@@ -116,7 +116,7 @@ files ``qax``, ``qbx`` and ``qcx``.
 To match an actual file *called* ``q[abc]x`` the pattern needs to "escape"
 the brackets, like so: ``q\[abc\]x``.
 
-On Windows, escaping special characters is not supported as the ``\``
+On Windows, use the ``|`` character to escape the brackets (``q|[abc|]x``), as the ``\``
 character is used as a path separator.
 
 How do I access the web GUI from another computer?
@@ -281,7 +281,7 @@ For example, the two emphasized lines below would be removed from the file.
 .. code-block:: text
     :emphasize-lines: 3,4
 
-    <gui enabled="true" tls="false" debugging="false">
+    <gui enabled="true" tls="false">
        <address>127.0.0.1:8384</address>
        <user>syncguy</user>
        <password>$2a$10$s9wWHOQe...Cq7GPye69</password>

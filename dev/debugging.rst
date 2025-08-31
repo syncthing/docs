@@ -8,12 +8,6 @@ quite silent about it. A number of environment variables can be used to
 set the logging to verbose for various parts of the program, and to
 enable profiling.
 
-Enabling any of the STTRACE facilities will also change the log format to
-include microsecond timestamps and file names plus line numbers. This
-can be used to enable this extra information on the normal logging
-level, without enabling any debugging: ``STTRACE=somethingnonexistent``
-for example.
-
 Under Unix (including Mac) the easiest way to run Syncthing with an
 environment variable set is to prepend the variable to the command line.
 I.e:

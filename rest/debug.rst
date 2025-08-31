@@ -1,24 +1,6 @@
 Debug Endpoints
 ================
 
-These endpoints require the :stconf:opt:`gui.debugging` configuration option to
-be enabled and yield an access denied error code otherwise.
-
-
-GET /rest/debug/peerCompletion
-------------------------------
-
-Summarizes the completion percentage for each remote device.  Returns an object
-with device IDs as keys and an integer percentage as values.
-
-
-GET /rest/debug/httpmetrics
----------------------------
-
-Returns statistics about each served REST API endpoint, to diagnose how much
-time was spent generating the responses.
-
-
 GET /rest/debug/cpuprof
 -----------------------
 

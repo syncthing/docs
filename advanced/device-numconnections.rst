@@ -4,9 +4,7 @@ numConnections
 .. versionadded:: 1.25.0
 
 ``numConnections`` is a device setting that affects connection handling. A
-zero value means to use the Syncthing default. As of version 1.25.0 the
-default is to use one connection, like earlier versions of Syncthing. This
-may change in the future.
+zero value means to use the Syncthing default.
 
 Multiple connections will be maintained to the device if you set this to a
 value greater than one. Multiple connections can yield improved performance

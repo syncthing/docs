@@ -1,10 +1,18 @@
 .. default-domain:: stconf
 
+
 Syncthing Configuration
 =======================
 
-Synopsis
+Overview
 --------
+
+This page covers how to configure Syncthing for file synchronization, including device setup, folder configuration, connection settings, and various configuration methods through the web GUI, command-line, or direct file editing.
+
+Configuration File Locations
+---------------------------
+
+The default configuration and database directory locations are:
 
 ::
 
@@ -63,9 +71,9 @@ corresponding environment variables (``$STDATADIR`` or ``STHOMEDIR``).
 
 The database directory contains the following files, among others:
 
-:file:`index-{*}.db`
-    A directory holding the database with metadata and hashes of the files
-    currently on disk and available from peers.
+:file:`index-{*}`
+    The database with metadata and hashes of the files currently on disk and
+    available from peers.
 
 :file:`syncthing.log`
     Log output, on some systems.
@@ -112,9 +120,7 @@ The following shows an example of a default configuration file (IDs will differ)
             <pullerPauseS>0</pullerPauseS>
             <maxConflicts>-1</maxConflicts>
             <disableSparseFiles>false</disableSparseFiles>
-            <disableTempIndexes>false</disableTempIndexes>
             <paused>false</paused>
-            <weakHashThresholdPct>25</weakHashThresholdPct>
             <markerName>.stfolder</markerName>
             <copyOwnershipFromParent>false</copyOwnershipFromParent>
             <modTimeWindowS>0</modTimeWindowS>
@@ -140,7 +146,7 @@ The following shows an example of a default configuration file (IDs will differ)
             <untrusted>false</untrusted>
             <remoteGUIPort>0</remoteGUIPort>
         </device>
-        <gui enabled="true" tls="false" debugging="false">
+        <gui enabled="true" tls="false">
             <address>127.0.0.1:8384</address>
             <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
             <theme>default</theme>
@@ -188,7 +194,6 @@ The following shows an example of a default configuration file (IDs will differ)
             <stunKeepaliveStartS>180</stunKeepaliveStartS>
             <stunKeepaliveMinS>20</stunKeepaliveMinS>
             <stunServer>default</stunServer>
-            <databaseTuning>auto</databaseTuning>
             <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
             <announceLANAddresses>true</announceLANAddresses>
             <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
@@ -217,9 +222,7 @@ The following shows an example of a default configuration file (IDs will differ)
                 <pullerPauseS>0</pullerPauseS>
                 <maxConflicts>10</maxConflicts>
                 <disableSparseFiles>false</disableSparseFiles>
-                <disableTempIndexes>false</disableTempIndexes>
                 <paused>false</paused>
-                <weakHashThresholdPct>25</weakHashThresholdPct>
                 <markerName>.stfolder</markerName>
                 <copyOwnershipFromParent>false</copyOwnershipFromParent>
                 <modTimeWindowS>0</modTimeWindowS>
@@ -305,9 +308,7 @@ Folder Element
         <pullerPauseS>0</pullerPauseS>
         <maxConflicts>-1</maxConflicts>
         <disableSparseFiles>false</disableSparseFiles>
-        <disableTempIndexes>false</disableTempIndexes>
         <paused>false</paused>
-        <weakHashThresholdPct>25</weakHashThresholdPct>
         <markerName>.stfolder</markerName>
         <copyOwnershipFromParent>false</copyOwnershipFromParent>
         <modTimeWindowS>0</modTimeWindowS>
@@ -493,7 +494,8 @@ The following child elements may exist:
 .. option:: folder.scanProgressIntervalS
 
     The interval in seconds with which scan progress information is sent to the GUI. Setting to ``0``
-    will cause Syncthing to use the default value of two.
+    will cause Syncthing to use the default value of two. If you don't
+    need to see scan progress, set this to ``-1`` to disable it.
 
 .. option:: folder.pullerPauseS
 
@@ -512,22 +514,9 @@ The following child elements may exist:
     to be sparse on filesystems that support this feature. When set to ``true``,
     sparse files will not be created.
 
-.. option:: folder.disableTempIndexes
-
-    By default, devices exchange information about blocks available in
-    transfers that are still in progress, which allows other devices to
-    download parts of files that are not yet fully downloaded on your own
-    device, essentially making transfers more torrent like. When set to
-    ``true``, such information is not exchanged for this folder.
-
 .. option:: folder.paused
 
     True if this folder is (temporarily) suspended.
-
-.. option:: folder.weakHashThresholdPct
-
-    Use weak hash if more than the given percentage of the file has changed. Set
-    to ``-1`` to always use weak hash. Default is ``25``.
 
 .. option:: folder.markerName
 
@@ -833,7 +822,7 @@ GUI Element
 
 .. code-block:: xml
 
-    <gui enabled="true" tls="false" debugging="false">
+    <gui enabled="true" tls="false">
         <address>127.0.0.1:8384</address>
         <apikey>k1dnz1Dd0rzTBjjFFh7CXPnrF12C49B1</apikey>
         <theme>default</theme>
@@ -854,11 +843,6 @@ set on the ``gui`` element:
     If set to ``true``, TLS (HTTPS) will be enforced. Non-HTTPS requests will
     be redirected to HTTPS. When set to ``false``, TLS connections are
     still possible but not required.
-
-.. option:: gui.debugging
-
-    This enables :doc:`/users/profiling` and additional endpoints in the REST
-    API, see :doc:`/rest/debug`.
 
 The following child elements may be present:
 
@@ -1049,7 +1033,6 @@ Options Element
         <stunKeepaliveStartS>180</stunKeepaliveStartS>
         <stunKeepaliveMinS>20</stunKeepaliveMinS>
         <stunServer>default</stunServer>
-        <databaseTuning>auto</databaseTuning>
         <maxConcurrentIncomingRequestKiB>0</maxConcurrentIncomingRequestKiB>
         <announceLANAddresses>true</announceLANAddresses>
         <sendFullIndexOnUpgrade>false</sendFullIndexOnUpgrade>
@@ -1301,13 +1284,6 @@ The ``options`` element contains all other global configuration options.
     feature. Set ``false`` to keep Syncthing from sending panic logs on serious
     troubles.  Defaults to ``true``, to help the developers troubleshoot.
 
-.. option:: options.databaseTuning
-
-    Controls how Syncthing uses the backend key-value database that stores the
-    index data and other persistent data it needs.  The available options and
-    implications are explained in a :doc:`separate chapter
-    </advanced/option-database-tuning>`.
-
 .. option:: options.maxConcurrentIncomingRequestKiB
 
     This limits how many bytes we have "in the air" in the form of response data
@@ -1391,9 +1367,7 @@ Defaults Element
             <pullerPauseS>0</pullerPauseS>
             <maxConflicts>10</maxConflicts>
             <disableSparseFiles>false</disableSparseFiles>
-            <disableTempIndexes>false</disableTempIndexes>
             <paused>false</paused>
-            <weakHashThresholdPct>25</weakHashThresholdPct>
             <markerName>.stfolder</markerName>
             <copyOwnershipFromParent>false</copyOwnershipFromParent>
             <modTimeWindowS>0</modTimeWindowS>
