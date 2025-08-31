@@ -266,7 +266,7 @@ try wrapping the executable with a ``PowerShell`` script.
 
 Then run as admin::
 
-   schtasks /create /sc ONLOGON /tn Syncthing /tr "powershell <path to script>.ps1"
+   schtasks /create /sc ONLOGON /tn Syncthing /tr "powershell -File C:\\path\\to\\script.ps1"
 
 
 For more information, please read official docs for Command Line Interface API:
