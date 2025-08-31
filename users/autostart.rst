@@ -252,17 +252,17 @@ by a sysadmin who knows enough to understand the security implications.
 #. Start the service via ``sc start syncthing`` in the Command Prompt.
 #. Connect to the Syncthing UI, enable HTTPS, and set a secure username and password.
 
-For Advanced Users
-^^^^^^^^^^^^^^^^^^
+CLI and Native Solutions for Terminal Users
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-It's possible to run Windows Task Scheduler CLI API with a command such as 
+It's possible to run Windows Task Scheduler native CLI API with a command such as
 ``schtasks /create /sc ONLOGON /tn Syncthing /tr "<program-path> [--no-console --no-browser]"``.
-The operation requires elevated privileges. Preventing the pop-up console that hides after
-some delay is possible wrapping the executable with a ``PowerShell`` script.
+The operation requires elevated privileges. If you're facing issues when using ``--no-console``, you can
+try wrapping the executable with a ``PowerShell`` script.
 
 ``script.ps1``::
 
-   Start-Process "<path to syncthing>.exe" -WindowStyle Hidden
+   Start-Process [-FilePath] "<path to syncthing>.exe" [-ArgumentList "..."] -WindowStyle Hidden
 
 Then run as admin::
 
