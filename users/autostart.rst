@@ -262,7 +262,7 @@ try wrapping the executable with a ``PowerShell`` script.
 
 ``script.ps1``::
 
-   Start-Process [-FilePath] "<path to syncthing>.exe" [-ArgumentList "..."] -WindowStyle Hidden
+   Start-Process -FilePath "<path to syncthing>.exe" [-ArgumentList "--no-browser"] -WindowStyle Hidden
 
 Then run as admin::
 
