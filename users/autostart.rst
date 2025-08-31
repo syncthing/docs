@@ -255,22 +255,8 @@ by a sysadmin who knows enough to understand the security implications.
 CLI and Native Solutions for Terminal Users
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-It's possible to run Windows Task Scheduler native CLI API with a command such as
-``schtasks /create /sc ONLOGON /tn Syncthing /tr "<program-path> [--no-console --no-browser]"``.
-The operation requires elevated privileges. If you're facing issues when using ``--no-console``, you can
-try wrapping the executable with a ``PowerShell`` script.
-
-``script.ps1``::
-
-   Start-Process -FilePath "<path to syncthing>.exe" [-ArgumentList "--no-browser"] -WindowStyle Hidden
-
-Then run as admin::
-
-   schtasks /create /sc ONLOGON /tn Syncthing /tr "powershell -File C:\\path\\to\\script.ps1"
-
-
-For more information, please read official docs for Command Line Interface API:
-https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks
+It's possible to run Windows Task Scheduler native CLI API, for more information, please read
+official docs: https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/schtasks.
 
 macOS
 -----
