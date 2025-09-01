@@ -2,13 +2,13 @@ GET /rest/system/connections
 ============================
 
 
-.. note:: Return format changed in versions 0.13.0, 1.19.0 and 1.23.0.
+.. note:: Return format changed in versions 0.13.0, 0.14.14, 1.2.0, 1.19.0, 1.23.0 and 1.25.0.
 
 
 Returns the list of configured devices and some metadata associated
-with them. The list also contains the local device itself as not connected.
+with them.
 
-The connection types are ``TCP (Client)``, ``TCP (Server)``, ``Relay (Client)`` and ``Relay (Server)``.
+The connection types are ``tcp-client``, ``tcp-server``, ``relay-client``, ``relay-server``, ``quic-client`` and ``quic-server``.
 
 .. code-block:: json
 
@@ -48,7 +48,7 @@ The connection types are ``TCP (Client)``, ``TCP (Server)``, ``Relay (Client)`` 
 	  "outBytesTotal": 550,
 	  "paused": false,
 	  "startedAt": "2015-11-07T00:09:47Z",
-	  "type": "TCP (Client)"
+	  "type": "tcp-client"
 	}
       },
       "total": {
