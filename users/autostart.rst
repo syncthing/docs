@@ -103,6 +103,14 @@ https://docs.microsoft.com/windows/win32/taskschd.
 
    |Windows Task Scheduler Settings Screenshot|
 
+.. note::
+
+   You should start Syncthing interactively (i.e. without relying on the Task
+   Scheduler) at least once in order to trigger a Windows Firewall pop-up,
+   which will ask you to allow Syncthing to access your network. This is
+   required, e.g. if you want Syncthing to establish direct connections inside
+   the given network, and also if you intend to access the web GUI remotely.
+
 Additional configuration in Task Scheduler
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
