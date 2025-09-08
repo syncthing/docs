@@ -1,8 +1,8 @@
 .. _syncthing:
 .. role:: strike
 
-Syncthing
-=========
+Command Line Operation
+======================
 
 Synopsis
 --------
@@ -17,10 +17,12 @@ Synopsis
               [--gui-address=<address>] [--gui-apikey=<key>]
               [--log-level=<level>] [--log-file=<filename>]
               [--log-max-old-files=<num>] [--log-max-size=<num>]
+              [--log-format-timestamp=<format>] [--no-log-format-level-string]
+              [--log-format-level-syslog]
               [--no-browser] [--no-console]
               [--no-port-probing] [--no-restart] [--no-upgrade]
               [--paused] [--unpaused]
-              [--verbose] [--version] [--help] [--debug-*]
+              [--version] [--help] [--debug-*]
 
     syncthing cli
               [--home=<dir> | --config=<dir> --data=<dir>]
@@ -86,7 +88,7 @@ few log messages.
 Common options
 --------------
 
-.. cmdoption:: --home=<dir>, -H <dir>
+.. cmdoption:: --home=<dir>, -H <dir> ($STHOMEDIR)
 
     Set common configuration and data directory. The default configuration
     directory is ``$XDG_STATE_HOME/syncthing`` or
@@ -94,12 +96,12 @@ Common options
     ``$HOME/Library/Application Support/Syncthing`` (Mac) and
     ``%LOCALAPPDATA%\Syncthing`` (Windows).
 
-.. cmdoption:: --config=<dir>, -C <dir>
+.. cmdoption:: --config=<dir>, -C <dir> ($STCONFDIR)
 
     Set configuration directory. Alternative to ``--home`` and must be used
     together with ``--data``.
 
-.. cmdoption:: --data=<dir>, -D <dir>
+.. cmdoption:: --data=<dir>, -D <dir> ($STDATADIR)
 
     Set data (e.g. database) directory. Alternative to ``--home`` and must be used
     together with ``--config``.
@@ -112,31 +114,33 @@ Common options
 Serve options
 -------------
 
-.. cmdoption:: --allow-newer-config
+.. cmdoption:: --allow-newer-config ($STALLOWNEWERCONFIG)
 
     Try loading a config file written by a newer program version, instead of
     failing immediately.
 
-.. cmdoption:: --audit
+.. cmdoption:: --audit ($STAUDIT)
 
     Write events to timestamped file ``audit-YYYYMMDD-HHMMSS.log``.
 
-.. cmdoption:: --auditfile=<file|-|-->
+.. cmdoption:: --auditfile=<file|-|--> ($STAUDITFILE)
 
     Use specified file or stream (``"-"`` for stdout, ``"--"`` for stderr) for
     audit events, rather than the timestamped default file name.
 
-.. cmdoption:: --db-maintenance-interval=<interval>
+.. cmdoption:: --db-maintenance-interval=<interval> ($STDBMAINTENANCEINTERVAL)
 
     Database maintenance interval -- internal database maintenance routines
-    run this often.
+    run this often. The format is that of a Go duration string (see
+    https://pkg.go.dev/time#ParseDuration).
 
-.. cmdoption:: --db-delete-retention-interval=<interval>
+.. cmdoption:: --db-delete-retention-interval=<interval> ($STDBDELETERETENTIONINTERVAL)
 
     Database deleted item retention interval -- deleted items are forgotten
-    from the database after this interval.
+    from the database after this interval. The format is that of a Go duration
+    string (see https://pkg.go.dev/time#ParseDuration).
 
-.. cmdoption:: --gui-address=<address>
+.. cmdoption:: --gui-address=<address> ($STGUIADDRESS)
 
     Override GUI listen address. Set this to an address (``0.0.0.0:8384``)
     or a URL (``http://0.0.0.0:8384``). Supported schemes are ``http`` for
@@ -145,67 +149,80 @@ Serve options
     ``unix:///run/syncthing/syncthing.socket`` (notice the three slashes: two
     as part of the URL structure, one to specify an absolute path).
 
-.. cmdoption:: --gui-apikey=<string>
+.. cmdoption:: --gui-apikey=<string> ($STGUIAPIKEY)
 
     Override the API key needed to access the GUI / REST API.
 
-.. cmdoption:: --log-level=<level>
-
-    Set the log level for all packages. Valid levels are DEBUG, INFO, WARN,
-    and ERROR.
-
-.. cmdoption:: --log-file=<filename>
+.. cmdoption:: --log-file=<filename> ($STLOGFILE)
 
     Set destination filename for logging (use ``"-"`` for stdout, which is the
     default option).
 
-.. cmdoption:: --log-max-old-files=<num>
+.. cmdoption:: --log-level=<level> ($STLOGLEVEL)
+
+    Set the log level for all packages. Valid levels are DEBUG, INFO, WARN,
+    and ERROR.
+
+.. cmdoption:: --log-max-old-files=<num> ($STLOGMAXOLDFILES)
 
     Number of old files to keep (zero to keep only current).  Applies only when
     log rotation is enabled through ``--log-max-size``.
 
-.. cmdoption:: --log-max-size=<num>
+.. cmdoption:: --log-max-size=<num> ($STLOGMAXSIZE)
 
-    Maximum size of any log file (zero to disable log rotation).
+    Maximum size in bytes of any log file (zero to disable log rotation).
 
-.. cmdoption:: --no-browser
+.. cmdoption:: --log-format-timestamp=<format> ($STLOGFORMATTIMESTAMP)
+
+    Format for timestamp, set to empty to disable timestamps. The format is that
+    of the Go time formatter (see https://pkg.go.dev/time#Layout).
+
+.. cmdoption:: --[no-]log-format-level-string ($STLOGFORMATLEVELSTRING)
+
+    Whether to include level string (e.g. "INF") in log line.
+
+.. cmdoption:: --[no-]log-format-level-syslog ($STLOGFORMATLEVELSYSLOG)
+
+    Whether to include level as syslog prefix (e.g. "<6>") in log line.
+
+.. cmdoption:: --no-browser ($STNOBROWSER)
 
     Do not start a browser.
 
-.. cmdoption:: --no-console
+.. cmdoption:: --no-console ($STNOCONSOLE)
 
     Hide the console window. (On Windows only)
 
-.. cmdoption:: --no-port-probing
+.. cmdoption:: --no-port-probing ($STNOPORTPROBING)
 
     Don't try to find unused random ports for the GUI and listen address when
     generating an initial configuration / starting for the first time.
 
-.. cmdoption:: --no-restart
+.. cmdoption:: --no-restart ($STNORESTART)
 
     Do not restart Syncthing when it exits. The monitor process will still run
     to handle crashes and writing to logfiles (if configured to).
 
-.. cmdoption:: --no-upgrade
+.. cmdoption:: --no-upgrade ($STNOUPGRADE)
 
-    Disable automatic upgrades.  Equivalent to the ``STNOUPGRADE`` environment
-    variable, see below.
+    Disable automatic upgrades.
 
-.. cmdoption:: --paused
+.. cmdoption:: --paused ($STPAUSED)
 
     Start with all devices and folders paused.
 
-.. cmdoption:: --unpaused
+.. cmdoption:: --unpaused ($STUNPAUSED)
 
     Start with all devices and folders unpaused.
 
-.. cmdoption:: --upgrade
+.. cmdoption:: --version
 
-    Perform upgrade.
+    Show the current version information, then exit.
 
-.. cmdoption:: --verbose
+.. cmdoption:: --debug-*
 
-    Print verbose log output.
+    Several debug options exist. See ``syncthing serve --help`` for the flags
+    that apply to your version.
 
 Decrypt options
 ---------------
@@ -218,7 +235,7 @@ Decrypt options
 
     Don't write decrypted files to disk (but verify plaintext hashes).
 
-.. cmdoption:: --password=<pw>
+.. cmdoption:: --password=<pw> ($FOLDER_PASSWORD)
 
     Folder password for decryption / verification.  Can be passed through the
     ``FOLDER_PASSWORD`` environment variable instead to avoid recording in a
@@ -284,9 +301,9 @@ caused the process to exit. For example, ``128 + 9 (SIGKILL) = 137``.
 Subcommands
 -----------
 
-The command line syntax actually supports different modes of operation through
-several subcommands, specified as the first argument.  If omitted, the default
-``serve`` is assumed.
+The command line syntax supports different modes of operation through
+several subcommands, specified as the first argument.  If omitted, the
+default ``serve`` is assumed.
 
 The initial setup of a device ID and default configuration can be called
 explicitly with the ``generate`` subcommand.  It can also update the configured
