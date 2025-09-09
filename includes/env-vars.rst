@@ -6,32 +6,55 @@ STTRACE
     ``api:WARN,beacon:ERR``, potentially overriding a global ``--log-level``
     adjustment.
 
-     The valid facility strings are listed below; additionally, ``syncthing
-     serve --help`` always outputs the most up-to-date list.
+    The valid facility strings are listed below; additionally, ``syncthing
+    serve --help`` always outputs the most up-to-date list.
 
-        api             - REST API
-        beacon          - Multicast and broadcast discovery
-        config          - Configuration loading and saving
-        connections     - Connection handling
-        db/sqlite       - SQLite database
-        dialer          - Dialing connections
-        discover        - Remote device discovery
-        events          - Event generation and logging
-        fs              - Filesystem access
-        main            - Main package
-        model           - The root hub
-        nat             - NAT discovery and port mapping
-        pmp             - NAT-PMP discovery and port mapping
-        protocol        - The BEP protocol
-        relay/client    - Relay client
-        scanner         - File change detection and hashing
-        stun            - STUN functionality
-        syncthing       - Main run facility
-        upgrade         - Binary upgrades
-        upnp            - UPnP discovery and port mapping
-        ur              - Usage reporting
-        versioner       - File versioning
-        watchaggregator - Filesystem event watcher
+    api
+        REST API
+    beacon
+        Multicast and broadcast discovery
+    config
+        Configuration loading and saving
+    connections
+        Connection handling
+    db/sqlite
+        SQLite database
+    dialer
+        Dialing connections
+    discover
+        Remote device discovery
+    events
+        Event generation and logging
+    fs
+        Filesystem access
+    main
+        Main package
+    model
+        The root hub
+    nat
+        NAT discovery and port mapping
+    pmp
+        NAT-PMP discovery and port mapping
+    protocol
+        The BEP protocol
+    relay/client
+        Relay client
+    scanner
+        File change detection and hashing
+    stun
+        STUN functionality
+    syncthing
+        Main run facility
+    upgrade
+        Binary upgrades
+    upnp
+        UPnP discovery and port mapping
+    ur
+        Usage reporting
+    versioner
+        File versioning
+    watchaggregator
+        Filesystem event watcher
 
 STLOCKTHRESHOLD
     Used for debugging internal deadlocks; sets debug sensitivity. Use only
