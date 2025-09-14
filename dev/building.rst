@@ -32,15 +32,28 @@ Prerequisites
 -  The latest stable version of Go. The previous stable version should also
    work; older versions will likely not work. This largely follows Go's
    `Release Policy <https://go.dev/doc/devel/release#policy>`__.
+
 -  Usually, a C compiler. Syncthing uses SQLite for storing data and the
    most common implementation is written in C.
+
+.. note::
+
+  Don't skip the C compiler, and make sure to build syncthing with
+  ``CGO_ENABLED=1`` if you are cross compiling. While the build will succeed
+  with ``CGO_ENABLED=0`` and the resulting binary will work, it will run
+  with significantly lower performance and higher memory usage when the C
+  implementation of SQLite couldn't be used. Your users will not thank you.
+
 -  Git, unless you're building from a downloaded source tarball that includes
    a ``RELEASE`` marker with the version information.
+
 -  If you want to build Debian packages FPM is required. See FPM's
    `installation information <https://fpm.readthedocs.io/en/latest/installation.html>`__.
+
 -  To build Windows executables, installing `goversioninfo
    <https://github.com/josephspurrier/goversioninfo>`__ is recommended
    in order to add file properties and icon to the compiled binaries.
+
 -  Building Android binaries requires `Android NDK <https://developer.android.com/ndk>`__.
 
 If you're not already a Go developer, the easiest way to get going
@@ -141,6 +154,14 @@ influence ``build``, ``tar`` and ``zip``. Examples:
 ``go run build.go --goos windows --no-upgrade zip``
   Builds a zip distribution of Syncthing for Windows (current architecture) with
   upgrading disabled.
+
+.. note::
+
+  Cross compiling with C (``CGO_ENABLED=1``) can be non-trivial; nonetheless
+  you should try to do so when at all possible. We use Zig to ease the pain;
+  you can check our `build workflows
+  <https://github.com/syncthing/syncthing/blob/main/.github/workflows/build-syncthing.yaml>`__
+  for inspiration.
 
 .. _versiontagging:
 
