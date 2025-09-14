@@ -23,19 +23,35 @@ look closer at what Syncthing knows about the file. You'll need to do these
 steps on *both* the receiving side and sending side. We will need to use the
 Syncthing CLI for this.
 
-1. An extract of database metadata for the file, taked by the command
-   ``syncthing debug database-file $folderID $fileName``, where
-   ``$folderID`` represents the folder ID (e.g. ``abcd-1234``) and
-   ``fileName`` is the name of the file, including any directories, relative
-   to the folder root. (Syncthing v2 only; but we're probably not debugging
-   this on v1 any more.)
+First, an extract of database metadata for the file, taked by the command::
 
-2. Details of the file information for the file, taked by the command
-   ``syncthing cli debug file $folderID $fileName`` (same folder ID and file
-   name as above).
+    syncthing debug database-file $folderID $fileName
+
+The ``$folderID`` placeholder represents the folder ID (e.g. ``abcd-1234``)
+and ``fileName`` is the name of the file, including any directories,
+relative to the folder root. Make sure to use quotes around the file name if
+it includes spaces.
+
+Second, details of the file information for the file in question, taked by
+the command::
+
+    syncthing cli debug file $folderID $fileName
+
+Use the same folder ID and file name as above.
 
 Post the output from both of these, verbatim, indicating which is the
 receiving side and which is the sending side.
+
+The folder counts seem incorrect
+--------------------------------
+
+If the number of files in sync, out of sync, in total, etc. seem to be
+incorrect, we can inspect the raw counts in the database. Run the following
+command on *both the sending and receiving sides* and post the output::
+
+    syncthing debug database-counts $folderID
+
+The ``$folderID`` placeholder represents the folder ID (e.g. ``abcd-1234``).
 
 Debug logs
 ----------
