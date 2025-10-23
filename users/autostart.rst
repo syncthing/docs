@@ -349,7 +349,7 @@ In case of troubles check the logs::
 Using systemd
 ~~~~~~~~~~~~~
 
-systemd is a suite of system management daemons, libraries, and
+Systemd is a suite of system management daemons, libraries, and
 utilities designed as a central management and configuration platform
 for the Linux computer operating system. It also offers users the
 ability to manage services under the user's control with a per-user
@@ -413,9 +413,15 @@ How to set up a user service
    Otherwise the user service will not start, because by default, systemd checks for user
    services before your home directory has been decrypted.
 
-Automatic start-up of systemd user instances at boot (before login) is possible
-through systemd's "lingering" function, if a system service cannot be used
-instead.  Refer to the `enable-linger`_ command of ``loginctl`` to allow this
+Automatic start-up of syncthing user services at boot (instead of at login) is
+possible through systemd's "lingering" function, if a system service
+is not used.  This activates all enabled services for enable-linger users at
+boot time::
+
+    sudo loginctl enable-linger myuser 
+    systemctl --user enable syncthing.service 
+
+For more information, refer to the `enable-linger`_ command of ``loginctl`` to allow this
 for a particular user.
 
 .. _enable-linger: https://www.freedesktop.org/software/systemd/man/loginctl.html#enable-linger%20USER%E2%80%A6
@@ -465,6 +471,26 @@ override file using ``systemctl edit ...`` is advised::
 
     [Service]
     AmbientCapabilities=CAP_CHOWN CAP_FOWNER
+
+Remote-mounted home directories
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If you set up a system service for one or more
+users whose home directory is mounted over the network (e.g. via NFS),
+then syncthing will fail to start on boot, unless you tell systemd to
+delay launching syncthing services until after the remote filesystems
+are mounted.
+
+To correct this, adjust the syncthing service by creating an override file using
+``systemctl edit syncthing@.service``::
+
+    # Wait for NFS-mounted home directories to become available 
+    # before starting syncthing on boot.
+    [Unit]
+    After=remote-fs.target
+
+Note that this is not necessary for lingering user services, which
+already wait for remote filesystems (if any) to be available.
 
 Debugging
 ^^^^^^^^^
