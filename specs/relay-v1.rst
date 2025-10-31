@@ -132,8 +132,7 @@ messages:
 2. ResponseAlreadyConnected - Session is full (both sides already connected)
 3. ResponseSuccess - You have successfully joined the session
 4. RelayFull - Relay limits are too strict for you to be able to join the session.
-
-The relay immediately terminates the connection after sending this.
+               The relay immediately terminates the connection after sending this.
 
 After the successful response, all the bytes written and received will be
 relayed between the two devices in the session directly.
@@ -288,6 +287,9 @@ Response message (Type = 4)
 	Message associated with the code.
 
 .. Protocol defined responses:
+
+::
+
 	1. ResponseSuccess           = Response{0, "success"}
 	2. ResponseNotFound          = Response{1, "not found"}
 	3. ResponseAlreadyConnected  = Response{2, "already connected"}
