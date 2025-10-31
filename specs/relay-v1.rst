@@ -290,11 +290,11 @@ Response message (Type = 4)
 
 ::
 
-	1. ResponseSuccess           = Response{0, "success"}
-	2. ResponseNotFound          = Response{1, "not found"}
-	3. ResponseAlreadyConnected  = Response{2, "already connected"}
-	4. ResponseInternalError     = Response{99, "internal error"}
-	5. ResponseUnexpectedMessage = Response{100, "unexpected message"}
+	ResponseSuccess           = Response{0, "success"}
+	ResponseNotFound          = Response{1, "not found"}
+	ResponseAlreadyConnected  = Response{2, "already connected"}
+	ResponseInternalError     = Response{99, "internal error"}
+	ResponseUnexpectedMessage = Response{100, "unexpected message"}
 
 ConnectRequest message (Type = 5)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
