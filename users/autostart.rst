@@ -218,9 +218,11 @@ is best to create a service that runs as soon as Windows starts. This
 can be achieved using NSSM, the "Non-Sucking Service Manager".
 
 Note that starting Syncthing on login is the preferred approach for
-almost any end-user scenario. The only scenario where running Syncthing
-as a service makes sense is for (mostly) headless servers, administered
-by a sysadmin who knows enough to understand the security implications.
+almost any end-user scenario. The only scenarios where running Syncthing
+as a service makes sense are
+
+- for (mostly) headless servers, administered by a sysadmin who knows enough to understand the security implications
+- when a dependency on another service is required (for instance if you want to bind Syncthing exclusively to a Tailscale IP)
 
 #. Download and extract `nssm <http://nssm.cc/download>`__ to a folder where it can stay. The NSSM executable performs administration as well as executing as the Windows service so it will need to be kept in a suitable location.
 #. From an administrator Command Prompt, CD to the NSSM folder and run ``nssm.exe install <syncthing service name>``
