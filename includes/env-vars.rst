@@ -3,7 +3,7 @@ STTRACE
     generally mapping to a Go package. Enter a comma-separated string of
     facilities to trace: ``api,beacon``. Optionally, a log level can be
     given per facility to specify something other than DEBUG:
-    ``api:WARN,beacon:ERR``, potentially overriding a global ``--log-level``
+    ``api:WARN,beacon:ERROR``, potentially overriding a global ``--log-level``
     adjustment.
 
     The valid facility strings are listed below; additionally, ``syncthing
