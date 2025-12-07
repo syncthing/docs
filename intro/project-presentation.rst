@@ -16,16 +16,6 @@ wrappers.
 -  Audrius Butkevicius / :user:`AudriusButkevicius`
 -  Simon Frei / :user:`imsodin`
 
-syncthing-android
------------------
-
-`syncthing-android`_ is the Android packaging and native UI on top of
-Syncthing.
-
--  Simon Frei / :user:`imsodin`
--  Audrius Butkevicius / :user:`AudriusButkevicius`
--  :user:`Catfriend1`
-
 syncthing-macos
 ---------------
 
@@ -34,6 +24,4 @@ syncthing-macos
 - Jerry Jacobs / :user:`xor-gate`
 
 .. _Syncthing: https://github.com/syncthing/syncthing
-.. _`syncthing-android`: https://github.com/syncthing/syncthing-android
-.. _`syncthing-inotify`: https://github.com/syncthing/syncthing-inotify
 .. _`syncthing-macos`: https://github.com/syncthing/syncthing-macos
