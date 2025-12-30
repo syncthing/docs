@@ -1093,8 +1093,12 @@ The ``options`` element contains all other global configuration options.
 
 .. option:: options.reconnectionIntervalS
 
-    The number of seconds to wait between each attempt to connect to currently
-    unconnected devices.
+    The number of seconds to wait between each attempt to connect to TCP
+    addresses on currently unconnected devices.
+
+.. option:: options.quicReconnectionIntervalS
+
+    Analogous to :opt:`reconnectionIntervalS` but for QUIC rather than TCP.
 
 .. option:: options.relaysEnabled
 
