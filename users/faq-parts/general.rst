@@ -43,7 +43,7 @@ The following may be synchronized or not, depending:
     try to synchronise symbolic links on Android, this will not succeed, as the
     OS does not support them on the user storage.
 
-The following are *not* synchronized;
+The following are *not* synchronized:
 
 -  Directory modification times (not preserved)
 -  Hard links (followed, not preserved)
