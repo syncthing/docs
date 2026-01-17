@@ -269,6 +269,14 @@ Resolving conflicts
   `pacdiff` utility from Arch Linux.  A diff utility can be used to
   merge the files and keep them up to date.
 
+- `syncthing_merge_babashka <https://codeberg.org/snyssfx/syncthing_merge_babashka>`_
+
+  A small script written in Clojure and Babashka (and thus requires
+  Babashka dependency) that helps to resolve conflicts
+  via emacsclient, vimdiff or other tools. It takes a directory,
+  finds each conflict and let the user decide whether to open the merge program
+  or to skip the file.
+
 Older, Possibly Unmaintained
 ----------------------------
 
