@@ -527,7 +527,7 @@ The following child elements may exist:
 .. option:: folder.copyOwnershipFromParent
 
     On Unix systems, tries to copy file/folder ownership from the parent directory (the directory it's located in).
-    Requires running Syncthing as a privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux).
+    Requires running Syncthing as a privileged user, or granting it additional capabilities (e.g. CAP_CHOWN on Linux, but be aware that automated upgrades would undo granting additional capabilities as described on :doc:`/advanced/folder-sync-ownership`).
 
 .. option:: folder.modTimeWindowS
 
