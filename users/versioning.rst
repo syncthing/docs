@@ -37,6 +37,12 @@ days.  If this is set to a positive number of days, files will be removed when
 they have been in the trash can that long.  Setting this to zero prevents any
 files from being removed from the trash can automatically.
 
+Another :opt:`configuration option <option:: folder.versioning.params.archiveDeletedOnly>` 
+is available to archive only the deleted files, as opposed to normal trash can versioning
+which archives all modified, renamed and deleted files. This is a lightweight
+option to protect against accidental deletions, while using significantly 
+less disk space than full versioning.
+
 Simple File Versioning
 ----------------------
 
@@ -309,6 +315,11 @@ example of such a section in the XML:
 
     The number of days to keep files in the versions folder.  Zero means to keep
     forever.  Older elements encountered during cleanup are removed.
+
+.. option:: folder.versioning.params.archiveDeletedOnly
+
+    When this option is enabled it archives only deleted files. 
+    Modified or renamed files are not archived, and hence, deleted normally. 
 
 .. option:: folder.versioning.params.keep
 
