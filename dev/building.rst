@@ -168,10 +168,11 @@ influence ``build``, ``tar`` and ``zip``. Examples:
 Version Tagging
 ---------------
 
-The binaries are "tagged" with a version derived from the current Git commit
-(or the ``RELEASE`` file, see below) and the current username and hostname.
-The username and hostname can be overridden by the ``BUILD_USER`` and
-``BUILD_HOST`` environment variables, for example::
+The binaries are "tagged" with a version derived from the current Git commit,
+the most recent Git tag, and the current username and hostname. The Git commit
+and tag can be replaced by a ``RELEASE`` file; see below. The username and
+hostname can be overridden by the ``BUILD_USER`` and ``BUILD_HOST`` environment
+variables, for example::
 
   $ BUILD_USER=builder BUILD_HOST=buildhost.local go run build.go
   $ ./bin/syncthing --version
@@ -179,6 +180,24 @@ The username and hostname can be overridden by the ``BUILD_USER`` and
 
 In addition the timestamp (by default taken from the current Git commit) can
 be overridden by the ``SOURCE_DATE_EPOCH`` variable, in Unix epoch seconds.
+
+.. note::
+    If your built binary fails with an ``Invalid version string`` error, you
+    probably did not fetch the Git tags with the code. This can happen when
+    forking the repository on GitHub if you select the option to "Copy the
+    ``main`` branch only". To fetch the tags on a fork, run these commands:
+
+    .. code-block:: bash
+
+        # Add the upstream repository as a remote
+        $ git remote add upstream https://github.com/syncthing/syncthing.git
+
+        # Fetch all tags from the upstream remote
+        $ git fetch --tags upstream
+
+        # Rebuild
+        $ go run build.go
+
 
 Building without Git
 --------------------
