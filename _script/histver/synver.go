@@ -210,17 +210,25 @@ func getVersionFromReader(r io.Reader) (tableRow, error) {
 		return tableRow{}, err
 	}
 
+	var errs []error
 	if row, err := getVersionFromCommand(fd.Name()); err == nil {
 		return row, nil
+	} else {
+		errs = append(errs, err)
 	}
-	return getVersionFromGo(fd.Name())
+	if row, err := getVersionFromGo(fd.Name()); err == nil {
+		return row, nil
+	} else {
+		errs = append(errs, err)
+	}
+	return tableRow{}, errors.Join(errs...)
 }
 
 func getVersionFromGo(name string) (tableRow, error) {
 	cmd := exec.Command("go", "version", "-m", name)
-	out, err := cmd.Output()
+	out, err := cmd.CombinedOutput()
 	if err != nil {
-		return tableRow{}, err
+		return tableRow{}, fmt.Errorf("go version -m: %w: %s", err, out)
 	}
 
 	// % go version -m ~/bin/syncthing
@@ -229,13 +237,13 @@ func getVersionFromGo(name string) (tableRow, error) {
 	// ...
 
 	if idx := bytes.Index(out, []byte{'\n'}); idx < 0 {
-		return tableRow{}, errors.New("no version")
+		return tableRow{}, errors.New("go version -m: no version")
 	} else {
 		out = out[:idx]
 	}
 
 	if idx := bytes.LastIndex(out, []byte{' '}); idx < 0 {
-		return tableRow{}, errors.New("no version")
+		return tableRow{}, errors.New("go version -m: no version")
 	} else {
 		return tableRow{Runtime: string(out[idx+1:])}, nil
 	}
@@ -243,14 +251,14 @@ func getVersionFromGo(name string) (tableRow, error) {
 
 func getVersionFromCommand(name string) (tableRow, error) {
 	cmd := exec.Command(name, "--version")
-	out, err := cmd.Output()
+	out, err := cmd.CombinedOutput()
 	if err != nil {
-		return tableRow{}, err
+		return tableRow{}, fmt.Errorf("syncthing: running: %w: %s", err, out)
 	}
 
 	var r tableRow
 	if err := r.fromVersion(string(out)); err != nil {
-		return tableRow{}, err
+		return tableRow{}, fmt.Errorf("syncthing: parse version: %w: %s", err, out)
 	}
 	return r, nil
 }
