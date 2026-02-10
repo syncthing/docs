@@ -187,6 +187,10 @@ func getReleaseVersionTarGz(bs []byte) (tableRow, error) {
 		if err != nil {
 			break
 		}
+		if strings.Contains(path.Dir(hdr.Name), "/") {
+			// Skip files not at top level
+			continue
+		}
 		if path.Base(hdr.Name) != "syncthing" {
 			continue
 		}
