@@ -16,7 +16,7 @@ following criteria:
 
 - Is the new version protocol incompatible with the previous one, so that
   they cannot connect to each other or otherwise can't sync files for some
-  reason? That's a new *major* version. (This hasn't happened yet.)
+  reason? That's a new *major* version.
 
 - Are there changes in the REST API so that integrations or wrappers
   need changes, or did the database schema or configuration change so that a
