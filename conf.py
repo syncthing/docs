@@ -16,6 +16,8 @@ import sys
 import os
 import re
 from datetime import datetime
+from sphinx_clarity_theme import ThemeOptions
+import requests
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -92,7 +94,7 @@ version = release.partition('-')[0]
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = ['_build', '_syncthing', 'draft', 'README.rst', 'users/faq-parts']
+exclude_patterns = ['_build', '_syncthing', 'draft', 'README.rst', 'users/faq-parts', 'venv', '.venv']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -132,30 +134,30 @@ extlinks = {
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = "alabaster"
+html_theme = "sphinx_clarity_theme"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-html_theme_options = {
-    'github_user': 'syncthing',
-    'github_repo': 'syncthing',
-    'github_button': True,
-    'github_type': 'star',
-    'donate_url': 'https://syncthing.net/donations/',
-    'logo': 'logo-horizontal.svg',
-    'fixed_sidebar': False,
-    'show_powered_by': False,
-    'font_family': '"Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif',
-    'head_font_family': 'Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif',
-    'font_size': '14pt',
-    'code_font_size': '11pt',
-    'sidebar_width': '250px',
-    'page_width': '960px',
+# https://readcraft.io/sphinx-clarity-theme/docs/en/latest/reference/
+html_theme_options: ThemeOptions = {
+    "header_menu": [
+        {
+            "label": "Donate",
+            "url": "https://syncthing.net/donations/",
+        },
+        {
+            "label": """GitHub <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10.303 16.652c-2.837-.344-4.835-2.385-4.835-5.028c0-1.074.387-2.235 1.031-3.008c-.279-.709-.236-2.214.086-2.837c.86-.107 2.02.344 2.708.967c.816-.258 1.676-.386 2.728-.386s1.913.128 2.686.365c.666-.602 1.848-1.053 2.708-.946c.3.581.344 2.085.064 2.815c.688.817 1.053 1.913 1.053 3.03c0 2.643-1.998 4.641-4.877 5.006c.73.473 1.224 1.504 1.224 2.686v2.235c0 .644.537 1.01 1.182.752c3.889-1.483 6.94-5.372 6.94-10.185c0-6.081-4.942-11.044-11.022-11.044c-6.081 0-10.98 4.963-10.98 11.044a10.84 10.84 0 0 0 7.112 10.206c.58.215 1.139-.172 1.139-.752v-1.719a2.8 2.8 0 0 1-1.032.215c-1.418 0-2.256-.773-2.857-2.213c-.237-.58-.495-.924-.989-.988c-.258-.022-.344-.129-.344-.258c0-.258.43-.451.86-.451c.623 0 1.16.386 1.719 1.181c.43.623.881.903 1.418.903s.881-.194 1.375-.688c.365-.365.645-.687.903-.902"/></svg>""",
+            "url": "https://github.com/syncthing/syncthing",
+        }
+    ],
+    "header_title": False,
+    "edit_page_label": """Edit this page on GitHub <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 24 24"><path fill="currentColor" d="M13.654 21v-2.21l5.333-5.307q.148-.13.305-.19t.315-.062q.172 0 .338.064q.165.065.301.194l.925.944q.123.148.188.308q.064.159.064.319t-.061.322t-.19.31L15.863 21zm6.885-5.94l-.926-.945zm-6 5.056h.95l3.467-3.474l-.45-.494l-.475-.47l-3.493 3.488zM6.615 21q-.691 0-1.153-.462T5 19.385V4.615q0-.69.463-1.152T6.616 3H14.5L19 7.5v2.596h-1V8h-4V4H6.616q-.231 0-.424.192T6 4.615v14.77q0 .23.192.423t.423.192h4.654v1zm11.89-4.852l-.475-.47l.925.964z"/></svg>""",
+    "edit_page_url": "https://github.com/syncthing/docs/edit/main/{filename}",
+    "version_select_data": requests.get("https://docs.syncthing.net/versions.json").json(),
+    "version_select_current": version,
+    "version_select_url": "/{version}/",
 }
-
-# Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ['_themes']
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -169,7 +171,7 @@ else:
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
-#html_logo = None
+html_logo = "_static/logo-horizontal.svg"
 
 # The name of an image file (within the static path) to use as favicon of the
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
@@ -193,18 +195,6 @@ html_last_updated_fmt = '%b %d, %Y'
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
 #html_use_smartypants = True
-
-# Custom sidebar templates, maps document names to template names.
-html_sidebars = {
-    '**': [
-        "about.html",
-        "version.html",
-        "navigation.html",
-        "relations.html",
-        "searchbox.html",
-        "donate.html",
-    ],
-}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
@@ -241,6 +231,8 @@ html_js_files = [
     'jquery-3.7.1.min.js',
     'version_redirect.js',
 ]
+
+html_css_files = ["custom.css"]
 
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'Syncthingdoc'

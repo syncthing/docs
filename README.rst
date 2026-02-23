@@ -19,8 +19,8 @@ beneficial.
 First steps to run it locally::
 
   git clone https://github.com/syncthing/docs.git
-  pip install -U Sphinx
   cd docs
+  pip install -r requirements.txt
   make html
   # open _build/html/index.html
 
