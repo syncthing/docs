@@ -8,7 +8,7 @@ Versions & Releases
 Major, Minor, or Patch
 ----------------------
 
-Since the 1.0.0 release, Syncthing uses a `semver
+Since the 1.0.0 release, Syncthing has used a `semver
 <https://semver.org/>`__-like [1]_ three part version number, **x.y.z** where *x*
 is the major version, *y* is the minor version, and *z* is the patch
 version. We decide the version number for a new release based on the
