@@ -248,7 +248,7 @@ If you have many directories (including subdirectories), you will need to adjust
 that number. Note that the many other services use inotify watches - even if you
 are not watching a particularly large number of directories through Syncthing, 
 you still may hit this limit due to use by other programs.
-There are [tools available](https://stackoverflow.com/a/60705427) which allow
+There are `tools available <https://stackoverflow.com/a/60705427/>`__ which allow 
 a user to quickly see how many watches are being used and by which processes.
 
 On many Linux distributions you can run the following to fix it::
