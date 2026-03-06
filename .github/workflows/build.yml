@@ -25,11 +25,22 @@ jobs:
           git describe --tags --long --always > RELEASE || true
           git describe --tags --exact-match > TAG || true
 
-      - name: Build
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build HTML
+        run: make html
+
+      - name: Build man and pdf
         uses: docker://docker.io/sphinxdoc/sphinx-latexpdf:latest
         with:
           entrypoint: make
-          args: html man latexpdf
+          args: man latexpdf
 
       - name: Archive artifacts (html)
         uses: actions/upload-artifact@v4
