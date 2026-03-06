@@ -1,0 +1,3 @@
+# Sphinx and theme dependencies for building documentation
+sphinx==9.1.0
+sphinx-clarity-theme==1.2.0rc2
