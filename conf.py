@@ -227,10 +227,7 @@ html_show_copyright = False
 #html_file_suffix = None
 
 # Include JavaScript files with custom functionality
-html_js_files = [
-    'jquery-3.7.1.min.js',
-    'version_redirect.js',
-]
+# html_js_files = []
 
 html_css_files = ["custom.css"]
 
