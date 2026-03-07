@@ -18,9 +18,8 @@ following criteria:
   they cannot connect to each other or otherwise can't sync files for some
   reason? That's a new *major* version. (This hasn't happened yet.)
 
-- Are there changes in the REST API so that integrations or wrappers
-  need changes, or did the database schema or configuration change so that a
-  downgrade might be problematic? That's a new *minor* version.
+- Are there new features (commits with type ``feat``)? That's a new
+  *minor* version.
 
 - If there are no specific concerns as above, it's a new *patch* version.
 
