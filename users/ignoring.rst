@@ -34,6 +34,16 @@ Patterns
 The ``.stignore`` file contains a list of file or path patterns. The
 *first* pattern that matches will decide the fate of a given file.
 
+.. note::
+
+   When you write a pattern like ``!/mydir``, Syncthing automatically
+   also unignores everything inside that directory (as if you also wrote
+   ``!/mydir/**``). This auto-expansion is placed immediately after the
+   original pattern. Keep this in mind when ordering patterns — if you
+   need to ignore specific paths *inside* an unignored directory, those
+   ignore rules must appear **before** the ``!/mydir`` line. See
+   `Common Pitfalls`_ below for a detailed example.
+
 -  Regular file names match themselves, i.e. the pattern ``foo`` matches
    the files ``foo``, ``subdir/foo`` as well as any directory named
    ``foo``. Spaces are treated as regular characters, except for leading
@@ -197,6 +207,53 @@ all files and directories called "foo", ending in a "2" or starting with
   ``some/directory/`` matches the content of the directory, but not the
   directory itself. If you want the pattern to match the directory and its
   content, make sure it does not have a ``/`` at the end of the pattern.
+
+Common Pitfalls
+---------------
+
+**Pattern ordering with whitelisted directories**
+
+A common use case is to sync only specific directories while ignoring
+everything else, but also excluding certain subdirectories (like ``.git``)
+within the whitelisted directories. Getting the pattern order right is
+critical.
+
+This does **not** work as expected::
+
+    // WRONG — .git contents are NOT ignored
+    !/myproject
+    !/myproject/**/.git/config
+    /myproject/**/.git/**
+    *
+
+The intent is to sync ``myproject`` but ignore ``.git`` directories
+(except ``config``). However, all ``.git`` contents are synced because
+``!/myproject`` auto-expands to also include ``!/myproject/**``, which
+matches everything under ``myproject/`` — including ``.git`` contents —
+before the ignore pattern ``/myproject/**/.git/**`` is ever reached.
+
+The correct ordering places specific ignore rules **before** the broad
+whitelist::
+
+    // CORRECT — .git contents are properly ignored
+    !/myproject/**/.git/config
+    /myproject/**/.git/**
+    !/myproject
+    *
+
+With this ordering:
+
+- ``myproject/repo/.git/config`` matches ``!/myproject/**/.git/config``
+  first → **synced**
+- ``myproject/repo/.git/objects/abc`` matches ``/myproject/**/.git/**``
+  first → **ignored**
+- ``myproject/repo/src/main.go`` matches the auto-expanded
+  ``!/myproject/**`` → **synced**
+- ``randomfile`` matches ``*`` → **ignored**
+
+**The rule:** when combining ``!/dir`` with ignore patterns for paths
+inside that directory, the specific ignore patterns must come **before**
+the ``!/dir`` whitelist line.
 
 .. versionadded:: 1.19.0
 
