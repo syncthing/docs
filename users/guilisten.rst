@@ -1,3 +1,4 @@
+::1
 .. _gui-listen:
 
 The GUI Listen Address
