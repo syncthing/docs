@@ -218,6 +218,8 @@ the Syncthing settings.
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
     proxy_set_header X-SSL-Cert $ssl_client_cert;
+    proxy_set_header X-Forwarded-Tls-Client-Cert "";
+    proxy_set_header X-Tls-Client-Cert-Der-Base64 "";
     upstream discovery.example.com {
         # Local IP address:port for discovery server
         server 192.0.2.1:8443;
@@ -278,6 +280,8 @@ The following lines must be added to the configuration:
     SSLProxyEngine On
     SSLVerifyClient optional_no_ca
     RequestHeader set X-SSL-Cert "%{SSL_CLIENT_CERT}s"
+    RequestHeader unset X-Forwarded-Tls-Client-Cert
+    RequestHeader unset X-Tls-Client-Cert-Der-Base64
 
 The following was observed to not be required at least under
 Apache httpd 2.4.38, as the proxy module adds the needed header by default.
@@ -300,6 +304,8 @@ The following lines must be added to the Caddyfile:
         header_up X-Forwarded-For {http.request.remote.host}
         header_up X-Client-Port {http.request.remote.port}
         header_up X-Tls-Client-Cert-Der-Base64 {http.request.tls.client.certificate_der_base64}
+        header_up -X-Ssl-Cert
+        header_up -X-Forwarded-Tls-Client-Cert
       }
 
       tls {
