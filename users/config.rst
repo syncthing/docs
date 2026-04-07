@@ -340,6 +340,7 @@ element:
     labels. (optional)
 
 .. option:: folder.group
+.. versionadded:: 2.1.0
 
     The group for a folder is a human readable and descriptive local name. Allows 
     folders to be grouped together locally. May be different on each device, 
@@ -665,6 +666,7 @@ element:
     A friendly name for the device. (optional)
 
 .. option:: device.group
+.. versionadded:: 2.1.0
 
     The group for a device is a human readable and descriptive local name. Allows 
     devices to be grouped together locally. May be different on each device, 
