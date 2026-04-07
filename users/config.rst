@@ -100,7 +100,7 @@ The following shows an example of a default configuration file (IDs will differ)
 .. code-block:: xml
 
     <configuration version="37">
-        <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+        <folder id="default" label="Default Folder" group="Home" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
             <filesystemType>basic</filesystemType>
             <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" introducedBy="">
                 <encryptionPassword></encryptionPassword>
@@ -135,7 +135,7 @@ The following shows an example of a default configuration file (IDs will differ)
             <syncXattrs>false</syncXattrs>
             <sendXattrs>false</sendXattrs>
         </folder>
-        <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
+        <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" group="Personal" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="">
             <address>dynamic</address>
             <paused>false</paused>
             <autoAcceptFolders>false</autoAcceptFolders>
@@ -288,7 +288,7 @@ Folder Element
 
 .. code-block:: xml
 
-    <folder id="default" label="Default Folder" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
+    <folder id="default" label="Default Folder" group="Home" path="/Users/jb/Sync/" type="sendreceive" rescanIntervalS="3600" fsWatcherEnabled="true" fsWatcherDelayS="10" fsWatcherTimeoutS="0" ignorePerms="false" autoNormalize="true">
         <filesystemType>basic</filesystemType>
         <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" introducedBy="">
             <encryptionPassword></encryptionPassword>
@@ -338,6 +338,14 @@ element:
     The label of a folder is a human readable and descriptive local name. May
     be different on each device, empty, and/or identical to other folder
     labels. (optional)
+
+.. option:: folder.group
+
+    .. versionadded:: 2.1.0
+
+    The group for a folder is a human readable and descriptive local name.
+    Allows folders to be grouped together locally. May be different on each
+    device, empty, and/or identical to other folder groups. (optional)
 
 .. option:: folder.filesystemType
 
@@ -617,7 +625,7 @@ Device Element
 
 .. code-block:: xml
 
-    <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
+    <device id="S7UKX27-GI7ZTXS-GC6RKUA-7AJGZ44-C6NAYEB-HSKTJQK-KJHU2NO-CWV7EQW" name="syno" group="Personal" compression="metadata" introducer="false" skipIntroductionRemovals="false" introducedBy="2CYF2WQ-AKZO2QZ-JAKWLYD-AGHMQUM-BGXUOIS-GYILW34-HJG3DUK-LRRYQAR">
         <address>dynamic</address>
         <paused>false</paused>
         <autoAcceptFolders>false</autoAcceptFolders>
@@ -657,6 +665,14 @@ element:
 .. option:: device.name
 
     A friendly name for the device. (optional)
+
+.. option:: device.group
+
+    .. versionadded:: 2.1.0
+
+    The group for a device is a human readable and descriptive local name.
+    Allows devices to be grouped together locally. May be different on each
+    device, empty, and/or identical to other device groups. (optional)
 
 .. option:: device.compression
 
