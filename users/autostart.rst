@@ -151,6 +151,32 @@ make selective use of them depending on your needs.
 
 .. _autostart-windows-startup:
 
+Setting up Syncthing Background Launch via VBS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the standard Task Scheduler setup with `--no-console` and `--no-browser` flags fails to start or leaves a persistent terminal window open, you can use a Visual Basic Script (VBS) to ensure a completely silent background execution.
+
+1. Create the VBS Script
+Create a new text file in your Syncthing installation folder, rename it to `start_syncthing.vbs`, and paste the following code:
+
+```vbs
+Set WshShell = CreateObject("WScript.Shell")
+WshShell.Run "C:\Path\To\syncthing.exe --no-browser", 0
+Set WshShell = Nothing
+```
+
+Note: Replace ``C:\Path\To\Your\syncthing.exe`` with the actual absolute path to your Syncthing executable.
+
+2. Configure Task Scheduler:
+
+   - Open Task Scheduler and locate your Syncthing task.
+   - Go to the Actions tab and click Edit.
+   - In the Program/script field, enter the full path to your new start_syncthing.vbs file.
+   - Important: Clear the Add arguments (optional) field. Since the arguments are already defined inside the VBS script, keeping them here may cause the task to fail.
+On the General tab, ensure "Run only when user is logged on" is selected for the best compatibility with this method.
+
+
+
 Run at user log on using the Startup folder
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
