@@ -619,6 +619,17 @@ The following child elements may exist:
     devices when this is set to ``true``. See
     :doc:`/advanced/folder-send-xattrs` for more information.
 
+.. option:: folder.blockIndexing
+
+    .. versionadded:: 2.1.0
+
+    Whether to use block indexing for the folder; defaults to ``true`` for
+    send-only and receive-only folders. Block indexing makes it possible for
+    Syncthing to reuse data blocks between files (even in different
+    folders), but requires maintaining an index of every individual block's
+    hash. This index can be costly for large folders, so indexing can be
+    disabled with the tradeoff of using more bandwidth for transfers.
+
 
 Device Element
 --------------
