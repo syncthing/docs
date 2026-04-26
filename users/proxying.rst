@@ -11,7 +11,7 @@ behind the proxy is limited to outbound connections - it can not listen for
 incoming connections via the proxy. It is however possible to receive incoming
 connections via :ref:`relaying`.
 
-.. versionadded:: 2.0.15
+.. versionadded:: 2.1.0
 
     Support for HTTP and HTTPS proxies via ``all_proxy``.
 
