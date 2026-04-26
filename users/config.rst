@@ -621,7 +621,7 @@ The following child elements may exist:
 
 .. option:: folder.blockIndexing
 
-    ..versionadded:: 2.1.0
+    .. versionadded:: 2.1.0
 
     Whether to use block indexing for the folder; defaults to ``true`` for
     send-only and receive-only folders. Block indexing makes it possible for
