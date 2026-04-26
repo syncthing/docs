@@ -952,6 +952,20 @@ The following child elements may be present:
 
     If true, this allows access to the '/metrics' without authentication.
 
+.. option:: gui.sessionCookieDurationS
+
+    .. versionadded:: 2.1.0
+
+    How long to remain logged in when "stay logged in" is checked in the GUI
+    login form. In seconds, default 604800 (one week).
+
+.. option:: gui.sessionCookiePath
+
+    .. versionadded:: 2.1.0
+
+    Path for session cookie; default "/", change only if the GUI is served
+    vi a proxy at a subpath.
+
 LDAP Element
 ------------
 
