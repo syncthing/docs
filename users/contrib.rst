@@ -20,7 +20,7 @@ Cross-platform
 Android
 ~~~~~~~
 
-- `Syncthing-Fork <https://github.com/catfriend1/syncthing-android>`_
+- `Syncthing-Fork <https://github.com/researchxxl/syncthing-android>`_
 
   An Android app for the Syncthing binary with extended functionality.
 
