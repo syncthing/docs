@@ -1,4 +1,5 @@
 .. default-domain:: stconf
+.. role:: strike
 
 File Versioning
 ===============
@@ -94,7 +95,7 @@ This versioning strategy delegates the decision on what to do to an
 command line script).  Just prior to a file being replaced, the command will be
 executed.  The file needs to be removed from the folder in the process, or
 otherwise Syncthing will report an error.  The command can use the following
-templated arguments:
+templated arguments or environment variables:
 
 ..
     This to be added when actually relevant.
@@ -102,10 +103,10 @@ templated arguments:
     %FOLDER_FILESYSTEM%
       Filesystem type for the underlying folder.
 
-%FOLDER_PATH%
+``%FOLDER_PATH%`` (``$FOLDER_PATH``)
   Path to the folder
 
-%FILE_PATH%
+``%FILE_PATH%`` (``$FILE_PATH``)
   Path to the file within the folder
 
 Note that the former expands to the path of the actual Syncthing folder,
@@ -114,6 +115,26 @@ the default ``Sync`` folder in Windows, and the full path to the file is
 ``C:\Users\User\Sync\Family photos\IMG_2021-03-01.jpg``, then the
 ``%FOLDER_PATH%`` will be ``C:\Users\User\Sync``, and the
 ``%FILE_PATH%`` will be ``Family photos\IMG_2021-03-01.jpg``.
+
+.. warning::
+
+    You should consider file paths as untrusted user input and treat them
+    accordingly. Do not assume that they are free from malicious characters
+    or commands.
+
+    Syncthing will properly ensure unquoted template variables are passed as
+    individual parameter values, as in ``somecommand %FOLDER_PATH%
+    %FILE_PATH%``. An unquoted combination such as
+    ``%FOLDER_PATH%/%FILE_PATH%`` is also valid.
+
+    Any form of shell wrapping in the command, such as :strike:`sh -c "echo
+    %FOLDER_PATH%/%FILE_PATH%"`, is invalid. Syncthing may reject such
+    commands as unsafe.
+
+.. versionadded:: 2.1.1
+
+    The environment variables ``$FOLDER_PATH`` and ``$FILE_PATH`` which can
+    be used in the script instead of the command line template placeholders.
 
 Example for Unixes
 ~~~~~~~~~~~~~~~~~~
