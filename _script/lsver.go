@@ -32,11 +32,18 @@ func lsver(dir string) error {
 		}
 	}
 	sort.Slice(names, func(a, b int) bool {
-		return compareVersions(names[a], names[b]) < 0
+		return compareVersions(names[a], names[b]) > 0
 	})
 
+	type entry struct {
+		Version string `json:"version"`
+	}
+	result := make([]entry, len(names))
+	for i, name := range names {
+		result[i] = entry{Version: name}
+	}
 	enc := json.NewEncoder(os.Stdout)
-	return enc.Encode(map[string][]string{"entries": names})
+	return enc.Encode(result)
 }
 
 func compareVersions(a, b string) int {

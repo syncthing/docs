@@ -9,4 +9,4 @@ docker run --rm \
   -v "$(pwd):$(pwd)" \
   -w "$(pwd)" \
   docker.io/sphinxdoc/sphinx-latexpdf:latest \
-  make "$target"
+  sh -c "pip install -r requirements.txt && make $target"
