@@ -49,10 +49,19 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	validPkgPrefixes := []string{
+		"github.com/syncthing/syncthing/internal/",
+		"github.com/syncthing/syncthing/lib/",
+	}
+
 	var coll metricCollector
 	for _, pkg := range pkgs {
-		for _, file := range pkg.Syntax {
-			ast.Inspect(file, coll.Visit)
+		for _, pref := range validPkgPrefixes {
+			if strings.HasPrefix(pkg.PkgPath, pref) {
+				for _, file := range pkg.Syntax {
+					ast.Inspect(file, coll.Visit)
+				}
+			}
 		}
 	}
 	coll.print()

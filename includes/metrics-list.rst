@@ -1,3 +1,45 @@
+Package *build*
+~~~~~~~~~~~~~~~
+
+Metric *syncthing_build_info* (gauge vector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+A metric with a constant '1' value labeled by version information from
+when the binary was built.
+
+Package *connections*
+~~~~~~~~~~~~~~~~~~~~~
+
+Metric *syncthing_connections_active* (gauge vector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Number of currently active connections, per device. If value is 0, the
+device is disconnected.
+
+Package *db*
+~~~~~~~~~~~~
+
+Metric *syncthing_db_files_updated_total* (counter vector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Total number of files updated.
+
+Metric *syncthing_db_operation_seconds_total* (counter vector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Total time spent in database operations, per folder and operation.
+
+Metric *syncthing_db_operations_current* (gauge vector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Number of database operations currently ongoing, per folder and
+operation.
+
+Metric *syncthing_db_operations_total* (counter vector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Total number of database operations, per folder and operation.
+
 Package *events*
 ~~~~~~~~~~~~~~~~
 
@@ -30,11 +72,16 @@ operation.
 Package *model*
 ~~~~~~~~~~~~~~~
 
+Metric *syncthing_model_folder_conflicts_total* (counter vector)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Total number of conflicts.
+
 Metric *syncthing_model_folder_processed_bytes_total* (counter vector)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Total amount of data processed during folder syncing, per folder ID and
-data source (network/local_origin/local_other/local_shifted/skipped).
+data source (network/local_origin/local_other/skipped).
 
 Metric *syncthing_model_folder_pull_seconds_total* (counter vector)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
