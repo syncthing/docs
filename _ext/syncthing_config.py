@@ -117,7 +117,7 @@ class SyncthingConfigDomain(Domain):
 
     @property
     def config_sections(self) -> Set[str]:
-        return self.data.setdefault('sections', [])
+        return self.data.setdefault('sections', set())
 
     @property
     def config_options(self) -> Dict[str, Tuple]:
