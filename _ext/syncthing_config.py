@@ -168,6 +168,13 @@ class SyncthingConfigDomain(Domain):
             docname=self.env.docname,
             anchor=anchor, priority=0)
 
+    def clear_doc(self, docname: str):
+        self.data['options'] = {
+            signature: entry
+            for signature, entry in self.config_options.items()
+            if entry.docname != docname
+        }
+
 
 def setup(app):
     """Install the plugin.
