@@ -4,10 +4,11 @@ Sphinx extension to provide link anchors for configuration options.
 Modeled after the standard :directive:`cmdoption` directive.
 """
 
-from typing import Any, Tuple, Dict, Iterator, Set, NamedTuple
+from typing import Any, Iterator, NamedTuple, Tuple
 
 from docutils.nodes import Element
 from docutils.parsers.rst import directives
+
 from sphinx import addnodes
 from sphinx.addnodes import pending_xref
 from sphinx.builders import Builder
@@ -15,8 +16,8 @@ from sphinx.directives import ObjectDescription
 from sphinx.domains import Domain, ObjType
 from sphinx.environment import BuildEnvironment
 from sphinx.roles import XRefRole
-from sphinx.util.nodes import make_refnode
 from sphinx.util import logging
+from sphinx.util.nodes import make_refnode
 
 
 __licence__ = 'BSD (3 clause)'
@@ -116,11 +117,11 @@ class SyncthingConfigDomain(Domain):
     }
 
     @property
-    def config_sections(self) -> Set[str]:
+    def config_sections(self) -> set[str]:
         return self.data.setdefault('sections', set())
 
     @property
-    def config_options(self) -> Dict[str, Tuple]:
+    def config_options(self) -> dict[str, Tuple]:
         return self.data.setdefault('options', {})  # fullname -> (docname, node_id)
 
     def get_full_qualified_name(self, node):  # FIXME: what is this for?!
@@ -175,7 +176,7 @@ class SyncthingConfigDomain(Domain):
             if entry.docname != docname
         }
 
-    def merge_domaindata(self, docnames: Set[str], otherdata: Dict[str, Any]):
+    def merge_domaindata(self, docnames: set[str], otherdata: dict[str, Any]):
         self.config_sections.update(otherdata.get('sections', set()))
 
         for signature, entry in otherdata.get('options', {}).items():
