@@ -4,7 +4,7 @@ Sphinx extension to provide link anchors for configuration options.
 Modeled after the standard :directive:`cmdoption` directive.
 """
 
-from typing import Tuple, Dict, Iterator, Set, NamedTuple
+from typing import Any, Tuple, Dict, Iterator, Set, NamedTuple
 
 from docutils.nodes import Element
 from docutils.parsers.rst import directives
@@ -175,6 +175,19 @@ class SyncthingConfigDomain(Domain):
             if entry.docname != docname
         }
 
+    def merge_domaindata(self, docnames: Set[str], otherdata: Dict[str, Any]):
+        self.config_sections.update(otherdata.get('sections', set()))
+
+        for signature, entry in otherdata.get('options', {}).items():
+            if entry.docname in docnames:
+                if signature in self.config_options:
+                    other = self.config_options[signature]
+                    logger.warning(
+                        'Duplicate object description of %s, other instance in %s',
+                        entry.name, other.docname
+                    )
+                self.config_options[signature] = entry
+
 
 def setup(app):
     """Install the plugin.
@@ -182,4 +195,7 @@ def setup(app):
     :param app: Sphinx application context.
     """
     app.add_domain(SyncthingConfigDomain)
-    return
+    return {
+        'parallel_read_safe': True,
+        'parallel_write_safe': True,
+    }
