@@ -1337,11 +1337,10 @@ The ``options`` element contains all other global configuration options.
 
 .. option:: options.sendFullIndexOnUpgrade
 
-    Controls whether all index data is resent when an upgrade has happened,
-    equivalent to starting Syncthing with :option:`--reset-deltas`.  This used
-    to be the default behavior in older versions, but is mainly useful as a
-    troubleshooting step and causes high database churn. The default is now
-    ``false``.
+    Controls whether all index data is resent when an upgrade has happened.
+    This used to be the default behavior in older versions, but is mainly useful
+    as a troubleshooting step and causes high database churn.  The default is
+    now ``false``.
 
 .. option:: options.featureFlag
     :aliases: options.featureFlags
