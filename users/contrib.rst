@@ -47,10 +47,6 @@ macOS / iOS
 Linux
 ~~~~~
 
-- `Syncthing Icon <https://extensions.gnome.org/extension/989/syncthing-icon/>`_
-
-  GNOME Shell extension: A Syncthing status icon in the top bar.
-
 - `Syncthing Indicator <https://extensions.gnome.org/extension/1070/syncthing-indicator/>`_
 
   GNOME Shell extension: A Syncthing indicator for starting, monitoring and controlling the Syncthing daemon using systemd.
@@ -291,6 +287,7 @@ Older, Possibly Unmaintained
 - `a-sync <https://github.com/davide-imbriaco/a-sync>`_
 - `syncthing-tray-gtk3 <https://github.com/abdeoliveira/syncthing-tray-gtk3>`_ (Archived as of 2023-12-29)
 - `Syncthing-GTK <https://github.com/syncthing-gtk/syncthing-gtk>`_ (Fork from `Kozec <https://github.com/kozec/syncthing-gtk>`_)
+- `Syncthing Icon <https://extensions.gnome.org/extension/989/syncthing-icon/>`_ (Last compatible GNOME Shell version 43)
 -  https://github.com/syncthing/syncthing-lite
 -  https://github.com/sieren/QSyncthingTray
 -  https://github.com/akissa/pysyncthing
