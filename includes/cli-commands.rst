@@ -24,8 +24,7 @@ errors
 
 debug
     Various tools to aid in diagnosing problems or collection information for
-    bug reports.  Some of these commands access the database directly and can
-    therefore only work when Syncthing is not running.
+    bug reports.
 
 ``-`` (a single dash)
     Reads subsequent commands from the standard input stream, without needing to

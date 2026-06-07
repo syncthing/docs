@@ -323,6 +323,14 @@ saves the hassle of handling HTTP connections and API authentication.
 
 .. include:: ../includes/cli-commands.rst
 
+For troubleshooting issues, the ``debug`` subcommand provides some commonly
+needed actions for data analysis and repair.  Some of these commands access the
+database directly and can therefore only work when Syncthing is not running.
+Not to be confused with the ``cli debug`` subcommand group, which works via the
+REST API.
+
+.. include:: ../includes/debug-commands.rst
+
 Proxies
 -------
 
