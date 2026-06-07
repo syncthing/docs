@@ -1,3 +1,5 @@
+.. _reset-database:
+
 debug reset-database
     Reset the database, forcing a full rescan and resync.  **Must only be used
     when Syncthing is not running.**  More granular reset operations are
