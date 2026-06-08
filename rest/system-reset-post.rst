@@ -10,5 +10,7 @@ information for that folder will be erased:
 
         curl -X POST -H "X-API-Key: abc123" http://localhost:8384/rest/system/reset?folder=ab1c2-def3g
 
-**Caution**: See :option:`--reset-database` for ``.stfolder`` creation
-side-effect and caution regarding mountpoints.
+Creates ``.stfolder`` folders in each sync folder if they do not already exist.
+**Caution**: Ensure that all sync folders which are mountpoints are already
+mounted.  Inconsistent versions may result if the mountpoint is later mounted
+and contains older versions.
