@@ -144,10 +144,10 @@ man/
 script/
    Various utility scripts for auto generating stuff and so on.
 
-   genassets/
+   genassets.go
       Generates asset files that are compiled into ``syncthing`` as part of the build process (build utility).
 
-   translate/
+   translate.go
       Generates translation source based on the HTML source (build utility).
 
 test/
