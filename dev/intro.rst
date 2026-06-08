@@ -144,14 +144,11 @@ man/
 script/
    Various utility scripts for auto generating stuff and so on.
 
-   genassets/
+   genassets.go
       Generates asset files that are compiled into ``syncthing`` as part of the build process (build utility).
 
-   transifexdl/
-      Downloads translations from Transifex (build utility).
-
-   translate/
-      Generates translation source for Transifex based on the HTML source (build utility).
+   translate.go
+      Generates translation source based on the HTML source (build utility).
 
 test/
    The integration test suite.
