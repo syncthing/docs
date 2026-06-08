@@ -4,10 +4,11 @@ Sphinx extension to provide link anchors for configuration options.
 Modeled after the standard :directive:`cmdoption` directive.
 """
 
-from typing import Tuple, Dict, Iterator, Set, NamedTuple
+from typing import Any, Iterator, NamedTuple, Tuple
 
 from docutils.nodes import Element
 from docutils.parsers.rst import directives
+
 from sphinx import addnodes
 from sphinx.addnodes import pending_xref
 from sphinx.builders import Builder
@@ -15,8 +16,8 @@ from sphinx.directives import ObjectDescription
 from sphinx.domains import Domain, ObjType
 from sphinx.environment import BuildEnvironment
 from sphinx.roles import XRefRole
-from sphinx.util.nodes import make_refnode
 from sphinx.util import logging
+from sphinx.util.nodes import make_refnode
 
 
 __licence__ = 'BSD (3 clause)'
@@ -116,11 +117,11 @@ class SyncthingConfigDomain(Domain):
     }
 
     @property
-    def config_sections(self) -> Set[str]:
-        return self.data.setdefault('sections', [])
+    def config_sections(self) -> set[str]:
+        return self.data.setdefault('sections', set())
 
     @property
-    def config_options(self) -> Dict[str, Tuple]:
+    def config_options(self) -> dict[str, Tuple]:
         return self.data.setdefault('options', {})  # fullname -> (docname, node_id)
 
     def get_full_qualified_name(self, node):  # FIXME: what is this for?!
@@ -168,6 +169,26 @@ class SyncthingConfigDomain(Domain):
             docname=self.env.docname,
             anchor=anchor, priority=0)
 
+    def clear_doc(self, docname: str):
+        self.data['options'] = {
+            signature: entry
+            for signature, entry in self.config_options.items()
+            if entry.docname != docname
+        }
+
+    def merge_domaindata(self, docnames: set[str], otherdata: dict[str, Any]):
+        self.config_sections.update(otherdata.get('sections', set()))
+
+        for signature, entry in otherdata.get('options', {}).items():
+            if entry.docname in docnames:
+                if signature in self.config_options:
+                    other = self.config_options[signature]
+                    logger.warning(
+                        'Duplicate object description of %s, other instance in %s',
+                        entry.name, other.docname
+                    )
+                self.config_options[signature] = entry
+
 
 def setup(app):
     """Install the plugin.
@@ -175,4 +196,7 @@ def setup(app):
     :param app: Sphinx application context.
     """
     app.add_domain(SyncthingConfigDomain)
-    return
+    return {
+        'parallel_read_safe': True,
+        'parallel_write_safe': True,
+    }
