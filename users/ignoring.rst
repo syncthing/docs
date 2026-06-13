@@ -11,6 +11,7 @@ Synopsis
 ::
 
     .stignore
+    .stglobalignore
 
 Description
 -----------
@@ -22,6 +23,16 @@ not applied).  The ``.stignore`` file itself will never be synced to other devic
 although it can ``#include`` files that *are* synchronized between devices.  All
 patterns are relative to the synced folder root.  The contents of the ``.stignore``
 file must be UTF-8 encoded.
+
+A second file called ``.stglobalignore`` can be placed in the folder root to hold
+patterns that should be shared across all devices.  Unlike ``.stignore``, the
+``.stglobalignore`` file *is* synchronized between devices, so patterns written there
+are automatically propagated when the folder syncs to a new host — no manual setup on
+each device is required.  Patterns from ``.stglobalignore`` are appended after those in ``.stignore``.
+Because the first matching pattern wins, ``.stignore`` always takes precedence:
+any pattern in ``.stignore`` — whether an ignore or a negation — will override
+a conflicting pattern in ``.stglobalignore``.
+If ``.stglobalignore`` does not exist the folder loads normally with no error.
 
 .. note::
 
@@ -207,7 +218,14 @@ all files and directories called "foo", ending in a "2" or starting with
 
 .. versionadded:: 2.0.0
 
-   Windows users can now use the pipe character (``|``) to escape 
-   metacharacters in the ``.stignore`` file.  Additionally, adding 
-   ``#escape=X`` to the top of the file, allows users to define ``X`` 
+   Windows users can now use the pipe character (``|``) to escape
+   metacharacters in the ``.stignore`` file.  Additionally, adding
+   ``#escape=X`` to the top of the file, allows users to define ``X``
    as the escape character for that particular file.
+
+.. versionadded:: 2.2.0
+
+   ``.stglobalignore`` is now automatically loaded alongside ``.stignore``.
+   Patterns in ``.stglobalignore`` are synced between devices, removing the
+   need to manually configure ignore patterns on each host.  See the
+   description above for precedence rules.
