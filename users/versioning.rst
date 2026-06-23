@@ -131,7 +131,7 @@ the default ``Sync`` folder in Windows, and the full path to the file is
     %FOLDER_PATH%/%FILE_PATH%"`, is invalid. Syncthing may reject such
     commands as unsafe.
 
-.. versionadded:: 2.1.1
+.. versionadded:: 2.1.2
 
     The environment variables ``$FOLDER_PATH`` and ``$FILE_PATH`` which can
     be used in the script instead of the command line template placeholders.
