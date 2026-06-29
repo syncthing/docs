@@ -968,7 +968,9 @@ The following child elements may be present:
     .. versionadded:: 2.1.0
 
     How long to remain logged in when "stay logged in" is checked in the GUI
-    login form. In seconds, default 604800 (one week).
+    login form. In seconds, default is 604800 (one week). A value of 0 uses
+    the default, and a negative value (e.g. -1) means "forever" (it's
+    actually one year).
 
 .. option:: gui.sessionCookiePath
 
