@@ -1,6 +1,6 @@
 module syncthing.net/docs
 
-go 1.24.0
+go 1.25.0
 
 require (
 	github.com/google/go-github/v49 v49.1.0
@@ -10,7 +10,7 @@ require (
 
 require (
 	github.com/google/go-querystring v1.1.0 // indirect
-	golang.org/x/crypto v0.35.0 // indirect
+	golang.org/x/crypto v0.52.0 // indirect
 	golang.org/x/mod v0.33.0 // indirect
 	golang.org/x/sync v0.19.0 // indirect
 )
