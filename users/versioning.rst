@@ -242,7 +242,7 @@ more consistent with how the Explorer works.
     Add-Type -AssemblyName Microsoft.VisualBasic
 
     # We need to test if a Syncthing .tmp file exists. If it does, we assume
-    # a modification and delete the existing file. If if does not, we assume
+    # a modification and delete the existing file. If it does not, we assume
     # a deletion and recycle the current file. If succeeded, we also include
     # the deleted/recycled file in the Syncthing's DEBUG output.
     if (Test-Path -LiteralPath ((Split-Path -Path $args) + "\~syncthing~" + (Split-Path -Path $args -Leaf) + ".tmp")) {
