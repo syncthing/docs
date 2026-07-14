@@ -624,7 +624,7 @@ The following child elements may exist:
     .. versionadded:: 2.1.0
 
     Whether to use block indexing for the folder; defaults to ``true`` for
-    send-only and receive-only folders. Block indexing makes it possible for
+    send-receive and receive-only folders. Block indexing makes it possible for
     Syncthing to reuse data blocks between files (even in different
     folders), but requires maintaining an index of every individual block's
     hash. This index can be costly for large folders, so indexing can be
