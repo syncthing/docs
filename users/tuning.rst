@@ -50,7 +50,7 @@ These options are folder specific and should be set on each folder:
 - :opt:`copiers`
     The number of routines used for the copy stage of file syncing. Similar
     to other concurrency options, if there are a lot of files to sync and if
-    the I/O system can handle it it you may see increased performance by
+    the I/O system can handle it, you may see increased performance by
     increasing this value. The default is system dependent, somewhere
     between 1 and the number of CPU cores available.
 
