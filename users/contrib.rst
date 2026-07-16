@@ -24,6 +24,10 @@ Android
 
   An Android app for the Syncthing binary with extended functionality.
 
+- `BasicSync <https://github.com/chenxiaolong/BasicSync>`_
+
+  A simple app for running Syncthing on Android.
+
 .. _contrib-windows:
 
 Windows
