@@ -47,6 +47,7 @@ macOS / iOS
 - `Syncthing-menu <https://github.com/gtunes-dev/syncthing-menu>`_
 
   A frugal, native macOS menu-bar app for Syncthing.
+
 Linux
 ~~~~~
 
