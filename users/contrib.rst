@@ -44,6 +44,10 @@ macOS / iOS
   Synctrain is an open source, native app for iOS, iPadOS and macOS that combines Syncthing with a file-centered UI with focus on selective and on-demand file synchronization.
   It can be installed from the `App Store <https://apps.apple.com/app/synctrain/id6553985316>`_.
 
+- `Syncthing-menu <https://github.com/gtunes-dev/syncthing-menu>`_
+
+  A frugal, native macOS menu-bar app for Syncthing.
+   
 Linux
 ~~~~~
 
