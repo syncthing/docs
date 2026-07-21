@@ -178,7 +178,6 @@ The following shows an example of a default configuration file (IDs will differ)
             <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
             <upgradeToPreReleases>false</upgradeToPreReleases>
             <keepTemporariesH>24</keepTemporariesH>
-            <cacheIgnoredFiles>false</cacheIgnoredFiles>
             <progressUpdateIntervalS>5</progressUpdateIntervalS>
             <limitBandwidthInLan>false</limitBandwidthInLan>
             <minHomeDiskFree unit="%">1</minHomeDiskFree>
@@ -1058,7 +1057,6 @@ Options Element
         <autoUpgradeIntervalH>12</autoUpgradeIntervalH>
         <upgradeToPreReleases>false</upgradeToPreReleases>
         <keepTemporariesH>24</keepTemporariesH>
-        <cacheIgnoredFiles>false</cacheIgnoredFiles>
         <progressUpdateIntervalS>5</progressUpdateIntervalS>
         <limitBandwidthInLan>false</limitBandwidthInLan>
         <minHomeDiskFree unit="%">1</minHomeDiskFree>
@@ -1210,12 +1208,6 @@ The ``options`` element contains all other global configuration options.
 
     Keep temporary failed transfers for this many hours. While the temporaries
     are kept, the data they contain need not be transferred again.
-
-.. option:: options.cacheIgnoredFiles
-
-    Whether to cache the results of ignore pattern evaluation. Performance
-    at the price of memory. Defaults to ``false`` as the cost for evaluating
-    ignores is usually not significant.
 
 .. option:: options.progressUpdateIntervalS
 
