@@ -144,7 +144,6 @@ Returns the current configuration.
         "autoUpgradeIntervalH": 12,
         "upgradeToPreReleases": false,
         "keepTemporariesH": 24,
-        "cacheIgnoredFiles": false,
         "progressUpdateIntervalS": 5,
         "limitBandwidthInLan": false,
         "minHomeDiskFree": {
