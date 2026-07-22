@@ -37,9 +37,9 @@ HTTP proxies requiring basic authentication can be specified by embedding
 credentials in the proxy URL. When credentials are used over a cleartext HTTP
 proxy, a warning will be logged.
 
-Note that this environment variable is *not* named with capital letters - it
-must be exactly ``all_proxy``. The "Proxy settings detected" log message
-indicates that Syncthing is using the proxy configuration.
+Both the uppercase ``ALL_PROXY`` and lowercase ``all_proxy`` spellings are
+supported. If both are set, ``ALL_PROXY`` takes precedence. The "Proxy settings
+detected" log message indicates that Syncthing is using the proxy configuration.
 
 Disabling Fallback
 ------------------
