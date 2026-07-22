@@ -8,7 +8,6 @@ Development
    Introduction <intro>
    web
    building
-   contributing
    debugging
    crashrep
    device-ids
