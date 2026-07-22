@@ -337,11 +337,10 @@ Proxies
 Syncthing can use a SOCKS, HTTP, or HTTPS proxy to talk to the outside
 world. The proxy is used for outgoing connections only - it is not possible
 to accept incoming connections through the proxy. The proxy is configured
-through the environment variable ``all_proxy``. Somewhat unusually, this
-variable must be named in lower case - it is not ":strike:`ALL_PROXY`". For
-example::
+through the environment variable ``ALL_PROXY`` or its lowercase variant
+``all_proxy``. If both are set, ``ALL_PROXY`` takes precedence. For example::
 
-    $ export all_proxy=socks://192.0.2.42:8081
+    $ export ALL_PROXY=socks://192.0.2.42:8081
 
 Development Settings
 --------------------
