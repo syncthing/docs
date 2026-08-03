@@ -217,6 +217,18 @@ RockStor
 
 `Docker container <https://rockstor.com/docs/docker-based-rock-ons/syncthing.html>`_ and `registry entry <https://github.com/rockstor/rockon-registry/blob/master/syncthing.json>`_
 
+Zenith
+~~~~~~
+
+`Zenith <https://zenith.hosting/host/syncthing>`_ runs a managed, always-online Syncthing device
+for you in one click, which you then share folders with like any other device. Storage, backups
+and a free subdomain for the web GUI are included, and a share of every subscription goes back to
+Syncthing.
+
+.. image:: https://cdn.zenith.hosting/buttons/deploy-with-zenith.svg
+   :alt: Deploy with Zenith
+   :target: https://zenith.hosting/host/syncthing
+
 Cloudron
 ~~~~~~~~
 
