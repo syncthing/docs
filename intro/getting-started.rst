@@ -37,7 +37,10 @@ will explain how to set up two devices with the core Syncthing flavor.
 .. _`Syncthing-GTK`: https://github.com/kozec/syncthing-gtk
 
 .. note::
-   When **Global Discovery** or **Relaying** is enabled, Syncthing connects to community-hosted servers to locate devices and traverse firewalls. Because these relay IP addresses are hosted by third-party volunteers, your antivirus or firewall software may occasionally flag connections to specific relay nodes as potential false positives. All traffic remains fully end-to-end encrypted.
+   By default, Syncthing connects to a Syncthing Foundation discovery server to 
+locate devices and traverse firewalls. Your antivirus or firewall software may 
+occasionally flag connections to specific relay nodes as potential false 
+positives, but note that all traffic remains fully end-to-end encrypted.
 
 Syncthing
 ~~~~~~~~~
