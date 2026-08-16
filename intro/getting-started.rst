@@ -37,10 +37,13 @@ will explain how to set up two devices with the core Syncthing flavor.
 .. _`Syncthing-GTK`: https://github.com/kozec/syncthing-gtk
 
 .. note::
-   By default, Syncthing connects to a Syncthing Foundation discovery server to 
-locate devices and traverse firewalls. Your antivirus or firewall software may 
-occasionally flag connections to specific relay nodes as potential false 
-positives, but note that all traffic remains fully end-to-end encrypted.
+   **Antivirus software sometimes flags Syncthing's connections.** 
+   By default Syncthing contacts discovery servers run by the Syncthing
+   Foundation to find your other devices, and falls back to community-run relay
+   servers when two devices cannot connect directly. Antivirus or firewall
+   software sometimes flags these connections to unfamiliar addresses; all data
+   is end-to-end encrypted, and relays cannot read what they forward. Both can
+   be disabled in Settings.
 
 Syncthing
 ~~~~~~~~~
