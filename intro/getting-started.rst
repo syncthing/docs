@@ -37,13 +37,8 @@ will explain how to set up two devices with the core Syncthing flavor.
 .. _`Syncthing-GTK`: https://github.com/kozec/syncthing-gtk
 
 .. note::
-   **Antivirus software sometimes flags Syncthing's connections.** 
-   By default Syncthing contacts discovery servers run by the Syncthing
-   Foundation to find your other devices, and falls back to community-run relay
-   servers when two devices cannot connect directly. Antivirus or firewall
-   software sometimes flags these connections to unfamiliar addresses; all data
-   is end-to-end encrypted, and relays cannot read what they forward. Both can
-   be disabled in Settings.
+   Antivirus software sometimes flags Syncthing's connections.
+   See `this FAQ entry <https://docs.syncthing.net/users/faq.html#why-does-syncthing-connect-to-this-unknown-suspicious-address>`_
 
 Syncthing
 ~~~~~~~~~
