@@ -14,7 +14,7 @@ Keys
 To understand device IDs we need to look at the underlying mechanisms. At first
 startup, Syncthing will create a public/private keypair.
 
-Currently this is a 256 bit ED25519 key (384 bit ECDSA prior to v2.0.0 and
+Currently this is a 256 bit Ed25519 key (384 bit ECDSA prior to v2.0.0 and
 3072 bit RSA prior to v0.12.5, which is what is used as an example in this
 article). The keys are saved in the form of the private key (``key.pem``) and a
 self signed certificate (``cert.pem``). The self signing part doesn't actually
