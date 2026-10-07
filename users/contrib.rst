@@ -281,6 +281,13 @@ Resolving conflicts
   finds each conflict and let the user decide whether to open the merge program
   or to skip the file.
 
+* `Conflict Preview <https://laptektools.github.io/conflict-preview/conflict-preview.html>`_
+
+  A read-only browser tool for selected Syncthing conflict copies. Groups
+  matching filenames and compares UTF-8 file contents, keeping unreadable
+  files and missing originals visible. It does not choose a version, merge
+  or delete files. `Source code <https://github.com/LaptekTools/conflict-preview>`_.
+
 Older, Possibly Unmaintained
 ----------------------------
 
