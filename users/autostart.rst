@@ -90,7 +90,7 @@ https://docs.microsoft.com/windows/win32/taskschd.
    #. Click "New...".
    #. Enter the path to ``syncthing.exe`` in "Program/script:" (for
       example ``C:\syncthing\syncthing.exe``).
-   #. Enter ``--no-console --no-browser`` in "Add arguments (optional):"
+   #. Enter ``--no-browser`` in "Add arguments (optional):"
    #. Click "OK".
 
    |Windows Task Scheduler Actions Screenshot|
@@ -171,8 +171,8 @@ opening on start, is relatively easy.
    |Windows Startup Folder New Shortcut Screenshot|
 
 #. Enter the path to ``syncthing.exe`` in "Type the location of the item:"
-   followed by ``--no-console --no-browser`` (for example ``C:\syncthing\syncthing.exe
-   --no-console --no-browser``).
+   into the command ``conhost.exe --headless syncthing.exe --no-browser``
+   (for example ``conhost.exe --headless C:\syncthing\syncthing.exe --no-browser``).
 
    |Windows Startup Folder Create Shortcut Screenshot|
 
@@ -183,6 +183,13 @@ Syncthing will now automatically start the next time you log on to your
 user account in Windows. No console or browser window will pop-up, but
 you can still access the interface by opening http://localhost:8384 in
 a Web browser.
+
+.. note::
+
+   It used to be possible to start Syncthing with its console window hidden by
+   using the `--no-console` option. However, this method no longer works in
+   newer versions of Windows that have Windows Terminal set as their default
+   shell. For this reason, using `--no-console` is no longer recommended here.
 
 .. _autostart-windows-tools:
 
