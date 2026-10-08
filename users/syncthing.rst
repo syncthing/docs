@@ -191,7 +191,8 @@ Serve options
 
 .. cmdoption:: --no-console ($STNOCONSOLE)
 
-    Hide the console window. (On Windows only)
+    Hide the console window. (On Windows, and only if the OS default shell is
+    set to Command Prompt)
 
 .. cmdoption:: --no-port-probing ($STNOPORTPROBING)
 
