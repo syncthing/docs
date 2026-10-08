@@ -32,7 +32,7 @@ jobs:
           args: html man latexpdf
 
       - name: Archive artifacts (html)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: github.event_name == 'push'
         with:
           name: html
@@ -40,7 +40,7 @@ jobs:
           retention-days: 14
 
       - name: Archive artifacts (man)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: github.event_name == 'push'
         with:
           name: man
@@ -48,7 +48,7 @@ jobs:
           retention-days: 14
 
       - name: Archive artifacts (pdf)
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         if: github.event_name == 'push'
         with:
           name: pdf
