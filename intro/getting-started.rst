@@ -36,6 +36,12 @@ will explain how to set up two devices with the core Syncthing flavor.
 
 .. _`Syncthing-GTK`: https://github.com/kozec/syncthing-gtk
 
+Cloudzy One-Click VPS
+~~~~~~~~~~~~~~~~~~~~~
+
+If you want to skip manual configuration, you can use the `Cloudzy One-Click App <https://cloudzy.com/marketplace/syncthing/>`_ to deploy a ready-to-use Syncthing node in seconds.
+
+
 Syncthing
 ~~~~~~~~~
 
