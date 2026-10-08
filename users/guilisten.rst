@@ -60,3 +60,12 @@ To use a port number lower than 1024, you will need to:
   port number.
 
 We do not recommend using a port number lower than 1024.
+
+Example
+-------
+
+Changing the listen address to ``0.0.0.0:8384``.
+
+```
+syncthing cli config gui raw-address set 0.0.0.0:8384
+```
