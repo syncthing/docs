@@ -15,12 +15,12 @@ A simple form of negotiation is used to decide how many connections to use
 between a device pair. It goes like this:
 
 - If either side is configured to use a single connection, then a single
-  connection is used. Since the default is to use a single connection this
-  means that to use more than one connection both sides must be configured
-  to do so.
+  connection is used. Since the default is to use multiple connections
+  (specifically three), this means that to use more than one connection both
+  sides must be configured to do so.
 - If both sides are configured to use multiple connections, then the larger
-  of the two values is used. That is, if one side is configured to use three
-  connections and the other is set to use eight connections, eight
+  of the two values is used. That is, if one side is left at the default of
+  three connections and the other is set to use eight connections, eight
   connections will be used.
 - A maximum of 128 connections will be used under all circumstances. It is
   likely that the "return on investment" in further connections is
