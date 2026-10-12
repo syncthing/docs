@@ -266,6 +266,12 @@ Monitoring
 Resolving conflicts
 ~~~~~~~~~~~~~~~~~~~
 
+- `ConflictBench <https://github.com/rad1092/conflictbench>`_
+
+  A local desktop tool for reviewing Syncthing conflicts, choosing which
+  versions to keep, and saving backups outside synced folders.
+  Pause Syncthing for the affected folder before applying a reviewed plan.
+
 - `syncthing-resolve-conflicts <https://github.com/dschrempf/syncthing-resolve-conflicts>`_
 
   A small bash script that handles synchronization conflicts in text
