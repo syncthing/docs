@@ -85,6 +85,18 @@ it with::
 
 Similarly there is also a ``syncthing-gui`` service.
 
+nftables
+~~~~~~~~
+For hosts using a somewhat standard setup of ``nftables``, placing the
+following content in ``/etc/nftables.d/syncthing.nft`` should allow syncthing
+to be discovered via local discovery and receive direct connections.
+
+    table inet filter {
+    	chain input {
+    		udp dport 21027 accept comment "Allow syncthing discovery"
+    		udp dport 22000 accept comment "Allow syncthing peers"
+    	}
+    }
 
 Remote Web GUI
 --------------
