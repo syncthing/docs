@@ -36,6 +36,10 @@ will explain how to set up two devices with the core Syncthing flavor.
 
 .. _`Syncthing-GTK`: https://github.com/kozec/syncthing-gtk
 
+.. note::
+   Antivirus software sometimes flags Syncthing's connections.
+   See `this FAQ entry <https://docs.syncthing.net/users/faq.html#why-does-syncthing-connect-to-this-unknown-suspicious-address>`_
+
 Syncthing
 ~~~~~~~~~
 
