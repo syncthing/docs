@@ -2,7 +2,10 @@ xattrFilter
 ===========
 
 The extended attributes filter is used to manage which attributes should
-be synced and which ones should not be.
+be synced and which ones should not be. It applies only to when scanning
+local files for outgoing usage, adding extended attributes filters on
+receive-only folders has no effect as then must be applied on the sending
+device instead.
 
 When the filter shows
 ---------------------
